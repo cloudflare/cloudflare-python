@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["LoginDesignParam"]
 
-
 class LoginDesignParam(TypedDict, total=False):
     background_color: str
     """The background color on your login page."""

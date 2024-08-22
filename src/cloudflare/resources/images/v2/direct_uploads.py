@@ -2,31 +2,36 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
-from datetime import datetime
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.images.v2 import direct_upload_create_params
+
 from ....types.images.v2.direct_upload_create_response import DirectUploadCreateResponse
 
-__all__ = ["DirectUploadsResource", "AsyncDirectUploadsResource"]
+from ...._wrappers import ResultWrapper
 
+from ...._utils import maybe_transform, async_maybe_transform
+
+from ...._base_client import make_request_options
+
+from typing import Type, Union
+
+from datetime import datetime
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.images.v2 import direct_upload_create_params
+from typing import cast
+from typing import cast
+
+__all__ = ["DirectUploadsResource", "AsyncDirectUploadsResource"]
 
 class DirectUploadsResource(SyncAPIResource):
     @cached_property
@@ -37,21 +42,19 @@ class DirectUploadsResource(SyncAPIResource):
     def with_streaming_response(self) -> DirectUploadsResourceWithStreamingResponse:
         return DirectUploadsResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DirectUploadCreateResponse:
+    def create(self,
+    *,
+    account_id: str,
+    id: str | NotGiven = NOT_GIVEN,
+    expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    metadata: object | NotGiven = NOT_GIVEN,
+    require_signed_urls: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DirectUploadCreateResponse:
         """Direct uploads allow users to upload images without API keys.
 
         A common use case
@@ -86,32 +89,24 @@ class DirectUploadsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/images/v2/direct_upload",
-            body=maybe_transform(
-                {
-                    "id": id,
-                    "expiry": expiry,
-                    "metadata": metadata,
-                    "require_signed_urls": require_signed_urls,
-                },
-                direct_upload_create_params.DirectUploadCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[DirectUploadCreateResponse]._unwrapper,
-            ),
+            body=maybe_transform({
+                "id": id,
+                "expiry": expiry,
+                "metadata": metadata,
+                "require_signed_urls": require_signed_urls,
+            }, direct_upload_create_params.DirectUploadCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[DirectUploadCreateResponse]._unwrapper),
             cast_to=cast(Type[DirectUploadCreateResponse], ResultWrapper[DirectUploadCreateResponse]),
         )
-
 
 class AsyncDirectUploadsResource(AsyncAPIResource):
     @cached_property
@@ -122,21 +117,19 @@ class AsyncDirectUploadsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDirectUploadsResourceWithStreamingResponse:
         return AsyncDirectUploadsResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DirectUploadCreateResponse:
+    async def create(self,
+    *,
+    account_id: str,
+    id: str | NotGiven = NOT_GIVEN,
+    expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    metadata: object | NotGiven = NOT_GIVEN,
+    require_signed_urls: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DirectUploadCreateResponse:
         """Direct uploads allow users to upload images without API keys.
 
         A common use case
@@ -171,32 +164,24 @@ class AsyncDirectUploadsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/images/v2/direct_upload",
-            body=await async_maybe_transform(
-                {
-                    "id": id,
-                    "expiry": expiry,
-                    "metadata": metadata,
-                    "require_signed_urls": require_signed_urls,
-                },
-                direct_upload_create_params.DirectUploadCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[DirectUploadCreateResponse]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "id": id,
+                "expiry": expiry,
+                "metadata": metadata,
+                "require_signed_urls": require_signed_urls,
+            }, direct_upload_create_params.DirectUploadCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[DirectUploadCreateResponse]._unwrapper),
             cast_to=cast(Type[DirectUploadCreateResponse], ResultWrapper[DirectUploadCreateResponse]),
         )
-
 
 class DirectUploadsResourceWithRawResponse:
     def __init__(self, direct_uploads: DirectUploadsResource) -> None:
@@ -206,7 +191,6 @@ class DirectUploadsResourceWithRawResponse:
             direct_uploads.create,
         )
 
-
 class AsyncDirectUploadsResourceWithRawResponse:
     def __init__(self, direct_uploads: AsyncDirectUploadsResource) -> None:
         self._direct_uploads = direct_uploads
@@ -215,7 +199,6 @@ class AsyncDirectUploadsResourceWithRawResponse:
             direct_uploads.create,
         )
 
-
 class DirectUploadsResourceWithStreamingResponse:
     def __init__(self, direct_uploads: DirectUploadsResource) -> None:
         self._direct_uploads = direct_uploads
@@ -223,7 +206,6 @@ class DirectUploadsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             direct_uploads.create,
         )
-
 
 class AsyncDirectUploadsResourceWithStreamingResponse:
     def __init__(self, direct_uploads: AsyncDirectUploadsResource) -> None:

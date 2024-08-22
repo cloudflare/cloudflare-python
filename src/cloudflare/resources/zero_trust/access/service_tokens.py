@@ -2,33 +2,51 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.access import service_token_create_params, service_token_update_params
-from ....types.zero_trust.access.service_token import ServiceToken
+
 from ....types.zero_trust.access.service_token_create_response import ServiceTokenCreateResponse
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from ....types.zero_trust.access.service_token import ServiceToken
+
+from ....pagination import SyncSinglePage, AsyncSinglePage
+
 from ....types.zero_trust.access.service_token_rotate_response import ServiceTokenRotateResponse
 
-__all__ = ["ServiceTokensResource", "AsyncServiceTokensResource"]
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.zero_trust.access import service_token_create_params
+from ....types.zero_trust.access import service_token_update_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["ServiceTokensResource", "AsyncServiceTokensResource"]
 
 class ServiceTokensResource(SyncAPIResource):
     @cached_property
@@ -39,20 +57,18 @@ class ServiceTokensResource(SyncAPIResource):
     def with_streaming_response(self) -> ServiceTokensResourceWithStreamingResponse:
         return ServiceTokensResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        name: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        duration: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServiceTokenCreateResponse]:
+    def create(self,
+    *,
+    name: str,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    duration: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ServiceTokenCreateResponse]:
         """Generates a new service token.
 
         **Note:** This is the only time you can get the
@@ -79,51 +95,40 @@ class ServiceTokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._post(
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "duration": duration,
-                },
-                service_token_create_params.ServiceTokenCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceTokenCreateResponse]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "name": name,
+                "duration": duration,
+            }, service_token_create_params.ServiceTokenCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ServiceTokenCreateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[ServiceTokenCreateResponse]], ResultWrapper[ServiceTokenCreateResponse]),
         )
 
-    def update(
-        self,
-        service_token_id: str,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        duration: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServiceToken]:
+    def update(self,
+    service_token_id: str,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    duration: str | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ServiceToken]:
         """
         Updates a configured service token.
 
@@ -149,50 +154,41 @@ class ServiceTokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not service_token_id:
-            raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `service_token_id` but received {service_token_id!r}'
+          )
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._put(
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
-            body=maybe_transform(
-                {
-                    "duration": duration,
-                    "name": name,
-                },
-                service_token_update_params.ServiceTokenUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "duration": duration,
+                "name": name,
+            }, service_token_update_params.ServiceTokenUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper),
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ServiceToken]:
+    def list(self,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[ServiceToken]:
         """
         Lists all service tokens.
 
@@ -210,39 +206,35 @@ class ServiceTokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
-            page=SyncSinglePage[ServiceToken],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = SyncSinglePage[ServiceToken],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=ServiceToken,
         )
 
-    def delete(
-        self,
-        service_token_id: str,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServiceToken]:
+    def delete(self,
+    service_token_id: str,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ServiceToken]:
         """
         Deletes a service token.
 
@@ -262,44 +254,38 @@ class ServiceTokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not service_token_id:
-            raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `service_token_id` but received {service_token_id!r}'
+          )
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._delete(
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper),
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
 
-    def get(
-        self,
-        service_token_id: str,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServiceToken]:
+    def get(self,
+    service_token_id: str,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ServiceToken]:
         """
         Fetches a single service token.
 
@@ -319,43 +305,37 @@ class ServiceTokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not service_token_id:
-            raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `service_token_id` but received {service_token_id!r}'
+          )
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._get(
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper),
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
 
-    def refresh(
-        self,
-        service_token_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServiceToken]:
+    def refresh(self,
+    service_token_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ServiceToken]:
         """
         Refreshes the expiration of a service token.
 
@@ -373,33 +353,29 @@ class ServiceTokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not service_token_id:
-            raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `service_token_id` but received {service_token_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/access/service_tokens/{service_token_id}/refresh",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper),
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
 
-    def rotate(
-        self,
-        service_token_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServiceTokenRotateResponse]:
+    def rotate(self,
+    service_token_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ServiceTokenRotateResponse]:
         """
         Generates a new Client Secret for a service token and revokes the old one.
 
@@ -417,21 +393,18 @@ class ServiceTokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not service_token_id:
-            raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `service_token_id` but received {service_token_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/access/service_tokens/{service_token_id}/rotate",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceTokenRotateResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ServiceTokenRotateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[ServiceTokenRotateResponse]], ResultWrapper[ServiceTokenRotateResponse]),
         )
-
 
 class AsyncServiceTokensResource(AsyncAPIResource):
     @cached_property
@@ -442,20 +415,18 @@ class AsyncServiceTokensResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncServiceTokensResourceWithStreamingResponse:
         return AsyncServiceTokensResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        name: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        duration: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServiceTokenCreateResponse]:
+    async def create(self,
+    *,
+    name: str,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    duration: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ServiceTokenCreateResponse]:
         """Generates a new service token.
 
         **Note:** This is the only time you can get the
@@ -482,51 +453,40 @@ class AsyncServiceTokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return await self._post(
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "duration": duration,
-                },
-                service_token_create_params.ServiceTokenCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceTokenCreateResponse]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "name": name,
+                "duration": duration,
+            }, service_token_create_params.ServiceTokenCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ServiceTokenCreateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[ServiceTokenCreateResponse]], ResultWrapper[ServiceTokenCreateResponse]),
         )
 
-    async def update(
-        self,
-        service_token_id: str,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        duration: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServiceToken]:
+    async def update(self,
+    service_token_id: str,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    duration: str | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ServiceToken]:
         """
         Updates a configured service token.
 
@@ -552,50 +512,41 @@ class AsyncServiceTokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not service_token_id:
-            raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `service_token_id` but received {service_token_id!r}'
+          )
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return await self._put(
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
-            body=await async_maybe_transform(
-                {
-                    "duration": duration,
-                    "name": name,
-                },
-                service_token_update_params.ServiceTokenUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "duration": duration,
+                "name": name,
+            }, service_token_update_params.ServiceTokenUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper),
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ServiceToken, AsyncSinglePage[ServiceToken]]:
+    def list(self,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[ServiceToken, AsyncSinglePage[ServiceToken]]:
         """
         Lists all service tokens.
 
@@ -613,39 +564,35 @@ class AsyncServiceTokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
-            page=AsyncSinglePage[ServiceToken],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = AsyncSinglePage[ServiceToken],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=ServiceToken,
         )
 
-    async def delete(
-        self,
-        service_token_id: str,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServiceToken]:
+    async def delete(self,
+    service_token_id: str,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ServiceToken]:
         """
         Deletes a service token.
 
@@ -665,44 +612,38 @@ class AsyncServiceTokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not service_token_id:
-            raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `service_token_id` but received {service_token_id!r}'
+          )
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return await self._delete(
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper),
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
 
-    async def get(
-        self,
-        service_token_id: str,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServiceToken]:
+    async def get(self,
+    service_token_id: str,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ServiceToken]:
         """
         Fetches a single service token.
 
@@ -722,43 +663,37 @@ class AsyncServiceTokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not service_token_id:
-            raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `service_token_id` but received {service_token_id!r}'
+          )
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return await self._get(
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{service_token_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper),
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
 
-    async def refresh(
-        self,
-        service_token_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServiceToken]:
+    async def refresh(self,
+    service_token_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ServiceToken]:
         """
         Refreshes the expiration of a service token.
 
@@ -776,33 +711,29 @@ class AsyncServiceTokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not service_token_id:
-            raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `service_token_id` but received {service_token_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/access/service_tokens/{service_token_id}/refresh",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper),
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
 
-    async def rotate(
-        self,
-        service_token_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ServiceTokenRotateResponse]:
+    async def rotate(self,
+    service_token_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ServiceTokenRotateResponse]:
         """
         Generates a new Client Secret for a service token and revokes the old one.
 
@@ -820,21 +751,18 @@ class AsyncServiceTokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not service_token_id:
-            raise ValueError(f"Expected a non-empty value for `service_token_id` but received {service_token_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `service_token_id` but received {service_token_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/access/service_tokens/{service_token_id}/rotate",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ServiceTokenRotateResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ServiceTokenRotateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[ServiceTokenRotateResponse]], ResultWrapper[ServiceTokenRotateResponse]),
         )
-
 
 class ServiceTokensResourceWithRawResponse:
     def __init__(self, service_tokens: ServiceTokensResource) -> None:
@@ -862,7 +790,6 @@ class ServiceTokensResourceWithRawResponse:
             service_tokens.rotate,
         )
 
-
 class AsyncServiceTokensResourceWithRawResponse:
     def __init__(self, service_tokens: AsyncServiceTokensResource) -> None:
         self._service_tokens = service_tokens
@@ -889,7 +816,6 @@ class AsyncServiceTokensResourceWithRawResponse:
             service_tokens.rotate,
         )
 
-
 class ServiceTokensResourceWithStreamingResponse:
     def __init__(self, service_tokens: ServiceTokensResource) -> None:
         self._service_tokens = service_tokens
@@ -915,7 +841,6 @@ class ServiceTokensResourceWithStreamingResponse:
         self.rotate = to_streamed_response_wrapper(
             service_tokens.rotate,
         )
-
 
 class AsyncServiceTokensResourceWithStreamingResponse:
     def __init__(self, service_tokens: AsyncServiceTokensResource) -> None:

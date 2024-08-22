@@ -2,21 +2,29 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.zero_trust.dex.fleet_status import DeviceListResponse
+
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
 from typing import Any, cast
 
+import os
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.zero_trust.dex.fleet_status import DeviceListResponse
+from cloudflare.types.zero_trust.dex.fleet_status import device_list_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestDevices:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -28,7 +36,7 @@ class TestDevices:
             per_page=10,
             to="2023-10-11T00:00:00Z",
         )
-        assert_matches_type(SyncV4PagePaginationArray[DeviceListResponse], device, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[DeviceListResponse], device, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -48,11 +56,12 @@ class TestDevices:
             status="connected",
             version="1.0.0",
         )
-        assert_matches_type(SyncV4PagePaginationArray[DeviceListResponse], device, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[DeviceListResponse], device, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
+
         response = client.zero_trust.dex.fleet_status.devices.with_raw_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-10-11T00:00:00Z",
@@ -62,9 +71,9 @@ class TestDevices:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         device = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[DeviceListResponse], device, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[DeviceListResponse], device, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -75,12 +84,12 @@ class TestDevices:
             page=1,
             per_page=10,
             to="2023-10-11T00:00:00Z",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             device = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[DeviceListResponse], device, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[DeviceListResponse], device, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -88,17 +97,16 @@ class TestDevices:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.dex.fleet_status.devices.with_raw_response.list(
-                account_id="",
-                from_="2023-10-11T00:00:00Z",
-                page=1,
-                per_page=10,
-                to="2023-10-11T00:00:00Z",
-            )
-
-
+          client.zero_trust.dex.fleet_status.devices.with_raw_response.list(
+              account_id="",
+              from_="2023-10-11T00:00:00Z",
+              page=1,
+              per_page=10,
+              to="2023-10-11T00:00:00Z",
+          )
 class TestAsyncDevices:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -110,7 +118,7 @@ class TestAsyncDevices:
             per_page=10,
             to="2023-10-11T00:00:00Z",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[DeviceListResponse], device, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[DeviceListResponse], device, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -130,11 +138,12 @@ class TestAsyncDevices:
             status="connected",
             version="1.0.0",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[DeviceListResponse], device, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[DeviceListResponse], device, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zero_trust.dex.fleet_status.devices.with_raw_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-10-11T00:00:00Z",
@@ -144,9 +153,9 @@ class TestAsyncDevices:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         device = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[DeviceListResponse], device, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[DeviceListResponse], device, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -157,12 +166,12 @@ class TestAsyncDevices:
             page=1,
             per_page=10,
             to="2023-10-11T00:00:00Z",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             device = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[DeviceListResponse], device, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[DeviceListResponse], device, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -170,10 +179,10 @@ class TestAsyncDevices:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.dex.fleet_status.devices.with_raw_response.list(
-                account_id="",
-                from_="2023-10-11T00:00:00Z",
-                page=1,
-                per_page=10,
-                to="2023-10-11T00:00:00Z",
-            )
+          await async_client.zero_trust.dex.fleet_status.devices.with_raw_response.list(
+              account_id="",
+              from_="2023-10-11T00:00:00Z",
+              page=1,
+              per_page=10,
+              to="2023-10-11T00:00:00Z",
+          )

@@ -2,20 +2,27 @@
 
 from __future__ import annotations
 
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from typing import Optional, Any, cast
+
+from cloudflare.types.stream import Clip
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.stream import Clip
+from cloudflare.types.stream import clip_create_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestClip:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
@@ -25,7 +32,7 @@ class TestClip:
             end_time_seconds=0,
             start_time_seconds=0,
         )
-        assert_matches_type(Optional[Clip], clip, path=["response"])
+        assert_matches_type(Optional[Clip], clip, path=['response'])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -39,12 +46,15 @@ class TestClip:
             max_duration_seconds=1,
             require_signed_urls=True,
             thumbnail_timestamp_pct=0.529241,
-            watermark={"uid": "ea95132c15732412d22c1476fa83f27a"},
+            watermark={
+                "uid": "ea95132c15732412d22c1476fa83f27a"
+            },
         )
-        assert_matches_type(Optional[Clip], clip, path=["response"])
+        assert_matches_type(Optional[Clip], clip, path=['response'])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
+
         response = client.stream.clip.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
@@ -53,9 +63,9 @@ class TestClip:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         clip = response.parse()
-        assert_matches_type(Optional[Clip], clip, path=["response"])
+        assert_matches_type(Optional[Clip], clip, path=['response'])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -64,28 +74,27 @@ class TestClip:
             clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
             end_time_seconds=0,
             start_time_seconds=0,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             clip = response.parse()
-            assert_matches_type(Optional[Clip], clip, path=["response"])
+            assert_matches_type(Optional[Clip], clip, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.stream.clip.with_raw_response.create(
-                account_id="",
-                clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
-                end_time_seconds=0,
-                start_time_seconds=0,
-            )
-
-
+          client.stream.clip.with_raw_response.create(
+              account_id="",
+              clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
+              end_time_seconds=0,
+              start_time_seconds=0,
+          )
 class TestAsyncClip:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -95,7 +104,7 @@ class TestAsyncClip:
             end_time_seconds=0,
             start_time_seconds=0,
         )
-        assert_matches_type(Optional[Clip], clip, path=["response"])
+        assert_matches_type(Optional[Clip], clip, path=['response'])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -109,12 +118,15 @@ class TestAsyncClip:
             max_duration_seconds=1,
             require_signed_urls=True,
             thumbnail_timestamp_pct=0.529241,
-            watermark={"uid": "ea95132c15732412d22c1476fa83f27a"},
+            watermark={
+                "uid": "ea95132c15732412d22c1476fa83f27a"
+            },
         )
-        assert_matches_type(Optional[Clip], clip, path=["response"])
+        assert_matches_type(Optional[Clip], clip, path=['response'])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.stream.clip.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
@@ -123,9 +135,9 @@ class TestAsyncClip:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         clip = await response.parse()
-        assert_matches_type(Optional[Clip], clip, path=["response"])
+        assert_matches_type(Optional[Clip], clip, path=['response'])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -134,21 +146,21 @@ class TestAsyncClip:
             clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
             end_time_seconds=0,
             start_time_seconds=0,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             clip = await response.parse()
-            assert_matches_type(Optional[Clip], clip, path=["response"])
+            assert_matches_type(Optional[Clip], clip, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.stream.clip.with_raw_response.create(
-                account_id="",
-                clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
-                end_time_seconds=0,
-                start_time_seconds=0,
-            )
+          await async_client.stream.clip.with_raw_response.create(
+              account_id="",
+              clipped_from_video_uid="023e105f4ecef8ad9ca31a8372d0c353",
+              end_time_seconds=0,
+              start_time_seconds=0,
+          )

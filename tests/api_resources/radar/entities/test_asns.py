@@ -2,30 +2,35 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.radar.entities import ASNListResponse, ASNGetResponse, ASNIPResponse, ASNRelResponse
+
 from typing import Any, cast
 
+import os
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.radar.entities import (
-    ASNIPResponse,
-    ASNGetResponse,
-    ASNRelResponse,
-    ASNListResponse,
-)
+from cloudflare.types.radar.entities import asn_list_params
+from cloudflare.types.radar.entities import asn_get_params
+from cloudflare.types.radar.entities import asn_ip_params
+from cloudflare.types.radar.entities import asn_rel_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestASNs:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         asn = client.radar.entities.asns.list()
-        assert_matches_type(ASNListResponse, asn, path=["response"])
+        assert_matches_type(ASNListResponse, asn, path=['response'])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -37,25 +42,26 @@ class TestASNs:
             offset=0,
             order_by="ASN",
         )
-        assert_matches_type(ASNListResponse, asn, path=["response"])
+        assert_matches_type(ASNListResponse, asn, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
+
         response = client.radar.entities.asns.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         asn = response.parse()
-        assert_matches_type(ASNListResponse, asn, path=["response"])
+        assert_matches_type(ASNListResponse, asn, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.radar.entities.asns.with_streaming_response.list() as response:
+        with client.radar.entities.asns.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             asn = response.parse()
-            assert_matches_type(ASNListResponse, asn, path=["response"])
+            assert_matches_type(ASNListResponse, asn, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -64,7 +70,7 @@ class TestASNs:
         asn = client.radar.entities.asns.get(
             asn=3,
         )
-        assert_matches_type(ASNGetResponse, asn, path=["response"])
+        assert_matches_type(ASNGetResponse, asn, path=['response'])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
@@ -72,29 +78,30 @@ class TestASNs:
             asn=3,
             format="JSON",
         )
-        assert_matches_type(ASNGetResponse, asn, path=["response"])
+        assert_matches_type(ASNGetResponse, asn, path=['response'])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
+
         response = client.radar.entities.asns.with_raw_response.get(
             asn=3,
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         asn = response.parse()
-        assert_matches_type(ASNGetResponse, asn, path=["response"])
+        assert_matches_type(ASNGetResponse, asn, path=['response'])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.radar.entities.asns.with_streaming_response.get(
             asn=3,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             asn = response.parse()
-            assert_matches_type(ASNGetResponse, asn, path=["response"])
+            assert_matches_type(ASNGetResponse, asn, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -103,7 +110,7 @@ class TestASNs:
         asn = client.radar.entities.asns.ip(
             ip="8.8.8.8",
         )
-        assert_matches_type(ASNIPResponse, asn, path=["response"])
+        assert_matches_type(ASNIPResponse, asn, path=['response'])
 
     @parametrize
     def test_method_ip_with_all_params(self, client: Cloudflare) -> None:
@@ -111,29 +118,30 @@ class TestASNs:
             ip="8.8.8.8",
             format="JSON",
         )
-        assert_matches_type(ASNIPResponse, asn, path=["response"])
+        assert_matches_type(ASNIPResponse, asn, path=['response'])
 
     @parametrize
     def test_raw_response_ip(self, client: Cloudflare) -> None:
+
         response = client.radar.entities.asns.with_raw_response.ip(
             ip="8.8.8.8",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         asn = response.parse()
-        assert_matches_type(ASNIPResponse, asn, path=["response"])
+        assert_matches_type(ASNIPResponse, asn, path=['response'])
 
     @parametrize
     def test_streaming_response_ip(self, client: Cloudflare) -> None:
         with client.radar.entities.asns.with_streaming_response.ip(
             ip="8.8.8.8",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             asn = response.parse()
-            assert_matches_type(ASNIPResponse, asn, path=["response"])
+            assert_matches_type(ASNIPResponse, asn, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -142,7 +150,7 @@ class TestASNs:
         asn = client.radar.entities.asns.rel(
             asn=3,
         )
-        assert_matches_type(ASNRelResponse, asn, path=["response"])
+        assert_matches_type(ASNRelResponse, asn, path=['response'])
 
     @parametrize
     def test_method_rel_with_all_params(self, client: Cloudflare) -> None:
@@ -151,40 +159,40 @@ class TestASNs:
             asn2=0,
             format="JSON",
         )
-        assert_matches_type(ASNRelResponse, asn, path=["response"])
+        assert_matches_type(ASNRelResponse, asn, path=['response'])
 
     @parametrize
     def test_raw_response_rel(self, client: Cloudflare) -> None:
+
         response = client.radar.entities.asns.with_raw_response.rel(
             asn=3,
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         asn = response.parse()
-        assert_matches_type(ASNRelResponse, asn, path=["response"])
+        assert_matches_type(ASNRelResponse, asn, path=['response'])
 
     @parametrize
     def test_streaming_response_rel(self, client: Cloudflare) -> None:
         with client.radar.entities.asns.with_streaming_response.rel(
             asn=3,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             asn = response.parse()
-            assert_matches_type(ASNRelResponse, asn, path=["response"])
+            assert_matches_type(ASNRelResponse, asn, path=['response'])
 
         assert cast(Any, response.is_closed) is True
-
-
 class TestAsyncASNs:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         asn = await async_client.radar.entities.asns.list()
-        assert_matches_type(ASNListResponse, asn, path=["response"])
+        assert_matches_type(ASNListResponse, asn, path=['response'])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -196,25 +204,26 @@ class TestAsyncASNs:
             offset=0,
             order_by="ASN",
         )
-        assert_matches_type(ASNListResponse, asn, path=["response"])
+        assert_matches_type(ASNListResponse, asn, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.radar.entities.asns.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         asn = await response.parse()
-        assert_matches_type(ASNListResponse, asn, path=["response"])
+        assert_matches_type(ASNListResponse, asn, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.entities.asns.with_streaming_response.list() as response:
+        async with async_client.radar.entities.asns.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             asn = await response.parse()
-            assert_matches_type(ASNListResponse, asn, path=["response"])
+            assert_matches_type(ASNListResponse, asn, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -223,7 +232,7 @@ class TestAsyncASNs:
         asn = await async_client.radar.entities.asns.get(
             asn=3,
         )
-        assert_matches_type(ASNGetResponse, asn, path=["response"])
+        assert_matches_type(ASNGetResponse, asn, path=['response'])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -231,29 +240,30 @@ class TestAsyncASNs:
             asn=3,
             format="JSON",
         )
-        assert_matches_type(ASNGetResponse, asn, path=["response"])
+        assert_matches_type(ASNGetResponse, asn, path=['response'])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.radar.entities.asns.with_raw_response.get(
             asn=3,
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         asn = await response.parse()
-        assert_matches_type(ASNGetResponse, asn, path=["response"])
+        assert_matches_type(ASNGetResponse, asn, path=['response'])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.entities.asns.with_streaming_response.get(
             asn=3,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             asn = await response.parse()
-            assert_matches_type(ASNGetResponse, asn, path=["response"])
+            assert_matches_type(ASNGetResponse, asn, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -262,7 +272,7 @@ class TestAsyncASNs:
         asn = await async_client.radar.entities.asns.ip(
             ip="8.8.8.8",
         )
-        assert_matches_type(ASNIPResponse, asn, path=["response"])
+        assert_matches_type(ASNIPResponse, asn, path=['response'])
 
     @parametrize
     async def test_method_ip_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -270,29 +280,30 @@ class TestAsyncASNs:
             ip="8.8.8.8",
             format="JSON",
         )
-        assert_matches_type(ASNIPResponse, asn, path=["response"])
+        assert_matches_type(ASNIPResponse, asn, path=['response'])
 
     @parametrize
     async def test_raw_response_ip(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.radar.entities.asns.with_raw_response.ip(
             ip="8.8.8.8",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         asn = await response.parse()
-        assert_matches_type(ASNIPResponse, asn, path=["response"])
+        assert_matches_type(ASNIPResponse, asn, path=['response'])
 
     @parametrize
     async def test_streaming_response_ip(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.entities.asns.with_streaming_response.ip(
             ip="8.8.8.8",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             asn = await response.parse()
-            assert_matches_type(ASNIPResponse, asn, path=["response"])
+            assert_matches_type(ASNIPResponse, asn, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -301,7 +312,7 @@ class TestAsyncASNs:
         asn = await async_client.radar.entities.asns.rel(
             asn=3,
         )
-        assert_matches_type(ASNRelResponse, asn, path=["response"])
+        assert_matches_type(ASNRelResponse, asn, path=['response'])
 
     @parametrize
     async def test_method_rel_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -310,28 +321,29 @@ class TestAsyncASNs:
             asn2=0,
             format="JSON",
         )
-        assert_matches_type(ASNRelResponse, asn, path=["response"])
+        assert_matches_type(ASNRelResponse, asn, path=['response'])
 
     @parametrize
     async def test_raw_response_rel(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.radar.entities.asns.with_raw_response.rel(
             asn=3,
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         asn = await response.parse()
-        assert_matches_type(ASNRelResponse, asn, path=["response"])
+        assert_matches_type(ASNRelResponse, asn, path=['response'])
 
     @parametrize
     async def test_streaming_response_rel(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.entities.asns.with_streaming_response.rel(
             asn=3,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             asn = await response.parse()
-            assert_matches_type(ASNRelResponse, asn, path=["response"])
+            assert_matches_type(ASNRelResponse, asn, path=['response'])
 
         assert cast(Any, response.is_closed) is True

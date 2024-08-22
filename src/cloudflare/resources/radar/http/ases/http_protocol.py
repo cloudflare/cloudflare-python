@@ -2,32 +2,38 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
-from .....types.radar.http.ases import http_protocol_get_params
+
 from .....types.radar.http.ases.http_protocol_get_response import HTTPProtocolGetResponse
 
-__all__ = ["HTTPProtocolResource", "AsyncHTTPProtocolResource"]
+from ....._wrappers import ResultWrapper
 
+from ....._utils import maybe_transform, async_maybe_transform
+
+from ....._base_client import make_request_options
+
+from typing import Type, List, Union
+
+from typing_extensions import Literal
+
+from datetime import datetime
+
+from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.radar.http.ases import http_protocol_get_params
+from typing import cast
+from typing import cast
+
+__all__ = ["HTTPProtocolResource", "AsyncHTTPProtocolResource"]
 
 class HTTPProtocolResource(SyncAPIResource):
     @cached_property
@@ -38,33 +44,30 @@ class HTTPProtocolResource(SyncAPIResource):
     def with_streaming_response(self) -> HTTPProtocolResourceWithStreamingResponse:
         return HTTPProtocolResourceWithStreamingResponse(self)
 
-    def get(
-        self,
-        http_protocol: Literal["HTTP", "HTTPS"],
-        *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HTTPProtocolGetResponse:
+    def get(self,
+    http_protocol: Literal["HTTP", "HTTPS"],
+    *,
+    asn: List[str] | NotGiven = NOT_GIVEN,
+    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+    browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+    limit: int | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
+    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> HTTPProtocolGetResponse:
         """
         Get the top autonomous systems (AS), by HTTP traffic, of the requested HTTP
         protocol. Values are a percentage out of the total traffic.
@@ -120,39 +123,30 @@ class HTTPProtocolResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not http_protocol:
-            raise ValueError(f"Expected a non-empty value for `http_protocol` but received {http_protocol!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `http_protocol` but received {http_protocol!r}'
+          )
         return self._get(
             f"/radar/http/top/ases/http_protocol/{http_protocol}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "asn": asn,
-                        "bot_class": bot_class,
-                        "browser_family": browser_family,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "device_type": device_type,
-                        "format": format,
-                        "ip_version": ip_version,
-                        "limit": limit,
-                        "location": location,
-                        "name": name,
-                        "os": os,
-                        "tls_version": tls_version,
-                    },
-                    http_protocol_get_params.HTTPProtocolGetParams,
-                ),
-                post_parser=ResultWrapper[HTTPProtocolGetResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "asn": asn,
+                "bot_class": bot_class,
+                "browser_family": browser_family,
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "device_type": device_type,
+                "format": format,
+                "ip_version": ip_version,
+                "limit": limit,
+                "location": location,
+                "name": name,
+                "os": os,
+                "tls_version": tls_version,
+            }, http_protocol_get_params.HTTPProtocolGetParams), post_parser=ResultWrapper[HTTPProtocolGetResponse]._unwrapper),
             cast_to=cast(Type[HTTPProtocolGetResponse], ResultWrapper[HTTPProtocolGetResponse]),
         )
-
 
 class AsyncHTTPProtocolResource(AsyncAPIResource):
     @cached_property
@@ -163,33 +157,30 @@ class AsyncHTTPProtocolResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncHTTPProtocolResourceWithStreamingResponse:
         return AsyncHTTPProtocolResourceWithStreamingResponse(self)
 
-    async def get(
-        self,
-        http_protocol: Literal["HTTP", "HTTPS"],
-        *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HTTPProtocolGetResponse:
+    async def get(self,
+    http_protocol: Literal["HTTP", "HTTPS"],
+    *,
+    asn: List[str] | NotGiven = NOT_GIVEN,
+    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+    browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+    limit: int | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
+    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> HTTPProtocolGetResponse:
         """
         Get the top autonomous systems (AS), by HTTP traffic, of the requested HTTP
         protocol. Values are a percentage out of the total traffic.
@@ -245,39 +236,30 @@ class AsyncHTTPProtocolResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not http_protocol:
-            raise ValueError(f"Expected a non-empty value for `http_protocol` but received {http_protocol!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `http_protocol` but received {http_protocol!r}'
+          )
         return await self._get(
             f"/radar/http/top/ases/http_protocol/{http_protocol}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "asn": asn,
-                        "bot_class": bot_class,
-                        "browser_family": browser_family,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "device_type": device_type,
-                        "format": format,
-                        "ip_version": ip_version,
-                        "limit": limit,
-                        "location": location,
-                        "name": name,
-                        "os": os,
-                        "tls_version": tls_version,
-                    },
-                    http_protocol_get_params.HTTPProtocolGetParams,
-                ),
-                post_parser=ResultWrapper[HTTPProtocolGetResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "asn": asn,
+                "bot_class": bot_class,
+                "browser_family": browser_family,
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "device_type": device_type,
+                "format": format,
+                "ip_version": ip_version,
+                "limit": limit,
+                "location": location,
+                "name": name,
+                "os": os,
+                "tls_version": tls_version,
+            }, http_protocol_get_params.HTTPProtocolGetParams), post_parser=ResultWrapper[HTTPProtocolGetResponse]._unwrapper),
             cast_to=cast(Type[HTTPProtocolGetResponse], ResultWrapper[HTTPProtocolGetResponse]),
         )
-
 
 class HTTPProtocolResourceWithRawResponse:
     def __init__(self, http_protocol: HTTPProtocolResource) -> None:
@@ -287,7 +269,6 @@ class HTTPProtocolResourceWithRawResponse:
             http_protocol.get,
         )
 
-
 class AsyncHTTPProtocolResourceWithRawResponse:
     def __init__(self, http_protocol: AsyncHTTPProtocolResource) -> None:
         self._http_protocol = http_protocol
@@ -296,7 +277,6 @@ class AsyncHTTPProtocolResourceWithRawResponse:
             http_protocol.get,
         )
 
-
 class HTTPProtocolResourceWithStreamingResponse:
     def __init__(self, http_protocol: HTTPProtocolResource) -> None:
         self._http_protocol = http_protocol
@@ -304,7 +284,6 @@ class HTTPProtocolResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             http_protocol.get,
         )
-
 
 class AsyncHTTPProtocolResourceWithStreamingResponse:
     def __init__(self, http_protocol: AsyncHTTPProtocolResource) -> None:

@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
-
 from .nat_param import NatParam
 
-__all__ = ["RoutedSubnetParam"]
+from typing_extensions import TypedDict, Required
 
+__all__ = ["RoutedSubnetParam"]
 
 class RoutedSubnetParam(TypedDict, total=False):
     next_hop: Required[str]

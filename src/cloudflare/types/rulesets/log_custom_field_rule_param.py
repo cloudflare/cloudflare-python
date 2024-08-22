@@ -2,34 +2,25 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict, Required
 
 from .logging_param import LoggingParam
 
-__all__ = [
-    "LogCustomFieldRuleParam",
-    "ActionParameters",
-    "ActionParametersCookieField",
-    "ActionParametersRequestField",
-    "ActionParametersResponseField",
-]
+from typing import Iterable
 
+__all__ = ["LogCustomFieldRuleParam", "ActionParameters", "ActionParametersCookieField", "ActionParametersRequestField", "ActionParametersResponseField"]
 
 class ActionParametersCookieField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
 
-
 class ActionParametersRequestField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
 
-
 class ActionParametersResponseField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
-
 
 class ActionParameters(TypedDict, total=False):
     cookie_fields: Iterable[ActionParametersCookieField]
@@ -40,7 +31,6 @@ class ActionParameters(TypedDict, total=False):
 
     response_fields: Iterable[ActionParametersResponseField]
     """The response fields to log."""
-
 
 class LogCustomFieldRuleParam(TypedDict, total=False):
     id: str

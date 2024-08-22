@@ -2,15 +2,22 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Required, Annotated
+
 from typing import List
-from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
+
 from .issue_type import IssueType
+
 from .severity_query_param import SeverityQueryParam
 
-__all__ = ["IssueTypeParams"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ...._types import FileTypes
+from ...._utils import PropertyInfo
 
+__all__ = ["IssueTypeParams"]
 
 class IssueTypeParams(TypedDict, total=False):
     account_id: Required[str]

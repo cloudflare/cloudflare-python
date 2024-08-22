@@ -1,11 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
-
 from ....._models import BaseModel
 
-__all__ = ["ActiveSessionListResponse", "Metadata", "MetadataApps"]
+from typing import Optional, Dict
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["ActiveSessionListResponse", "Metadata", "MetadataApps"]
 
 class MetadataApps(BaseModel):
     hostname: Optional[str] = None
@@ -15,7 +18,6 @@ class MetadataApps(BaseModel):
     type: Optional[str] = None
 
     uid: Optional[str] = None
-
 
 class Metadata(BaseModel):
     apps: Optional[Dict[str, MetadataApps]] = None
@@ -27,7 +29,6 @@ class Metadata(BaseModel):
     nonce: Optional[str] = None
 
     ttl: Optional[int] = None
-
 
 class ActiveSessionListResponse(BaseModel):
     expiration: Optional[int] = None

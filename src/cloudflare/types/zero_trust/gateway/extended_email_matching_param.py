@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["ExtendedEmailMatchingParam"]
 
-
 class ExtendedEmailMatchingParam(TypedDict, total=False):
     enabled: bool
     """Enable matching all variants of user emails (with + or .

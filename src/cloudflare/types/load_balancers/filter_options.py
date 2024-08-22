@@ -1,11 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
 from ..._models import BaseModel
 
-__all__ = ["FilterOptions"]
+from typing import Optional
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["FilterOptions"]
 
 class FilterOptions(BaseModel):
     disable: Optional[bool] = None

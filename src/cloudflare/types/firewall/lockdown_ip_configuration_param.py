@@ -6,7 +6,6 @@ from typing_extensions import Literal, TypedDict
 
 __all__ = ["LockdownIPConfigurationParam"]
 
-
 class LockdownIPConfigurationParam(TypedDict, total=False):
     target: Literal["ip"]
     """The configuration target.

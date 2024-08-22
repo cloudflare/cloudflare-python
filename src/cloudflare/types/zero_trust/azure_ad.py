@@ -1,14 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from ..._models import BaseModel
+
+from typing import Optional, List
+
 from typing_extensions import Literal
 
-from ..._models import BaseModel
 from .identity_provider_type import IdentityProviderType
+
 from .identity_provider_scim_config import IdentityProviderSCIMConfig
 
-__all__ = ["AzureAD", "Config"]
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
+__all__ = ["AzureAD", "Config"]
 
 class Config(BaseModel):
     claims: Optional[List[str]] = None
@@ -44,7 +50,6 @@ class Config(BaseModel):
 
     support_groups: Optional[bool] = None
     """Should Cloudflare try to load groups from your account"""
-
 
 class AzureAD(BaseModel):
     config: Config

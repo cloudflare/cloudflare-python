@@ -2,27 +2,38 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.radar.bgp.leaks import EventListResponse
+
+from cloudflare.pagination import SyncV4PagePagination, AsyncV4PagePagination
+
 from typing import Any, cast
 
+import os
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.radar.bgp.leaks import event_list_params
 from cloudflare._utils import parse_datetime
-from cloudflare.pagination import SyncV4PagePagination, AsyncV4PagePagination
-from cloudflare.types.radar.bgp.leaks import EventListResponse
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestEvents:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         event = client.radar.bgp.leaks.events.list()
-        assert_matches_type(SyncV4PagePagination[EventListResponse], event, path=["response"])
+        assert_matches_type(SyncV4PagePagination[EventListResponse], event, path=['response'])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -40,36 +51,36 @@ class TestEvents:
             sort_by="ID",
             sort_order="ASC",
         )
-        assert_matches_type(SyncV4PagePagination[EventListResponse], event, path=["response"])
+        assert_matches_type(SyncV4PagePagination[EventListResponse], event, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
+
         response = client.radar.bgp.leaks.events.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         event = response.parse()
-        assert_matches_type(SyncV4PagePagination[EventListResponse], event, path=["response"])
+        assert_matches_type(SyncV4PagePagination[EventListResponse], event, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.radar.bgp.leaks.events.with_streaming_response.list() as response:
+        with client.radar.bgp.leaks.events.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             event = response.parse()
-            assert_matches_type(SyncV4PagePagination[EventListResponse], event, path=["response"])
+            assert_matches_type(SyncV4PagePagination[EventListResponse], event, path=['response'])
 
         assert cast(Any, response.is_closed) is True
-
-
 class TestAsyncEvents:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         event = await async_client.radar.bgp.leaks.events.list()
-        assert_matches_type(AsyncV4PagePagination[EventListResponse], event, path=["response"])
+        assert_matches_type(AsyncV4PagePagination[EventListResponse], event, path=['response'])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -87,24 +98,25 @@ class TestAsyncEvents:
             sort_by="ID",
             sort_order="ASC",
         )
-        assert_matches_type(AsyncV4PagePagination[EventListResponse], event, path=["response"])
+        assert_matches_type(AsyncV4PagePagination[EventListResponse], event, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.radar.bgp.leaks.events.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         event = await response.parse()
-        assert_matches_type(AsyncV4PagePagination[EventListResponse], event, path=["response"])
+        assert_matches_type(AsyncV4PagePagination[EventListResponse], event, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.bgp.leaks.events.with_streaming_response.list() as response:
+        async with async_client.radar.bgp.leaks.events.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             event = await response.parse()
-            assert_matches_type(AsyncV4PagePagination[EventListResponse], event, path=["response"])
+            assert_matches_type(AsyncV4PagePagination[EventListResponse], event, path=['response'])
 
         assert cast(Any, response.is_closed) is True

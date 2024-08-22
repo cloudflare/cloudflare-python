@@ -1,13 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from ......_models import BaseModel
 
-__all__ = ["EntryListResponse", "Entry"]
+from typing import Optional, List
 
+from datetime import datetime
+
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["EntryListResponse", "Entry"]
 
 class Entry(BaseModel):
     id: Optional[str] = None
@@ -25,7 +30,6 @@ class Entry(BaseModel):
 
     type: Optional[Literal["cid", "content_path"]] = None
     """Type of content list entry to block."""
-
 
 class EntryListResponse(BaseModel):
     entries: Optional[List[Entry]] = None

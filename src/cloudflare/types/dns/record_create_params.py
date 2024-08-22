@@ -2,49 +2,20 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import TypedDict, Required, Literal, TypeAlias
 
-from .ttl_param import TTLParam
+from typing import List
+
 from .record_tags import RecordTags
 
-__all__ = [
-    "RecordCreateParams",
-    "ARecord",
-    "AAAARecord",
-    "CAARecord",
-    "CAARecordData",
-    "CERTRecord",
-    "CERTRecordData",
-    "CNAMERecord",
-    "DNSKEYRecord",
-    "DNSKEYRecordData",
-    "DSRecord",
-    "DSRecordData",
-    "HTTPSRecord",
-    "HTTPSRecordData",
-    "LOCRecord",
-    "LOCRecordData",
-    "MXRecord",
-    "NAPTRRecord",
-    "NAPTRRecordData",
-    "NSRecord",
-    "PTRRecord",
-    "SMIMEARecord",
-    "SMIMEARecordData",
-    "SRVRecord",
-    "SRVRecordData",
-    "SSHFPRecord",
-    "SSHFPRecordData",
-    "SVCBRecord",
-    "SVCBRecordData",
-    "TLSARecord",
-    "TLSARecordData",
-    "TXTRecord",
-    "URIRecord",
-    "URIRecordData",
-]
+from .ttl_param import TTLParam
 
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
+
+__all__ = ["RecordCreateParams", "ARecord", "AAAARecord", "CAARecord", "CAARecordData", "CERTRecord", "CERTRecordData", "CNAMERecord", "DNSKEYRecord", "DNSKEYRecordData", "DSRecord", "DSRecordData", "HTTPSRecord", "HTTPSRecordData", "LOCRecord", "LOCRecordData", "MXRecord", "NAPTRRecord", "NAPTRRecordData", "NSRecord", "PTRRecord", "SMIMEARecord", "SMIMEARecordData", "SRVRecord", "SRVRecordData", "SSHFPRecord", "SSHFPRecordData", "SVCBRecord", "SVCBRecordData", "TLSARecord", "TLSARecordData", "TXTRecord", "URIRecord", "URIRecordData"]
 
 class ARecord(TypedDict, total=False):
     zone_id: Required[str]
@@ -84,7 +55,6 @@ class ARecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class AAAARecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -123,7 +93,6 @@ class AAAARecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class CAARecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -156,7 +125,6 @@ class CAARecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class CAARecordData(TypedDict, total=False):
     flags: float
     """Flags for the CAA record."""
@@ -166,7 +134,6 @@ class CAARecordData(TypedDict, total=False):
 
     value: str
     """Value of the record. This field's semantics depend on the chosen tag."""
-
 
 class CERTRecord(TypedDict, total=False):
     zone_id: Required[str]
@@ -200,7 +167,6 @@ class CERTRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class CERTRecordData(TypedDict, total=False):
     algorithm: float
     """Algorithm."""
@@ -213,7 +179,6 @@ class CERTRecordData(TypedDict, total=False):
 
     type: float
     """Type."""
-
 
 class CNAMERecord(TypedDict, total=False):
     zone_id: Required[str]
@@ -253,7 +218,6 @@ class CNAMERecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class DNSKEYRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -286,7 +250,6 @@ class DNSKEYRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class DNSKEYRecordData(TypedDict, total=False):
     algorithm: float
     """Algorithm."""
@@ -299,7 +262,6 @@ class DNSKEYRecordData(TypedDict, total=False):
 
     public_key: str
     """Public Key."""
-
 
 class DSRecord(TypedDict, total=False):
     zone_id: Required[str]
@@ -333,7 +295,6 @@ class DSRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class DSRecordData(TypedDict, total=False):
     algorithm: float
     """Algorithm."""
@@ -346,7 +307,6 @@ class DSRecordData(TypedDict, total=False):
 
     key_tag: float
     """Key Tag."""
-
 
 class HTTPSRecord(TypedDict, total=False):
     zone_id: Required[str]
@@ -380,7 +340,6 @@ class HTTPSRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class HTTPSRecordData(TypedDict, total=False):
     priority: float
     """priority."""
@@ -390,7 +349,6 @@ class HTTPSRecordData(TypedDict, total=False):
 
     value: str
     """value."""
-
 
 class LOCRecord(TypedDict, total=False):
     zone_id: Required[str]
@@ -423,7 +381,6 @@ class LOCRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
 
 class LOCRecordData(TypedDict, total=False):
     altitude: float
@@ -461,7 +418,6 @@ class LOCRecordData(TypedDict, total=False):
 
     size: float
     """Size of location in meters."""
-
 
 class MXRecord(TypedDict, total=False):
     zone_id: Required[str]
@@ -501,7 +457,6 @@ class MXRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class NAPTRRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -534,7 +489,6 @@ class NAPTRRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class NAPTRRecordData(TypedDict, total=False):
     flags: str
     """Flags."""
@@ -553,7 +507,6 @@ class NAPTRRecordData(TypedDict, total=False):
 
     service: str
     """Service."""
-
 
 class NSRecord(TypedDict, total=False):
     zone_id: Required[str]
@@ -587,7 +540,6 @@ class NSRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class PTRRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -619,7 +571,6 @@ class PTRRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
 
 class SMIMEARecord(TypedDict, total=False):
     zone_id: Required[str]
@@ -653,7 +604,6 @@ class SMIMEARecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class SMIMEARecordData(TypedDict, total=False):
     certificate: str
     """Certificate."""
@@ -666,7 +616,6 @@ class SMIMEARecordData(TypedDict, total=False):
 
     usage: float
     """Usage."""
-
 
 class SRVRecord(TypedDict, total=False):
     zone_id: Required[str]
@@ -703,7 +652,6 @@ class SRVRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
 
 class SRVRecordData(TypedDict, total=False):
     name: str
@@ -743,7 +691,6 @@ class SRVRecordData(TypedDict, total=False):
     weight: float
     """The record weight."""
 
-
 class SSHFPRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -776,7 +723,6 @@ class SSHFPRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class SSHFPRecordData(TypedDict, total=False):
     algorithm: float
     """algorithm."""
@@ -786,7 +732,6 @@ class SSHFPRecordData(TypedDict, total=False):
 
     type: float
     """type."""
-
 
 class SVCBRecord(TypedDict, total=False):
     zone_id: Required[str]
@@ -820,7 +765,6 @@ class SVCBRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class SVCBRecordData(TypedDict, total=False):
     priority: float
     """priority."""
@@ -830,7 +774,6 @@ class SVCBRecordData(TypedDict, total=False):
 
     value: str
     """value."""
-
 
 class TLSARecord(TypedDict, total=False):
     zone_id: Required[str]
@@ -864,7 +807,6 @@ class TLSARecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class TLSARecordData(TypedDict, total=False):
     certificate: str
     """certificate."""
@@ -877,7 +819,6 @@ class TLSARecordData(TypedDict, total=False):
 
     usage: float
     """Usage."""
-
 
 class TXTRecord(TypedDict, total=False):
     zone_id: Required[str]
@@ -910,7 +851,6 @@ class TXTRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
 
 class URIRecord(TypedDict, total=False):
     zone_id: Required[str]
@@ -950,7 +890,6 @@ class URIRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-
 class URIRecordData(TypedDict, total=False):
     target: str
     """The record content."""
@@ -958,26 +897,4 @@ class URIRecordData(TypedDict, total=False):
     weight: float
     """The record weight."""
 
-
-RecordCreateParams: TypeAlias = Union[
-    ARecord,
-    AAAARecord,
-    CAARecord,
-    CERTRecord,
-    CNAMERecord,
-    DNSKEYRecord,
-    DSRecord,
-    HTTPSRecord,
-    LOCRecord,
-    MXRecord,
-    NAPTRRecord,
-    NSRecord,
-    PTRRecord,
-    SMIMEARecord,
-    SRVRecord,
-    SSHFPRecord,
-    SVCBRecord,
-    TLSARecord,
-    TXTRecord,
-    URIRecord,
-]
+RecordCreateParams: TypeAlias = Union[ARecord, AAAARecord, CAARecord, CERTRecord, CNAMERecord, DNSKEYRecord, DSRecord, HTTPSRecord, LOCRecord, MXRecord, NAPTRRecord, NSRecord, PTRRecord, SMIMEARecord, SRVRecord, SSHFPRecord, SVCBRecord, TLSARecord, TXTRecord, URIRecord]

@@ -2,23 +2,28 @@
 
 from __future__ import annotations
 
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from typing import Optional, Any, cast
+
+from cloudflare.types.zones import SettingEditResponse, SettingGetResponse
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones import (
-    SettingGetResponse,
-    SettingEditResponse,
-)
+from cloudflare.types.zones import setting_edit_params
+from cloudflare.types.zones import AutomaticPlatformOptimization
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestSettings:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_edit_overload_1(self, client: Cloudflare) -> None:
@@ -28,10 +33,11 @@ class TestSettings:
             id="0rtt",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_1(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -40,9 +46,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_1(self, client: Cloudflare) -> None:
@@ -51,32 +57,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="0rtt",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="0rtt",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="0rtt",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="0rtt",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="0rtt",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_2(self, client: Cloudflare) -> None:
@@ -86,10 +92,11 @@ class TestSettings:
             id="advanced_ddos",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_2(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -98,9 +105,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_2(self, client: Cloudflare) -> None:
@@ -109,32 +116,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="advanced_ddos",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="advanced_ddos",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="advanced_ddos",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="advanced_ddos",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="advanced_ddos",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_3(self, client: Cloudflare) -> None:
@@ -144,10 +151,11 @@ class TestSettings:
             id="always_online",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_3(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -156,9 +164,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_3(self, client: Cloudflare) -> None:
@@ -167,32 +175,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_online",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="always_online",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="always_online",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="always_online",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="always_online",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_4(self, client: Cloudflare) -> None:
@@ -202,10 +210,11 @@ class TestSettings:
             id="always_use_https",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_4(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -214,9 +223,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_4(self, client: Cloudflare) -> None:
@@ -225,32 +234,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_use_https",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="always_use_https",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="always_use_https",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="always_use_https",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="always_use_https",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_5(self, client: Cloudflare) -> None:
@@ -260,10 +269,11 @@ class TestSettings:
             id="automatic_https_rewrites",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_5(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -272,9 +282,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_5(self, client: Cloudflare) -> None:
@@ -283,32 +293,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="automatic_https_rewrites",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="automatic_https_rewrites",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="automatic_https_rewrites",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="automatic_https_rewrites",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="automatic_https_rewrites",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_6(self, client: Cloudflare) -> None:
@@ -318,10 +328,11 @@ class TestSettings:
             id="brotli",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_6(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -330,9 +341,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_6(self, client: Cloudflare) -> None:
@@ -341,32 +352,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="brotli",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="brotli",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="brotli",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="brotli",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="brotli",
+              value="off",
+          )
 
     @parametrize
     def test_method_edit_overload_7(self, client: Cloudflare) -> None:
@@ -376,10 +387,11 @@ class TestSettings:
             id="browser_cache_ttl",
             value=0,
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_7(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -388,9 +400,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_7(self, client: Cloudflare) -> None:
@@ -399,32 +411,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_cache_ttl",
             value=0,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="browser_cache_ttl",
-                value=0,
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="browser_cache_ttl",
+              value=0,
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="browser_cache_ttl",
-                value=0,
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="browser_cache_ttl",
+              value=0,
+          )
 
     @parametrize
     def test_method_edit_overload_8(self, client: Cloudflare) -> None:
@@ -434,10 +446,11 @@ class TestSettings:
             id="browser_check",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_8(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -446,9 +459,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_8(self, client: Cloudflare) -> None:
@@ -457,32 +470,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_check",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="browser_check",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="browser_check",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="browser_check",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="browser_check",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_9(self, client: Cloudflare) -> None:
@@ -492,10 +505,11 @@ class TestSettings:
             id="cache_level",
             value="aggressive",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_9(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -504,9 +518,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_9(self, client: Cloudflare) -> None:
@@ -515,32 +529,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cache_level",
             value="aggressive",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="cache_level",
-                value="aggressive",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="cache_level",
+              value="aggressive",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="cache_level",
-                value="aggressive",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="cache_level",
+              value="aggressive",
+          )
 
     @parametrize
     def test_method_edit_overload_10(self, client: Cloudflare) -> None:
@@ -550,10 +564,11 @@ class TestSettings:
             id="challenge_ttl",
             value=300,
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_10(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -562,9 +577,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_10(self, client: Cloudflare) -> None:
@@ -573,32 +588,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="challenge_ttl",
             value=300,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="challenge_ttl",
-                value=300,
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="challenge_ttl",
+              value=300,
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="challenge_ttl",
-                value=300,
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="challenge_ttl",
+              value=300,
+          )
 
     @parametrize
     def test_method_edit_overload_11(self, client: Cloudflare) -> None:
@@ -608,10 +623,11 @@ class TestSettings:
             id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_11(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -620,9 +636,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_11(self, client: Cloudflare) -> None:
@@ -631,32 +647,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_11(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="ciphers",
-                value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="ciphers",
+              value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="ciphers",
-                value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="ciphers",
+              value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
+          )
 
     @parametrize
     def test_method_edit_overload_12(self, client: Cloudflare) -> None:
@@ -666,10 +682,11 @@ class TestSettings:
             id="cname_flattening",
             value="flatten_at_root",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_12(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -678,9 +695,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_12(self, client: Cloudflare) -> None:
@@ -689,32 +706,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cname_flattening",
             value="flatten_at_root",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_12(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="cname_flattening",
-                value="flatten_at_root",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="cname_flattening",
+              value="flatten_at_root",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="cname_flattening",
-                value="flatten_at_root",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="cname_flattening",
+              value="flatten_at_root",
+          )
 
     @parametrize
     def test_method_edit_overload_13(self, client: Cloudflare) -> None:
@@ -724,10 +741,11 @@ class TestSettings:
             id="development_mode",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_13(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -736,9 +754,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_13(self, client: Cloudflare) -> None:
@@ -747,32 +765,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="development_mode",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_13(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="development_mode",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="development_mode",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="development_mode",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="development_mode",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_14(self, client: Cloudflare) -> None:
@@ -782,10 +800,11 @@ class TestSettings:
             id="early_hints",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_14(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -794,9 +813,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_14(self, client: Cloudflare) -> None:
@@ -805,32 +824,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="early_hints",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_14(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="early_hints",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="early_hints",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="early_hints",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="early_hints",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_15(self, client: Cloudflare) -> None:
@@ -840,10 +859,11 @@ class TestSettings:
             id="edge_cache_ttl",
             value=30,
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_15(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -852,9 +872,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_15(self, client: Cloudflare) -> None:
@@ -863,32 +883,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="edge_cache_ttl",
             value=30,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_15(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="edge_cache_ttl",
-                value=30,
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="edge_cache_ttl",
+              value=30,
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="edge_cache_ttl",
-                value=30,
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="edge_cache_ttl",
+              value=30,
+          )
 
     @parametrize
     def test_method_edit_overload_16(self, client: Cloudflare) -> None:
@@ -898,10 +918,11 @@ class TestSettings:
             id="email_obfuscation",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_16(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -910,9 +931,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_16(self, client: Cloudflare) -> None:
@@ -921,32 +942,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="email_obfuscation",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_16(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="email_obfuscation",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="email_obfuscation",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="email_obfuscation",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="email_obfuscation",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_17(self, client: Cloudflare) -> None:
@@ -956,10 +977,11 @@ class TestSettings:
             id="h2_prioritization",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_17(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -968,9 +990,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_17(self, client: Cloudflare) -> None:
@@ -979,32 +1001,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="h2_prioritization",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_17(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="h2_prioritization",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="h2_prioritization",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="h2_prioritization",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="h2_prioritization",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_18(self, client: Cloudflare) -> None:
@@ -1014,10 +1036,11 @@ class TestSettings:
             id="hotlink_protection",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_18(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1026,9 +1049,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_18(self, client: Cloudflare) -> None:
@@ -1037,32 +1060,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="hotlink_protection",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_18(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="hotlink_protection",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="hotlink_protection",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="hotlink_protection",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="hotlink_protection",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_19(self, client: Cloudflare) -> None:
@@ -1072,10 +1095,11 @@ class TestSettings:
             id="http2",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_19(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1084,9 +1108,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_19(self, client: Cloudflare) -> None:
@@ -1095,32 +1119,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http2",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_19(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="http2",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="http2",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="http2",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="http2",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_20(self, client: Cloudflare) -> None:
@@ -1130,10 +1154,11 @@ class TestSettings:
             id="http3",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_20(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1142,9 +1167,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_20(self, client: Cloudflare) -> None:
@@ -1153,32 +1178,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http3",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_20(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="http3",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="http3",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="http3",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="http3",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_21(self, client: Cloudflare) -> None:
@@ -1188,10 +1213,11 @@ class TestSettings:
             id="image_resizing",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_21(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1200,9 +1226,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_21(self, client: Cloudflare) -> None:
@@ -1211,32 +1237,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="image_resizing",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_21(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="image_resizing",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="image_resizing",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="image_resizing",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="image_resizing",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_22(self, client: Cloudflare) -> None:
@@ -1246,10 +1272,11 @@ class TestSettings:
             id="ip_geolocation",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_22(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1258,9 +1285,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_22(self, client: Cloudflare) -> None:
@@ -1269,32 +1296,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ip_geolocation",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_22(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="ip_geolocation",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="ip_geolocation",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="ip_geolocation",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="ip_geolocation",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_23(self, client: Cloudflare) -> None:
@@ -1304,10 +1331,11 @@ class TestSettings:
             id="ipv6",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_23(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1316,9 +1344,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_23(self, client: Cloudflare) -> None:
@@ -1327,32 +1355,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ipv6",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_23(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="ipv6",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="ipv6",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="ipv6",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="ipv6",
+              value="off",
+          )
 
     @parametrize
     def test_method_edit_overload_24(self, client: Cloudflare) -> None:
@@ -1362,10 +1390,11 @@ class TestSettings:
             id="max_upload",
             value=100,
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_24(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1374,9 +1403,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_24(self, client: Cloudflare) -> None:
@@ -1385,32 +1414,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="max_upload",
             value=100,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_24(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="max_upload",
-                value=100,
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="max_upload",
+              value=100,
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="max_upload",
-                value=100,
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="max_upload",
+              value=100,
+          )
 
     @parametrize
     def test_method_edit_overload_25(self, client: Cloudflare) -> None:
@@ -1420,10 +1449,11 @@ class TestSettings:
             id="min_tls_version",
             value="1.0",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_25(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1432,9 +1462,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_25(self, client: Cloudflare) -> None:
@@ -1443,32 +1473,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="min_tls_version",
             value="1.0",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_25(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="min_tls_version",
-                value="1.0",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="min_tls_version",
+              value="1.0",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="min_tls_version",
-                value="1.0",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="min_tls_version",
+              value="1.0",
+          )
 
     @parametrize
     def test_method_edit_overload_26(self, client: Cloudflare) -> None:
@@ -1478,7 +1508,7 @@ class TestSettings:
             id="minify",
             value={},
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_method_edit_with_all_params_overload_26(self, client: Cloudflare) -> None:
@@ -1492,10 +1522,11 @@ class TestSettings:
                 "js": "on",
             },
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_26(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1504,9 +1535,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_26(self, client: Cloudflare) -> None:
@@ -1515,32 +1546,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="minify",
             value={},
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_26(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="minify",
-                value={},
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="minify",
+              value={},
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="minify",
-                value={},
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="minify",
+              value={},
+          )
 
     @parametrize
     def test_method_edit_overload_27(self, client: Cloudflare) -> None:
@@ -1550,10 +1581,11 @@ class TestSettings:
             id="mirage",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_27(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1562,9 +1594,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_27(self, client: Cloudflare) -> None:
@@ -1573,32 +1605,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mirage",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_27(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="mirage",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="mirage",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="mirage",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="mirage",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_28(self, client: Cloudflare) -> None:
@@ -1608,7 +1640,7 @@ class TestSettings:
             id="mobile_redirect",
             value={},
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_method_edit_with_all_params_overload_28(self, client: Cloudflare) -> None:
@@ -1622,10 +1654,11 @@ class TestSettings:
                 "strip_uri": False,
             },
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_28(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1634,9 +1667,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_28(self, client: Cloudflare) -> None:
@@ -1645,32 +1678,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mobile_redirect",
             value={},
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_28(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="mobile_redirect",
-                value={},
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="mobile_redirect",
+              value={},
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="mobile_redirect",
-                value={},
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="mobile_redirect",
+              value={},
+          )
 
     @parametrize
     def test_method_edit_overload_29(self, client: Cloudflare) -> None:
@@ -1680,7 +1713,7 @@ class TestSettings:
             id="nel",
             value={},
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_method_edit_with_all_params_overload_29(self, client: Cloudflare) -> None:
@@ -1688,12 +1721,15 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="nel",
-            value={"enabled": False},
+            value={
+                "enabled": False
+            },
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_29(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1702,9 +1738,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_29(self, client: Cloudflare) -> None:
@@ -1713,32 +1749,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="nel",
             value={},
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_29(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="nel",
-                value={},
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="nel",
+              value={},
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="nel",
-                value={},
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="nel",
+              value={},
+          )
 
     @parametrize
     def test_method_edit_overload_30(self, client: Cloudflare) -> None:
@@ -1748,10 +1784,11 @@ class TestSettings:
             id="opportunistic_encryption",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_30(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1760,9 +1797,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_30(self, client: Cloudflare) -> None:
@@ -1771,32 +1808,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_encryption",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_30(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="opportunistic_encryption",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="opportunistic_encryption",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="opportunistic_encryption",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="opportunistic_encryption",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_31(self, client: Cloudflare) -> None:
@@ -1806,10 +1843,11 @@ class TestSettings:
             id="opportunistic_onion",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_31(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1818,9 +1856,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_31(self, client: Cloudflare) -> None:
@@ -1829,32 +1867,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_onion",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_31(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="opportunistic_onion",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="opportunistic_onion",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="opportunistic_onion",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="opportunistic_onion",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_32(self, client: Cloudflare) -> None:
@@ -1864,10 +1902,11 @@ class TestSettings:
             id="orange_to_orange",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_32(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1876,9 +1915,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_32(self, client: Cloudflare) -> None:
@@ -1887,32 +1926,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="orange_to_orange",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_32(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="orange_to_orange",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="orange_to_orange",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="orange_to_orange",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="orange_to_orange",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_33(self, client: Cloudflare) -> None:
@@ -1922,10 +1961,11 @@ class TestSettings:
             id="origin_error_page_pass_thru",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_33(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1934,9 +1974,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_33(self, client: Cloudflare) -> None:
@@ -1945,32 +1985,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="origin_error_page_pass_thru",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_33(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="origin_error_page_pass_thru",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="origin_error_page_pass_thru",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="origin_error_page_pass_thru",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="origin_error_page_pass_thru",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_34(self, client: Cloudflare) -> None:
@@ -1980,10 +2020,11 @@ class TestSettings:
             id="polish",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_34(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1992,9 +2033,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_34(self, client: Cloudflare) -> None:
@@ -2003,32 +2044,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="polish",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_34(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="polish",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="polish",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="polish",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="polish",
+              value="off",
+          )
 
     @parametrize
     def test_method_edit_overload_35(self, client: Cloudflare) -> None:
@@ -2038,10 +2079,11 @@ class TestSettings:
             id="prefetch_preload",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_35(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2050,9 +2092,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_35(self, client: Cloudflare) -> None:
@@ -2061,32 +2103,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="prefetch_preload",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_35(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="prefetch_preload",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="prefetch_preload",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="prefetch_preload",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="prefetch_preload",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_36(self, client: Cloudflare) -> None:
@@ -2096,10 +2138,11 @@ class TestSettings:
             id="proxy_read_timeout",
             value=0,
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_36(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2108,9 +2151,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_36(self, client: Cloudflare) -> None:
@@ -2119,32 +2162,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="proxy_read_timeout",
             value=0,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_36(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="proxy_read_timeout",
-                value=0,
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="proxy_read_timeout",
+              value=0,
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="proxy_read_timeout",
-                value=0,
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="proxy_read_timeout",
+              value=0,
+          )
 
     @parametrize
     def test_method_edit_overload_37(self, client: Cloudflare) -> None:
@@ -2154,10 +2197,11 @@ class TestSettings:
             id="pseudo_ipv4",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_37(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2166,9 +2210,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_37(self, client: Cloudflare) -> None:
@@ -2177,32 +2221,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="pseudo_ipv4",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_37(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="pseudo_ipv4",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="pseudo_ipv4",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="pseudo_ipv4",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="pseudo_ipv4",
+              value="off",
+          )
 
     @parametrize
     def test_method_edit_overload_38(self, client: Cloudflare) -> None:
@@ -2212,10 +2256,11 @@ class TestSettings:
             id="replace_insecure_js",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_38(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2224,9 +2269,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_38(self, client: Cloudflare) -> None:
@@ -2235,32 +2280,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="replace_insecure_js",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_38(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="replace_insecure_js",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="replace_insecure_js",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="replace_insecure_js",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="replace_insecure_js",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_39(self, client: Cloudflare) -> None:
@@ -2270,10 +2315,11 @@ class TestSettings:
             id="response_buffering",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_39(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2282,9 +2328,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_39(self, client: Cloudflare) -> None:
@@ -2293,32 +2339,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="response_buffering",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_39(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="response_buffering",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="response_buffering",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="response_buffering",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="response_buffering",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_40(self, client: Cloudflare) -> None:
@@ -2328,10 +2374,11 @@ class TestSettings:
             id="rocket_loader",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_40(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2340,9 +2387,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_40(self, client: Cloudflare) -> None:
@@ -2351,32 +2398,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="rocket_loader",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_40(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="rocket_loader",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="rocket_loader",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="rocket_loader",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="rocket_loader",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_41(self, client: Cloudflare) -> None:
@@ -2393,10 +2440,11 @@ class TestSettings:
                 "wp_plugin": True,
             },
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_41(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2412,9 +2460,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_41(self, client: Cloudflare) -> None:
@@ -2430,46 +2478,46 @@ class TestSettings:
                 "wordpress": True,
                 "wp_plugin": True,
             },
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_41(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="automatic_platform_optimization",
-                value={
-                    "cache_by_device_type": False,
-                    "cf": True,
-                    "enabled": True,
-                    "hostnames": ["www.example.com", "example.com", "shop.example.com"],
-                    "wordpress": True,
-                    "wp_plugin": True,
-                },
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="automatic_platform_optimization",
+              value={
+                  "cache_by_device_type": False,
+                  "cf": True,
+                  "enabled": True,
+                  "hostnames": ["www.example.com", "example.com", "shop.example.com"],
+                  "wordpress": True,
+                  "wp_plugin": True,
+              },
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="automatic_platform_optimization",
-                value={
-                    "cache_by_device_type": False,
-                    "cf": True,
-                    "enabled": True,
-                    "hostnames": ["www.example.com", "example.com", "shop.example.com"],
-                    "wordpress": True,
-                    "wp_plugin": True,
-                },
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="automatic_platform_optimization",
+              value={
+                  "cache_by_device_type": False,
+                  "cf": True,
+                  "enabled": True,
+                  "hostnames": ["www.example.com", "example.com", "shop.example.com"],
+                  "wordpress": True,
+                  "wp_plugin": True,
+              },
+          )
 
     @parametrize
     def test_method_edit_overload_42(self, client: Cloudflare) -> None:
@@ -2479,7 +2527,7 @@ class TestSettings:
             id="security_header",
             value={},
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_method_edit_with_all_params_overload_42(self, client: Cloudflare) -> None:
@@ -2497,10 +2545,11 @@ class TestSettings:
                 }
             },
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_42(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2509,9 +2558,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_42(self, client: Cloudflare) -> None:
@@ -2520,32 +2569,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_header",
             value={},
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_42(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="security_header",
-                value={},
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="security_header",
+              value={},
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="security_header",
-                value={},
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="security_header",
+              value={},
+          )
 
     @parametrize
     def test_method_edit_overload_43(self, client: Cloudflare) -> None:
@@ -2555,10 +2604,11 @@ class TestSettings:
             id="security_level",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_43(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2567,9 +2617,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_43(self, client: Cloudflare) -> None:
@@ -2578,32 +2628,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_level",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_43(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="security_level",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="security_level",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="security_level",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="security_level",
+              value="off",
+          )
 
     @parametrize
     def test_method_edit_overload_44(self, client: Cloudflare) -> None:
@@ -2613,10 +2663,11 @@ class TestSettings:
             id="server_side_exclude",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_44(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2625,9 +2676,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_44(self, client: Cloudflare) -> None:
@@ -2636,32 +2687,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="server_side_exclude",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_44(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="server_side_exclude",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="server_side_exclude",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="server_side_exclude",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="server_side_exclude",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_45(self, client: Cloudflare) -> None:
@@ -2671,10 +2722,11 @@ class TestSettings:
             id="sha1_support",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_45(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2683,9 +2735,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_45(self, client: Cloudflare) -> None:
@@ -2694,32 +2746,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sha1_support",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_45(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="sha1_support",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="sha1_support",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="sha1_support",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="sha1_support",
+              value="off",
+          )
 
     @parametrize
     def test_method_edit_overload_46(self, client: Cloudflare) -> None:
@@ -2729,10 +2781,11 @@ class TestSettings:
             id="sort_query_string_for_cache",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_46(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2741,9 +2794,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_46(self, client: Cloudflare) -> None:
@@ -2752,32 +2805,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sort_query_string_for_cache",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_46(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="sort_query_string_for_cache",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="sort_query_string_for_cache",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="sort_query_string_for_cache",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="sort_query_string_for_cache",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_47(self, client: Cloudflare) -> None:
@@ -2787,10 +2840,11 @@ class TestSettings:
             id="ssl",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_47(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2799,9 +2853,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_47(self, client: Cloudflare) -> None:
@@ -2810,32 +2864,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ssl",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_47(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="ssl",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="ssl",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="ssl",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="ssl",
+              value="off",
+          )
 
     @parametrize
     def test_method_edit_overload_48(self, client: Cloudflare) -> None:
@@ -2843,7 +2897,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_method_edit_with_all_params_overload_48(self, client: Cloudflare) -> None:
@@ -2853,47 +2907,48 @@ class TestSettings:
             id="ssl_recommender",
             enabled=True,
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_48(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_48(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_48(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
     @parametrize
     def test_method_edit_overload_49(self, client: Cloudflare) -> None:
@@ -2903,10 +2958,11 @@ class TestSettings:
             id="tls_1_2_only",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_49(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2915,9 +2971,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_49(self, client: Cloudflare) -> None:
@@ -2926,32 +2982,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_2_only",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_49(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="tls_1_2_only",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="tls_1_2_only",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="tls_1_2_only",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="tls_1_2_only",
+              value="off",
+          )
 
     @parametrize
     def test_method_edit_overload_50(self, client: Cloudflare) -> None:
@@ -2961,10 +3017,11 @@ class TestSettings:
             id="tls_1_3",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_50(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2973,9 +3030,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_50(self, client: Cloudflare) -> None:
@@ -2984,32 +3041,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_3",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_50(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="tls_1_3",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="tls_1_3",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="tls_1_3",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="tls_1_3",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_51(self, client: Cloudflare) -> None:
@@ -3019,10 +3076,11 @@ class TestSettings:
             id="tls_client_auth",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_51(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3031,9 +3089,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_51(self, client: Cloudflare) -> None:
@@ -3042,32 +3100,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_client_auth",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_51(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="tls_client_auth",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="tls_client_auth",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="tls_client_auth",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="tls_client_auth",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_52(self, client: Cloudflare) -> None:
@@ -3077,10 +3135,11 @@ class TestSettings:
             id="true_client_ip_header",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_52(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3089,9 +3148,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_52(self, client: Cloudflare) -> None:
@@ -3100,32 +3159,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="true_client_ip_header",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_52(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="true_client_ip_header",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="true_client_ip_header",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="true_client_ip_header",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="true_client_ip_header",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_53(self, client: Cloudflare) -> None:
@@ -3135,10 +3194,11 @@ class TestSettings:
             id="waf",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_53(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3147,9 +3207,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_53(self, client: Cloudflare) -> None:
@@ -3158,32 +3218,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="waf",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_53(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="waf",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="waf",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="waf",
-                value="on",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="waf",
+              value="on",
+          )
 
     @parametrize
     def test_method_edit_overload_54(self, client: Cloudflare) -> None:
@@ -3193,10 +3253,11 @@ class TestSettings:
             id="webp",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_54(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3205,9 +3266,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_54(self, client: Cloudflare) -> None:
@@ -3216,32 +3277,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="webp",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_54(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="webp",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="webp",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="webp",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="webp",
+              value="off",
+          )
 
     @parametrize
     def test_method_edit_overload_55(self, client: Cloudflare) -> None:
@@ -3251,10 +3312,11 @@ class TestSettings:
             id="websockets",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_edit_overload_55(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3263,9 +3325,9 @@ class TestSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_edit_overload_55(self, client: Cloudflare) -> None:
@@ -3274,32 +3336,32 @@ class TestSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="websockets",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit_overload_55(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="websockets",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="websockets",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="websockets",
-                value="off",
-            )
+          client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="websockets",
+              value="off",
+          )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
@@ -3307,51 +3369,51 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingGetResponse], setting, path=['response'])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
+
         response = client.zones.settings.with_raw_response.get(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = response.parse()
-        assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingGetResponse], setting, path=['response'])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.get(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingGetResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zones.settings.with_raw_response.get(
-                setting_id="always_online",
-                zone_id="",
-            )
+          client.zones.settings.with_raw_response.get(
+              setting_id="always_online",
+              zone_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            client.zones.settings.with_raw_response.get(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-
+          client.zones.settings.with_raw_response.get(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 class TestAsyncSettings:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     async def test_method_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
@@ -3361,10 +3423,11 @@ class TestAsyncSettings:
             id="0rtt",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3373,9 +3436,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
@@ -3384,32 +3447,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="0rtt",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="0rtt",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="0rtt",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="0rtt",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="0rtt",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
@@ -3419,10 +3482,11 @@ class TestAsyncSettings:
             id="advanced_ddos",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3431,9 +3495,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
@@ -3442,32 +3506,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="advanced_ddos",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="advanced_ddos",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="advanced_ddos",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="advanced_ddos",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="advanced_ddos",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
@@ -3477,10 +3541,11 @@ class TestAsyncSettings:
             id="always_online",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3489,9 +3554,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
@@ -3500,32 +3565,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_online",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="always_online",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="always_online",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="always_online",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="always_online",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
@@ -3535,10 +3600,11 @@ class TestAsyncSettings:
             id="always_use_https",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3547,9 +3613,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
@@ -3558,32 +3624,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_use_https",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="always_use_https",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="always_use_https",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="always_use_https",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="always_use_https",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
@@ -3593,10 +3659,11 @@ class TestAsyncSettings:
             id="automatic_https_rewrites",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3605,9 +3672,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
@@ -3616,32 +3683,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="automatic_https_rewrites",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="automatic_https_rewrites",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="automatic_https_rewrites",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="automatic_https_rewrites",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="automatic_https_rewrites",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
@@ -3651,10 +3718,11 @@ class TestAsyncSettings:
             id="brotli",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3663,9 +3731,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
@@ -3674,32 +3742,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="brotli",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="brotli",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="brotli",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="brotli",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="brotli",
+              value="off",
+          )
 
     @parametrize
     async def test_method_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
@@ -3709,10 +3777,11 @@ class TestAsyncSettings:
             id="browser_cache_ttl",
             value=0,
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3721,9 +3790,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
@@ -3732,32 +3801,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_cache_ttl",
             value=0,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="browser_cache_ttl",
-                value=0,
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="browser_cache_ttl",
+              value=0,
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="browser_cache_ttl",
-                value=0,
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="browser_cache_ttl",
+              value=0,
+          )
 
     @parametrize
     async def test_method_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
@@ -3767,10 +3836,11 @@ class TestAsyncSettings:
             id="browser_check",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3779,9 +3849,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
@@ -3790,32 +3860,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_check",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="browser_check",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="browser_check",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="browser_check",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="browser_check",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
@@ -3825,10 +3895,11 @@ class TestAsyncSettings:
             id="cache_level",
             value="aggressive",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3837,9 +3908,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
@@ -3848,32 +3919,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cache_level",
             value="aggressive",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="cache_level",
-                value="aggressive",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="cache_level",
+              value="aggressive",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="cache_level",
-                value="aggressive",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="cache_level",
+              value="aggressive",
+          )
 
     @parametrize
     async def test_method_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
@@ -3883,10 +3954,11 @@ class TestAsyncSettings:
             id="challenge_ttl",
             value=300,
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3895,9 +3967,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
@@ -3906,32 +3978,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="challenge_ttl",
             value=300,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="challenge_ttl",
-                value=300,
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="challenge_ttl",
+              value=300,
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="challenge_ttl",
-                value=300,
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="challenge_ttl",
+              value=300,
+          )
 
     @parametrize
     async def test_method_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
@@ -3941,10 +4013,11 @@ class TestAsyncSettings:
             id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3953,9 +4026,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
@@ -3964,32 +4037,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="ciphers",
-                value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="ciphers",
+              value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="ciphers",
-                value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="ciphers",
+              value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
+          )
 
     @parametrize
     async def test_method_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
@@ -3999,10 +4072,11 @@ class TestAsyncSettings:
             id="cname_flattening",
             value="flatten_at_root",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4011,9 +4085,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
@@ -4022,32 +4096,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cname_flattening",
             value="flatten_at_root",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="cname_flattening",
-                value="flatten_at_root",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="cname_flattening",
+              value="flatten_at_root",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="cname_flattening",
-                value="flatten_at_root",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="cname_flattening",
+              value="flatten_at_root",
+          )
 
     @parametrize
     async def test_method_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
@@ -4057,10 +4131,11 @@ class TestAsyncSettings:
             id="development_mode",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4069,9 +4144,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
@@ -4080,32 +4155,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="development_mode",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="development_mode",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="development_mode",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="development_mode",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="development_mode",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
@@ -4115,10 +4190,11 @@ class TestAsyncSettings:
             id="early_hints",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4127,9 +4203,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
@@ -4138,32 +4214,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="early_hints",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="early_hints",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="early_hints",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="early_hints",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="early_hints",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
@@ -4173,10 +4249,11 @@ class TestAsyncSettings:
             id="edge_cache_ttl",
             value=30,
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4185,9 +4262,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
@@ -4196,32 +4273,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="edge_cache_ttl",
             value=30,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="edge_cache_ttl",
-                value=30,
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="edge_cache_ttl",
+              value=30,
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="edge_cache_ttl",
-                value=30,
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="edge_cache_ttl",
+              value=30,
+          )
 
     @parametrize
     async def test_method_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
@@ -4231,10 +4308,11 @@ class TestAsyncSettings:
             id="email_obfuscation",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4243,9 +4321,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
@@ -4254,32 +4332,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="email_obfuscation",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="email_obfuscation",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="email_obfuscation",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="email_obfuscation",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="email_obfuscation",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
@@ -4289,10 +4367,11 @@ class TestAsyncSettings:
             id="h2_prioritization",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4301,9 +4380,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
@@ -4312,32 +4391,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="h2_prioritization",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="h2_prioritization",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="h2_prioritization",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="h2_prioritization",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="h2_prioritization",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
@@ -4347,10 +4426,11 @@ class TestAsyncSettings:
             id="hotlink_protection",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4359,9 +4439,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
@@ -4370,32 +4450,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="hotlink_protection",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="hotlink_protection",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="hotlink_protection",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="hotlink_protection",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="hotlink_protection",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
@@ -4405,10 +4485,11 @@ class TestAsyncSettings:
             id="http2",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4417,9 +4498,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
@@ -4428,32 +4509,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http2",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="http2",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="http2",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="http2",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="http2",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
@@ -4463,10 +4544,11 @@ class TestAsyncSettings:
             id="http3",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4475,9 +4557,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
@@ -4486,32 +4568,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http3",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="http3",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="http3",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="http3",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="http3",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_21(self, async_client: AsyncCloudflare) -> None:
@@ -4521,10 +4603,11 @@ class TestAsyncSettings:
             id="image_resizing",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_21(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4533,9 +4616,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_21(self, async_client: AsyncCloudflare) -> None:
@@ -4544,32 +4627,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="image_resizing",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_21(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="image_resizing",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="image_resizing",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="image_resizing",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="image_resizing",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_22(self, async_client: AsyncCloudflare) -> None:
@@ -4579,10 +4662,11 @@ class TestAsyncSettings:
             id="ip_geolocation",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_22(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4591,9 +4675,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_22(self, async_client: AsyncCloudflare) -> None:
@@ -4602,32 +4686,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ip_geolocation",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_22(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="ip_geolocation",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="ip_geolocation",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="ip_geolocation",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="ip_geolocation",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_23(self, async_client: AsyncCloudflare) -> None:
@@ -4637,10 +4721,11 @@ class TestAsyncSettings:
             id="ipv6",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_23(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4649,9 +4734,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_23(self, async_client: AsyncCloudflare) -> None:
@@ -4660,32 +4745,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ipv6",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_23(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="ipv6",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="ipv6",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="ipv6",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="ipv6",
+              value="off",
+          )
 
     @parametrize
     async def test_method_edit_overload_24(self, async_client: AsyncCloudflare) -> None:
@@ -4695,10 +4780,11 @@ class TestAsyncSettings:
             id="max_upload",
             value=100,
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_24(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4707,9 +4793,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_24(self, async_client: AsyncCloudflare) -> None:
@@ -4718,32 +4804,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="max_upload",
             value=100,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_24(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="max_upload",
-                value=100,
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="max_upload",
+              value=100,
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="max_upload",
-                value=100,
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="max_upload",
+              value=100,
+          )
 
     @parametrize
     async def test_method_edit_overload_25(self, async_client: AsyncCloudflare) -> None:
@@ -4753,10 +4839,11 @@ class TestAsyncSettings:
             id="min_tls_version",
             value="1.0",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_25(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4765,9 +4852,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_25(self, async_client: AsyncCloudflare) -> None:
@@ -4776,32 +4863,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="min_tls_version",
             value="1.0",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_25(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="min_tls_version",
-                value="1.0",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="min_tls_version",
+              value="1.0",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="min_tls_version",
-                value="1.0",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="min_tls_version",
+              value="1.0",
+          )
 
     @parametrize
     async def test_method_edit_overload_26(self, async_client: AsyncCloudflare) -> None:
@@ -4811,7 +4898,7 @@ class TestAsyncSettings:
             id="minify",
             value={},
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_method_edit_with_all_params_overload_26(self, async_client: AsyncCloudflare) -> None:
@@ -4825,10 +4912,11 @@ class TestAsyncSettings:
                 "js": "on",
             },
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_26(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4837,9 +4925,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_26(self, async_client: AsyncCloudflare) -> None:
@@ -4848,32 +4936,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="minify",
             value={},
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_26(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="minify",
-                value={},
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="minify",
+              value={},
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="minify",
-                value={},
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="minify",
+              value={},
+          )
 
     @parametrize
     async def test_method_edit_overload_27(self, async_client: AsyncCloudflare) -> None:
@@ -4883,10 +4971,11 @@ class TestAsyncSettings:
             id="mirage",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_27(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4895,9 +4984,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_27(self, async_client: AsyncCloudflare) -> None:
@@ -4906,32 +4995,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mirage",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_27(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="mirage",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="mirage",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="mirage",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="mirage",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_28(self, async_client: AsyncCloudflare) -> None:
@@ -4941,7 +5030,7 @@ class TestAsyncSettings:
             id="mobile_redirect",
             value={},
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_method_edit_with_all_params_overload_28(self, async_client: AsyncCloudflare) -> None:
@@ -4955,10 +5044,11 @@ class TestAsyncSettings:
                 "strip_uri": False,
             },
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_28(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4967,9 +5057,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_28(self, async_client: AsyncCloudflare) -> None:
@@ -4978,32 +5068,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mobile_redirect",
             value={},
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_28(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="mobile_redirect",
-                value={},
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="mobile_redirect",
+              value={},
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="mobile_redirect",
-                value={},
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="mobile_redirect",
+              value={},
+          )
 
     @parametrize
     async def test_method_edit_overload_29(self, async_client: AsyncCloudflare) -> None:
@@ -5013,7 +5103,7 @@ class TestAsyncSettings:
             id="nel",
             value={},
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_method_edit_with_all_params_overload_29(self, async_client: AsyncCloudflare) -> None:
@@ -5021,12 +5111,15 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="nel",
-            value={"enabled": False},
+            value={
+                "enabled": False
+            },
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_29(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5035,9 +5128,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_29(self, async_client: AsyncCloudflare) -> None:
@@ -5046,32 +5139,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="nel",
             value={},
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_29(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="nel",
-                value={},
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="nel",
+              value={},
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="nel",
-                value={},
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="nel",
+              value={},
+          )
 
     @parametrize
     async def test_method_edit_overload_30(self, async_client: AsyncCloudflare) -> None:
@@ -5081,10 +5174,11 @@ class TestAsyncSettings:
             id="opportunistic_encryption",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_30(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5093,9 +5187,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_30(self, async_client: AsyncCloudflare) -> None:
@@ -5104,32 +5198,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_encryption",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_30(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="opportunistic_encryption",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="opportunistic_encryption",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="opportunistic_encryption",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="opportunistic_encryption",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_31(self, async_client: AsyncCloudflare) -> None:
@@ -5139,10 +5233,11 @@ class TestAsyncSettings:
             id="opportunistic_onion",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_31(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5151,9 +5246,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_31(self, async_client: AsyncCloudflare) -> None:
@@ -5162,32 +5257,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_onion",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_31(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="opportunistic_onion",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="opportunistic_onion",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="opportunistic_onion",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="opportunistic_onion",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_32(self, async_client: AsyncCloudflare) -> None:
@@ -5197,10 +5292,11 @@ class TestAsyncSettings:
             id="orange_to_orange",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_32(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5209,9 +5305,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_32(self, async_client: AsyncCloudflare) -> None:
@@ -5220,32 +5316,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="orange_to_orange",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_32(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="orange_to_orange",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="orange_to_orange",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="orange_to_orange",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="orange_to_orange",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_33(self, async_client: AsyncCloudflare) -> None:
@@ -5255,10 +5351,11 @@ class TestAsyncSettings:
             id="origin_error_page_pass_thru",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_33(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5267,9 +5364,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_33(self, async_client: AsyncCloudflare) -> None:
@@ -5278,32 +5375,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="origin_error_page_pass_thru",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_33(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="origin_error_page_pass_thru",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="origin_error_page_pass_thru",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="origin_error_page_pass_thru",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="origin_error_page_pass_thru",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_34(self, async_client: AsyncCloudflare) -> None:
@@ -5313,10 +5410,11 @@ class TestAsyncSettings:
             id="polish",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_34(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5325,9 +5423,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_34(self, async_client: AsyncCloudflare) -> None:
@@ -5336,32 +5434,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="polish",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_34(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="polish",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="polish",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="polish",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="polish",
+              value="off",
+          )
 
     @parametrize
     async def test_method_edit_overload_35(self, async_client: AsyncCloudflare) -> None:
@@ -5371,10 +5469,11 @@ class TestAsyncSettings:
             id="prefetch_preload",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_35(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5383,9 +5482,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_35(self, async_client: AsyncCloudflare) -> None:
@@ -5394,32 +5493,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="prefetch_preload",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_35(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="prefetch_preload",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="prefetch_preload",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="prefetch_preload",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="prefetch_preload",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_36(self, async_client: AsyncCloudflare) -> None:
@@ -5429,10 +5528,11 @@ class TestAsyncSettings:
             id="proxy_read_timeout",
             value=0,
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_36(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5441,9 +5541,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_36(self, async_client: AsyncCloudflare) -> None:
@@ -5452,32 +5552,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="proxy_read_timeout",
             value=0,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_36(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="proxy_read_timeout",
-                value=0,
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="proxy_read_timeout",
+              value=0,
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="proxy_read_timeout",
-                value=0,
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="proxy_read_timeout",
+              value=0,
+          )
 
     @parametrize
     async def test_method_edit_overload_37(self, async_client: AsyncCloudflare) -> None:
@@ -5487,10 +5587,11 @@ class TestAsyncSettings:
             id="pseudo_ipv4",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_37(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5499,9 +5600,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_37(self, async_client: AsyncCloudflare) -> None:
@@ -5510,32 +5611,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="pseudo_ipv4",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_37(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="pseudo_ipv4",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="pseudo_ipv4",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="pseudo_ipv4",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="pseudo_ipv4",
+              value="off",
+          )
 
     @parametrize
     async def test_method_edit_overload_38(self, async_client: AsyncCloudflare) -> None:
@@ -5545,10 +5646,11 @@ class TestAsyncSettings:
             id="replace_insecure_js",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_38(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5557,9 +5659,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_38(self, async_client: AsyncCloudflare) -> None:
@@ -5568,32 +5670,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="replace_insecure_js",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_38(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="replace_insecure_js",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="replace_insecure_js",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="replace_insecure_js",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="replace_insecure_js",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_39(self, async_client: AsyncCloudflare) -> None:
@@ -5603,10 +5705,11 @@ class TestAsyncSettings:
             id="response_buffering",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_39(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5615,9 +5718,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_39(self, async_client: AsyncCloudflare) -> None:
@@ -5626,32 +5729,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="response_buffering",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_39(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="response_buffering",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="response_buffering",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="response_buffering",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="response_buffering",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_40(self, async_client: AsyncCloudflare) -> None:
@@ -5661,10 +5764,11 @@ class TestAsyncSettings:
             id="rocket_loader",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_40(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5673,9 +5777,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_40(self, async_client: AsyncCloudflare) -> None:
@@ -5684,32 +5788,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="rocket_loader",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_40(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="rocket_loader",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="rocket_loader",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="rocket_loader",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="rocket_loader",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_41(self, async_client: AsyncCloudflare) -> None:
@@ -5726,10 +5830,11 @@ class TestAsyncSettings:
                 "wp_plugin": True,
             },
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_41(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5745,9 +5850,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_41(self, async_client: AsyncCloudflare) -> None:
@@ -5763,46 +5868,46 @@ class TestAsyncSettings:
                 "wordpress": True,
                 "wp_plugin": True,
             },
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_41(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="automatic_platform_optimization",
-                value={
-                    "cache_by_device_type": False,
-                    "cf": True,
-                    "enabled": True,
-                    "hostnames": ["www.example.com", "example.com", "shop.example.com"],
-                    "wordpress": True,
-                    "wp_plugin": True,
-                },
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="automatic_platform_optimization",
+              value={
+                  "cache_by_device_type": False,
+                  "cf": True,
+                  "enabled": True,
+                  "hostnames": ["www.example.com", "example.com", "shop.example.com"],
+                  "wordpress": True,
+                  "wp_plugin": True,
+              },
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="automatic_platform_optimization",
-                value={
-                    "cache_by_device_type": False,
-                    "cf": True,
-                    "enabled": True,
-                    "hostnames": ["www.example.com", "example.com", "shop.example.com"],
-                    "wordpress": True,
-                    "wp_plugin": True,
-                },
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="automatic_platform_optimization",
+              value={
+                  "cache_by_device_type": False,
+                  "cf": True,
+                  "enabled": True,
+                  "hostnames": ["www.example.com", "example.com", "shop.example.com"],
+                  "wordpress": True,
+                  "wp_plugin": True,
+              },
+          )
 
     @parametrize
     async def test_method_edit_overload_42(self, async_client: AsyncCloudflare) -> None:
@@ -5812,7 +5917,7 @@ class TestAsyncSettings:
             id="security_header",
             value={},
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_method_edit_with_all_params_overload_42(self, async_client: AsyncCloudflare) -> None:
@@ -5830,10 +5935,11 @@ class TestAsyncSettings:
                 }
             },
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_42(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5842,9 +5948,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_42(self, async_client: AsyncCloudflare) -> None:
@@ -5853,32 +5959,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_header",
             value={},
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_42(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="security_header",
-                value={},
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="security_header",
+              value={},
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="security_header",
-                value={},
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="security_header",
+              value={},
+          )
 
     @parametrize
     async def test_method_edit_overload_43(self, async_client: AsyncCloudflare) -> None:
@@ -5888,10 +5994,11 @@ class TestAsyncSettings:
             id="security_level",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_43(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5900,9 +6007,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_43(self, async_client: AsyncCloudflare) -> None:
@@ -5911,32 +6018,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_level",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_43(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="security_level",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="security_level",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="security_level",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="security_level",
+              value="off",
+          )
 
     @parametrize
     async def test_method_edit_overload_44(self, async_client: AsyncCloudflare) -> None:
@@ -5946,10 +6053,11 @@ class TestAsyncSettings:
             id="server_side_exclude",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_44(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5958,9 +6066,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_44(self, async_client: AsyncCloudflare) -> None:
@@ -5969,32 +6077,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="server_side_exclude",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_44(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="server_side_exclude",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="server_side_exclude",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="server_side_exclude",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="server_side_exclude",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_45(self, async_client: AsyncCloudflare) -> None:
@@ -6004,10 +6112,11 @@ class TestAsyncSettings:
             id="sha1_support",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_45(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -6016,9 +6125,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_45(self, async_client: AsyncCloudflare) -> None:
@@ -6027,32 +6136,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sha1_support",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_45(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="sha1_support",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="sha1_support",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="sha1_support",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="sha1_support",
+              value="off",
+          )
 
     @parametrize
     async def test_method_edit_overload_46(self, async_client: AsyncCloudflare) -> None:
@@ -6062,10 +6171,11 @@ class TestAsyncSettings:
             id="sort_query_string_for_cache",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_46(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -6074,9 +6184,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_46(self, async_client: AsyncCloudflare) -> None:
@@ -6085,32 +6195,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sort_query_string_for_cache",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_46(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="sort_query_string_for_cache",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="sort_query_string_for_cache",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="sort_query_string_for_cache",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="sort_query_string_for_cache",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_47(self, async_client: AsyncCloudflare) -> None:
@@ -6120,10 +6230,11 @@ class TestAsyncSettings:
             id="ssl",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_47(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -6132,9 +6243,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_47(self, async_client: AsyncCloudflare) -> None:
@@ -6143,32 +6254,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ssl",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_47(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="ssl",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="ssl",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="ssl",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="ssl",
+              value="off",
+          )
 
     @parametrize
     async def test_method_edit_overload_48(self, async_client: AsyncCloudflare) -> None:
@@ -6176,7 +6287,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_method_edit_with_all_params_overload_48(self, async_client: AsyncCloudflare) -> None:
@@ -6186,47 +6297,48 @@ class TestAsyncSettings:
             id="ssl_recommender",
             enabled=True,
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_48(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_48(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_48(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
     @parametrize
     async def test_method_edit_overload_49(self, async_client: AsyncCloudflare) -> None:
@@ -6236,10 +6348,11 @@ class TestAsyncSettings:
             id="tls_1_2_only",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_49(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -6248,9 +6361,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_49(self, async_client: AsyncCloudflare) -> None:
@@ -6259,32 +6372,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_2_only",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_49(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="tls_1_2_only",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="tls_1_2_only",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="tls_1_2_only",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="tls_1_2_only",
+              value="off",
+          )
 
     @parametrize
     async def test_method_edit_overload_50(self, async_client: AsyncCloudflare) -> None:
@@ -6294,10 +6407,11 @@ class TestAsyncSettings:
             id="tls_1_3",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_50(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -6306,9 +6420,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_50(self, async_client: AsyncCloudflare) -> None:
@@ -6317,32 +6431,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_3",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_50(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="tls_1_3",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="tls_1_3",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="tls_1_3",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="tls_1_3",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_51(self, async_client: AsyncCloudflare) -> None:
@@ -6352,10 +6466,11 @@ class TestAsyncSettings:
             id="tls_client_auth",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_51(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -6364,9 +6479,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_51(self, async_client: AsyncCloudflare) -> None:
@@ -6375,32 +6490,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_client_auth",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_51(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="tls_client_auth",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="tls_client_auth",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="tls_client_auth",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="tls_client_auth",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_52(self, async_client: AsyncCloudflare) -> None:
@@ -6410,10 +6525,11 @@ class TestAsyncSettings:
             id="true_client_ip_header",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_52(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -6422,9 +6538,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_52(self, async_client: AsyncCloudflare) -> None:
@@ -6433,32 +6549,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="true_client_ip_header",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_52(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="true_client_ip_header",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="true_client_ip_header",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="true_client_ip_header",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="true_client_ip_header",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_53(self, async_client: AsyncCloudflare) -> None:
@@ -6468,10 +6584,11 @@ class TestAsyncSettings:
             id="waf",
             value="on",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_53(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -6480,9 +6597,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_53(self, async_client: AsyncCloudflare) -> None:
@@ -6491,32 +6608,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="waf",
             value="on",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_53(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="waf",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="waf",
+              value="on",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="waf",
-                value="on",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="waf",
+              value="on",
+          )
 
     @parametrize
     async def test_method_edit_overload_54(self, async_client: AsyncCloudflare) -> None:
@@ -6526,10 +6643,11 @@ class TestAsyncSettings:
             id="webp",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_54(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -6538,9 +6656,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_54(self, async_client: AsyncCloudflare) -> None:
@@ -6549,32 +6667,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="webp",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_54(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="webp",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="webp",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="webp",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="webp",
+              value="off",
+          )
 
     @parametrize
     async def test_method_edit_overload_55(self, async_client: AsyncCloudflare) -> None:
@@ -6584,10 +6702,11 @@ class TestAsyncSettings:
             id="websockets",
             value="off",
         )
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_edit_overload_55(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.edit(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -6596,9 +6715,9 @@ class TestAsyncSettings:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit_overload_55(self, async_client: AsyncCloudflare) -> None:
@@ -6607,32 +6726,32 @@ class TestAsyncSettings:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="websockets",
             value="off",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingEditResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit_overload_55(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="always_online",
-                zone_id="",
-                id="websockets",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="always_online",
+              zone_id="",
+              id="websockets",
+              value="off",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.edit(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="websockets",
-                value="off",
-            )
+          await async_client.zones.settings.with_raw_response.edit(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              id="websockets",
+              value="off",
+          )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -6640,44 +6759,45 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingGetResponse], setting, path=['response'])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zones.settings.with_raw_response.get(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         setting = await response.parse()
-        assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
+        assert_matches_type(Optional[SettingGetResponse], setting, path=['response'])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.get(
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
+            assert_matches_type(Optional[SettingGetResponse], setting, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.get(
-                setting_id="always_online",
-                zone_id="",
-            )
+          await async_client.zones.settings.with_raw_response.get(
+              setting_id="always_online",
+              zone_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
-            await async_client.zones.settings.with_raw_response.get(
-                setting_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          await async_client.zones.settings.with_raw_response.get(
+              setting_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )

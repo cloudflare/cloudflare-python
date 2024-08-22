@@ -2,40 +2,60 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
-from ...types.magic_transit import (
-    ipsec_tunnel_create_params,
-    ipsec_tunnel_update_params,
-    ipsec_tunnel_psk_generate_params,
-)
-from ...types.magic_transit.health_check_param import HealthCheckParam
-from ...types.magic_transit.ipsec_tunnel_get_response import IPSECTunnelGetResponse
-from ...types.magic_transit.ipsec_tunnel_list_response import IPSECTunnelListResponse
+
 from ...types.magic_transit.ipsec_tunnel_create_response import IPSECTunnelCreateResponse
-from ...types.magic_transit.ipsec_tunnel_delete_response import IPSECTunnelDeleteResponse
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from ..._base_client import make_request_options
+
+from typing import Type
+
+from ...types.magic_transit.health_check_param import HealthCheckParam
+
 from ...types.magic_transit.ipsec_tunnel_update_response import IPSECTunnelUpdateResponse
+
+from ...types.magic_transit.ipsec_tunnel_list_response import IPSECTunnelListResponse
+
+from ...types.magic_transit.ipsec_tunnel_delete_response import IPSECTunnelDeleteResponse
+
+from ...types.magic_transit.ipsec_tunnel_get_response import IPSECTunnelGetResponse
+
 from ...types.magic_transit.ipsec_tunnel_psk_generate_response import IPSECTunnelPSKGenerateResponse
 
-__all__ = ["IPSECTunnelsResource", "AsyncIPSECTunnelsResource"]
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.magic_transit import ipsec_tunnel_create_params
+from ...types.magic_transit import ipsec_tunnel_update_params
+from ...types.magic_transit import ipsec_tunnel_psk_generate_params
+from ...types.magic_transit import HealthCheck
+from ...types.magic_transit import HealthCheck
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["IPSECTunnelsResource", "AsyncIPSECTunnelsResource"]
 
 class IPSECTunnelsResource(SyncAPIResource):
     @cached_property
@@ -46,25 +66,23 @@ class IPSECTunnelsResource(SyncAPIResource):
     def with_streaming_response(self) -> IPSECTunnelsResourceWithStreamingResponse:
         return IPSECTunnelsResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        cloudflare_endpoint: str,
-        interface_address: str,
-        name: str,
-        customer_endpoint: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
-        psk: str | NotGiven = NOT_GIVEN,
-        replay_protection: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPSECTunnelCreateResponse:
+    def create(self,
+    *,
+    account_id: str,
+    cloudflare_endpoint: str,
+    interface_address: str,
+    name: str,
+    customer_endpoint: str | NotGiven = NOT_GIVEN,
+    description: str | NotGiven = NOT_GIVEN,
+    health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
+    psk: str | NotGiven = NOT_GIVEN,
+    replay_protection: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IPSECTunnelCreateResponse:
         """Creates new IPsec tunnels associated with an account.
 
         Use `?validate_only=true`
@@ -101,52 +119,43 @@ class IPSECTunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/magic/ipsec_tunnels",
-            body=maybe_transform(
-                {
-                    "cloudflare_endpoint": cloudflare_endpoint,
-                    "interface_address": interface_address,
-                    "name": name,
-                    "customer_endpoint": customer_endpoint,
-                    "description": description,
-                    "health_check": health_check,
-                    "psk": psk,
-                    "replay_protection": replay_protection,
-                },
-                ipsec_tunnel_create_params.IPSECTunnelCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[IPSECTunnelCreateResponse]._unwrapper,
-            ),
+            body=maybe_transform({
+                "cloudflare_endpoint": cloudflare_endpoint,
+                "interface_address": interface_address,
+                "name": name,
+                "customer_endpoint": customer_endpoint,
+                "description": description,
+                "health_check": health_check,
+                "psk": psk,
+                "replay_protection": replay_protection,
+            }, ipsec_tunnel_create_params.IPSECTunnelCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IPSECTunnelCreateResponse]._unwrapper),
             cast_to=cast(Type[IPSECTunnelCreateResponse], ResultWrapper[IPSECTunnelCreateResponse]),
         )
 
-    def update(
-        self,
-        ipsec_tunnel_id: str,
-        *,
-        account_id: str,
-        cloudflare_endpoint: str,
-        interface_address: str,
-        name: str,
-        customer_endpoint: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
-        psk: str | NotGiven = NOT_GIVEN,
-        replay_protection: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPSECTunnelUpdateResponse:
+    def update(self,
+    ipsec_tunnel_id: str,
+    *,
+    account_id: str,
+    cloudflare_endpoint: str,
+    interface_address: str,
+    name: str,
+    customer_endpoint: str | NotGiven = NOT_GIVEN,
+    description: str | NotGiven = NOT_GIVEN,
+    health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
+    psk: str | NotGiven = NOT_GIVEN,
+    replay_protection: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IPSECTunnelUpdateResponse:
         """Updates a specific IPsec tunnel associated with an account.
 
         Use
@@ -185,45 +194,38 @@ class IPSECTunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not ipsec_tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}'
+          )
         return self._put(
             f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
-            body=maybe_transform(
-                {
-                    "cloudflare_endpoint": cloudflare_endpoint,
-                    "interface_address": interface_address,
-                    "name": name,
-                    "customer_endpoint": customer_endpoint,
-                    "description": description,
-                    "health_check": health_check,
-                    "psk": psk,
-                    "replay_protection": replay_protection,
-                },
-                ipsec_tunnel_update_params.IPSECTunnelUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[IPSECTunnelUpdateResponse]._unwrapper,
-            ),
+            body=maybe_transform({
+                "cloudflare_endpoint": cloudflare_endpoint,
+                "interface_address": interface_address,
+                "name": name,
+                "customer_endpoint": customer_endpoint,
+                "description": description,
+                "health_check": health_check,
+                "psk": psk,
+                "replay_protection": replay_protection,
+            }, ipsec_tunnel_update_params.IPSECTunnelUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IPSECTunnelUpdateResponse]._unwrapper),
             cast_to=cast(Type[IPSECTunnelUpdateResponse], ResultWrapper[IPSECTunnelUpdateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPSECTunnelListResponse:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IPSECTunnelListResponse:
         """
         Lists IPsec tunnels associated with an account.
 
@@ -239,31 +241,25 @@ class IPSECTunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/magic/ipsec_tunnels",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[IPSECTunnelListResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IPSECTunnelListResponse]._unwrapper),
             cast_to=cast(Type[IPSECTunnelListResponse], ResultWrapper[IPSECTunnelListResponse]),
         )
 
-    def delete(
-        self,
-        ipsec_tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPSECTunnelDeleteResponse:
+    def delete(self,
+    ipsec_tunnel_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IPSECTunnelDeleteResponse:
         """
         Disables and removes a specific static IPsec Tunnel associated with an account.
         Use `?validate_only=true` as an optional query parameter to only run validation
@@ -283,33 +279,29 @@ class IPSECTunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not ipsec_tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}'
+          )
         return self._delete(
             f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[IPSECTunnelDeleteResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IPSECTunnelDeleteResponse]._unwrapper),
             cast_to=cast(Type[IPSECTunnelDeleteResponse], ResultWrapper[IPSECTunnelDeleteResponse]),
         )
 
-    def get(
-        self,
-        ipsec_tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPSECTunnelGetResponse:
+    def get(self,
+    ipsec_tunnel_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IPSECTunnelGetResponse:
         """
         Lists details for a specific IPsec tunnel.
 
@@ -327,34 +319,30 @@ class IPSECTunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not ipsec_tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[IPSECTunnelGetResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IPSECTunnelGetResponse]._unwrapper),
             cast_to=cast(Type[IPSECTunnelGetResponse], ResultWrapper[IPSECTunnelGetResponse]),
         )
 
-    def psk_generate(
-        self,
-        ipsec_tunnel_id: str,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPSECTunnelPSKGenerateResponse:
+    def psk_generate(self,
+    ipsec_tunnel_id: str,
+    *,
+    account_id: str,
+    body: object,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IPSECTunnelPSKGenerateResponse:
         """
         Generates a Pre Shared Key for a specific IPsec tunnel used in the IKE session.
         Use `?validate_only=true` as an optional query parameter to only run validation
@@ -376,22 +364,19 @@ class IPSECTunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not ipsec_tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}/psk_generate",
             body=maybe_transform(body, ipsec_tunnel_psk_generate_params.IPSECTunnelPSKGenerateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[IPSECTunnelPSKGenerateResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IPSECTunnelPSKGenerateResponse]._unwrapper),
             cast_to=cast(Type[IPSECTunnelPSKGenerateResponse], ResultWrapper[IPSECTunnelPSKGenerateResponse]),
         )
-
 
 class AsyncIPSECTunnelsResource(AsyncAPIResource):
     @cached_property
@@ -402,25 +387,23 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncIPSECTunnelsResourceWithStreamingResponse:
         return AsyncIPSECTunnelsResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        cloudflare_endpoint: str,
-        interface_address: str,
-        name: str,
-        customer_endpoint: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
-        psk: str | NotGiven = NOT_GIVEN,
-        replay_protection: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPSECTunnelCreateResponse:
+    async def create(self,
+    *,
+    account_id: str,
+    cloudflare_endpoint: str,
+    interface_address: str,
+    name: str,
+    customer_endpoint: str | NotGiven = NOT_GIVEN,
+    description: str | NotGiven = NOT_GIVEN,
+    health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
+    psk: str | NotGiven = NOT_GIVEN,
+    replay_protection: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IPSECTunnelCreateResponse:
         """Creates new IPsec tunnels associated with an account.
 
         Use `?validate_only=true`
@@ -457,52 +440,43 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/magic/ipsec_tunnels",
-            body=await async_maybe_transform(
-                {
-                    "cloudflare_endpoint": cloudflare_endpoint,
-                    "interface_address": interface_address,
-                    "name": name,
-                    "customer_endpoint": customer_endpoint,
-                    "description": description,
-                    "health_check": health_check,
-                    "psk": psk,
-                    "replay_protection": replay_protection,
-                },
-                ipsec_tunnel_create_params.IPSECTunnelCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[IPSECTunnelCreateResponse]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "cloudflare_endpoint": cloudflare_endpoint,
+                "interface_address": interface_address,
+                "name": name,
+                "customer_endpoint": customer_endpoint,
+                "description": description,
+                "health_check": health_check,
+                "psk": psk,
+                "replay_protection": replay_protection,
+            }, ipsec_tunnel_create_params.IPSECTunnelCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IPSECTunnelCreateResponse]._unwrapper),
             cast_to=cast(Type[IPSECTunnelCreateResponse], ResultWrapper[IPSECTunnelCreateResponse]),
         )
 
-    async def update(
-        self,
-        ipsec_tunnel_id: str,
-        *,
-        account_id: str,
-        cloudflare_endpoint: str,
-        interface_address: str,
-        name: str,
-        customer_endpoint: str | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
-        psk: str | NotGiven = NOT_GIVEN,
-        replay_protection: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPSECTunnelUpdateResponse:
+    async def update(self,
+    ipsec_tunnel_id: str,
+    *,
+    account_id: str,
+    cloudflare_endpoint: str,
+    interface_address: str,
+    name: str,
+    customer_endpoint: str | NotGiven = NOT_GIVEN,
+    description: str | NotGiven = NOT_GIVEN,
+    health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
+    psk: str | NotGiven = NOT_GIVEN,
+    replay_protection: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IPSECTunnelUpdateResponse:
         """Updates a specific IPsec tunnel associated with an account.
 
         Use
@@ -541,45 +515,38 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not ipsec_tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}'
+          )
         return await self._put(
             f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
-            body=await async_maybe_transform(
-                {
-                    "cloudflare_endpoint": cloudflare_endpoint,
-                    "interface_address": interface_address,
-                    "name": name,
-                    "customer_endpoint": customer_endpoint,
-                    "description": description,
-                    "health_check": health_check,
-                    "psk": psk,
-                    "replay_protection": replay_protection,
-                },
-                ipsec_tunnel_update_params.IPSECTunnelUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[IPSECTunnelUpdateResponse]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "cloudflare_endpoint": cloudflare_endpoint,
+                "interface_address": interface_address,
+                "name": name,
+                "customer_endpoint": customer_endpoint,
+                "description": description,
+                "health_check": health_check,
+                "psk": psk,
+                "replay_protection": replay_protection,
+            }, ipsec_tunnel_update_params.IPSECTunnelUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IPSECTunnelUpdateResponse]._unwrapper),
             cast_to=cast(Type[IPSECTunnelUpdateResponse], ResultWrapper[IPSECTunnelUpdateResponse]),
         )
 
-    async def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPSECTunnelListResponse:
+    async def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IPSECTunnelListResponse:
         """
         Lists IPsec tunnels associated with an account.
 
@@ -595,31 +562,25 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/magic/ipsec_tunnels",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[IPSECTunnelListResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IPSECTunnelListResponse]._unwrapper),
             cast_to=cast(Type[IPSECTunnelListResponse], ResultWrapper[IPSECTunnelListResponse]),
         )
 
-    async def delete(
-        self,
-        ipsec_tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPSECTunnelDeleteResponse:
+    async def delete(self,
+    ipsec_tunnel_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IPSECTunnelDeleteResponse:
         """
         Disables and removes a specific static IPsec Tunnel associated with an account.
         Use `?validate_only=true` as an optional query parameter to only run validation
@@ -639,33 +600,29 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not ipsec_tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}'
+          )
         return await self._delete(
             f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[IPSECTunnelDeleteResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IPSECTunnelDeleteResponse]._unwrapper),
             cast_to=cast(Type[IPSECTunnelDeleteResponse], ResultWrapper[IPSECTunnelDeleteResponse]),
         )
 
-    async def get(
-        self,
-        ipsec_tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPSECTunnelGetResponse:
+    async def get(self,
+    ipsec_tunnel_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IPSECTunnelGetResponse:
         """
         Lists details for a specific IPsec tunnel.
 
@@ -683,34 +640,30 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not ipsec_tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[IPSECTunnelGetResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IPSECTunnelGetResponse]._unwrapper),
             cast_to=cast(Type[IPSECTunnelGetResponse], ResultWrapper[IPSECTunnelGetResponse]),
         )
 
-    async def psk_generate(
-        self,
-        ipsec_tunnel_id: str,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IPSECTunnelPSKGenerateResponse:
+    async def psk_generate(self,
+    ipsec_tunnel_id: str,
+    *,
+    account_id: str,
+    body: object,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IPSECTunnelPSKGenerateResponse:
         """
         Generates a Pre Shared Key for a specific IPsec tunnel used in the IKE session.
         Use `?validate_only=true` as an optional query parameter to only run validation
@@ -732,22 +685,19 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not ipsec_tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}/psk_generate",
             body=await async_maybe_transform(body, ipsec_tunnel_psk_generate_params.IPSECTunnelPSKGenerateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[IPSECTunnelPSKGenerateResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IPSECTunnelPSKGenerateResponse]._unwrapper),
             cast_to=cast(Type[IPSECTunnelPSKGenerateResponse], ResultWrapper[IPSECTunnelPSKGenerateResponse]),
         )
-
 
 class IPSECTunnelsResourceWithRawResponse:
     def __init__(self, ipsec_tunnels: IPSECTunnelsResource) -> None:
@@ -772,7 +722,6 @@ class IPSECTunnelsResourceWithRawResponse:
             ipsec_tunnels.psk_generate,
         )
 
-
 class AsyncIPSECTunnelsResourceWithRawResponse:
     def __init__(self, ipsec_tunnels: AsyncIPSECTunnelsResource) -> None:
         self._ipsec_tunnels = ipsec_tunnels
@@ -796,7 +745,6 @@ class AsyncIPSECTunnelsResourceWithRawResponse:
             ipsec_tunnels.psk_generate,
         )
 
-
 class IPSECTunnelsResourceWithStreamingResponse:
     def __init__(self, ipsec_tunnels: IPSECTunnelsResource) -> None:
         self._ipsec_tunnels = ipsec_tunnels
@@ -819,7 +767,6 @@ class IPSECTunnelsResourceWithStreamingResponse:
         self.psk_generate = to_streamed_response_wrapper(
             ipsec_tunnels.psk_generate,
         )
-
 
 class AsyncIPSECTunnelsResourceWithStreamingResponse:
     def __init__(self, ipsec_tunnels: AsyncIPSECTunnelsResource) -> None:

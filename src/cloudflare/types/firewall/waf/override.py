@@ -1,14 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-
-from .waf_rule import WAFRule
 from ...._models import BaseModel
-from .override_url import OverrideURL
+
+from typing import Optional, Dict, List
+
 from .rewrite_action import RewriteAction
 
-__all__ = ["Override"]
+from .waf_rule import WAFRule
 
+from .override_url import OverrideURL
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["Override"]
 
 class Override(BaseModel):
     id: Optional[str] = None

@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict, Required
 
 __all__ = ["MatcherParam"]
-
 
 class MatcherParam(TypedDict, total=False):
     field: Required[Literal["to"]]

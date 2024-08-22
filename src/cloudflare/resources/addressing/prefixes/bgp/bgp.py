@@ -2,35 +2,26 @@
 
 from __future__ import annotations
 
-from .bindings import (
-    BindingsResource,
-    AsyncBindingsResource,
-    BindingsResourceWithRawResponse,
-    AsyncBindingsResourceWithRawResponse,
-    BindingsResourceWithStreamingResponse,
-    AsyncBindingsResourceWithStreamingResponse,
-)
-from .prefixes import (
-    PrefixesResource,
-    AsyncPrefixesResource,
-    PrefixesResourceWithRawResponse,
-    AsyncPrefixesResourceWithRawResponse,
-    PrefixesResourceWithStreamingResponse,
-    AsyncPrefixesResourceWithStreamingResponse,
-)
-from .statuses import (
-    StatusesResource,
-    AsyncStatusesResource,
-    StatusesResourceWithRawResponse,
-    AsyncStatusesResourceWithRawResponse,
-    StatusesResourceWithStreamingResponse,
-    AsyncStatusesResourceWithStreamingResponse,
-)
+from .bindings import BindingsResource, AsyncBindingsResource
+
 from ....._compat import cached_property
+
+from .prefixes import PrefixesResource, AsyncPrefixesResource
+
+from .statuses import StatusesResource, AsyncStatusesResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .bindings import BindingsResource, AsyncBindingsResource, BindingsResourceWithRawResponse, AsyncBindingsResourceWithRawResponse, BindingsResourceWithStreamingResponse, AsyncBindingsResourceWithStreamingResponse
+from .prefixes import PrefixesResource, AsyncPrefixesResource, PrefixesResourceWithRawResponse, AsyncPrefixesResourceWithRawResponse, PrefixesResourceWithStreamingResponse, AsyncPrefixesResourceWithStreamingResponse
+from .statuses import StatusesResource, AsyncStatusesResource, StatusesResourceWithRawResponse, AsyncStatusesResourceWithRawResponse, StatusesResourceWithStreamingResponse, AsyncStatusesResourceWithStreamingResponse
 
 __all__ = ["BGPResource", "AsyncBGPResource"]
-
 
 class BGPResource(SyncAPIResource):
     @cached_property
@@ -53,7 +44,6 @@ class BGPResource(SyncAPIResource):
     def with_streaming_response(self) -> BGPResourceWithStreamingResponse:
         return BGPResourceWithStreamingResponse(self)
 
-
 class AsyncBGPResource(AsyncAPIResource):
     @cached_property
     def bindings(self) -> AsyncBindingsResource:
@@ -75,7 +65,6 @@ class AsyncBGPResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncBGPResourceWithStreamingResponse:
         return AsyncBGPResourceWithStreamingResponse(self)
 
-
 class BGPResourceWithRawResponse:
     def __init__(self, bgp: BGPResource) -> None:
         self._bgp = bgp
@@ -91,7 +80,6 @@ class BGPResourceWithRawResponse:
     @cached_property
     def statuses(self) -> StatusesResourceWithRawResponse:
         return StatusesResourceWithRawResponse(self._bgp.statuses)
-
 
 class AsyncBGPResourceWithRawResponse:
     def __init__(self, bgp: AsyncBGPResource) -> None:
@@ -109,7 +97,6 @@ class AsyncBGPResourceWithRawResponse:
     def statuses(self) -> AsyncStatusesResourceWithRawResponse:
         return AsyncStatusesResourceWithRawResponse(self._bgp.statuses)
 
-
 class BGPResourceWithStreamingResponse:
     def __init__(self, bgp: BGPResource) -> None:
         self._bgp = bgp
@@ -125,7 +112,6 @@ class BGPResourceWithStreamingResponse:
     @cached_property
     def statuses(self) -> StatusesResourceWithStreamingResponse:
         return StatusesResourceWithStreamingResponse(self._bgp.statuses)
-
 
 class AsyncBGPResourceWithStreamingResponse:
     def __init__(self, bgp: AsyncBGPResource) -> None:

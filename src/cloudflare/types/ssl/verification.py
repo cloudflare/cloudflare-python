@@ -1,13 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from ..._models import BaseModel
+
 from typing import Optional
+
 from typing_extensions import Literal
 
-from ..._models import BaseModel
 from .validation_method import ValidationMethod
 
-__all__ = ["Verification", "VerificationInfo"]
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
+__all__ = ["Verification", "VerificationInfo"]
 
 class VerificationInfo(BaseModel):
     record_name: Optional[Literal["record_name", "http_url", "cname", "txt_name"]] = None
@@ -16,11 +21,8 @@ class VerificationInfo(BaseModel):
     record_target: Optional[Literal["record_value", "http_body", "cname_target", "txt_value"]] = None
     """Target of CNAME record."""
 
-
 class Verification(BaseModel):
-    certificate_status: Literal[
-        "initializing", "authorizing", "active", "expired", "issuing", "timing_out", "pending_deployment"
-    ]
+    certificate_status: Literal["initializing", "authorizing", "active", "expired", "issuing", "timing_out", "pending_deployment"]
     """Current status of certificate."""
 
     brand_check: Optional[bool] = None

@@ -2,48 +2,48 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from .rules import (
-    RulesResource,
-    AsyncRulesResource,
-    RulesResourceWithRawResponse,
-    AsyncRulesResourceWithRawResponse,
-    RulesResourceWithStreamingResponse,
-    AsyncRulesResourceWithStreamingResponse,
-)
-from .content import (
-    ContentResource,
-    AsyncContentResource,
-    ContentResourceWithRawResponse,
-    AsyncContentResourceWithRawResponse,
-    ContentResourceWithStreamingResponse,
-    AsyncContentResourceWithStreamingResponse,
-)
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .content import ContentResource, AsyncContentResource
+
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.snippets import snippet_update_params
+
+from .rules import RulesResource, AsyncRulesResource
+
 from ...types.snippets.snippet import Snippet
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from ...pagination import SyncSinglePage, AsyncSinglePage
+
 from ...types.snippets.snippet_delete_response import SnippetDeleteResponse
 
-__all__ = ["SnippetsResource", "AsyncSnippetsResource"]
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
+from ...types.snippets import snippet_update_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.snippets import snippet_update_params
+from .content import ContentResource, AsyncContentResource, ContentResourceWithRawResponse, AsyncContentResourceWithRawResponse, ContentResourceWithStreamingResponse, AsyncContentResourceWithStreamingResponse
+from .rules import RulesResource, AsyncRulesResource, RulesResourceWithRawResponse, AsyncRulesResourceWithRawResponse, RulesResourceWithStreamingResponse, AsyncRulesResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["SnippetsResource", "AsyncSnippetsResource"]
 
 class SnippetsResource(SyncAPIResource):
     @cached_property
@@ -62,20 +62,18 @@ class SnippetsResource(SyncAPIResource):
     def with_streaming_response(self) -> SnippetsResourceWithStreamingResponse:
         return SnippetsResourceWithStreamingResponse(self)
 
-    def update(
-        self,
-        snippet_name: str,
-        *,
-        zone_id: str,
-        files: str | NotGiven = NOT_GIVEN,
-        metadata: snippet_update_params.Metadata | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Snippet]:
+    def update(self,
+    snippet_name: str,
+    *,
+    zone_id: str,
+    files: str | NotGiven = NOT_GIVEN,
+    metadata: snippet_update_params.Metadata | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Snippet]:
         """
         Put Snippet
 
@@ -95,43 +93,36 @@ class SnippetsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not snippet_name:
-            raise ValueError(f"Expected a non-empty value for `snippet_name` but received {snippet_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `snippet_name` but received {snippet_name!r}'
+          )
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
             f"/zones/{zone_id}/snippets/{snippet_name}",
-            body=maybe_transform(
-                {
-                    "files": files,
-                    "metadata": metadata,
-                },
-                snippet_update_params.SnippetUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Snippet]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "files": files,
+                "metadata": metadata,
+            }, snippet_update_params.SnippetUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Snippet]]._unwrapper),
             cast_to=cast(Type[Optional[Snippet]], ResultWrapper[Snippet]),
         )
 
-    def list(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Snippet]:
+    def list(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[Snippet]:
         """
         All Snippets
 
@@ -147,28 +138,26 @@ class SnippetsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get_api_list(
             f"/zones/{zone_id}/snippets",
-            page=SyncSinglePage[Snippet],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = SyncSinglePage[Snippet],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=Snippet,
         )
 
-    def delete(
-        self,
-        snippet_name: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SnippetDeleteResponse:
+    def delete(self,
+    snippet_name: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SnippetDeleteResponse:
         """
         Delete Snippet
 
@@ -186,29 +175,29 @@ class SnippetsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not snippet_name:
-            raise ValueError(f"Expected a non-empty value for `snippet_name` but received {snippet_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `snippet_name` but received {snippet_name!r}'
+          )
         return self._delete(
             f"/zones/{zone_id}/snippets/{snippet_name}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=SnippetDeleteResponse,
         )
 
-    def get(
-        self,
-        snippet_name: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Snippet]:
+    def get(self,
+    snippet_name: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Snippet]:
         """
         Snippet
 
@@ -226,21 +215,18 @@ class SnippetsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not snippet_name:
-            raise ValueError(f"Expected a non-empty value for `snippet_name` but received {snippet_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `snippet_name` but received {snippet_name!r}'
+          )
         return self._get(
             f"/zones/{zone_id}/snippets/{snippet_name}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Snippet]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Snippet]]._unwrapper),
             cast_to=cast(Type[Optional[Snippet]], ResultWrapper[Snippet]),
         )
-
 
 class AsyncSnippetsResource(AsyncAPIResource):
     @cached_property
@@ -259,20 +245,18 @@ class AsyncSnippetsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSnippetsResourceWithStreamingResponse:
         return AsyncSnippetsResourceWithStreamingResponse(self)
 
-    async def update(
-        self,
-        snippet_name: str,
-        *,
-        zone_id: str,
-        files: str | NotGiven = NOT_GIVEN,
-        metadata: snippet_update_params.Metadata | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Snippet]:
+    async def update(self,
+    snippet_name: str,
+    *,
+    zone_id: str,
+    files: str | NotGiven = NOT_GIVEN,
+    metadata: snippet_update_params.Metadata | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Snippet]:
         """
         Put Snippet
 
@@ -292,43 +276,36 @@ class AsyncSnippetsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not snippet_name:
-            raise ValueError(f"Expected a non-empty value for `snippet_name` but received {snippet_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `snippet_name` but received {snippet_name!r}'
+          )
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
             f"/zones/{zone_id}/snippets/{snippet_name}",
-            body=await async_maybe_transform(
-                {
-                    "files": files,
-                    "metadata": metadata,
-                },
-                snippet_update_params.SnippetUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Snippet]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "files": files,
+                "metadata": metadata,
+            }, snippet_update_params.SnippetUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Snippet]]._unwrapper),
             cast_to=cast(Type[Optional[Snippet]], ResultWrapper[Snippet]),
         )
 
-    def list(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Snippet, AsyncSinglePage[Snippet]]:
+    def list(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Snippet, AsyncSinglePage[Snippet]]:
         """
         All Snippets
 
@@ -344,28 +321,26 @@ class AsyncSnippetsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get_api_list(
             f"/zones/{zone_id}/snippets",
-            page=AsyncSinglePage[Snippet],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = AsyncSinglePage[Snippet],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=Snippet,
         )
 
-    async def delete(
-        self,
-        snippet_name: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SnippetDeleteResponse:
+    async def delete(self,
+    snippet_name: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SnippetDeleteResponse:
         """
         Delete Snippet
 
@@ -383,29 +358,29 @@ class AsyncSnippetsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not snippet_name:
-            raise ValueError(f"Expected a non-empty value for `snippet_name` but received {snippet_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `snippet_name` but received {snippet_name!r}'
+          )
         return await self._delete(
             f"/zones/{zone_id}/snippets/{snippet_name}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=SnippetDeleteResponse,
         )
 
-    async def get(
-        self,
-        snippet_name: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Snippet]:
+    async def get(self,
+    snippet_name: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Snippet]:
         """
         Snippet
 
@@ -423,21 +398,18 @@ class AsyncSnippetsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not snippet_name:
-            raise ValueError(f"Expected a non-empty value for `snippet_name` but received {snippet_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `snippet_name` but received {snippet_name!r}'
+          )
         return await self._get(
             f"/zones/{zone_id}/snippets/{snippet_name}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Snippet]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Snippet]]._unwrapper),
             cast_to=cast(Type[Optional[Snippet]], ResultWrapper[Snippet]),
         )
-
 
 class SnippetsResourceWithRawResponse:
     def __init__(self, snippets: SnippetsResource) -> None:
@@ -464,7 +436,6 @@ class SnippetsResourceWithRawResponse:
     def rules(self) -> RulesResourceWithRawResponse:
         return RulesResourceWithRawResponse(self._snippets.rules)
 
-
 class AsyncSnippetsResourceWithRawResponse:
     def __init__(self, snippets: AsyncSnippetsResource) -> None:
         self._snippets = snippets
@@ -490,7 +461,6 @@ class AsyncSnippetsResourceWithRawResponse:
     def rules(self) -> AsyncRulesResourceWithRawResponse:
         return AsyncRulesResourceWithRawResponse(self._snippets.rules)
 
-
 class SnippetsResourceWithStreamingResponse:
     def __init__(self, snippets: SnippetsResource) -> None:
         self._snippets = snippets
@@ -515,7 +485,6 @@ class SnippetsResourceWithStreamingResponse:
     @cached_property
     def rules(self) -> RulesResourceWithStreamingResponse:
         return RulesResourceWithStreamingResponse(self._snippets.rules)
-
 
 class AsyncSnippetsResourceWithStreamingResponse:
     def __init__(self, snippets: AsyncSnippetsResource) -> None:

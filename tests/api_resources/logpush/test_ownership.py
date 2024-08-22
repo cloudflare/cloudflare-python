@@ -2,23 +2,28 @@
 
 from __future__ import annotations
 
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from typing import Optional, Any, cast
+
+from cloudflare.types.logpush import OwnershipCreateResponse, OwnershipValidation
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.logpush import (
-    OwnershipValidation,
-    OwnershipCreateResponse,
-)
+from cloudflare.types.logpush import ownership_create_params
+from cloudflare.types.logpush import ownership_validate_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestOwnership:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -27,7 +32,7 @@ class TestOwnership:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="account_id",
         )
-        assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -36,20 +41,21 @@ class TestOwnership:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="account_id",
         )
-        assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
+
         response = client.logpush.ownership.with_raw_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ownership = response.parse()
-        assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -57,12 +63,12 @@ class TestOwnership:
         with client.logpush.ownership.with_streaming_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ownership = response.parse()
-            assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
+            assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -70,16 +76,16 @@ class TestOwnership:
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.logpush.ownership.with_raw_response.create(
-                destination_conf="s3://mybucket/logs?region=us-west-2",
-                account_id="",
-            )
+          client.logpush.ownership.with_raw_response.create(
+              destination_conf="s3://mybucket/logs?region=us-west-2",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.logpush.ownership.with_raw_response.create(
-                destination_conf="s3://mybucket/logs?region=us-west-2",
-                account_id="account_id",
-            )
+          client.logpush.ownership.with_raw_response.create(
+              destination_conf="s3://mybucket/logs?region=us-west-2",
+              account_id="account_id",
+          )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -89,7 +95,7 @@ class TestOwnership:
             ownership_challenge="00000000000000000000",
             account_id="account_id",
         )
-        assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], ownership, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -99,11 +105,12 @@ class TestOwnership:
             ownership_challenge="00000000000000000000",
             account_id="account_id",
         )
-        assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], ownership, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_validate(self, client: Cloudflare) -> None:
+
         response = client.logpush.ownership.with_raw_response.validate(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
@@ -111,9 +118,9 @@ class TestOwnership:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ownership = response.parse()
-        assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], ownership, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -122,12 +129,12 @@ class TestOwnership:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ownership = response.parse()
-            assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
+            assert_matches_type(Optional[OwnershipValidation], ownership, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -135,22 +142,21 @@ class TestOwnership:
     @parametrize
     def test_path_params_validate(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.logpush.ownership.with_raw_response.validate(
-                destination_conf="s3://mybucket/logs?region=us-west-2",
-                ownership_challenge="00000000000000000000",
-                account_id="",
-            )
+          client.logpush.ownership.with_raw_response.validate(
+              destination_conf="s3://mybucket/logs?region=us-west-2",
+              ownership_challenge="00000000000000000000",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.logpush.ownership.with_raw_response.validate(
-                destination_conf="s3://mybucket/logs?region=us-west-2",
-                ownership_challenge="00000000000000000000",
-                account_id="account_id",
-            )
-
-
+          client.logpush.ownership.with_raw_response.validate(
+              destination_conf="s3://mybucket/logs?region=us-west-2",
+              ownership_challenge="00000000000000000000",
+              account_id="account_id",
+          )
 class TestAsyncOwnership:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -159,7 +165,7 @@ class TestAsyncOwnership:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="account_id",
         )
-        assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -168,20 +174,21 @@ class TestAsyncOwnership:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="account_id",
         )
-        assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.logpush.ownership.with_raw_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ownership = await response.parse()
-        assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -189,12 +196,12 @@ class TestAsyncOwnership:
         async with async_client.logpush.ownership.with_streaming_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ownership = await response.parse()
-            assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
+            assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -202,16 +209,16 @@ class TestAsyncOwnership:
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.logpush.ownership.with_raw_response.create(
-                destination_conf="s3://mybucket/logs?region=us-west-2",
-                account_id="",
-            )
+          await async_client.logpush.ownership.with_raw_response.create(
+              destination_conf="s3://mybucket/logs?region=us-west-2",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.logpush.ownership.with_raw_response.create(
-                destination_conf="s3://mybucket/logs?region=us-west-2",
-                account_id="account_id",
-            )
+          await async_client.logpush.ownership.with_raw_response.create(
+              destination_conf="s3://mybucket/logs?region=us-west-2",
+              account_id="account_id",
+          )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -221,7 +228,7 @@ class TestAsyncOwnership:
             ownership_challenge="00000000000000000000",
             account_id="account_id",
         )
-        assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], ownership, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -231,11 +238,12 @@ class TestAsyncOwnership:
             ownership_challenge="00000000000000000000",
             account_id="account_id",
         )
-        assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], ownership, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_validate(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.logpush.ownership.with_raw_response.validate(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
@@ -243,9 +251,9 @@ class TestAsyncOwnership:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ownership = await response.parse()
-        assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
+        assert_matches_type(Optional[OwnershipValidation], ownership, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -254,12 +262,12 @@ class TestAsyncOwnership:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ownership = await response.parse()
-            assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
+            assert_matches_type(Optional[OwnershipValidation], ownership, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -267,15 +275,15 @@ class TestAsyncOwnership:
     @parametrize
     async def test_path_params_validate(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.logpush.ownership.with_raw_response.validate(
-                destination_conf="s3://mybucket/logs?region=us-west-2",
-                ownership_challenge="00000000000000000000",
-                account_id="",
-            )
+          await async_client.logpush.ownership.with_raw_response.validate(
+              destination_conf="s3://mybucket/logs?region=us-west-2",
+              ownership_challenge="00000000000000000000",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.logpush.ownership.with_raw_response.validate(
-                destination_conf="s3://mybucket/logs?region=us-west-2",
-                ownership_challenge="00000000000000000000",
-                account_id="account_id",
-            )
+          await async_client.logpush.ownership.with_raw_response.validate(
+              destination_conf="s3://mybucket/logs?region=us-west-2",
+              ownership_challenge="00000000000000000000",
+              account_id="account_id",
+          )

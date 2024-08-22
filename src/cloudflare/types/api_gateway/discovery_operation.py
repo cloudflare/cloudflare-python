@@ -1,13 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["DiscoveryOperation", "Features", "FeaturesTrafficStats"]
+from datetime import datetime
 
+from typing import Optional, List
+
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["DiscoveryOperation", "Features", "FeaturesTrafficStats"]
 
 class FeaturesTrafficStats(BaseModel):
     last_updated: datetime
@@ -18,10 +23,8 @@ class FeaturesTrafficStats(BaseModel):
     requests: float
     """The average number of requests seen during this period"""
 
-
 class Features(BaseModel):
     traffic_stats: Optional[FeaturesTrafficStats] = None
-
 
 class DiscoveryOperation(BaseModel):
     id: str

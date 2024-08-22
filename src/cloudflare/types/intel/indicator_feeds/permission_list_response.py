@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import TypeAlias
-
 from ...._models import BaseModel
 
-__all__ = ["PermissionListResponse", "PermissionListResponseItem"]
+from typing import Optional
 
+from typing_extensions import TypeAlias
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["PermissionListResponse", "PermissionListResponseItem"]
 
 class PermissionListResponseItem(BaseModel):
     id: Optional[int] = None
@@ -26,6 +30,5 @@ class PermissionListResponseItem(BaseModel):
 
     name: Optional[str] = None
     """The name of the indicator feed"""
-
 
 PermissionListResponse: TypeAlias = List[PermissionListResponseItem]

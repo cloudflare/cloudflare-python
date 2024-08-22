@@ -6,7 +6,6 @@ from typing_extensions import Literal, TypedDict
 
 __all__ = ["OriginDNSParam"]
 
-
 class OriginDNSParam(TypedDict, total=False):
     name: str
     """The name of the DNS record associated with the origin."""

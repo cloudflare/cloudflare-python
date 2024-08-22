@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import TypedDict
 
 from .migration_step_param import MigrationStepParam
 
-__all__ = ["SteppedMigrationParam"]
+from typing_extensions import TypedDict
 
+__all__ = ["SteppedMigrationParam"]
 
 class SteppedMigrationParam(TypedDict, total=False):
     new_tag: str

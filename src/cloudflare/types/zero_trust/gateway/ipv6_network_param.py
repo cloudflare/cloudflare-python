@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 __all__ = ["IPV6NetworkParam"]
-
 
 class IPV6NetworkParam(TypedDict, total=False):
     network: Required[str]

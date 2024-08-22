@@ -2,30 +2,36 @@
 
 from __future__ import annotations
 
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from typing import Optional, Any, cast
+
+from cloudflare.types.alerting import PolicyCreateResponse, PolicyUpdateResponse, Policy, PolicyDeleteResponse
+
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.alerting import (
-    Policy,
-    PolicyCreateResponse,
-    PolicyDeleteResponse,
-    PolicyUpdateResponse,
-)
+from cloudflare.types.alerting import policy_create_params
+from cloudflare.types.alerting import policy_update_params
+from cloudflare.types.alerting import Mechanism
+from cloudflare.types.alerting import PolicyFilter
+from cloudflare.types.alerting import PolicyFilter
+from cloudflare.types.alerting import Mechanism
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestPolicies:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.create(
@@ -39,11 +45,9 @@ class TestPolicies:
             },
             name="SSL Notification Event Policy",
         )
-        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.create(
@@ -51,9 +55,15 @@ class TestPolicies:
             alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
-                "email": [{"id": "test@example.com"}],
-                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
-                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
+                "email": [{
+                    "id": "test@example.com"
+                }],
+                "pagerduty": [{
+                    "id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"
+                }],
+                "webhooks": [{
+                    "id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"
+                }],
             },
             name="SSL Notification Event Policy",
             alert_interval="30m",
@@ -101,13 +111,12 @@ class TestPolicies:
                 "zones": ["string", "string", "string"],
             },
         )
-        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
+
         response = client.alerting.policies.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             alert_type="access_custom_certificate_expiration_type",
@@ -121,13 +130,11 @@ class TestPolicies:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         policy = response.parse()
-        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.alerting.policies.with_streaming_response.create(
@@ -140,47 +147,41 @@ class TestPolicies:
                 "webhooks": [{}],
             },
             name="SSL Notification Event Policy",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             policy = response.parse()
-            assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+            assert_matches_type(Optional[PolicyCreateResponse], policy, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.alerting.policies.with_raw_response.create(
-                account_id="",
-                alert_type="access_custom_certificate_expiration_type",
-                enabled=True,
-                mechanisms={
-                    "email": [{}],
-                    "pagerduty": [{}],
-                    "webhooks": [{}],
-                },
-                name="SSL Notification Event Policy",
-            )
+          client.alerting.policies.with_raw_response.create(
+              account_id="",
+              alert_type="access_custom_certificate_expiration_type",
+              enabled=True,
+              mechanisms={
+                  "email": [{}],
+                  "pagerduty": [{}],
+                  "webhooks": [{}],
+              },
+              name="SSL Notification Event Policy",
+          )
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.update(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.update(
@@ -233,100 +234,102 @@ class TestPolicies:
                 "zones": ["string", "string", "string"],
             },
             mechanisms={
-                "email": [{"id": "test@example.com"}],
-                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
-                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
+                "email": [{
+                    "id": "test@example.com"
+                }],
+                "pagerduty": [{
+                    "id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"
+                }],
+                "webhooks": [{
+                    "id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"
+                }],
             },
             name="SSL Notification Event Policy",
         )
-        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
+
         response = client.alerting.policies.with_raw_response.update(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         policy = response.parse()
-        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.alerting.policies.with_streaming_response.update(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             policy = response.parse()
-            assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+            assert_matches_type(Optional[PolicyUpdateResponse], policy, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.alerting.policies.with_raw_response.update(
-                policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
-                account_id="",
-            )
+          client.alerting.policies.with_raw_response.update(
+              policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
-            client.alerting.policies.with_raw_response.update(
-                policy_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          client.alerting.policies.with_raw_response.update(
+              policy_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[Policy], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[Policy], policy, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
+
         response = client.alerting.policies.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         policy = response.parse()
-        assert_matches_type(SyncSinglePage[Policy], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[Policy], policy, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.alerting.policies.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             policy = response.parse()
-            assert_matches_type(SyncSinglePage[Policy], policy, path=["response"])
+            assert_matches_type(SyncSinglePage[Policy], policy, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.alerting.policies.with_raw_response.list(
-                account_id="",
-            )
+          client.alerting.policies.with_raw_response.list(
+              account_id="",
+          )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
@@ -334,115 +337,106 @@ class TestPolicies:
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PolicyDeleteResponse, policy, path=["response"])
+        assert_matches_type(PolicyDeleteResponse, policy, path=['response'])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
+
         response = client.alerting.policies.with_raw_response.delete(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         policy = response.parse()
-        assert_matches_type(PolicyDeleteResponse, policy, path=["response"])
+        assert_matches_type(PolicyDeleteResponse, policy, path=['response'])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.alerting.policies.with_streaming_response.delete(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             policy = response.parse()
-            assert_matches_type(PolicyDeleteResponse, policy, path=["response"])
+            assert_matches_type(PolicyDeleteResponse, policy, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.alerting.policies.with_raw_response.delete(
-                policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
-                account_id="",
-            )
+          client.alerting.policies.with_raw_response.delete(
+              policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
-            client.alerting.policies.with_raw_response.delete(
-                policy_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          client.alerting.policies.with_raw_response.delete(
+              policy_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.get(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Policy], policy, path=["response"])
+        assert_matches_type(Optional[Policy], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
+
         response = client.alerting.policies.with_raw_response.get(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         policy = response.parse()
-        assert_matches_type(Optional[Policy], policy, path=["response"])
+        assert_matches_type(Optional[Policy], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.alerting.policies.with_streaming_response.get(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             policy = response.parse()
-            assert_matches_type(Optional[Policy], policy, path=["response"])
+            assert_matches_type(Optional[Policy], policy, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.alerting.policies.with_raw_response.get(
-                policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
-                account_id="",
-            )
+          client.alerting.policies.with_raw_response.get(
+              policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
-            client.alerting.policies.with_raw_response.get(
-                policy_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-
+          client.alerting.policies.with_raw_response.get(
+              policy_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 class TestAsyncPolicies:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.create(
@@ -456,11 +450,9 @@ class TestAsyncPolicies:
             },
             name="SSL Notification Event Policy",
         )
-        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.create(
@@ -468,9 +460,15 @@ class TestAsyncPolicies:
             alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
-                "email": [{"id": "test@example.com"}],
-                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
-                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
+                "email": [{
+                    "id": "test@example.com"
+                }],
+                "pagerduty": [{
+                    "id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"
+                }],
+                "webhooks": [{
+                    "id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"
+                }],
             },
             name="SSL Notification Event Policy",
             alert_interval="30m",
@@ -518,13 +516,12 @@ class TestAsyncPolicies:
                 "zones": ["string", "string", "string"],
             },
         )
-        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.alerting.policies.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             alert_type="access_custom_certificate_expiration_type",
@@ -538,13 +535,11 @@ class TestAsyncPolicies:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         policy = await response.parse()
-        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.policies.with_streaming_response.create(
@@ -557,47 +552,41 @@ class TestAsyncPolicies:
                 "webhooks": [{}],
             },
             name="SSL Notification Event Policy",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             policy = await response.parse()
-            assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+            assert_matches_type(Optional[PolicyCreateResponse], policy, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.alerting.policies.with_raw_response.create(
-                account_id="",
-                alert_type="access_custom_certificate_expiration_type",
-                enabled=True,
-                mechanisms={
-                    "email": [{}],
-                    "pagerduty": [{}],
-                    "webhooks": [{}],
-                },
-                name="SSL Notification Event Policy",
-            )
+          await async_client.alerting.policies.with_raw_response.create(
+              account_id="",
+              alert_type="access_custom_certificate_expiration_type",
+              enabled=True,
+              mechanisms={
+                  "email": [{}],
+                  "pagerduty": [{}],
+                  "webhooks": [{}],
+              },
+              name="SSL Notification Event Policy",
+          )
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.update(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.update(
@@ -650,100 +639,102 @@ class TestAsyncPolicies:
                 "zones": ["string", "string", "string"],
             },
             mechanisms={
-                "email": [{"id": "test@example.com"}],
-                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
-                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
+                "email": [{
+                    "id": "test@example.com"
+                }],
+                "pagerduty": [{
+                    "id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"
+                }],
+                "webhooks": [{
+                    "id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"
+                }],
             },
             name="SSL Notification Event Policy",
         )
-        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.alerting.policies.with_raw_response.update(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         policy = await response.parse()
-        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.policies.with_streaming_response.update(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             policy = await response.parse()
-            assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+            assert_matches_type(Optional[PolicyUpdateResponse], policy, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.alerting.policies.with_raw_response.update(
-                policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
-                account_id="",
-            )
+          await async_client.alerting.policies.with_raw_response.update(
+              policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
-            await async_client.alerting.policies.with_raw_response.update(
-                policy_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          await async_client.alerting.policies.with_raw_response.update(
+              policy_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[Policy], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[Policy], policy, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.alerting.policies.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         policy = await response.parse()
-        assert_matches_type(AsyncSinglePage[Policy], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[Policy], policy, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.policies.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             policy = await response.parse()
-            assert_matches_type(AsyncSinglePage[Policy], policy, path=["response"])
+            assert_matches_type(AsyncSinglePage[Policy], policy, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.alerting.policies.with_raw_response.list(
-                account_id="",
-            )
+          await async_client.alerting.policies.with_raw_response.list(
+              account_id="",
+          )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
@@ -751,104 +742,98 @@ class TestAsyncPolicies:
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PolicyDeleteResponse, policy, path=["response"])
+        assert_matches_type(PolicyDeleteResponse, policy, path=['response'])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.alerting.policies.with_raw_response.delete(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         policy = await response.parse()
-        assert_matches_type(PolicyDeleteResponse, policy, path=["response"])
+        assert_matches_type(PolicyDeleteResponse, policy, path=['response'])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.policies.with_streaming_response.delete(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             policy = await response.parse()
-            assert_matches_type(PolicyDeleteResponse, policy, path=["response"])
+            assert_matches_type(PolicyDeleteResponse, policy, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.alerting.policies.with_raw_response.delete(
-                policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
-                account_id="",
-            )
+          await async_client.alerting.policies.with_raw_response.delete(
+              policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
-            await async_client.alerting.policies.with_raw_response.delete(
-                policy_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          await async_client.alerting.policies.with_raw_response.delete(
+              policy_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.get(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Policy], policy, path=["response"])
+        assert_matches_type(Optional[Policy], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.alerting.policies.with_raw_response.get(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         policy = await response.parse()
-        assert_matches_type(Optional[Policy], policy, path=["response"])
+        assert_matches_type(Optional[Policy], policy, path=['response'])
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.policies.with_streaming_response.get(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             policy = await response.parse()
-            assert_matches_type(Optional[Policy], policy, path=["response"])
+            assert_matches_type(Optional[Policy], policy, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274"
-    )
+    @pytest.mark.skip(reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4274")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.alerting.policies.with_raw_response.get(
-                policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
-                account_id="",
-            )
+          await async_client.alerting.policies.with_raw_response.get(
+              policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
-            await async_client.alerting.policies.with_raw_response.get(
-                policy_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          await async_client.alerting.policies.with_raw_response.get(
+              policy_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )

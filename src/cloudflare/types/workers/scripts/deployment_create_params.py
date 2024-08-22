@@ -2,13 +2,18 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Required, Literal
+
 from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
 
 from .deployment_param import DeploymentParam
 
-__all__ = ["DeploymentCreateParams", "Version"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ...._types import FileTypes
+from ...._utils import PropertyInfo
 
+__all__ = ["DeploymentCreateParams", "Version"]
 
 class DeploymentCreateParams(TypedDict, total=False):
     account_id: Required[str]
@@ -25,7 +30,6 @@ class DeploymentCreateParams(TypedDict, total=False):
     """
 
     annotations: DeploymentParam
-
 
 class Version(TypedDict, total=False):
     percentage: Required[float]

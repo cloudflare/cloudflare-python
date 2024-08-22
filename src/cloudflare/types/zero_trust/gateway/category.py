@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
-
-from pydantic import Field as FieldInfo
-
 from ...._models import BaseModel
 
-__all__ = ["Category", "Subcategory"]
+from typing import Optional, List
 
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["Category", "Subcategory"]
 
 class Subcategory(BaseModel):
     id: Optional[int] = None
@@ -17,9 +19,7 @@ class Subcategory(BaseModel):
     beta: Optional[bool] = None
     """True if the category is in beta and subject to change."""
 
-    class_: Optional[Literal["free", "premium", "blocked", "removalPending", "noBlock"]] = FieldInfo(
-        alias="class", default=None
-    )
+    class_: Optional[Literal["free", "premium", "blocked", "removalPending", "noBlock"]] = FieldInfo(alias = "class", default = None)
     """Which account types are allowed to create policies based on this category.
 
     `blocked` categories are blocked unconditionally for all accounts.
@@ -33,7 +33,6 @@ class Subcategory(BaseModel):
     name: Optional[str] = None
     """The name of the category."""
 
-
 class Category(BaseModel):
     id: Optional[int] = None
     """The identifier for this category. There is only one category per ID."""
@@ -41,9 +40,7 @@ class Category(BaseModel):
     beta: Optional[bool] = None
     """True if the category is in beta and subject to change."""
 
-    class_: Optional[Literal["free", "premium", "blocked", "removalPending", "noBlock"]] = FieldInfo(
-        alias="class", default=None
-    )
+    class_: Optional[Literal["free", "premium", "blocked", "removalPending", "noBlock"]] = FieldInfo(alias = "class", default = None)
     """Which account types are allowed to create policies based on this category.
 
     `blocked` categories are blocked unconditionally for all accounts.

@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import TypedDict
 
 from .filter_options_param import FilterOptionsParam
 
-__all__ = ["NotificationFilterParam"]
+from typing_extensions import TypedDict
 
+__all__ = ["NotificationFilterParam"]
 
 class NotificationFilterParam(TypedDict, total=False):
     origin: Optional[FilterOptionsParam]

@@ -1,16 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
+from ..._models import BaseModel
+
+from typing import Optional, List
+
 from typing_extensions import Literal
 
-from .ttl import TTL
-from ..._models import BaseModel
-from .record_tags import RecordTags
+from datetime import datetime
+
 from .record_metadata import RecordMetadata
 
-__all__ = ["LOCRecord", "Data"]
+from .record_tags import RecordTags
 
+from .ttl import TTL
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["LOCRecord", "Data"]
 
 class Data(BaseModel):
     altitude: Optional[float] = None
@@ -48,7 +56,6 @@ class Data(BaseModel):
 
     size: Optional[float] = None
     """Size of location in meters."""
-
 
 class LOCRecord(BaseModel):
     data: Data

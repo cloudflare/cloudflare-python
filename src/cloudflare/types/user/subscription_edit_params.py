@@ -2,15 +2,22 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict, Literal
 
-from .rate_plan_param import RatePlanParam
-from .subscription_zone_param import SubscriptionZoneParam
+from typing import Iterable
+
 from .subscription_component_param import SubscriptionComponentParam
 
-__all__ = ["SubscriptionEditParams", "App"]
+from .rate_plan_param import RatePlanParam
 
+from .subscription_zone_param import SubscriptionZoneParam
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
+
+__all__ = ["SubscriptionEditParams", "App"]
 
 class SubscriptionEditParams(TypedDict, total=False):
     app: App
@@ -26,7 +33,6 @@ class SubscriptionEditParams(TypedDict, total=False):
 
     zone: SubscriptionZoneParam
     """A simple zone object. May have null properties if not a zone subscription."""
-
 
 class App(TypedDict, total=False):
     install_id: str

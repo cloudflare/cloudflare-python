@@ -1,13 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["MobileRedirect", "Value"]
+from typing import Optional
 
+from typing_extensions import Literal
+
+from datetime import datetime
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["MobileRedirect", "Value"]
 
 class Value(BaseModel):
     mobile_subdomain: Optional[str] = None
@@ -28,7 +33,6 @@ class Value(BaseModel):
     Whether to drop the current page path and redirect to the mobile subdomain URL
     root, or keep the path and redirect to the same page on the mobile subdomain.
     """
-
 
 class MobileRedirect(BaseModel):
     id: Literal["mobile_redirect"]

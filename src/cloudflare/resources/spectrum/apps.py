@@ -2,40 +2,80 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Optional, cast, overload
-from typing_extensions import Literal
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    required_args,
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
-from ...types.spectrum import app_list_params, app_create_params, app_update_params
+
 from ...types.spectrum.dns_param import DNSParam
+
+from typing_extensions import Literal
+
 from ...types.spectrum.edge_ips_param import EdgeIPsParam
-from ...types.spectrum.app_get_response import AppGetResponse
+
+from typing import List, Optional, Type
+
 from ...types.spectrum.origin_dns_param import OriginDNSParam
-from ...types.spectrum.app_list_response import AppListResponse
+
 from ...types.spectrum.origin_port_param import OriginPortParam
+
 from ...types.spectrum.app_create_response import AppCreateResponse
-from ...types.spectrum.app_delete_response import AppDeleteResponse
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from ..._base_client import make_request_options
+
 from ...types.spectrum.app_update_response import AppUpdateResponse
 
-__all__ = ["AppsResource", "AsyncAppsResource"]
+from ...types.spectrum.app_list_response import AppListResponse
 
+from ...types.spectrum.app_delete_response import AppDeleteResponse
+
+from ...types.spectrum.app_get_response import AppGetResponse
+
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.spectrum import app_create_params
+from ...types.spectrum import app_update_params
+from ...types.spectrum import app_list_params
+from ...types.spectrum import DNS
+from ...types.spectrum import EdgeIPs
+from ...types.spectrum import OriginDNS
+from ...types.spectrum import OriginPort
+from ...types.spectrum import DNS
+from ...types.spectrum import DNS
+from ...types.spectrum import EdgeIPs
+from ...types.spectrum import OriginDNS
+from ...types.spectrum import OriginPort
+from ...types.spectrum import DNS
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["AppsResource", "AsyncAppsResource"]
 
 class AppsResource(SyncAPIResource):
     @cached_property
@@ -47,28 +87,26 @@ class AppsResource(SyncAPIResource):
         return AppsResourceWithStreamingResponse(self)
 
     @overload
-    def create(
-        self,
-        *,
-        zone_id: str,
-        dns: DNSParam,
-        ip_firewall: bool,
-        protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"],
-        tls: Literal["off", "flexible", "full", "strict"],
-        traffic_type: Literal["direct", "http", "https"],
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppCreateResponse]:
+    def create(self,
+    *,
+    zone_id: str,
+    dns: DNSParam,
+    ip_firewall: bool,
+    protocol: str,
+    proxy_protocol: Literal["off", "v1", "v2", "simple"],
+    tls: Literal["off", "flexible", "full", "strict"],
+    traffic_type: Literal["direct", "http", "https"],
+    argo_smart_routing: bool | NotGiven = NOT_GIVEN,
+    edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+    origin_direct: List[str] | NotGiven = NOT_GIVEN,
+    origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
+    origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppCreateResponse]:
         """
         Creates a new Spectrum application from a configuration using a name for the
         origin.
@@ -122,22 +160,19 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def create(
-        self,
-        *,
-        zone_id: str,
-        dns: DNSParam,
-        protocol: str,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppCreateResponse]:
+    def create(self,
+    *,
+    zone_id: str,
+    dns: DNSParam,
+    protocol: str,
+    origin_direct: List[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppCreateResponse]:
         """
         Creates a new Spectrum application from a configuration using a name for the
         origin.
@@ -162,92 +197,72 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
-    @required_args(
-        ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
-    )
-    def create(
-        self,
-        *,
-        zone_id: str,
-        dns: DNSParam,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
-        protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
-        traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppCreateResponse]:
+    @required_args(["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"], ["zone_id", "dns", "protocol"])
+    def create(self,
+    *,
+    zone_id: str,
+    dns: DNSParam,
+    ip_firewall: bool | NotGiven = NOT_GIVEN,
+    protocol: str,
+    proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
+    tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
+    traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
+    argo_smart_routing: bool | NotGiven = NOT_GIVEN,
+    edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+    origin_direct: List[str] | NotGiven = NOT_GIVEN,
+    origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
+    origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppCreateResponse]:
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[AppCreateResponse],
-            self._post(
-                f"/zones/{zone_id}/spectrum/apps",
-                body=maybe_transform(
-                    {
-                        "dns": dns,
-                        "ip_firewall": ip_firewall,
-                        "protocol": protocol,
-                        "proxy_protocol": proxy_protocol,
-                        "tls": tls,
-                        "traffic_type": traffic_type,
-                        "argo_smart_routing": argo_smart_routing,
-                        "edge_ips": edge_ips,
-                        "origin_direct": origin_direct,
-                        "origin_dns": origin_dns,
-                        "origin_port": origin_port,
-                    },
-                    app_create_params.AppCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AppCreateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AppCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
+        return cast(Optional[AppCreateResponse], self._post(
+            f"/zones/{zone_id}/spectrum/apps",
+            body=maybe_transform({
+                "dns": dns,
+                "ip_firewall": ip_firewall,
+                "protocol": protocol,
+                "proxy_protocol": proxy_protocol,
+                "tls": tls,
+                "traffic_type": traffic_type,
+                "argo_smart_routing": argo_smart_routing,
+                "edge_ips": edge_ips,
+                "origin_direct": origin_direct,
+                "origin_dns": origin_dns,
+                "origin_port": origin_port,
+            }, app_create_params.AppCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[AppCreateResponse]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[AppCreateResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
     @overload
-    def update(
-        self,
-        app_id: str,
-        *,
-        zone_id: str,
-        dns: DNSParam,
-        ip_firewall: bool,
-        protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"],
-        tls: Literal["off", "flexible", "full", "strict"],
-        traffic_type: Literal["direct", "http", "https"],
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppUpdateResponse]:
+    def update(self,
+    app_id: str,
+    *,
+    zone_id: str,
+    dns: DNSParam,
+    ip_firewall: bool,
+    protocol: str,
+    proxy_protocol: Literal["off", "v1", "v2", "simple"],
+    tls: Literal["off", "flexible", "full", "strict"],
+    traffic_type: Literal["direct", "http", "https"],
+    argo_smart_routing: bool | NotGiven = NOT_GIVEN,
+    edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+    origin_direct: List[str] | NotGiven = NOT_GIVEN,
+    origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
+    origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppUpdateResponse]:
         """
         Updates a previously existing application's configuration that uses a name for
         the origin.
@@ -303,23 +318,20 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        app_id: str,
-        *,
-        zone_id: str,
-        dns: DNSParam,
-        protocol: str,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppUpdateResponse]:
+    def update(self,
+    app_id: str,
+    *,
+    zone_id: str,
+    dns: DNSParam,
+    protocol: str,
+    origin_direct: List[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppUpdateResponse]:
         """
         Updates a previously existing application's configuration that uses a name for
         the origin.
@@ -346,86 +358,68 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
-    @required_args(
-        ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
-    )
-    def update(
-        self,
-        app_id: str,
-        *,
-        zone_id: str,
-        dns: DNSParam,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
-        protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
-        traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppUpdateResponse]:
+    @required_args(["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"], ["zone_id", "dns", "protocol"])
+    def update(self,
+    app_id: str,
+    *,
+    zone_id: str,
+    dns: DNSParam,
+    ip_firewall: bool | NotGiven = NOT_GIVEN,
+    protocol: str,
+    proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
+    tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
+    traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
+    argo_smart_routing: bool | NotGiven = NOT_GIVEN,
+    edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+    origin_direct: List[str] | NotGiven = NOT_GIVEN,
+    origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
+    origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppUpdateResponse]:
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not app_id:
-            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
-        return cast(
-            Optional[AppUpdateResponse],
-            self._put(
-                f"/zones/{zone_id}/spectrum/apps/{app_id}",
-                body=maybe_transform(
-                    {
-                        "dns": dns,
-                        "ip_firewall": ip_firewall,
-                        "protocol": protocol,
-                        "proxy_protocol": proxy_protocol,
-                        "tls": tls,
-                        "traffic_type": traffic_type,
-                        "argo_smart_routing": argo_smart_routing,
-                        "edge_ips": edge_ips,
-                        "origin_direct": origin_direct,
-                        "origin_dns": origin_dns,
-                        "origin_port": origin_port,
-                    },
-                    app_update_params.AppUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AppUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AppUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `app_id` but received {app_id!r}'
+          )
+        return cast(Optional[AppUpdateResponse], self._put(
+            f"/zones/{zone_id}/spectrum/apps/{app_id}",
+            body=maybe_transform({
+                "dns": dns,
+                "ip_firewall": ip_firewall,
+                "protocol": protocol,
+                "proxy_protocol": proxy_protocol,
+                "tls": tls,
+                "traffic_type": traffic_type,
+                "argo_smart_routing": argo_smart_routing,
+                "edge_ips": edge_ips,
+                "origin_direct": origin_direct,
+                "origin_dns": origin_dns,
+                "origin_port": origin_port,
+            }, app_update_params.AppUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[AppUpdateResponse]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[AppUpdateResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    def list(
-        self,
-        *,
-        zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["protocol", "app_id", "created_on", "modified_on", "dns"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppListResponse]:
+    def list(self,
+    *,
+    zone_id: str,
+    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+    order: Literal["protocol", "app_id", "created_on", "modified_on", "dns"] | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppListResponse]:
         """
         Retrieves a list of currently existing Spectrum applications inside a zone.
 
@@ -451,45 +445,30 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[AppListResponse],
-            self._get(
-                f"/zones/{zone_id}/spectrum/apps",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "direction": direction,
-                            "order": order,
-                            "page": page,
-                            "per_page": per_page,
-                        },
-                        app_list_params.AppListParams,
-                    ),
-                    post_parser=ResultWrapper[Optional[AppListResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AppListResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
+        return cast(Optional[AppListResponse], self._get(
+            f"/zones/{zone_id}/spectrum/apps",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "direction": direction,
+                "order": order,
+                "page": page,
+                "per_page": per_page,
+            }, app_list_params.AppListParams), post_parser=ResultWrapper[Optional[AppListResponse]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[AppListResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    def delete(
-        self,
-        app_id: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppDeleteResponse]:
+    def delete(self,
+    app_id: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppDeleteResponse]:
         """
         Deletes a previously existing application.
 
@@ -507,33 +486,29 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not app_id:
-            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `app_id` but received {app_id!r}'
+          )
         return self._delete(
             f"/zones/{zone_id}/spectrum/apps/{app_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AppDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[AppDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[AppDeleteResponse]], ResultWrapper[AppDeleteResponse]),
         )
 
-    def get(
-        self,
-        app_id: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppGetResponse]:
+    def get(self,
+    app_id: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppGetResponse]:
         """
         Gets the application configuration of a specific application inside a zone.
 
@@ -551,26 +526,18 @@ class AppsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not app_id:
-            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
-        return cast(
-            Optional[AppGetResponse],
-            self._get(
-                f"/zones/{zone_id}/spectrum/apps/{app_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AppGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AppGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
+          raise ValueError(
+            f'Expected a non-empty value for `app_id` but received {app_id!r}'
+          )
+        return cast(Optional[AppGetResponse], self._get(
+            f"/zones/{zone_id}/spectrum/apps/{app_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[AppGetResponse]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[AppGetResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
 class AsyncAppsResource(AsyncAPIResource):
     @cached_property
@@ -582,28 +549,26 @@ class AsyncAppsResource(AsyncAPIResource):
         return AsyncAppsResourceWithStreamingResponse(self)
 
     @overload
-    async def create(
-        self,
-        *,
-        zone_id: str,
-        dns: DNSParam,
-        ip_firewall: bool,
-        protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"],
-        tls: Literal["off", "flexible", "full", "strict"],
-        traffic_type: Literal["direct", "http", "https"],
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppCreateResponse]:
+    async def create(self,
+    *,
+    zone_id: str,
+    dns: DNSParam,
+    ip_firewall: bool,
+    protocol: str,
+    proxy_protocol: Literal["off", "v1", "v2", "simple"],
+    tls: Literal["off", "flexible", "full", "strict"],
+    traffic_type: Literal["direct", "http", "https"],
+    argo_smart_routing: bool | NotGiven = NOT_GIVEN,
+    edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+    origin_direct: List[str] | NotGiven = NOT_GIVEN,
+    origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
+    origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppCreateResponse]:
         """
         Creates a new Spectrum application from a configuration using a name for the
         origin.
@@ -657,22 +622,19 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def create(
-        self,
-        *,
-        zone_id: str,
-        dns: DNSParam,
-        protocol: str,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppCreateResponse]:
+    async def create(self,
+    *,
+    zone_id: str,
+    dns: DNSParam,
+    protocol: str,
+    origin_direct: List[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppCreateResponse]:
         """
         Creates a new Spectrum application from a configuration using a name for the
         origin.
@@ -697,92 +659,72 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
-    @required_args(
-        ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
-    )
-    async def create(
-        self,
-        *,
-        zone_id: str,
-        dns: DNSParam,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
-        protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
-        traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppCreateResponse]:
+    @required_args(["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"], ["zone_id", "dns", "protocol"])
+    async def create(self,
+    *,
+    zone_id: str,
+    dns: DNSParam,
+    ip_firewall: bool | NotGiven = NOT_GIVEN,
+    protocol: str,
+    proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
+    tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
+    traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
+    argo_smart_routing: bool | NotGiven = NOT_GIVEN,
+    edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+    origin_direct: List[str] | NotGiven = NOT_GIVEN,
+    origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
+    origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppCreateResponse]:
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[AppCreateResponse],
-            await self._post(
-                f"/zones/{zone_id}/spectrum/apps",
-                body=await async_maybe_transform(
-                    {
-                        "dns": dns,
-                        "ip_firewall": ip_firewall,
-                        "protocol": protocol,
-                        "proxy_protocol": proxy_protocol,
-                        "tls": tls,
-                        "traffic_type": traffic_type,
-                        "argo_smart_routing": argo_smart_routing,
-                        "edge_ips": edge_ips,
-                        "origin_direct": origin_direct,
-                        "origin_dns": origin_dns,
-                        "origin_port": origin_port,
-                    },
-                    app_create_params.AppCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AppCreateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AppCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
+        return cast(Optional[AppCreateResponse], await self._post(
+            f"/zones/{zone_id}/spectrum/apps",
+            body=await async_maybe_transform({
+                "dns": dns,
+                "ip_firewall": ip_firewall,
+                "protocol": protocol,
+                "proxy_protocol": proxy_protocol,
+                "tls": tls,
+                "traffic_type": traffic_type,
+                "argo_smart_routing": argo_smart_routing,
+                "edge_ips": edge_ips,
+                "origin_direct": origin_direct,
+                "origin_dns": origin_dns,
+                "origin_port": origin_port,
+            }, app_create_params.AppCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[AppCreateResponse]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[AppCreateResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
     @overload
-    async def update(
-        self,
-        app_id: str,
-        *,
-        zone_id: str,
-        dns: DNSParam,
-        ip_firewall: bool,
-        protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"],
-        tls: Literal["off", "flexible", "full", "strict"],
-        traffic_type: Literal["direct", "http", "https"],
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppUpdateResponse]:
+    async def update(self,
+    app_id: str,
+    *,
+    zone_id: str,
+    dns: DNSParam,
+    ip_firewall: bool,
+    protocol: str,
+    proxy_protocol: Literal["off", "v1", "v2", "simple"],
+    tls: Literal["off", "flexible", "full", "strict"],
+    traffic_type: Literal["direct", "http", "https"],
+    argo_smart_routing: bool | NotGiven = NOT_GIVEN,
+    edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+    origin_direct: List[str] | NotGiven = NOT_GIVEN,
+    origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
+    origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppUpdateResponse]:
         """
         Updates a previously existing application's configuration that uses a name for
         the origin.
@@ -838,23 +780,20 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        app_id: str,
-        *,
-        zone_id: str,
-        dns: DNSParam,
-        protocol: str,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppUpdateResponse]:
+    async def update(self,
+    app_id: str,
+    *,
+    zone_id: str,
+    dns: DNSParam,
+    protocol: str,
+    origin_direct: List[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppUpdateResponse]:
         """
         Updates a previously existing application's configuration that uses a name for
         the origin.
@@ -881,86 +820,68 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
-    @required_args(
-        ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
-    )
-    async def update(
-        self,
-        app_id: str,
-        *,
-        zone_id: str,
-        dns: DNSParam,
-        ip_firewall: bool | NotGiven = NOT_GIVEN,
-        protocol: str,
-        proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
-        tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
-        traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
-        argo_smart_routing: bool | NotGiven = NOT_GIVEN,
-        edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
-        origin_direct: List[str] | NotGiven = NOT_GIVEN,
-        origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
-        origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppUpdateResponse]:
+    @required_args(["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"], ["zone_id", "dns", "protocol"])
+    async def update(self,
+    app_id: str,
+    *,
+    zone_id: str,
+    dns: DNSParam,
+    ip_firewall: bool | NotGiven = NOT_GIVEN,
+    protocol: str,
+    proxy_protocol: Literal["off", "v1", "v2", "simple"] | NotGiven = NOT_GIVEN,
+    tls: Literal["off", "flexible", "full", "strict"] | NotGiven = NOT_GIVEN,
+    traffic_type: Literal["direct", "http", "https"] | NotGiven = NOT_GIVEN,
+    argo_smart_routing: bool | NotGiven = NOT_GIVEN,
+    edge_ips: EdgeIPsParam | NotGiven = NOT_GIVEN,
+    origin_direct: List[str] | NotGiven = NOT_GIVEN,
+    origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
+    origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppUpdateResponse]:
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not app_id:
-            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
-        return cast(
-            Optional[AppUpdateResponse],
-            await self._put(
-                f"/zones/{zone_id}/spectrum/apps/{app_id}",
-                body=await async_maybe_transform(
-                    {
-                        "dns": dns,
-                        "ip_firewall": ip_firewall,
-                        "protocol": protocol,
-                        "proxy_protocol": proxy_protocol,
-                        "tls": tls,
-                        "traffic_type": traffic_type,
-                        "argo_smart_routing": argo_smart_routing,
-                        "edge_ips": edge_ips,
-                        "origin_direct": origin_direct,
-                        "origin_dns": origin_dns,
-                        "origin_port": origin_port,
-                    },
-                    app_update_params.AppUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AppUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AppUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `app_id` but received {app_id!r}'
+          )
+        return cast(Optional[AppUpdateResponse], await self._put(
+            f"/zones/{zone_id}/spectrum/apps/{app_id}",
+            body=await async_maybe_transform({
+                "dns": dns,
+                "ip_firewall": ip_firewall,
+                "protocol": protocol,
+                "proxy_protocol": proxy_protocol,
+                "tls": tls,
+                "traffic_type": traffic_type,
+                "argo_smart_routing": argo_smart_routing,
+                "edge_ips": edge_ips,
+                "origin_direct": origin_direct,
+                "origin_dns": origin_dns,
+                "origin_port": origin_port,
+            }, app_update_params.AppUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[AppUpdateResponse]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[AppUpdateResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    async def list(
-        self,
-        *,
-        zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order: Literal["protocol", "app_id", "created_on", "modified_on", "dns"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppListResponse]:
+    async def list(self,
+    *,
+    zone_id: str,
+    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+    order: Literal["protocol", "app_id", "created_on", "modified_on", "dns"] | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppListResponse]:
         """
         Retrieves a list of currently existing Spectrum applications inside a zone.
 
@@ -986,45 +907,30 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[AppListResponse],
-            await self._get(
-                f"/zones/{zone_id}/spectrum/apps",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "direction": direction,
-                            "order": order,
-                            "page": page,
-                            "per_page": per_page,
-                        },
-                        app_list_params.AppListParams,
-                    ),
-                    post_parser=ResultWrapper[Optional[AppListResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AppListResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
+        return cast(Optional[AppListResponse], await self._get(
+            f"/zones/{zone_id}/spectrum/apps",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "direction": direction,
+                "order": order,
+                "page": page,
+                "per_page": per_page,
+            }, app_list_params.AppListParams), post_parser=ResultWrapper[Optional[AppListResponse]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[AppListResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    async def delete(
-        self,
-        app_id: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppDeleteResponse]:
+    async def delete(self,
+    app_id: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppDeleteResponse]:
         """
         Deletes a previously existing application.
 
@@ -1042,33 +948,29 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not app_id:
-            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `app_id` but received {app_id!r}'
+          )
         return await self._delete(
             f"/zones/{zone_id}/spectrum/apps/{app_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AppDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[AppDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[AppDeleteResponse]], ResultWrapper[AppDeleteResponse]),
         )
 
-    async def get(
-        self,
-        app_id: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppGetResponse]:
+    async def get(self,
+    app_id: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AppGetResponse]:
         """
         Gets the application configuration of a specific application inside a zone.
 
@@ -1086,26 +988,18 @@ class AsyncAppsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not app_id:
-            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
-        return cast(
-            Optional[AppGetResponse],
-            await self._get(
-                f"/zones/{zone_id}/spectrum/apps/{app_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AppGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AppGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
+          raise ValueError(
+            f'Expected a non-empty value for `app_id` but received {app_id!r}'
+          )
+        return cast(Optional[AppGetResponse], await self._get(
+            f"/zones/{zone_id}/spectrum/apps/{app_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[AppGetResponse]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[AppGetResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
 class AppsResourceWithRawResponse:
     def __init__(self, apps: AppsResource) -> None:
@@ -1127,7 +1021,6 @@ class AppsResourceWithRawResponse:
             apps.get,
         )
 
-
 class AsyncAppsResourceWithRawResponse:
     def __init__(self, apps: AsyncAppsResource) -> None:
         self._apps = apps
@@ -1148,7 +1041,6 @@ class AsyncAppsResourceWithRawResponse:
             apps.get,
         )
 
-
 class AppsResourceWithStreamingResponse:
     def __init__(self, apps: AppsResource) -> None:
         self._apps = apps
@@ -1168,7 +1060,6 @@ class AppsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             apps.get,
         )
-
 
 class AsyncAppsResourceWithStreamingResponse:
     def __init__(self, apps: AsyncAppsResource) -> None:

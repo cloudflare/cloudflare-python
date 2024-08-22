@@ -2,20 +2,26 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.pages.projects.deployments.history import LogGetResponse
+
 from typing import Any, cast
 
+import os
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.pages.projects.deployments.history import LogGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestLogs:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
@@ -24,10 +30,11 @@ class TestLogs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
-        assert_matches_type(LogGetResponse, log, path=["response"])
+        assert_matches_type(LogGetResponse, log, path=['response'])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
+
         response = client.pages.projects.deployments.history.logs.with_raw_response.get(
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -35,9 +42,9 @@ class TestLogs:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         log = response.parse()
-        assert_matches_type(LogGetResponse, log, path=["response"])
+        assert_matches_type(LogGetResponse, log, path=['response'])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -45,41 +52,40 @@ class TestLogs:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             log = response.parse()
-            assert_matches_type(LogGetResponse, log, path=["response"])
+            assert_matches_type(LogGetResponse, log, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.pages.projects.deployments.history.logs.with_raw_response.get(
-                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-                project_name="this-is-my-project-01",
-            )
+          client.pages.projects.deployments.history.logs.with_raw_response.get(
+              deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="",
+              project_name="this-is-my-project-01",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
-            client.pages.projects.deployments.history.logs.with_raw_response.get(
-                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                project_name="",
-            )
+          client.pages.projects.deployments.history.logs.with_raw_response.get(
+              deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+              project_name="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
-            client.pages.projects.deployments.history.logs.with_raw_response.get(
-                deployment_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                project_name="this-is-my-project-01",
-            )
-
-
+          client.pages.projects.deployments.history.logs.with_raw_response.get(
+              deployment_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+              project_name="this-is-my-project-01",
+          )
 class TestAsyncLogs:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -88,10 +94,11 @@ class TestAsyncLogs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
-        assert_matches_type(LogGetResponse, log, path=["response"])
+        assert_matches_type(LogGetResponse, log, path=['response'])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.pages.projects.deployments.history.logs.with_raw_response.get(
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -99,9 +106,9 @@ class TestAsyncLogs:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         log = await response.parse()
-        assert_matches_type(LogGetResponse, log, path=["response"])
+        assert_matches_type(LogGetResponse, log, path=['response'])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -109,34 +116,34 @@ class TestAsyncLogs:
             deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             log = await response.parse()
-            assert_matches_type(LogGetResponse, log, path=["response"])
+            assert_matches_type(LogGetResponse, log, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.pages.projects.deployments.history.logs.with_raw_response.get(
-                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-                project_name="this-is-my-project-01",
-            )
+          await async_client.pages.projects.deployments.history.logs.with_raw_response.get(
+              deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="",
+              project_name="this-is-my-project-01",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
-            await async_client.pages.projects.deployments.history.logs.with_raw_response.get(
-                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                project_name="",
-            )
+          await async_client.pages.projects.deployments.history.logs.with_raw_response.get(
+              deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+              project_name="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
-            await async_client.pages.projects.deployments.history.logs.with_raw_response.get(
-                deployment_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                project_name="this-is-my-project-01",
-            )
+          await async_client.pages.projects.deployments.history.logs.with_raw_response.get(
+              deployment_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+              project_name="this-is-my-project-01",
+          )

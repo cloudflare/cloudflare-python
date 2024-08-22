@@ -2,28 +2,23 @@
 
 from __future__ import annotations
 
-from .iqi import (
-    IQIResource,
-    AsyncIQIResource,
-    IQIResourceWithRawResponse,
-    AsyncIQIResourceWithRawResponse,
-    IQIResourceWithStreamingResponse,
-    AsyncIQIResourceWithStreamingResponse,
-)
-from .speed import (
-    SpeedResource,
-    AsyncSpeedResource,
-    SpeedResourceWithRawResponse,
-    AsyncSpeedResourceWithRawResponse,
-    SpeedResourceWithStreamingResponse,
-    AsyncSpeedResourceWithStreamingResponse,
-)
+from .iqi import IQIResource, AsyncIQIResource
+
 from ...._compat import cached_property
+
 from .speed.speed import SpeedResource, AsyncSpeedResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from .iqi import IQIResource, AsyncIQIResource, IQIResourceWithRawResponse, AsyncIQIResourceWithRawResponse, IQIResourceWithStreamingResponse, AsyncIQIResourceWithStreamingResponse
+from .speed import SpeedResource, AsyncSpeedResource, SpeedResourceWithRawResponse, AsyncSpeedResourceWithRawResponse, SpeedResourceWithStreamingResponse, AsyncSpeedResourceWithStreamingResponse
 
 __all__ = ["QualityResource", "AsyncQualityResource"]
-
 
 class QualityResource(SyncAPIResource):
     @cached_property
@@ -42,7 +37,6 @@ class QualityResource(SyncAPIResource):
     def with_streaming_response(self) -> QualityResourceWithStreamingResponse:
         return QualityResourceWithStreamingResponse(self)
 
-
 class AsyncQualityResource(AsyncAPIResource):
     @cached_property
     def iqi(self) -> AsyncIQIResource:
@@ -60,7 +54,6 @@ class AsyncQualityResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncQualityResourceWithStreamingResponse:
         return AsyncQualityResourceWithStreamingResponse(self)
 
-
 class QualityResourceWithRawResponse:
     def __init__(self, quality: QualityResource) -> None:
         self._quality = quality
@@ -72,7 +65,6 @@ class QualityResourceWithRawResponse:
     @cached_property
     def speed(self) -> SpeedResourceWithRawResponse:
         return SpeedResourceWithRawResponse(self._quality.speed)
-
 
 class AsyncQualityResourceWithRawResponse:
     def __init__(self, quality: AsyncQualityResource) -> None:
@@ -86,7 +78,6 @@ class AsyncQualityResourceWithRawResponse:
     def speed(self) -> AsyncSpeedResourceWithRawResponse:
         return AsyncSpeedResourceWithRawResponse(self._quality.speed)
 
-
 class QualityResourceWithStreamingResponse:
     def __init__(self, quality: QualityResource) -> None:
         self._quality = quality
@@ -98,7 +89,6 @@ class QualityResourceWithStreamingResponse:
     @cached_property
     def speed(self) -> SpeedResourceWithStreamingResponse:
         return SpeedResourceWithStreamingResponse(self._quality.speed)
-
 
 class AsyncQualityResourceWithStreamingResponse:
     def __init__(self, quality: AsyncQualityResource) -> None:

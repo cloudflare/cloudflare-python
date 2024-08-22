@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
-
 from .notification_settings_param import NotificationSettingsParam
 
-__all__ = ["AntiVirusSettingsParam"]
+from typing_extensions import TypedDict
 
+__all__ = ["AntiVirusSettingsParam"]
 
 class AntiVirusSettingsParam(TypedDict, total=False):
     enabled_download_phase: bool

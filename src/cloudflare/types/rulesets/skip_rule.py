@@ -1,15 +1,22 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
-from .phase import Phase
-from .logging import Logging
 from ..._models import BaseModel
 
-__all__ = ["SkipRule", "ActionParameters"]
+from typing import Optional, List, Dict
 
+from .phase import Phase
+
+from typing_extensions import Literal
+
+from datetime import datetime
+
+from .logging import Logging
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["SkipRule", "ActionParameters"]
 
 class ActionParameters(BaseModel):
     phases: Optional[List[Phase]] = None
@@ -18,9 +25,7 @@ class ActionParameters(BaseModel):
     This option is incompatible with the ruleset and rulesets options.
     """
 
-    products: Optional[List[Literal["bic", "hot", "rateLimit", "securityLevel", "uaBlock", "waf", "zoneLockdown"]]] = (
-        None
-    )
+    products: Optional[List[Literal["bic", "hot", "rateLimit", "securityLevel", "uaBlock", "waf", "zoneLockdown"]]] = None
     """A list of legacy security products to skip the execution of."""
 
     rules: Optional[Dict[str, List[str]]] = None
@@ -40,7 +45,6 @@ class ActionParameters(BaseModel):
 
     This option is incompatible with the ruleset and phases options.
     """
-
 
 class SkipRule(BaseModel):
     last_updated: datetime

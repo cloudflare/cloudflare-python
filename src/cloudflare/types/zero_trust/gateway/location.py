@@ -1,18 +1,22 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from ...._models import BaseModel
+
+from typing import Optional, List
+
 from datetime import datetime
 
 from .endpoint import Endpoint
-from ...._models import BaseModel
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = ["Location", "Network"]
-
 
 class Network(BaseModel):
     network: str
     """The IPv4 address or IPv4 CIDR. IPv4 CIDRs are limited to a maximum of /24."""
-
 
 class Location(BaseModel):
     id: Optional[str] = None

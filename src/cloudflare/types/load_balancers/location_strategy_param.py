@@ -6,7 +6,6 @@ from typing_extensions import Literal, TypedDict
 
 __all__ = ["LocationStrategyParam"]
 
-
 class LocationStrategyParam(TypedDict, total=False):
     mode: Literal["pop", "resolver_ip"]
     """

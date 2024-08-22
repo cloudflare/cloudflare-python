@@ -1,13 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["Account", "Settings"]
+from typing import Optional
 
+from typing_extensions import Literal
+
+from datetime import datetime
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["Account", "Settings"]
 
 class Settings(BaseModel):
     abuse_contact_email: Optional[str] = None
@@ -40,7 +45,6 @@ class Settings(BaseModel):
 
     Deprecated in favor of `default_nameservers`.
     """
-
 
 class Account(BaseModel):
     id: str

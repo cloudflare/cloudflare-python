@@ -2,13 +2,18 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import TypedDict, Required, Annotated, Literal
 
 from ..._utils import PropertyInfo
 
-__all__ = ["LiveInputUpdateParams", "Recording"]
+from typing import List
 
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
+
+__all__ = ["LiveInputUpdateParams", "Recording"]
 
 class LiveInputUpdateParams(TypedDict, total=False):
     account_id: Required[str]
@@ -39,7 +44,6 @@ class LiveInputUpdateParams(TypedDict, total=False):
     viewable as a live video and transition to on-demand after a condition is
     satisfied.
     """
-
 
 class Recording(TypedDict, total=False):
     allowed_origins: Annotated[List[str], PropertyInfo(alias="allowedOrigins")]

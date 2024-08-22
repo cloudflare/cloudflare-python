@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from typing_extensions import Literal
-
-from pydantic import Field as FieldInfo
-
 from ...._models import BaseModel
 
-__all__ = ["VariantCreateResponse", "Variant", "VariantOptions"]
+from typing_extensions import Literal
 
+from typing import Optional
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["VariantCreateResponse", "Variant", "VariantOptions"]
 
 class VariantOptions(BaseModel):
     fit: Literal["scale-down", "contain", "cover", "crop", "pad"]
@@ -26,19 +28,17 @@ class VariantOptions(BaseModel):
     width: float
     """Maximum width in image pixels."""
 
-
 class Variant(BaseModel):
     id: str
 
     options: VariantOptions
     """Allows you to define image resizing sizes for different use cases."""
 
-    never_require_signed_urls: Optional[bool] = FieldInfo(alias="neverRequireSignedURLs", default=None)
+    never_require_signed_urls: Optional[bool] = FieldInfo(alias = "neverRequireSignedURLs", default = None)
     """
     Indicates whether the variant can access an image without a signature,
     regardless of image access control.
     """
-
 
 class VariantCreateResponse(BaseModel):
     variant: Optional[Variant] = None

@@ -2,21 +2,4 @@
 
 from __future__ import annotations
 
-from .shared import (
-    ASN as ASN,
-    Role as Role,
-    Member as Member,
-    Result as Result,
-    AuditLog as AuditLog,
-    ErrorData as ErrorData,
-    Identifier as Identifier,
-    Permission as Permission,
-    ResponseInfo as ResponseInfo,
-    CertificateCA as CertificateCA,
-    SortDirection as SortDirection,
-    PaginationInfo as PaginationInfo,
-    PermissionGrant as PermissionGrant,
-    CloudflareTunnel as CloudflareTunnel,
-    LoadBalancerPreview as LoadBalancerPreview,
-    CertificateRequestType as CertificateRequestType,
-)
+from .shared import ASN as ASN, AuditLog as AuditLog, CertificateCA as CertificateCA, CertificateRequestType as CertificateRequestType, CloudflareTunnel as CloudflareTunnel, ErrorData as ErrorData, Identifier as Identifier, LoadBalancerPreview as LoadBalancerPreview, Member as Member, PaginationInfo as PaginationInfo, Permission as Permission, PermissionGrant as PermissionGrant, ResponseInfo as ResponseInfo, Result as Result, Role as Role, SortDirection as SortDirection

@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["ProtocolDetectionParam"]
 
-
 class ProtocolDetectionParam(TypedDict, total=False):
     enabled: bool
     """Enable detecting protocol on initial bytes of client traffic."""

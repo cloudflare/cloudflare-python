@@ -2,13 +2,18 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 from .health_check_rate import HealthCheckRate
+
 from .health_check_type import HealthCheckType
 
-__all__ = ["CfInterconnectUpdateParams", "GRE", "HealthCheck"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
+__all__ = ["CfInterconnectUpdateParams", "GRE", "HealthCheck"]
 
 class CfInterconnectUpdateParams(TypedDict, total=False):
     account_id: Required[str]
@@ -35,14 +40,12 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
     The minimum value is 576.
     """
 
-
 class GRE(TypedDict, total=False):
     cloudflare_endpoint: str
     """
     The IP address assigned to the Cloudflare side of the GRE tunnel created as part
     of the Interconnect.
     """
-
 
 class HealthCheck(TypedDict, total=False):
     enabled: bool

@@ -2,49 +2,52 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
-from datetime import datetime
-
 import httpx
 
-from .ips import (
-    IPsResource,
-    AsyncIPsResource,
-    IPsResourceWithRawResponse,
-    AsyncIPsResourceWithRawResponse,
-    IPsResourceWithStreamingResponse,
-    AsyncIPsResourceWithStreamingResponse,
-)
-from .networks import (
-    NetworksResource,
-    AsyncNetworksResource,
-    NetworksResourceWithRawResponse,
-    AsyncNetworksResourceWithRawResponse,
-    NetworksResourceWithStreamingResponse,
-    AsyncNetworksResourceWithStreamingResponse,
-)
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .ips import IPsResource, AsyncIPsResource
+
 from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ....._wrappers import ResultWrapper
-from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.networks import route_edit_params, route_list_params, route_create_params
+
+from .networks import NetworksResource, AsyncNetworksResource
+
 from .....types.zero_trust.networks.route import Route
+
+from ....._wrappers import ResultWrapper
+
+from ....._utils import maybe_transform, async_maybe_transform
+
+from ....._base_client import make_request_options, AsyncPaginator
+
+from typing import Type, Union
+
 from .....types.zero_trust.networks.teamnet import Teamnet
 
-__all__ = ["RoutesResource", "AsyncRoutesResource"]
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
+from datetime import datetime
+
+from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.zero_trust.networks import route_create_params
+from .....types.zero_trust.networks import route_list_params
+from .....types.zero_trust.networks import route_edit_params
+from .ips import IPsResource, AsyncIPsResource, IPsResourceWithRawResponse, AsyncIPsResourceWithRawResponse, IPsResourceWithStreamingResponse, AsyncIPsResourceWithStreamingResponse
+from .networks import NetworksResource, AsyncNetworksResource, NetworksResourceWithRawResponse, AsyncNetworksResourceWithRawResponse, NetworksResourceWithStreamingResponse, AsyncNetworksResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["RoutesResource", "AsyncRoutesResource"]
 
 class RoutesResource(SyncAPIResource):
     @cached_property
@@ -63,21 +66,19 @@ class RoutesResource(SyncAPIResource):
     def with_streaming_response(self) -> RoutesResourceWithStreamingResponse:
         return RoutesResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        network: str,
-        tunnel_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        virtual_network_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Route:
+    def create(self,
+    *,
+    account_id: str,
+    network: str,
+    tunnel_id: str,
+    comment: str | NotGiven = NOT_GIVEN,
+    virtual_network_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Route:
         """
         Routes a private network through a Cloudflare Tunnel.
 
@@ -101,50 +102,41 @@ class RoutesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/teamnet/routes",
-            body=maybe_transform(
-                {
-                    "network": network,
-                    "tunnel_id": tunnel_id,
-                    "comment": comment,
-                    "virtual_network_id": virtual_network_id,
-                },
-                route_create_params.RouteCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Route]._unwrapper,
-            ),
+            body=maybe_transform({
+                "network": network,
+                "tunnel_id": tunnel_id,
+                "comment": comment,
+                "virtual_network_id": virtual_network_id,
+            }, route_create_params.RouteCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Route]._unwrapper),
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        is_deleted: bool | NotGiven = NOT_GIVEN,
-        network_subset: str | NotGiven = NOT_GIVEN,
-        network_superset: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        route_id: str | NotGiven = NOT_GIVEN,
-        tun_types: str | NotGiven = NOT_GIVEN,
-        tunnel_id: str | NotGiven = NOT_GIVEN,
-        virtual_network_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[Teamnet]:
+    def list(self,
+    *,
+    account_id: str,
+    comment: str | NotGiven = NOT_GIVEN,
+    existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    is_deleted: bool | NotGiven = NOT_GIVEN,
+    network_subset: str | NotGiven = NOT_GIVEN,
+    network_superset: str | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    route_id: str | NotGiven = NOT_GIVEN,
+    tun_types: str | NotGiven = NOT_GIVEN,
+    tunnel_id: str | NotGiven = NOT_GIVEN,
+    virtual_network_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[Teamnet]:
         """
         Lists and filters private network routes in an account.
 
@@ -184,47 +176,38 @@ class RoutesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/teamnet/routes",
-            page=SyncV4PagePaginationArray[Teamnet],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "comment": comment,
-                        "existed_at": existed_at,
-                        "is_deleted": is_deleted,
-                        "network_subset": network_subset,
-                        "network_superset": network_superset,
-                        "page": page,
-                        "per_page": per_page,
-                        "route_id": route_id,
-                        "tun_types": tun_types,
-                        "tunnel_id": tunnel_id,
-                        "virtual_network_id": virtual_network_id,
-                    },
-                    route_list_params.RouteListParams,
-                ),
-            ),
+            page = SyncV4PagePaginationArray[Teamnet],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "comment": comment,
+                "existed_at": existed_at,
+                "is_deleted": is_deleted,
+                "network_subset": network_subset,
+                "network_superset": network_superset,
+                "page": page,
+                "per_page": per_page,
+                "route_id": route_id,
+                "tun_types": tun_types,
+                "tunnel_id": tunnel_id,
+                "virtual_network_id": virtual_network_id,
+            }, route_list_params.RouteListParams)),
             model=Teamnet,
         )
 
-    def delete(
-        self,
-        route_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Route:
+    def delete(self,
+    route_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Route:
         """
         Deletes a private network route from an account.
 
@@ -242,37 +225,33 @@ class RoutesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not route_id:
-            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `route_id` but received {route_id!r}'
+          )
         return self._delete(
             f"/accounts/{account_id}/teamnet/routes/{route_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Route]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Route]._unwrapper),
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
-    def edit(
-        self,
-        route_id: str,
-        *,
-        account_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        network: str | NotGiven = NOT_GIVEN,
-        tunnel_id: str | NotGiven = NOT_GIVEN,
-        virtual_network_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Route:
+    def edit(self,
+    route_id: str,
+    *,
+    account_id: str,
+    comment: str | NotGiven = NOT_GIVEN,
+    network: str | NotGiven = NOT_GIVEN,
+    tunnel_id: str | NotGiven = NOT_GIVEN,
+    virtual_network_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Route:
         """Updates an existing private network route in an account.
 
         The fields that are
@@ -300,30 +279,24 @@ class RoutesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not route_id:
-            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `route_id` but received {route_id!r}'
+          )
         return self._patch(
             f"/accounts/{account_id}/teamnet/routes/{route_id}",
-            body=maybe_transform(
-                {
-                    "comment": comment,
-                    "network": network,
-                    "tunnel_id": tunnel_id,
-                    "virtual_network_id": virtual_network_id,
-                },
-                route_edit_params.RouteEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Route]._unwrapper,
-            ),
+            body=maybe_transform({
+                "comment": comment,
+                "network": network,
+                "tunnel_id": tunnel_id,
+                "virtual_network_id": virtual_network_id,
+            }, route_edit_params.RouteEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Route]._unwrapper),
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
-
 
 class AsyncRoutesResource(AsyncAPIResource):
     @cached_property
@@ -342,21 +315,19 @@ class AsyncRoutesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRoutesResourceWithStreamingResponse:
         return AsyncRoutesResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        network: str,
-        tunnel_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        virtual_network_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Route:
+    async def create(self,
+    *,
+    account_id: str,
+    network: str,
+    tunnel_id: str,
+    comment: str | NotGiven = NOT_GIVEN,
+    virtual_network_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Route:
         """
         Routes a private network through a Cloudflare Tunnel.
 
@@ -380,50 +351,41 @@ class AsyncRoutesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/teamnet/routes",
-            body=await async_maybe_transform(
-                {
-                    "network": network,
-                    "tunnel_id": tunnel_id,
-                    "comment": comment,
-                    "virtual_network_id": virtual_network_id,
-                },
-                route_create_params.RouteCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Route]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "network": network,
+                "tunnel_id": tunnel_id,
+                "comment": comment,
+                "virtual_network_id": virtual_network_id,
+            }, route_create_params.RouteCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Route]._unwrapper),
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        is_deleted: bool | NotGiven = NOT_GIVEN,
-        network_subset: str | NotGiven = NOT_GIVEN,
-        network_superset: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        route_id: str | NotGiven = NOT_GIVEN,
-        tun_types: str | NotGiven = NOT_GIVEN,
-        tunnel_id: str | NotGiven = NOT_GIVEN,
-        virtual_network_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Teamnet, AsyncV4PagePaginationArray[Teamnet]]:
+    def list(self,
+    *,
+    account_id: str,
+    comment: str | NotGiven = NOT_GIVEN,
+    existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    is_deleted: bool | NotGiven = NOT_GIVEN,
+    network_subset: str | NotGiven = NOT_GIVEN,
+    network_superset: str | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    route_id: str | NotGiven = NOT_GIVEN,
+    tun_types: str | NotGiven = NOT_GIVEN,
+    tunnel_id: str | NotGiven = NOT_GIVEN,
+    virtual_network_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Teamnet, AsyncV4PagePaginationArray[Teamnet]]:
         """
         Lists and filters private network routes in an account.
 
@@ -463,47 +425,38 @@ class AsyncRoutesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/teamnet/routes",
-            page=AsyncV4PagePaginationArray[Teamnet],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "comment": comment,
-                        "existed_at": existed_at,
-                        "is_deleted": is_deleted,
-                        "network_subset": network_subset,
-                        "network_superset": network_superset,
-                        "page": page,
-                        "per_page": per_page,
-                        "route_id": route_id,
-                        "tun_types": tun_types,
-                        "tunnel_id": tunnel_id,
-                        "virtual_network_id": virtual_network_id,
-                    },
-                    route_list_params.RouteListParams,
-                ),
-            ),
+            page = AsyncV4PagePaginationArray[Teamnet],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "comment": comment,
+                "existed_at": existed_at,
+                "is_deleted": is_deleted,
+                "network_subset": network_subset,
+                "network_superset": network_superset,
+                "page": page,
+                "per_page": per_page,
+                "route_id": route_id,
+                "tun_types": tun_types,
+                "tunnel_id": tunnel_id,
+                "virtual_network_id": virtual_network_id,
+            }, route_list_params.RouteListParams)),
             model=Teamnet,
         )
 
-    async def delete(
-        self,
-        route_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Route:
+    async def delete(self,
+    route_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Route:
         """
         Deletes a private network route from an account.
 
@@ -521,37 +474,33 @@ class AsyncRoutesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not route_id:
-            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `route_id` but received {route_id!r}'
+          )
         return await self._delete(
             f"/accounts/{account_id}/teamnet/routes/{route_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Route]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Route]._unwrapper),
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
-    async def edit(
-        self,
-        route_id: str,
-        *,
-        account_id: str,
-        comment: str | NotGiven = NOT_GIVEN,
-        network: str | NotGiven = NOT_GIVEN,
-        tunnel_id: str | NotGiven = NOT_GIVEN,
-        virtual_network_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Route:
+    async def edit(self,
+    route_id: str,
+    *,
+    account_id: str,
+    comment: str | NotGiven = NOT_GIVEN,
+    network: str | NotGiven = NOT_GIVEN,
+    tunnel_id: str | NotGiven = NOT_GIVEN,
+    virtual_network_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Route:
         """Updates an existing private network route in an account.
 
         The fields that are
@@ -579,30 +528,24 @@ class AsyncRoutesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not route_id:
-            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `route_id` but received {route_id!r}'
+          )
         return await self._patch(
             f"/accounts/{account_id}/teamnet/routes/{route_id}",
-            body=await async_maybe_transform(
-                {
-                    "comment": comment,
-                    "network": network,
-                    "tunnel_id": tunnel_id,
-                    "virtual_network_id": virtual_network_id,
-                },
-                route_edit_params.RouteEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Route]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "comment": comment,
+                "network": network,
+                "tunnel_id": tunnel_id,
+                "virtual_network_id": virtual_network_id,
+            }, route_edit_params.RouteEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Route]._unwrapper),
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
-
 
 class RoutesResourceWithRawResponse:
     def __init__(self, routes: RoutesResource) -> None:
@@ -629,7 +572,6 @@ class RoutesResourceWithRawResponse:
     def networks(self) -> NetworksResourceWithRawResponse:
         return NetworksResourceWithRawResponse(self._routes.networks)
 
-
 class AsyncRoutesResourceWithRawResponse:
     def __init__(self, routes: AsyncRoutesResource) -> None:
         self._routes = routes
@@ -655,7 +597,6 @@ class AsyncRoutesResourceWithRawResponse:
     def networks(self) -> AsyncNetworksResourceWithRawResponse:
         return AsyncNetworksResourceWithRawResponse(self._routes.networks)
 
-
 class RoutesResourceWithStreamingResponse:
     def __init__(self, routes: RoutesResource) -> None:
         self._routes = routes
@@ -680,7 +621,6 @@ class RoutesResourceWithStreamingResponse:
     @cached_property
     def networks(self) -> NetworksResourceWithStreamingResponse:
         return NetworksResourceWithStreamingResponse(self._routes.networks)
-
 
 class AsyncRoutesResourceWithStreamingResponse:
     def __init__(self, routes: AsyncRoutesResource) -> None:

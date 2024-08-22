@@ -2,25 +2,31 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from .._wrappers import ResultWrapper
-from .._base_client import make_request_options
+
 from ..types.dcv_delegation.dcv_delegation_uuid import DCVDelegationUUID
 
-__all__ = ["DCVDelegationResource", "AsyncDCVDelegationResource"]
+from .._wrappers import ResultWrapper
 
+from typing import Optional, Type
+
+from .._base_client import make_request_options
+
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from .._resource import SyncAPIResource, AsyncAPIResource
+from ..types import shared_params
+from typing import cast
+from typing import cast
+
+__all__ = ["DCVDelegationResource", "AsyncDCVDelegationResource"]
 
 class DCVDelegationResource(SyncAPIResource):
     @cached_property
@@ -31,17 +37,15 @@ class DCVDelegationResource(SyncAPIResource):
     def with_streaming_response(self) -> DCVDelegationResourceWithStreamingResponse:
         return DCVDelegationResourceWithStreamingResponse(self)
 
-    def get(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DCVDelegationUUID]:
+    def get(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DCVDelegationUUID]:
         """
         Retrieve the account and zone specific unique identifier used as part of the
         CNAME target for DCV Delegation.
@@ -58,19 +62,14 @@ class DCVDelegationResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get(
             f"/zones/{zone_id}/dcv_delegation/uuid",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DCVDelegationUUID]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DCVDelegationUUID]]._unwrapper),
             cast_to=cast(Type[Optional[DCVDelegationUUID]], ResultWrapper[DCVDelegationUUID]),
         )
-
 
 class AsyncDCVDelegationResource(AsyncAPIResource):
     @cached_property
@@ -81,17 +80,15 @@ class AsyncDCVDelegationResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDCVDelegationResourceWithStreamingResponse:
         return AsyncDCVDelegationResourceWithStreamingResponse(self)
 
-    async def get(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DCVDelegationUUID]:
+    async def get(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DCVDelegationUUID]:
         """
         Retrieve the account and zone specific unique identifier used as part of the
         CNAME target for DCV Delegation.
@@ -108,19 +105,14 @@ class AsyncDCVDelegationResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._get(
             f"/zones/{zone_id}/dcv_delegation/uuid",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DCVDelegationUUID]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DCVDelegationUUID]]._unwrapper),
             cast_to=cast(Type[Optional[DCVDelegationUUID]], ResultWrapper[DCVDelegationUUID]),
         )
-
 
 class DCVDelegationResourceWithRawResponse:
     def __init__(self, dcv_delegation: DCVDelegationResource) -> None:
@@ -130,7 +122,6 @@ class DCVDelegationResourceWithRawResponse:
             dcv_delegation.get,
         )
 
-
 class AsyncDCVDelegationResourceWithRawResponse:
     def __init__(self, dcv_delegation: AsyncDCVDelegationResource) -> None:
         self._dcv_delegation = dcv_delegation
@@ -139,7 +130,6 @@ class AsyncDCVDelegationResourceWithRawResponse:
             dcv_delegation.get,
         )
 
-
 class DCVDelegationResourceWithStreamingResponse:
     def __init__(self, dcv_delegation: DCVDelegationResource) -> None:
         self._dcv_delegation = dcv_delegation
@@ -147,7 +137,6 @@ class DCVDelegationResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             dcv_delegation.get,
         )
-
 
 class AsyncDCVDelegationResourceWithStreamingResponse:
     def __init__(self, dcv_delegation: AsyncDCVDelegationResource) -> None:

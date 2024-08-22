@@ -1,16 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-
 from ..._models import BaseModel
 
-__all__ = ["Submit", "ExcludedURL", "SkippedURL", "SubmittedURL"]
+from typing import Optional, List
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["Submit", "ExcludedURL", "SkippedURL", "SubmittedURL"]
 
 class ExcludedURL(BaseModel):
     url: Optional[str] = None
     """URL that was excluded."""
-
 
 class SkippedURL(BaseModel):
     url: Optional[str] = None
@@ -19,14 +21,12 @@ class SkippedURL(BaseModel):
     url_id: Optional[int] = None
     """ID of the submission of that URL that is currently scanning."""
 
-
 class SubmittedURL(BaseModel):
     url: Optional[str] = None
     """URL that was submitted."""
 
     url_id: Optional[int] = None
     """ID assigned to this URL submission. Used to retrieve scanning results."""
-
 
 class Submit(BaseModel):
     excluded_urls: Optional[List[ExcludedURL]] = None

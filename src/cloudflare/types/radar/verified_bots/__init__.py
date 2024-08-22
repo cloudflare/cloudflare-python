@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .top_bots_params import TopBotsParams as TopBotsParams
 from .top_bots_response import TopBotsResponse as TopBotsResponse
-from .top_categories_params import TopCategoriesParams as TopCategoriesParams
 from .top_categories_response import TopCategoriesResponse as TopCategoriesResponse
+from .top_bots_params import TopBotsParams as TopBotsParams
+from .top_categories_params import TopCategoriesParams as TopCategoriesParams

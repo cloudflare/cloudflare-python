@@ -4,23 +4,28 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ....pagination import SyncCursorLimitPagination, AsyncCursorLimitPagination
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.kv.namespaces import key_list_params
+
 from ....types.kv.namespaces.key import Key
 
-__all__ = ["KeysResource", "AsyncKeysResource"]
+from ....pagination import SyncCursorLimitPagination, AsyncCursorLimitPagination
 
+from ...._utils import maybe_transform
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.kv.namespaces import key_list_params
+
+__all__ = ["KeysResource", "AsyncKeysResource"]
 
 class KeysResource(SyncAPIResource):
     @cached_property
@@ -31,21 +36,19 @@ class KeysResource(SyncAPIResource):
     def with_streaming_response(self) -> KeysResourceWithStreamingResponse:
         return KeysResourceWithStreamingResponse(self)
 
-    def list(
-        self,
-        namespace_id: str,
-        *,
-        account_id: str,
-        cursor: str | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        prefix: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorLimitPagination[Key]:
+    def list(self,
+    namespace_id: str,
+    *,
+    account_id: str,
+    cursor: str | NotGiven = NOT_GIVEN,
+    limit: float | NotGiven = NOT_GIVEN,
+    prefix: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncCursorLimitPagination[Key]:
         """
         Lists a namespace's keys.
 
@@ -74,29 +77,23 @@ class KeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not namespace_id:
-            raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `namespace_id` but received {namespace_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys",
-            page=SyncCursorLimitPagination[Key],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "cursor": cursor,
-                        "limit": limit,
-                        "prefix": prefix,
-                    },
-                    key_list_params.KeyListParams,
-                ),
-            ),
+            page = SyncCursorLimitPagination[Key],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "cursor": cursor,
+                "limit": limit,
+                "prefix": prefix,
+            }, key_list_params.KeyListParams)),
             model=Key,
         )
-
 
 class AsyncKeysResource(AsyncAPIResource):
     @cached_property
@@ -107,21 +104,19 @@ class AsyncKeysResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncKeysResourceWithStreamingResponse:
         return AsyncKeysResourceWithStreamingResponse(self)
 
-    def list(
-        self,
-        namespace_id: str,
-        *,
-        account_id: str,
-        cursor: str | NotGiven = NOT_GIVEN,
-        limit: float | NotGiven = NOT_GIVEN,
-        prefix: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Key, AsyncCursorLimitPagination[Key]]:
+    def list(self,
+    namespace_id: str,
+    *,
+    account_id: str,
+    cursor: str | NotGiven = NOT_GIVEN,
+    limit: float | NotGiven = NOT_GIVEN,
+    prefix: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Key, AsyncCursorLimitPagination[Key]]:
         """
         Lists a namespace's keys.
 
@@ -150,29 +145,23 @@ class AsyncKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not namespace_id:
-            raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `namespace_id` but received {namespace_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys",
-            page=AsyncCursorLimitPagination[Key],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "cursor": cursor,
-                        "limit": limit,
-                        "prefix": prefix,
-                    },
-                    key_list_params.KeyListParams,
-                ),
-            ),
+            page = AsyncCursorLimitPagination[Key],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "cursor": cursor,
+                "limit": limit,
+                "prefix": prefix,
+            }, key_list_params.KeyListParams)),
             model=Key,
         )
-
 
 class KeysResourceWithRawResponse:
     def __init__(self, keys: KeysResource) -> None:
@@ -182,7 +171,6 @@ class KeysResourceWithRawResponse:
             keys.list,
         )
 
-
 class AsyncKeysResourceWithRawResponse:
     def __init__(self, keys: AsyncKeysResource) -> None:
         self._keys = keys
@@ -191,7 +179,6 @@ class AsyncKeysResourceWithRawResponse:
             keys.list,
         )
 
-
 class KeysResourceWithStreamingResponse:
     def __init__(self, keys: KeysResource) -> None:
         self._keys = keys
@@ -199,7 +186,6 @@ class KeysResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             keys.list,
         )
-
 
 class AsyncKeysResourceWithStreamingResponse:
     def __init__(self, keys: AsyncKeysResource) -> None:

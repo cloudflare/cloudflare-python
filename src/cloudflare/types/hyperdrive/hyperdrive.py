@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from ..._models import BaseModel
+
 from typing import Optional
 
-from ..._models import BaseModel
 from .configuration import Configuration
 
-__all__ = ["Hyperdrive", "Caching"]
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
+__all__ = ["Hyperdrive", "Caching"]
 
 class Caching(BaseModel):
     disabled: Optional[bool] = None
@@ -24,7 +28,6 @@ class Caching(BaseModel):
     When present, indicates the number of seconds cache may serve the response after
     it becomes stale. (Default: 15)
     """
-
 
 class Hyperdrive(BaseModel):
     caching: Optional[Caching] = None

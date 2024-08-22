@@ -2,43 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Required, Literal
 
-__all__ = [
-    "ProjectCreateParams",
-    "BuildConfig",
-    "DeploymentConfigs",
-    "DeploymentConfigsPreview",
-    "DeploymentConfigsPreviewAIBindings",
-    "DeploymentConfigsPreviewAnalyticsEngineDatasets",
-    "DeploymentConfigsPreviewD1Databases",
-    "DeploymentConfigsPreviewDurableObjectNamespaces",
-    "DeploymentConfigsPreviewEnvVars",
-    "DeploymentConfigsPreviewHyperdriveBindings",
-    "DeploymentConfigsPreviewKVNamespaces",
-    "DeploymentConfigsPreviewMTLSCertificates",
-    "DeploymentConfigsPreviewPlacement",
-    "DeploymentConfigsPreviewQueueProducers",
-    "DeploymentConfigsPreviewR2Buckets",
-    "DeploymentConfigsPreviewServices",
-    "DeploymentConfigsPreviewVectorizeBindings",
-    "DeploymentConfigsProduction",
-    "DeploymentConfigsProductionAIBindings",
-    "DeploymentConfigsProductionAnalyticsEngineDatasets",
-    "DeploymentConfigsProductionD1Databases",
-    "DeploymentConfigsProductionDurableObjectNamespaces",
-    "DeploymentConfigsProductionEnvVars",
-    "DeploymentConfigsProductionHyperdriveBindings",
-    "DeploymentConfigsProductionKVNamespaces",
-    "DeploymentConfigsProductionMTLSCertificates",
-    "DeploymentConfigsProductionPlacement",
-    "DeploymentConfigsProductionQueueProducers",
-    "DeploymentConfigsProductionR2Buckets",
-    "DeploymentConfigsProductionServices",
-    "DeploymentConfigsProductionVectorizeBindings",
-]
+from typing import Optional, Dict, List
 
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
+
+__all__ = ["ProjectCreateParams", "BuildConfig", "DeploymentConfigs", "DeploymentConfigsPreview", "DeploymentConfigsPreviewAIBindings", "DeploymentConfigsPreviewAnalyticsEngineDatasets", "DeploymentConfigsPreviewD1Databases", "DeploymentConfigsPreviewDurableObjectNamespaces", "DeploymentConfigsPreviewEnvVars", "DeploymentConfigsPreviewHyperdriveBindings", "DeploymentConfigsPreviewKVNamespaces", "DeploymentConfigsPreviewMTLSCertificates", "DeploymentConfigsPreviewPlacement", "DeploymentConfigsPreviewQueueProducers", "DeploymentConfigsPreviewR2Buckets", "DeploymentConfigsPreviewServices", "DeploymentConfigsPreviewVectorizeBindings", "DeploymentConfigsProduction", "DeploymentConfigsProductionAIBindings", "DeploymentConfigsProductionAnalyticsEngineDatasets", "DeploymentConfigsProductionD1Databases", "DeploymentConfigsProductionDurableObjectNamespaces", "DeploymentConfigsProductionEnvVars", "DeploymentConfigsProductionHyperdriveBindings", "DeploymentConfigsProductionKVNamespaces", "DeploymentConfigsProductionMTLSCertificates", "DeploymentConfigsProductionPlacement", "DeploymentConfigsProductionQueueProducers", "DeploymentConfigsProductionR2Buckets", "DeploymentConfigsProductionServices", "DeploymentConfigsProductionVectorizeBindings"]
 
 class ProjectCreateParams(TypedDict, total=False):
     account_id: Required[str]
@@ -55,7 +28,6 @@ class ProjectCreateParams(TypedDict, total=False):
 
     production_branch: str
     """Production branch of the project. Used to identify production deployments."""
-
 
 class BuildConfig(TypedDict, total=False):
     build_caching: Optional[bool]
@@ -76,25 +48,20 @@ class BuildConfig(TypedDict, total=False):
     web_analytics_token: Optional[str]
     """The auth token for analytics."""
 
-
 class DeploymentConfigsPreviewAIBindings(TypedDict, total=False):
     project_id: str
-
 
 class DeploymentConfigsPreviewAnalyticsEngineDatasets(TypedDict, total=False):
     dataset: str
     """Name of the dataset."""
 
-
 class DeploymentConfigsPreviewD1Databases(TypedDict, total=False):
     id: str
     """UUID of the D1 database."""
 
-
 class DeploymentConfigsPreviewDurableObjectNamespaces(TypedDict, total=False):
     namespace_id: str
     """ID of the Durabble Object namespace."""
-
 
 class DeploymentConfigsPreviewEnvVars(TypedDict, total=False):
     value: Required[str]
@@ -103,29 +70,23 @@ class DeploymentConfigsPreviewEnvVars(TypedDict, total=False):
     type: Literal["plain_text", "secret_text"]
     """The type of environment variable."""
 
-
 class DeploymentConfigsPreviewHyperdriveBindings(TypedDict, total=False):
     id: str
-
 
 class DeploymentConfigsPreviewKVNamespaces(TypedDict, total=False):
     namespace_id: str
     """ID of the KV namespace."""
 
-
 class DeploymentConfigsPreviewMTLSCertificates(TypedDict, total=False):
     certificate_id: str
-
 
 class DeploymentConfigsPreviewPlacement(TypedDict, total=False):
     mode: str
     """Placement mode."""
 
-
 class DeploymentConfigsPreviewQueueProducers(TypedDict, total=False):
     name: str
     """Name of the Queue."""
-
 
 class DeploymentConfigsPreviewR2Buckets(TypedDict, total=False):
     jurisdiction: Optional[str]
@@ -133,7 +94,6 @@ class DeploymentConfigsPreviewR2Buckets(TypedDict, total=False):
 
     name: str
     """Name of the R2 bucket."""
-
 
 class DeploymentConfigsPreviewServices(TypedDict, total=False):
     entrypoint: Optional[str]
@@ -145,10 +105,8 @@ class DeploymentConfigsPreviewServices(TypedDict, total=False):
     service: str
     """The Service name."""
 
-
 class DeploymentConfigsPreviewVectorizeBindings(TypedDict, total=False):
     index_name: str
-
 
 class DeploymentConfigsPreview(TypedDict, total=False):
     ai_bindings: Optional[Dict[str, Optional[DeploymentConfigsPreviewAIBindings]]]
@@ -199,25 +157,20 @@ class DeploymentConfigsPreview(TypedDict, total=False):
     vectorize_bindings: Optional[Dict[str, Optional[DeploymentConfigsPreviewVectorizeBindings]]]
     """Vectorize bindings used for Pages Functions."""
 
-
 class DeploymentConfigsProductionAIBindings(TypedDict, total=False):
     project_id: str
-
 
 class DeploymentConfigsProductionAnalyticsEngineDatasets(TypedDict, total=False):
     dataset: str
     """Name of the dataset."""
 
-
 class DeploymentConfigsProductionD1Databases(TypedDict, total=False):
     id: str
     """UUID of the D1 database."""
 
-
 class DeploymentConfigsProductionDurableObjectNamespaces(TypedDict, total=False):
     namespace_id: str
     """ID of the Durabble Object namespace."""
-
 
 class DeploymentConfigsProductionEnvVars(TypedDict, total=False):
     value: Required[str]
@@ -226,29 +179,23 @@ class DeploymentConfigsProductionEnvVars(TypedDict, total=False):
     type: Literal["plain_text", "secret_text"]
     """The type of environment variable."""
 
-
 class DeploymentConfigsProductionHyperdriveBindings(TypedDict, total=False):
     id: str
-
 
 class DeploymentConfigsProductionKVNamespaces(TypedDict, total=False):
     namespace_id: str
     """ID of the KV namespace."""
 
-
 class DeploymentConfigsProductionMTLSCertificates(TypedDict, total=False):
     certificate_id: str
-
 
 class DeploymentConfigsProductionPlacement(TypedDict, total=False):
     mode: str
     """Placement mode."""
 
-
 class DeploymentConfigsProductionQueueProducers(TypedDict, total=False):
     name: str
     """Name of the Queue."""
-
 
 class DeploymentConfigsProductionR2Buckets(TypedDict, total=False):
     jurisdiction: Optional[str]
@@ -256,7 +203,6 @@ class DeploymentConfigsProductionR2Buckets(TypedDict, total=False):
 
     name: str
     """Name of the R2 bucket."""
-
 
 class DeploymentConfigsProductionServices(TypedDict, total=False):
     entrypoint: Optional[str]
@@ -268,10 +214,8 @@ class DeploymentConfigsProductionServices(TypedDict, total=False):
     service: str
     """The Service name."""
 
-
 class DeploymentConfigsProductionVectorizeBindings(TypedDict, total=False):
     index_name: str
-
 
 class DeploymentConfigsProduction(TypedDict, total=False):
     ai_bindings: Optional[Dict[str, Optional[DeploymentConfigsProductionAIBindings]]]
@@ -321,7 +265,6 @@ class DeploymentConfigsProduction(TypedDict, total=False):
 
     vectorize_bindings: Optional[Dict[str, Optional[DeploymentConfigsProductionVectorizeBindings]]]
     """Vectorize bindings used for Pages Functions."""
-
 
 class DeploymentConfigs(TypedDict, total=False):
     preview: DeploymentConfigsPreview

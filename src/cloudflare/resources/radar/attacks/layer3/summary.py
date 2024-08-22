@@ -2,44 +2,63 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
-from .....types.radar.attacks.layer3 import (
-    summary_get_params,
-    summary_vector_params,
-    summary_bitrate_params,
-    summary_duration_params,
-    summary_protocol_params,
-    summary_ip_version_params,
-)
-from .....types.radar.attacks.layer3.summary_get_response import SummaryGetResponse
-from .....types.radar.attacks.layer3.summary_vector_response import SummaryVectorResponse
+
 from .....types.radar.attacks.layer3.summary_bitrate_response import SummaryBitrateResponse
+
+from ....._wrappers import ResultWrapper
+
+from ....._utils import maybe_transform, async_maybe_transform
+
+from ....._base_client import make_request_options
+
+from typing import Type, List, Union
+
+from datetime import datetime
+
+from typing_extensions import Literal
+
 from .....types.radar.attacks.layer3.summary_duration_response import SummaryDurationResponse
-from .....types.radar.attacks.layer3.summary_protocol_response import SummaryProtocolResponse
+
+from .....types.radar.attacks.layer3.summary_get_response import SummaryGetResponse
+
 from .....types.radar.attacks.layer3.summary_ip_version_response import SummaryIPVersionResponse
 
-__all__ = ["SummaryResource", "AsyncSummaryResource"]
+from .....types.radar.attacks.layer3.summary_protocol_response import SummaryProtocolResponse
 
+from .....types.radar.attacks.layer3.summary_vector_response import SummaryVectorResponse
+
+from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.radar.attacks.layer3 import summary_bitrate_params
+from .....types.radar.attacks.layer3 import summary_duration_params
+from .....types.radar.attacks.layer3 import summary_get_params
+from .....types.radar.attacks.layer3 import summary_ip_version_params
+from .....types.radar.attacks.layer3 import summary_protocol_params
+from .....types.radar.attacks.layer3 import summary_vector_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["SummaryResource", "AsyncSummaryResource"]
 
 class SummaryResource(SyncAPIResource):
     @cached_property
@@ -50,26 +69,24 @@ class SummaryResource(SyncAPIResource):
     def with_streaming_response(self) -> SummaryResourceWithStreamingResponse:
         return SummaryResourceWithStreamingResponse(self)
 
-    def bitrate(
-        self,
-        *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryBitrateResponse:
+    def bitrate(self,
+    *,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryBitrateResponse:
         """
         Percentage distribution of attacks by bitrate.
 
@@ -111,51 +128,39 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/attacks/layer3/summary/bitrate",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "direction": direction,
-                        "format": format,
-                        "ip_version": ip_version,
-                        "location": location,
-                        "name": name,
-                        "protocol": protocol,
-                    },
-                    summary_bitrate_params.SummaryBitrateParams,
-                ),
-                post_parser=ResultWrapper[SummaryBitrateResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "direction": direction,
+                "format": format,
+                "ip_version": ip_version,
+                "location": location,
+                "name": name,
+                "protocol": protocol,
+            }, summary_bitrate_params.SummaryBitrateParams), post_parser=ResultWrapper[SummaryBitrateResponse]._unwrapper),
             cast_to=cast(Type[SummaryBitrateResponse], ResultWrapper[SummaryBitrateResponse]),
         )
 
-    def duration(
-        self,
-        *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryDurationResponse:
+    def duration(self,
+    *,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryDurationResponse:
         """
         Percentage distribution of attacks by duration.
 
@@ -197,49 +202,37 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/attacks/layer3/summary/duration",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "direction": direction,
-                        "format": format,
-                        "ip_version": ip_version,
-                        "location": location,
-                        "name": name,
-                        "protocol": protocol,
-                    },
-                    summary_duration_params.SummaryDurationParams,
-                ),
-                post_parser=ResultWrapper[SummaryDurationResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "direction": direction,
+                "format": format,
+                "ip_version": ip_version,
+                "location": location,
+                "name": name,
+                "protocol": protocol,
+            }, summary_duration_params.SummaryDurationParams), post_parser=ResultWrapper[SummaryDurationResponse]._unwrapper),
             cast_to=cast(Type[SummaryDurationResponse], ResultWrapper[SummaryDurationResponse]),
         )
 
-    def get(
-        self,
-        *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryGetResponse:
+    def get(self,
+    *,
+    asn: List[str] | NotGiven = NOT_GIVEN,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryGetResponse:
         """
         Percentage distribution of network protocols in layer 3/4 attacks over a given
         time period.
@@ -279,48 +272,36 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/attacks/layer3/summary",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "location": location,
-                        "name": name,
-                    },
-                    summary_get_params.SummaryGetParams,
-                ),
-                post_parser=ResultWrapper[SummaryGetResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "asn": asn,
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "format": format,
+                "location": location,
+                "name": name,
+            }, summary_get_params.SummaryGetParams), post_parser=ResultWrapper[SummaryGetResponse]._unwrapper),
             cast_to=cast(Type[SummaryGetResponse], ResultWrapper[SummaryGetResponse]),
         )
 
-    def ip_version(
-        self,
-        *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryIPVersionResponse:
+    def ip_version(self,
+    *,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryIPVersionResponse:
         """
         Percentage distribution of attacks by ip version used.
 
@@ -360,49 +341,37 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/attacks/layer3/summary/ip_version",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "direction": direction,
-                        "format": format,
-                        "location": location,
-                        "name": name,
-                        "protocol": protocol,
-                    },
-                    summary_ip_version_params.SummaryIPVersionParams,
-                ),
-                post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "direction": direction,
+                "format": format,
+                "location": location,
+                "name": name,
+                "protocol": protocol,
+            }, summary_ip_version_params.SummaryIPVersionParams), post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper),
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    def protocol(
-        self,
-        *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryProtocolResponse:
+    def protocol(self,
+    *,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryProtocolResponse:
         """
         Percentage distribution of attacks by protocol used.
 
@@ -442,50 +411,38 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/attacks/layer3/summary/protocol",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "direction": direction,
-                        "format": format,
-                        "ip_version": ip_version,
-                        "location": location,
-                        "name": name,
-                    },
-                    summary_protocol_params.SummaryProtocolParams,
-                ),
-                post_parser=ResultWrapper[SummaryProtocolResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "direction": direction,
+                "format": format,
+                "ip_version": ip_version,
+                "location": location,
+                "name": name,
+            }, summary_protocol_params.SummaryProtocolParams), post_parser=ResultWrapper[SummaryProtocolResponse]._unwrapper),
             cast_to=cast(Type[SummaryProtocolResponse], ResultWrapper[SummaryProtocolResponse]),
         )
 
-    def vector(
-        self,
-        *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryVectorResponse:
+    def vector(self,
+    *,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryVectorResponse:
         """
         Percentage distribution of attacks by vector.
 
@@ -527,31 +484,20 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/attacks/layer3/summary/vector",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "direction": direction,
-                        "format": format,
-                        "ip_version": ip_version,
-                        "location": location,
-                        "name": name,
-                        "protocol": protocol,
-                    },
-                    summary_vector_params.SummaryVectorParams,
-                ),
-                post_parser=ResultWrapper[SummaryVectorResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "direction": direction,
+                "format": format,
+                "ip_version": ip_version,
+                "location": location,
+                "name": name,
+                "protocol": protocol,
+            }, summary_vector_params.SummaryVectorParams), post_parser=ResultWrapper[SummaryVectorResponse]._unwrapper),
             cast_to=cast(Type[SummaryVectorResponse], ResultWrapper[SummaryVectorResponse]),
         )
-
 
 class AsyncSummaryResource(AsyncAPIResource):
     @cached_property
@@ -562,26 +508,24 @@ class AsyncSummaryResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSummaryResourceWithStreamingResponse:
         return AsyncSummaryResourceWithStreamingResponse(self)
 
-    async def bitrate(
-        self,
-        *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryBitrateResponse:
+    async def bitrate(self,
+    *,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryBitrateResponse:
         """
         Percentage distribution of attacks by bitrate.
 
@@ -623,51 +567,39 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/attacks/layer3/summary/bitrate",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "direction": direction,
-                        "format": format,
-                        "ip_version": ip_version,
-                        "location": location,
-                        "name": name,
-                        "protocol": protocol,
-                    },
-                    summary_bitrate_params.SummaryBitrateParams,
-                ),
-                post_parser=ResultWrapper[SummaryBitrateResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "direction": direction,
+                "format": format,
+                "ip_version": ip_version,
+                "location": location,
+                "name": name,
+                "protocol": protocol,
+            }, summary_bitrate_params.SummaryBitrateParams), post_parser=ResultWrapper[SummaryBitrateResponse]._unwrapper),
             cast_to=cast(Type[SummaryBitrateResponse], ResultWrapper[SummaryBitrateResponse]),
         )
 
-    async def duration(
-        self,
-        *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryDurationResponse:
+    async def duration(self,
+    *,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryDurationResponse:
         """
         Percentage distribution of attacks by duration.
 
@@ -709,49 +641,37 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/attacks/layer3/summary/duration",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "direction": direction,
-                        "format": format,
-                        "ip_version": ip_version,
-                        "location": location,
-                        "name": name,
-                        "protocol": protocol,
-                    },
-                    summary_duration_params.SummaryDurationParams,
-                ),
-                post_parser=ResultWrapper[SummaryDurationResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "direction": direction,
+                "format": format,
+                "ip_version": ip_version,
+                "location": location,
+                "name": name,
+                "protocol": protocol,
+            }, summary_duration_params.SummaryDurationParams), post_parser=ResultWrapper[SummaryDurationResponse]._unwrapper),
             cast_to=cast(Type[SummaryDurationResponse], ResultWrapper[SummaryDurationResponse]),
         )
 
-    async def get(
-        self,
-        *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryGetResponse:
+    async def get(self,
+    *,
+    asn: List[str] | NotGiven = NOT_GIVEN,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryGetResponse:
         """
         Percentage distribution of network protocols in layer 3/4 attacks over a given
         time period.
@@ -791,48 +711,36 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/attacks/layer3/summary",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "location": location,
-                        "name": name,
-                    },
-                    summary_get_params.SummaryGetParams,
-                ),
-                post_parser=ResultWrapper[SummaryGetResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "asn": asn,
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "format": format,
+                "location": location,
+                "name": name,
+            }, summary_get_params.SummaryGetParams), post_parser=ResultWrapper[SummaryGetResponse]._unwrapper),
             cast_to=cast(Type[SummaryGetResponse], ResultWrapper[SummaryGetResponse]),
         )
 
-    async def ip_version(
-        self,
-        *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryIPVersionResponse:
+    async def ip_version(self,
+    *,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryIPVersionResponse:
         """
         Percentage distribution of attacks by ip version used.
 
@@ -872,49 +780,37 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/attacks/layer3/summary/ip_version",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "direction": direction,
-                        "format": format,
-                        "location": location,
-                        "name": name,
-                        "protocol": protocol,
-                    },
-                    summary_ip_version_params.SummaryIPVersionParams,
-                ),
-                post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "direction": direction,
+                "format": format,
+                "location": location,
+                "name": name,
+                "protocol": protocol,
+            }, summary_ip_version_params.SummaryIPVersionParams), post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper),
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    async def protocol(
-        self,
-        *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryProtocolResponse:
+    async def protocol(self,
+    *,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryProtocolResponse:
         """
         Percentage distribution of attacks by protocol used.
 
@@ -954,50 +850,38 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/attacks/layer3/summary/protocol",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "direction": direction,
-                        "format": format,
-                        "ip_version": ip_version,
-                        "location": location,
-                        "name": name,
-                    },
-                    summary_protocol_params.SummaryProtocolParams,
-                ),
-                post_parser=ResultWrapper[SummaryProtocolResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "direction": direction,
+                "format": format,
+                "ip_version": ip_version,
+                "location": location,
+                "name": name,
+            }, summary_protocol_params.SummaryProtocolParams), post_parser=ResultWrapper[SummaryProtocolResponse]._unwrapper),
             cast_to=cast(Type[SummaryProtocolResponse], ResultWrapper[SummaryProtocolResponse]),
         )
 
-    async def vector(
-        self,
-        *,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryVectorResponse:
+    async def vector(self,
+    *,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryVectorResponse:
         """
         Percentage distribution of attacks by vector.
 
@@ -1039,31 +923,20 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/attacks/layer3/summary/vector",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "direction": direction,
-                        "format": format,
-                        "ip_version": ip_version,
-                        "location": location,
-                        "name": name,
-                        "protocol": protocol,
-                    },
-                    summary_vector_params.SummaryVectorParams,
-                ),
-                post_parser=ResultWrapper[SummaryVectorResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "direction": direction,
+                "format": format,
+                "ip_version": ip_version,
+                "location": location,
+                "name": name,
+                "protocol": protocol,
+            }, summary_vector_params.SummaryVectorParams), post_parser=ResultWrapper[SummaryVectorResponse]._unwrapper),
             cast_to=cast(Type[SummaryVectorResponse], ResultWrapper[SummaryVectorResponse]),
         )
-
 
 class SummaryResourceWithRawResponse:
     def __init__(self, summary: SummaryResource) -> None:
@@ -1088,7 +961,6 @@ class SummaryResourceWithRawResponse:
             summary.vector,
         )
 
-
 class AsyncSummaryResourceWithRawResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
@@ -1112,7 +984,6 @@ class AsyncSummaryResourceWithRawResponse:
             summary.vector,
         )
 
-
 class SummaryResourceWithStreamingResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
@@ -1135,7 +1006,6 @@ class SummaryResourceWithStreamingResponse:
         self.vector = to_streamed_response_wrapper(
             summary.vector,
         )
-
 
 class AsyncSummaryResourceWithStreamingResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:

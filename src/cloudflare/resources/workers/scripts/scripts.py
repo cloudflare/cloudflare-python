@@ -2,89 +2,61 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast, overload
-
 import httpx
 
-from .tail import (
-    TailResource,
-    AsyncTailResource,
-    TailResourceWithRawResponse,
-    AsyncTailResourceWithRawResponse,
-    TailResourceWithStreamingResponse,
-    AsyncTailResourceWithStreamingResponse,
-)
-from .content import (
-    ContentResource,
-    AsyncContentResource,
-    ContentResourceWithRawResponse,
-    AsyncContentResourceWithRawResponse,
-    ContentResourceWithStreamingResponse,
-    AsyncContentResourceWithStreamingResponse,
-)
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
-from .versions import (
-    VersionsResource,
-    AsyncVersionsResource,
-    VersionsResourceWithRawResponse,
-    AsyncVersionsResourceWithRawResponse,
-    VersionsResourceWithStreamingResponse,
-    AsyncVersionsResourceWithStreamingResponse,
-)
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
-from ...._utils import (
-    required_args,
-    maybe_transform,
-    async_maybe_transform,
-)
-from .schedules import (
-    SchedulesResource,
-    AsyncSchedulesResource,
-    SchedulesResourceWithRawResponse,
-    AsyncSchedulesResourceWithRawResponse,
-    SchedulesResourceWithStreamingResponse,
-    AsyncSchedulesResourceWithStreamingResponse,
-)
+from .schedules import SchedulesResource, AsyncSchedulesResource
+
 from ...._compat import cached_property
-from .deployments import (
-    DeploymentsResource,
-    AsyncDeploymentsResource,
-    DeploymentsResourceWithRawResponse,
-    AsyncDeploymentsResourceWithRawResponse,
-    DeploymentsResourceWithStreamingResponse,
-    AsyncDeploymentsResourceWithStreamingResponse,
-)
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    BinaryAPIResponse,
-    AsyncBinaryAPIResponse,
-    StreamedBinaryAPIResponse,
-    AsyncStreamedBinaryAPIResponse,
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_custom_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-    to_custom_streamed_response_wrapper,
-    async_to_custom_raw_response_wrapper,
-    async_to_custom_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.workers import script_delete_params, script_update_params
-from ....types.workers.script import Script
+
+from .tail import TailResource, AsyncTailResource
+
+from .content import ContentResource, AsyncContentResource
+
+from .settings import SettingsResource, AsyncSettingsResource
+
+from .deployments import DeploymentsResource, AsyncDeploymentsResource
+
+from .versions import VersionsResource, AsyncVersionsResource
+
+from typing import List, Optional, Type
+
+from ...._types import FileTypes
+
 from ....types.workers.script_update_response import ScriptUpdateResponse
 
-__all__ = ["ScriptsResource", "AsyncScriptsResource"]
+from ...._wrappers import ResultWrapper
 
+from ...._utils import maybe_transform, async_maybe_transform
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from ....types.workers.script import Script
+
+from ....pagination import SyncSinglePage, AsyncSinglePage
+
+from ...._response import BinaryAPIResponse, AsyncBinaryAPIResponse, to_raw_response_wrapper, to_custom_raw_response_wrapper, async_to_raw_response_wrapper, async_to_custom_raw_response_wrapper, to_streamed_response_wrapper, to_custom_streamed_response_wrapper, StreamedBinaryAPIResponse, async_to_streamed_response_wrapper, async_to_custom_streamed_response_wrapper, AsyncStreamedBinaryAPIResponse
+
+from ....types.workers import script_update_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.workers import script_update_params
+from ....types.workers import script_delete_params
+from .schedules import SchedulesResource, AsyncSchedulesResource, SchedulesResourceWithRawResponse, AsyncSchedulesResourceWithRawResponse, SchedulesResourceWithStreamingResponse, AsyncSchedulesResourceWithStreamingResponse
+from .tail import TailResource, AsyncTailResource, TailResourceWithRawResponse, AsyncTailResourceWithRawResponse, TailResourceWithStreamingResponse, AsyncTailResourceWithStreamingResponse
+from .content import ContentResource, AsyncContentResource, ContentResourceWithRawResponse, AsyncContentResourceWithRawResponse, ContentResourceWithStreamingResponse, AsyncContentResourceWithStreamingResponse
+from .settings import SettingsResource, AsyncSettingsResource, SettingsResourceWithRawResponse, AsyncSettingsResourceWithRawResponse, SettingsResourceWithStreamingResponse, AsyncSettingsResourceWithStreamingResponse
+from .deployments import DeploymentsResource, AsyncDeploymentsResource, DeploymentsResourceWithRawResponse, AsyncDeploymentsResourceWithRawResponse, DeploymentsResourceWithStreamingResponse, AsyncDeploymentsResourceWithStreamingResponse
+from .versions import VersionsResource, AsyncVersionsResource, VersionsResourceWithRawResponse, AsyncVersionsResourceWithRawResponse, VersionsResourceWithStreamingResponse, AsyncVersionsResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+
+__all__ = ["ScriptsResource", "AsyncScriptsResource"]
 
 class ScriptsResource(SyncAPIResource):
     @cached_property
@@ -120,21 +92,19 @@ class ScriptsResource(SyncAPIResource):
         return ScriptsResourceWithStreamingResponse(self)
 
     @overload
-    def update(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        rollback_to: str | NotGiven = NOT_GIVEN,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
+    def update(self,
+    script_name: str,
+    *,
+    account_id: str,
+    rollback_to: str | NotGiven = NOT_GIVEN,
+    any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
+    metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module.
 
         You can find more about the multipart metadata on our
@@ -167,22 +137,19 @@ class ScriptsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        rollback_to: str | NotGiven = NOT_GIVEN,
-        message: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
+    def update(self,
+    script_name: str,
+    *,
+    account_id: str,
+    rollback_to: str | NotGiven = NOT_GIVEN,
+    message: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module.
 
         You can find more about the multipart metadata on our
@@ -210,60 +177,51 @@ class ScriptsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @required_args(["account_id"])
-    def update(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        rollback_to: str | NotGiven = NOT_GIVEN,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
-        message: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
+    def update(self,
+    script_name: str,
+    *,
+    account_id: str,
+    rollback_to: str | NotGiven = NOT_GIVEN,
+    any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
+    metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
+    message: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ScriptUpdateResponse]:
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not script_name:
-            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `script_name` but received {script_name!r}'
+          )
         return self._put(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
-            body=maybe_transform(
-                {
-                    "any_part_name": any_part_name,
-                    "metadata": metadata,
-                    "message": message,
-                },
-                script_update_params.ScriptUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"rollback_to": rollback_to}, script_update_params.ScriptUpdateParams),
-                post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "any_part_name": any_part_name,
+                "metadata": metadata,
+                "message": message,
+            }, script_update_params.ScriptUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "rollback_to": rollback_to
+            }, script_update_params.ScriptUpdateParams), post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Script]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[Script]:
         """
         Fetch a list of uploaded workers.
 
@@ -279,29 +237,27 @@ class ScriptsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/workers/scripts",
-            page=SyncSinglePage[Script],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = SyncSinglePage[Script],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=Script,
         )
 
-    def delete(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        force: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    def delete(self,
+    script_name: str,
+    *,
+    account_id: str,
+    force: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
         """Delete your worker.
 
         This call has no response body on a successful delete.
@@ -324,34 +280,32 @@ class ScriptsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not script_name:
-            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `script_name` but received {script_name!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"force": force}, script_delete_params.ScriptDeleteParams),
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "force": force
+            }, script_delete_params.ScriptDeleteParams)),
             cast_to=NoneType,
         )
 
-    def get(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BinaryAPIResponse:
+    def get(self,
+    script_name: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> BinaryAPIResponse:
         """Fetch raw script content for your worker.
 
         Note this is the original script
@@ -371,18 +325,19 @@ class ScriptsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not script_name:
-            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `script_name` but received {script_name!r}'
+          )
         extra_headers = {"Accept": "undefined", **(extra_headers or {})}
         return self._get(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=BinaryAPIResponse,
         )
-
 
 class AsyncScriptsResource(AsyncAPIResource):
     @cached_property
@@ -418,21 +373,19 @@ class AsyncScriptsResource(AsyncAPIResource):
         return AsyncScriptsResourceWithStreamingResponse(self)
 
     @overload
-    async def update(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        rollback_to: str | NotGiven = NOT_GIVEN,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
+    async def update(self,
+    script_name: str,
+    *,
+    account_id: str,
+    rollback_to: str | NotGiven = NOT_GIVEN,
+    any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
+    metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module.
 
         You can find more about the multipart metadata on our
@@ -465,22 +418,19 @@ class AsyncScriptsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        rollback_to: str | NotGiven = NOT_GIVEN,
-        message: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
+    async def update(self,
+    script_name: str,
+    *,
+    account_id: str,
+    rollback_to: str | NotGiven = NOT_GIVEN,
+    message: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module.
 
         You can find more about the multipart metadata on our
@@ -508,62 +458,51 @@ class AsyncScriptsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @required_args(["account_id"])
-    async def update(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        rollback_to: str | NotGiven = NOT_GIVEN,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
-        message: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
+    async def update(self,
+    script_name: str,
+    *,
+    account_id: str,
+    rollback_to: str | NotGiven = NOT_GIVEN,
+    any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
+    metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
+    message: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ScriptUpdateResponse]:
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not script_name:
-            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `script_name` but received {script_name!r}'
+          )
         return await self._put(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
-            body=await async_maybe_transform(
-                {
-                    "any_part_name": any_part_name,
-                    "metadata": metadata,
-                    "message": message,
-                },
-                script_update_params.ScriptUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {"rollback_to": rollback_to}, script_update_params.ScriptUpdateParams
-                ),
-                post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "any_part_name": any_part_name,
+                "metadata": metadata,
+                "message": message,
+            }, script_update_params.ScriptUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "rollback_to": rollback_to
+            }, script_update_params.ScriptUpdateParams), post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Script, AsyncSinglePage[Script]]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Script, AsyncSinglePage[Script]]:
         """
         Fetch a list of uploaded workers.
 
@@ -579,29 +518,27 @@ class AsyncScriptsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/workers/scripts",
-            page=AsyncSinglePage[Script],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = AsyncSinglePage[Script],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=Script,
         )
 
-    async def delete(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        force: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    async def delete(self,
+    script_name: str,
+    *,
+    account_id: str,
+    force: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
         """Delete your worker.
 
         This call has no response body on a successful delete.
@@ -624,34 +561,32 @@ class AsyncScriptsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not script_name:
-            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `script_name` but received {script_name!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"force": force}, script_delete_params.ScriptDeleteParams),
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "force": force
+            }, script_delete_params.ScriptDeleteParams)),
             cast_to=NoneType,
         )
 
-    async def get(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncBinaryAPIResponse:
+    async def get(self,
+    script_name: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncBinaryAPIResponse:
         """Fetch raw script content for your worker.
 
         Note this is the original script
@@ -671,18 +606,19 @@ class AsyncScriptsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not script_name:
-            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `script_name` but received {script_name!r}'
+          )
         extra_headers = {"Accept": "undefined", **(extra_headers or {})}
         return await self._get(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=AsyncBinaryAPIResponse,
         )
-
 
 class ScriptsResourceWithRawResponse:
     def __init__(self, scripts: ScriptsResource) -> None:
@@ -726,7 +662,6 @@ class ScriptsResourceWithRawResponse:
     def versions(self) -> VersionsResourceWithRawResponse:
         return VersionsResourceWithRawResponse(self._scripts.versions)
 
-
 class AsyncScriptsResourceWithRawResponse:
     def __init__(self, scripts: AsyncScriptsResource) -> None:
         self._scripts = scripts
@@ -769,7 +704,6 @@ class AsyncScriptsResourceWithRawResponse:
     def versions(self) -> AsyncVersionsResourceWithRawResponse:
         return AsyncVersionsResourceWithRawResponse(self._scripts.versions)
 
-
 class ScriptsResourceWithStreamingResponse:
     def __init__(self, scripts: ScriptsResource) -> None:
         self._scripts = scripts
@@ -811,7 +745,6 @@ class ScriptsResourceWithStreamingResponse:
     @cached_property
     def versions(self) -> VersionsResourceWithStreamingResponse:
         return VersionsResourceWithStreamingResponse(self._scripts.versions)
-
 
 class AsyncScriptsResourceWithStreamingResponse:
     def __init__(self, scripts: AsyncScriptsResource) -> None:

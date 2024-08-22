@@ -2,33 +2,44 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ...types.cache import smart_tiered_cache_edit_params
-from ..._base_client import make_request_options
-from ...types.cache.smart_tiered_cache_get_response import SmartTieredCacheGetResponse
-from ...types.cache.smart_tiered_cache_edit_response import SmartTieredCacheEditResponse
+
 from ...types.cache.smart_tiered_cache_delete_response import SmartTieredCacheDeleteResponse
 
-__all__ = ["SmartTieredCacheResource", "AsyncSmartTieredCacheResource"]
+from ..._wrappers import ResultWrapper
 
+from typing import Optional, Type
+
+from ..._base_client import make_request_options
+
+from ...types.cache.smart_tiered_cache_edit_response import SmartTieredCacheEditResponse
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing_extensions import Literal
+
+from ...types.cache.smart_tiered_cache_get_response import SmartTieredCacheGetResponse
+
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.cache import smart_tiered_cache_edit_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["SmartTieredCacheResource", "AsyncSmartTieredCacheResource"]
 
 class SmartTieredCacheResource(SyncAPIResource):
     @cached_property
@@ -39,17 +50,15 @@ class SmartTieredCacheResource(SyncAPIResource):
     def with_streaming_response(self) -> SmartTieredCacheResourceWithStreamingResponse:
         return SmartTieredCacheResourceWithStreamingResponse(self)
 
-    def delete(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheDeleteResponse]:
+    def delete(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SmartTieredCacheDeleteResponse]:
         """
         Remvoves enablement of Smart Tiered Cache
 
@@ -65,31 +74,25 @@ class SmartTieredCacheResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._delete(
             f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SmartTieredCacheDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[SmartTieredCacheDeleteResponse]], ResultWrapper[SmartTieredCacheDeleteResponse]),
         )
 
-    def edit(
-        self,
-        *,
-        zone_id: str,
-        value: Literal["on", "off"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheEditResponse]:
+    def edit(self,
+    *,
+    zone_id: str,
+    value: Literal["on", "off"],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SmartTieredCacheEditResponse]:
         """
         Updates enablement of Tiered Cache
 
@@ -107,31 +110,27 @@ class SmartTieredCacheResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._patch(
             f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-            body=maybe_transform({"value": value}, smart_tiered_cache_edit_params.SmartTieredCacheEditParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheEditResponse]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "value": value
+            }, smart_tiered_cache_edit_params.SmartTieredCacheEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SmartTieredCacheEditResponse]]._unwrapper),
             cast_to=cast(Type[Optional[SmartTieredCacheEditResponse]], ResultWrapper[SmartTieredCacheEditResponse]),
         )
 
-    def get(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheGetResponse]:
+    def get(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SmartTieredCacheGetResponse]:
         """
         Get Smart Tiered Cache setting
 
@@ -147,19 +146,14 @@ class SmartTieredCacheResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get(
             f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SmartTieredCacheGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[SmartTieredCacheGetResponse]], ResultWrapper[SmartTieredCacheGetResponse]),
         )
-
 
 class AsyncSmartTieredCacheResource(AsyncAPIResource):
     @cached_property
@@ -170,17 +164,15 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSmartTieredCacheResourceWithStreamingResponse:
         return AsyncSmartTieredCacheResourceWithStreamingResponse(self)
 
-    async def delete(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheDeleteResponse]:
+    async def delete(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SmartTieredCacheDeleteResponse]:
         """
         Remvoves enablement of Smart Tiered Cache
 
@@ -196,31 +188,25 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._delete(
             f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SmartTieredCacheDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[SmartTieredCacheDeleteResponse]], ResultWrapper[SmartTieredCacheDeleteResponse]),
         )
 
-    async def edit(
-        self,
-        *,
-        zone_id: str,
-        value: Literal["on", "off"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheEditResponse]:
+    async def edit(self,
+    *,
+    zone_id: str,
+    value: Literal["on", "off"],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SmartTieredCacheEditResponse]:
         """
         Updates enablement of Tiered Cache
 
@@ -238,33 +224,27 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._patch(
             f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-            body=await async_maybe_transform(
-                {"value": value}, smart_tiered_cache_edit_params.SmartTieredCacheEditParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheEditResponse]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "value": value
+            }, smart_tiered_cache_edit_params.SmartTieredCacheEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SmartTieredCacheEditResponse]]._unwrapper),
             cast_to=cast(Type[Optional[SmartTieredCacheEditResponse]], ResultWrapper[SmartTieredCacheEditResponse]),
         )
 
-    async def get(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheGetResponse]:
+    async def get(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SmartTieredCacheGetResponse]:
         """
         Get Smart Tiered Cache setting
 
@@ -280,19 +260,14 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._get(
             f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SmartTieredCacheGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[SmartTieredCacheGetResponse]], ResultWrapper[SmartTieredCacheGetResponse]),
         )
-
 
 class SmartTieredCacheResourceWithRawResponse:
     def __init__(self, smart_tiered_cache: SmartTieredCacheResource) -> None:
@@ -308,7 +283,6 @@ class SmartTieredCacheResourceWithRawResponse:
             smart_tiered_cache.get,
         )
 
-
 class AsyncSmartTieredCacheResourceWithRawResponse:
     def __init__(self, smart_tiered_cache: AsyncSmartTieredCacheResource) -> None:
         self._smart_tiered_cache = smart_tiered_cache
@@ -323,7 +297,6 @@ class AsyncSmartTieredCacheResourceWithRawResponse:
             smart_tiered_cache.get,
         )
 
-
 class SmartTieredCacheResourceWithStreamingResponse:
     def __init__(self, smart_tiered_cache: SmartTieredCacheResource) -> None:
         self._smart_tiered_cache = smart_tiered_cache
@@ -337,7 +310,6 @@ class SmartTieredCacheResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             smart_tiered_cache.get,
         )
-
 
 class AsyncSmartTieredCacheResourceWithStreamingResponse:
     def __init__(self, smart_tiered_cache: AsyncSmartTieredCacheResource) -> None:

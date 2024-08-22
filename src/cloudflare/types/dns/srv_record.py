@@ -1,16 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
+from ..._models import BaseModel
+
+from typing import Optional, List
+
 from typing_extensions import Literal
 
-from .ttl import TTL
-from ..._models import BaseModel
-from .record_tags import RecordTags
+from datetime import datetime
+
 from .record_metadata import RecordMetadata
 
-__all__ = ["SRVRecord", "Data"]
+from .record_tags import RecordTags
 
+from .ttl import TTL
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["SRVRecord", "Data"]
 
 class Data(BaseModel):
     name: Optional[str] = None
@@ -49,7 +57,6 @@ class Data(BaseModel):
 
     weight: Optional[float] = None
     """The record weight."""
-
 
 class SRVRecord(BaseModel):
     data: Data

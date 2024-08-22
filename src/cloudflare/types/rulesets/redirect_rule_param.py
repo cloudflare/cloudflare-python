@@ -2,21 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Union
-from typing_extensions import Literal, TypeAlias, TypedDict
+from typing_extensions import Literal, TypedDict, TypeAlias
 
 from .logging_param import LoggingParam
 
-__all__ = [
-    "RedirectRuleParam",
-    "ActionParameters",
-    "ActionParametersFromList",
-    "ActionParametersFromValue",
-    "ActionParametersFromValueTargetURL",
-    "ActionParametersFromValueTargetURLStaticURLRedirect",
-    "ActionParametersFromValueTargetURLDynamicURLRedirect",
-]
+from typing import Union
 
+__all__ = ["RedirectRuleParam", "ActionParameters", "ActionParametersFromList", "ActionParametersFromValue", "ActionParametersFromValueTargetURL", "ActionParametersFromValueTargetURLStaticURLRedirect", "ActionParametersFromValueTargetURLDynamicURLRedirect"]
 
 class ActionParametersFromList(TypedDict, total=False):
     key: str
@@ -25,21 +17,15 @@ class ActionParametersFromList(TypedDict, total=False):
     name: str
     """The name of the list to match against."""
 
-
 class ActionParametersFromValueTargetURLStaticURLRedirect(TypedDict, total=False):
     value: str
     """The URL to redirect the request to."""
-
 
 class ActionParametersFromValueTargetURLDynamicURLRedirect(TypedDict, total=False):
     expression: str
     """An expression to evaluate to get the URL to redirect the request to."""
 
-
-ActionParametersFromValueTargetURL: TypeAlias = Union[
-    ActionParametersFromValueTargetURLStaticURLRedirect, ActionParametersFromValueTargetURLDynamicURLRedirect
-]
-
+ActionParametersFromValueTargetURL: TypeAlias = Union[ActionParametersFromValueTargetURLStaticURLRedirect, ActionParametersFromValueTargetURLDynamicURLRedirect]
 
 class ActionParametersFromValue(TypedDict, total=False):
     preserve_query_string: bool
@@ -51,14 +37,12 @@ class ActionParametersFromValue(TypedDict, total=False):
     target_url: ActionParametersFromValueTargetURL
     """The URL to redirect the request to."""
 
-
 class ActionParameters(TypedDict, total=False):
     from_list: ActionParametersFromList
     """Serve a redirect based on a bulk list lookup."""
 
     from_value: ActionParametersFromValue
     """Serve a redirect based on the request properties."""
-
 
 class RedirectRuleParam(TypedDict, total=False):
     id: str

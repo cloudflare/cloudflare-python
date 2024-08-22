@@ -2,21 +2,18 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import TypedDict, Required, Annotated
+
+from typing import Iterable, List
 
 from ...._utils import PropertyInfo
 
-__all__ = [
-    "ConfigurationUpdateParams",
-    "Config",
-    "ConfigIngress",
-    "ConfigIngressOriginRequest",
-    "ConfigIngressOriginRequestAccess",
-    "ConfigOriginRequest",
-    "ConfigOriginRequestAccess",
-]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ...._types import FileTypes
+from ...._utils import PropertyInfo
 
+__all__ = ["ConfigurationUpdateParams", "Config", "ConfigIngress", "ConfigIngressOriginRequest", "ConfigIngressOriginRequestAccess", "ConfigOriginRequest", "ConfigOriginRequestAccess"]
 
 class ConfigurationUpdateParams(TypedDict, total=False):
     account_id: Required[str]
@@ -24,7 +21,6 @@ class ConfigurationUpdateParams(TypedDict, total=False):
 
     config: Config
     """The tunnel configuration and ingress rules."""
-
 
 class ConfigIngressOriginRequestAccess(TypedDict, total=False):
     aud_tag: Required[Annotated[List[str], PropertyInfo(alias="audTag")]]
@@ -38,7 +34,6 @@ class ConfigIngressOriginRequestAccess(TypedDict, total=False):
 
     required: bool
     """Deny traffic that has not fulfilled Access authorization."""
-
 
 class ConfigIngressOriginRequest(TypedDict, total=False):
     access: ConfigIngressOriginRequestAccess
@@ -113,7 +108,6 @@ class ConfigIngressOriginRequest(TypedDict, total=False):
     to connect Tunnel to an HTTPS server.
     """
 
-
 class ConfigIngress(TypedDict, total=False):
     hostname: Required[str]
     """Public hostname for this service."""
@@ -135,7 +129,6 @@ class ConfigIngress(TypedDict, total=False):
     path: str
     """Requests with this path route to this public hostname."""
 
-
 class ConfigOriginRequestAccess(TypedDict, total=False):
     aud_tag: Required[Annotated[List[str], PropertyInfo(alias="audTag")]]
     """Access applications that are allowed to reach this hostname for this Tunnel.
@@ -148,7 +141,6 @@ class ConfigOriginRequestAccess(TypedDict, total=False):
 
     required: bool
     """Deny traffic that has not fulfilled Access authorization."""
-
 
 class ConfigOriginRequest(TypedDict, total=False):
     access: ConfigOriginRequestAccess
@@ -222,7 +214,6 @@ class ConfigOriginRequest(TypedDict, total=False):
     Timeout for completing a TLS handshake to your origin server, if you have chosen
     to connect Tunnel to an HTTPS server.
     """
-
 
 class Config(TypedDict, total=False):
     ingress: Iterable[ConfigIngress]

@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["OIDCSaaSAppParam", "CustomClaims", "CustomClaimsSource", "HybridAndImplicitOptions", "RefreshTokenOptions"]
+from typing import List, Dict
 
+__all__ = ["OIDCSaaSAppParam", "CustomClaims", "CustomClaimsSource", "HybridAndImplicitOptions", "RefreshTokenOptions"]
 
 class CustomClaimsSource(TypedDict, total=False):
     name: str
@@ -14,7 +14,6 @@ class CustomClaimsSource(TypedDict, total=False):
 
     name_by_idp: Dict[str, str]
     """A mapping from IdP ID to claim name."""
-
 
 class CustomClaims(TypedDict, total=False):
     name: str
@@ -28,7 +27,6 @@ class CustomClaims(TypedDict, total=False):
 
     source: CustomClaimsSource
 
-
 class HybridAndImplicitOptions(TypedDict, total=False):
     return_access_token_from_authorization_endpoint: bool
     """If an Access Token should be returned from the OIDC Authorization endpoint"""
@@ -36,14 +34,12 @@ class HybridAndImplicitOptions(TypedDict, total=False):
     return_id_token_from_authorization_endpoint: bool
     """If an ID Token should be returned from the OIDC Authorization endpoint"""
 
-
 class RefreshTokenOptions(TypedDict, total=False):
     lifetime: str
     """How long a refresh token will be valid for after creation.
 
     Valid units are m,h,d. Must be longer than 1m.
     """
-
 
 class OIDCSaaSAppParam(TypedDict, total=False):
     access_token_lifetime: str
@@ -76,9 +72,7 @@ class OIDCSaaSAppParam(TypedDict, total=False):
 
     custom_claims: CustomClaims
 
-    grant_types: List[
-        Literal["authorization_code", "authorization_code_with_pkce", "refresh_tokens", "hybrid", "implicit"]
-    ]
+    grant_types: List[Literal["authorization_code", "authorization_code_with_pkce", "refresh_tokens", "hybrid", "implicit"]]
     """The OIDC flows supported by this application"""
 
     group_filter_regex: str

@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["BodyScanningSettingsParam"]
 
-
 class BodyScanningSettingsParam(TypedDict, total=False):
     inspection_mode: str
     """Set the inspection mode to either `deep` or `shallow`."""

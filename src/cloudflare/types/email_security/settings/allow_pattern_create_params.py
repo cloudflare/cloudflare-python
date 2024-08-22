@@ -2,11 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable, Optional
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import TypedDict, Required, Literal, TypeAlias
+
+from typing import Optional, Iterable
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ...._types import FileTypes
+from ...._utils import PropertyInfo
 
 __all__ = ["AllowPatternCreateParams", "EmailSecurityCreateAllowPattern", "Variant1", "Variant1Body"]
-
 
 class EmailSecurityCreateAllowPattern(TypedDict, total=False):
     account_id: Required[str]
@@ -28,13 +33,11 @@ class EmailSecurityCreateAllowPattern(TypedDict, total=False):
 
     comments: Optional[str]
 
-
 class Variant1(TypedDict, total=False):
     account_id: Required[str]
     """Account Identifier"""
 
     body: Required[Iterable[Variant1Body]]
-
 
 class Variant1Body(TypedDict, total=False):
     is_recipient: Required[bool]
@@ -52,6 +55,5 @@ class Variant1Body(TypedDict, total=False):
     verify_sender: Required[bool]
 
     comments: Optional[str]
-
 
 AllowPatternCreateParams: TypeAlias = Union[EmailSecurityCreateAllowPattern, Variant1]

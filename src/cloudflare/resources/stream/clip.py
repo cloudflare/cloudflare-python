@@ -2,31 +2,38 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
-from ...types.stream import clip_create_params
+
 from ...types.stream.clip import Clip
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type, List
+
+from ..._base_client import make_request_options
+
 from ...types.stream.allowed_origins import AllowedOrigins
 
-__all__ = ["ClipResource", "AsyncClipResource"]
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
+from ...types.stream import clip_create_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.stream import clip_create_params
+from typing import cast
+from typing import cast
+
+__all__ = ["ClipResource", "AsyncClipResource"]
 
 class ClipResource(SyncAPIResource):
     @cached_property
@@ -37,26 +44,24 @@ class ClipResource(SyncAPIResource):
     def with_streaming_response(self) -> ClipResourceWithStreamingResponse:
         return ClipResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        clipped_from_video_uid: str,
-        end_time_seconds: int,
-        start_time_seconds: int,
-        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        max_duration_seconds: int | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
-        watermark: clip_create_params.Watermark | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Clip]:
+    def create(self,
+    *,
+    account_id: str,
+    clipped_from_video_uid: str,
+    end_time_seconds: int,
+    start_time_seconds: int,
+    allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
+    creator: str | NotGiven = NOT_GIVEN,
+    max_duration_seconds: int | NotGiven = NOT_GIVEN,
+    require_signed_urls: bool | NotGiven = NOT_GIVEN,
+    thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
+    watermark: clip_create_params.Watermark | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Clip]:
         """
         Clips a video based on the specified start and end times provided in seconds.
 
@@ -97,33 +102,25 @@ class ClipResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/stream/clip",
-            body=maybe_transform(
-                {
-                    "clipped_from_video_uid": clipped_from_video_uid,
-                    "end_time_seconds": end_time_seconds,
-                    "start_time_seconds": start_time_seconds,
-                    "allowed_origins": allowed_origins,
-                    "creator": creator,
-                    "max_duration_seconds": max_duration_seconds,
-                    "require_signed_urls": require_signed_urls,
-                    "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
-                    "watermark": watermark,
-                },
-                clip_create_params.ClipCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Clip]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "clipped_from_video_uid": clipped_from_video_uid,
+                "end_time_seconds": end_time_seconds,
+                "start_time_seconds": start_time_seconds,
+                "allowed_origins": allowed_origins,
+                "creator": creator,
+                "max_duration_seconds": max_duration_seconds,
+                "require_signed_urls": require_signed_urls,
+                "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
+                "watermark": watermark,
+            }, clip_create_params.ClipCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Clip]]._unwrapper),
             cast_to=cast(Type[Optional[Clip]], ResultWrapper[Clip]),
         )
-
 
 class AsyncClipResource(AsyncAPIResource):
     @cached_property
@@ -134,26 +131,24 @@ class AsyncClipResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncClipResourceWithStreamingResponse:
         return AsyncClipResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        clipped_from_video_uid: str,
-        end_time_seconds: int,
-        start_time_seconds: int,
-        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        max_duration_seconds: int | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
-        watermark: clip_create_params.Watermark | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Clip]:
+    async def create(self,
+    *,
+    account_id: str,
+    clipped_from_video_uid: str,
+    end_time_seconds: int,
+    start_time_seconds: int,
+    allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
+    creator: str | NotGiven = NOT_GIVEN,
+    max_duration_seconds: int | NotGiven = NOT_GIVEN,
+    require_signed_urls: bool | NotGiven = NOT_GIVEN,
+    thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
+    watermark: clip_create_params.Watermark | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Clip]:
         """
         Clips a video based on the specified start and end times provided in seconds.
 
@@ -194,33 +189,25 @@ class AsyncClipResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/stream/clip",
-            body=await async_maybe_transform(
-                {
-                    "clipped_from_video_uid": clipped_from_video_uid,
-                    "end_time_seconds": end_time_seconds,
-                    "start_time_seconds": start_time_seconds,
-                    "allowed_origins": allowed_origins,
-                    "creator": creator,
-                    "max_duration_seconds": max_duration_seconds,
-                    "require_signed_urls": require_signed_urls,
-                    "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
-                    "watermark": watermark,
-                },
-                clip_create_params.ClipCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Clip]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "clipped_from_video_uid": clipped_from_video_uid,
+                "end_time_seconds": end_time_seconds,
+                "start_time_seconds": start_time_seconds,
+                "allowed_origins": allowed_origins,
+                "creator": creator,
+                "max_duration_seconds": max_duration_seconds,
+                "require_signed_urls": require_signed_urls,
+                "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
+                "watermark": watermark,
+            }, clip_create_params.ClipCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Clip]]._unwrapper),
             cast_to=cast(Type[Optional[Clip]], ResultWrapper[Clip]),
         )
-
 
 class ClipResourceWithRawResponse:
     def __init__(self, clip: ClipResource) -> None:
@@ -230,7 +217,6 @@ class ClipResourceWithRawResponse:
             clip.create,
         )
 
-
 class AsyncClipResourceWithRawResponse:
     def __init__(self, clip: AsyncClipResource) -> None:
         self._clip = clip
@@ -239,7 +225,6 @@ class AsyncClipResourceWithRawResponse:
             clip.create,
         )
 
-
 class ClipResourceWithStreamingResponse:
     def __init__(self, clip: ClipResource) -> None:
         self._clip = clip
@@ -247,7 +232,6 @@ class ClipResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             clip.create,
         )
-
 
 class AsyncClipResourceWithStreamingResponse:
     def __init__(self, clip: AsyncClipResource) -> None:

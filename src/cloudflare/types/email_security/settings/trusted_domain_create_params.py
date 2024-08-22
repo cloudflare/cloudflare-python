@@ -2,11 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable, Optional
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import TypedDict, Required, TypeAlias
+
+from typing import Optional, Iterable
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ...._types import FileTypes
+from ...._utils import PropertyInfo
 
 __all__ = ["TrustedDomainCreateParams", "EmailSecurityCreateTrustedDomain", "Variant1", "Variant1Body"]
-
 
 class EmailSecurityCreateTrustedDomain(TypedDict, total=False):
     account_id: Required[str]
@@ -22,13 +27,11 @@ class EmailSecurityCreateTrustedDomain(TypedDict, total=False):
 
     comments: Optional[str]
 
-
 class Variant1(TypedDict, total=False):
     account_id: Required[str]
     """Account Identifier"""
 
     body: Required[Iterable[Variant1Body]]
-
 
 class Variant1Body(TypedDict, total=False):
     is_recent: Required[bool]
@@ -40,6 +43,5 @@ class Variant1Body(TypedDict, total=False):
     pattern: Required[str]
 
     comments: Optional[str]
-
 
 TrustedDomainCreateParams: TypeAlias = Union[EmailSecurityCreateTrustedDomain, Variant1]

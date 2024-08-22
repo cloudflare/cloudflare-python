@@ -1,15 +1,22 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
+from ...._models import BaseModel
+
+from typing import Optional, List
+
+from .issue_type import IssueType
+
 from typing_extensions import Literal
 
-from ...._models import BaseModel
-from .issue_type import IssueType
+from datetime import datetime
+
 from ...shared.response_info import ResponseInfo
 
-__all__ = ["IssueListResponse", "Result", "ResultIssue"]
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
+__all__ = ["IssueListResponse", "Result", "ResultIssue"]
 
 class ResultIssue(BaseModel):
     id: Optional[str] = None
@@ -34,7 +41,6 @@ class ResultIssue(BaseModel):
 
     timestamp: Optional[datetime] = None
 
-
 class Result(BaseModel):
     count: Optional[int] = None
     """Total number of results"""
@@ -46,7 +52,6 @@ class Result(BaseModel):
 
     per_page: Optional[int] = None
     """Number of results per page of results"""
-
 
 class IssueListResponse(BaseModel):
     errors: List[ResponseInfo]

@@ -2,53 +2,32 @@
 
 from __future__ import annotations
 
-from .analyze import (
-    AnalyzeResource,
-    AsyncAnalyzeResource,
-    AnalyzeResourceWithRawResponse,
-    AsyncAnalyzeResourceWithRawResponse,
-    AnalyzeResourceWithStreamingResponse,
-    AsyncAnalyzeResourceWithStreamingResponse,
-)
+from .analyze import AnalyzeResource, AsyncAnalyzeResource
+
 from ..._compat import cached_property
-from .universal import (
-    UniversalResource,
-    AsyncUniversalResource,
-    UniversalResourceWithRawResponse,
-    AsyncUniversalResourceWithRawResponse,
-    UniversalResourceWithStreamingResponse,
-    AsyncUniversalResourceWithStreamingResponse,
-)
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .verification import (
-    VerificationResource,
-    AsyncVerificationResource,
-    VerificationResourceWithRawResponse,
-    AsyncVerificationResourceWithRawResponse,
-    VerificationResourceWithStreamingResponse,
-    AsyncVerificationResourceWithStreamingResponse,
-)
-from .recommendations import (
-    RecommendationsResource,
-    AsyncRecommendationsResource,
-    RecommendationsResourceWithRawResponse,
-    AsyncRecommendationsResourceWithRawResponse,
-    RecommendationsResourceWithStreamingResponse,
-    AsyncRecommendationsResourceWithStreamingResponse,
-)
-from .certificate_packs import (
-    CertificatePacksResource,
-    AsyncCertificatePacksResource,
-    CertificatePacksResourceWithRawResponse,
-    AsyncCertificatePacksResourceWithRawResponse,
-    CertificatePacksResourceWithStreamingResponse,
-    AsyncCertificatePacksResourceWithStreamingResponse,
-)
-from .universal.universal import UniversalResource, AsyncUniversalResource
+
 from .certificate_packs.certificate_packs import CertificatePacksResource, AsyncCertificatePacksResource
 
-__all__ = ["SSLResource", "AsyncSSLResource"]
+from .recommendations import RecommendationsResource, AsyncRecommendationsResource
 
+from .universal.universal import UniversalResource, AsyncUniversalResource
+
+from .verification import VerificationResource, AsyncVerificationResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from .analyze import AnalyzeResource, AsyncAnalyzeResource, AnalyzeResourceWithRawResponse, AsyncAnalyzeResourceWithRawResponse, AnalyzeResourceWithStreamingResponse, AsyncAnalyzeResourceWithStreamingResponse
+from .certificate_packs import CertificatePacksResource, AsyncCertificatePacksResource, CertificatePacksResourceWithRawResponse, AsyncCertificatePacksResourceWithRawResponse, CertificatePacksResourceWithStreamingResponse, AsyncCertificatePacksResourceWithStreamingResponse
+from .recommendations import RecommendationsResource, AsyncRecommendationsResource, RecommendationsResourceWithRawResponse, AsyncRecommendationsResourceWithRawResponse, RecommendationsResourceWithStreamingResponse, AsyncRecommendationsResourceWithStreamingResponse
+from .universal import UniversalResource, AsyncUniversalResource, UniversalResourceWithRawResponse, AsyncUniversalResourceWithRawResponse, UniversalResourceWithStreamingResponse, AsyncUniversalResourceWithStreamingResponse
+from .verification import VerificationResource, AsyncVerificationResource, VerificationResourceWithRawResponse, AsyncVerificationResourceWithRawResponse, VerificationResourceWithStreamingResponse, AsyncVerificationResourceWithStreamingResponse
+
+__all__ = ["SSLResource", "AsyncSSLResource"]
 
 class SSLResource(SyncAPIResource):
     @cached_property
@@ -79,7 +58,6 @@ class SSLResource(SyncAPIResource):
     def with_streaming_response(self) -> SSLResourceWithStreamingResponse:
         return SSLResourceWithStreamingResponse(self)
 
-
 class AsyncSSLResource(AsyncAPIResource):
     @cached_property
     def analyze(self) -> AsyncAnalyzeResource:
@@ -109,7 +87,6 @@ class AsyncSSLResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSSLResourceWithStreamingResponse:
         return AsyncSSLResourceWithStreamingResponse(self)
 
-
 class SSLResourceWithRawResponse:
     def __init__(self, ssl: SSLResource) -> None:
         self._ssl = ssl
@@ -133,7 +110,6 @@ class SSLResourceWithRawResponse:
     @cached_property
     def verification(self) -> VerificationResourceWithRawResponse:
         return VerificationResourceWithRawResponse(self._ssl.verification)
-
 
 class AsyncSSLResourceWithRawResponse:
     def __init__(self, ssl: AsyncSSLResource) -> None:
@@ -159,7 +135,6 @@ class AsyncSSLResourceWithRawResponse:
     def verification(self) -> AsyncVerificationResourceWithRawResponse:
         return AsyncVerificationResourceWithRawResponse(self._ssl.verification)
 
-
 class SSLResourceWithStreamingResponse:
     def __init__(self, ssl: SSLResource) -> None:
         self._ssl = ssl
@@ -183,7 +158,6 @@ class SSLResourceWithStreamingResponse:
     @cached_property
     def verification(self) -> VerificationResourceWithStreamingResponse:
         return VerificationResourceWithStreamingResponse(self._ssl.verification)
-
 
 class AsyncSSLResourceWithStreamingResponse:
     def __init__(self, ssl: AsyncSSLResource) -> None:

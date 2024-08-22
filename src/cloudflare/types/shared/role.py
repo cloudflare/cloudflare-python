@@ -1,12 +1,19 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from ..._models import BaseModel
+
 from typing import List
 
-from ..._models import BaseModel
 from .permission import Permission
 
-__all__ = ["Role"]
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
 
+from pydantic import Field as FieldInfo
+
+from ..._models import BaseModel
+
+__all__ = ["Role"]
 
 class Role(BaseModel):
     id: str

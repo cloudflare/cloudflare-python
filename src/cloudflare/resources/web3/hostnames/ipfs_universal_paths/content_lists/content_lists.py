@@ -2,39 +2,43 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
-from typing_extensions import Literal
-
 import httpx
 
-from .entries import (
-    EntriesResource,
-    AsyncEntriesResource,
-    EntriesResourceWithRawResponse,
-    AsyncEntriesResourceWithRawResponse,
-    EntriesResourceWithStreamingResponse,
-    AsyncEntriesResourceWithStreamingResponse,
-)
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .entries import EntriesResource, AsyncEntriesResource
+
 from ......_compat import cached_property
-from ......_resource import SyncAPIResource, AsyncAPIResource
-from ......_response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ......_wrappers import ResultWrapper
-from ......_base_client import make_request_options
-from ......types.web3.hostnames.ipfs_universal_paths import content_list_update_params
+
 from ......types.web3.hostnames.ipfs_universal_paths.content_list import ContentList
 
-__all__ = ["ContentListsResource", "AsyncContentListsResource"]
+from ......_wrappers import ResultWrapper
 
+from ......_utils import maybe_transform, async_maybe_transform
+
+from ......_base_client import make_request_options
+
+from typing import Type, Iterable
+
+from typing_extensions import Literal
+
+from ......_response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ......types.web3.hostnames.ipfs_universal_paths import content_list_update_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ......_utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ......_types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ......_resource import SyncAPIResource, AsyncAPIResource
+from ......types import shared_params
+from ......types.web3.hostnames.ipfs_universal_paths import content_list_update_params
+from .entries import EntriesResource, AsyncEntriesResource, EntriesResourceWithRawResponse, AsyncEntriesResourceWithRawResponse, EntriesResourceWithStreamingResponse, AsyncEntriesResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["ContentListsResource", "AsyncContentListsResource"]
 
 class ContentListsResource(SyncAPIResource):
     @cached_property
@@ -49,20 +53,18 @@ class ContentListsResource(SyncAPIResource):
     def with_streaming_response(self) -> ContentListsResourceWithStreamingResponse:
         return ContentListsResourceWithStreamingResponse(self)
 
-    def update(
-        self,
-        identifier: str,
-        *,
-        zone_identifier: str,
-        action: Literal["block"],
-        entries: Iterable[content_list_update_params.Entry],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentList:
+    def update(self,
+    identifier: str,
+    *,
+    zone_identifier: str,
+    action: Literal["block"],
+    entries: Iterable[content_list_update_params.Entry],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> ContentList:
         """
         Update IPFS Universal Path Gateway Content List
 
@@ -84,40 +86,33 @@ class ContentListsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
+          )
         if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `identifier` but received {identifier!r}'
+          )
         return self._put(
             f"/zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list",
-            body=maybe_transform(
-                {
-                    "action": action,
-                    "entries": entries,
-                },
-                content_list_update_params.ContentListUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ContentList]._unwrapper,
-            ),
+            body=maybe_transform({
+                "action": action,
+                "entries": entries,
+            }, content_list_update_params.ContentListUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[ContentList]._unwrapper),
             cast_to=cast(Type[ContentList], ResultWrapper[ContentList]),
         )
 
-    def get(
-        self,
-        identifier: str,
-        *,
-        zone_identifier: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentList:
+    def get(self,
+    identifier: str,
+    *,
+    zone_identifier: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> ContentList:
         """
         IPFS Universal Path Gateway Content List Details
 
@@ -135,21 +130,18 @@ class ContentListsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
+          )
         if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `identifier` but received {identifier!r}'
+          )
         return self._get(
             f"/zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ContentList]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[ContentList]._unwrapper),
             cast_to=cast(Type[ContentList], ResultWrapper[ContentList]),
         )
-
 
 class AsyncContentListsResource(AsyncAPIResource):
     @cached_property
@@ -164,20 +156,18 @@ class AsyncContentListsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncContentListsResourceWithStreamingResponse:
         return AsyncContentListsResourceWithStreamingResponse(self)
 
-    async def update(
-        self,
-        identifier: str,
-        *,
-        zone_identifier: str,
-        action: Literal["block"],
-        entries: Iterable[content_list_update_params.Entry],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentList:
+    async def update(self,
+    identifier: str,
+    *,
+    zone_identifier: str,
+    action: Literal["block"],
+    entries: Iterable[content_list_update_params.Entry],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> ContentList:
         """
         Update IPFS Universal Path Gateway Content List
 
@@ -199,40 +189,33 @@ class AsyncContentListsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
+          )
         if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `identifier` but received {identifier!r}'
+          )
         return await self._put(
             f"/zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list",
-            body=await async_maybe_transform(
-                {
-                    "action": action,
-                    "entries": entries,
-                },
-                content_list_update_params.ContentListUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ContentList]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "action": action,
+                "entries": entries,
+            }, content_list_update_params.ContentListUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[ContentList]._unwrapper),
             cast_to=cast(Type[ContentList], ResultWrapper[ContentList]),
         )
 
-    async def get(
-        self,
-        identifier: str,
-        *,
-        zone_identifier: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ContentList:
+    async def get(self,
+    identifier: str,
+    *,
+    zone_identifier: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> ContentList:
         """
         IPFS Universal Path Gateway Content List Details
 
@@ -250,21 +233,18 @@ class AsyncContentListsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
+          )
         if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `identifier` but received {identifier!r}'
+          )
         return await self._get(
             f"/zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ContentList]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[ContentList]._unwrapper),
             cast_to=cast(Type[ContentList], ResultWrapper[ContentList]),
         )
-
 
 class ContentListsResourceWithRawResponse:
     def __init__(self, content_lists: ContentListsResource) -> None:
@@ -281,7 +261,6 @@ class ContentListsResourceWithRawResponse:
     def entries(self) -> EntriesResourceWithRawResponse:
         return EntriesResourceWithRawResponse(self._content_lists.entries)
 
-
 class AsyncContentListsResourceWithRawResponse:
     def __init__(self, content_lists: AsyncContentListsResource) -> None:
         self._content_lists = content_lists
@@ -297,7 +276,6 @@ class AsyncContentListsResourceWithRawResponse:
     def entries(self) -> AsyncEntriesResourceWithRawResponse:
         return AsyncEntriesResourceWithRawResponse(self._content_lists.entries)
 
-
 class ContentListsResourceWithStreamingResponse:
     def __init__(self, content_lists: ContentListsResource) -> None:
         self._content_lists = content_lists
@@ -312,7 +290,6 @@ class ContentListsResourceWithStreamingResponse:
     @cached_property
     def entries(self) -> EntriesResourceWithStreamingResponse:
         return EntriesResourceWithStreamingResponse(self._content_lists.entries)
-
 
 class AsyncContentListsResourceWithStreamingResponse:
     def __init__(self, content_lists: AsyncContentListsResource) -> None:

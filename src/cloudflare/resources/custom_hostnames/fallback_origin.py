@@ -2,32 +2,42 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
-from ...types.custom_hostnames import fallback_origin_update_params
-from ...types.custom_hostnames.fallback_origin_get_response import FallbackOriginGetResponse
-from ...types.custom_hostnames.fallback_origin_delete_response import FallbackOriginDeleteResponse
+
 from ...types.custom_hostnames.fallback_origin_update_response import FallbackOriginUpdateResponse
 
-__all__ = ["FallbackOriginResource", "AsyncFallbackOriginResource"]
+from ..._wrappers import ResultWrapper
 
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ..._base_client import make_request_options
+
+from ...types.custom_hostnames.fallback_origin_delete_response import FallbackOriginDeleteResponse
+
+from ...types.custom_hostnames.fallback_origin_get_response import FallbackOriginGetResponse
+
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.custom_hostnames import fallback_origin_update_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["FallbackOriginResource", "AsyncFallbackOriginResource"]
 
 class FallbackOriginResource(SyncAPIResource):
     @cached_property
@@ -38,18 +48,16 @@ class FallbackOriginResource(SyncAPIResource):
     def with_streaming_response(self) -> FallbackOriginResourceWithStreamingResponse:
         return FallbackOriginResourceWithStreamingResponse(self)
 
-    def update(
-        self,
-        *,
-        zone_id: str,
-        origin: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FallbackOriginUpdateResponse]:
+    def update(self,
+    *,
+    zone_id: str,
+    origin: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[FallbackOriginUpdateResponse]:
         """
         Update Fallback Origin for Custom Hostnames
 
@@ -67,31 +75,27 @@ class FallbackOriginResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._put(
             f"/zones/{zone_id}/custom_hostnames/fallback_origin",
-            body=maybe_transform({"origin": origin}, fallback_origin_update_params.FallbackOriginUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FallbackOriginUpdateResponse]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "origin": origin
+            }, fallback_origin_update_params.FallbackOriginUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[FallbackOriginUpdateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[FallbackOriginUpdateResponse]], ResultWrapper[FallbackOriginUpdateResponse]),
         )
 
-    def delete(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FallbackOriginDeleteResponse]:
+    def delete(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[FallbackOriginDeleteResponse]:
         """
         Delete Fallback Origin for Custom Hostnames
 
@@ -107,30 +111,24 @@ class FallbackOriginResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._delete(
             f"/zones/{zone_id}/custom_hostnames/fallback_origin",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FallbackOriginDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[FallbackOriginDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[FallbackOriginDeleteResponse]], ResultWrapper[FallbackOriginDeleteResponse]),
         )
 
-    def get(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FallbackOriginGetResponse]:
+    def get(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[FallbackOriginGetResponse]:
         """
         Get Fallback Origin for Custom Hostnames
 
@@ -146,19 +144,14 @@ class FallbackOriginResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get(
             f"/zones/{zone_id}/custom_hostnames/fallback_origin",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FallbackOriginGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[FallbackOriginGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[FallbackOriginGetResponse]], ResultWrapper[FallbackOriginGetResponse]),
         )
-
 
 class AsyncFallbackOriginResource(AsyncAPIResource):
     @cached_property
@@ -169,18 +162,16 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncFallbackOriginResourceWithStreamingResponse:
         return AsyncFallbackOriginResourceWithStreamingResponse(self)
 
-    async def update(
-        self,
-        *,
-        zone_id: str,
-        origin: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FallbackOriginUpdateResponse]:
+    async def update(self,
+    *,
+    zone_id: str,
+    origin: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[FallbackOriginUpdateResponse]:
         """
         Update Fallback Origin for Custom Hostnames
 
@@ -198,33 +189,27 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._put(
             f"/zones/{zone_id}/custom_hostnames/fallback_origin",
-            body=await async_maybe_transform(
-                {"origin": origin}, fallback_origin_update_params.FallbackOriginUpdateParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FallbackOriginUpdateResponse]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "origin": origin
+            }, fallback_origin_update_params.FallbackOriginUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[FallbackOriginUpdateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[FallbackOriginUpdateResponse]], ResultWrapper[FallbackOriginUpdateResponse]),
         )
 
-    async def delete(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FallbackOriginDeleteResponse]:
+    async def delete(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[FallbackOriginDeleteResponse]:
         """
         Delete Fallback Origin for Custom Hostnames
 
@@ -240,30 +225,24 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._delete(
             f"/zones/{zone_id}/custom_hostnames/fallback_origin",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FallbackOriginDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[FallbackOriginDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[FallbackOriginDeleteResponse]], ResultWrapper[FallbackOriginDeleteResponse]),
         )
 
-    async def get(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FallbackOriginGetResponse]:
+    async def get(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[FallbackOriginGetResponse]:
         """
         Get Fallback Origin for Custom Hostnames
 
@@ -279,19 +258,14 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._get(
             f"/zones/{zone_id}/custom_hostnames/fallback_origin",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FallbackOriginGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[FallbackOriginGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[FallbackOriginGetResponse]], ResultWrapper[FallbackOriginGetResponse]),
         )
-
 
 class FallbackOriginResourceWithRawResponse:
     def __init__(self, fallback_origin: FallbackOriginResource) -> None:
@@ -307,7 +281,6 @@ class FallbackOriginResourceWithRawResponse:
             fallback_origin.get,
         )
 
-
 class AsyncFallbackOriginResourceWithRawResponse:
     def __init__(self, fallback_origin: AsyncFallbackOriginResource) -> None:
         self._fallback_origin = fallback_origin
@@ -322,7 +295,6 @@ class AsyncFallbackOriginResourceWithRawResponse:
             fallback_origin.get,
         )
 
-
 class FallbackOriginResourceWithStreamingResponse:
     def __init__(self, fallback_origin: FallbackOriginResource) -> None:
         self._fallback_origin = fallback_origin
@@ -336,7 +308,6 @@ class FallbackOriginResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             fallback_origin.get,
         )
-
 
 class AsyncFallbackOriginResourceWithStreamingResponse:
     def __init__(self, fallback_origin: AsyncFallbackOriginResource) -> None:

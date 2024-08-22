@@ -2,13 +2,18 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Literal
+
 from typing import Optional
-from typing_extensions import Literal, TypedDict
 
 from .output_options_param import OutputOptionsParam
 
-__all__ = ["JobUpdateParams"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
+__all__ = ["JobUpdateParams"]
 
 class JobUpdateParams(TypedDict, total=False):
     account_id: str

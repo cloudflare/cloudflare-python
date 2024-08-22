@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import TypedDict, Required, Literal, TypeAlias
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
 __all__ = ["DatabaseImportParams", "Variant0", "Variant1", "Variant2"]
-
 
 class Variant0(TypedDict, total=False):
     account_id: Required[str]
@@ -21,7 +24,6 @@ class Variant0(TypedDict, total=False):
     An md5 hash of the file you're uploading. Used to check if it already exists,
     and validate its contents before ingesting.
     """
-
 
 class Variant1(TypedDict, total=False):
     account_id: Required[str]
@@ -39,7 +41,6 @@ class Variant1(TypedDict, total=False):
     filename: Required[str]
     """The filename you have successfully uploaded."""
 
-
 class Variant2(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
@@ -49,6 +50,5 @@ class Variant2(TypedDict, total=False):
 
     current_bookmark: Required[str]
     """This identifies the currently-running import, checking its status."""
-
 
 DatabaseImportParams: TypeAlias = Union[Variant0, Variant1, Variant2]

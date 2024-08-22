@@ -2,14 +2,20 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Required, Annotated, Literal
+
 from typing import Union
+
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["StreamListParams"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
+__all__ = ["StreamListParams"]
 
 class StreamListParams(TypedDict, total=False):
     account_id: Required[str]
@@ -21,7 +27,7 @@ class StreamListParams(TypedDict, total=False):
     creator: str
     """A user-defined identifier for the media creator."""
 
-    end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    end: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """Lists videos created before the specified date."""
 
     include_counts: bool
@@ -36,7 +42,7 @@ class StreamListParams(TypedDict, total=False):
     This field can be set with or after the upload request.
     """
 
-    start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    start: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """Lists videos created after the specified date."""
 
     status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"]

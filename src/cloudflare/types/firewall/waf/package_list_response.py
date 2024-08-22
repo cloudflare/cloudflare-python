@@ -1,21 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from typing_extensions import Literal, TypeAlias
-
 from ...._models import BaseModel
+
+from typing import Optional, List, Union
+
 from ...shared.response_info import ResponseInfo
 
-__all__ = [
-    "PackageListResponse",
-    "FirewallAPIResponseCollection",
-    "FirewallAPIResponseCollectionResultInfo",
-    "Result",
-    "ResultResult",
-    "ResultResultFirewallPackageDefinition",
-    "ResultResultFirewallAnomalyPackage",
-]
+from typing_extensions import Literal, TypeAlias
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["PackageListResponse", "FirewallAPIResponseCollection", "FirewallAPIResponseCollectionResultInfo", "Result", "ResultResult", "ResultResultFirewallPackageDefinition", "ResultResultFirewallAnomalyPackage"]
 
 class FirewallAPIResponseCollectionResultInfo(BaseModel):
     count: Optional[float] = None
@@ -30,7 +27,6 @@ class FirewallAPIResponseCollectionResultInfo(BaseModel):
     total_count: Optional[float] = None
     """Total results available without any search parameters"""
 
-
 class FirewallAPIResponseCollection(BaseModel):
     errors: List[ResponseInfo]
 
@@ -42,7 +38,6 @@ class FirewallAPIResponseCollection(BaseModel):
     """Whether the API call was successful"""
 
     result_info: Optional[FirewallAPIResponseCollectionResultInfo] = None
-
 
 class ResultResultFirewallPackageDefinition(BaseModel):
     id: str
@@ -76,7 +71,6 @@ class ResultResultFirewallPackageDefinition(BaseModel):
     zone.
     """
 
-
 class ResultResultFirewallAnomalyPackage(BaseModel):
     id: str
     """Identifier"""
@@ -109,12 +103,9 @@ class ResultResultFirewallAnomalyPackage(BaseModel):
     zone.
     """
 
-
 ResultResult: TypeAlias = Union[ResultResultFirewallPackageDefinition, ResultResultFirewallAnomalyPackage]
-
 
 class Result(BaseModel):
     result: Optional[List[ResultResult]] = None
-
 
 PackageListResponse: TypeAlias = Union[FirewallAPIResponseCollection, Result]

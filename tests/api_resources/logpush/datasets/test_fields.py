@@ -2,19 +2,24 @@
 
 from __future__ import annotations
 
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from typing import Optional, Any, cast
+
 import os
-from typing import Any, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestFields:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -23,7 +28,7 @@ class TestFields:
             dataset_id="gateway_dns",
             account_id="account_id",
         )
-        assert_matches_type(object, field, path=["response"])
+        assert_matches_type(object, field, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -32,20 +37,21 @@ class TestFields:
             dataset_id="gateway_dns",
             account_id="account_id",
         )
-        assert_matches_type(object, field, path=["response"])
+        assert_matches_type(object, field, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
+
         response = client.logpush.datasets.fields.with_raw_response.get(
             dataset_id="gateway_dns",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         field = response.parse()
-        assert_matches_type(object, field, path=["response"])
+        assert_matches_type(object, field, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -53,12 +59,12 @@ class TestFields:
         with client.logpush.datasets.fields.with_streaming_response.get(
             dataset_id="gateway_dns",
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             field = response.parse()
-            assert_matches_type(object, field, path=["response"])
+            assert_matches_type(object, field, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -66,26 +72,25 @@ class TestFields:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
-            client.logpush.datasets.fields.with_raw_response.get(
-                dataset_id="",
-                account_id="account_id",
-            )
+          client.logpush.datasets.fields.with_raw_response.get(
+              dataset_id="",
+              account_id="account_id",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.logpush.datasets.fields.with_raw_response.get(
-                dataset_id="gateway_dns",
-                account_id="",
-            )
+          client.logpush.datasets.fields.with_raw_response.get(
+              dataset_id="gateway_dns",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.logpush.datasets.fields.with_raw_response.get(
-                dataset_id="gateway_dns",
-                account_id="account_id",
-            )
-
-
+          client.logpush.datasets.fields.with_raw_response.get(
+              dataset_id="gateway_dns",
+              account_id="account_id",
+          )
 class TestAsyncFields:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -94,7 +99,7 @@ class TestAsyncFields:
             dataset_id="gateway_dns",
             account_id="account_id",
         )
-        assert_matches_type(object, field, path=["response"])
+        assert_matches_type(object, field, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -103,20 +108,21 @@ class TestAsyncFields:
             dataset_id="gateway_dns",
             account_id="account_id",
         )
-        assert_matches_type(object, field, path=["response"])
+        assert_matches_type(object, field, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.logpush.datasets.fields.with_raw_response.get(
             dataset_id="gateway_dns",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         field = await response.parse()
-        assert_matches_type(object, field, path=["response"])
+        assert_matches_type(object, field, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -124,12 +130,12 @@ class TestAsyncFields:
         async with async_client.logpush.datasets.fields.with_streaming_response.get(
             dataset_id="gateway_dns",
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             field = await response.parse()
-            assert_matches_type(object, field, path=["response"])
+            assert_matches_type(object, field, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -137,19 +143,19 @@ class TestAsyncFields:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
-            await async_client.logpush.datasets.fields.with_raw_response.get(
-                dataset_id="",
-                account_id="account_id",
-            )
+          await async_client.logpush.datasets.fields.with_raw_response.get(
+              dataset_id="",
+              account_id="account_id",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.logpush.datasets.fields.with_raw_response.get(
-                dataset_id="gateway_dns",
-                account_id="",
-            )
+          await async_client.logpush.datasets.fields.with_raw_response.get(
+              dataset_id="gateway_dns",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.logpush.datasets.fields.with_raw_response.get(
-                dataset_id="gateway_dns",
-                account_id="account_id",
-            )
+          await async_client.logpush.datasets.fields.with_raw_response.get(
+              dataset_id="gateway_dns",
+              account_id="account_id",
+          )

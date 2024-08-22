@@ -6,7 +6,6 @@ from typing_extensions import Literal, TypedDict
 
 __all__ = ["AccessRuleIPConfigurationParam"]
 
-
 class AccessRuleIPConfigurationParam(TypedDict, total=False):
     target: Literal["ip"]
     """The configuration target.

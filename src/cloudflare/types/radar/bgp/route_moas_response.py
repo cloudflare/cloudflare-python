@@ -1,11 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-
 from ...._models import BaseModel
 
-__all__ = ["RouteMoasResponse", "Meta", "Moa", "MoaOrigin"]
+from typing import List
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["RouteMoasResponse", "Meta", "Moa", "MoaOrigin"]
 
 class Meta(BaseModel):
     data_time: str
@@ -14,7 +17,6 @@ class Meta(BaseModel):
 
     total_peers: int
 
-
 class MoaOrigin(BaseModel):
     origin: int
 
@@ -22,12 +24,10 @@ class MoaOrigin(BaseModel):
 
     rpki_validation: str
 
-
 class Moa(BaseModel):
     origins: List[MoaOrigin]
 
     prefix: str
-
 
 class RouteMoasResponse(BaseModel):
     meta: Meta

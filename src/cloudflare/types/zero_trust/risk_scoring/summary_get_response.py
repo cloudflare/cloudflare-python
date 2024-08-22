@@ -1,13 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-from datetime import datetime
-from typing_extensions import Literal
-
 from ...._models import BaseModel
 
-__all__ = ["SummaryGetResponse", "User"]
+from datetime import datetime
 
+from typing_extensions import Literal
+
+from typing import List
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["SummaryGetResponse", "User"]
 
 class User(BaseModel):
     email: str
@@ -21,7 +26,6 @@ class User(BaseModel):
     name: str
 
     user_id: str
-
 
 class SummaryGetResponse(BaseModel):
     users: List[User]

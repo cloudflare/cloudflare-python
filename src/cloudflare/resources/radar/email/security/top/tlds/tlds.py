@@ -2,56 +2,47 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from .spam import (
-    SpamResource,
-    AsyncSpamResource,
-    SpamResourceWithRawResponse,
-    AsyncSpamResourceWithRawResponse,
-    SpamResourceWithStreamingResponse,
-    AsyncSpamResourceWithStreamingResponse,
-)
-from .spoof import (
-    SpoofResource,
-    AsyncSpoofResource,
-    SpoofResourceWithRawResponse,
-    AsyncSpoofResourceWithRawResponse,
-    SpoofResourceWithStreamingResponse,
-    AsyncSpoofResourceWithStreamingResponse,
-)
-from .malicious import (
-    MaliciousResource,
-    AsyncMaliciousResource,
-    MaliciousResourceWithRawResponse,
-    AsyncMaliciousResourceWithRawResponse,
-    MaliciousResourceWithStreamingResponse,
-    AsyncMaliciousResourceWithStreamingResponse,
-)
-from ......._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .malicious import MaliciousResource, AsyncMaliciousResource
+
 from ......._compat import cached_property
-from ......._resource import SyncAPIResource, AsyncAPIResource
-from ......._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ......._wrappers import ResultWrapper
-from ......._base_client import make_request_options
-from .......types.radar.email.security.top import tld_get_params
+
+from .spam import SpamResource, AsyncSpamResource
+
+from .spoof import SpoofResource, AsyncSpoofResource
+
 from .......types.radar.email.security.top.tld_get_response import TldGetResponse
 
-__all__ = ["TldsResource", "AsyncTldsResource"]
+from ......._wrappers import ResultWrapper
 
+from ......._utils import maybe_transform, async_maybe_transform
+
+from ......._base_client import make_request_options
+
+from typing import Type, List, Union
+
+from typing_extensions import Literal
+
+from datetime import datetime
+
+from ......._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ......._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ......._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ......._resource import SyncAPIResource, AsyncAPIResource
+from .......types import shared_params
+from .......types.radar.email.security.top import tld_get_params
+from .malicious import MaliciousResource, AsyncMaliciousResource, MaliciousResourceWithRawResponse, AsyncMaliciousResourceWithRawResponse, MaliciousResourceWithStreamingResponse, AsyncMaliciousResourceWithStreamingResponse
+from .spam import SpamResource, AsyncSpamResource, SpamResourceWithRawResponse, AsyncSpamResourceWithRawResponse, SpamResourceWithStreamingResponse, AsyncSpamResourceWithStreamingResponse
+from .spoof import SpoofResource, AsyncSpoofResource, SpoofResourceWithRawResponse, AsyncSpoofResourceWithRawResponse, SpoofResourceWithStreamingResponse, AsyncSpoofResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+
+__all__ = ["TldsResource", "AsyncTldsResource"]
 
 class TldsResource(SyncAPIResource):
     @cached_property
@@ -74,28 +65,26 @@ class TldsResource(SyncAPIResource):
     def with_streaming_response(self) -> TldsResourceWithStreamingResponse:
         return TldsResourceWithStreamingResponse(self)
 
-    def get(
-        self,
-        *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tld_category: Literal["CLASSIC", "COUNTRY"] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TldGetResponse:
+    def get(self,
+    *,
+    arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+    dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    limit: int | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+    tld_category: Literal["CLASSIC", "COUNTRY"] | NotGiven = NOT_GIVEN,
+    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TldGetResponse:
         """Get the top TLDs by email messages.
 
         Values are a percentage out of the total
@@ -138,33 +127,22 @@ class TldsResource(SyncAPIResource):
         """
         return self._get(
             "/radar/email/security/top/tlds",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "arc": arc,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "dkim": dkim,
-                        "dmarc": dmarc,
-                        "format": format,
-                        "limit": limit,
-                        "name": name,
-                        "spf": spf,
-                        "tld_category": tld_category,
-                        "tls_version": tls_version,
-                    },
-                    tld_get_params.TldGetParams,
-                ),
-                post_parser=ResultWrapper[TldGetResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "arc": arc,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "dkim": dkim,
+                "dmarc": dmarc,
+                "format": format,
+                "limit": limit,
+                "name": name,
+                "spf": spf,
+                "tld_category": tld_category,
+                "tls_version": tls_version,
+            }, tld_get_params.TldGetParams), post_parser=ResultWrapper[TldGetResponse]._unwrapper),
             cast_to=cast(Type[TldGetResponse], ResultWrapper[TldGetResponse]),
         )
-
 
 class AsyncTldsResource(AsyncAPIResource):
     @cached_property
@@ -187,28 +165,26 @@ class AsyncTldsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTldsResourceWithStreamingResponse:
         return AsyncTldsResourceWithStreamingResponse(self)
 
-    async def get(
-        self,
-        *,
-        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-        tld_category: Literal["CLASSIC", "COUNTRY"] | NotGiven = NOT_GIVEN,
-        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TldGetResponse:
+    async def get(self,
+    *,
+    arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+    dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    limit: int | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+    tld_category: Literal["CLASSIC", "COUNTRY"] | NotGiven = NOT_GIVEN,
+    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TldGetResponse:
         """Get the top TLDs by email messages.
 
         Values are a percentage out of the total
@@ -251,33 +227,22 @@ class AsyncTldsResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/email/security/top/tlds",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "arc": arc,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "dkim": dkim,
-                        "dmarc": dmarc,
-                        "format": format,
-                        "limit": limit,
-                        "name": name,
-                        "spf": spf,
-                        "tld_category": tld_category,
-                        "tls_version": tls_version,
-                    },
-                    tld_get_params.TldGetParams,
-                ),
-                post_parser=ResultWrapper[TldGetResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "arc": arc,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "dkim": dkim,
+                "dmarc": dmarc,
+                "format": format,
+                "limit": limit,
+                "name": name,
+                "spf": spf,
+                "tld_category": tld_category,
+                "tls_version": tls_version,
+            }, tld_get_params.TldGetParams), post_parser=ResultWrapper[TldGetResponse]._unwrapper),
             cast_to=cast(Type[TldGetResponse], ResultWrapper[TldGetResponse]),
         )
-
 
 class TldsResourceWithRawResponse:
     def __init__(self, tlds: TldsResource) -> None:
@@ -299,7 +264,6 @@ class TldsResourceWithRawResponse:
     def spoof(self) -> SpoofResourceWithRawResponse:
         return SpoofResourceWithRawResponse(self._tlds.spoof)
 
-
 class AsyncTldsResourceWithRawResponse:
     def __init__(self, tlds: AsyncTldsResource) -> None:
         self._tlds = tlds
@@ -320,7 +284,6 @@ class AsyncTldsResourceWithRawResponse:
     def spoof(self) -> AsyncSpoofResourceWithRawResponse:
         return AsyncSpoofResourceWithRawResponse(self._tlds.spoof)
 
-
 class TldsResourceWithStreamingResponse:
     def __init__(self, tlds: TldsResource) -> None:
         self._tlds = tlds
@@ -340,7 +303,6 @@ class TldsResourceWithStreamingResponse:
     @cached_property
     def spoof(self) -> SpoofResourceWithStreamingResponse:
         return SpoofResourceWithStreamingResponse(self._tlds.spoof)
-
 
 class AsyncTldsResourceWithStreamingResponse:
     def __init__(self, tlds: AsyncTldsResource) -> None:

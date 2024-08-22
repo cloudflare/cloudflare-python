@@ -1,34 +1,25 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
-
-from pydantic import Field as FieldInfo
-
 from ...._models import BaseModel
-from ..device_experience_monitor import DeviceExperienceMonitor
+
+from typing import List, Optional
+
 from .http_tests.test_stat_over_time import TestStatOverTime
 
-__all__ = [
-    "Traceroute",
-    "TracerouteStats",
-    "TracerouteStatsAvailabilityPct",
-    "TracerouteStatsAvailabilityPctSlot",
-    "TracerouteStatsPacketLossPct",
-    "TracerouteStatsPacketLossPctSlot",
-    "TracerouteStatsByColo",
-    "TracerouteStatsByColoAvailabilityPct",
-    "TracerouteStatsByColoAvailabilityPctSlot",
-    "TracerouteStatsByColoPacketLossPct",
-    "TracerouteStatsByColoPacketLossPctSlot",
-]
+from typing_extensions import Literal
 
+from ..device_experience_monitor import DeviceExperienceMonitor
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["Traceroute", "TracerouteStats", "TracerouteStatsAvailabilityPct", "TracerouteStatsAvailabilityPctSlot", "TracerouteStatsPacketLossPct", "TracerouteStatsPacketLossPctSlot", "TracerouteStatsByColo", "TracerouteStatsByColoAvailabilityPct", "TracerouteStatsByColoAvailabilityPctSlot", "TracerouteStatsByColoPacketLossPct", "TracerouteStatsByColoPacketLossPctSlot"]
 
 class TracerouteStatsAvailabilityPctSlot(BaseModel):
     timestamp: str
 
     value: float
-
 
 class TracerouteStatsAvailabilityPct(BaseModel):
     slots: List[TracerouteStatsAvailabilityPctSlot]
@@ -42,12 +33,10 @@ class TracerouteStatsAvailabilityPct(BaseModel):
     min: Optional[float] = None
     """lowest observed in the time period"""
 
-
 class TracerouteStatsPacketLossPctSlot(BaseModel):
     timestamp: str
 
     value: float
-
 
 class TracerouteStatsPacketLossPct(BaseModel):
     slots: List[TracerouteStatsPacketLossPctSlot]
@@ -61,25 +50,22 @@ class TracerouteStatsPacketLossPct(BaseModel):
     min: Optional[float] = None
     """lowest observed in the time period"""
 
-
 class TracerouteStats(BaseModel):
-    availability_pct: TracerouteStatsAvailabilityPct = FieldInfo(alias="availabilityPct")
+    availability_pct: TracerouteStatsAvailabilityPct = FieldInfo(alias = "availabilityPct")
 
-    hops_count: TestStatOverTime = FieldInfo(alias="hopsCount")
+    hops_count: TestStatOverTime = FieldInfo(alias = "hopsCount")
 
-    packet_loss_pct: TracerouteStatsPacketLossPct = FieldInfo(alias="packetLossPct")
+    packet_loss_pct: TracerouteStatsPacketLossPct = FieldInfo(alias = "packetLossPct")
 
-    round_trip_time_ms: TestStatOverTime = FieldInfo(alias="roundTripTimeMs")
+    round_trip_time_ms: TestStatOverTime = FieldInfo(alias = "roundTripTimeMs")
 
-    unique_devices_total: int = FieldInfo(alias="uniqueDevicesTotal")
+    unique_devices_total: int = FieldInfo(alias = "uniqueDevicesTotal")
     """Count of unique devices that have run this test in the given time period"""
-
 
 class TracerouteStatsByColoAvailabilityPctSlot(BaseModel):
     timestamp: str
 
     value: float
-
 
 class TracerouteStatsByColoAvailabilityPct(BaseModel):
     slots: List[TracerouteStatsByColoAvailabilityPctSlot]
@@ -93,12 +79,10 @@ class TracerouteStatsByColoAvailabilityPct(BaseModel):
     min: Optional[float] = None
     """lowest observed in the time period"""
 
-
 class TracerouteStatsByColoPacketLossPctSlot(BaseModel):
     timestamp: str
 
     value: float
-
 
 class TracerouteStatsByColoPacketLossPct(BaseModel):
     slots: List[TracerouteStatsByColoPacketLossPctSlot]
@@ -112,21 +96,19 @@ class TracerouteStatsByColoPacketLossPct(BaseModel):
     min: Optional[float] = None
     """lowest observed in the time period"""
 
-
 class TracerouteStatsByColo(BaseModel):
-    availability_pct: TracerouteStatsByColoAvailabilityPct = FieldInfo(alias="availabilityPct")
+    availability_pct: TracerouteStatsByColoAvailabilityPct = FieldInfo(alias = "availabilityPct")
 
     colo: str
 
-    hops_count: TestStatOverTime = FieldInfo(alias="hopsCount")
+    hops_count: TestStatOverTime = FieldInfo(alias = "hopsCount")
 
-    packet_loss_pct: TracerouteStatsByColoPacketLossPct = FieldInfo(alias="packetLossPct")
+    packet_loss_pct: TracerouteStatsByColoPacketLossPct = FieldInfo(alias = "packetLossPct")
 
-    round_trip_time_ms: TestStatOverTime = FieldInfo(alias="roundTripTimeMs")
+    round_trip_time_ms: TestStatOverTime = FieldInfo(alias = "roundTripTimeMs")
 
-    unique_devices_total: int = FieldInfo(alias="uniqueDevicesTotal")
+    unique_devices_total: int = FieldInfo(alias = "uniqueDevicesTotal")
     """Count of unique devices that have run this test in the given time period"""
-
 
 class Traceroute(BaseModel):
     host: str
@@ -144,8 +126,6 @@ class Traceroute(BaseModel):
 
     targeted: Optional[bool] = None
 
-    traceroute_stats: Optional[TracerouteStats] = FieldInfo(alias="tracerouteStats", default=None)
+    traceroute_stats: Optional[TracerouteStats] = FieldInfo(alias = "tracerouteStats", default = None)
 
-    traceroute_stats_by_colo: Optional[List[TracerouteStatsByColo]] = FieldInfo(
-        alias="tracerouteStatsByColo", default=None
-    )
+    traceroute_stats_by_colo: Optional[List[TracerouteStatsByColo]] = FieldInfo(alias = "tracerouteStatsByColo", default = None)

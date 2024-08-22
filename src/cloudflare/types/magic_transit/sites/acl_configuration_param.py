@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
-from typing_extensions import Required, TypedDict
+from typing import Iterable, List
 
 from .subnet import Subnet
 
-__all__ = ["ACLConfigurationParam"]
+from typing_extensions import TypedDict, Required
 
+__all__ = ["ACLConfigurationParam"]
 
 class ACLConfigurationParam(TypedDict, total=False):
     lan_id: Required[str]

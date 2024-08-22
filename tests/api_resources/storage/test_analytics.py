@@ -2,28 +2,43 @@
 
 from __future__ import annotations
 
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from typing import Optional, Any, cast
+
+from cloudflare.types.storage import Schema, Components
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.storage import analytics_list_params
+from cloudflare.types.storage import analytics_stored_params
 from cloudflare._utils import parse_datetime
-from cloudflare.types.storage import Schema, Components
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestAnalytics:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         analytics = client.storage.analytics.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Schema], analytics, path=["response"])
+        assert_matches_type(Optional[Schema], analytics, path=['response'])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -39,45 +54,46 @@ class TestAnalytics:
                 "until": parse_datetime("2019-01-02T03:20:00Z"),
             },
         )
-        assert_matches_type(Optional[Schema], analytics, path=["response"])
+        assert_matches_type(Optional[Schema], analytics, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
+
         response = client.storage.analytics.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         analytics = response.parse()
-        assert_matches_type(Optional[Schema], analytics, path=["response"])
+        assert_matches_type(Optional[Schema], analytics, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.storage.analytics.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             analytics = response.parse()
-            assert_matches_type(Optional[Schema], analytics, path=["response"])
+            assert_matches_type(Optional[Schema], analytics, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.storage.analytics.with_raw_response.list(
-                account_id="",
-            )
+          client.storage.analytics.with_raw_response.list(
+              account_id="",
+          )
 
     @parametrize
     def test_method_stored(self, client: Cloudflare) -> None:
         analytics = client.storage.analytics.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Components], analytics, path=["response"])
+        assert_matches_type(Optional[Components], analytics, path=['response'])
 
     @parametrize
     def test_method_stored_with_all_params(self, client: Cloudflare) -> None:
@@ -93,49 +109,49 @@ class TestAnalytics:
                 "until": parse_datetime("2019-01-02T03:20:00Z"),
             },
         )
-        assert_matches_type(Optional[Components], analytics, path=["response"])
+        assert_matches_type(Optional[Components], analytics, path=['response'])
 
     @parametrize
     def test_raw_response_stored(self, client: Cloudflare) -> None:
+
         response = client.storage.analytics.with_raw_response.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         analytics = response.parse()
-        assert_matches_type(Optional[Components], analytics, path=["response"])
+        assert_matches_type(Optional[Components], analytics, path=['response'])
 
     @parametrize
     def test_streaming_response_stored(self, client: Cloudflare) -> None:
         with client.storage.analytics.with_streaming_response.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             analytics = response.parse()
-            assert_matches_type(Optional[Components], analytics, path=["response"])
+            assert_matches_type(Optional[Components], analytics, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_stored(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.storage.analytics.with_raw_response.stored(
-                account_id="",
-            )
-
-
+          client.storage.analytics.with_raw_response.stored(
+              account_id="",
+          )
 class TestAsyncAnalytics:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         analytics = await async_client.storage.analytics.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Schema], analytics, path=["response"])
+        assert_matches_type(Optional[Schema], analytics, path=['response'])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -151,45 +167,46 @@ class TestAsyncAnalytics:
                 "until": parse_datetime("2019-01-02T03:20:00Z"),
             },
         )
-        assert_matches_type(Optional[Schema], analytics, path=["response"])
+        assert_matches_type(Optional[Schema], analytics, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.storage.analytics.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         analytics = await response.parse()
-        assert_matches_type(Optional[Schema], analytics, path=["response"])
+        assert_matches_type(Optional[Schema], analytics, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.storage.analytics.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             analytics = await response.parse()
-            assert_matches_type(Optional[Schema], analytics, path=["response"])
+            assert_matches_type(Optional[Schema], analytics, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.storage.analytics.with_raw_response.list(
-                account_id="",
-            )
+          await async_client.storage.analytics.with_raw_response.list(
+              account_id="",
+          )
 
     @parametrize
     async def test_method_stored(self, async_client: AsyncCloudflare) -> None:
         analytics = await async_client.storage.analytics.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Components], analytics, path=["response"])
+        assert_matches_type(Optional[Components], analytics, path=['response'])
 
     @parametrize
     async def test_method_stored_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -205,35 +222,36 @@ class TestAsyncAnalytics:
                 "until": parse_datetime("2019-01-02T03:20:00Z"),
             },
         )
-        assert_matches_type(Optional[Components], analytics, path=["response"])
+        assert_matches_type(Optional[Components], analytics, path=['response'])
 
     @parametrize
     async def test_raw_response_stored(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.storage.analytics.with_raw_response.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         analytics = await response.parse()
-        assert_matches_type(Optional[Components], analytics, path=["response"])
+        assert_matches_type(Optional[Components], analytics, path=['response'])
 
     @parametrize
     async def test_streaming_response_stored(self, async_client: AsyncCloudflare) -> None:
         async with async_client.storage.analytics.with_streaming_response.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             analytics = await response.parse()
-            assert_matches_type(Optional[Components], analytics, path=["response"])
+            assert_matches_type(Optional[Components], analytics, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_stored(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.storage.analytics.with_raw_response.stored(
-                account_id="",
-            )
+          await async_client.storage.analytics.with_raw_response.stored(
+              account_id="",
+          )

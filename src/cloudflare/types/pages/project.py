@@ -1,48 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-from datetime import datetime
+from ..._models import BaseModel
+
+from typing import Optional, Dict, List
+
 from typing_extensions import Literal
 
-from ..._models import BaseModel
 from .deployment import Deployment
 
-__all__ = [
-    "Project",
-    "BuildConfig",
-    "DeploymentConfigs",
-    "DeploymentConfigsPreview",
-    "DeploymentConfigsPreviewAIBindings",
-    "DeploymentConfigsPreviewAnalyticsEngineDatasets",
-    "DeploymentConfigsPreviewD1Databases",
-    "DeploymentConfigsPreviewDurableObjectNamespaces",
-    "DeploymentConfigsPreviewEnvVars",
-    "DeploymentConfigsPreviewHyperdriveBindings",
-    "DeploymentConfigsPreviewKVNamespaces",
-    "DeploymentConfigsPreviewMTLSCertificates",
-    "DeploymentConfigsPreviewPlacement",
-    "DeploymentConfigsPreviewQueueProducers",
-    "DeploymentConfigsPreviewR2Buckets",
-    "DeploymentConfigsPreviewServices",
-    "DeploymentConfigsPreviewVectorizeBindings",
-    "DeploymentConfigsProduction",
-    "DeploymentConfigsProductionAIBindings",
-    "DeploymentConfigsProductionAnalyticsEngineDatasets",
-    "DeploymentConfigsProductionD1Databases",
-    "DeploymentConfigsProductionDurableObjectNamespaces",
-    "DeploymentConfigsProductionEnvVars",
-    "DeploymentConfigsProductionHyperdriveBindings",
-    "DeploymentConfigsProductionKVNamespaces",
-    "DeploymentConfigsProductionMTLSCertificates",
-    "DeploymentConfigsProductionPlacement",
-    "DeploymentConfigsProductionQueueProducers",
-    "DeploymentConfigsProductionR2Buckets",
-    "DeploymentConfigsProductionServices",
-    "DeploymentConfigsProductionVectorizeBindings",
-    "Source",
-    "SourceConfig",
-]
+from datetime import datetime
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["Project", "BuildConfig", "DeploymentConfigs", "DeploymentConfigsPreview", "DeploymentConfigsPreviewAIBindings", "DeploymentConfigsPreviewAnalyticsEngineDatasets", "DeploymentConfigsPreviewD1Databases", "DeploymentConfigsPreviewDurableObjectNamespaces", "DeploymentConfigsPreviewEnvVars", "DeploymentConfigsPreviewHyperdriveBindings", "DeploymentConfigsPreviewKVNamespaces", "DeploymentConfigsPreviewMTLSCertificates", "DeploymentConfigsPreviewPlacement", "DeploymentConfigsPreviewQueueProducers", "DeploymentConfigsPreviewR2Buckets", "DeploymentConfigsPreviewServices", "DeploymentConfigsPreviewVectorizeBindings", "DeploymentConfigsProduction", "DeploymentConfigsProductionAIBindings", "DeploymentConfigsProductionAnalyticsEngineDatasets", "DeploymentConfigsProductionD1Databases", "DeploymentConfigsProductionDurableObjectNamespaces", "DeploymentConfigsProductionEnvVars", "DeploymentConfigsProductionHyperdriveBindings", "DeploymentConfigsProductionKVNamespaces", "DeploymentConfigsProductionMTLSCertificates", "DeploymentConfigsProductionPlacement", "DeploymentConfigsProductionQueueProducers", "DeploymentConfigsProductionR2Buckets", "DeploymentConfigsProductionServices", "DeploymentConfigsProductionVectorizeBindings", "Source", "SourceConfig"]
 
 class BuildConfig(BaseModel):
     build_caching: Optional[bool] = None
@@ -63,25 +35,20 @@ class BuildConfig(BaseModel):
     web_analytics_token: Optional[str] = None
     """The auth token for analytics."""
 
-
 class DeploymentConfigsPreviewAIBindings(BaseModel):
     project_id: Optional[str] = None
-
 
 class DeploymentConfigsPreviewAnalyticsEngineDatasets(BaseModel):
     dataset: Optional[str] = None
     """Name of the dataset."""
 
-
 class DeploymentConfigsPreviewD1Databases(BaseModel):
     id: Optional[str] = None
     """UUID of the D1 database."""
 
-
 class DeploymentConfigsPreviewDurableObjectNamespaces(BaseModel):
     namespace_id: Optional[str] = None
     """ID of the Durabble Object namespace."""
-
 
 class DeploymentConfigsPreviewEnvVars(BaseModel):
     value: str
@@ -90,29 +57,23 @@ class DeploymentConfigsPreviewEnvVars(BaseModel):
     type: Optional[Literal["plain_text", "secret_text"]] = None
     """The type of environment variable."""
 
-
 class DeploymentConfigsPreviewHyperdriveBindings(BaseModel):
     id: Optional[str] = None
-
 
 class DeploymentConfigsPreviewKVNamespaces(BaseModel):
     namespace_id: Optional[str] = None
     """ID of the KV namespace."""
 
-
 class DeploymentConfigsPreviewMTLSCertificates(BaseModel):
     certificate_id: Optional[str] = None
-
 
 class DeploymentConfigsPreviewPlacement(BaseModel):
     mode: Optional[str] = None
     """Placement mode."""
 
-
 class DeploymentConfigsPreviewQueueProducers(BaseModel):
     name: Optional[str] = None
     """Name of the Queue."""
-
 
 class DeploymentConfigsPreviewR2Buckets(BaseModel):
     jurisdiction: Optional[str] = None
@@ -120,7 +81,6 @@ class DeploymentConfigsPreviewR2Buckets(BaseModel):
 
     name: Optional[str] = None
     """Name of the R2 bucket."""
-
 
 class DeploymentConfigsPreviewServices(BaseModel):
     entrypoint: Optional[str] = None
@@ -132,10 +92,8 @@ class DeploymentConfigsPreviewServices(BaseModel):
     service: Optional[str] = None
     """The Service name."""
 
-
 class DeploymentConfigsPreviewVectorizeBindings(BaseModel):
     index_name: Optional[str] = None
-
 
 class DeploymentConfigsPreview(BaseModel):
     ai_bindings: Optional[Dict[str, Optional[DeploymentConfigsPreviewAIBindings]]] = None
@@ -186,25 +144,20 @@ class DeploymentConfigsPreview(BaseModel):
     vectorize_bindings: Optional[Dict[str, Optional[DeploymentConfigsPreviewVectorizeBindings]]] = None
     """Vectorize bindings used for Pages Functions."""
 
-
 class DeploymentConfigsProductionAIBindings(BaseModel):
     project_id: Optional[str] = None
-
 
 class DeploymentConfigsProductionAnalyticsEngineDatasets(BaseModel):
     dataset: Optional[str] = None
     """Name of the dataset."""
 
-
 class DeploymentConfigsProductionD1Databases(BaseModel):
     id: Optional[str] = None
     """UUID of the D1 database."""
 
-
 class DeploymentConfigsProductionDurableObjectNamespaces(BaseModel):
     namespace_id: Optional[str] = None
     """ID of the Durabble Object namespace."""
-
 
 class DeploymentConfigsProductionEnvVars(BaseModel):
     value: str
@@ -213,29 +166,23 @@ class DeploymentConfigsProductionEnvVars(BaseModel):
     type: Optional[Literal["plain_text", "secret_text"]] = None
     """The type of environment variable."""
 
-
 class DeploymentConfigsProductionHyperdriveBindings(BaseModel):
     id: Optional[str] = None
-
 
 class DeploymentConfigsProductionKVNamespaces(BaseModel):
     namespace_id: Optional[str] = None
     """ID of the KV namespace."""
 
-
 class DeploymentConfigsProductionMTLSCertificates(BaseModel):
     certificate_id: Optional[str] = None
-
 
 class DeploymentConfigsProductionPlacement(BaseModel):
     mode: Optional[str] = None
     """Placement mode."""
 
-
 class DeploymentConfigsProductionQueueProducers(BaseModel):
     name: Optional[str] = None
     """Name of the Queue."""
-
 
 class DeploymentConfigsProductionR2Buckets(BaseModel):
     jurisdiction: Optional[str] = None
@@ -243,7 +190,6 @@ class DeploymentConfigsProductionR2Buckets(BaseModel):
 
     name: Optional[str] = None
     """Name of the R2 bucket."""
-
 
 class DeploymentConfigsProductionServices(BaseModel):
     entrypoint: Optional[str] = None
@@ -255,10 +201,8 @@ class DeploymentConfigsProductionServices(BaseModel):
     service: Optional[str] = None
     """The Service name."""
 
-
 class DeploymentConfigsProductionVectorizeBindings(BaseModel):
     index_name: Optional[str] = None
-
 
 class DeploymentConfigsProduction(BaseModel):
     ai_bindings: Optional[Dict[str, Optional[DeploymentConfigsProductionAIBindings]]] = None
@@ -309,14 +253,12 @@ class DeploymentConfigsProduction(BaseModel):
     vectorize_bindings: Optional[Dict[str, Optional[DeploymentConfigsProductionVectorizeBindings]]] = None
     """Vectorize bindings used for Pages Functions."""
 
-
 class DeploymentConfigs(BaseModel):
     preview: Optional[DeploymentConfigsPreview] = None
     """Configs for preview deploys."""
 
     production: Optional[DeploymentConfigsProduction] = None
     """Configs for production deploys."""
-
 
 class SourceConfig(BaseModel):
     deployments_enabled: Optional[bool] = None
@@ -341,12 +283,10 @@ class SourceConfig(BaseModel):
 
     repo_name: Optional[str] = None
 
-
 class Source(BaseModel):
     config: Optional[SourceConfig] = None
 
     type: Optional[str] = None
-
 
 class Project(BaseModel):
     id: Optional[str] = None

@@ -2,14 +2,20 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
-from .waf.override_url import OverrideURL
 from .configuration_param import ConfigurationParam
 
-__all__ = ["LockdownUpdateParams"]
+from typing import List
 
+from .waf.override_url import OverrideURL
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
+
+__all__ = ["LockdownUpdateParams"]
 
 class LockdownUpdateParams(TypedDict, total=False):
     zone_identifier: Required[str]

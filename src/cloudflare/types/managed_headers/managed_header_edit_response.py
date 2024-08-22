@@ -1,11 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-
 from ..._models import BaseModel
 
-__all__ = ["ManagedHeaderEditResponse", "ManagedRequestHeader", "ManagedResponseHeader"]
+from typing import Optional, List
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["ManagedHeaderEditResponse", "ManagedRequestHeader", "ManagedResponseHeader"]
 
 class ManagedRequestHeader(BaseModel):
     id: Optional[str] = None
@@ -17,7 +20,6 @@ class ManagedRequestHeader(BaseModel):
     enabled: Optional[bool] = None
     """When true, the Managed Transform is enabled."""
 
-
 class ManagedResponseHeader(BaseModel):
     id: Optional[str] = None
     """Human-readable identifier of the Managed Transform."""
@@ -27,7 +29,6 @@ class ManagedResponseHeader(BaseModel):
 
     enabled: Optional[bool] = None
     """When true, the Managed Transform is enabled."""
-
 
 class ManagedHeaderEditResponse(BaseModel):
     managed_request_headers: Optional[List[ManagedRequestHeader]] = None

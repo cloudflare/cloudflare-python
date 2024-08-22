@@ -1,13 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["RiskScoringGetResponse", "Event"]
+from typing_extensions import Literal
 
+from datetime import datetime
+
+from typing import Optional, List
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["RiskScoringGetResponse", "Event"]
 
 class Event(BaseModel):
     id: str
@@ -19,7 +24,6 @@ class Event(BaseModel):
     timestamp: datetime
 
     event_details: Optional[object] = None
-
 
 class RiskScoringGetResponse(BaseModel):
     email: str

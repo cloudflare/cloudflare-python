@@ -2,12 +2,16 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import TypedDict, Annotated, Required
 
 from ..._utils import PropertyInfo
 
-__all__ = ["RuleGetParams"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
+__all__ = ["RuleGetParams"]
 
 class RuleGetParams(TypedDict, total=False):
     path_id: Required[Annotated[str, PropertyInfo(alias="id")]]
