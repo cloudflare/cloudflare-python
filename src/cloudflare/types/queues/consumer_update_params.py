@@ -13,9 +13,9 @@ __all__ = ["ConsumerUpdateParams"]
 
 class ConsumerUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """Identifier"""
 
     queue_id: Required[str]
-    """Identifier."""
+    """Identifier"""
 
     body: Required[object]
