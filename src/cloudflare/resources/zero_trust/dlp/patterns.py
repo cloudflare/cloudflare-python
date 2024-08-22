@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -17,6 +19,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.zero_trust.dlp import pattern_validate_params
 from ....types.zero_trust.dlp.pattern_validate_response import PatternValidateResponse
@@ -44,7 +47,7 @@ class PatternsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PatternValidateResponse:
+    ) -> Optional[PatternValidateResponse]:
         """Validates whether this pattern is a valid regular expression.
 
         Rejects it if the
@@ -67,9 +70,13 @@ class PatternsResource(SyncAPIResource):
             f"/accounts/{account_id}/dlp/patterns/validate",
             body=maybe_transform({"regex": regex}, pattern_validate_params.PatternValidateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PatternValidateResponse]]._unwrapper,
             ),
-            cast_to=PatternValidateResponse,
+            cast_to=cast(Type[Optional[PatternValidateResponse]], ResultWrapper[PatternValidateResponse]),
         )
 
 
@@ -93,7 +100,7 @@ class AsyncPatternsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PatternValidateResponse:
+    ) -> Optional[PatternValidateResponse]:
         """Validates whether this pattern is a valid regular expression.
 
         Rejects it if the
@@ -116,9 +123,13 @@ class AsyncPatternsResource(AsyncAPIResource):
             f"/accounts/{account_id}/dlp/patterns/validate",
             body=await async_maybe_transform({"regex": regex}, pattern_validate_params.PatternValidateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PatternValidateResponse]]._unwrapper,
             ),
-            cast_to=PatternValidateResponse,
+            cast_to=cast(Type[Optional[PatternValidateResponse]], ResultWrapper[PatternValidateResponse]),
         )
 
 

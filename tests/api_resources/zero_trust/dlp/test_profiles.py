@@ -26,6 +26,14 @@ class TestProfiles:
         assert_matches_type(SyncSinglePage[Profile], profile, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        profile = client.zero_trust.dlp.profiles.list(
+            account_id="account_id",
+            all=True,
+        )
+        assert_matches_type(SyncSinglePage[Profile], profile, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.profiles.with_raw_response.list(
             account_id="account_id",
@@ -112,6 +120,14 @@ class TestAsyncProfiles:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         profile = await async_client.zero_trust.dlp.profiles.list(
             account_id="account_id",
+        )
+        assert_matches_type(AsyncSinglePage[Profile], profile, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        profile = await async_client.zero_trust.dlp.profiles.list(
+            account_id="account_id",
+            all=True,
         )
         assert_matches_type(AsyncSinglePage[Profile], profile, path=["response"])
 
