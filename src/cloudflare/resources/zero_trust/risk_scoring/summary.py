@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -13,6 +15,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.zero_trust.risk_scoring.summary_get_response import SummaryGetResponse
 
@@ -38,7 +41,7 @@ class SummaryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryGetResponse:
+    ) -> Optional[SummaryGetResponse]:
         """
         Get risk score info for all users in the account
 
@@ -56,9 +59,13 @@ class SummaryResource(SyncAPIResource):
         return self._get(
             f"/accounts/{account_id}/zt_risk_scoring/summary",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SummaryGetResponse]]._unwrapper,
             ),
-            cast_to=SummaryGetResponse,
+            cast_to=cast(Type[Optional[SummaryGetResponse]], ResultWrapper[SummaryGetResponse]),
         )
 
 
@@ -81,7 +88,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryGetResponse:
+    ) -> Optional[SummaryGetResponse]:
         """
         Get risk score info for all users in the account
 
@@ -99,9 +106,13 @@ class AsyncSummaryResource(AsyncAPIResource):
         return await self._get(
             f"/accounts/{account_id}/zt_risk_scoring/summary",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SummaryGetResponse]]._unwrapper,
             ),
-            cast_to=SummaryGetResponse,
+            cast_to=cast(Type[Optional[SummaryGetResponse]], ResultWrapper[SummaryGetResponse]),
         )
 
 

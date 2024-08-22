@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -19,6 +19,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.zero_trust.dlp import payload_log_update_params
 from ....types.zero_trust.dlp.payload_log_get_response import PayloadLogGetResponse
@@ -47,7 +48,7 @@ class PayloadLogsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PayloadLogUpdateResponse:
+    ) -> Optional[PayloadLogUpdateResponse]:
         """
         Set payload log settings
 
@@ -66,9 +67,13 @@ class PayloadLogsResource(SyncAPIResource):
             f"/accounts/{account_id}/dlp/payload_log",
             body=maybe_transform({"public_key": public_key}, payload_log_update_params.PayloadLogUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PayloadLogUpdateResponse]]._unwrapper,
             ),
-            cast_to=PayloadLogUpdateResponse,
+            cast_to=cast(Type[Optional[PayloadLogUpdateResponse]], ResultWrapper[PayloadLogUpdateResponse]),
         )
 
     def get(
@@ -81,7 +86,7 @@ class PayloadLogsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PayloadLogGetResponse:
+    ) -> Optional[PayloadLogGetResponse]:
         """
         Get payload log settings
 
@@ -99,9 +104,13 @@ class PayloadLogsResource(SyncAPIResource):
         return self._get(
             f"/accounts/{account_id}/dlp/payload_log",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PayloadLogGetResponse]]._unwrapper,
             ),
-            cast_to=PayloadLogGetResponse,
+            cast_to=cast(Type[Optional[PayloadLogGetResponse]], ResultWrapper[PayloadLogGetResponse]),
         )
 
 
@@ -125,7 +134,7 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PayloadLogUpdateResponse:
+    ) -> Optional[PayloadLogUpdateResponse]:
         """
         Set payload log settings
 
@@ -146,9 +155,13 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
                 {"public_key": public_key}, payload_log_update_params.PayloadLogUpdateParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PayloadLogUpdateResponse]]._unwrapper,
             ),
-            cast_to=PayloadLogUpdateResponse,
+            cast_to=cast(Type[Optional[PayloadLogUpdateResponse]], ResultWrapper[PayloadLogUpdateResponse]),
         )
 
     async def get(
@@ -161,7 +174,7 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PayloadLogGetResponse:
+    ) -> Optional[PayloadLogGetResponse]:
         """
         Get payload log settings
 
@@ -179,9 +192,13 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
         return await self._get(
             f"/accounts/{account_id}/dlp/payload_log",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PayloadLogGetResponse]]._unwrapper,
             ),
-            cast_to=PayloadLogGetResponse,
+            cast_to=cast(Type[Optional[PayloadLogGetResponse]], ResultWrapper[PayloadLogGetResponse]),
         )
 
 

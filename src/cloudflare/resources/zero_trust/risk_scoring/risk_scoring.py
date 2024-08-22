@@ -79,7 +79,7 @@ class RiskScoringResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RiskScoringGetResponse:
+    ) -> Optional[RiskScoringGetResponse]:
         """
         Get risk event/score information for a specific user
 
@@ -99,9 +99,13 @@ class RiskScoringResource(SyncAPIResource):
         return self._get(
             f"/accounts/{account_id}/zt_risk_scoring/{user_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RiskScoringGetResponse]]._unwrapper,
             ),
-            cast_to=RiskScoringGetResponse,
+            cast_to=cast(Type[Optional[RiskScoringGetResponse]], ResultWrapper[RiskScoringGetResponse]),
         )
 
     def reset(
@@ -177,7 +181,7 @@ class AsyncRiskScoringResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RiskScoringGetResponse:
+    ) -> Optional[RiskScoringGetResponse]:
         """
         Get risk event/score information for a specific user
 
@@ -197,9 +201,13 @@ class AsyncRiskScoringResource(AsyncAPIResource):
         return await self._get(
             f"/accounts/{account_id}/zt_risk_scoring/{user_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RiskScoringGetResponse]]._unwrapper,
             ),
-            cast_to=RiskScoringGetResponse,
+            cast_to=cast(Type[Optional[RiskScoringGetResponse]], ResultWrapper[RiskScoringGetResponse]),
         )
 
     async def reset(

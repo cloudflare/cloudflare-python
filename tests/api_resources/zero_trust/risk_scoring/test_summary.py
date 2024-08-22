@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -22,7 +22,7 @@ class TestSummary:
         summary = client.zero_trust.risk_scoring.summary.get(
             account_id="account_id",
         )
-        assert_matches_type(SummaryGetResponse, summary, path=["response"])
+        assert_matches_type(Optional[SummaryGetResponse], summary, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -33,7 +33,7 @@ class TestSummary:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = response.parse()
-        assert_matches_type(SummaryGetResponse, summary, path=["response"])
+        assert_matches_type(Optional[SummaryGetResponse], summary, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -44,7 +44,7 @@ class TestSummary:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = response.parse()
-            assert_matches_type(SummaryGetResponse, summary, path=["response"])
+            assert_matches_type(Optional[SummaryGetResponse], summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -64,7 +64,7 @@ class TestAsyncSummary:
         summary = await async_client.zero_trust.risk_scoring.summary.get(
             account_id="account_id",
         )
-        assert_matches_type(SummaryGetResponse, summary, path=["response"])
+        assert_matches_type(Optional[SummaryGetResponse], summary, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -75,7 +75,7 @@ class TestAsyncSummary:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = await response.parse()
-        assert_matches_type(SummaryGetResponse, summary, path=["response"])
+        assert_matches_type(Optional[SummaryGetResponse], summary, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -86,7 +86,7 @@ class TestAsyncSummary:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = await response.parse()
-            assert_matches_type(SummaryGetResponse, summary, path=["response"])
+            assert_matches_type(Optional[SummaryGetResponse], summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

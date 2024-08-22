@@ -15,6 +15,7 @@ from .custom import (
     AsyncCustomResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import maybe_transform
 from .predefined import (
     PredefinedResource,
     AsyncPredefinedResource,
@@ -34,6 +35,7 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
+from .....types.zero_trust.dlp import profile_list_params
 from .....types.zero_trust.dlp.profile import Profile
 
 __all__ = ["ProfilesResource", "AsyncProfilesResource"]
@@ -60,6 +62,7 @@ class ProfilesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        all: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -71,6 +74,9 @@ class ProfilesResource(SyncAPIResource):
         Lists all DLP profiles in an account.
 
         Args:
+          all: Return all profiles, including those that current account does not have access
+              to.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -85,7 +91,11 @@ class ProfilesResource(SyncAPIResource):
             f"/accounts/{account_id}/dlp/profiles",
             page=SyncSinglePage[Profile],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"all": all}, profile_list_params.ProfileListParams),
             ),
             model=cast(Any, Profile),  # Union types cannot be passed in as arguments in the type system
         )
@@ -157,6 +167,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        all: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -168,6 +179,9 @@ class AsyncProfilesResource(AsyncAPIResource):
         Lists all DLP profiles in an account.
 
         Args:
+          all: Return all profiles, including those that current account does not have access
+              to.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -182,7 +196,11 @@ class AsyncProfilesResource(AsyncAPIResource):
             f"/accounts/{account_id}/dlp/profiles",
             page=AsyncSinglePage[Profile],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"all": all}, profile_list_params.ProfileListParams),
             ),
             model=cast(Any, Profile),  # Union types cannot be passed in as arguments in the type system
         )

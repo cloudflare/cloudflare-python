@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -31,7 +31,7 @@ class TestBehaviours:
                 }
             },
         )
-        assert_matches_type(BehaviourUpdateResponse, behaviour, path=["response"])
+        assert_matches_type(Optional[BehaviourUpdateResponse], behaviour, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -48,7 +48,7 @@ class TestBehaviours:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         behaviour = response.parse()
-        assert_matches_type(BehaviourUpdateResponse, behaviour, path=["response"])
+        assert_matches_type(Optional[BehaviourUpdateResponse], behaviour, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -65,7 +65,7 @@ class TestBehaviours:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             behaviour = response.parse()
-            assert_matches_type(BehaviourUpdateResponse, behaviour, path=["response"])
+            assert_matches_type(Optional[BehaviourUpdateResponse], behaviour, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -87,7 +87,7 @@ class TestBehaviours:
         behaviour = client.zero_trust.risk_scoring.behaviours.get(
             account_id="account_id",
         )
-        assert_matches_type(BehaviourGetResponse, behaviour, path=["response"])
+        assert_matches_type(Optional[BehaviourGetResponse], behaviour, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -98,7 +98,7 @@ class TestBehaviours:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         behaviour = response.parse()
-        assert_matches_type(BehaviourGetResponse, behaviour, path=["response"])
+        assert_matches_type(Optional[BehaviourGetResponse], behaviour, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -109,7 +109,7 @@ class TestBehaviours:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             behaviour = response.parse()
-            assert_matches_type(BehaviourGetResponse, behaviour, path=["response"])
+            assert_matches_type(Optional[BehaviourGetResponse], behaviour, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -135,7 +135,7 @@ class TestAsyncBehaviours:
                 }
             },
         )
-        assert_matches_type(BehaviourUpdateResponse, behaviour, path=["response"])
+        assert_matches_type(Optional[BehaviourUpdateResponse], behaviour, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -152,7 +152,7 @@ class TestAsyncBehaviours:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         behaviour = await response.parse()
-        assert_matches_type(BehaviourUpdateResponse, behaviour, path=["response"])
+        assert_matches_type(Optional[BehaviourUpdateResponse], behaviour, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -169,7 +169,7 @@ class TestAsyncBehaviours:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             behaviour = await response.parse()
-            assert_matches_type(BehaviourUpdateResponse, behaviour, path=["response"])
+            assert_matches_type(Optional[BehaviourUpdateResponse], behaviour, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -191,7 +191,7 @@ class TestAsyncBehaviours:
         behaviour = await async_client.zero_trust.risk_scoring.behaviours.get(
             account_id="account_id",
         )
-        assert_matches_type(BehaviourGetResponse, behaviour, path=["response"])
+        assert_matches_type(Optional[BehaviourGetResponse], behaviour, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -202,7 +202,7 @@ class TestAsyncBehaviours:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         behaviour = await response.parse()
-        assert_matches_type(BehaviourGetResponse, behaviour, path=["response"])
+        assert_matches_type(Optional[BehaviourGetResponse], behaviour, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -213,7 +213,7 @@ class TestAsyncBehaviours:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             behaviour = await response.parse()
-            assert_matches_type(BehaviourGetResponse, behaviour, path=["response"])
+            assert_matches_type(Optional[BehaviourGetResponse], behaviour, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
