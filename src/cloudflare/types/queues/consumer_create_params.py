@@ -13,6 +13,6 @@ __all__ = ["ConsumerCreateParams"]
 
 class ConsumerCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """Identifier"""
 
     body: Required[object]

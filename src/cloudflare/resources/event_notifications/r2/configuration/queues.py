@@ -65,11 +65,11 @@ class QueuesResource(SyncAPIResource):
         production.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          bucket_name: Identifier.
+          bucket_name: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
           rules: Array of rules to drive notifications
 
@@ -119,11 +119,11 @@ class QueuesResource(SyncAPIResource):
         further notifications will be produced for the queue once complete.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          bucket_name: Identifier.
+          bucket_name: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -177,11 +177,11 @@ class AsyncQueuesResource(AsyncAPIResource):
         production.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          bucket_name: Identifier.
+          bucket_name: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
           rules: Array of rules to drive notifications
 
@@ -231,11 +231,11 @@ class AsyncQueuesResource(AsyncAPIResource):
         further notifications will be produced for the queue once complete.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          bucket_name: Identifier.
+          bucket_name: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 

@@ -70,9 +70,9 @@ class ConsumersResource(SyncAPIResource):
         Creates a new consumer for a queue.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -113,11 +113,11 @@ class ConsumersResource(SyncAPIResource):
         Updates the consumer for a queue, or creates one if it does not exist.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
-          consumer_id: Identifier.
+          consumer_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -161,11 +161,11 @@ class ConsumersResource(SyncAPIResource):
         Deletes the consumer for a queue.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
-          consumer_id: Identifier.
+          consumer_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -207,9 +207,9 @@ class ConsumersResource(SyncAPIResource):
         Returns the consumers for a queue.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -257,9 +257,9 @@ class AsyncConsumersResource(AsyncAPIResource):
         Creates a new consumer for a queue.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -300,11 +300,11 @@ class AsyncConsumersResource(AsyncAPIResource):
         Updates the consumer for a queue, or creates one if it does not exist.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
-          consumer_id: Identifier.
+          consumer_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -348,11 +348,11 @@ class AsyncConsumersResource(AsyncAPIResource):
         Deletes the consumer for a queue.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
-          consumer_id: Identifier.
+          consumer_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -394,9 +394,9 @@ class AsyncConsumersResource(AsyncAPIResource):
         Returns the consumers for a queue.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
