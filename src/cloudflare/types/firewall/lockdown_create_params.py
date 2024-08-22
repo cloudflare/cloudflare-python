@@ -2,14 +2,20 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
-from .waf.override_url import OverrideURL
 from .configuration_param import ConfigurationParam
 
-__all__ = ["LockdownCreateParams"]
+from typing import List
 
+from .waf.override_url import OverrideURL
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
+
+__all__ = ["LockdownCreateParams"]
 
 class LockdownCreateParams(TypedDict, total=False):
     configurations: Required[ConfigurationParam]

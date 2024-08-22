@@ -2,45 +2,29 @@
 
 from __future__ import annotations
 
-from .datasets import (
-    DatasetsResource,
-    AsyncDatasetsResource,
-    DatasetsResourceWithRawResponse,
-    AsyncDatasetsResourceWithRawResponse,
-    DatasetsResourceWithStreamingResponse,
-    AsyncDatasetsResourceWithStreamingResponse,
-)
-from .patterns import (
-    PatternsResource,
-    AsyncPatternsResource,
-    PatternsResourceWithRawResponse,
-    AsyncPatternsResourceWithRawResponse,
-    PatternsResourceWithStreamingResponse,
-    AsyncPatternsResourceWithStreamingResponse,
-)
-from .profiles import (
-    ProfilesResource,
-    AsyncProfilesResource,
-    ProfilesResourceWithRawResponse,
-    AsyncProfilesResourceWithRawResponse,
-    ProfilesResourceWithStreamingResponse,
-    AsyncProfilesResourceWithStreamingResponse,
-)
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from .payload_logs import (
-    PayloadLogsResource,
-    AsyncPayloadLogsResource,
-    PayloadLogsResourceWithRawResponse,
-    AsyncPayloadLogsResourceWithRawResponse,
-    PayloadLogsResourceWithStreamingResponse,
-    AsyncPayloadLogsResourceWithStreamingResponse,
-)
 from .datasets.datasets import DatasetsResource, AsyncDatasetsResource
+
+from ...._compat import cached_property
+
+from .patterns import PatternsResource, AsyncPatternsResource
+
+from .payload_logs import PayloadLogsResource, AsyncPayloadLogsResource
+
 from .profiles.profiles import ProfilesResource, AsyncProfilesResource
 
-__all__ = ["DLPResource", "AsyncDLPResource"]
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from .datasets import DatasetsResource, AsyncDatasetsResource, DatasetsResourceWithRawResponse, AsyncDatasetsResourceWithRawResponse, DatasetsResourceWithStreamingResponse, AsyncDatasetsResourceWithStreamingResponse
+from .patterns import PatternsResource, AsyncPatternsResource, PatternsResourceWithRawResponse, AsyncPatternsResourceWithRawResponse, PatternsResourceWithStreamingResponse, AsyncPatternsResourceWithStreamingResponse
+from .payload_logs import PayloadLogsResource, AsyncPayloadLogsResource, PayloadLogsResourceWithRawResponse, AsyncPayloadLogsResourceWithRawResponse, PayloadLogsResourceWithStreamingResponse, AsyncPayloadLogsResourceWithStreamingResponse
+from .profiles import ProfilesResource, AsyncProfilesResource, ProfilesResourceWithRawResponse, AsyncProfilesResourceWithRawResponse, ProfilesResourceWithStreamingResponse, AsyncProfilesResourceWithStreamingResponse
 
+__all__ = ["DLPResource", "AsyncDLPResource"]
 
 class DLPResource(SyncAPIResource):
     @cached_property
@@ -67,7 +51,6 @@ class DLPResource(SyncAPIResource):
     def with_streaming_response(self) -> DLPResourceWithStreamingResponse:
         return DLPResourceWithStreamingResponse(self)
 
-
 class AsyncDLPResource(AsyncAPIResource):
     @cached_property
     def datasets(self) -> AsyncDatasetsResource:
@@ -93,7 +76,6 @@ class AsyncDLPResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDLPResourceWithStreamingResponse:
         return AsyncDLPResourceWithStreamingResponse(self)
 
-
 class DLPResourceWithRawResponse:
     def __init__(self, dlp: DLPResource) -> None:
         self._dlp = dlp
@@ -113,7 +95,6 @@ class DLPResourceWithRawResponse:
     @cached_property
     def profiles(self) -> ProfilesResourceWithRawResponse:
         return ProfilesResourceWithRawResponse(self._dlp.profiles)
-
 
 class AsyncDLPResourceWithRawResponse:
     def __init__(self, dlp: AsyncDLPResource) -> None:
@@ -135,7 +116,6 @@ class AsyncDLPResourceWithRawResponse:
     def profiles(self) -> AsyncProfilesResourceWithRawResponse:
         return AsyncProfilesResourceWithRawResponse(self._dlp.profiles)
 
-
 class DLPResourceWithStreamingResponse:
     def __init__(self, dlp: DLPResource) -> None:
         self._dlp = dlp
@@ -155,7 +135,6 @@ class DLPResourceWithStreamingResponse:
     @cached_property
     def profiles(self) -> ProfilesResourceWithStreamingResponse:
         return ProfilesResourceWithStreamingResponse(self._dlp.profiles)
-
 
 class AsyncDLPResourceWithStreamingResponse:
     def __init__(self, dlp: AsyncDLPResource) -> None:

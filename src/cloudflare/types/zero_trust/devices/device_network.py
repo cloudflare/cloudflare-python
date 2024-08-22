@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from typing_extensions import Literal
-
 from ...._models import BaseModel
 
-__all__ = ["DeviceNetwork", "Config"]
+from typing import Optional
 
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["DeviceNetwork", "Config"]
 
 class Config(BaseModel):
     tls_sockaddr: str
@@ -21,7 +25,6 @@ class Config(BaseModel):
     tls_sockaddr. If absent, regular certificate verification (trusted roots, valid
     timestamp, etc) will be used to validate the certificate.
     """
-
 
 class DeviceNetwork(BaseModel):
     config: Optional[Config] = None

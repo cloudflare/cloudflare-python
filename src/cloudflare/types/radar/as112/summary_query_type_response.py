@@ -1,73 +1,63 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
-
-from pydantic import Field as FieldInfo
-
 from ...._models import BaseModel
 
-__all__ = [
-    "SummaryQueryTypeResponse",
-    "Meta",
-    "MetaDateRange",
-    "MetaConfidenceInfo",
-    "MetaConfidenceInfoAnnotation",
-    "Summary0",
-]
+from datetime import datetime
 
+from typing import Optional, List
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["SummaryQueryTypeResponse", "Meta", "MetaDateRange", "MetaConfidenceInfo", "MetaConfidenceInfoAnnotation", "Summary0"]
 
 class MetaDateRange(BaseModel):
-    end_time: datetime = FieldInfo(alias="endTime")
+    end_time: datetime = FieldInfo(alias = "endTime")
     """Adjusted end of date range."""
 
-    start_time: datetime = FieldInfo(alias="startTime")
+    start_time: datetime = FieldInfo(alias = "startTime")
     """Adjusted start of date range."""
 
-
 class MetaConfidenceInfoAnnotation(BaseModel):
-    data_source: str = FieldInfo(alias="dataSource")
+    data_source: str = FieldInfo(alias = "dataSource")
 
     description: str
 
-    event_type: str = FieldInfo(alias="eventType")
+    event_type: str = FieldInfo(alias = "eventType")
 
-    is_instantaneous: bool = FieldInfo(alias="isInstantaneous")
+    is_instantaneous: bool = FieldInfo(alias = "isInstantaneous")
 
-    end_time: Optional[datetime] = FieldInfo(alias="endTime", default=None)
+    end_time: Optional[datetime] = FieldInfo(alias = "endTime", default = None)
 
-    linked_url: Optional[str] = FieldInfo(alias="linkedUrl", default=None)
+    linked_url: Optional[str] = FieldInfo(alias = "linkedUrl", default = None)
 
-    start_time: Optional[datetime] = FieldInfo(alias="startTime", default=None)
-
+    start_time: Optional[datetime] = FieldInfo(alias = "startTime", default = None)
 
 class MetaConfidenceInfo(BaseModel):
     annotations: Optional[List[MetaConfidenceInfoAnnotation]] = None
 
     level: Optional[int] = None
 
-
 class Meta(BaseModel):
-    date_range: List[MetaDateRange] = FieldInfo(alias="dateRange")
+    date_range: List[MetaDateRange] = FieldInfo(alias = "dateRange")
 
-    last_updated: str = FieldInfo(alias="lastUpdated")
+    last_updated: str = FieldInfo(alias = "lastUpdated")
 
     normalization: str
 
-    confidence_info: Optional[MetaConfidenceInfo] = FieldInfo(alias="confidenceInfo", default=None)
-
+    confidence_info: Optional[MetaConfidenceInfo] = FieldInfo(alias = "confidenceInfo", default = None)
 
 class Summary0(BaseModel):
-    a: str = FieldInfo(alias="A")
+    a: str = FieldInfo(alias = "A")
 
-    aaaa: str = FieldInfo(alias="AAAA")
+    aaaa: str = FieldInfo(alias = "AAAA")
 
-    ptr: str = FieldInfo(alias="PTR")
+    ptr: str = FieldInfo(alias = "PTR")
 
-    soa: str = FieldInfo(alias="SOA")
+    soa: str = FieldInfo(alias = "SOA")
 
-    srv: str = FieldInfo(alias="SRV")
-
+    srv: str = FieldInfo(alias = "SRV")
 
 class SummaryQueryTypeResponse(BaseModel):
     meta: Meta

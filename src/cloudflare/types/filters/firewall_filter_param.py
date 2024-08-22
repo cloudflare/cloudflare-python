@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["FirewallFilterParam"]
 
-
 class FirewallFilterParam(TypedDict, total=False):
     description: str
     """An informative summary of the filter."""

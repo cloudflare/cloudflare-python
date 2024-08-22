@@ -4,23 +4,28 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...types.iam import permission_group_list_params
+
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ..._base_client import AsyncPaginator, make_request_options
+
+from ..._utils import maybe_transform
+
+from ..._base_client import make_request_options, AsyncPaginator
+
 from ...types.iam.permission_group_get_response import PermissionGroupGetResponse
 
-__all__ = ["PermissionGroupsResource", "AsyncPermissionGroupsResource"]
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.iam import permission_group_list_params
+
+__all__ = ["PermissionGroupsResource", "AsyncPermissionGroupsResource"]
 
 class PermissionGroupsResource(SyncAPIResource):
     @cached_property
@@ -31,22 +36,20 @@ class PermissionGroupsResource(SyncAPIResource):
     def with_streaming_response(self) -> PermissionGroupsResourceWithStreamingResponse:
         return PermissionGroupsResourceWithStreamingResponse(self)
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        label: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[object]:
+    def list(self,
+    *,
+    account_id: str,
+    id: str | NotGiven = NOT_GIVEN,
+    label: str | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[object]:
         """
         List all the permissions groups for an account.
 
@@ -72,41 +75,32 @@ class PermissionGroupsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/iam/permission_groups",
-            page=SyncV4PagePaginationArray[object],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "label": label,
-                        "name": name,
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    permission_group_list_params.PermissionGroupListParams,
-                ),
-            ),
+            page = SyncV4PagePaginationArray[object],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "id": id,
+                "label": label,
+                "name": name,
+                "page": page,
+                "per_page": per_page,
+            }, permission_group_list_params.PermissionGroupListParams)),
             model=object,
         )
 
-    def get(
-        self,
-        permission_group_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PermissionGroupGetResponse:
+    def get(self,
+    permission_group_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PermissionGroupGetResponse:
         """
         Get information about a specific permission group in an account.
 
@@ -124,19 +118,18 @@ class PermissionGroupsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not permission_group_id:
-            raise ValueError(
-                f"Expected a non-empty value for `permission_group_id` but received {permission_group_id!r}"
-            )
+          raise ValueError(
+            f'Expected a non-empty value for `permission_group_id` but received {permission_group_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/iam/permission_groups/{permission_group_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=PermissionGroupGetResponse,
         )
-
 
 class AsyncPermissionGroupsResource(AsyncAPIResource):
     @cached_property
@@ -147,22 +140,20 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPermissionGroupsResourceWithStreamingResponse:
         return AsyncPermissionGroupsResourceWithStreamingResponse(self)
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        label: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[object, AsyncV4PagePaginationArray[object]]:
+    def list(self,
+    *,
+    account_id: str,
+    id: str | NotGiven = NOT_GIVEN,
+    label: str | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[object, AsyncV4PagePaginationArray[object]]:
         """
         List all the permissions groups for an account.
 
@@ -188,41 +179,32 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/iam/permission_groups",
-            page=AsyncV4PagePaginationArray[object],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "label": label,
-                        "name": name,
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    permission_group_list_params.PermissionGroupListParams,
-                ),
-            ),
+            page = AsyncV4PagePaginationArray[object],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "id": id,
+                "label": label,
+                "name": name,
+                "page": page,
+                "per_page": per_page,
+            }, permission_group_list_params.PermissionGroupListParams)),
             model=object,
         )
 
-    async def get(
-        self,
-        permission_group_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PermissionGroupGetResponse:
+    async def get(self,
+    permission_group_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PermissionGroupGetResponse:
         """
         Get information about a specific permission group in an account.
 
@@ -240,19 +222,18 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not permission_group_id:
-            raise ValueError(
-                f"Expected a non-empty value for `permission_group_id` but received {permission_group_id!r}"
-            )
+          raise ValueError(
+            f'Expected a non-empty value for `permission_group_id` but received {permission_group_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/iam/permission_groups/{permission_group_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=PermissionGroupGetResponse,
         )
-
 
 class PermissionGroupsResourceWithRawResponse:
     def __init__(self, permission_groups: PermissionGroupsResource) -> None:
@@ -265,7 +246,6 @@ class PermissionGroupsResourceWithRawResponse:
             permission_groups.get,
         )
 
-
 class AsyncPermissionGroupsResourceWithRawResponse:
     def __init__(self, permission_groups: AsyncPermissionGroupsResource) -> None:
         self._permission_groups = permission_groups
@@ -277,7 +257,6 @@ class AsyncPermissionGroupsResourceWithRawResponse:
             permission_groups.get,
         )
 
-
 class PermissionGroupsResourceWithStreamingResponse:
     def __init__(self, permission_groups: PermissionGroupsResource) -> None:
         self._permission_groups = permission_groups
@@ -288,7 +267,6 @@ class PermissionGroupsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             permission_groups.get,
         )
-
 
 class AsyncPermissionGroupsResourceWithStreamingResponse:
     def __init__(self, permission_groups: AsyncPermissionGroupsResource) -> None:

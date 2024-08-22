@@ -2,79 +2,42 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import TypedDict, Required, TypeAlias
+
+from typing import List, Iterable, Union
+
+from .allowed_idps import AllowedIdPs
+
+from .cors_headers_param import CORSHeadersParam
+
+from .self_hosted_domains import SelfHostedDomains
 
 from .decision import Decision
-from .allowed_idps import AllowedIdPs
-from .application_type import ApplicationType
+
 from ..access_rule_param import AccessRuleParam
-from .cors_headers_param import CORSHeadersParam
-from .oidc_saas_app_param import OIDCSaaSAppParam
-from .saml_saas_app_param import SAMLSaaSAppParam
-from .self_hosted_domains import SelfHostedDomains
-from .scim_config_mapping_param import SCIMConfigMappingParam
+
 from .applications.approval_group_param import ApprovalGroupParam
-from .scim_config_authentication_oauth2_param import SCIMConfigAuthenticationOauth2Param
+
+from .scim_config_mapping_param import SCIMConfigMappingParam
+
 from .scim_config_authentication_http_basic_param import SCIMConfigAuthenticationHTTPBasicParam
+
 from .scim_config_authentication_oauth_bearer_token_param import SCIMConfigAuthenticationOAuthBearerTokenParam
 
-__all__ = [
-    "ApplicationUpdateParams",
-    "SelfHostedApplication",
-    "SelfHostedApplicationPolicy",
-    "SelfHostedApplicationPolicyAccessAppPolicyLink",
-    "SelfHostedApplicationPolicyUnionMember2",
-    "SelfHostedApplicationSCIMConfig",
-    "SelfHostedApplicationSCIMConfigAuthentication",
-    "SaaSApplication",
-    "SaaSApplicationPolicy",
-    "SaaSApplicationPolicyAccessAppPolicyLink",
-    "SaaSApplicationPolicyUnionMember2",
-    "SaaSApplicationSaaSApp",
-    "SaaSApplicationSCIMConfig",
-    "SaaSApplicationSCIMConfigAuthentication",
-    "BrowserSSHApplication",
-    "BrowserSSHApplicationPolicy",
-    "BrowserSSHApplicationPolicyAccessAppPolicyLink",
-    "BrowserSSHApplicationPolicyUnionMember2",
-    "BrowserSSHApplicationSCIMConfig",
-    "BrowserSSHApplicationSCIMConfigAuthentication",
-    "BrowserVNCApplication",
-    "BrowserVNCApplicationPolicy",
-    "BrowserVNCApplicationPolicyAccessAppPolicyLink",
-    "BrowserVNCApplicationPolicyUnionMember2",
-    "BrowserVNCApplicationSCIMConfig",
-    "BrowserVNCApplicationSCIMConfigAuthentication",
-    "AppLauncherApplication",
-    "AppLauncherApplicationFooterLink",
-    "AppLauncherApplicationLandingPageDesign",
-    "AppLauncherApplicationPolicy",
-    "AppLauncherApplicationPolicyAccessAppPolicyLink",
-    "AppLauncherApplicationPolicyUnionMember2",
-    "AppLauncherApplicationSCIMConfig",
-    "AppLauncherApplicationSCIMConfigAuthentication",
-    "DeviceEnrollmentPermissionsApplication",
-    "DeviceEnrollmentPermissionsApplicationFooterLink",
-    "DeviceEnrollmentPermissionsApplicationLandingPageDesign",
-    "DeviceEnrollmentPermissionsApplicationPolicy",
-    "DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink",
-    "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfig",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication",
-    "BrowserIsolationPermissionsApplication",
-    "BrowserIsolationPermissionsApplicationFooterLink",
-    "BrowserIsolationPermissionsApplicationLandingPageDesign",
-    "BrowserIsolationPermissionsApplicationPolicy",
-    "BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink",
-    "BrowserIsolationPermissionsApplicationPolicyUnionMember2",
-    "BrowserIsolationPermissionsApplicationSCIMConfig",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication",
-    "BookmarkApplication",
-    "BookmarkApplicationSCIMConfig",
-    "BookmarkApplicationSCIMConfigAuthentication",
-]
+from .scim_config_authentication_oauth2_param import SCIMConfigAuthenticationOauth2Param
 
+from .saml_saas_app_param import SAMLSaaSAppParam
+
+from .oidc_saas_app_param import OIDCSaaSAppParam
+
+from .application_type import ApplicationType
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ...._types import FileTypes
+from ...._utils import PropertyInfo
+
+__all__ = ["ApplicationUpdateParams", "SelfHostedApplication", "SelfHostedApplicationPolicy", "SelfHostedApplicationPolicyAccessAppPolicyLink", "SelfHostedApplicationPolicyUnionMember2", "SelfHostedApplicationSCIMConfig", "SelfHostedApplicationSCIMConfigAuthentication", "SaaSApplication", "SaaSApplicationPolicy", "SaaSApplicationPolicyAccessAppPolicyLink", "SaaSApplicationPolicyUnionMember2", "SaaSApplicationSaaSApp", "SaaSApplicationSCIMConfig", "SaaSApplicationSCIMConfigAuthentication", "BrowserSSHApplication", "BrowserSSHApplicationPolicy", "BrowserSSHApplicationPolicyAccessAppPolicyLink", "BrowserSSHApplicationPolicyUnionMember2", "BrowserSSHApplicationSCIMConfig", "BrowserSSHApplicationSCIMConfigAuthentication", "BrowserVNCApplication", "BrowserVNCApplicationPolicy", "BrowserVNCApplicationPolicyAccessAppPolicyLink", "BrowserVNCApplicationPolicyUnionMember2", "BrowserVNCApplicationSCIMConfig", "BrowserVNCApplicationSCIMConfigAuthentication", "AppLauncherApplication", "AppLauncherApplicationFooterLink", "AppLauncherApplicationLandingPageDesign", "AppLauncherApplicationPolicy", "AppLauncherApplicationPolicyAccessAppPolicyLink", "AppLauncherApplicationPolicyUnionMember2", "AppLauncherApplicationSCIMConfig", "AppLauncherApplicationSCIMConfigAuthentication", "DeviceEnrollmentPermissionsApplication", "DeviceEnrollmentPermissionsApplicationFooterLink", "DeviceEnrollmentPermissionsApplicationLandingPageDesign", "DeviceEnrollmentPermissionsApplicationPolicy", "DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink", "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2", "DeviceEnrollmentPermissionsApplicationSCIMConfig", "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication", "BrowserIsolationPermissionsApplication", "BrowserIsolationPermissionsApplicationFooterLink", "BrowserIsolationPermissionsApplicationLandingPageDesign", "BrowserIsolationPermissionsApplicationPolicy", "BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink", "BrowserIsolationPermissionsApplicationPolicyUnionMember2", "BrowserIsolationPermissionsApplicationSCIMConfig", "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication", "BookmarkApplication", "BookmarkApplicationSCIMConfig", "BookmarkApplicationSCIMConfigAuthentication"]
 
 class SelfHostedApplication(TypedDict, total=False):
     domain: Required[str]
@@ -212,7 +175,6 @@ class SelfHostedApplication(TypedDict, total=False):
     Tags are used to filter applications in the App Launcher dashboard.
     """
 
-
 class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -222,7 +184,6 @@ class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
     Must be unique for each policy within an app.
     """
-
 
 class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
@@ -287,17 +248,9 @@ class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
     ms, s, m, h.
     """
 
+SelfHostedApplicationPolicy: TypeAlias = Union[SelfHostedApplicationPolicyAccessAppPolicyLink, str, SelfHostedApplicationPolicyUnionMember2]
 
-SelfHostedApplicationPolicy: TypeAlias = Union[
-    SelfHostedApplicationPolicyAccessAppPolicyLink, str, SelfHostedApplicationPolicyUnionMember2
-]
-
-SelfHostedApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-]
-
+SelfHostedApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasicParam, SCIMConfigAuthenticationOAuthBearerTokenParam, SCIMConfigAuthenticationOauth2Param]
 
 class SelfHostedApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
@@ -330,7 +283,6 @@ class SelfHostedApplicationSCIMConfig(TypedDict, total=False):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class SaaSApplication(TypedDict, total=False):
     account_id: str
@@ -389,7 +341,6 @@ class SaaSApplication(TypedDict, total=False):
     type: str
     """The application type."""
 
-
 class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -399,7 +350,6 @@ class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
     Must be unique for each policy within an app.
     """
-
 
 class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
@@ -464,19 +414,11 @@ class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
     ms, s, m, h.
     """
 
-
-SaaSApplicationPolicy: TypeAlias = Union[
-    SaaSApplicationPolicyAccessAppPolicyLink, str, SaaSApplicationPolicyUnionMember2
-]
+SaaSApplicationPolicy: TypeAlias = Union[SaaSApplicationPolicyAccessAppPolicyLink, str, SaaSApplicationPolicyUnionMember2]
 
 SaaSApplicationSaaSApp: TypeAlias = Union[SAMLSaaSAppParam, OIDCSaaSAppParam]
 
-SaaSApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-]
-
+SaaSApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasicParam, SCIMConfigAuthenticationOAuthBearerTokenParam, SCIMConfigAuthenticationOauth2Param]
 
 class SaaSApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
@@ -509,7 +451,6 @@ class SaaSApplicationSCIMConfig(TypedDict, total=False):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class BrowserSSHApplication(TypedDict, total=False):
     domain: Required[str]
@@ -647,7 +588,6 @@ class BrowserSSHApplication(TypedDict, total=False):
     Tags are used to filter applications in the App Launcher dashboard.
     """
 
-
 class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -657,7 +597,6 @@ class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
     Must be unique for each policy within an app.
     """
-
 
 class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
@@ -722,17 +661,9 @@ class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
     ms, s, m, h.
     """
 
+BrowserSSHApplicationPolicy: TypeAlias = Union[BrowserSSHApplicationPolicyAccessAppPolicyLink, str, BrowserSSHApplicationPolicyUnionMember2]
 
-BrowserSSHApplicationPolicy: TypeAlias = Union[
-    BrowserSSHApplicationPolicyAccessAppPolicyLink, str, BrowserSSHApplicationPolicyUnionMember2
-]
-
-BrowserSSHApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-]
-
+BrowserSSHApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasicParam, SCIMConfigAuthenticationOAuthBearerTokenParam, SCIMConfigAuthenticationOauth2Param]
 
 class BrowserSSHApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
@@ -765,7 +696,6 @@ class BrowserSSHApplicationSCIMConfig(TypedDict, total=False):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class BrowserVNCApplication(TypedDict, total=False):
     domain: Required[str]
@@ -903,7 +833,6 @@ class BrowserVNCApplication(TypedDict, total=False):
     Tags are used to filter applications in the App Launcher dashboard.
     """
 
-
 class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -913,7 +842,6 @@ class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
     Must be unique for each policy within an app.
     """
-
 
 class BrowserVNCApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
@@ -978,17 +906,9 @@ class BrowserVNCApplicationPolicyUnionMember2(TypedDict, total=False):
     ms, s, m, h.
     """
 
+BrowserVNCApplicationPolicy: TypeAlias = Union[BrowserVNCApplicationPolicyAccessAppPolicyLink, str, BrowserVNCApplicationPolicyUnionMember2]
 
-BrowserVNCApplicationPolicy: TypeAlias = Union[
-    BrowserVNCApplicationPolicyAccessAppPolicyLink, str, BrowserVNCApplicationPolicyUnionMember2
-]
-
-BrowserVNCApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-]
-
+BrowserVNCApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasicParam, SCIMConfigAuthenticationOAuthBearerTokenParam, SCIMConfigAuthenticationOauth2Param]
 
 class BrowserVNCApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
@@ -1021,7 +941,6 @@ class BrowserVNCApplicationSCIMConfig(TypedDict, total=False):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class AppLauncherApplication(TypedDict, total=False):
     type: Required[ApplicationType]
@@ -1085,14 +1004,12 @@ class AppLauncherApplication(TypedDict, total=False):
     skip_app_launcher_login_page: bool
     """Determines when to skip the App Launcher landing page."""
 
-
 class AppLauncherApplicationFooterLink(TypedDict, total=False):
     name: Required[str]
     """The hypertext in the footer link."""
 
     url: Required[str]
     """the hyperlink in the footer link."""
-
 
 class AppLauncherApplicationLandingPageDesign(TypedDict, total=False):
     button_color: str
@@ -1110,7 +1027,6 @@ class AppLauncherApplicationLandingPageDesign(TypedDict, total=False):
     title: str
     """The title shown on the landing page."""
 
-
 class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -1120,7 +1036,6 @@ class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
     Must be unique for each policy within an app.
     """
-
 
 class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
@@ -1185,17 +1100,9 @@ class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
     ms, s, m, h.
     """
 
+AppLauncherApplicationPolicy: TypeAlias = Union[AppLauncherApplicationPolicyAccessAppPolicyLink, str, AppLauncherApplicationPolicyUnionMember2]
 
-AppLauncherApplicationPolicy: TypeAlias = Union[
-    AppLauncherApplicationPolicyAccessAppPolicyLink, str, AppLauncherApplicationPolicyUnionMember2
-]
-
-AppLauncherApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-]
-
+AppLauncherApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasicParam, SCIMConfigAuthenticationOAuthBearerTokenParam, SCIMConfigAuthenticationOauth2Param]
 
 class AppLauncherApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
@@ -1228,7 +1135,6 @@ class AppLauncherApplicationSCIMConfig(TypedDict, total=False):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     type: Required[ApplicationType]
@@ -1292,14 +1198,12 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     skip_app_launcher_login_page: bool
     """Determines when to skip the App Launcher landing page."""
 
-
 class DeviceEnrollmentPermissionsApplicationFooterLink(TypedDict, total=False):
     name: Required[str]
     """The hypertext in the footer link."""
 
     url: Required[str]
     """the hyperlink in the footer link."""
-
 
 class DeviceEnrollmentPermissionsApplicationLandingPageDesign(TypedDict, total=False):
     button_color: str
@@ -1317,7 +1221,6 @@ class DeviceEnrollmentPermissionsApplicationLandingPageDesign(TypedDict, total=F
     title: str
     """The title shown on the landing page."""
 
-
 class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -1327,7 +1230,6 @@ class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
 
     Must be unique for each policy within an app.
     """
-
 
 class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
@@ -1392,19 +1294,9 @@ class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     ms, s, m, h.
     """
 
+DeviceEnrollmentPermissionsApplicationPolicy: TypeAlias = Union[DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink, str, DeviceEnrollmentPermissionsApplicationPolicyUnionMember2]
 
-DeviceEnrollmentPermissionsApplicationPolicy: TypeAlias = Union[
-    DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink,
-    str,
-    DeviceEnrollmentPermissionsApplicationPolicyUnionMember2,
-]
-
-DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-]
-
+DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasicParam, SCIMConfigAuthenticationOAuthBearerTokenParam, SCIMConfigAuthenticationOauth2Param]
 
 class DeviceEnrollmentPermissionsApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
@@ -1437,7 +1329,6 @@ class DeviceEnrollmentPermissionsApplicationSCIMConfig(TypedDict, total=False):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     type: Required[ApplicationType]
@@ -1501,14 +1392,12 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     skip_app_launcher_login_page: bool
     """Determines when to skip the App Launcher landing page."""
 
-
 class BrowserIsolationPermissionsApplicationFooterLink(TypedDict, total=False):
     name: Required[str]
     """The hypertext in the footer link."""
 
     url: Required[str]
     """the hyperlink in the footer link."""
-
 
 class BrowserIsolationPermissionsApplicationLandingPageDesign(TypedDict, total=False):
     button_color: str
@@ -1526,7 +1415,6 @@ class BrowserIsolationPermissionsApplicationLandingPageDesign(TypedDict, total=F
     title: str
     """The title shown on the landing page."""
 
-
 class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -1536,7 +1424,6 @@ class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
 
     Must be unique for each policy within an app.
     """
-
 
 class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
@@ -1601,19 +1488,9 @@ class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     ms, s, m, h.
     """
 
+BrowserIsolationPermissionsApplicationPolicy: TypeAlias = Union[BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink, str, BrowserIsolationPermissionsApplicationPolicyUnionMember2]
 
-BrowserIsolationPermissionsApplicationPolicy: TypeAlias = Union[
-    BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink,
-    str,
-    BrowserIsolationPermissionsApplicationPolicyUnionMember2,
-]
-
-BrowserIsolationPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-]
-
+BrowserIsolationPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasicParam, SCIMConfigAuthenticationOAuthBearerTokenParam, SCIMConfigAuthenticationOauth2Param]
 
 class BrowserIsolationPermissionsApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
@@ -1646,7 +1523,6 @@ class BrowserIsolationPermissionsApplicationSCIMConfig(TypedDict, total=False):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class BookmarkApplication(TypedDict, total=False):
     account_id: str
@@ -1682,13 +1558,7 @@ class BookmarkApplication(TypedDict, total=False):
     type: str
     """The application type."""
 
-
-BookmarkApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-]
-
+BookmarkApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasicParam, SCIMConfigAuthenticationOAuthBearerTokenParam, SCIMConfigAuthenticationOauth2Param]
 
 class BookmarkApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
@@ -1722,14 +1592,4 @@ class BookmarkApplicationSCIMConfig(TypedDict, total=False):
     application. These can transform or filter the resources to be provisioned.
     """
 
-
-ApplicationUpdateParams: TypeAlias = Union[
-    SelfHostedApplication,
-    SaaSApplication,
-    BrowserSSHApplication,
-    BrowserVNCApplication,
-    AppLauncherApplication,
-    DeviceEnrollmentPermissionsApplication,
-    BrowserIsolationPermissionsApplication,
-    BookmarkApplication,
-]
+ApplicationUpdateParams: TypeAlias = Union[SelfHostedApplication, SaaSApplication, BrowserSSHApplication, BrowserVNCApplication, AppLauncherApplication, DeviceEnrollmentPermissionsApplication, BrowserIsolationPermissionsApplication, BookmarkApplication]

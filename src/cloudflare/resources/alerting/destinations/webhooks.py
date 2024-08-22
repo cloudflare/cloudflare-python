@@ -2,34 +2,47 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.alerting.destinations import webhook_create_params, webhook_update_params
-from ....types.alerting.destinations.webhooks import Webhooks
+
 from ....types.alerting.destinations.webhook_create_response import WebhookCreateResponse
-from ....types.alerting.destinations.webhook_delete_response import WebhookDeleteResponse
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ...._base_client import make_request_options, AsyncPaginator
+
 from ....types.alerting.destinations.webhook_update_response import WebhookUpdateResponse
 
-__all__ = ["WebhooksResource", "AsyncWebhooksResource"]
+from ....types.alerting.destinations.webhooks import Webhooks
 
+from ....pagination import SyncSinglePage, AsyncSinglePage
+
+from ....types.alerting.destinations.webhook_delete_response import WebhookDeleteResponse
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.alerting.destinations import webhook_create_params
+from ....types.alerting.destinations import webhook_update_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["WebhooksResource", "AsyncWebhooksResource"]
 
 class WebhooksResource(SyncAPIResource):
     @cached_property
@@ -40,20 +53,18 @@ class WebhooksResource(SyncAPIResource):
     def with_streaming_response(self) -> WebhooksResourceWithStreamingResponse:
         return WebhooksResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        name: str,
-        url: str,
-        secret: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WebhookCreateResponse]:
+    def create(self,
+    *,
+    account_id: str,
+    name: str,
+    url: str,
+    secret: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[WebhookCreateResponse]:
         """
         Creates a new webhook destination.
 
@@ -78,42 +89,33 @@ class WebhooksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "url": url,
-                    "secret": secret,
-                },
-                webhook_create_params.WebhookCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[WebhookCreateResponse]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "name": name,
+                "url": url,
+                "secret": secret,
+            }, webhook_create_params.WebhookCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[WebhookCreateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[WebhookCreateResponse]], ResultWrapper[WebhookCreateResponse]),
         )
 
-    def update(
-        self,
-        webhook_id: str,
-        *,
-        account_id: str,
-        name: str,
-        url: str,
-        secret: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WebhookUpdateResponse]:
+    def update(self,
+    webhook_id: str,
+    *,
+    account_id: str,
+    name: str,
+    url: str,
+    secret: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[WebhookUpdateResponse]:
         """
         Update a webhook destination.
 
@@ -140,40 +142,33 @@ class WebhooksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not webhook_id:
-            raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `webhook_id` but received {webhook_id!r}'
+          )
         return self._put(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "url": url,
-                    "secret": secret,
-                },
-                webhook_update_params.WebhookUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[WebhookUpdateResponse]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "name": name,
+                "url": url,
+                "secret": secret,
+            }, webhook_update_params.WebhookUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[WebhookUpdateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[WebhookUpdateResponse]], ResultWrapper[WebhookUpdateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Webhooks]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[Webhooks]:
         """
         Gets a list of all configured webhook destinations.
 
@@ -189,28 +184,26 @@ class WebhooksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks",
-            page=SyncSinglePage[Webhooks],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = SyncSinglePage[Webhooks],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=Webhooks,
         )
 
-    def delete(
-        self,
-        webhook_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookDeleteResponse:
+    def delete(self,
+    webhook_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> WebhookDeleteResponse:
         """
         Delete a configured webhook destination.
 
@@ -228,29 +221,29 @@ class WebhooksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not webhook_id:
-            raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `webhook_id` but received {webhook_id!r}'
+          )
         return self._delete(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=WebhookDeleteResponse,
         )
 
-    def get(
-        self,
-        webhook_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Webhooks]:
+    def get(self,
+    webhook_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Webhooks]:
         """
         Get details for a single webhooks destination.
 
@@ -268,21 +261,18 @@ class WebhooksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not webhook_id:
-            raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `webhook_id` but received {webhook_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Webhooks]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Webhooks]]._unwrapper),
             cast_to=cast(Type[Optional[Webhooks]], ResultWrapper[Webhooks]),
         )
-
 
 class AsyncWebhooksResource(AsyncAPIResource):
     @cached_property
@@ -293,20 +283,18 @@ class AsyncWebhooksResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncWebhooksResourceWithStreamingResponse:
         return AsyncWebhooksResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        name: str,
-        url: str,
-        secret: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WebhookCreateResponse]:
+    async def create(self,
+    *,
+    account_id: str,
+    name: str,
+    url: str,
+    secret: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[WebhookCreateResponse]:
         """
         Creates a new webhook destination.
 
@@ -331,42 +319,33 @@ class AsyncWebhooksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "url": url,
-                    "secret": secret,
-                },
-                webhook_create_params.WebhookCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[WebhookCreateResponse]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "name": name,
+                "url": url,
+                "secret": secret,
+            }, webhook_create_params.WebhookCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[WebhookCreateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[WebhookCreateResponse]], ResultWrapper[WebhookCreateResponse]),
         )
 
-    async def update(
-        self,
-        webhook_id: str,
-        *,
-        account_id: str,
-        name: str,
-        url: str,
-        secret: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WebhookUpdateResponse]:
+    async def update(self,
+    webhook_id: str,
+    *,
+    account_id: str,
+    name: str,
+    url: str,
+    secret: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[WebhookUpdateResponse]:
         """
         Update a webhook destination.
 
@@ -393,40 +372,33 @@ class AsyncWebhooksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not webhook_id:
-            raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `webhook_id` but received {webhook_id!r}'
+          )
         return await self._put(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "url": url,
-                    "secret": secret,
-                },
-                webhook_update_params.WebhookUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[WebhookUpdateResponse]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "name": name,
+                "url": url,
+                "secret": secret,
+            }, webhook_update_params.WebhookUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[WebhookUpdateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[WebhookUpdateResponse]], ResultWrapper[WebhookUpdateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Webhooks, AsyncSinglePage[Webhooks]]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Webhooks, AsyncSinglePage[Webhooks]]:
         """
         Gets a list of all configured webhook destinations.
 
@@ -442,28 +414,26 @@ class AsyncWebhooksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks",
-            page=AsyncSinglePage[Webhooks],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = AsyncSinglePage[Webhooks],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=Webhooks,
         )
 
-    async def delete(
-        self,
-        webhook_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookDeleteResponse:
+    async def delete(self,
+    webhook_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> WebhookDeleteResponse:
         """
         Delete a configured webhook destination.
 
@@ -481,29 +451,29 @@ class AsyncWebhooksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not webhook_id:
-            raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `webhook_id` but received {webhook_id!r}'
+          )
         return await self._delete(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=WebhookDeleteResponse,
         )
 
-    async def get(
-        self,
-        webhook_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Webhooks]:
+    async def get(self,
+    webhook_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Webhooks]:
         """
         Get details for a single webhooks destination.
 
@@ -521,21 +491,18 @@ class AsyncWebhooksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not webhook_id:
-            raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `webhook_id` but received {webhook_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Webhooks]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Webhooks]]._unwrapper),
             cast_to=cast(Type[Optional[Webhooks]], ResultWrapper[Webhooks]),
         )
-
 
 class WebhooksResourceWithRawResponse:
     def __init__(self, webhooks: WebhooksResource) -> None:
@@ -557,7 +524,6 @@ class WebhooksResourceWithRawResponse:
             webhooks.get,
         )
 
-
 class AsyncWebhooksResourceWithRawResponse:
     def __init__(self, webhooks: AsyncWebhooksResource) -> None:
         self._webhooks = webhooks
@@ -578,7 +544,6 @@ class AsyncWebhooksResourceWithRawResponse:
             webhooks.get,
         )
 
-
 class WebhooksResourceWithStreamingResponse:
     def __init__(self, webhooks: WebhooksResource) -> None:
         self._webhooks = webhooks
@@ -598,7 +563,6 @@ class WebhooksResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             webhooks.get,
         )
-
 
 class AsyncWebhooksResourceWithStreamingResponse:
     def __init__(self, webhooks: AsyncWebhooksResource) -> None:

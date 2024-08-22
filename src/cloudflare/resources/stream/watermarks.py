@@ -2,32 +2,42 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.stream import watermark_create_params
+
 from ...types.stream.watermark import Watermark
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from ...pagination import SyncSinglePage, AsyncSinglePage
+
 from ...types.stream.watermark_delete_response import WatermarkDeleteResponse
 
-__all__ = ["WatermarksResource", "AsyncWatermarksResource"]
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.stream import watermark_create_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["WatermarksResource", "AsyncWatermarksResource"]
 
 class WatermarksResource(SyncAPIResource):
     @cached_property
@@ -38,23 +48,21 @@ class WatermarksResource(SyncAPIResource):
     def with_streaming_response(self) -> WatermarksResourceWithStreamingResponse:
         return WatermarksResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        file: str,
-        name: str | NotGiven = NOT_GIVEN,
-        opacity: float | NotGiven = NOT_GIVEN,
-        padding: float | NotGiven = NOT_GIVEN,
-        position: str | NotGiven = NOT_GIVEN,
-        scale: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Watermark]:
+    def create(self,
+    *,
+    account_id: str,
+    file: str,
+    name: str | NotGiven = NOT_GIVEN,
+    opacity: float | NotGiven = NOT_GIVEN,
+    padding: float | NotGiven = NOT_GIVEN,
+    position: str | NotGiven = NOT_GIVEN,
+    scale: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Watermark]:
         """
         Creates watermark profiles using a single `HTTP POST multipart/form-data`
         request.
@@ -92,45 +100,36 @@ class WatermarksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/stream/watermarks",
-            body=maybe_transform(
-                {
-                    "file": file,
-                    "name": name,
-                    "opacity": opacity,
-                    "padding": padding,
-                    "position": position,
-                    "scale": scale,
-                },
-                watermark_create_params.WatermarkCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Watermark]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "file": file,
+                "name": name,
+                "opacity": opacity,
+                "padding": padding,
+                "position": position,
+                "scale": scale,
+            }, watermark_create_params.WatermarkCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Watermark]]._unwrapper),
             cast_to=cast(Type[Optional[Watermark]], ResultWrapper[Watermark]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Watermark]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[Watermark]:
         """
         Lists all watermark profiles for an account.
 
@@ -146,28 +145,26 @@ class WatermarksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/stream/watermarks",
-            page=SyncSinglePage[Watermark],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = SyncSinglePage[Watermark],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=Watermark,
         )
 
-    def delete(
-        self,
-        identifier: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    def delete(self,
+    identifier: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> str:
         """
         Deletes a watermark profile.
 
@@ -185,33 +182,29 @@ class WatermarksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `identifier` but received {identifier!r}'
+          )
         return self._delete(
             f"/accounts/{account_id}/stream/watermarks/{identifier}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[WatermarkDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[WatermarkDeleteResponse]]._unwrapper),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
-    def get(
-        self,
-        identifier: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Watermark]:
+    def get(self,
+    identifier: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Watermark]:
         """
         Retrieves details for a single watermark profile.
 
@@ -229,21 +222,18 @@ class WatermarksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `identifier` but received {identifier!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/stream/watermarks/{identifier}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Watermark]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Watermark]]._unwrapper),
             cast_to=cast(Type[Optional[Watermark]], ResultWrapper[Watermark]),
         )
-
 
 class AsyncWatermarksResource(AsyncAPIResource):
     @cached_property
@@ -254,23 +244,21 @@ class AsyncWatermarksResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncWatermarksResourceWithStreamingResponse:
         return AsyncWatermarksResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        file: str,
-        name: str | NotGiven = NOT_GIVEN,
-        opacity: float | NotGiven = NOT_GIVEN,
-        padding: float | NotGiven = NOT_GIVEN,
-        position: str | NotGiven = NOT_GIVEN,
-        scale: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Watermark]:
+    async def create(self,
+    *,
+    account_id: str,
+    file: str,
+    name: str | NotGiven = NOT_GIVEN,
+    opacity: float | NotGiven = NOT_GIVEN,
+    padding: float | NotGiven = NOT_GIVEN,
+    position: str | NotGiven = NOT_GIVEN,
+    scale: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Watermark]:
         """
         Creates watermark profiles using a single `HTTP POST multipart/form-data`
         request.
@@ -308,45 +296,36 @@ class AsyncWatermarksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/stream/watermarks",
-            body=await async_maybe_transform(
-                {
-                    "file": file,
-                    "name": name,
-                    "opacity": opacity,
-                    "padding": padding,
-                    "position": position,
-                    "scale": scale,
-                },
-                watermark_create_params.WatermarkCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Watermark]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "file": file,
+                "name": name,
+                "opacity": opacity,
+                "padding": padding,
+                "position": position,
+                "scale": scale,
+            }, watermark_create_params.WatermarkCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Watermark]]._unwrapper),
             cast_to=cast(Type[Optional[Watermark]], ResultWrapper[Watermark]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Watermark, AsyncSinglePage[Watermark]]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Watermark, AsyncSinglePage[Watermark]]:
         """
         Lists all watermark profiles for an account.
 
@@ -362,28 +341,26 @@ class AsyncWatermarksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/stream/watermarks",
-            page=AsyncSinglePage[Watermark],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = AsyncSinglePage[Watermark],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=Watermark,
         )
 
-    async def delete(
-        self,
-        identifier: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    async def delete(self,
+    identifier: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> str:
         """
         Deletes a watermark profile.
 
@@ -401,33 +378,29 @@ class AsyncWatermarksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `identifier` but received {identifier!r}'
+          )
         return await self._delete(
             f"/accounts/{account_id}/stream/watermarks/{identifier}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[WatermarkDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[WatermarkDeleteResponse]]._unwrapper),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
-    async def get(
-        self,
-        identifier: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Watermark]:
+    async def get(self,
+    identifier: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Watermark]:
         """
         Retrieves details for a single watermark profile.
 
@@ -445,21 +418,18 @@ class AsyncWatermarksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `identifier` but received {identifier!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/stream/watermarks/{identifier}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Watermark]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Watermark]]._unwrapper),
             cast_to=cast(Type[Optional[Watermark]], ResultWrapper[Watermark]),
         )
-
 
 class WatermarksResourceWithRawResponse:
     def __init__(self, watermarks: WatermarksResource) -> None:
@@ -478,7 +448,6 @@ class WatermarksResourceWithRawResponse:
             watermarks.get,
         )
 
-
 class AsyncWatermarksResourceWithRawResponse:
     def __init__(self, watermarks: AsyncWatermarksResource) -> None:
         self._watermarks = watermarks
@@ -496,7 +465,6 @@ class AsyncWatermarksResourceWithRawResponse:
             watermarks.get,
         )
 
-
 class WatermarksResourceWithStreamingResponse:
     def __init__(self, watermarks: WatermarksResource) -> None:
         self._watermarks = watermarks
@@ -513,7 +481,6 @@ class WatermarksResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             watermarks.get,
         )
-
 
 class AsyncWatermarksResourceWithStreamingResponse:
     def __init__(self, watermarks: AsyncWatermarksResource) -> None:

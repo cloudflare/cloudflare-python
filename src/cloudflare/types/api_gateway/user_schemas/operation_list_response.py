@@ -1,13 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union
-from typing_extensions import Literal, TypeAlias
-
-from ...._models import BaseModel
 from ..api_shield import APIShield
 
-__all__ = ["OperationListResponse", "APIShieldBasicOperation"]
+from ...._models import BaseModel
 
+from typing_extensions import Literal, TypeAlias
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["OperationListResponse", "APIShieldBasicOperation"]
 
 class APIShieldBasicOperation(BaseModel):
     endpoint: str
@@ -23,6 +26,5 @@ class APIShieldBasicOperation(BaseModel):
 
     method: Literal["GET", "POST", "HEAD", "OPTIONS", "PUT", "DELETE", "CONNECT", "PATCH", "TRACE"]
     """The HTTP method used to access the endpoint."""
-
 
 OperationListResponse: TypeAlias = Union[APIShield, APIShieldBasicOperation]

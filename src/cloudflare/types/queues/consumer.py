@@ -1,11 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
 from ..._models import BaseModel
 
-__all__ = ["Consumer", "Settings"]
+from typing import Optional
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["Consumer", "Settings"]
 
 class Settings(BaseModel):
     batch_size: Optional[float] = None
@@ -15,7 +18,6 @@ class Settings(BaseModel):
     """The maximum number of retries"""
 
     max_wait_time_ms: Optional[float] = None
-
 
 class Consumer(BaseModel):
     created_on: Optional[str] = None

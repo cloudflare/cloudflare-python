@@ -2,33 +2,49 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.devices import network_create_params, network_update_params
+
 from ....types.zero_trust.devices.device_network import DeviceNetwork
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from ....pagination import SyncSinglePage, AsyncSinglePage
+
 from ....types.zero_trust.devices.network_delete_response import NetworkDeleteResponse
 
-__all__ = ["NetworksResource", "AsyncNetworksResource"]
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
+from ....types.zero_trust.devices import network_create_params, network_update_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.zero_trust.devices import network_create_params
+from ....types.zero_trust.devices import network_update_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["NetworksResource", "AsyncNetworksResource"]
 
 class NetworksResource(SyncAPIResource):
     @cached_property
@@ -39,20 +55,18 @@ class NetworksResource(SyncAPIResource):
     def with_streaming_response(self) -> NetworksResourceWithStreamingResponse:
         return NetworksResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        config: network_create_params.Config,
-        name: str,
-        type: Literal["tls"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceNetwork]:
+    def create(self,
+    *,
+    account_id: str,
+    config: network_create_params.Config,
+    name: str,
+    type: Literal["tls"],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DeviceNetwork]:
         """
         Creates a new device managed network.
 
@@ -73,42 +87,33 @@ class NetworksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/devices/networks",
-            body=maybe_transform(
-                {
-                    "config": config,
-                    "name": name,
-                    "type": type,
-                },
-                network_create_params.NetworkCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "config": config,
+                "name": name,
+                "type": type,
+            }, network_create_params.NetworkCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper),
             cast_to=cast(Type[Optional[DeviceNetwork]], ResultWrapper[DeviceNetwork]),
         )
 
-    def update(
-        self,
-        network_id: str,
-        *,
-        account_id: str,
-        config: network_update_params.Config | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        type: Literal["tls"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceNetwork]:
+    def update(self,
+    network_id: str,
+    *,
+    account_id: str,
+    config: network_update_params.Config | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    type: Literal["tls"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DeviceNetwork]:
         """
         Updates a configured device managed network.
 
@@ -131,40 +136,33 @@ class NetworksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not network_id:
-            raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `network_id` but received {network_id!r}'
+          )
         return self._put(
             f"/accounts/{account_id}/devices/networks/{network_id}",
-            body=maybe_transform(
-                {
-                    "config": config,
-                    "name": name,
-                    "type": type,
-                },
-                network_update_params.NetworkUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "config": config,
+                "name": name,
+                "type": type,
+            }, network_update_params.NetworkUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper),
             cast_to=cast(Type[Optional[DeviceNetwork]], ResultWrapper[DeviceNetwork]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[DeviceNetwork]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[DeviceNetwork]:
         """
         Fetches a list of managed networks for an account.
 
@@ -178,28 +176,26 @@ class NetworksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/devices/networks",
-            page=SyncSinglePage[DeviceNetwork],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = SyncSinglePage[DeviceNetwork],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=DeviceNetwork,
         )
 
-    def delete(
-        self,
-        network_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkDeleteResponse]:
+    def delete(self,
+    network_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[NetworkDeleteResponse]:
         """
         Deletes a device managed network and fetches a list of the remaining device
         managed networks for an account.
@@ -216,33 +212,29 @@ class NetworksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not network_id:
-            raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `network_id` but received {network_id!r}'
+          )
         return self._delete(
             f"/accounts/{account_id}/devices/networks/{network_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[NetworkDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[NetworkDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[NetworkDeleteResponse]], ResultWrapper[NetworkDeleteResponse]),
         )
 
-    def get(
-        self,
-        network_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceNetwork]:
+    def get(self,
+    network_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DeviceNetwork]:
         """
         Fetches details for a single managed network.
 
@@ -258,21 +250,18 @@ class NetworksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not network_id:
-            raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `network_id` but received {network_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/devices/networks/{network_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper),
             cast_to=cast(Type[Optional[DeviceNetwork]], ResultWrapper[DeviceNetwork]),
         )
-
 
 class AsyncNetworksResource(AsyncAPIResource):
     @cached_property
@@ -283,20 +272,18 @@ class AsyncNetworksResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncNetworksResourceWithStreamingResponse:
         return AsyncNetworksResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        config: network_create_params.Config,
-        name: str,
-        type: Literal["tls"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceNetwork]:
+    async def create(self,
+    *,
+    account_id: str,
+    config: network_create_params.Config,
+    name: str,
+    type: Literal["tls"],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DeviceNetwork]:
         """
         Creates a new device managed network.
 
@@ -317,42 +304,33 @@ class AsyncNetworksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/devices/networks",
-            body=await async_maybe_transform(
-                {
-                    "config": config,
-                    "name": name,
-                    "type": type,
-                },
-                network_create_params.NetworkCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "config": config,
+                "name": name,
+                "type": type,
+            }, network_create_params.NetworkCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper),
             cast_to=cast(Type[Optional[DeviceNetwork]], ResultWrapper[DeviceNetwork]),
         )
 
-    async def update(
-        self,
-        network_id: str,
-        *,
-        account_id: str,
-        config: network_update_params.Config | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        type: Literal["tls"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceNetwork]:
+    async def update(self,
+    network_id: str,
+    *,
+    account_id: str,
+    config: network_update_params.Config | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    type: Literal["tls"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DeviceNetwork]:
         """
         Updates a configured device managed network.
 
@@ -375,40 +353,33 @@ class AsyncNetworksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not network_id:
-            raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `network_id` but received {network_id!r}'
+          )
         return await self._put(
             f"/accounts/{account_id}/devices/networks/{network_id}",
-            body=await async_maybe_transform(
-                {
-                    "config": config,
-                    "name": name,
-                    "type": type,
-                },
-                network_update_params.NetworkUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "config": config,
+                "name": name,
+                "type": type,
+            }, network_update_params.NetworkUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper),
             cast_to=cast(Type[Optional[DeviceNetwork]], ResultWrapper[DeviceNetwork]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DeviceNetwork, AsyncSinglePage[DeviceNetwork]]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[DeviceNetwork, AsyncSinglePage[DeviceNetwork]]:
         """
         Fetches a list of managed networks for an account.
 
@@ -422,28 +393,26 @@ class AsyncNetworksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/devices/networks",
-            page=AsyncSinglePage[DeviceNetwork],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = AsyncSinglePage[DeviceNetwork],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=DeviceNetwork,
         )
 
-    async def delete(
-        self,
-        network_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkDeleteResponse]:
+    async def delete(self,
+    network_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[NetworkDeleteResponse]:
         """
         Deletes a device managed network and fetches a list of the remaining device
         managed networks for an account.
@@ -460,33 +429,29 @@ class AsyncNetworksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not network_id:
-            raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `network_id` but received {network_id!r}'
+          )
         return await self._delete(
             f"/accounts/{account_id}/devices/networks/{network_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[NetworkDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[NetworkDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[NetworkDeleteResponse]], ResultWrapper[NetworkDeleteResponse]),
         )
 
-    async def get(
-        self,
-        network_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceNetwork]:
+    async def get(self,
+    network_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DeviceNetwork]:
         """
         Fetches details for a single managed network.
 
@@ -502,21 +467,18 @@ class AsyncNetworksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not network_id:
-            raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `network_id` but received {network_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/devices/networks/{network_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DeviceNetwork]]._unwrapper),
             cast_to=cast(Type[Optional[DeviceNetwork]], ResultWrapper[DeviceNetwork]),
         )
-
 
 class NetworksResourceWithRawResponse:
     def __init__(self, networks: NetworksResource) -> None:
@@ -538,7 +500,6 @@ class NetworksResourceWithRawResponse:
             networks.get,
         )
 
-
 class AsyncNetworksResourceWithRawResponse:
     def __init__(self, networks: AsyncNetworksResource) -> None:
         self._networks = networks
@@ -559,7 +520,6 @@ class AsyncNetworksResourceWithRawResponse:
             networks.get,
         )
 
-
 class NetworksResourceWithStreamingResponse:
     def __init__(self, networks: NetworksResource) -> None:
         self._networks = networks
@@ -579,7 +539,6 @@ class NetworksResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             networks.get,
         )
-
 
 class AsyncNetworksResourceWithStreamingResponse:
     def __init__(self, networks: AsyncNetworksResource) -> None:

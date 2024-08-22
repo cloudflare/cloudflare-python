@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import TypedDict, Required, Literal, TypeAlias
 
 from .pcap_filter_param import PCAPFilterParam
 
-__all__ = ["PCAPCreateParams", "MagicVisibilityPCAPsRequestSimple", "MagicVisibilityPCAPsRequestFull"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
+__all__ = ["PCAPCreateParams", "MagicVisibilityPCAPsRequestSimple", "MagicVisibilityPCAPsRequestFull"]
 
 class MagicVisibilityPCAPsRequestSimple(TypedDict, total=False):
     account_id: Required[str]
@@ -32,7 +35,6 @@ class MagicVisibilityPCAPsRequestSimple(TypedDict, total=False):
 
     filter_v1: PCAPFilterParam
     """The packet capture filter. When this field is empty, all packets are captured."""
-
 
 class MagicVisibilityPCAPsRequestFull(TypedDict, total=False):
     account_id: Required[str]
@@ -72,6 +74,5 @@ class MagicVisibilityPCAPsRequestFull(TypedDict, total=False):
 
     packet_limit: float
     """The limit of packets contained in a packet capture."""
-
 
 PCAPCreateParams: TypeAlias = Union[MagicVisibilityPCAPsRequestSimple, MagicVisibilityPCAPsRequestFull]

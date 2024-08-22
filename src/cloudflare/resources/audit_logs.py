@@ -2,29 +2,38 @@
 
 from __future__ import annotations
 
-from typing import Union
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform
 from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.audit_logs import audit_log_list_params
+
 from ..types.shared.audit_log import AuditLog
 
-__all__ = ["AuditLogsResource", "AsyncAuditLogsResource"]
+from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
+from .._utils import maybe_transform
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from typing import Union
+
+from datetime import datetime
+
+from typing_extensions import Literal
+
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ..types.audit_logs import audit_log_list_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from .._resource import SyncAPIResource, AsyncAPIResource
+from ..types import shared_params
+from ..types.audit_logs import audit_log_list_params
+
+__all__ = ["AuditLogsResource", "AsyncAuditLogsResource"]
 
 class AuditLogsResource(SyncAPIResource):
     @cached_property
@@ -35,28 +44,26 @@ class AuditLogsResource(SyncAPIResource):
     def with_streaming_response(self) -> AuditLogsResourceWithStreamingResponse:
         return AuditLogsResourceWithStreamingResponse(self)
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        action: audit_log_list_params.Action | NotGiven = NOT_GIVEN,
-        actor: audit_log_list_params.Actor | NotGiven = NOT_GIVEN,
-        before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
-        export: bool | NotGiven = NOT_GIVEN,
-        hide_user_logs: bool | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        zone: audit_log_list_params.Zone | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[AuditLog]:
+    def list(self,
+    *,
+    account_id: str,
+    id: str | NotGiven = NOT_GIVEN,
+    action: audit_log_list_params.Action | NotGiven = NOT_GIVEN,
+    actor: audit_log_list_params.Actor | NotGiven = NOT_GIVEN,
+    before: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
+    export: bool | NotGiven = NOT_GIVEN,
+    hide_user_logs: bool | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    since: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    zone: audit_log_list_params.Zone | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[AuditLog]:
         """Gets a list of audit logs for an account.
 
         Can be filtered by who made the
@@ -92,35 +99,27 @@ class AuditLogsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/audit_logs",
-            page=SyncV4PagePaginationArray[AuditLog],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "action": action,
-                        "actor": actor,
-                        "before": before,
-                        "direction": direction,
-                        "export": export,
-                        "hide_user_logs": hide_user_logs,
-                        "page": page,
-                        "per_page": per_page,
-                        "since": since,
-                        "zone": zone,
-                    },
-                    audit_log_list_params.AuditLogListParams,
-                ),
-            ),
+            page = SyncV4PagePaginationArray[AuditLog],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "id": id,
+                "action": action,
+                "actor": actor,
+                "before": before,
+                "direction": direction,
+                "export": export,
+                "hide_user_logs": hide_user_logs,
+                "page": page,
+                "per_page": per_page,
+                "since": since,
+                "zone": zone,
+            }, audit_log_list_params.AuditLogListParams)),
             model=AuditLog,
         )
-
 
 class AsyncAuditLogsResource(AsyncAPIResource):
     @cached_property
@@ -131,28 +130,26 @@ class AsyncAuditLogsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAuditLogsResourceWithStreamingResponse:
         return AsyncAuditLogsResourceWithStreamingResponse(self)
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
-        action: audit_log_list_params.Action | NotGiven = NOT_GIVEN,
-        actor: audit_log_list_params.Actor | NotGiven = NOT_GIVEN,
-        before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
-        export: bool | NotGiven = NOT_GIVEN,
-        hide_user_logs: bool | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        zone: audit_log_list_params.Zone | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AuditLog, AsyncV4PagePaginationArray[AuditLog]]:
+    def list(self,
+    *,
+    account_id: str,
+    id: str | NotGiven = NOT_GIVEN,
+    action: audit_log_list_params.Action | NotGiven = NOT_GIVEN,
+    actor: audit_log_list_params.Actor | NotGiven = NOT_GIVEN,
+    before: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
+    export: bool | NotGiven = NOT_GIVEN,
+    hide_user_logs: bool | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    since: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    zone: audit_log_list_params.Zone | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[AuditLog, AsyncV4PagePaginationArray[AuditLog]]:
         """Gets a list of audit logs for an account.
 
         Can be filtered by who made the
@@ -188,35 +185,27 @@ class AsyncAuditLogsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/audit_logs",
-            page=AsyncV4PagePaginationArray[AuditLog],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "id": id,
-                        "action": action,
-                        "actor": actor,
-                        "before": before,
-                        "direction": direction,
-                        "export": export,
-                        "hide_user_logs": hide_user_logs,
-                        "page": page,
-                        "per_page": per_page,
-                        "since": since,
-                        "zone": zone,
-                    },
-                    audit_log_list_params.AuditLogListParams,
-                ),
-            ),
+            page = AsyncV4PagePaginationArray[AuditLog],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "id": id,
+                "action": action,
+                "actor": actor,
+                "before": before,
+                "direction": direction,
+                "export": export,
+                "hide_user_logs": hide_user_logs,
+                "page": page,
+                "per_page": per_page,
+                "since": since,
+                "zone": zone,
+            }, audit_log_list_params.AuditLogListParams)),
             model=AuditLog,
         )
-
 
 class AuditLogsResourceWithRawResponse:
     def __init__(self, audit_logs: AuditLogsResource) -> None:
@@ -226,7 +215,6 @@ class AuditLogsResourceWithRawResponse:
             audit_logs.list,
         )
 
-
 class AsyncAuditLogsResourceWithRawResponse:
     def __init__(self, audit_logs: AsyncAuditLogsResource) -> None:
         self._audit_logs = audit_logs
@@ -235,7 +223,6 @@ class AsyncAuditLogsResourceWithRawResponse:
             audit_logs.list,
         )
 
-
 class AuditLogsResourceWithStreamingResponse:
     def __init__(self, audit_logs: AuditLogsResource) -> None:
         self._audit_logs = audit_logs
@@ -243,7 +230,6 @@ class AuditLogsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             audit_logs.list,
         )
-
 
 class AsyncAuditLogsResourceWithStreamingResponse:
     def __init__(self, audit_logs: AsyncAuditLogsResource) -> None:

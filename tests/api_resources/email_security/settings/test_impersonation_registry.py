@@ -2,27 +2,31 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.email_security.settings import ImpersonationRegistryCreateResponse, ImpersonationRegistryListResponse, ImpersonationRegistryDeleteResponse, ImpersonationRegistryEditResponse, ImpersonationRegistryGetResponse
+
 from typing import Any, cast
 
-import pytest
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.email_security.settings import (
-    ImpersonationRegistryGetResponse,
-    ImpersonationRegistryEditResponse,
-    ImpersonationRegistryListResponse,
-    ImpersonationRegistryCreateResponse,
-    ImpersonationRegistryDeleteResponse,
-)
+from cloudflare.types.email_security.settings import impersonation_registry_create_params
+from cloudflare.types.email_security.settings import impersonation_registry_list_params
+from cloudflare.types.email_security.settings import impersonation_registry_edit_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestImpersonationRegistry:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_create_overload_1(self, client: Cloudflare) -> None:
@@ -32,10 +36,11 @@ class TestImpersonationRegistry:
             is_email_regex=True,
             name="name",
         )
-        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=['response'])
 
     @parametrize
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
+
         response = client.email_security.settings.impersonation_registry.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="email",
@@ -44,9 +49,9 @@ class TestImpersonationRegistry:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         impersonation_registry = response.parse()
-        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=['response'])
 
     @parametrize
     def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
@@ -55,139 +60,122 @@ class TestImpersonationRegistry:
             email="email",
             is_email_regex=True,
             name="name",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             impersonation_registry = response.parse()
-            assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
+            assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.email_security.settings.impersonation_registry.with_raw_response.create(
-                account_id="",
-                email="email",
-                is_email_regex=True,
-                name="name",
-            )
+          client.email_security.settings.impersonation_registry.with_raw_response.create(
+              account_id="",
+              email="email",
+              is_email_regex=True,
+              name="name",
+          )
 
     @parametrize
     def test_method_create_overload_2(self, client: Cloudflare) -> None:
         impersonation_registry = client.email_security.settings.impersonation_registry.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-            ],
+            body=[{
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }, {
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }, {
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }],
         )
-        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=['response'])
 
     @parametrize
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
+
         response = client.email_security.settings.impersonation_registry.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-            ],
+            body=[{
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }, {
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }, {
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }],
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         impersonation_registry = response.parse()
-        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=['response'])
 
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.email_security.settings.impersonation_registry.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-            ],
-        ) as response:
+            body=[{
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }, {
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }, {
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }],
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             impersonation_registry = response.parse()
-            assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
+            assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.email_security.settings.impersonation_registry.with_raw_response.create(
-                account_id="",
-                body=[
-                    {
-                        "email": "email",
-                        "is_email_regex": True,
-                        "name": "name",
-                    },
-                    {
-                        "email": "email",
-                        "is_email_regex": True,
-                        "name": "name",
-                    },
-                    {
-                        "email": "email",
-                        "is_email_regex": True,
-                        "name": "name",
-                    },
-                ],
-            )
+          client.email_security.settings.impersonation_registry.with_raw_response.create(
+              account_id="",
+              body=[{
+                  "email": "email",
+                  "is_email_regex": True,
+                  "name": "name",
+              }, {
+                  "email": "email",
+                  "is_email_regex": True,
+                  "name": "name",
+              }, {
+                  "email": "email",
+                  "is_email_regex": True,
+                  "name": "name",
+              }],
+          )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         impersonation_registry = client.email_security.settings.impersonation_registry.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            SyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=["response"]
-        )
+        assert_matches_type(SyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=['response'])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -200,44 +188,39 @@ class TestImpersonationRegistry:
             provenance="A1S_INTERNAL",
             search="search",
         )
-        assert_matches_type(
-            SyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=["response"]
-        )
+        assert_matches_type(SyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
+
         response = client.email_security.settings.impersonation_registry.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         impersonation_registry = response.parse()
-        assert_matches_type(
-            SyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=["response"]
-        )
+        assert_matches_type(SyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.email_security.settings.impersonation_registry.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             impersonation_registry = response.parse()
-            assert_matches_type(
-                SyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=["response"]
-            )
+            assert_matches_type(SyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.email_security.settings.impersonation_registry.with_raw_response.list(
-                account_id="",
-            )
+          client.email_security.settings.impersonation_registry.with_raw_response.list(
+              account_id="",
+          )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
@@ -245,41 +228,42 @@ class TestImpersonationRegistry:
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ImpersonationRegistryDeleteResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryDeleteResponse, impersonation_registry, path=['response'])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
+
         response = client.email_security.settings.impersonation_registry.with_raw_response.delete(
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         impersonation_registry = response.parse()
-        assert_matches_type(ImpersonationRegistryDeleteResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryDeleteResponse, impersonation_registry, path=['response'])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.email_security.settings.impersonation_registry.with_streaming_response.delete(
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             impersonation_registry = response.parse()
-            assert_matches_type(ImpersonationRegistryDeleteResponse, impersonation_registry, path=["response"])
+            assert_matches_type(ImpersonationRegistryDeleteResponse, impersonation_registry, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.email_security.settings.impersonation_registry.with_raw_response.delete(
-                display_name_id=2403,
-                account_id="",
-            )
+          client.email_security.settings.impersonation_registry.with_raw_response.delete(
+              display_name_id=2403,
+              account_id="",
+          )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
@@ -287,7 +271,7 @@ class TestImpersonationRegistry:
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=['response'])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -298,41 +282,42 @@ class TestImpersonationRegistry:
             is_email_regex=True,
             name="name",
         )
-        assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=['response'])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
+
         response = client.email_security.settings.impersonation_registry.with_raw_response.edit(
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         impersonation_registry = response.parse()
-        assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=['response'])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.email_security.settings.impersonation_registry.with_streaming_response.edit(
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             impersonation_registry = response.parse()
-            assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=["response"])
+            assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.email_security.settings.impersonation_registry.with_raw_response.edit(
-                display_name_id=2403,
-                account_id="",
-            )
+          client.email_security.settings.impersonation_registry.with_raw_response.edit(
+              display_name_id=2403,
+              account_id="",
+          )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
@@ -340,45 +325,45 @@ class TestImpersonationRegistry:
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ImpersonationRegistryGetResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryGetResponse, impersonation_registry, path=['response'])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
+
         response = client.email_security.settings.impersonation_registry.with_raw_response.get(
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         impersonation_registry = response.parse()
-        assert_matches_type(ImpersonationRegistryGetResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryGetResponse, impersonation_registry, path=['response'])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.email_security.settings.impersonation_registry.with_streaming_response.get(
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             impersonation_registry = response.parse()
-            assert_matches_type(ImpersonationRegistryGetResponse, impersonation_registry, path=["response"])
+            assert_matches_type(ImpersonationRegistryGetResponse, impersonation_registry, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.email_security.settings.impersonation_registry.with_raw_response.get(
-                display_name_id=2403,
-                account_id="",
-            )
-
-
+          client.email_security.settings.impersonation_registry.with_raw_response.get(
+              display_name_id=2403,
+              account_id="",
+          )
 class TestAsyncImpersonationRegistry:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
@@ -388,10 +373,11 @@ class TestAsyncImpersonationRegistry:
             is_email_regex=True,
             name="name",
         )
-        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=['response'])
 
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.email_security.settings.impersonation_registry.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="email",
@@ -400,9 +386,9 @@ class TestAsyncImpersonationRegistry:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         impersonation_registry = await response.parse()
-        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=['response'])
 
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
@@ -411,139 +397,122 @@ class TestAsyncImpersonationRegistry:
             email="email",
             is_email_regex=True,
             name="name",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             impersonation_registry = await response.parse()
-            assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
+            assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.email_security.settings.impersonation_registry.with_raw_response.create(
-                account_id="",
-                email="email",
-                is_email_regex=True,
-                name="name",
-            )
+          await async_client.email_security.settings.impersonation_registry.with_raw_response.create(
+              account_id="",
+              email="email",
+              is_email_regex=True,
+              name="name",
+          )
 
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         impersonation_registry = await async_client.email_security.settings.impersonation_registry.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-            ],
+            body=[{
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }, {
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }, {
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }],
         )
-        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=['response'])
 
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.email_security.settings.impersonation_registry.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-            ],
+            body=[{
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }, {
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }, {
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }],
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         impersonation_registry = await response.parse()
-        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=['response'])
 
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.settings.impersonation_registry.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-            ],
-        ) as response:
+            body=[{
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }, {
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }, {
+                "email": "email",
+                "is_email_regex": True,
+                "name": "name",
+            }],
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             impersonation_registry = await response.parse()
-            assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
+            assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.email_security.settings.impersonation_registry.with_raw_response.create(
-                account_id="",
-                body=[
-                    {
-                        "email": "email",
-                        "is_email_regex": True,
-                        "name": "name",
-                    },
-                    {
-                        "email": "email",
-                        "is_email_regex": True,
-                        "name": "name",
-                    },
-                    {
-                        "email": "email",
-                        "is_email_regex": True,
-                        "name": "name",
-                    },
-                ],
-            )
+          await async_client.email_security.settings.impersonation_registry.with_raw_response.create(
+              account_id="",
+              body=[{
+                  "email": "email",
+                  "is_email_regex": True,
+                  "name": "name",
+              }, {
+                  "email": "email",
+                  "is_email_regex": True,
+                  "name": "name",
+              }, {
+                  "email": "email",
+                  "is_email_regex": True,
+                  "name": "name",
+              }],
+          )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         impersonation_registry = await async_client.email_security.settings.impersonation_registry.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(
-            AsyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=["response"]
-        )
+        assert_matches_type(AsyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=['response'])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -556,44 +525,39 @@ class TestAsyncImpersonationRegistry:
             provenance="A1S_INTERNAL",
             search="search",
         )
-        assert_matches_type(
-            AsyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=["response"]
-        )
+        assert_matches_type(AsyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.email_security.settings.impersonation_registry.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         impersonation_registry = await response.parse()
-        assert_matches_type(
-            AsyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=["response"]
-        )
+        assert_matches_type(AsyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.settings.impersonation_registry.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             impersonation_registry = await response.parse()
-            assert_matches_type(
-                AsyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=["response"]
-            )
+            assert_matches_type(AsyncV4PagePaginationArray[ImpersonationRegistryListResponse], impersonation_registry, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.email_security.settings.impersonation_registry.with_raw_response.list(
-                account_id="",
-            )
+          await async_client.email_security.settings.impersonation_registry.with_raw_response.list(
+              account_id="",
+          )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
@@ -601,41 +565,42 @@ class TestAsyncImpersonationRegistry:
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ImpersonationRegistryDeleteResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryDeleteResponse, impersonation_registry, path=['response'])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.email_security.settings.impersonation_registry.with_raw_response.delete(
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         impersonation_registry = await response.parse()
-        assert_matches_type(ImpersonationRegistryDeleteResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryDeleteResponse, impersonation_registry, path=['response'])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.settings.impersonation_registry.with_streaming_response.delete(
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             impersonation_registry = await response.parse()
-            assert_matches_type(ImpersonationRegistryDeleteResponse, impersonation_registry, path=["response"])
+            assert_matches_type(ImpersonationRegistryDeleteResponse, impersonation_registry, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.email_security.settings.impersonation_registry.with_raw_response.delete(
-                display_name_id=2403,
-                account_id="",
-            )
+          await async_client.email_security.settings.impersonation_registry.with_raw_response.delete(
+              display_name_id=2403,
+              account_id="",
+          )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
@@ -643,7 +608,7 @@ class TestAsyncImpersonationRegistry:
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=['response'])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -654,41 +619,42 @@ class TestAsyncImpersonationRegistry:
             is_email_regex=True,
             name="name",
         )
-        assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=['response'])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.email_security.settings.impersonation_registry.with_raw_response.edit(
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         impersonation_registry = await response.parse()
-        assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.settings.impersonation_registry.with_streaming_response.edit(
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             impersonation_registry = await response.parse()
-            assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=["response"])
+            assert_matches_type(ImpersonationRegistryEditResponse, impersonation_registry, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.email_security.settings.impersonation_registry.with_raw_response.edit(
-                display_name_id=2403,
-                account_id="",
-            )
+          await async_client.email_security.settings.impersonation_registry.with_raw_response.edit(
+              display_name_id=2403,
+              account_id="",
+          )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -696,38 +662,39 @@ class TestAsyncImpersonationRegistry:
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ImpersonationRegistryGetResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryGetResponse, impersonation_registry, path=['response'])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.email_security.settings.impersonation_registry.with_raw_response.get(
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         impersonation_registry = await response.parse()
-        assert_matches_type(ImpersonationRegistryGetResponse, impersonation_registry, path=["response"])
+        assert_matches_type(ImpersonationRegistryGetResponse, impersonation_registry, path=['response'])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.settings.impersonation_registry.with_streaming_response.get(
             display_name_id=2403,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             impersonation_registry = await response.parse()
-            assert_matches_type(ImpersonationRegistryGetResponse, impersonation_registry, path=["response"])
+            assert_matches_type(ImpersonationRegistryGetResponse, impersonation_registry, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.email_security.settings.impersonation_registry.with_raw_response.get(
-                display_name_id=2403,
-                account_id="",
-            )
+          await async_client.email_security.settings.impersonation_registry.with_raw_response.get(
+              display_name_id=2403,
+              account_id="",
+          )

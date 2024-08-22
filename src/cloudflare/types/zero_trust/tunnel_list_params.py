@@ -2,14 +2,20 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Required, Annotated, Literal
+
 from typing import Union
+
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["TunnelListParams"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
+__all__ = ["TunnelListParams"]
 
 class TunnelListParams(TypedDict, total=False):
     account_id: Required[str]
@@ -17,7 +23,7 @@ class TunnelListParams(TypedDict, total=False):
 
     exclude_prefix: str
 
-    existed_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    existed_at: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """
     If provided, include only tunnels that were created (and not deleted) before
     this time.
@@ -52,6 +58,6 @@ class TunnelListParams(TypedDict, total=False):
     uuid: str
     """UUID of the tunnel."""
 
-    was_active_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    was_active_at: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
 
-    was_inactive_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    was_inactive_at: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]

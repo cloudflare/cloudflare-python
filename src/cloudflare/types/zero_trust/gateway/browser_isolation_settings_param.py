@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["BrowserIsolationSettingsParam"]
 
-
 class BrowserIsolationSettingsParam(TypedDict, total=False):
     non_identity_enabled: bool
     """Enable non-identity onramp support for Browser Isolation."""

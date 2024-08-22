@@ -1,74 +1,71 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from ....._models import BaseModel
+
 from datetime import datetime
 
-from pydantic import Field as FieldInfo
+from typing import Optional, List
 
-from ....._models import BaseModel
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = ["TopAsesResponse", "Meta", "MetaDateRange", "MetaConfidenceInfo", "MetaConfidenceInfoAnnotation", "Top0"]
 
-
 class MetaDateRange(BaseModel):
-    end_time: datetime = FieldInfo(alias="endTime")
+    end_time: datetime = FieldInfo(alias = "endTime")
     """Adjusted end of date range."""
 
-    start_time: datetime = FieldInfo(alias="startTime")
+    start_time: datetime = FieldInfo(alias = "startTime")
     """Adjusted start of date range."""
 
-
 class MetaConfidenceInfoAnnotation(BaseModel):
-    data_source: str = FieldInfo(alias="dataSource")
+    data_source: str = FieldInfo(alias = "dataSource")
 
     description: str
 
-    event_type: str = FieldInfo(alias="eventType")
+    event_type: str = FieldInfo(alias = "eventType")
 
-    is_instantaneous: bool = FieldInfo(alias="isInstantaneous")
+    is_instantaneous: bool = FieldInfo(alias = "isInstantaneous")
 
-    end_time: Optional[datetime] = FieldInfo(alias="endTime", default=None)
+    end_time: Optional[datetime] = FieldInfo(alias = "endTime", default = None)
 
-    linked_url: Optional[str] = FieldInfo(alias="linkedUrl", default=None)
+    linked_url: Optional[str] = FieldInfo(alias = "linkedUrl", default = None)
 
-    start_time: Optional[datetime] = FieldInfo(alias="startTime", default=None)
-
+    start_time: Optional[datetime] = FieldInfo(alias = "startTime", default = None)
 
 class MetaConfidenceInfo(BaseModel):
     annotations: Optional[List[MetaConfidenceInfoAnnotation]] = None
 
     level: Optional[int] = None
 
-
 class Meta(BaseModel):
-    date_range: List[MetaDateRange] = FieldInfo(alias="dateRange")
+    date_range: List[MetaDateRange] = FieldInfo(alias = "dateRange")
 
-    last_updated: str = FieldInfo(alias="lastUpdated")
+    last_updated: str = FieldInfo(alias = "lastUpdated")
 
-    confidence_info: Optional[MetaConfidenceInfo] = FieldInfo(alias="confidenceInfo", default=None)
-
+    confidence_info: Optional[MetaConfidenceInfo] = FieldInfo(alias = "confidenceInfo", default = None)
 
 class Top0(BaseModel):
-    bandwidth_download: str = FieldInfo(alias="bandwidthDownload")
+    bandwidth_download: str = FieldInfo(alias = "bandwidthDownload")
 
-    bandwidth_upload: str = FieldInfo(alias="bandwidthUpload")
+    bandwidth_upload: str = FieldInfo(alias = "bandwidthUpload")
 
-    client_asn: float = FieldInfo(alias="clientASN")
+    client_asn: float = FieldInfo(alias = "clientASN")
 
-    client_as_name: str = FieldInfo(alias="clientASName")
+    client_as_name: str = FieldInfo(alias = "clientASName")
 
-    jitter_idle: str = FieldInfo(alias="jitterIdle")
+    jitter_idle: str = FieldInfo(alias = "jitterIdle")
 
-    jitter_loaded: str = FieldInfo(alias="jitterLoaded")
+    jitter_loaded: str = FieldInfo(alias = "jitterLoaded")
 
-    latency_idle: str = FieldInfo(alias="latencyIdle")
+    latency_idle: str = FieldInfo(alias = "latencyIdle")
 
-    latency_loaded: str = FieldInfo(alias="latencyLoaded")
+    latency_loaded: str = FieldInfo(alias = "latencyLoaded")
 
-    num_tests: float = FieldInfo(alias="numTests")
+    num_tests: float = FieldInfo(alias = "numTests")
 
-    rank_power: float = FieldInfo(alias="rankPower")
-
+    rank_power: float = FieldInfo(alias = "rankPower")
 
 class TopAsesResponse(BaseModel):
     meta: Meta

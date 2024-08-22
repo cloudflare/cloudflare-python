@@ -3,37 +3,26 @@
 from __future__ import annotations
 
 from typing import List, Iterable
+
 from typing_extensions import TypedDict
 
 __all__ = ["MigrationStepParam", "RenamedClass", "TransferredClass"]
 
-_RenamedClassReservedKeywords = TypedDict(
-    "_RenamedClassReservedKeywords",
-    {
-        "from": str,
-    },
-    total=False,
-)
-
+_RenamedClassReservedKeywords = TypedDict("_RenamedClassReservedKeywords", {
+    "from": str,
+}, total=False)
 
 class RenamedClass(_RenamedClassReservedKeywords, total=False):
     to: str
 
-
-_TransferredClassReservedKeywords = TypedDict(
-    "_TransferredClassReservedKeywords",
-    {
-        "from": str,
-    },
-    total=False,
-)
-
+_TransferredClassReservedKeywords = TypedDict("_TransferredClassReservedKeywords", {
+    "from": str,
+}, total=False)
 
 class TransferredClass(_TransferredClassReservedKeywords, total=False):
     from_script: str
 
     to: str
-
 
 class MigrationStepParam(TypedDict, total=False):
     deleted_classes: List[str]

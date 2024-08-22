@@ -2,49 +2,56 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Type, cast
-from typing_extensions import Literal
-
 import httpx
 
-from .previews import (
-    PreviewsResource,
-    AsyncPreviewsResource,
-    PreviewsResourceWithRawResponse,
-    AsyncPreviewsResourceWithRawResponse,
-    PreviewsResourceWithStreamingResponse,
-    AsyncPreviewsResourceWithStreamingResponse,
-)
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .previews import PreviewsResource, AsyncPreviewsResource
+
 from ...._compat import cached_property
-from .references import (
-    ReferencesResource,
-    AsyncReferencesResource,
-    ReferencesResourceWithRawResponse,
-    AsyncReferencesResourceWithRawResponse,
-    ReferencesResourceWithStreamingResponse,
-    AsyncReferencesResourceWithStreamingResponse,
-)
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.load_balancers import monitor_edit_params, monitor_create_params, monitor_update_params
+
+from .references import ReferencesResource, AsyncReferencesResource
+
 from ....types.load_balancers.monitor import Monitor
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from typing import Type, Dict, List
+
+from typing_extensions import Literal
+
+from ....pagination import SyncSinglePage, AsyncSinglePage
+
 from ....types.load_balancers.monitor_delete_response import MonitorDeleteResponse
 
-__all__ = ["MonitorsResource", "AsyncMonitorsResource"]
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.load_balancers import monitor_create_params
+from ....types.load_balancers import monitor_update_params
+from ....types.load_balancers import monitor_edit_params
+from .previews import PreviewsResource, AsyncPreviewsResource, PreviewsResourceWithRawResponse, AsyncPreviewsResourceWithRawResponse, PreviewsResourceWithStreamingResponse, AsyncPreviewsResourceWithStreamingResponse
+from .references import ReferencesResource, AsyncReferencesResource, ReferencesResourceWithRawResponse, AsyncReferencesResourceWithRawResponse, ReferencesResourceWithStreamingResponse, AsyncReferencesResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["MonitorsResource", "AsyncMonitorsResource"]
 
 class MonitorsResource(SyncAPIResource):
     @cached_property
@@ -63,33 +70,31 @@ class MonitorsResource(SyncAPIResource):
     def with_streaming_response(self) -> MonitorsResourceWithStreamingResponse:
         return MonitorsResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        expected_codes: str,
-        allow_insecure: bool | NotGiven = NOT_GIVEN,
-        consecutive_down: int | NotGiven = NOT_GIVEN,
-        consecutive_up: int | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expected_body: str | NotGiven = NOT_GIVEN,
-        follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        interval: int | NotGiven = NOT_GIVEN,
-        method: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
-        probe_zone: str | NotGiven = NOT_GIVEN,
-        retries: int | NotGiven = NOT_GIVEN,
-        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
-        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Monitor:
+    def create(self,
+    *,
+    account_id: str,
+    expected_codes: str,
+    allow_insecure: bool | NotGiven = NOT_GIVEN,
+    consecutive_down: int | NotGiven = NOT_GIVEN,
+    consecutive_up: int | NotGiven = NOT_GIVEN,
+    description: str | NotGiven = NOT_GIVEN,
+    expected_body: str | NotGiven = NOT_GIVEN,
+    follow_redirects: bool | NotGiven = NOT_GIVEN,
+    header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+    interval: int | NotGiven = NOT_GIVEN,
+    method: str | NotGiven = NOT_GIVEN,
+    path: str | NotGiven = NOT_GIVEN,
+    port: int | NotGiven = NOT_GIVEN,
+    probe_zone: str | NotGiven = NOT_GIVEN,
+    retries: int | NotGiven = NOT_GIVEN,
+    load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
+    type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Monitor:
         """
         Create a configured monitor.
 
@@ -154,68 +159,59 @@ class MonitorsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/load_balancers/monitors",
-            body=maybe_transform(
-                {
-                    "expected_codes": expected_codes,
-                    "allow_insecure": allow_insecure,
-                    "consecutive_down": consecutive_down,
-                    "consecutive_up": consecutive_up,
-                    "description": description,
-                    "expected_body": expected_body,
-                    "follow_redirects": follow_redirects,
-                    "header": header,
-                    "interval": interval,
-                    "method": method,
-                    "path": path,
-                    "port": port,
-                    "probe_zone": probe_zone,
-                    "retries": retries,
-                    "timeout": load_balancer_monitor_timeout,
-                    "type": type,
-                },
-                monitor_create_params.MonitorCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Monitor]._unwrapper,
-            ),
+            body=maybe_transform({
+                "expected_codes": expected_codes,
+                "allow_insecure": allow_insecure,
+                "consecutive_down": consecutive_down,
+                "consecutive_up": consecutive_up,
+                "description": description,
+                "expected_body": expected_body,
+                "follow_redirects": follow_redirects,
+                "header": header,
+                "interval": interval,
+                "method": method,
+                "path": path,
+                "port": port,
+                "probe_zone": probe_zone,
+                "retries": retries,
+                "timeout": load_balancer_monitor_timeout,
+                "type": type,
+            }, monitor_create_params.MonitorCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Monitor]._unwrapper),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
 
-    def update(
-        self,
-        monitor_id: str,
-        *,
-        account_id: str,
-        expected_codes: str,
-        allow_insecure: bool | NotGiven = NOT_GIVEN,
-        consecutive_down: int | NotGiven = NOT_GIVEN,
-        consecutive_up: int | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expected_body: str | NotGiven = NOT_GIVEN,
-        follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        interval: int | NotGiven = NOT_GIVEN,
-        method: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
-        probe_zone: str | NotGiven = NOT_GIVEN,
-        retries: int | NotGiven = NOT_GIVEN,
-        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
-        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Monitor:
+    def update(self,
+    monitor_id: str,
+    *,
+    account_id: str,
+    expected_codes: str,
+    allow_insecure: bool | NotGiven = NOT_GIVEN,
+    consecutive_down: int | NotGiven = NOT_GIVEN,
+    consecutive_up: int | NotGiven = NOT_GIVEN,
+    description: str | NotGiven = NOT_GIVEN,
+    expected_body: str | NotGiven = NOT_GIVEN,
+    follow_redirects: bool | NotGiven = NOT_GIVEN,
+    header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+    interval: int | NotGiven = NOT_GIVEN,
+    method: str | NotGiven = NOT_GIVEN,
+    path: str | NotGiven = NOT_GIVEN,
+    port: int | NotGiven = NOT_GIVEN,
+    probe_zone: str | NotGiven = NOT_GIVEN,
+    retries: int | NotGiven = NOT_GIVEN,
+    load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
+    type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Monitor:
         """
         Modify a configured monitor.
 
@@ -280,53 +276,46 @@ class MonitorsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not monitor_id:
-            raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `monitor_id` but received {monitor_id!r}'
+          )
         return self._put(
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
-            body=maybe_transform(
-                {
-                    "expected_codes": expected_codes,
-                    "allow_insecure": allow_insecure,
-                    "consecutive_down": consecutive_down,
-                    "consecutive_up": consecutive_up,
-                    "description": description,
-                    "expected_body": expected_body,
-                    "follow_redirects": follow_redirects,
-                    "header": header,
-                    "interval": interval,
-                    "method": method,
-                    "path": path,
-                    "port": port,
-                    "probe_zone": probe_zone,
-                    "retries": retries,
-                    "timeout": load_balancer_monitor_timeout,
-                    "type": type,
-                },
-                monitor_update_params.MonitorUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Monitor]._unwrapper,
-            ),
+            body=maybe_transform({
+                "expected_codes": expected_codes,
+                "allow_insecure": allow_insecure,
+                "consecutive_down": consecutive_down,
+                "consecutive_up": consecutive_up,
+                "description": description,
+                "expected_body": expected_body,
+                "follow_redirects": follow_redirects,
+                "header": header,
+                "interval": interval,
+                "method": method,
+                "path": path,
+                "port": port,
+                "probe_zone": probe_zone,
+                "retries": retries,
+                "timeout": load_balancer_monitor_timeout,
+                "type": type,
+            }, monitor_update_params.MonitorUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Monitor]._unwrapper),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Monitor]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[Monitor]:
         """
         List configured monitors for an account.
 
@@ -342,28 +331,26 @@ class MonitorsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/load_balancers/monitors",
-            page=SyncSinglePage[Monitor],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = SyncSinglePage[Monitor],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=Monitor,
         )
 
-    def delete(
-        self,
-        monitor_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorDeleteResponse:
+    def delete(self,
+    monitor_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> MonitorDeleteResponse:
         """
         Delete a configured monitor.
 
@@ -379,49 +366,45 @@ class MonitorsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not monitor_id:
-            raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `monitor_id` but received {monitor_id!r}'
+          )
         return self._delete(
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[MonitorDeleteResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[MonitorDeleteResponse]._unwrapper),
             cast_to=cast(Type[MonitorDeleteResponse], ResultWrapper[MonitorDeleteResponse]),
         )
 
-    def edit(
-        self,
-        monitor_id: str,
-        *,
-        account_id: str,
-        expected_codes: str,
-        allow_insecure: bool | NotGiven = NOT_GIVEN,
-        consecutive_down: int | NotGiven = NOT_GIVEN,
-        consecutive_up: int | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expected_body: str | NotGiven = NOT_GIVEN,
-        follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        interval: int | NotGiven = NOT_GIVEN,
-        method: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
-        probe_zone: str | NotGiven = NOT_GIVEN,
-        retries: int | NotGiven = NOT_GIVEN,
-        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
-        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Monitor:
+    def edit(self,
+    monitor_id: str,
+    *,
+    account_id: str,
+    expected_codes: str,
+    allow_insecure: bool | NotGiven = NOT_GIVEN,
+    consecutive_down: int | NotGiven = NOT_GIVEN,
+    consecutive_up: int | NotGiven = NOT_GIVEN,
+    description: str | NotGiven = NOT_GIVEN,
+    expected_body: str | NotGiven = NOT_GIVEN,
+    follow_redirects: bool | NotGiven = NOT_GIVEN,
+    header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+    interval: int | NotGiven = NOT_GIVEN,
+    method: str | NotGiven = NOT_GIVEN,
+    path: str | NotGiven = NOT_GIVEN,
+    port: int | NotGiven = NOT_GIVEN,
+    probe_zone: str | NotGiven = NOT_GIVEN,
+    retries: int | NotGiven = NOT_GIVEN,
+    load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
+    type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Monitor:
         """
         Apply changes to an existing monitor, overwriting the supplied properties.
 
@@ -486,54 +469,47 @@ class MonitorsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not monitor_id:
-            raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `monitor_id` but received {monitor_id!r}'
+          )
         return self._patch(
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
-            body=maybe_transform(
-                {
-                    "expected_codes": expected_codes,
-                    "allow_insecure": allow_insecure,
-                    "consecutive_down": consecutive_down,
-                    "consecutive_up": consecutive_up,
-                    "description": description,
-                    "expected_body": expected_body,
-                    "follow_redirects": follow_redirects,
-                    "header": header,
-                    "interval": interval,
-                    "method": method,
-                    "path": path,
-                    "port": port,
-                    "probe_zone": probe_zone,
-                    "retries": retries,
-                    "timeout": load_balancer_monitor_timeout,
-                    "type": type,
-                },
-                monitor_edit_params.MonitorEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Monitor]._unwrapper,
-            ),
+            body=maybe_transform({
+                "expected_codes": expected_codes,
+                "allow_insecure": allow_insecure,
+                "consecutive_down": consecutive_down,
+                "consecutive_up": consecutive_up,
+                "description": description,
+                "expected_body": expected_body,
+                "follow_redirects": follow_redirects,
+                "header": header,
+                "interval": interval,
+                "method": method,
+                "path": path,
+                "port": port,
+                "probe_zone": probe_zone,
+                "retries": retries,
+                "timeout": load_balancer_monitor_timeout,
+                "type": type,
+            }, monitor_edit_params.MonitorEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Monitor]._unwrapper),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
 
-    def get(
-        self,
-        monitor_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Monitor:
+    def get(self,
+    monitor_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Monitor:
         """
         List a single configured monitor for an account.
 
@@ -549,21 +525,18 @@ class MonitorsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not monitor_id:
-            raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `monitor_id` but received {monitor_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Monitor]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Monitor]._unwrapper),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
-
 
 class AsyncMonitorsResource(AsyncAPIResource):
     @cached_property
@@ -582,33 +555,31 @@ class AsyncMonitorsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncMonitorsResourceWithStreamingResponse:
         return AsyncMonitorsResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        expected_codes: str,
-        allow_insecure: bool | NotGiven = NOT_GIVEN,
-        consecutive_down: int | NotGiven = NOT_GIVEN,
-        consecutive_up: int | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expected_body: str | NotGiven = NOT_GIVEN,
-        follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        interval: int | NotGiven = NOT_GIVEN,
-        method: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
-        probe_zone: str | NotGiven = NOT_GIVEN,
-        retries: int | NotGiven = NOT_GIVEN,
-        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
-        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Monitor:
+    async def create(self,
+    *,
+    account_id: str,
+    expected_codes: str,
+    allow_insecure: bool | NotGiven = NOT_GIVEN,
+    consecutive_down: int | NotGiven = NOT_GIVEN,
+    consecutive_up: int | NotGiven = NOT_GIVEN,
+    description: str | NotGiven = NOT_GIVEN,
+    expected_body: str | NotGiven = NOT_GIVEN,
+    follow_redirects: bool | NotGiven = NOT_GIVEN,
+    header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+    interval: int | NotGiven = NOT_GIVEN,
+    method: str | NotGiven = NOT_GIVEN,
+    path: str | NotGiven = NOT_GIVEN,
+    port: int | NotGiven = NOT_GIVEN,
+    probe_zone: str | NotGiven = NOT_GIVEN,
+    retries: int | NotGiven = NOT_GIVEN,
+    load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
+    type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Monitor:
         """
         Create a configured monitor.
 
@@ -673,68 +644,59 @@ class AsyncMonitorsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/load_balancers/monitors",
-            body=await async_maybe_transform(
-                {
-                    "expected_codes": expected_codes,
-                    "allow_insecure": allow_insecure,
-                    "consecutive_down": consecutive_down,
-                    "consecutive_up": consecutive_up,
-                    "description": description,
-                    "expected_body": expected_body,
-                    "follow_redirects": follow_redirects,
-                    "header": header,
-                    "interval": interval,
-                    "method": method,
-                    "path": path,
-                    "port": port,
-                    "probe_zone": probe_zone,
-                    "retries": retries,
-                    "timeout": load_balancer_monitor_timeout,
-                    "type": type,
-                },
-                monitor_create_params.MonitorCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Monitor]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "expected_codes": expected_codes,
+                "allow_insecure": allow_insecure,
+                "consecutive_down": consecutive_down,
+                "consecutive_up": consecutive_up,
+                "description": description,
+                "expected_body": expected_body,
+                "follow_redirects": follow_redirects,
+                "header": header,
+                "interval": interval,
+                "method": method,
+                "path": path,
+                "port": port,
+                "probe_zone": probe_zone,
+                "retries": retries,
+                "timeout": load_balancer_monitor_timeout,
+                "type": type,
+            }, monitor_create_params.MonitorCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Monitor]._unwrapper),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
 
-    async def update(
-        self,
-        monitor_id: str,
-        *,
-        account_id: str,
-        expected_codes: str,
-        allow_insecure: bool | NotGiven = NOT_GIVEN,
-        consecutive_down: int | NotGiven = NOT_GIVEN,
-        consecutive_up: int | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expected_body: str | NotGiven = NOT_GIVEN,
-        follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        interval: int | NotGiven = NOT_GIVEN,
-        method: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
-        probe_zone: str | NotGiven = NOT_GIVEN,
-        retries: int | NotGiven = NOT_GIVEN,
-        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
-        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Monitor:
+    async def update(self,
+    monitor_id: str,
+    *,
+    account_id: str,
+    expected_codes: str,
+    allow_insecure: bool | NotGiven = NOT_GIVEN,
+    consecutive_down: int | NotGiven = NOT_GIVEN,
+    consecutive_up: int | NotGiven = NOT_GIVEN,
+    description: str | NotGiven = NOT_GIVEN,
+    expected_body: str | NotGiven = NOT_GIVEN,
+    follow_redirects: bool | NotGiven = NOT_GIVEN,
+    header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+    interval: int | NotGiven = NOT_GIVEN,
+    method: str | NotGiven = NOT_GIVEN,
+    path: str | NotGiven = NOT_GIVEN,
+    port: int | NotGiven = NOT_GIVEN,
+    probe_zone: str | NotGiven = NOT_GIVEN,
+    retries: int | NotGiven = NOT_GIVEN,
+    load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
+    type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Monitor:
         """
         Modify a configured monitor.
 
@@ -799,53 +761,46 @@ class AsyncMonitorsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not monitor_id:
-            raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `monitor_id` but received {monitor_id!r}'
+          )
         return await self._put(
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
-            body=await async_maybe_transform(
-                {
-                    "expected_codes": expected_codes,
-                    "allow_insecure": allow_insecure,
-                    "consecutive_down": consecutive_down,
-                    "consecutive_up": consecutive_up,
-                    "description": description,
-                    "expected_body": expected_body,
-                    "follow_redirects": follow_redirects,
-                    "header": header,
-                    "interval": interval,
-                    "method": method,
-                    "path": path,
-                    "port": port,
-                    "probe_zone": probe_zone,
-                    "retries": retries,
-                    "timeout": load_balancer_monitor_timeout,
-                    "type": type,
-                },
-                monitor_update_params.MonitorUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Monitor]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "expected_codes": expected_codes,
+                "allow_insecure": allow_insecure,
+                "consecutive_down": consecutive_down,
+                "consecutive_up": consecutive_up,
+                "description": description,
+                "expected_body": expected_body,
+                "follow_redirects": follow_redirects,
+                "header": header,
+                "interval": interval,
+                "method": method,
+                "path": path,
+                "port": port,
+                "probe_zone": probe_zone,
+                "retries": retries,
+                "timeout": load_balancer_monitor_timeout,
+                "type": type,
+            }, monitor_update_params.MonitorUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Monitor]._unwrapper),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Monitor, AsyncSinglePage[Monitor]]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Monitor, AsyncSinglePage[Monitor]]:
         """
         List configured monitors for an account.
 
@@ -861,28 +816,26 @@ class AsyncMonitorsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/load_balancers/monitors",
-            page=AsyncSinglePage[Monitor],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = AsyncSinglePage[Monitor],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=Monitor,
         )
 
-    async def delete(
-        self,
-        monitor_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MonitorDeleteResponse:
+    async def delete(self,
+    monitor_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> MonitorDeleteResponse:
         """
         Delete a configured monitor.
 
@@ -898,49 +851,45 @@ class AsyncMonitorsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not monitor_id:
-            raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `monitor_id` but received {monitor_id!r}'
+          )
         return await self._delete(
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[MonitorDeleteResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[MonitorDeleteResponse]._unwrapper),
             cast_to=cast(Type[MonitorDeleteResponse], ResultWrapper[MonitorDeleteResponse]),
         )
 
-    async def edit(
-        self,
-        monitor_id: str,
-        *,
-        account_id: str,
-        expected_codes: str,
-        allow_insecure: bool | NotGiven = NOT_GIVEN,
-        consecutive_down: int | NotGiven = NOT_GIVEN,
-        consecutive_up: int | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        expected_body: str | NotGiven = NOT_GIVEN,
-        follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-        interval: int | NotGiven = NOT_GIVEN,
-        method: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        port: int | NotGiven = NOT_GIVEN,
-        probe_zone: str | NotGiven = NOT_GIVEN,
-        retries: int | NotGiven = NOT_GIVEN,
-        load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
-        type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Monitor:
+    async def edit(self,
+    monitor_id: str,
+    *,
+    account_id: str,
+    expected_codes: str,
+    allow_insecure: bool | NotGiven = NOT_GIVEN,
+    consecutive_down: int | NotGiven = NOT_GIVEN,
+    consecutive_up: int | NotGiven = NOT_GIVEN,
+    description: str | NotGiven = NOT_GIVEN,
+    expected_body: str | NotGiven = NOT_GIVEN,
+    follow_redirects: bool | NotGiven = NOT_GIVEN,
+    header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+    interval: int | NotGiven = NOT_GIVEN,
+    method: str | NotGiven = NOT_GIVEN,
+    path: str | NotGiven = NOT_GIVEN,
+    port: int | NotGiven = NOT_GIVEN,
+    probe_zone: str | NotGiven = NOT_GIVEN,
+    retries: int | NotGiven = NOT_GIVEN,
+    load_balancer_monitor_timeout: int | NotGiven = NOT_GIVEN,
+    type: Literal["http", "https", "tcp", "udp_icmp", "icmp_ping", "smtp"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Monitor:
         """
         Apply changes to an existing monitor, overwriting the supplied properties.
 
@@ -1005,54 +954,47 @@ class AsyncMonitorsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not monitor_id:
-            raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `monitor_id` but received {monitor_id!r}'
+          )
         return await self._patch(
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
-            body=await async_maybe_transform(
-                {
-                    "expected_codes": expected_codes,
-                    "allow_insecure": allow_insecure,
-                    "consecutive_down": consecutive_down,
-                    "consecutive_up": consecutive_up,
-                    "description": description,
-                    "expected_body": expected_body,
-                    "follow_redirects": follow_redirects,
-                    "header": header,
-                    "interval": interval,
-                    "method": method,
-                    "path": path,
-                    "port": port,
-                    "probe_zone": probe_zone,
-                    "retries": retries,
-                    "timeout": load_balancer_monitor_timeout,
-                    "type": type,
-                },
-                monitor_edit_params.MonitorEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Monitor]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "expected_codes": expected_codes,
+                "allow_insecure": allow_insecure,
+                "consecutive_down": consecutive_down,
+                "consecutive_up": consecutive_up,
+                "description": description,
+                "expected_body": expected_body,
+                "follow_redirects": follow_redirects,
+                "header": header,
+                "interval": interval,
+                "method": method,
+                "path": path,
+                "port": port,
+                "probe_zone": probe_zone,
+                "retries": retries,
+                "timeout": load_balancer_monitor_timeout,
+                "type": type,
+            }, monitor_edit_params.MonitorEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Monitor]._unwrapper),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
 
-    async def get(
-        self,
-        monitor_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Monitor:
+    async def get(self,
+    monitor_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Monitor:
         """
         List a single configured monitor for an account.
 
@@ -1068,21 +1010,18 @@ class AsyncMonitorsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not monitor_id:
-            raise ValueError(f"Expected a non-empty value for `monitor_id` but received {monitor_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `monitor_id` but received {monitor_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Monitor]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Monitor]._unwrapper),
             cast_to=cast(Type[Monitor], ResultWrapper[Monitor]),
         )
-
 
 class MonitorsResourceWithRawResponse:
     def __init__(self, monitors: MonitorsResource) -> None:
@@ -1115,7 +1054,6 @@ class MonitorsResourceWithRawResponse:
     def references(self) -> ReferencesResourceWithRawResponse:
         return ReferencesResourceWithRawResponse(self._monitors.references)
 
-
 class AsyncMonitorsResourceWithRawResponse:
     def __init__(self, monitors: AsyncMonitorsResource) -> None:
         self._monitors = monitors
@@ -1147,7 +1085,6 @@ class AsyncMonitorsResourceWithRawResponse:
     def references(self) -> AsyncReferencesResourceWithRawResponse:
         return AsyncReferencesResourceWithRawResponse(self._monitors.references)
 
-
 class MonitorsResourceWithStreamingResponse:
     def __init__(self, monitors: MonitorsResource) -> None:
         self._monitors = monitors
@@ -1178,7 +1115,6 @@ class MonitorsResourceWithStreamingResponse:
     @cached_property
     def references(self) -> ReferencesResourceWithStreamingResponse:
         return ReferencesResourceWithStreamingResponse(self._monitors.references)
-
 
 class AsyncMonitorsResourceWithStreamingResponse:
     def __init__(self, monitors: AsyncMonitorsResource) -> None:

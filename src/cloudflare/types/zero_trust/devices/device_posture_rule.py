@@ -1,14 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
-
 from ...._models import BaseModel
+
+from typing import Optional, List
+
 from .device_input import DeviceInput
+
 from .device_match import DeviceMatch
 
-__all__ = ["DevicePostureRule"]
+from typing_extensions import Literal
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["DevicePostureRule"]
 
 class DevicePostureRule(BaseModel):
     id: Optional[str] = None
@@ -39,28 +45,5 @@ class DevicePostureRule(BaseModel):
     Default: `5m` (poll every five minutes). Minimum: `1m`.
     """
 
-    type: Optional[
-        Literal[
-            "file",
-            "application",
-            "tanium",
-            "gateway",
-            "warp",
-            "disk_encryption",
-            "sentinelone",
-            "carbonblack",
-            "firewall",
-            "os_version",
-            "domain_joined",
-            "client_certificate",
-            "client_certificate_v2",
-            "unique_client_id",
-            "kolide",
-            "tanium_s2s",
-            "crowdstrike_s2s",
-            "intune",
-            "workspace_one",
-            "sentinelone_s2s",
-        ]
-    ] = None
+    type: Optional[Literal["file", "application", "tanium", "gateway", "warp", "disk_encryption", "sentinelone", "carbonblack", "firewall", "os_version", "domain_joined", "client_certificate", "client_certificate_v2", "unique_client_id", "kolide", "tanium_s2s", "crowdstrike_s2s", "intune", "workspace_one", "sentinelone_s2s"]] = None
     """The type of device posture rule."""

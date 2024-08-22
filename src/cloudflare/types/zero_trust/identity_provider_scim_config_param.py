@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["IdentityProviderSCIMConfigParam"]
 
-
 class IdentityProviderSCIMConfigParam(TypedDict, total=False):
     enabled: bool
     """A flag to enable or disable SCIM for the identity provider."""

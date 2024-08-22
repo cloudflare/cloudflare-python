@@ -2,43 +2,52 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from .regions import (
-    RegionsResource,
-    AsyncRegionsResource,
-    RegionsResourceWithRawResponse,
-    AsyncRegionsResourceWithRawResponse,
-    RegionsResourceWithStreamingResponse,
-    AsyncRegionsResourceWithStreamingResponse,
-)
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .regions import RegionsResource, AsyncRegionsResource
+
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.addressing import regional_hostname_edit_params, regional_hostname_create_params
-from ....types.addressing.regional_hostname_get_response import RegionalHostnameGetResponse
-from ....types.addressing.regional_hostname_edit_response import RegionalHostnameEditResponse
-from ....types.addressing.regional_hostname_list_response import RegionalHostnameListResponse
+
 from ....types.addressing.regional_hostname_create_response import RegionalHostnameCreateResponse
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from ....types.addressing.regional_hostname_list_response import RegionalHostnameListResponse
+
+from ....pagination import SyncSinglePage, AsyncSinglePage
+
 from ....types.addressing.regional_hostname_delete_response import RegionalHostnameDeleteResponse
 
-__all__ = ["RegionalHostnamesResource", "AsyncRegionalHostnamesResource"]
+from ....types.addressing.regional_hostname_edit_response import RegionalHostnameEditResponse
 
+from ....types.addressing.regional_hostname_get_response import RegionalHostnameGetResponse
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.addressing import regional_hostname_create_params
+from ....types.addressing import regional_hostname_edit_params
+from .regions import RegionsResource, AsyncRegionsResource, RegionsResourceWithRawResponse, AsyncRegionsResourceWithRawResponse, RegionsResourceWithStreamingResponse, AsyncRegionsResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["RegionalHostnamesResource", "AsyncRegionalHostnamesResource"]
 
 class RegionalHostnamesResource(SyncAPIResource):
     @cached_property
@@ -53,19 +62,17 @@ class RegionalHostnamesResource(SyncAPIResource):
     def with_streaming_response(self) -> RegionalHostnamesResourceWithStreamingResponse:
         return RegionalHostnamesResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        zone_id: str,
-        hostname: str,
-        region_key: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RegionalHostnameCreateResponse]:
+    def create(self,
+    *,
+    zone_id: str,
+    hostname: str,
+    region_key: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[RegionalHostnameCreateResponse]:
         """Create a new Regional Hostname entry.
 
         Cloudflare will only use data centers that
@@ -90,37 +97,28 @@ class RegionalHostnamesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._post(
             f"/zones/{zone_id}/addressing/regional_hostnames",
-            body=maybe_transform(
-                {
-                    "hostname": hostname,
-                    "region_key": region_key,
-                },
-                regional_hostname_create_params.RegionalHostnameCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RegionalHostnameCreateResponse]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "hostname": hostname,
+                "region_key": region_key,
+            }, regional_hostname_create_params.RegionalHostnameCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[RegionalHostnameCreateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[RegionalHostnameCreateResponse]], ResultWrapper[RegionalHostnameCreateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[RegionalHostnameListResponse]:
+    def list(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[RegionalHostnameListResponse]:
         """
         List all Regional Hostnames within a zone.
 
@@ -136,28 +134,26 @@ class RegionalHostnamesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get_api_list(
             f"/zones/{zone_id}/addressing/regional_hostnames",
-            page=SyncSinglePage[RegionalHostnameListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = SyncSinglePage[RegionalHostnameListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=RegionalHostnameListResponse,
         )
 
-    def delete(
-        self,
-        hostname: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RegionalHostnameDeleteResponse:
+    def delete(self,
+    hostname: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RegionalHostnameDeleteResponse:
         """
         Delete the region configuration for a specific Regional Hostname.
 
@@ -176,30 +172,30 @@ class RegionalHostnamesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not hostname:
-            raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `hostname` but received {hostname!r}'
+          )
         return self._delete(
             f"/zones/{zone_id}/addressing/regional_hostnames/{hostname}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=RegionalHostnameDeleteResponse,
         )
 
-    def edit(
-        self,
-        hostname: str,
-        *,
-        zone_id: str,
-        region_key: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RegionalHostnameEditResponse]:
+    def edit(self,
+    hostname: str,
+    *,
+    zone_id: str,
+    region_key: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[RegionalHostnameEditResponse]:
         """Update the configuration for a specific Regional Hostname.
 
         Only the region_key
@@ -222,34 +218,32 @@ class RegionalHostnamesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not hostname:
-            raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `hostname` but received {hostname!r}'
+          )
         return self._patch(
             f"/zones/{zone_id}/addressing/regional_hostnames/{hostname}",
-            body=maybe_transform({"region_key": region_key}, regional_hostname_edit_params.RegionalHostnameEditParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RegionalHostnameEditResponse]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "region_key": region_key
+            }, regional_hostname_edit_params.RegionalHostnameEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[RegionalHostnameEditResponse]]._unwrapper),
             cast_to=cast(Type[Optional[RegionalHostnameEditResponse]], ResultWrapper[RegionalHostnameEditResponse]),
         )
 
-    def get(
-        self,
-        hostname: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RegionalHostnameGetResponse]:
+    def get(self,
+    hostname: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[RegionalHostnameGetResponse]:
         """
         Fetch the configuration for a specific Regional Hostname, within a zone.
 
@@ -268,21 +262,18 @@ class RegionalHostnamesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not hostname:
-            raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `hostname` but received {hostname!r}'
+          )
         return self._get(
             f"/zones/{zone_id}/addressing/regional_hostnames/{hostname}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RegionalHostnameGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[RegionalHostnameGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[RegionalHostnameGetResponse]], ResultWrapper[RegionalHostnameGetResponse]),
         )
-
 
 class AsyncRegionalHostnamesResource(AsyncAPIResource):
     @cached_property
@@ -297,19 +288,17 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRegionalHostnamesResourceWithStreamingResponse:
         return AsyncRegionalHostnamesResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        zone_id: str,
-        hostname: str,
-        region_key: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RegionalHostnameCreateResponse]:
+    async def create(self,
+    *,
+    zone_id: str,
+    hostname: str,
+    region_key: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[RegionalHostnameCreateResponse]:
         """Create a new Regional Hostname entry.
 
         Cloudflare will only use data centers that
@@ -334,37 +323,28 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._post(
             f"/zones/{zone_id}/addressing/regional_hostnames",
-            body=await async_maybe_transform(
-                {
-                    "hostname": hostname,
-                    "region_key": region_key,
-                },
-                regional_hostname_create_params.RegionalHostnameCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RegionalHostnameCreateResponse]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "hostname": hostname,
+                "region_key": region_key,
+            }, regional_hostname_create_params.RegionalHostnameCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[RegionalHostnameCreateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[RegionalHostnameCreateResponse]], ResultWrapper[RegionalHostnameCreateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RegionalHostnameListResponse, AsyncSinglePage[RegionalHostnameListResponse]]:
+    def list(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[RegionalHostnameListResponse, AsyncSinglePage[RegionalHostnameListResponse]]:
         """
         List all Regional Hostnames within a zone.
 
@@ -380,28 +360,26 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get_api_list(
             f"/zones/{zone_id}/addressing/regional_hostnames",
-            page=AsyncSinglePage[RegionalHostnameListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = AsyncSinglePage[RegionalHostnameListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=RegionalHostnameListResponse,
         )
 
-    async def delete(
-        self,
-        hostname: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RegionalHostnameDeleteResponse:
+    async def delete(self,
+    hostname: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RegionalHostnameDeleteResponse:
         """
         Delete the region configuration for a specific Regional Hostname.
 
@@ -420,30 +398,30 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not hostname:
-            raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `hostname` but received {hostname!r}'
+          )
         return await self._delete(
             f"/zones/{zone_id}/addressing/regional_hostnames/{hostname}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=RegionalHostnameDeleteResponse,
         )
 
-    async def edit(
-        self,
-        hostname: str,
-        *,
-        zone_id: str,
-        region_key: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RegionalHostnameEditResponse]:
+    async def edit(self,
+    hostname: str,
+    *,
+    zone_id: str,
+    region_key: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[RegionalHostnameEditResponse]:
         """Update the configuration for a specific Regional Hostname.
 
         Only the region_key
@@ -466,36 +444,32 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not hostname:
-            raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `hostname` but received {hostname!r}'
+          )
         return await self._patch(
             f"/zones/{zone_id}/addressing/regional_hostnames/{hostname}",
-            body=await async_maybe_transform(
-                {"region_key": region_key}, regional_hostname_edit_params.RegionalHostnameEditParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RegionalHostnameEditResponse]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "region_key": region_key
+            }, regional_hostname_edit_params.RegionalHostnameEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[RegionalHostnameEditResponse]]._unwrapper),
             cast_to=cast(Type[Optional[RegionalHostnameEditResponse]], ResultWrapper[RegionalHostnameEditResponse]),
         )
 
-    async def get(
-        self,
-        hostname: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RegionalHostnameGetResponse]:
+    async def get(self,
+    hostname: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[RegionalHostnameGetResponse]:
         """
         Fetch the configuration for a specific Regional Hostname, within a zone.
 
@@ -514,21 +488,18 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not hostname:
-            raise ValueError(f"Expected a non-empty value for `hostname` but received {hostname!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `hostname` but received {hostname!r}'
+          )
         return await self._get(
             f"/zones/{zone_id}/addressing/regional_hostnames/{hostname}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RegionalHostnameGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[RegionalHostnameGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[RegionalHostnameGetResponse]], ResultWrapper[RegionalHostnameGetResponse]),
         )
-
 
 class RegionalHostnamesResourceWithRawResponse:
     def __init__(self, regional_hostnames: RegionalHostnamesResource) -> None:
@@ -554,7 +525,6 @@ class RegionalHostnamesResourceWithRawResponse:
     def regions(self) -> RegionsResourceWithRawResponse:
         return RegionsResourceWithRawResponse(self._regional_hostnames.regions)
 
-
 class AsyncRegionalHostnamesResourceWithRawResponse:
     def __init__(self, regional_hostnames: AsyncRegionalHostnamesResource) -> None:
         self._regional_hostnames = regional_hostnames
@@ -579,7 +549,6 @@ class AsyncRegionalHostnamesResourceWithRawResponse:
     def regions(self) -> AsyncRegionsResourceWithRawResponse:
         return AsyncRegionsResourceWithRawResponse(self._regional_hostnames.regions)
 
-
 class RegionalHostnamesResourceWithStreamingResponse:
     def __init__(self, regional_hostnames: RegionalHostnamesResource) -> None:
         self._regional_hostnames = regional_hostnames
@@ -603,7 +572,6 @@ class RegionalHostnamesResourceWithStreamingResponse:
     @cached_property
     def regions(self) -> RegionsResourceWithStreamingResponse:
         return RegionsResourceWithStreamingResponse(self._regional_hostnames.regions)
-
 
 class AsyncRegionalHostnamesResourceWithStreamingResponse:
     def __init__(self, regional_hostnames: AsyncRegionalHostnamesResource) -> None:

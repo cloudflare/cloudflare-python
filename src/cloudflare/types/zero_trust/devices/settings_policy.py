@@ -1,14 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-
 from ...._models import BaseModel
-from .policies.fallback_domain import FallbackDomain
+
+from typing import Optional, List
+
 from .policies.split_tunnel_exclude import SplitTunnelExclude
+
+from .policies.fallback_domain import FallbackDomain
+
 from .policies.split_tunnel_include import SplitTunnelInclude
 
-__all__ = ["SettingsPolicy", "ServiceModeV2", "TargetTest"]
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
+__all__ = ["SettingsPolicy", "ServiceModeV2", "TargetTest"]
 
 class ServiceModeV2(BaseModel):
     mode: Optional[str] = None
@@ -17,14 +23,12 @@ class ServiceModeV2(BaseModel):
     port: Optional[float] = None
     """The port number when used with proxy mode."""
 
-
 class TargetTest(BaseModel):
     id: Optional[str] = None
     """The id of the DEX test targeting this policy"""
 
     name: Optional[str] = None
     """The name of the DEX test targeting this policy"""
-
 
 class SettingsPolicy(BaseModel):
     allow_mode_switch: Optional[bool] = None

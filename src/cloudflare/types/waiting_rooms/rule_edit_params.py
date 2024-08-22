@@ -2,11 +2,16 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Required, Literal, TypeAlias
+
 from typing import Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
 __all__ = ["RuleEditParams", "Position", "PositionIndex", "PositionBefore", "PositionAfter"]
-
 
 class RuleEditParams(TypedDict, total=False):
     zone_id: Required[str]
@@ -29,7 +34,6 @@ class RuleEditParams(TypedDict, total=False):
     position: Position
     """Reorder the position of a rule"""
 
-
 class PositionIndex(TypedDict, total=False):
     index: int
     """
@@ -39,7 +43,6 @@ class PositionIndex(TypedDict, total=False):
     overwritten).
     """
 
-
 class PositionBefore(TypedDict, total=False):
     before: str
     """Places the rule before rule <RULE_ID>.
@@ -48,7 +51,6 @@ class PositionBefore(TypedDict, total=False):
     rule in the ruleset.
     """
 
-
 class PositionAfter(TypedDict, total=False):
     after: str
     """Places the rule after rule <RULE_ID>.
@@ -56,6 +58,5 @@ class PositionAfter(TypedDict, total=False):
     Use this argument with an empty rule ID value ("") to set the rule as the last
     rule in the ruleset.
     """
-
 
 Position: TypeAlias = Union[PositionIndex, PositionBefore, PositionAfter]

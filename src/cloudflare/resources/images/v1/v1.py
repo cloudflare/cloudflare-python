@@ -2,65 +2,62 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
-
 import httpx
 
-from .keys import (
-    KeysResource,
-    AsyncKeysResource,
-    KeysResourceWithRawResponse,
-    AsyncKeysResourceWithRawResponse,
-    KeysResourceWithStreamingResponse,
-    AsyncKeysResourceWithStreamingResponse,
-)
-from .blobs import (
-    BlobsResource,
-    AsyncBlobsResource,
-    BlobsResourceWithRawResponse,
-    AsyncBlobsResourceWithRawResponse,
-    BlobsResourceWithStreamingResponse,
-    AsyncBlobsResourceWithStreamingResponse,
-)
-from .stats import (
-    StatsResource,
-    AsyncStatsResource,
-    StatsResourceWithRawResponse,
-    AsyncStatsResourceWithRawResponse,
-    StatsResourceWithStreamingResponse,
-    AsyncStatsResourceWithStreamingResponse,
-)
-from .variants import (
-    VariantsResource,
-    AsyncVariantsResource,
-    VariantsResourceWithRawResponse,
-    AsyncVariantsResourceWithRawResponse,
-    VariantsResourceWithStreamingResponse,
-    AsyncVariantsResourceWithStreamingResponse,
-)
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .keys import KeysResource, AsyncKeysResource
+
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePagination, AsyncV4PagePagination
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.images import v1_edit_params, v1_list_params, v1_create_params
+
+from .stats import StatsResource, AsyncStatsResource
+
+from .variants import VariantsResource, AsyncVariantsResource
+
+from .blobs import BlobsResource, AsyncBlobsResource
+
 from ....types.images.image import Image
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from typing import Type
+
 from ....types.images.v1_list_response import V1ListResponse
+
+from ....pagination import SyncV4PagePagination, AsyncV4PagePagination
+
 from ....types.images.v1_delete_response import V1DeleteResponse
 
-__all__ = ["V1Resource", "AsyncV1Resource"]
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.images import v1_create_params
+from ....types.images import v1_list_params
+from ....types.images import v1_edit_params
+from .keys import KeysResource, AsyncKeysResource, KeysResourceWithRawResponse, AsyncKeysResourceWithRawResponse, KeysResourceWithStreamingResponse, AsyncKeysResourceWithStreamingResponse
+from .stats import StatsResource, AsyncStatsResource, StatsResourceWithRawResponse, AsyncStatsResourceWithRawResponse, StatsResourceWithStreamingResponse, AsyncStatsResourceWithStreamingResponse
+from .variants import VariantsResource, AsyncVariantsResource, VariantsResourceWithRawResponse, AsyncVariantsResourceWithRawResponse, VariantsResourceWithStreamingResponse, AsyncVariantsResourceWithStreamingResponse
+from .blobs import BlobsResource, AsyncBlobsResource, BlobsResourceWithRawResponse, AsyncBlobsResourceWithRawResponse, BlobsResourceWithStreamingResponse, AsyncBlobsResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["V1Resource", "AsyncV1Resource"]
 
 class V1Resource(SyncAPIResource):
     @cached_property
@@ -87,21 +84,19 @@ class V1Resource(SyncAPIResource):
     def with_streaming_response(self) -> V1ResourceWithStreamingResponse:
         return V1ResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        file: object | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Image:
+    def create(self,
+    *,
+    account_id: str,
+    file: object | NotGiven = NOT_GIVEN,
+    metadata: object | NotGiven = NOT_GIVEN,
+    require_signed_urls: bool | NotGiven = NOT_GIVEN,
+    url: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Image:
         """
         Upload an image with up to 10 Megabytes using a single HTTP POST
         (multipart/form-data) request. An image can be uploaded by sending an image file
@@ -129,45 +124,36 @@ class V1Resource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/images/v1",
-            body=maybe_transform(
-                {
-                    "file": file,
-                    "metadata": metadata,
-                    "require_signed_urls": require_signed_urls,
-                    "url": url,
-                },
-                v1_create_params.V1CreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Image]._unwrapper,
-            ),
+            body=maybe_transform({
+                "file": file,
+                "metadata": metadata,
+                "require_signed_urls": require_signed_urls,
+                "url": url,
+            }, v1_create_params.V1CreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Image]._unwrapper),
             cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePagination[V1ListResponse]:
+    def list(self,
+    *,
+    account_id: str,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePagination[V1ListResponse]:
         """List up to 100 images with one request.
 
         Use the optional parameters below to get
@@ -189,38 +175,29 @@ class V1Resource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/images/v1",
-            page=SyncV4PagePagination[V1ListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    v1_list_params.V1ListParams,
-                ),
-            ),
+            page = SyncV4PagePagination[V1ListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "page": page,
+                "per_page": per_page,
+            }, v1_list_params.V1ListParams)),
             model=V1ListResponse,
         )
 
-    def delete(
-        self,
-        image_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> V1DeleteResponse:
+    def delete(self,
+    image_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> V1DeleteResponse:
         """Delete an image on Cloudflare Images.
 
         On success, all copies of the image are
@@ -240,40 +217,31 @@ class V1Resource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not image_id:
-            raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
-        return cast(
-            V1DeleteResponse,
-            self._delete(
-                f"/accounts/{account_id}/images/v1/{image_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[V1DeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[V1DeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `image_id` but received {image_id!r}'
+          )
+        return cast(V1DeleteResponse, self._delete(
+            f"/accounts/{account_id}/images/v1/{image_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[V1DeleteResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[V1DeleteResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    def edit(
-        self,
-        image_id: str,
-        *,
-        account_id: str,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Image:
+    def edit(self,
+    image_id: str,
+    *,
+    account_id: str,
+    metadata: object | NotGiven = NOT_GIVEN,
+    require_signed_urls: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Image:
         """Update image access control.
 
         On access control change, all copies of the image
@@ -300,40 +268,33 @@ class V1Resource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not image_id:
-            raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `image_id` but received {image_id!r}'
+          )
         return self._patch(
             f"/accounts/{account_id}/images/v1/{image_id}",
-            body=maybe_transform(
-                {
-                    "metadata": metadata,
-                    "require_signed_urls": require_signed_urls,
-                },
-                v1_edit_params.V1EditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Image]._unwrapper,
-            ),
+            body=maybe_transform({
+                "metadata": metadata,
+                "require_signed_urls": require_signed_urls,
+            }, v1_edit_params.V1EditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Image]._unwrapper),
             cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
 
-    def get(
-        self,
-        image_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Image:
+    def get(self,
+    image_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Image:
         """
         Fetch details for a single image.
 
@@ -351,21 +312,18 @@ class V1Resource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not image_id:
-            raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `image_id` but received {image_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/images/v1/{image_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Image]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Image]._unwrapper),
             cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
-
 
 class AsyncV1Resource(AsyncAPIResource):
     @cached_property
@@ -392,21 +350,19 @@ class AsyncV1Resource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncV1ResourceWithStreamingResponse:
         return AsyncV1ResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        file: object | NotGiven = NOT_GIVEN,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Image:
+    async def create(self,
+    *,
+    account_id: str,
+    file: object | NotGiven = NOT_GIVEN,
+    metadata: object | NotGiven = NOT_GIVEN,
+    require_signed_urls: bool | NotGiven = NOT_GIVEN,
+    url: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Image:
         """
         Upload an image with up to 10 Megabytes using a single HTTP POST
         (multipart/form-data) request. An image can be uploaded by sending an image file
@@ -434,45 +390,36 @@ class AsyncV1Resource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/images/v1",
-            body=await async_maybe_transform(
-                {
-                    "file": file,
-                    "metadata": metadata,
-                    "require_signed_urls": require_signed_urls,
-                    "url": url,
-                },
-                v1_create_params.V1CreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Image]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "file": file,
+                "metadata": metadata,
+                "require_signed_urls": require_signed_urls,
+                "url": url,
+            }, v1_create_params.V1CreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Image]._unwrapper),
             cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[V1ListResponse, AsyncV4PagePagination[V1ListResponse]]:
+    def list(self,
+    *,
+    account_id: str,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[V1ListResponse, AsyncV4PagePagination[V1ListResponse]]:
         """List up to 100 images with one request.
 
         Use the optional parameters below to get
@@ -494,38 +441,29 @@ class AsyncV1Resource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/images/v1",
-            page=AsyncV4PagePagination[V1ListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    v1_list_params.V1ListParams,
-                ),
-            ),
+            page = AsyncV4PagePagination[V1ListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "page": page,
+                "per_page": per_page,
+            }, v1_list_params.V1ListParams)),
             model=V1ListResponse,
         )
 
-    async def delete(
-        self,
-        image_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> V1DeleteResponse:
+    async def delete(self,
+    image_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> V1DeleteResponse:
         """Delete an image on Cloudflare Images.
 
         On success, all copies of the image are
@@ -545,40 +483,31 @@ class AsyncV1Resource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not image_id:
-            raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
-        return cast(
-            V1DeleteResponse,
-            await self._delete(
-                f"/accounts/{account_id}/images/v1/{image_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[V1DeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[V1DeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `image_id` but received {image_id!r}'
+          )
+        return cast(V1DeleteResponse, await self._delete(
+            f"/accounts/{account_id}/images/v1/{image_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[V1DeleteResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[V1DeleteResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    async def edit(
-        self,
-        image_id: str,
-        *,
-        account_id: str,
-        metadata: object | NotGiven = NOT_GIVEN,
-        require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Image:
+    async def edit(self,
+    image_id: str,
+    *,
+    account_id: str,
+    metadata: object | NotGiven = NOT_GIVEN,
+    require_signed_urls: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Image:
         """Update image access control.
 
         On access control change, all copies of the image
@@ -605,40 +534,33 @@ class AsyncV1Resource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not image_id:
-            raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `image_id` but received {image_id!r}'
+          )
         return await self._patch(
             f"/accounts/{account_id}/images/v1/{image_id}",
-            body=await async_maybe_transform(
-                {
-                    "metadata": metadata,
-                    "require_signed_urls": require_signed_urls,
-                },
-                v1_edit_params.V1EditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Image]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "metadata": metadata,
+                "require_signed_urls": require_signed_urls,
+            }, v1_edit_params.V1EditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Image]._unwrapper),
             cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
 
-    async def get(
-        self,
-        image_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Image:
+    async def get(self,
+    image_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Image:
         """
         Fetch details for a single image.
 
@@ -656,21 +578,18 @@ class AsyncV1Resource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not image_id:
-            raise ValueError(f"Expected a non-empty value for `image_id` but received {image_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `image_id` but received {image_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/images/v1/{image_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Image]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Image]._unwrapper),
             cast_to=cast(Type[Image], ResultWrapper[Image]),
         )
-
 
 class V1ResourceWithRawResponse:
     def __init__(self, v1: V1Resource) -> None:
@@ -708,7 +627,6 @@ class V1ResourceWithRawResponse:
     def blobs(self) -> BlobsResourceWithRawResponse:
         return BlobsResourceWithRawResponse(self._v1.blobs)
 
-
 class AsyncV1ResourceWithRawResponse:
     def __init__(self, v1: AsyncV1Resource) -> None:
         self._v1 = v1
@@ -745,7 +663,6 @@ class AsyncV1ResourceWithRawResponse:
     def blobs(self) -> AsyncBlobsResourceWithRawResponse:
         return AsyncBlobsResourceWithRawResponse(self._v1.blobs)
 
-
 class V1ResourceWithStreamingResponse:
     def __init__(self, v1: V1Resource) -> None:
         self._v1 = v1
@@ -781,7 +698,6 @@ class V1ResourceWithStreamingResponse:
     @cached_property
     def blobs(self) -> BlobsResourceWithStreamingResponse:
         return BlobsResourceWithStreamingResponse(self._v1.blobs)
-
 
 class AsyncV1ResourceWithStreamingResponse:
     def __init__(self, v1: AsyncV1Resource) -> None:

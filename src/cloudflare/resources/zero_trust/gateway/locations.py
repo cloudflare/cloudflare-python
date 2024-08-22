@@ -2,32 +2,49 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.gateway import location_create_params, location_update_params
+
 from ....types.zero_trust.gateway.location import Location
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type, Iterable
+
+from ...._base_client import make_request_options, AsyncPaginator
+
 from ....types.zero_trust.gateway.endpoint_param import EndpointParam
 
-__all__ = ["LocationsResource", "AsyncLocationsResource"]
+from ....pagination import SyncSinglePage, AsyncSinglePage
 
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ....types.zero_trust.gateway import location_create_params, location_update_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.zero_trust.gateway import location_create_params
+from ....types.zero_trust.gateway import location_update_params
+from ....types.zero_trust.gateway import Endpoint
+from ....types.zero_trust.gateway import Endpoint
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["LocationsResource", "AsyncLocationsResource"]
 
 class LocationsResource(SyncAPIResource):
     @cached_property
@@ -38,23 +55,21 @@ class LocationsResource(SyncAPIResource):
     def with_streaming_response(self) -> LocationsResourceWithStreamingResponse:
         return LocationsResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        name: str,
-        client_default: bool | NotGiven = NOT_GIVEN,
-        dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
-        ecs_support: bool | NotGiven = NOT_GIVEN,
-        endpoints: EndpointParam | NotGiven = NOT_GIVEN,
-        networks: Iterable[location_create_params.Network] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Location]:
+    def create(self,
+    *,
+    account_id: str,
+    name: str,
+    client_default: bool | NotGiven = NOT_GIVEN,
+    dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
+    ecs_support: bool | NotGiven = NOT_GIVEN,
+    endpoints: EndpointParam | NotGiven = NOT_GIVEN,
+    networks: Iterable[location_create_params.Network] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Location]:
         """
         Creates a new Zero Trust Gateway location.
 
@@ -88,48 +103,39 @@ class LocationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/gateway/locations",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "client_default": client_default,
-                    "dns_destination_ips_id": dns_destination_ips_id,
-                    "ecs_support": ecs_support,
-                    "endpoints": endpoints,
-                    "networks": networks,
-                },
-                location_create_params.LocationCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Location]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "name": name,
+                "client_default": client_default,
+                "dns_destination_ips_id": dns_destination_ips_id,
+                "ecs_support": ecs_support,
+                "endpoints": endpoints,
+                "networks": networks,
+            }, location_create_params.LocationCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Location]]._unwrapper),
             cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
 
-    def update(
-        self,
-        location_id: str,
-        *,
-        account_id: str,
-        name: str,
-        client_default: bool | NotGiven = NOT_GIVEN,
-        dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
-        ecs_support: bool | NotGiven = NOT_GIVEN,
-        endpoints: EndpointParam | NotGiven = NOT_GIVEN,
-        networks: Iterable[location_update_params.Network] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Location]:
+    def update(self,
+    location_id: str,
+    *,
+    account_id: str,
+    name: str,
+    client_default: bool | NotGiven = NOT_GIVEN,
+    dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
+    ecs_support: bool | NotGiven = NOT_GIVEN,
+    endpoints: EndpointParam | NotGiven = NOT_GIVEN,
+    networks: Iterable[location_update_params.Network] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Location]:
         """
         Updates a configured Zero Trust Gateway location.
 
@@ -163,43 +169,36 @@ class LocationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not location_id:
-            raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `location_id` but received {location_id!r}'
+          )
         return self._put(
             f"/accounts/{account_id}/gateway/locations/{location_id}",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "client_default": client_default,
-                    "dns_destination_ips_id": dns_destination_ips_id,
-                    "ecs_support": ecs_support,
-                    "endpoints": endpoints,
-                    "networks": networks,
-                },
-                location_update_params.LocationUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Location]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "name": name,
+                "client_default": client_default,
+                "dns_destination_ips_id": dns_destination_ips_id,
+                "ecs_support": ecs_support,
+                "endpoints": endpoints,
+                "networks": networks,
+            }, location_update_params.LocationUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Location]]._unwrapper),
             cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Location]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[Location]:
         """
         Fetches Zero Trust Gateway locations for an account.
 
@@ -213,28 +212,26 @@ class LocationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/locations",
-            page=SyncSinglePage[Location],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = SyncSinglePage[Location],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=Location,
         )
 
-    def delete(
-        self,
-        location_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    def delete(self,
+    location_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
         """
         Deletes a configured Zero Trust Gateway location.
 
@@ -248,33 +245,29 @@ class LocationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not location_id:
-            raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `location_id` but received {location_id!r}'
+          )
         return self._delete(
             f"/accounts/{account_id}/gateway/locations/{location_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    def get(
-        self,
-        location_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Location]:
+    def get(self,
+    location_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Location]:
         """
         Fetches a single Zero Trust Gateway location.
 
@@ -288,21 +281,18 @@ class LocationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not location_id:
-            raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `location_id` but received {location_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/gateway/locations/{location_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Location]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Location]]._unwrapper),
             cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
-
 
 class AsyncLocationsResource(AsyncAPIResource):
     @cached_property
@@ -313,23 +303,21 @@ class AsyncLocationsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncLocationsResourceWithStreamingResponse:
         return AsyncLocationsResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        name: str,
-        client_default: bool | NotGiven = NOT_GIVEN,
-        dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
-        ecs_support: bool | NotGiven = NOT_GIVEN,
-        endpoints: EndpointParam | NotGiven = NOT_GIVEN,
-        networks: Iterable[location_create_params.Network] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Location]:
+    async def create(self,
+    *,
+    account_id: str,
+    name: str,
+    client_default: bool | NotGiven = NOT_GIVEN,
+    dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
+    ecs_support: bool | NotGiven = NOT_GIVEN,
+    endpoints: EndpointParam | NotGiven = NOT_GIVEN,
+    networks: Iterable[location_create_params.Network] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Location]:
         """
         Creates a new Zero Trust Gateway location.
 
@@ -363,48 +351,39 @@ class AsyncLocationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/gateway/locations",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "client_default": client_default,
-                    "dns_destination_ips_id": dns_destination_ips_id,
-                    "ecs_support": ecs_support,
-                    "endpoints": endpoints,
-                    "networks": networks,
-                },
-                location_create_params.LocationCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Location]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "name": name,
+                "client_default": client_default,
+                "dns_destination_ips_id": dns_destination_ips_id,
+                "ecs_support": ecs_support,
+                "endpoints": endpoints,
+                "networks": networks,
+            }, location_create_params.LocationCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Location]]._unwrapper),
             cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
 
-    async def update(
-        self,
-        location_id: str,
-        *,
-        account_id: str,
-        name: str,
-        client_default: bool | NotGiven = NOT_GIVEN,
-        dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
-        ecs_support: bool | NotGiven = NOT_GIVEN,
-        endpoints: EndpointParam | NotGiven = NOT_GIVEN,
-        networks: Iterable[location_update_params.Network] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Location]:
+    async def update(self,
+    location_id: str,
+    *,
+    account_id: str,
+    name: str,
+    client_default: bool | NotGiven = NOT_GIVEN,
+    dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
+    ecs_support: bool | NotGiven = NOT_GIVEN,
+    endpoints: EndpointParam | NotGiven = NOT_GIVEN,
+    networks: Iterable[location_update_params.Network] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Location]:
         """
         Updates a configured Zero Trust Gateway location.
 
@@ -438,43 +417,36 @@ class AsyncLocationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not location_id:
-            raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `location_id` but received {location_id!r}'
+          )
         return await self._put(
             f"/accounts/{account_id}/gateway/locations/{location_id}",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "client_default": client_default,
-                    "dns_destination_ips_id": dns_destination_ips_id,
-                    "ecs_support": ecs_support,
-                    "endpoints": endpoints,
-                    "networks": networks,
-                },
-                location_update_params.LocationUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Location]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "name": name,
+                "client_default": client_default,
+                "dns_destination_ips_id": dns_destination_ips_id,
+                "ecs_support": ecs_support,
+                "endpoints": endpoints,
+                "networks": networks,
+            }, location_update_params.LocationUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Location]]._unwrapper),
             cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Location, AsyncSinglePage[Location]]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Location, AsyncSinglePage[Location]]:
         """
         Fetches Zero Trust Gateway locations for an account.
 
@@ -488,28 +460,26 @@ class AsyncLocationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/locations",
-            page=AsyncSinglePage[Location],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = AsyncSinglePage[Location],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=Location,
         )
 
-    async def delete(
-        self,
-        location_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    async def delete(self,
+    location_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
         """
         Deletes a configured Zero Trust Gateway location.
 
@@ -523,33 +493,29 @@ class AsyncLocationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not location_id:
-            raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `location_id` but received {location_id!r}'
+          )
         return await self._delete(
             f"/accounts/{account_id}/gateway/locations/{location_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    async def get(
-        self,
-        location_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Location]:
+    async def get(self,
+    location_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Location]:
         """
         Fetches a single Zero Trust Gateway location.
 
@@ -563,21 +529,18 @@ class AsyncLocationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not location_id:
-            raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `location_id` but received {location_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/gateway/locations/{location_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Location]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Location]]._unwrapper),
             cast_to=cast(Type[Optional[Location]], ResultWrapper[Location]),
         )
-
 
 class LocationsResourceWithRawResponse:
     def __init__(self, locations: LocationsResource) -> None:
@@ -599,7 +562,6 @@ class LocationsResourceWithRawResponse:
             locations.get,
         )
 
-
 class AsyncLocationsResourceWithRawResponse:
     def __init__(self, locations: AsyncLocationsResource) -> None:
         self._locations = locations
@@ -620,7 +582,6 @@ class AsyncLocationsResourceWithRawResponse:
             locations.get,
         )
 
-
 class LocationsResourceWithStreamingResponse:
     def __init__(self, locations: LocationsResource) -> None:
         self._locations = locations
@@ -640,7 +601,6 @@ class LocationsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             locations.get,
         )
-
 
 class AsyncLocationsResourceWithStreamingResponse:
     def __init__(self, locations: AsyncLocationsResource) -> None:

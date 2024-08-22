@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict, Required
 
 __all__ = ["IntuneInputParam"]
 
-
 class IntuneInputParam(TypedDict, total=False):
-    compliance_status: Required[
-        Literal["compliant", "noncompliant", "unknown", "notapplicable", "ingraceperiod", "error"]
-    ]
+    compliance_status: Required[Literal["compliant", "noncompliant", "unknown", "notapplicable", "ingraceperiod", "error"]]
     """Compliance Status"""
 
     connection_id: Required[str]

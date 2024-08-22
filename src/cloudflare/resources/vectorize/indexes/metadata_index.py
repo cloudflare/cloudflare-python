@@ -2,33 +2,45 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.vectorize.indexes import metadata_index_create_params, metadata_index_delete_params
-from ....types.vectorize.indexes.metadata_index_list_response import MetadataIndexListResponse
+
 from ....types.vectorize.indexes.metadata_index_create_response import MetadataIndexCreateResponse
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ...._base_client import make_request_options
+
+from typing_extensions import Literal
+
+from ....types.vectorize.indexes.metadata_index_list_response import MetadataIndexListResponse
+
 from ....types.vectorize.indexes.metadata_index_delete_response import MetadataIndexDeleteResponse
 
-__all__ = ["MetadataIndexResource", "AsyncMetadataIndexResource"]
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.vectorize.indexes import metadata_index_create_params
+from ....types.vectorize.indexes import metadata_index_delete_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["MetadataIndexResource", "AsyncMetadataIndexResource"]
 
 class MetadataIndexResource(SyncAPIResource):
     @cached_property
@@ -39,20 +51,18 @@ class MetadataIndexResource(SyncAPIResource):
     def with_streaming_response(self) -> MetadataIndexResourceWithStreamingResponse:
         return MetadataIndexResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        index_name: str,
-        *,
-        account_id: str,
-        index_type: Literal["string", "number", "boolean"],
-        property_name: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MetadataIndexCreateResponse]:
+    def create(self,
+    index_name: str,
+    *,
+    account_id: str,
+    index_type: Literal["string", "number", "boolean"],
+    property_name: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[MetadataIndexCreateResponse]:
         """Enable metadata filtering based on metadata property.
 
         Limited to 10 properties.
@@ -73,40 +83,33 @@ class MetadataIndexResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not index_name:
-            raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `index_name` but received {index_name!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/create",
-            body=maybe_transform(
-                {
-                    "index_type": index_type,
-                    "property_name": property_name,
-                },
-                metadata_index_create_params.MetadataIndexCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MetadataIndexCreateResponse]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "index_type": index_type,
+                "property_name": property_name,
+            }, metadata_index_create_params.MetadataIndexCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[MetadataIndexCreateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[MetadataIndexCreateResponse]], ResultWrapper[MetadataIndexCreateResponse]),
         )
 
-    def list(
-        self,
-        index_name: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MetadataIndexListResponse]:
+    def list(self,
+    index_name: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[MetadataIndexListResponse]:
         """
         List Metadata Indexes for the specified Vectorize Index.
 
@@ -122,34 +125,30 @@ class MetadataIndexResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not index_name:
-            raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `index_name` but received {index_name!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/list",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MetadataIndexListResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[MetadataIndexListResponse]]._unwrapper),
             cast_to=cast(Type[Optional[MetadataIndexListResponse]], ResultWrapper[MetadataIndexListResponse]),
         )
 
-    def delete(
-        self,
-        index_name: str,
-        *,
-        account_id: str,
-        property_name: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MetadataIndexDeleteResponse]:
+    def delete(self,
+    index_name: str,
+    *,
+    account_id: str,
+    property_name: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[MetadataIndexDeleteResponse]:
         """
         Allow Vectorize to delete the specified metadata index.
 
@@ -167,24 +166,21 @@ class MetadataIndexResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not index_name:
-            raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `index_name` but received {index_name!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/delete",
-            body=maybe_transform(
-                {"property_name": property_name}, metadata_index_delete_params.MetadataIndexDeleteParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MetadataIndexDeleteResponse]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "property_name": property_name
+            }, metadata_index_delete_params.MetadataIndexDeleteParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[MetadataIndexDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[MetadataIndexDeleteResponse]], ResultWrapper[MetadataIndexDeleteResponse]),
         )
-
 
 class AsyncMetadataIndexResource(AsyncAPIResource):
     @cached_property
@@ -195,20 +191,18 @@ class AsyncMetadataIndexResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncMetadataIndexResourceWithStreamingResponse:
         return AsyncMetadataIndexResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        index_name: str,
-        *,
-        account_id: str,
-        index_type: Literal["string", "number", "boolean"],
-        property_name: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MetadataIndexCreateResponse]:
+    async def create(self,
+    index_name: str,
+    *,
+    account_id: str,
+    index_type: Literal["string", "number", "boolean"],
+    property_name: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[MetadataIndexCreateResponse]:
         """Enable metadata filtering based on metadata property.
 
         Limited to 10 properties.
@@ -229,40 +223,33 @@ class AsyncMetadataIndexResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not index_name:
-            raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `index_name` but received {index_name!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/create",
-            body=await async_maybe_transform(
-                {
-                    "index_type": index_type,
-                    "property_name": property_name,
-                },
-                metadata_index_create_params.MetadataIndexCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MetadataIndexCreateResponse]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "index_type": index_type,
+                "property_name": property_name,
+            }, metadata_index_create_params.MetadataIndexCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[MetadataIndexCreateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[MetadataIndexCreateResponse]], ResultWrapper[MetadataIndexCreateResponse]),
         )
 
-    async def list(
-        self,
-        index_name: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MetadataIndexListResponse]:
+    async def list(self,
+    index_name: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[MetadataIndexListResponse]:
         """
         List Metadata Indexes for the specified Vectorize Index.
 
@@ -278,34 +265,30 @@ class AsyncMetadataIndexResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not index_name:
-            raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `index_name` but received {index_name!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/list",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MetadataIndexListResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[MetadataIndexListResponse]]._unwrapper),
             cast_to=cast(Type[Optional[MetadataIndexListResponse]], ResultWrapper[MetadataIndexListResponse]),
         )
 
-    async def delete(
-        self,
-        index_name: str,
-        *,
-        account_id: str,
-        property_name: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MetadataIndexDeleteResponse]:
+    async def delete(self,
+    index_name: str,
+    *,
+    account_id: str,
+    property_name: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[MetadataIndexDeleteResponse]:
         """
         Allow Vectorize to delete the specified metadata index.
 
@@ -323,24 +306,21 @@ class AsyncMetadataIndexResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not index_name:
-            raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `index_name` but received {index_name!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/delete",
-            body=await async_maybe_transform(
-                {"property_name": property_name}, metadata_index_delete_params.MetadataIndexDeleteParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MetadataIndexDeleteResponse]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "property_name": property_name
+            }, metadata_index_delete_params.MetadataIndexDeleteParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[MetadataIndexDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[MetadataIndexDeleteResponse]], ResultWrapper[MetadataIndexDeleteResponse]),
         )
-
 
 class MetadataIndexResourceWithRawResponse:
     def __init__(self, metadata_index: MetadataIndexResource) -> None:
@@ -356,7 +336,6 @@ class MetadataIndexResourceWithRawResponse:
             metadata_index.delete,
         )
 
-
 class AsyncMetadataIndexResourceWithRawResponse:
     def __init__(self, metadata_index: AsyncMetadataIndexResource) -> None:
         self._metadata_index = metadata_index
@@ -371,7 +350,6 @@ class AsyncMetadataIndexResourceWithRawResponse:
             metadata_index.delete,
         )
 
-
 class MetadataIndexResourceWithStreamingResponse:
     def __init__(self, metadata_index: MetadataIndexResource) -> None:
         self._metadata_index = metadata_index
@@ -385,7 +363,6 @@ class MetadataIndexResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             metadata_index.delete,
         )
-
 
 class AsyncMetadataIndexResourceWithStreamingResponse:
     def __init__(self, metadata_index: AsyncMetadataIndexResource) -> None:

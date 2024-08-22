@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["SubscriptionComponentParam"]
 
-
 class SubscriptionComponentParam(TypedDict, total=False):
     default: float
     """The default amount assigned."""

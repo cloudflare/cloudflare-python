@@ -1,13 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["Device", "User"]
+from typing import Optional
 
+from datetime import datetime
+
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["Device", "User"]
 
 class User(BaseModel):
     id: Optional[str] = None
@@ -18,7 +23,6 @@ class User(BaseModel):
 
     name: Optional[str] = None
     """The enrolled device user's name."""
-
 
 class Device(BaseModel):
     id: Optional[str] = None

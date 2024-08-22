@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal, TypedDict, Required
+
 from typing import List
-from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["DispatchNamespaceBindingParam", "Outbound", "OutboundWorker"]
-
 
 class OutboundWorker(TypedDict, total=False):
     environment: str
@@ -14,7 +14,6 @@ class OutboundWorker(TypedDict, total=False):
 
     service: str
     """Name of the outbound worker"""
-
 
 class Outbound(TypedDict, total=False):
     params: List[str]
@@ -25,7 +24,6 @@ class Outbound(TypedDict, total=False):
 
     worker: OutboundWorker
     """Outbound worker"""
-
 
 class DispatchNamespaceBindingParam(TypedDict, total=False):
     namespace: Required[str]

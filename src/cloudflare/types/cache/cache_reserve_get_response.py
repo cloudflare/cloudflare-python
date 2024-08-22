@@ -1,14 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from ..._models import BaseModel
+
 from .cache_reserve import CacheReserve
 
-__all__ = ["CacheReserveGetResponse"]
+from typing import Optional
 
+from datetime import datetime
+
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["CacheReserveGetResponse"]
 
 class CacheReserveGetResponse(BaseModel):
     id: CacheReserve

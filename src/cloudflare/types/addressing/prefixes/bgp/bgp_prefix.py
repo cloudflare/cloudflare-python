@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import datetime
-
 from ....._models import BaseModel
 
-__all__ = ["BGPPrefix", "BGPSignalOpts", "OnDemand"]
+from typing import Optional
 
+from datetime import datetime
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["BGPPrefix", "BGPSignalOpts", "OnDemand"]
 
 class BGPSignalOpts(BaseModel):
     enabled: Optional[bool] = None
@@ -20,7 +24,6 @@ class BGPSignalOpts(BaseModel):
 
     This field is null if BGP signaling has never been enabled.
     """
-
 
 class OnDemand(BaseModel):
     advertised: Optional[bool] = None
@@ -46,7 +49,6 @@ class OnDemand(BaseModel):
     Whether advertisement status of the prefix is locked, meaning it cannot be
     changed.
     """
-
 
 class BGPPrefix(BaseModel):
     id: Optional[str] = None

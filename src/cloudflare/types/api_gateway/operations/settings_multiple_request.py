@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
-from typing_extensions import Literal, TypeAlias
-
 from ...._models import BaseModel
 
-__all__ = ["SettingsMultipleRequest", "SettingsMultipleRequestItem"]
+from typing import Optional
 
+from typing_extensions import Literal, TypeAlias
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["SettingsMultipleRequest", "SettingsMultipleRequestItem"]
 
 class SettingsMultipleRequestItem(BaseModel):
     mitigation_action: Optional[Literal["log", "block", "none"]] = None
@@ -19,6 +23,5 @@ class SettingsMultipleRequestItem(BaseModel):
     - `null` indicates that no operation level mitigation is in place, see Zone
       Level Schema Validation Settings for mitigation action that will be applied
     """
-
 
 SettingsMultipleRequest: TypeAlias = Dict[str, SettingsMultipleRequestItem]

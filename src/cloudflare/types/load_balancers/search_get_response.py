@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["SearchGetResponse", "Resource"]
+from typing import Optional, List
 
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["SearchGetResponse", "Resource"]
 
 class Resource(BaseModel):
     reference_type: Optional[Literal["referral", "referrer"]] = None
@@ -22,7 +26,6 @@ class Resource(BaseModel):
 
     resource_type: Optional[Literal["load_balancer", "monitor", "pool"]] = None
     """The type of the resource."""
-
 
 class SearchGetResponse(BaseModel):
     resources: Optional[List[Resource]] = None

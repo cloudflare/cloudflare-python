@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-
 from ....._models import BaseModel
+
+from typing import Optional, List
+
 from .user_policy_check_geo import UserPolicyCheckGeo
 
-__all__ = ["UserPolicyCheckListResponse", "AppState", "UserIdentity"]
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
+__all__ = ["UserPolicyCheckListResponse", "AppState", "UserIdentity"]
 
 class AppState(BaseModel):
     app_uid: Optional[str] = None
@@ -21,7 +25,6 @@ class AppState(BaseModel):
     policies: Optional[List[object]] = None
 
     status: Optional[str] = None
-
 
 class UserIdentity(BaseModel):
     id: Optional[str] = None
@@ -46,7 +49,6 @@ class UserIdentity(BaseModel):
     """UUID"""
 
     version: Optional[int] = None
-
 
 class UserPolicyCheckListResponse(BaseModel):
     app_state: Optional[AppState] = None

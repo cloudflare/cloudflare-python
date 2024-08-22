@@ -1,11 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-
 from ...._models import BaseModel
 
-__all__ = ["Outgoing"]
+from typing import Optional, List
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["Outgoing"]
 
 class Outgoing(BaseModel):
     id: Optional[str] = None

@@ -2,29 +2,50 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import TypedDict, Required, Literal, TypeAlias
+
+from typing import Iterable, Union
 
 from .logging_param import LoggingParam
-from .log_rule_param import LogRuleParam
-from .skip_rule_param import SkipRuleParam
+
 from .block_rule_param import BlockRuleParam
-from .route_rule_param import RouteRuleParam
-from .score_rule_param import ScoreRuleParam
-from .execute_rule_param import ExecuteRuleParam
-from .rewrite_rule_param import RewriteRuleParam
-from .redirect_rule_param import RedirectRuleParam
-from .set_config_rule_param import SetConfigRuleParam
-from .serve_error_rule_param import ServeErrorRuleParam
-from .ddos_dynamic_rule_param import DDoSDynamicRuleParam
-from .log_custom_field_rule_param import LogCustomFieldRuleParam
+
 from .compress_response_rule_param import CompressResponseRuleParam
+
+from .execute_rule_param import ExecuteRuleParam
+
+from .log_rule_param import LogRuleParam
+
 from .managed_challenge_rule_param import ManagedChallengeRuleParam
+
+from .redirect_rule_param import RedirectRuleParam
+
+from .rewrite_rule_param import RewriteRuleParam
+
+from .route_rule_param import RouteRuleParam
+
+from .score_rule_param import ScoreRuleParam
+
+from .serve_error_rule_param import ServeErrorRuleParam
+
+from .set_config_rule_param import SetConfigRuleParam
+
+from .skip_rule_param import SkipRuleParam
+
 from .set_cache_settings_rule_param import SetCacheSettingsRuleParam
+
+from .log_custom_field_rule_param import LogCustomFieldRuleParam
+
+from .ddos_dynamic_rule_param import DDoSDynamicRuleParam
+
 from .force_connection_close_rule_param import ForceConnectionCloseRuleParam
 
-__all__ = ["PhaseUpdateParams", "Rule", "RuleRulesetsChallengeRule", "RuleRulesetsJSChallengeRule"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
+__all__ = ["PhaseUpdateParams", "Rule", "RuleRulesetsChallengeRule", "RuleRulesetsJSChallengeRule"]
 
 class PhaseUpdateParams(TypedDict, total=False):
     rules: Required[Iterable[Rule]]
@@ -41,7 +62,6 @@ class PhaseUpdateParams(TypedDict, total=False):
 
     name: str
     """The human-readable name of the ruleset."""
-
 
 class RuleRulesetsChallengeRule(TypedDict, total=False):
     id: str
@@ -68,7 +88,6 @@ class RuleRulesetsChallengeRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
-
 class RuleRulesetsJSChallengeRule(TypedDict, total=False):
     id: str
     """The unique ID of the rule."""
@@ -94,24 +113,4 @@ class RuleRulesetsJSChallengeRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
-
-Rule: TypeAlias = Union[
-    BlockRuleParam,
-    RuleRulesetsChallengeRule,
-    CompressResponseRuleParam,
-    ExecuteRuleParam,
-    RuleRulesetsJSChallengeRule,
-    LogRuleParam,
-    ManagedChallengeRuleParam,
-    RedirectRuleParam,
-    RewriteRuleParam,
-    RouteRuleParam,
-    ScoreRuleParam,
-    ServeErrorRuleParam,
-    SetConfigRuleParam,
-    SkipRuleParam,
-    SetCacheSettingsRuleParam,
-    LogCustomFieldRuleParam,
-    DDoSDynamicRuleParam,
-    ForceConnectionCloseRuleParam,
-]
+Rule: TypeAlias = Union[BlockRuleParam, RuleRulesetsChallengeRule, CompressResponseRuleParam, ExecuteRuleParam, RuleRulesetsJSChallengeRule, LogRuleParam, ManagedChallengeRuleParam, RedirectRuleParam, RewriteRuleParam, RouteRuleParam, ScoreRuleParam, ServeErrorRuleParam, SetConfigRuleParam, SkipRuleParam, SetCacheSettingsRuleParam, LogCustomFieldRuleParam, DDoSDynamicRuleParam, ForceConnectionCloseRuleParam]

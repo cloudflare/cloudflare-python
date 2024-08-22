@@ -2,32 +2,44 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
-from ...types.magic_transit import cf_interconnect_update_params
-from ...types.magic_transit.cf_interconnect_get_response import CfInterconnectGetResponse
-from ...types.magic_transit.cf_interconnect_list_response import CfInterconnectListResponse
+
 from ...types.magic_transit.cf_interconnect_update_response import CfInterconnectUpdateResponse
 
-__all__ = ["CfInterconnectsResource", "AsyncCfInterconnectsResource"]
+from ..._wrappers import ResultWrapper
 
+from ..._utils import maybe_transform, async_maybe_transform
+
+from ..._base_client import make_request_options
+
+from typing import Type
+
+from ...types.magic_transit.cf_interconnect_list_response import CfInterconnectListResponse
+
+from ...types.magic_transit.cf_interconnect_get_response import CfInterconnectGetResponse
+
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ...types.magic_transit import cf_interconnect_update_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.magic_transit import cf_interconnect_update_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["CfInterconnectsResource", "AsyncCfInterconnectsResource"]
 
 class CfInterconnectsResource(SyncAPIResource):
     @cached_property
@@ -38,23 +50,21 @@ class CfInterconnectsResource(SyncAPIResource):
     def with_streaming_response(self) -> CfInterconnectsResourceWithStreamingResponse:
         return CfInterconnectsResourceWithStreamingResponse(self)
 
-    def update(
-        self,
-        cf_interconnect_id: str,
-        *,
-        account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        gre: cf_interconnect_update_params.GRE | NotGiven = NOT_GIVEN,
-        health_check: cf_interconnect_update_params.HealthCheck | NotGiven = NOT_GIVEN,
-        interface_address: str | NotGiven = NOT_GIVEN,
-        mtu: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CfInterconnectUpdateResponse:
+    def update(self,
+    cf_interconnect_id: str,
+    *,
+    account_id: str,
+    description: str | NotGiven = NOT_GIVEN,
+    gre: cf_interconnect_update_params.GRE | NotGiven = NOT_GIVEN,
+    health_check: cf_interconnect_update_params.HealthCheck | NotGiven = NOT_GIVEN,
+    interface_address: str | NotGiven = NOT_GIVEN,
+    mtu: int | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CfInterconnectUpdateResponse:
         """Updates a specific interconnect associated with an account.
 
         Use
@@ -86,42 +96,35 @@ class CfInterconnectsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not cf_interconnect_id:
-            raise ValueError(f"Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}'
+          )
         return self._put(
             f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
-            body=maybe_transform(
-                {
-                    "description": description,
-                    "gre": gre,
-                    "health_check": health_check,
-                    "interface_address": interface_address,
-                    "mtu": mtu,
-                },
-                cf_interconnect_update_params.CfInterconnectUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CfInterconnectUpdateResponse]._unwrapper,
-            ),
+            body=maybe_transform({
+                "description": description,
+                "gre": gre,
+                "health_check": health_check,
+                "interface_address": interface_address,
+                "mtu": mtu,
+            }, cf_interconnect_update_params.CfInterconnectUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[CfInterconnectUpdateResponse]._unwrapper),
             cast_to=cast(Type[CfInterconnectUpdateResponse], ResultWrapper[CfInterconnectUpdateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CfInterconnectListResponse:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CfInterconnectListResponse:
         """
         Lists interconnects associated with an account.
 
@@ -137,31 +140,25 @@ class CfInterconnectsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/magic/cf_interconnects",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CfInterconnectListResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[CfInterconnectListResponse]._unwrapper),
             cast_to=cast(Type[CfInterconnectListResponse], ResultWrapper[CfInterconnectListResponse]),
         )
 
-    def get(
-        self,
-        cf_interconnect_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CfInterconnectGetResponse:
+    def get(self,
+    cf_interconnect_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CfInterconnectGetResponse:
         """
         Lists details for a specific interconnect.
 
@@ -179,21 +176,18 @@ class CfInterconnectsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not cf_interconnect_id:
-            raise ValueError(f"Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CfInterconnectGetResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[CfInterconnectGetResponse]._unwrapper),
             cast_to=cast(Type[CfInterconnectGetResponse], ResultWrapper[CfInterconnectGetResponse]),
         )
-
 
 class AsyncCfInterconnectsResource(AsyncAPIResource):
     @cached_property
@@ -204,23 +198,21 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncCfInterconnectsResourceWithStreamingResponse:
         return AsyncCfInterconnectsResourceWithStreamingResponse(self)
 
-    async def update(
-        self,
-        cf_interconnect_id: str,
-        *,
-        account_id: str,
-        description: str | NotGiven = NOT_GIVEN,
-        gre: cf_interconnect_update_params.GRE | NotGiven = NOT_GIVEN,
-        health_check: cf_interconnect_update_params.HealthCheck | NotGiven = NOT_GIVEN,
-        interface_address: str | NotGiven = NOT_GIVEN,
-        mtu: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CfInterconnectUpdateResponse:
+    async def update(self,
+    cf_interconnect_id: str,
+    *,
+    account_id: str,
+    description: str | NotGiven = NOT_GIVEN,
+    gre: cf_interconnect_update_params.GRE | NotGiven = NOT_GIVEN,
+    health_check: cf_interconnect_update_params.HealthCheck | NotGiven = NOT_GIVEN,
+    interface_address: str | NotGiven = NOT_GIVEN,
+    mtu: int | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CfInterconnectUpdateResponse:
         """Updates a specific interconnect associated with an account.
 
         Use
@@ -252,42 +244,35 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not cf_interconnect_id:
-            raise ValueError(f"Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}'
+          )
         return await self._put(
             f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
-            body=await async_maybe_transform(
-                {
-                    "description": description,
-                    "gre": gre,
-                    "health_check": health_check,
-                    "interface_address": interface_address,
-                    "mtu": mtu,
-                },
-                cf_interconnect_update_params.CfInterconnectUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CfInterconnectUpdateResponse]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "description": description,
+                "gre": gre,
+                "health_check": health_check,
+                "interface_address": interface_address,
+                "mtu": mtu,
+            }, cf_interconnect_update_params.CfInterconnectUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[CfInterconnectUpdateResponse]._unwrapper),
             cast_to=cast(Type[CfInterconnectUpdateResponse], ResultWrapper[CfInterconnectUpdateResponse]),
         )
 
-    async def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CfInterconnectListResponse:
+    async def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CfInterconnectListResponse:
         """
         Lists interconnects associated with an account.
 
@@ -303,31 +288,25 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/magic/cf_interconnects",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CfInterconnectListResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[CfInterconnectListResponse]._unwrapper),
             cast_to=cast(Type[CfInterconnectListResponse], ResultWrapper[CfInterconnectListResponse]),
         )
 
-    async def get(
-        self,
-        cf_interconnect_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CfInterconnectGetResponse:
+    async def get(self,
+    cf_interconnect_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CfInterconnectGetResponse:
         """
         Lists details for a specific interconnect.
 
@@ -345,21 +324,18 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not cf_interconnect_id:
-            raise ValueError(f"Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CfInterconnectGetResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[CfInterconnectGetResponse]._unwrapper),
             cast_to=cast(Type[CfInterconnectGetResponse], ResultWrapper[CfInterconnectGetResponse]),
         )
-
 
 class CfInterconnectsResourceWithRawResponse:
     def __init__(self, cf_interconnects: CfInterconnectsResource) -> None:
@@ -375,7 +351,6 @@ class CfInterconnectsResourceWithRawResponse:
             cf_interconnects.get,
         )
 
-
 class AsyncCfInterconnectsResourceWithRawResponse:
     def __init__(self, cf_interconnects: AsyncCfInterconnectsResource) -> None:
         self._cf_interconnects = cf_interconnects
@@ -390,7 +365,6 @@ class AsyncCfInterconnectsResourceWithRawResponse:
             cf_interconnects.get,
         )
 
-
 class CfInterconnectsResourceWithStreamingResponse:
     def __init__(self, cf_interconnects: CfInterconnectsResource) -> None:
         self._cf_interconnects = cf_interconnects
@@ -404,7 +378,6 @@ class CfInterconnectsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             cf_interconnects.get,
         )
-
 
 class AsyncCfInterconnectsResourceWithStreamingResponse:
     def __init__(self, cf_interconnects: AsyncCfInterconnectsResource) -> None:

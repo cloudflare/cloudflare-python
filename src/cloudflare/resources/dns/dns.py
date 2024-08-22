@@ -2,45 +2,29 @@
 
 from __future__ import annotations
 
-from .records import (
-    RecordsResource,
-    AsyncRecordsResource,
-    RecordsResourceWithRawResponse,
-    AsyncRecordsResourceWithRawResponse,
-    RecordsResourceWithStreamingResponse,
-    AsyncRecordsResourceWithStreamingResponse,
-)
-from .firewall import (
-    FirewallResource,
-    AsyncFirewallResource,
-    FirewallResourceWithRawResponse,
-    AsyncFirewallResourceWithRawResponse,
-    FirewallResourceWithStreamingResponse,
-    AsyncFirewallResourceWithStreamingResponse,
-)
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
+from .records import RecordsResource, AsyncRecordsResource
+
 from ..._compat import cached_property
-from .analytics import (
-    AnalyticsResource,
-    AsyncAnalyticsResource,
-    AnalyticsResourceWithRawResponse,
-    AsyncAnalyticsResourceWithRawResponse,
-    AnalyticsResourceWithStreamingResponse,
-    AsyncAnalyticsResourceWithStreamingResponse,
-)
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .firewall.firewall import FirewallResource, AsyncFirewallResource
+
+from .settings import SettingsResource, AsyncSettingsResource
+
 from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
 
-__all__ = ["DNSResource", "AsyncDNSResource"]
+from .firewall.firewall import FirewallResource, AsyncFirewallResource
 
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from .records import RecordsResource, AsyncRecordsResource, RecordsResourceWithRawResponse, AsyncRecordsResourceWithRawResponse, RecordsResourceWithStreamingResponse, AsyncRecordsResourceWithStreamingResponse
+from .settings import SettingsResource, AsyncSettingsResource, SettingsResourceWithRawResponse, AsyncSettingsResourceWithRawResponse, SettingsResourceWithStreamingResponse, AsyncSettingsResourceWithStreamingResponse
+from .analytics import AnalyticsResource, AsyncAnalyticsResource, AnalyticsResourceWithRawResponse, AsyncAnalyticsResourceWithRawResponse, AnalyticsResourceWithStreamingResponse, AsyncAnalyticsResourceWithStreamingResponse
+from .firewall import FirewallResource, AsyncFirewallResource, FirewallResourceWithRawResponse, AsyncFirewallResourceWithRawResponse, FirewallResourceWithStreamingResponse, AsyncFirewallResourceWithStreamingResponse
+
+__all__ = ["DNSResource", "AsyncDNSResource"]
 
 class DNSResource(SyncAPIResource):
     @cached_property
@@ -67,7 +51,6 @@ class DNSResource(SyncAPIResource):
     def with_streaming_response(self) -> DNSResourceWithStreamingResponse:
         return DNSResourceWithStreamingResponse(self)
 
-
 class AsyncDNSResource(AsyncAPIResource):
     @cached_property
     def records(self) -> AsyncRecordsResource:
@@ -93,7 +76,6 @@ class AsyncDNSResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDNSResourceWithStreamingResponse:
         return AsyncDNSResourceWithStreamingResponse(self)
 
-
 class DNSResourceWithRawResponse:
     def __init__(self, dns: DNSResource) -> None:
         self._dns = dns
@@ -113,7 +95,6 @@ class DNSResourceWithRawResponse:
     @cached_property
     def firewall(self) -> FirewallResourceWithRawResponse:
         return FirewallResourceWithRawResponse(self._dns.firewall)
-
 
 class AsyncDNSResourceWithRawResponse:
     def __init__(self, dns: AsyncDNSResource) -> None:
@@ -135,7 +116,6 @@ class AsyncDNSResourceWithRawResponse:
     def firewall(self) -> AsyncFirewallResourceWithRawResponse:
         return AsyncFirewallResourceWithRawResponse(self._dns.firewall)
 
-
 class DNSResourceWithStreamingResponse:
     def __init__(self, dns: DNSResource) -> None:
         self._dns = dns
@@ -155,7 +135,6 @@ class DNSResourceWithStreamingResponse:
     @cached_property
     def firewall(self) -> FirewallResourceWithStreamingResponse:
         return FirewallResourceWithStreamingResponse(self._dns.firewall)
-
 
 class AsyncDNSResourceWithStreamingResponse:
     def __init__(self, dns: AsyncDNSResource) -> None:

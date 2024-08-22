@@ -2,30 +2,34 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
-from .....types.spectrum.analytics.aggregates import current_get_params
+
 from .....types.spectrum.analytics.aggregates.current_get_response import CurrentGetResponse
 
-__all__ = ["CurrentsResource", "AsyncCurrentsResource"]
+from ....._wrappers import ResultWrapper
 
+from ....._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ....._base_client import make_request_options
+
+from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.spectrum.analytics.aggregates import current_get_params
+from typing import cast
+from typing import cast
+
+__all__ = ["CurrentsResource", "AsyncCurrentsResource"]
 
 class CurrentsResource(SyncAPIResource):
     @cached_property
@@ -36,19 +40,17 @@ class CurrentsResource(SyncAPIResource):
     def with_streaming_response(self) -> CurrentsResourceWithStreamingResponse:
         return CurrentsResourceWithStreamingResponse(self)
 
-    def get(
-        self,
-        *,
-        zone_id: str,
-        app_id: str | NotGiven = NOT_GIVEN,
-        colo_name: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CurrentGetResponse]:
+    def get(self,
+    *,
+    zone_id: str,
+    app_id: str | NotGiven = NOT_GIVEN,
+    colo_name: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CurrentGetResponse]:
         """
         Retrieves analytics aggregated from the last minute of usage on Spectrum
         applications underneath a given zone.
@@ -70,26 +72,17 @@ class CurrentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get(
             f"/zones/{zone_id}/spectrum/analytics/aggregate/current",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "app_id": app_id,
-                        "colo_name": colo_name,
-                    },
-                    current_get_params.CurrentGetParams,
-                ),
-                post_parser=ResultWrapper[Optional[CurrentGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "app_id": app_id,
+                "colo_name": colo_name,
+            }, current_get_params.CurrentGetParams), post_parser=ResultWrapper[Optional[CurrentGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[CurrentGetResponse]], ResultWrapper[CurrentGetResponse]),
         )
-
 
 class AsyncCurrentsResource(AsyncAPIResource):
     @cached_property
@@ -100,19 +93,17 @@ class AsyncCurrentsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncCurrentsResourceWithStreamingResponse:
         return AsyncCurrentsResourceWithStreamingResponse(self)
 
-    async def get(
-        self,
-        *,
-        zone_id: str,
-        app_id: str | NotGiven = NOT_GIVEN,
-        colo_name: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CurrentGetResponse]:
+    async def get(self,
+    *,
+    zone_id: str,
+    app_id: str | NotGiven = NOT_GIVEN,
+    colo_name: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CurrentGetResponse]:
         """
         Retrieves analytics aggregated from the last minute of usage on Spectrum
         applications underneath a given zone.
@@ -134,26 +125,17 @@ class AsyncCurrentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._get(
             f"/zones/{zone_id}/spectrum/analytics/aggregate/current",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "app_id": app_id,
-                        "colo_name": colo_name,
-                    },
-                    current_get_params.CurrentGetParams,
-                ),
-                post_parser=ResultWrapper[Optional[CurrentGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "app_id": app_id,
+                "colo_name": colo_name,
+            }, current_get_params.CurrentGetParams), post_parser=ResultWrapper[Optional[CurrentGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[CurrentGetResponse]], ResultWrapper[CurrentGetResponse]),
         )
-
 
 class CurrentsResourceWithRawResponse:
     def __init__(self, currents: CurrentsResource) -> None:
@@ -163,7 +145,6 @@ class CurrentsResourceWithRawResponse:
             currents.get,
         )
 
-
 class AsyncCurrentsResourceWithRawResponse:
     def __init__(self, currents: AsyncCurrentsResource) -> None:
         self._currents = currents
@@ -172,7 +153,6 @@ class AsyncCurrentsResourceWithRawResponse:
             currents.get,
         )
 
-
 class CurrentsResourceWithStreamingResponse:
     def __init__(self, currents: CurrentsResource) -> None:
         self._currents = currents
@@ -180,7 +160,6 @@ class CurrentsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             currents.get,
         )
-
 
 class AsyncCurrentsResourceWithStreamingResponse:
     def __init__(self, currents: AsyncCurrentsResource) -> None:

@@ -2,41 +2,46 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from .top import (
-    TopResource,
-    AsyncTopResource,
-    TopResourceWithRawResponse,
-    AsyncTopResourceWithRawResponse,
-    TopResourceWithStreamingResponse,
-    AsyncTopResourceWithStreamingResponse,
-)
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .top import TopResource, AsyncTopResource
+
 from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
-from .....types.radar.quality import speed_summary_params, speed_histogram_params
-from .....types.radar.quality.speed_summary_response import SpeedSummaryResponse
+
 from .....types.radar.quality.speed_histogram_response import SpeedHistogramResponse
 
-__all__ = ["SpeedResource", "AsyncSpeedResource"]
+from ....._wrappers import ResultWrapper
 
+from ....._utils import maybe_transform, async_maybe_transform
+
+from ....._base_client import make_request_options
+
+from typing import Type, List, Union
+
+from datetime import datetime
+
+from typing_extensions import Literal
+
+from .....types.radar.quality.speed_summary_response import SpeedSummaryResponse
+
+from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.radar.quality import speed_histogram_params
+from .....types.radar.quality import speed_summary_params
+from .top import TopResource, AsyncTopResource, TopResourceWithRawResponse, AsyncTopResourceWithRawResponse, TopResourceWithStreamingResponse, AsyncTopResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["SpeedResource", "AsyncSpeedResource"]
 
 class SpeedResource(SyncAPIResource):
     @cached_property
@@ -51,24 +56,22 @@ class SpeedResource(SyncAPIResource):
     def with_streaming_response(self) -> SpeedResourceWithStreamingResponse:
         return SpeedResourceWithStreamingResponse(self)
 
-    def histogram(
-        self,
-        *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bucket_size: int | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        metric_group: Literal["BANDWIDTH", "LATENCY", "JITTER"] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SpeedHistogramResponse:
+    def histogram(self,
+    *,
+    asn: List[str] | NotGiven = NOT_GIVEN,
+    bucket_size: int | NotGiven = NOT_GIVEN,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    metric_group: Literal["BANDWIDTH", "LATENCY", "JITTER"] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SpeedHistogramResponse:
         """
         Get an histogram from the previous 90 days of Cloudflare Speed Test data, split
         into fixed bandwidth (Mbps), latency (ms) or jitter (ms) buckets.
@@ -106,45 +109,33 @@ class SpeedResource(SyncAPIResource):
         """
         return self._get(
             "/radar/quality/speed/histogram",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "asn": asn,
-                        "bucket_size": bucket_size,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "format": format,
-                        "location": location,
-                        "metric_group": metric_group,
-                        "name": name,
-                    },
-                    speed_histogram_params.SpeedHistogramParams,
-                ),
-                post_parser=ResultWrapper[SpeedHistogramResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "asn": asn,
+                "bucket_size": bucket_size,
+                "continent": continent,
+                "date_end": date_end,
+                "format": format,
+                "location": location,
+                "metric_group": metric_group,
+                "name": name,
+            }, speed_histogram_params.SpeedHistogramParams), post_parser=ResultWrapper[SpeedHistogramResponse]._unwrapper),
             cast_to=cast(Type[SpeedHistogramResponse], ResultWrapper[SpeedHistogramResponse]),
         )
 
-    def summary(
-        self,
-        *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SpeedSummaryResponse:
+    def summary(self,
+    *,
+    asn: List[str] | NotGiven = NOT_GIVEN,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SpeedSummaryResponse:
         """
         Get a summary of bandwidth, latency, jitter and packet loss, from the previous
         90 days of Cloudflare Speed Test data.
@@ -178,27 +169,16 @@ class SpeedResource(SyncAPIResource):
         """
         return self._get(
             "/radar/quality/speed/summary",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "format": format,
-                        "location": location,
-                        "name": name,
-                    },
-                    speed_summary_params.SpeedSummaryParams,
-                ),
-                post_parser=ResultWrapper[SpeedSummaryResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "asn": asn,
+                "continent": continent,
+                "date_end": date_end,
+                "format": format,
+                "location": location,
+                "name": name,
+            }, speed_summary_params.SpeedSummaryParams), post_parser=ResultWrapper[SpeedSummaryResponse]._unwrapper),
             cast_to=cast(Type[SpeedSummaryResponse], ResultWrapper[SpeedSummaryResponse]),
         )
-
 
 class AsyncSpeedResource(AsyncAPIResource):
     @cached_property
@@ -213,24 +193,22 @@ class AsyncSpeedResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSpeedResourceWithStreamingResponse:
         return AsyncSpeedResourceWithStreamingResponse(self)
 
-    async def histogram(
-        self,
-        *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bucket_size: int | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        metric_group: Literal["BANDWIDTH", "LATENCY", "JITTER"] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SpeedHistogramResponse:
+    async def histogram(self,
+    *,
+    asn: List[str] | NotGiven = NOT_GIVEN,
+    bucket_size: int | NotGiven = NOT_GIVEN,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    metric_group: Literal["BANDWIDTH", "LATENCY", "JITTER"] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SpeedHistogramResponse:
         """
         Get an histogram from the previous 90 days of Cloudflare Speed Test data, split
         into fixed bandwidth (Mbps), latency (ms) or jitter (ms) buckets.
@@ -268,45 +246,33 @@ class AsyncSpeedResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/quality/speed/histogram",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "asn": asn,
-                        "bucket_size": bucket_size,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "format": format,
-                        "location": location,
-                        "metric_group": metric_group,
-                        "name": name,
-                    },
-                    speed_histogram_params.SpeedHistogramParams,
-                ),
-                post_parser=ResultWrapper[SpeedHistogramResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "asn": asn,
+                "bucket_size": bucket_size,
+                "continent": continent,
+                "date_end": date_end,
+                "format": format,
+                "location": location,
+                "metric_group": metric_group,
+                "name": name,
+            }, speed_histogram_params.SpeedHistogramParams), post_parser=ResultWrapper[SpeedHistogramResponse]._unwrapper),
             cast_to=cast(Type[SpeedHistogramResponse], ResultWrapper[SpeedHistogramResponse]),
         )
 
-    async def summary(
-        self,
-        *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SpeedSummaryResponse:
+    async def summary(self,
+    *,
+    asn: List[str] | NotGiven = NOT_GIVEN,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SpeedSummaryResponse:
         """
         Get a summary of bandwidth, latency, jitter and packet loss, from the previous
         90 days of Cloudflare Speed Test data.
@@ -340,27 +306,16 @@ class AsyncSpeedResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/quality/speed/summary",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "format": format,
-                        "location": location,
-                        "name": name,
-                    },
-                    speed_summary_params.SpeedSummaryParams,
-                ),
-                post_parser=ResultWrapper[SpeedSummaryResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "asn": asn,
+                "continent": continent,
+                "date_end": date_end,
+                "format": format,
+                "location": location,
+                "name": name,
+            }, speed_summary_params.SpeedSummaryParams), post_parser=ResultWrapper[SpeedSummaryResponse]._unwrapper),
             cast_to=cast(Type[SpeedSummaryResponse], ResultWrapper[SpeedSummaryResponse]),
         )
-
 
 class SpeedResourceWithRawResponse:
     def __init__(self, speed: SpeedResource) -> None:
@@ -377,7 +332,6 @@ class SpeedResourceWithRawResponse:
     def top(self) -> TopResourceWithRawResponse:
         return TopResourceWithRawResponse(self._speed.top)
 
-
 class AsyncSpeedResourceWithRawResponse:
     def __init__(self, speed: AsyncSpeedResource) -> None:
         self._speed = speed
@@ -393,7 +347,6 @@ class AsyncSpeedResourceWithRawResponse:
     def top(self) -> AsyncTopResourceWithRawResponse:
         return AsyncTopResourceWithRawResponse(self._speed.top)
 
-
 class SpeedResourceWithStreamingResponse:
     def __init__(self, speed: SpeedResource) -> None:
         self._speed = speed
@@ -408,7 +361,6 @@ class SpeedResourceWithStreamingResponse:
     @cached_property
     def top(self) -> TopResourceWithStreamingResponse:
         return TopResourceWithStreamingResponse(self._speed.top)
-
 
 class AsyncSpeedResourceWithStreamingResponse:
     def __init__(self, speed: AsyncSpeedResource) -> None:

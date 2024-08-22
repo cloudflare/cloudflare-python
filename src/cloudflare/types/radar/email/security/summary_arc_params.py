@@ -2,17 +2,23 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import TypedDict, Annotated, Literal
 
+from typing import List, Union
+
+from datetime import datetime
+
+from ....._utils import PropertyInfo
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ....._types import FileTypes
 from ....._utils import PropertyInfo
 
 __all__ = ["SummaryARCParams"]
 
-
 class SummaryARCParams(TypedDict, total=False):
-    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
+    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format = "iso8601")]
     """End of the date range (inclusive)."""
 
     date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
@@ -22,7 +28,7 @@ class SummaryARCParams(TypedDict, total=False):
     `dateEnd` parameters).
     """
 
-    date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
+    date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format = "iso8601")]
     """Array of datetimes to filter the start of a series."""
 
     dkim: List[Literal["PASS", "NONE", "FAIL"]]

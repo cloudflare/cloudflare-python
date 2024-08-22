@@ -2,41 +2,127 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast, overload
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    required_args,
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.zero_trust import (
-    IdentityProviderType,
-    identity_provider_create_params,
-    identity_provider_update_params,
-)
-from ...types.zero_trust.identity_provider import IdentityProvider
+
 from ...types.zero_trust.identity_provider_type import IdentityProviderType
-from ...types.zero_trust.generic_oauth_config_param import GenericOAuthConfigParam
-from ...types.zero_trust.identity_provider_list_response import IdentityProviderListResponse
-from ...types.zero_trust.identity_provider_delete_response import IdentityProviderDeleteResponse
+
 from ...types.zero_trust.identity_provider_scim_config_param import IdentityProviderSCIMConfigParam
 
-__all__ = ["IdentityProvidersResource", "AsyncIdentityProvidersResource"]
+from typing import Optional, Type
 
+from ...types.zero_trust.identity_provider import IdentityProvider
+
+from ...types.zero_trust.generic_oauth_config_param import GenericOAuthConfigParam
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from ...types.zero_trust.identity_provider_list_response import IdentityProviderListResponse
+
+from ...pagination import SyncSinglePage, AsyncSinglePage
+
+from ...types.zero_trust.identity_provider_delete_response import IdentityProviderDeleteResponse
+
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ...types.zero_trust import identity_provider_create_params, identity_provider_update_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.zero_trust import identity_provider_create_params
+from ...types.zero_trust import identity_provider_update_params
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["IdentityProvidersResource", "AsyncIdentityProvidersResource"]
 
 class IdentityProvidersResource(SyncAPIResource):
     @cached_property
@@ -48,23 +134,21 @@ class IdentityProvidersResource(SyncAPIResource):
         return IdentityProvidersResourceWithStreamingResponse(self)
 
     @overload
-    def create(
-        self,
-        *,
-        config: identity_provider_create_params.AzureADConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: identity_provider_create_params.AzureADConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -97,25 +181,22 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessCentrifyConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: identity_provider_create_params.AccessCentrifyConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -148,25 +229,22 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def create(
-        self,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -199,25 +277,22 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def create(
-        self,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -250,25 +325,22 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessGoogleConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: identity_provider_create_params.AccessGoogleConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -301,25 +373,22 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessGoogleAppsConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: identity_provider_create_params.AccessGoogleAppsConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -352,25 +421,22 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def create(
-        self,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -403,25 +469,22 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessOIDCConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: identity_provider_create_params.AccessOIDCConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -454,25 +517,22 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessOktaConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: identity_provider_create_params.AccessOktaConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -505,25 +565,22 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessOneloginConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: identity_provider_create_params.AccessOneloginConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -556,25 +613,22 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessPingoneConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: identity_provider_create_params.AccessPingoneConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -607,25 +661,22 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessSAMLConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: identity_provider_create_params.AccessSAMLConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -658,25 +709,22 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def create(
-        self,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -709,25 +757,22 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def create(
-        self,
-        *,
-        config: object,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: object,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -760,93 +805,64 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @required_args(["config", "name", "type"])
-    def create(
-        self,
-        *,
-        config: identity_provider_create_params.AzureADConfig
-        | identity_provider_create_params.AccessCentrifyConfig
-        | GenericOAuthConfigParam
-        | identity_provider_create_params.AccessGoogleConfig
-        | identity_provider_create_params.AccessGoogleAppsConfig
-        | identity_provider_create_params.AccessOIDCConfig
-        | identity_provider_create_params.AccessOktaConfig
-        | identity_provider_create_params.AccessOneloginConfig
-        | identity_provider_create_params.AccessPingoneConfig
-        | identity_provider_create_params.AccessSAMLConfig
-        | object,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def create(self,
+    *,
+    config: identity_provider_create_params.AzureADConfig | identity_provider_create_params.AccessCentrifyConfig | GenericOAuthConfigParam | identity_provider_create_params.AccessGoogleConfig | identity_provider_create_params.AccessGoogleAppsConfig | identity_provider_create_params.AccessOIDCConfig | identity_provider_create_params.AccessOktaConfig | identity_provider_create_params.AccessOneloginConfig | identity_provider_create_params.AccessPingoneConfig | identity_provider_create_params.AccessSAMLConfig | object,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return cast(
-            Optional[IdentityProvider],
-            self._post(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
-                body=maybe_transform(
-                    {
-                        "config": config,
-                        "name": name,
-                        "type": type,
-                        "id": id,
-                        "scim_config": scim_config,
-                    },
-                    identity_provider_create_params.IdentityProviderCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[IdentityProvider]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
+        return cast(Optional[IdentityProvider], self._post(
+            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
+            body=maybe_transform({
+                "config": config,
+                "name": name,
+                "type": type,
+                "id": id,
+                "scim_config": scim_config,
+            }, identity_provider_create_params.IdentityProviderCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[IdentityProvider]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
     @overload
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AzureADConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AzureADConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -881,26 +897,23 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessCentrifyConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessCentrifyConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -935,26 +948,23 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -989,26 +999,23 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -1043,26 +1050,23 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessGoogleConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessGoogleConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -1097,26 +1101,23 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessGoogleAppsConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessGoogleAppsConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -1151,26 +1152,23 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -1205,26 +1203,23 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessOIDCConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessOIDCConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -1259,26 +1254,23 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessOktaConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessOktaConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -1313,26 +1305,23 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessOneloginConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessOneloginConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -1367,26 +1356,23 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessPingoneConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessPingoneConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -1421,26 +1407,23 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessSAMLConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessSAMLConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -1475,26 +1458,23 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -1529,26 +1509,23 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: object,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: object,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -1583,91 +1560,62 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @required_args(["config", "name", "type"])
-    def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AzureADConfig
-        | identity_provider_update_params.AccessCentrifyConfig
-        | GenericOAuthConfigParam
-        | identity_provider_update_params.AccessGoogleConfig
-        | identity_provider_update_params.AccessGoogleAppsConfig
-        | identity_provider_update_params.AccessOIDCConfig
-        | identity_provider_update_params.AccessOktaConfig
-        | identity_provider_update_params.AccessOneloginConfig
-        | identity_provider_update_params.AccessPingoneConfig
-        | identity_provider_update_params.AccessSAMLConfig
-        | object,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AzureADConfig | identity_provider_update_params.AccessCentrifyConfig | GenericOAuthConfigParam | identity_provider_update_params.AccessGoogleConfig | identity_provider_update_params.AccessGoogleAppsConfig | identity_provider_update_params.AccessOIDCConfig | identity_provider_update_params.AccessOktaConfig | identity_provider_update_params.AccessOneloginConfig | identity_provider_update_params.AccessPingoneConfig | identity_provider_update_params.AccessSAMLConfig | object,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         if not identity_provider_id:
-            raise ValueError(
-                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
-            )
+          raise ValueError(
+            f'Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}'
+          )
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return cast(
-            Optional[IdentityProvider],
-            self._put(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
-                body=maybe_transform(
-                    {
-                        "config": config,
-                        "name": name,
-                        "type": type,
-                        "id": id,
-                        "scim_config": scim_config,
-                    },
-                    identity_provider_update_params.IdentityProviderUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[IdentityProvider]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
+        return cast(Optional[IdentityProvider], self._put(
+            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+            body=maybe_transform({
+                "config": config,
+                "name": name,
+                "type": type,
+                "id": id,
+                "scim_config": scim_config,
+            }, identity_provider_update_params.IdentityProviderUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[IdentityProvider]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    def list(
-        self,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[IdentityProviderListResponse]:
+    def list(self,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[IdentityProviderListResponse]:
         """
         Lists all configured identity providers.
 
@@ -1685,41 +1633,35 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
-            page=SyncSinglePage[IdentityProviderListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            model=cast(
-                Any, IdentityProviderListResponse
-            ),  # Union types cannot be passed in as arguments in the type system
+            page = SyncSinglePage[IdentityProviderListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            model=cast(Any, IdentityProviderListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
-    def delete(
-        self,
-        identity_provider_id: str,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProviderDeleteResponse]:
+    def delete(self,
+    identity_provider_id: str,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProviderDeleteResponse]:
         """
         Deletes an identity provider from Access.
 
@@ -1739,46 +1681,38 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not identity_provider_id:
-            raise ValueError(
-                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
-            )
+          raise ValueError(
+            f'Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}'
+          )
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._delete(
             f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IdentityProviderDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IdentityProviderDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[IdentityProviderDeleteResponse]], ResultWrapper[IdentityProviderDeleteResponse]),
         )
 
-    def get(
-        self,
-        identity_provider_id: str,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    def get(self,
+    identity_provider_id: str,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Fetches a configured identity provider.
 
@@ -1798,38 +1732,26 @@ class IdentityProvidersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not identity_provider_id:
-            raise ValueError(
-                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
-            )
+          raise ValueError(
+            f'Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}'
+          )
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return cast(
-            Optional[IdentityProvider],
-            self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[IdentityProvider]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
+        return cast(Optional[IdentityProvider], self._get(
+            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[IdentityProvider]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
 class AsyncIdentityProvidersResource(AsyncAPIResource):
     @cached_property
@@ -1841,23 +1763,21 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         return AsyncIdentityProvidersResourceWithStreamingResponse(self)
 
     @overload
-    async def create(
-        self,
-        *,
-        config: identity_provider_create_params.AzureADConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: identity_provider_create_params.AzureADConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -1890,25 +1810,22 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessCentrifyConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: identity_provider_create_params.AccessCentrifyConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -1941,25 +1858,22 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def create(
-        self,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -1992,25 +1906,22 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def create(
-        self,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -2043,25 +1954,22 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessGoogleConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: identity_provider_create_params.AccessGoogleConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -2094,25 +2002,22 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessGoogleAppsConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: identity_provider_create_params.AccessGoogleAppsConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -2145,25 +2050,22 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def create(
-        self,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -2196,25 +2098,22 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessOIDCConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: identity_provider_create_params.AccessOIDCConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -2247,25 +2146,22 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessOktaConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: identity_provider_create_params.AccessOktaConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -2298,25 +2194,22 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessOneloginConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: identity_provider_create_params.AccessOneloginConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -2349,25 +2242,22 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessPingoneConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: identity_provider_create_params.AccessPingoneConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -2400,25 +2290,22 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def create(
-        self,
-        *,
-        config: identity_provider_create_params.AccessSAMLConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: identity_provider_create_params.AccessSAMLConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -2451,25 +2338,22 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def create(
-        self,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -2502,25 +2386,22 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def create(
-        self,
-        *,
-        config: object,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: object,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Adds a new identity provider to Access.
 
@@ -2553,93 +2434,64 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @required_args(["config", "name", "type"])
-    async def create(
-        self,
-        *,
-        config: identity_provider_create_params.AzureADConfig
-        | identity_provider_create_params.AccessCentrifyConfig
-        | GenericOAuthConfigParam
-        | identity_provider_create_params.AccessGoogleConfig
-        | identity_provider_create_params.AccessGoogleAppsConfig
-        | identity_provider_create_params.AccessOIDCConfig
-        | identity_provider_create_params.AccessOktaConfig
-        | identity_provider_create_params.AccessOneloginConfig
-        | identity_provider_create_params.AccessPingoneConfig
-        | identity_provider_create_params.AccessSAMLConfig
-        | object,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def create(self,
+    *,
+    config: identity_provider_create_params.AzureADConfig | identity_provider_create_params.AccessCentrifyConfig | GenericOAuthConfigParam | identity_provider_create_params.AccessGoogleConfig | identity_provider_create_params.AccessGoogleAppsConfig | identity_provider_create_params.AccessOIDCConfig | identity_provider_create_params.AccessOktaConfig | identity_provider_create_params.AccessOneloginConfig | identity_provider_create_params.AccessPingoneConfig | identity_provider_create_params.AccessSAMLConfig | object,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return cast(
-            Optional[IdentityProvider],
-            await self._post(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
-                body=await async_maybe_transform(
-                    {
-                        "config": config,
-                        "name": name,
-                        "type": type,
-                        "id": id,
-                        "scim_config": scim_config,
-                    },
-                    identity_provider_create_params.IdentityProviderCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[IdentityProvider]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
+        return cast(Optional[IdentityProvider], await self._post(
+            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
+            body=await async_maybe_transform({
+                "config": config,
+                "name": name,
+                "type": type,
+                "id": id,
+                "scim_config": scim_config,
+            }, identity_provider_create_params.IdentityProviderCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[IdentityProvider]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
     @overload
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AzureADConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AzureADConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -2674,26 +2526,23 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessCentrifyConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessCentrifyConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -2728,26 +2577,23 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -2782,26 +2628,23 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -2836,26 +2679,23 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessGoogleConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessGoogleConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -2890,26 +2730,23 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessGoogleAppsConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessGoogleAppsConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -2944,26 +2781,23 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -2998,26 +2832,23 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessOIDCConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessOIDCConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -3052,26 +2883,23 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessOktaConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessOktaConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -3106,26 +2934,23 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessOneloginConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessOneloginConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -3160,26 +2985,23 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessPingoneConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessPingoneConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -3214,26 +3036,23 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AccessSAMLConfig,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AccessSAMLConfig,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -3268,26 +3087,23 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: GenericOAuthConfigParam,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: GenericOAuthConfigParam,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -3322,26 +3138,23 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @overload
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: object,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: object,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Updates a configured identity provider.
 
@@ -3376,91 +3189,62 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-
     @required_args(["config", "name", "type"])
-    async def update(
-        self,
-        identity_provider_id: str,
-        *,
-        config: identity_provider_update_params.AzureADConfig
-        | identity_provider_update_params.AccessCentrifyConfig
-        | GenericOAuthConfigParam
-        | identity_provider_update_params.AccessGoogleConfig
-        | identity_provider_update_params.AccessGoogleAppsConfig
-        | identity_provider_update_params.AccessOIDCConfig
-        | identity_provider_update_params.AccessOktaConfig
-        | identity_provider_update_params.AccessOneloginConfig
-        | identity_provider_update_params.AccessPingoneConfig
-        | identity_provider_update_params.AccessSAMLConfig
-        | object,
-        name: str,
-        type: IdentityProviderType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def update(self,
+    identity_provider_id: str,
+    *,
+    config: identity_provider_update_params.AzureADConfig | identity_provider_update_params.AccessCentrifyConfig | GenericOAuthConfigParam | identity_provider_update_params.AccessGoogleConfig | identity_provider_update_params.AccessGoogleAppsConfig | identity_provider_update_params.AccessOIDCConfig | identity_provider_update_params.AccessOktaConfig | identity_provider_update_params.AccessOneloginConfig | identity_provider_update_params.AccessPingoneConfig | identity_provider_update_params.AccessSAMLConfig | object,
+    name: str,
+    type: IdentityProviderType,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    id: str | NotGiven = NOT_GIVEN,
+    scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         if not identity_provider_id:
-            raise ValueError(
-                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
-            )
+          raise ValueError(
+            f'Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}'
+          )
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return cast(
-            Optional[IdentityProvider],
-            await self._put(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
-                body=await async_maybe_transform(
-                    {
-                        "config": config,
-                        "name": name,
-                        "type": type,
-                        "id": id,
-                        "scim_config": scim_config,
-                    },
-                    identity_provider_update_params.IdentityProviderUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[IdentityProvider]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
+        return cast(Optional[IdentityProvider], await self._put(
+            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+            body=await async_maybe_transform({
+                "config": config,
+                "name": name,
+                "type": type,
+                "id": id,
+                "scim_config": scim_config,
+            }, identity_provider_update_params.IdentityProviderUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[IdentityProvider]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    def list(
-        self,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[IdentityProviderListResponse, AsyncSinglePage[IdentityProviderListResponse]]:
+    def list(self,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[IdentityProviderListResponse, AsyncSinglePage[IdentityProviderListResponse]]:
         """
         Lists all configured identity providers.
 
@@ -3478,41 +3262,35 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
-            page=AsyncSinglePage[IdentityProviderListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            model=cast(
-                Any, IdentityProviderListResponse
-            ),  # Union types cannot be passed in as arguments in the type system
+            page = AsyncSinglePage[IdentityProviderListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            model=cast(Any, IdentityProviderListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
-    async def delete(
-        self,
-        identity_provider_id: str,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProviderDeleteResponse]:
+    async def delete(self,
+    identity_provider_id: str,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProviderDeleteResponse]:
         """
         Deletes an identity provider from Access.
 
@@ -3532,46 +3310,38 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not identity_provider_id:
-            raise ValueError(
-                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
-            )
+          raise ValueError(
+            f'Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}'
+          )
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return await self._delete(
             f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IdentityProviderDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IdentityProviderDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[IdentityProviderDeleteResponse]], ResultWrapper[IdentityProviderDeleteResponse]),
         )
 
-    async def get(
-        self,
-        identity_provider_id: str,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IdentityProvider]:
+    async def get(self,
+    identity_provider_id: str,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IdentityProvider]:
         """
         Fetches a configured identity provider.
 
@@ -3591,38 +3361,26 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not identity_provider_id:
-            raise ValueError(
-                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
-            )
+          raise ValueError(
+            f'Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}'
+          )
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return cast(
-            Optional[IdentityProvider],
-            await self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[IdentityProvider]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
+        return cast(Optional[IdentityProvider], await self._get(
+            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IdentityProvider]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[IdentityProvider]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
 class IdentityProvidersResourceWithRawResponse:
     def __init__(self, identity_providers: IdentityProvidersResource) -> None:
@@ -3644,7 +3402,6 @@ class IdentityProvidersResourceWithRawResponse:
             identity_providers.get,
         )
 
-
 class AsyncIdentityProvidersResourceWithRawResponse:
     def __init__(self, identity_providers: AsyncIdentityProvidersResource) -> None:
         self._identity_providers = identity_providers
@@ -3665,7 +3422,6 @@ class AsyncIdentityProvidersResourceWithRawResponse:
             identity_providers.get,
         )
 
-
 class IdentityProvidersResourceWithStreamingResponse:
     def __init__(self, identity_providers: IdentityProvidersResource) -> None:
         self._identity_providers = identity_providers
@@ -3685,7 +3441,6 @@ class IdentityProvidersResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             identity_providers.get,
         )
-
 
 class AsyncIdentityProvidersResourceWithStreamingResponse:
     def __init__(self, identity_providers: AsyncIdentityProvidersResource) -> None:

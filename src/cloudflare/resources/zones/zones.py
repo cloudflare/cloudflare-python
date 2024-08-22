@@ -2,74 +2,68 @@
 
 from __future__ import annotations
 
-from typing import List, Type as TypingType, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from .holds import (
-    HoldsResource,
-    AsyncHoldsResource,
-    HoldsResourceWithRawResponse,
-    AsyncHoldsResourceWithRawResponse,
-    HoldsResourceWithStreamingResponse,
-    AsyncHoldsResourceWithStreamingResponse,
-)
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
+from .activation_check import ActivationCheckResource, AsyncActivationCheckResource
+
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...types.zones import zone_edit_params, zone_list_params, zone_create_params
-from .subscriptions import (
-    SubscriptionsResource,
-    AsyncSubscriptionsResource,
-    SubscriptionsResourceWithRawResponse,
-    AsyncSubscriptionsResourceWithRawResponse,
-    SubscriptionsResourceWithStreamingResponse,
-    AsyncSubscriptionsResourceWithStreamingResponse,
-)
-from ..._base_client import AsyncPaginator, make_request_options
-from .activation_check import (
-    ActivationCheckResource,
-    AsyncActivationCheckResource,
-    ActivationCheckResourceWithRawResponse,
-    AsyncActivationCheckResourceWithRawResponse,
-    ActivationCheckResourceWithStreamingResponse,
-    AsyncActivationCheckResourceWithStreamingResponse,
-)
-from ...types.zones.type import Type as ZonesType
+
+from .settings import SettingsResource, AsyncSettingsResource
+
+from .custom_nameservers import CustomNameserversResource, AsyncCustomNameserversResource
+
+from .holds import HoldsResource, AsyncHoldsResource
+
+from .subscriptions import SubscriptionsResource, AsyncSubscriptionsResource
+
 from ...types.zones.zone import Zone
-from .custom_nameservers import (
-    CustomNameserversResource,
-    AsyncCustomNameserversResource,
-    CustomNameserversResourceWithRawResponse,
-    AsyncCustomNameserversResourceWithRawResponse,
-    CustomNameserversResourceWithStreamingResponse,
-    AsyncCustomNameserversResourceWithStreamingResponse,
-)
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type as TypingType, List
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from ...types.zones.type import Type as ZonesType
+
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from typing_extensions import Literal
+
 from ...types.zones.zone_delete_response import ZoneDeleteResponse
 
-__all__ = ["ZonesResource", "AsyncZonesResource"]
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
+from ...types.zones import zone_create_params, zone_list_params, zone_edit_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.zones import zone_create_params
+from ...types.zones import zone_list_params
+from ...types.zones import zone_edit_params
+from ...types.zones import Type
+from .activation_check import ActivationCheckResource, AsyncActivationCheckResource, ActivationCheckResourceWithRawResponse, AsyncActivationCheckResourceWithRawResponse, ActivationCheckResourceWithStreamingResponse, AsyncActivationCheckResourceWithStreamingResponse
+from .settings import SettingsResource, AsyncSettingsResource, SettingsResourceWithRawResponse, AsyncSettingsResourceWithRawResponse, SettingsResourceWithStreamingResponse, AsyncSettingsResourceWithStreamingResponse
+from .custom_nameservers import CustomNameserversResource, AsyncCustomNameserversResource, CustomNameserversResourceWithRawResponse, AsyncCustomNameserversResourceWithRawResponse, CustomNameserversResourceWithStreamingResponse, AsyncCustomNameserversResourceWithStreamingResponse
+from .holds import HoldsResource, AsyncHoldsResource, HoldsResourceWithRawResponse, AsyncHoldsResourceWithRawResponse, HoldsResourceWithStreamingResponse, AsyncHoldsResourceWithStreamingResponse
+from .subscriptions import SubscriptionsResource, AsyncSubscriptionsResource, SubscriptionsResourceWithRawResponse, AsyncSubscriptionsResourceWithRawResponse, SubscriptionsResourceWithStreamingResponse, AsyncSubscriptionsResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["ZonesResource", "AsyncZonesResource"]
 
 class ZonesResource(SyncAPIResource):
     @cached_property
@@ -100,19 +94,17 @@ class ZonesResource(SyncAPIResource):
     def with_streaming_response(self) -> ZonesResourceWithStreamingResponse:
         return ZonesResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account: zone_create_params.Account,
-        name: str,
-        type: ZonesType | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Zone]:
+    def create(self,
+    *,
+    account: zone_create_params.Account,
+    name: str,
+    type: ZonesType | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Zone]:
         """
         Create Zone
 
@@ -132,42 +124,31 @@ class ZonesResource(SyncAPIResource):
         """
         return self._post(
             "/zones",
-            body=maybe_transform(
-                {
-                    "account": account,
-                    "name": name,
-                    "type": type,
-                },
-                zone_create_params.ZoneCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "account": account,
+                "name": name,
+                "type": type,
+            }, zone_create_params.ZoneCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Zone]]._unwrapper),
             cast_to=cast(TypingType[Optional[Zone]], ResultWrapper[Zone]),
         )
 
-    def list(
-        self,
-        *,
-        account: zone_list_params.Account | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        order: Literal["name", "status", "account.id", "account.name"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["initializing", "pending", "active", "moved"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[Zone]:
+    def list(self,
+    *,
+    account: zone_list_params.Account | NotGiven = NOT_GIVEN,
+    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+    match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    order: Literal["name", "status", "account.id", "account.name"] | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    status: Literal["initializing", "pending", "active", "moved"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[Zone]:
         """Lists, searches, sorts, and filters your zones.
 
         Listing zones across more than
@@ -208,40 +189,29 @@ class ZonesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/zones",
-            page=SyncV4PagePaginationArray[Zone],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "account": account,
-                        "direction": direction,
-                        "match": match,
-                        "name": name,
-                        "order": order,
-                        "page": page,
-                        "per_page": per_page,
-                        "status": status,
-                    },
-                    zone_list_params.ZoneListParams,
-                ),
-            ),
+            page = SyncV4PagePaginationArray[Zone],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "account": account,
+                "direction": direction,
+                "match": match,
+                "name": name,
+                "order": order,
+                "page": page,
+                "per_page": per_page,
+                "status": status,
+            }, zone_list_params.ZoneListParams)),
             model=Zone,
         )
 
-    def delete(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneDeleteResponse]:
+    def delete(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ZoneDeleteResponse]:
         """
         Deletes an existing zone.
 
@@ -257,33 +227,27 @@ class ZonesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._delete(
             f"/zones/{zone_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper),
             cast_to=cast(TypingType[Optional[ZoneDeleteResponse]], ResultWrapper[ZoneDeleteResponse]),
         )
 
-    def edit(
-        self,
-        *,
-        zone_id: str,
-        plan: zone_edit_params.Plan | NotGiven = NOT_GIVEN,
-        type: Literal["full", "partial", "secondary"] | NotGiven = NOT_GIVEN,
-        vanity_name_servers: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Zone]:
+    def edit(self,
+    *,
+    zone_id: str,
+    plan: zone_edit_params.Plan | NotGiven = NOT_GIVEN,
+    type: Literal["full", "partial", "secondary"] | NotGiven = NOT_GIVEN,
+    vanity_name_servers: List[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Zone]:
         """Edits a zone.
 
         Only one zone property can be changed at a time.
@@ -312,38 +276,29 @@ class ZonesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._patch(
             f"/zones/{zone_id}",
-            body=maybe_transform(
-                {
-                    "plan": plan,
-                    "type": type,
-                    "vanity_name_servers": vanity_name_servers,
-                },
-                zone_edit_params.ZoneEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "plan": plan,
+                "type": type,
+                "vanity_name_servers": vanity_name_servers,
+            }, zone_edit_params.ZoneEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Zone]]._unwrapper),
             cast_to=cast(TypingType[Optional[Zone]], ResultWrapper[Zone]),
         )
 
-    def get(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Zone]:
+    def get(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Zone]:
         """
         Zone Details
 
@@ -359,19 +314,14 @@ class ZonesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get(
             f"/zones/{zone_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Zone]]._unwrapper),
             cast_to=cast(TypingType[Optional[Zone]], ResultWrapper[Zone]),
         )
-
 
 class AsyncZonesResource(AsyncAPIResource):
     @cached_property
@@ -402,19 +352,17 @@ class AsyncZonesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncZonesResourceWithStreamingResponse:
         return AsyncZonesResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account: zone_create_params.Account,
-        name: str,
-        type: ZonesType | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Zone]:
+    async def create(self,
+    *,
+    account: zone_create_params.Account,
+    name: str,
+    type: ZonesType | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Zone]:
         """
         Create Zone
 
@@ -434,42 +382,31 @@ class AsyncZonesResource(AsyncAPIResource):
         """
         return await self._post(
             "/zones",
-            body=await async_maybe_transform(
-                {
-                    "account": account,
-                    "name": name,
-                    "type": type,
-                },
-                zone_create_params.ZoneCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "account": account,
+                "name": name,
+                "type": type,
+            }, zone_create_params.ZoneCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Zone]]._unwrapper),
             cast_to=cast(TypingType[Optional[Zone]], ResultWrapper[Zone]),
         )
 
-    def list(
-        self,
-        *,
-        account: zone_list_params.Account | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        order: Literal["name", "status", "account.id", "account.name"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["initializing", "pending", "active", "moved"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Zone, AsyncV4PagePaginationArray[Zone]]:
+    def list(self,
+    *,
+    account: zone_list_params.Account | NotGiven = NOT_GIVEN,
+    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+    match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    order: Literal["name", "status", "account.id", "account.name"] | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    status: Literal["initializing", "pending", "active", "moved"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Zone, AsyncV4PagePaginationArray[Zone]]:
         """Lists, searches, sorts, and filters your zones.
 
         Listing zones across more than
@@ -510,40 +447,29 @@ class AsyncZonesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/zones",
-            page=AsyncV4PagePaginationArray[Zone],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "account": account,
-                        "direction": direction,
-                        "match": match,
-                        "name": name,
-                        "order": order,
-                        "page": page,
-                        "per_page": per_page,
-                        "status": status,
-                    },
-                    zone_list_params.ZoneListParams,
-                ),
-            ),
+            page = AsyncV4PagePaginationArray[Zone],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "account": account,
+                "direction": direction,
+                "match": match,
+                "name": name,
+                "order": order,
+                "page": page,
+                "per_page": per_page,
+                "status": status,
+            }, zone_list_params.ZoneListParams)),
             model=Zone,
         )
 
-    async def delete(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneDeleteResponse]:
+    async def delete(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ZoneDeleteResponse]:
         """
         Deletes an existing zone.
 
@@ -559,33 +485,27 @@ class AsyncZonesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._delete(
             f"/zones/{zone_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper),
             cast_to=cast(TypingType[Optional[ZoneDeleteResponse]], ResultWrapper[ZoneDeleteResponse]),
         )
 
-    async def edit(
-        self,
-        *,
-        zone_id: str,
-        plan: zone_edit_params.Plan | NotGiven = NOT_GIVEN,
-        type: Literal["full", "partial", "secondary"] | NotGiven = NOT_GIVEN,
-        vanity_name_servers: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Zone]:
+    async def edit(self,
+    *,
+    zone_id: str,
+    plan: zone_edit_params.Plan | NotGiven = NOT_GIVEN,
+    type: Literal["full", "partial", "secondary"] | NotGiven = NOT_GIVEN,
+    vanity_name_servers: List[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Zone]:
         """Edits a zone.
 
         Only one zone property can be changed at a time.
@@ -614,38 +534,29 @@ class AsyncZonesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._patch(
             f"/zones/{zone_id}",
-            body=await async_maybe_transform(
-                {
-                    "plan": plan,
-                    "type": type,
-                    "vanity_name_servers": vanity_name_servers,
-                },
-                zone_edit_params.ZoneEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "plan": plan,
+                "type": type,
+                "vanity_name_servers": vanity_name_servers,
+            }, zone_edit_params.ZoneEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Zone]]._unwrapper),
             cast_to=cast(TypingType[Optional[Zone]], ResultWrapper[Zone]),
         )
 
-    async def get(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Zone]:
+    async def get(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Zone]:
         """
         Zone Details
 
@@ -661,19 +572,14 @@ class AsyncZonesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._get(
             f"/zones/{zone_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Zone]]._unwrapper),
             cast_to=cast(TypingType[Optional[Zone]], ResultWrapper[Zone]),
         )
-
 
 class ZonesResourceWithRawResponse:
     def __init__(self, zones: ZonesResource) -> None:
@@ -715,7 +621,6 @@ class ZonesResourceWithRawResponse:
     def subscriptions(self) -> SubscriptionsResourceWithRawResponse:
         return SubscriptionsResourceWithRawResponse(self._zones.subscriptions)
 
-
 class AsyncZonesResourceWithRawResponse:
     def __init__(self, zones: AsyncZonesResource) -> None:
         self._zones = zones
@@ -756,7 +661,6 @@ class AsyncZonesResourceWithRawResponse:
     def subscriptions(self) -> AsyncSubscriptionsResourceWithRawResponse:
         return AsyncSubscriptionsResourceWithRawResponse(self._zones.subscriptions)
 
-
 class ZonesResourceWithStreamingResponse:
     def __init__(self, zones: ZonesResource) -> None:
         self._zones = zones
@@ -796,7 +700,6 @@ class ZonesResourceWithStreamingResponse:
     @cached_property
     def subscriptions(self) -> SubscriptionsResourceWithStreamingResponse:
         return SubscriptionsResourceWithStreamingResponse(self._zones.subscriptions)
-
 
 class AsyncZonesResourceWithStreamingResponse:
     def __init__(self, zones: AsyncZonesResource) -> None:

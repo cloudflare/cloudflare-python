@@ -1,13 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from ..._models import BaseModel
+
+from typing import Optional, List
+
 from datetime import datetime
 
 from .scope import Scope
-from ..._models import BaseModel
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = ["RouteEmptyResponse", "DeletedRoute"]
-
 
 class DeletedRoute(BaseModel):
     nexthop: str
@@ -36,7 +41,6 @@ class DeletedRoute(BaseModel):
 
     weight: Optional[int] = None
     """Optional weight of the ECMP scope - if provided."""
-
 
 class RouteEmptyResponse(BaseModel):
     deleted: Optional[bool] = None

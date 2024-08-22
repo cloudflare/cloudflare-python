@@ -2,13 +2,18 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Required, Literal
+
+from typing import Iterable, List
 
 from .methods import Methods
 
-__all__ = ["RateLimitCreateParams", "Action", "ActionResponse", "Match", "MatchHeader", "MatchRequest", "MatchResponse"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
+__all__ = ["RateLimitCreateParams", "Action", "ActionResponse", "Match", "MatchHeader", "MatchRequest", "MatchResponse"]
 
 class RateLimitCreateParams(TypedDict, total=False):
     action: Required[Action]
@@ -34,7 +39,6 @@ class RateLimitCreateParams(TypedDict, total=False):
     per period.
     """
 
-
 class ActionResponse(TypedDict, total=False):
     body: str
     """The response body to return.
@@ -47,7 +51,6 @@ class ActionResponse(TypedDict, total=False):
 
     Must be one of the following: `text/plain`, `text/xml`, or `application/json`.
     """
-
 
 class Action(TypedDict, total=False):
     mode: Literal["simulate", "ban", "challenge", "js_challenge", "managed_challenge"]
@@ -71,7 +74,6 @@ class Action(TypedDict, total=False):
     zone's Challenge Passage time and you should not provide this value.
     """
 
-
 class MatchHeader(TypedDict, total=False):
     name: str
     """The name of the response header to match."""
@@ -81,7 +83,6 @@ class MatchHeader(TypedDict, total=False):
 
     value: str
     """The value of the response header, which must match exactly."""
-
 
 class MatchRequest(TypedDict, total=False):
     methods: List[Methods]
@@ -106,7 +107,6 @@ class MatchRequest(TypedDict, total=False):
     matched. Set the value to `*` to match all traffic to your zone.
     """
 
-
 class MatchResponse(TypedDict, total=False):
     origin_traffic: bool
     """
@@ -116,7 +116,6 @@ class MatchResponse(TypedDict, total=False):
     is deprecated. Instead, use response headers and set "origin_traffic" to "false"
     to avoid legacy behaviour interacting with the "response_headers" property.
     """
-
 
 class Match(TypedDict, total=False):
     headers: Iterable[MatchHeader]

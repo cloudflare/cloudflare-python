@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from typing_extensions import Literal
-
 from ...._models import BaseModel
 
-__all__ = ["SentineloneS2sInput"]
+from typing import Optional
 
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["SentineloneS2sInput"]
 
 class SentineloneS2sInput(BaseModel):
     connection_id: str

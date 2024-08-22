@@ -2,39 +2,39 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, Optional, cast
-from datetime import datetime
-
 import httpx
 
-from .bytimes import (
-    BytimesResource,
-    AsyncBytimesResource,
-    BytimesResourceWithRawResponse,
-    AsyncBytimesResourceWithRawResponse,
-    BytimesResourceWithStreamingResponse,
-    AsyncBytimesResourceWithStreamingResponse,
-)
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .bytimes import BytimesResource, AsyncBytimesResource
+
 from ......_compat import cached_property
-from ......_resource import SyncAPIResource, AsyncAPIResource
-from ......_response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ......_wrappers import ResultWrapper
-from ......_base_client import make_request_options
+
 from ......types.dns.analytics.report import Report
+
+from ......_wrappers import ResultWrapper
+
+from ......_utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type, Union
+
+from ......_base_client import make_request_options
+
+from datetime import datetime
+
+from ......_response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ......_utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ......_types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ......_resource import SyncAPIResource, AsyncAPIResource
+from ......types import shared_params
 from ......types.dns.firewall.analytics import report_get_params
+from .bytimes import BytimesResource, AsyncBytimesResource, BytimesResourceWithRawResponse, AsyncBytimesResourceWithRawResponse, BytimesResourceWithStreamingResponse, AsyncBytimesResourceWithStreamingResponse
+from typing import cast
+from typing import cast
 
 __all__ = ["ReportsResource", "AsyncReportsResource"]
-
 
 class ReportsResource(SyncAPIResource):
     @cached_property
@@ -49,25 +49,23 @@ class ReportsResource(SyncAPIResource):
     def with_streaming_response(self) -> ReportsResourceWithStreamingResponse:
         return ReportsResourceWithStreamingResponse(self)
 
-    def get(
-        self,
-        dns_firewall_id: str,
-        *,
-        account_id: str,
-        dimensions: str | NotGiven = NOT_GIVEN,
-        filters: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        metrics: str | NotGiven = NOT_GIVEN,
-        since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        sort: str | NotGiven = NOT_GIVEN,
-        until: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Report]:
+    def get(self,
+    dns_firewall_id: str,
+    *,
+    account_id: str,
+    dimensions: str | NotGiven = NOT_GIVEN,
+    filters: str | NotGiven = NOT_GIVEN,
+    limit: int | NotGiven = NOT_GIVEN,
+    metrics: str | NotGiven = NOT_GIVEN,
+    since: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    sort: str | NotGiven = NOT_GIVEN,
+    until: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Report]:
         """
         Retrieves a list of summarised aggregate metrics over a given time period.
 
@@ -104,33 +102,26 @@ class ReportsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not dns_firewall_id:
-            raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}/dns_analytics/report",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "dimensions": dimensions,
-                        "filters": filters,
-                        "limit": limit,
-                        "metrics": metrics,
-                        "since": since,
-                        "sort": sort,
-                        "until": until,
-                    },
-                    report_get_params.ReportGetParams,
-                ),
-                post_parser=ResultWrapper[Optional[Report]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "dimensions": dimensions,
+                "filters": filters,
+                "limit": limit,
+                "metrics": metrics,
+                "since": since,
+                "sort": sort,
+                "until": until,
+            }, report_get_params.ReportGetParams), post_parser=ResultWrapper[Optional[Report]]._unwrapper),
             cast_to=cast(Type[Optional[Report]], ResultWrapper[Report]),
         )
-
 
 class AsyncReportsResource(AsyncAPIResource):
     @cached_property
@@ -145,25 +136,23 @@ class AsyncReportsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncReportsResourceWithStreamingResponse:
         return AsyncReportsResourceWithStreamingResponse(self)
 
-    async def get(
-        self,
-        dns_firewall_id: str,
-        *,
-        account_id: str,
-        dimensions: str | NotGiven = NOT_GIVEN,
-        filters: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        metrics: str | NotGiven = NOT_GIVEN,
-        since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        sort: str | NotGiven = NOT_GIVEN,
-        until: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Report]:
+    async def get(self,
+    dns_firewall_id: str,
+    *,
+    account_id: str,
+    dimensions: str | NotGiven = NOT_GIVEN,
+    filters: str | NotGiven = NOT_GIVEN,
+    limit: int | NotGiven = NOT_GIVEN,
+    metrics: str | NotGiven = NOT_GIVEN,
+    since: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    sort: str | NotGiven = NOT_GIVEN,
+    until: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Report]:
         """
         Retrieves a list of summarised aggregate metrics over a given time period.
 
@@ -200,33 +189,26 @@ class AsyncReportsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not dns_firewall_id:
-            raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}/dns_analytics/report",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "dimensions": dimensions,
-                        "filters": filters,
-                        "limit": limit,
-                        "metrics": metrics,
-                        "since": since,
-                        "sort": sort,
-                        "until": until,
-                    },
-                    report_get_params.ReportGetParams,
-                ),
-                post_parser=ResultWrapper[Optional[Report]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "dimensions": dimensions,
+                "filters": filters,
+                "limit": limit,
+                "metrics": metrics,
+                "since": since,
+                "sort": sort,
+                "until": until,
+            }, report_get_params.ReportGetParams), post_parser=ResultWrapper[Optional[Report]]._unwrapper),
             cast_to=cast(Type[Optional[Report]], ResultWrapper[Report]),
         )
-
 
 class ReportsResourceWithRawResponse:
     def __init__(self, reports: ReportsResource) -> None:
@@ -240,7 +222,6 @@ class ReportsResourceWithRawResponse:
     def bytimes(self) -> BytimesResourceWithRawResponse:
         return BytimesResourceWithRawResponse(self._reports.bytimes)
 
-
 class AsyncReportsResourceWithRawResponse:
     def __init__(self, reports: AsyncReportsResource) -> None:
         self._reports = reports
@@ -253,7 +234,6 @@ class AsyncReportsResourceWithRawResponse:
     def bytimes(self) -> AsyncBytimesResourceWithRawResponse:
         return AsyncBytimesResourceWithRawResponse(self._reports.bytimes)
 
-
 class ReportsResourceWithStreamingResponse:
     def __init__(self, reports: ReportsResource) -> None:
         self._reports = reports
@@ -265,7 +245,6 @@ class ReportsResourceWithStreamingResponse:
     @cached_property
     def bytimes(self) -> BytimesResourceWithStreamingResponse:
         return BytimesResourceWithStreamingResponse(self._reports.bytimes)
-
 
 class AsyncReportsResourceWithStreamingResponse:
     def __init__(self, reports: AsyncReportsResource) -> None:

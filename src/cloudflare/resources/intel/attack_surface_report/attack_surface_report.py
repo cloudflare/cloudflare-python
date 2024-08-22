@@ -2,27 +2,23 @@
 
 from __future__ import annotations
 
-from .issues import (
-    IssuesResource,
-    AsyncIssuesResource,
-    IssuesResourceWithRawResponse,
-    AsyncIssuesResourceWithRawResponse,
-    IssuesResourceWithStreamingResponse,
-    AsyncIssuesResourceWithStreamingResponse,
-)
+from .issue_types import IssueTypesResource, AsyncIssueTypesResource
+
 from ...._compat import cached_property
-from .issue_types import (
-    IssueTypesResource,
-    AsyncIssueTypesResource,
-    IssueTypesResourceWithRawResponse,
-    AsyncIssueTypesResourceWithRawResponse,
-    IssueTypesResourceWithStreamingResponse,
-    AsyncIssueTypesResourceWithStreamingResponse,
-)
+
+from .issues import IssuesResource, AsyncIssuesResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from .issue_types import IssueTypesResource, AsyncIssueTypesResource, IssueTypesResourceWithRawResponse, AsyncIssueTypesResourceWithRawResponse, IssueTypesResourceWithStreamingResponse, AsyncIssueTypesResourceWithStreamingResponse
+from .issues import IssuesResource, AsyncIssuesResource, IssuesResourceWithRawResponse, AsyncIssuesResourceWithRawResponse, IssuesResourceWithStreamingResponse, AsyncIssuesResourceWithStreamingResponse
 
 __all__ = ["AttackSurfaceReportResource", "AsyncAttackSurfaceReportResource"]
-
 
 class AttackSurfaceReportResource(SyncAPIResource):
     @cached_property
@@ -41,7 +37,6 @@ class AttackSurfaceReportResource(SyncAPIResource):
     def with_streaming_response(self) -> AttackSurfaceReportResourceWithStreamingResponse:
         return AttackSurfaceReportResourceWithStreamingResponse(self)
 
-
 class AsyncAttackSurfaceReportResource(AsyncAPIResource):
     @cached_property
     def issue_types(self) -> AsyncIssueTypesResource:
@@ -59,7 +54,6 @@ class AsyncAttackSurfaceReportResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAttackSurfaceReportResourceWithStreamingResponse:
         return AsyncAttackSurfaceReportResourceWithStreamingResponse(self)
 
-
 class AttackSurfaceReportResourceWithRawResponse:
     def __init__(self, attack_surface_report: AttackSurfaceReportResource) -> None:
         self._attack_surface_report = attack_surface_report
@@ -71,7 +65,6 @@ class AttackSurfaceReportResourceWithRawResponse:
     @cached_property
     def issues(self) -> IssuesResourceWithRawResponse:
         return IssuesResourceWithRawResponse(self._attack_surface_report.issues)
-
 
 class AsyncAttackSurfaceReportResourceWithRawResponse:
     def __init__(self, attack_surface_report: AsyncAttackSurfaceReportResource) -> None:
@@ -85,7 +78,6 @@ class AsyncAttackSurfaceReportResourceWithRawResponse:
     def issues(self) -> AsyncIssuesResourceWithRawResponse:
         return AsyncIssuesResourceWithRawResponse(self._attack_surface_report.issues)
 
-
 class AttackSurfaceReportResourceWithStreamingResponse:
     def __init__(self, attack_surface_report: AttackSurfaceReportResource) -> None:
         self._attack_surface_report = attack_surface_report
@@ -97,7 +89,6 @@ class AttackSurfaceReportResourceWithStreamingResponse:
     @cached_property
     def issues(self) -> IssuesResourceWithStreamingResponse:
         return IssuesResourceWithStreamingResponse(self._attack_surface_report.issues)
-
 
 class AsyncAttackSurfaceReportResourceWithStreamingResponse:
     def __init__(self, attack_surface_report: AsyncAttackSurfaceReportResource) -> None:

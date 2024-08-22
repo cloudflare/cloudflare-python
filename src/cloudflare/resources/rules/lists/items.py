@@ -2,34 +2,54 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, Optional, cast
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncCursorPagination, AsyncCursorPagination
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.rules.lists import item_list_params, item_create_params, item_update_params
-from ....types.rules.lists.item_get_response import ItemGetResponse
+
 from ....types.rules.lists.item_create_response import ItemCreateResponse
-from ....types.rules.lists.item_delete_response import ItemDeleteResponse
+
+from ...._wrappers import ResultWrapper
+
+from typing import Iterable, Optional, Type
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from ...._base_client import make_request_options, AsyncPaginator
+
 from ....types.rules.lists.item_update_response import ItemUpdateResponse
 
-__all__ = ["ItemsResource", "AsyncItemsResource"]
+from ....pagination import SyncCursorPagination, AsyncCursorPagination
 
+from ....types.rules.lists.item_delete_response import ItemDeleteResponse
+
+from ....types.rules.lists.item_get_response import ItemGetResponse
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ....types.rules.lists import item_create_params, item_update_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.rules.lists import item_create_params
+from ....types.rules.lists import item_update_params
+from ....types.rules.lists import item_list_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["ItemsResource", "AsyncItemsResource"]
 
 class ItemsResource(SyncAPIResource):
     @cached_property
@@ -40,19 +60,17 @@ class ItemsResource(SyncAPIResource):
     def with_streaming_response(self) -> ItemsResourceWithStreamingResponse:
         return ItemsResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        list_id: str,
-        *,
-        account_id: str,
-        body: Iterable[item_create_params.Body],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemCreateResponse]:
+    def create(self,
+    list_id: str,
+    *,
+    account_id: str,
+    body: Iterable[item_create_params.Body],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ItemCreateResponse]:
         """Appends new items to the list.
 
         This operation is asynchronous.
@@ -75,35 +93,31 @@ class ItemsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not list_id:
-            raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `list_id` but received {list_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
             body=maybe_transform(body, Iterable[item_create_params.Body]),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ItemCreateResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ItemCreateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[ItemCreateResponse]], ResultWrapper[ItemCreateResponse]),
         )
 
-    def update(
-        self,
-        list_id: str,
-        *,
-        account_id: str,
-        body: Iterable[item_update_params.Body],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemUpdateResponse]:
+    def update(self,
+    list_id: str,
+    *,
+    account_id: str,
+    body: Iterable[item_update_params.Body],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ItemUpdateResponse]:
         """
         Removes all existing items from the list and adds the provided items to the
         list.
@@ -126,37 +140,33 @@ class ItemsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not list_id:
-            raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `list_id` but received {list_id!r}'
+          )
         return self._put(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
             body=maybe_transform(body, Iterable[item_update_params.Body]),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ItemUpdateResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ItemUpdateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[ItemUpdateResponse]], ResultWrapper[ItemUpdateResponse]),
         )
 
-    def list(
-        self,
-        list_id: str,
-        *,
-        account_id: str,
-        cursor: str | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorPagination[object]:
+    def list(self,
+    list_id: str,
+    *,
+    account_id: str,
+    cursor: str | NotGiven = NOT_GIVEN,
+    per_page: int | NotGiven = NOT_GIVEN,
+    search: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncCursorPagination[object]:
         """
         Fetches all the items in the list.
 
@@ -173,7 +183,7 @@ class ItemsResource(SyncAPIResource):
           per_page: Amount of results to include in each paginated response. A non-negative 32 bit
               integer.
 
-          search:
+          search: 
               A search query to filter returned items. Its meaning depends on the list type:
               IP addresses must start with the provided string, hostnames and bulk redirects
               must contain the string, and ASNs must match the string exactly.
@@ -187,41 +197,34 @@ class ItemsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not list_id:
-            raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `list_id` but received {list_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            page=SyncCursorPagination[object],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "cursor": cursor,
-                        "per_page": per_page,
-                        "search": search,
-                    },
-                    item_list_params.ItemListParams,
-                ),
-            ),
+            page = SyncCursorPagination[object],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "cursor": cursor,
+                "per_page": per_page,
+                "search": search,
+            }, item_list_params.ItemListParams)),
             model=object,
         )
 
-    def delete(
-        self,
-        list_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemDeleteResponse]:
+    def delete(self,
+    list_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ItemDeleteResponse]:
         """Removes one or more items from a list.
 
         This operation is asynchronous.
@@ -244,34 +247,30 @@ class ItemsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not list_id:
-            raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `list_id` but received {list_id!r}'
+          )
         return self._delete(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ItemDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ItemDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[ItemDeleteResponse]], ResultWrapper[ItemDeleteResponse]),
         )
 
-    def get(
-        self,
-        item_id: str,
-        *,
-        account_identifier: str,
-        list_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemGetResponse]:
+    def get(self,
+    item_id: str,
+    *,
+    account_identifier: str,
+    list_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ItemGetResponse]:
         """
         Fetches a list item in the list.
 
@@ -291,28 +290,22 @@ class ItemsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_identifier` but received {account_identifier!r}'
+          )
         if not list_id:
-            raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `list_id` but received {list_id!r}'
+          )
         if not item_id:
-            raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
-        return cast(
-            Optional[ItemGetResponse],
-            self._get(
-                f"/accounts/{account_identifier}/rules/lists/{list_id}/items/{item_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ItemGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ItemGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
+          raise ValueError(
+            f'Expected a non-empty value for `item_id` but received {item_id!r}'
+          )
+        return cast(Optional[ItemGetResponse], self._get(
+            f"/accounts/{account_identifier}/rules/lists/{list_id}/items/{item_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ItemGetResponse]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[ItemGetResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
 class AsyncItemsResource(AsyncAPIResource):
     @cached_property
@@ -323,19 +316,17 @@ class AsyncItemsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncItemsResourceWithStreamingResponse:
         return AsyncItemsResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        list_id: str,
-        *,
-        account_id: str,
-        body: Iterable[item_create_params.Body],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemCreateResponse]:
+    async def create(self,
+    list_id: str,
+    *,
+    account_id: str,
+    body: Iterable[item_create_params.Body],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ItemCreateResponse]:
         """Appends new items to the list.
 
         This operation is asynchronous.
@@ -358,35 +349,31 @@ class AsyncItemsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not list_id:
-            raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `list_id` but received {list_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
             body=await async_maybe_transform(body, Iterable[item_create_params.Body]),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ItemCreateResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ItemCreateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[ItemCreateResponse]], ResultWrapper[ItemCreateResponse]),
         )
 
-    async def update(
-        self,
-        list_id: str,
-        *,
-        account_id: str,
-        body: Iterable[item_update_params.Body],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemUpdateResponse]:
+    async def update(self,
+    list_id: str,
+    *,
+    account_id: str,
+    body: Iterable[item_update_params.Body],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ItemUpdateResponse]:
         """
         Removes all existing items from the list and adds the provided items to the
         list.
@@ -409,37 +396,33 @@ class AsyncItemsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not list_id:
-            raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `list_id` but received {list_id!r}'
+          )
         return await self._put(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
             body=await async_maybe_transform(body, Iterable[item_update_params.Body]),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ItemUpdateResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ItemUpdateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[ItemUpdateResponse]], ResultWrapper[ItemUpdateResponse]),
         )
 
-    def list(
-        self,
-        list_id: str,
-        *,
-        account_id: str,
-        cursor: str | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[object, AsyncCursorPagination[object]]:
+    def list(self,
+    list_id: str,
+    *,
+    account_id: str,
+    cursor: str | NotGiven = NOT_GIVEN,
+    per_page: int | NotGiven = NOT_GIVEN,
+    search: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[object, AsyncCursorPagination[object]]:
         """
         Fetches all the items in the list.
 
@@ -456,7 +439,7 @@ class AsyncItemsResource(AsyncAPIResource):
           per_page: Amount of results to include in each paginated response. A non-negative 32 bit
               integer.
 
-          search:
+          search: 
               A search query to filter returned items. Its meaning depends on the list type:
               IP addresses must start with the provided string, hostnames and bulk redirects
               must contain the string, and ASNs must match the string exactly.
@@ -470,41 +453,34 @@ class AsyncItemsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not list_id:
-            raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `list_id` but received {list_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            page=AsyncCursorPagination[object],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "cursor": cursor,
-                        "per_page": per_page,
-                        "search": search,
-                    },
-                    item_list_params.ItemListParams,
-                ),
-            ),
+            page = AsyncCursorPagination[object],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "cursor": cursor,
+                "per_page": per_page,
+                "search": search,
+            }, item_list_params.ItemListParams)),
             model=object,
         )
 
-    async def delete(
-        self,
-        list_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemDeleteResponse]:
+    async def delete(self,
+    list_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ItemDeleteResponse]:
         """Removes one or more items from a list.
 
         This operation is asynchronous.
@@ -527,34 +503,30 @@ class AsyncItemsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not list_id:
-            raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `list_id` but received {list_id!r}'
+          )
         return await self._delete(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ItemDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ItemDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[ItemDeleteResponse]], ResultWrapper[ItemDeleteResponse]),
         )
 
-    async def get(
-        self,
-        item_id: str,
-        *,
-        account_identifier: str,
-        list_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemGetResponse]:
+    async def get(self,
+    item_id: str,
+    *,
+    account_identifier: str,
+    list_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ItemGetResponse]:
         """
         Fetches a list item in the list.
 
@@ -574,28 +546,22 @@ class AsyncItemsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_identifier` but received {account_identifier!r}'
+          )
         if not list_id:
-            raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `list_id` but received {list_id!r}'
+          )
         if not item_id:
-            raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
-        return cast(
-            Optional[ItemGetResponse],
-            await self._get(
-                f"/accounts/{account_identifier}/rules/lists/{list_id}/items/{item_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ItemGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ItemGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
+          raise ValueError(
+            f'Expected a non-empty value for `item_id` but received {item_id!r}'
+          )
+        return cast(Optional[ItemGetResponse], await self._get(
+            f"/accounts/{account_identifier}/rules/lists/{list_id}/items/{item_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ItemGetResponse]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[ItemGetResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
 class ItemsResourceWithRawResponse:
     def __init__(self, items: ItemsResource) -> None:
@@ -617,7 +583,6 @@ class ItemsResourceWithRawResponse:
             items.get,
         )
 
-
 class AsyncItemsResourceWithRawResponse:
     def __init__(self, items: AsyncItemsResource) -> None:
         self._items = items
@@ -638,7 +603,6 @@ class AsyncItemsResourceWithRawResponse:
             items.get,
         )
 
-
 class ItemsResourceWithStreamingResponse:
     def __init__(self, items: ItemsResource) -> None:
         self._items = items
@@ -658,7 +622,6 @@ class ItemsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             items.get,
         )
-
 
 class AsyncItemsResourceWithStreamingResponse:
     def __init__(self, items: AsyncItemsResource) -> None:

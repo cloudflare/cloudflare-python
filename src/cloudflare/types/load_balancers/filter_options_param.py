@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from typing import Optional
+
 from typing_extensions import TypedDict
 
 __all__ = ["FilterOptionsParam"]
-
 
 class FilterOptionsParam(TypedDict, total=False):
     disable: bool

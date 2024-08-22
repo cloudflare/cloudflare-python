@@ -2,35 +2,51 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from .._wrappers import ResultWrapper
-from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.memberships import membership_list_params, membership_update_params
-from ..types.memberships.membership import Membership
-from ..types.memberships.membership_get_response import MembershipGetResponse
-from ..types.memberships.membership_delete_response import MembershipDeleteResponse
+
 from ..types.memberships.membership_update_response import MembershipUpdateResponse
 
-__all__ = ["MembershipsResource", "AsyncMembershipsResource"]
+from .._wrappers import ResultWrapper
 
+from .._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from ..types.memberships.membership import Membership
+
+from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from ..types.memberships.membership_delete_response import MembershipDeleteResponse
+
+from ..types.memberships.membership_get_response import MembershipGetResponse
+
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ..types.memberships import membership_list_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from .._resource import SyncAPIResource, AsyncAPIResource
+from ..types import shared_params
+from ..types.memberships import membership_update_params
+from ..types.memberships import membership_list_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["MembershipsResource", "AsyncMembershipsResource"]
 
 class MembershipsResource(SyncAPIResource):
     @cached_property
@@ -41,18 +57,16 @@ class MembershipsResource(SyncAPIResource):
     def with_streaming_response(self) -> MembershipsResourceWithStreamingResponse:
         return MembershipsResourceWithStreamingResponse(self)
 
-    def update(
-        self,
-        membership_id: str,
-        *,
-        status: Literal["accepted", "rejected"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MembershipUpdateResponse]:
+    def update(self,
+    membership_id: str,
+    *,
+    status: Literal["accepted", "rejected"],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[MembershipUpdateResponse]:
         """
         Accept or reject this account invitation.
 
@@ -70,37 +84,33 @@ class MembershipsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not membership_id:
-            raise ValueError(f"Expected a non-empty value for `membership_id` but received {membership_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `membership_id` but received {membership_id!r}'
+          )
         return self._put(
             f"/memberships/{membership_id}",
-            body=maybe_transform({"status": status}, membership_update_params.MembershipUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MembershipUpdateResponse]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "status": status
+            }, membership_update_params.MembershipUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[MembershipUpdateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[MembershipUpdateResponse]], ResultWrapper[MembershipUpdateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account: membership_list_params.Account | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        order: Literal["id", "account.name", "status"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["accepted", "pending", "rejected"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[Membership]:
+    def list(self,
+    *,
+    account: membership_list_params.Account | NotGiven = NOT_GIVEN,
+    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    order: Literal["id", "account.name", "status"] | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    status: Literal["accepted", "pending", "rejected"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[Membership]:
         """
         List memberships of accounts the user can access.
 
@@ -127,39 +137,28 @@ class MembershipsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/memberships",
-            page=SyncV4PagePaginationArray[Membership],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "account": account,
-                        "direction": direction,
-                        "name": name,
-                        "order": order,
-                        "page": page,
-                        "per_page": per_page,
-                        "status": status,
-                    },
-                    membership_list_params.MembershipListParams,
-                ),
-            ),
+            page = SyncV4PagePaginationArray[Membership],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "account": account,
+                "direction": direction,
+                "name": name,
+                "order": order,
+                "page": page,
+                "per_page": per_page,
+                "status": status,
+            }, membership_list_params.MembershipListParams)),
             model=Membership,
         )
 
-    def delete(
-        self,
-        membership_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MembershipDeleteResponse]:
+    def delete(self,
+    membership_id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[MembershipDeleteResponse]:
         """
         Remove the associated member from an account.
 
@@ -175,30 +174,24 @@ class MembershipsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not membership_id:
-            raise ValueError(f"Expected a non-empty value for `membership_id` but received {membership_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `membership_id` but received {membership_id!r}'
+          )
         return self._delete(
             f"/memberships/{membership_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MembershipDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[MembershipDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[MembershipDeleteResponse]], ResultWrapper[MembershipDeleteResponse]),
         )
 
-    def get(
-        self,
-        membership_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MembershipGetResponse]:
+    def get(self,
+    membership_id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[MembershipGetResponse]:
         """
         Get a specific membership.
 
@@ -214,19 +207,14 @@ class MembershipsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not membership_id:
-            raise ValueError(f"Expected a non-empty value for `membership_id` but received {membership_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `membership_id` but received {membership_id!r}'
+          )
         return self._get(
             f"/memberships/{membership_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MembershipGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[MembershipGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[MembershipGetResponse]], ResultWrapper[MembershipGetResponse]),
         )
-
 
 class AsyncMembershipsResource(AsyncAPIResource):
     @cached_property
@@ -237,18 +225,16 @@ class AsyncMembershipsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncMembershipsResourceWithStreamingResponse:
         return AsyncMembershipsResourceWithStreamingResponse(self)
 
-    async def update(
-        self,
-        membership_id: str,
-        *,
-        status: Literal["accepted", "rejected"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MembershipUpdateResponse]:
+    async def update(self,
+    membership_id: str,
+    *,
+    status: Literal["accepted", "rejected"],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[MembershipUpdateResponse]:
         """
         Accept or reject this account invitation.
 
@@ -266,37 +252,33 @@ class AsyncMembershipsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not membership_id:
-            raise ValueError(f"Expected a non-empty value for `membership_id` but received {membership_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `membership_id` but received {membership_id!r}'
+          )
         return await self._put(
             f"/memberships/{membership_id}",
-            body=await async_maybe_transform({"status": status}, membership_update_params.MembershipUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MembershipUpdateResponse]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "status": status
+            }, membership_update_params.MembershipUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[MembershipUpdateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[MembershipUpdateResponse]], ResultWrapper[MembershipUpdateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account: membership_list_params.Account | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        order: Literal["id", "account.name", "status"] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["accepted", "pending", "rejected"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Membership, AsyncV4PagePaginationArray[Membership]]:
+    def list(self,
+    *,
+    account: membership_list_params.Account | NotGiven = NOT_GIVEN,
+    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    order: Literal["id", "account.name", "status"] | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    status: Literal["accepted", "pending", "rejected"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Membership, AsyncV4PagePaginationArray[Membership]]:
         """
         List memberships of accounts the user can access.
 
@@ -323,39 +305,28 @@ class AsyncMembershipsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/memberships",
-            page=AsyncV4PagePaginationArray[Membership],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "account": account,
-                        "direction": direction,
-                        "name": name,
-                        "order": order,
-                        "page": page,
-                        "per_page": per_page,
-                        "status": status,
-                    },
-                    membership_list_params.MembershipListParams,
-                ),
-            ),
+            page = AsyncV4PagePaginationArray[Membership],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "account": account,
+                "direction": direction,
+                "name": name,
+                "order": order,
+                "page": page,
+                "per_page": per_page,
+                "status": status,
+            }, membership_list_params.MembershipListParams)),
             model=Membership,
         )
 
-    async def delete(
-        self,
-        membership_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MembershipDeleteResponse]:
+    async def delete(self,
+    membership_id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[MembershipDeleteResponse]:
         """
         Remove the associated member from an account.
 
@@ -371,30 +342,24 @@ class AsyncMembershipsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not membership_id:
-            raise ValueError(f"Expected a non-empty value for `membership_id` but received {membership_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `membership_id` but received {membership_id!r}'
+          )
         return await self._delete(
             f"/memberships/{membership_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MembershipDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[MembershipDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[MembershipDeleteResponse]], ResultWrapper[MembershipDeleteResponse]),
         )
 
-    async def get(
-        self,
-        membership_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MembershipGetResponse]:
+    async def get(self,
+    membership_id: str,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[MembershipGetResponse]:
         """
         Get a specific membership.
 
@@ -410,19 +375,14 @@ class AsyncMembershipsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not membership_id:
-            raise ValueError(f"Expected a non-empty value for `membership_id` but received {membership_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `membership_id` but received {membership_id!r}'
+          )
         return await self._get(
             f"/memberships/{membership_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MembershipGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[MembershipGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[MembershipGetResponse]], ResultWrapper[MembershipGetResponse]),
         )
-
 
 class MembershipsResourceWithRawResponse:
     def __init__(self, memberships: MembershipsResource) -> None:
@@ -441,7 +401,6 @@ class MembershipsResourceWithRawResponse:
             memberships.get,
         )
 
-
 class AsyncMembershipsResourceWithRawResponse:
     def __init__(self, memberships: AsyncMembershipsResource) -> None:
         self._memberships = memberships
@@ -459,7 +418,6 @@ class AsyncMembershipsResourceWithRawResponse:
             memberships.get,
         )
 
-
 class MembershipsResourceWithStreamingResponse:
     def __init__(self, memberships: MembershipsResource) -> None:
         self._memberships = memberships
@@ -476,7 +434,6 @@ class MembershipsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             memberships.get,
         )
-
 
 class AsyncMembershipsResourceWithStreamingResponse:
     def __init__(self, memberships: AsyncMembershipsResource) -> None:

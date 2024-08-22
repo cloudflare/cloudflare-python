@@ -2,16 +2,24 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import TypedDict, Annotated, Required
 
 from ...._utils import PropertyInfo
-from .override_url import OverrideURL
-from .waf_rule_param import WAFRuleParam
+
 from .rewrite_action_param import RewriteActionParam
 
-__all__ = ["OverrideUpdateParams"]
+from .waf_rule_param import WAFRuleParam
 
+from typing import List
+
+from .override_url import OverrideURL
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ...._types import FileTypes
+from ...._utils import PropertyInfo
+
+__all__ = ["OverrideUpdateParams"]
 
 class OverrideUpdateParams(TypedDict, total=False):
     path_id: Required[Annotated[str, PropertyInfo(alias="id")]]

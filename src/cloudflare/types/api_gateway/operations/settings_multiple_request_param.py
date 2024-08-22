@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
-from typing_extensions import Literal, TypeAlias, TypedDict
+from typing import Optional, Dict
+
+from typing_extensions import Literal, TypedDict, TypeAlias
 
 __all__ = ["SettingsMultipleRequestParam", "SettingsMultipleRequestParamItem"]
-
 
 class SettingsMultipleRequestParamItem(TypedDict, total=False):
     mitigation_action: Optional[Literal["log", "block", "none"]]
@@ -19,6 +19,5 @@ class SettingsMultipleRequestParamItem(TypedDict, total=False):
     - `null` indicates that no operation level mitigation is in place, see Zone
       Level Schema Validation Settings for mitigation action that will be applied
     """
-
 
 SettingsMultipleRequestParam: TypeAlias = Dict[str, SettingsMultipleRequestParamItem]

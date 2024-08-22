@@ -1,14 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
-from typing_extensions import Literal, TypeAlias
-
 from .pcap import PCAP
+
 from ..._models import BaseModel
+
+from typing import Optional
+
 from .pcap_filter import PCAPFilter
 
-__all__ = ["PCAPGetResponse", "MagicVisibilityPCAPsResponseFull"]
+from typing_extensions import Literal, TypeAlias
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["PCAPGetResponse", "MagicVisibilityPCAPsResponseFull"]
 
 class MagicVisibilityPCAPsResponseFull(BaseModel):
     id: Optional[str] = None
@@ -39,11 +45,7 @@ class MagicVisibilityPCAPsResponseFull(BaseModel):
     filter_v1: Optional[PCAPFilter] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
-    status: Optional[
-        Literal[
-            "unknown", "success", "pending", "running", "conversion_pending", "conversion_running", "complete", "failed"
-        ]
-    ] = None
+    status: Optional[Literal["unknown", "success", "pending", "running", "conversion_pending", "conversion_running", "complete", "failed"]] = None
     """The status of the packet capture request."""
 
     submitted: Optional[str] = None
@@ -61,6 +63,5 @@ class MagicVisibilityPCAPsResponseFull(BaseModel):
     `Simple` captures sampled packets, and `full` captures entire payloads and
     non-sampled packets.
     """
-
 
 PCAPGetResponse: TypeAlias = Union[PCAP, MagicVisibilityPCAPsResponseFull]

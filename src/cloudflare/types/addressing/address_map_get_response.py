@@ -1,20 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from ..._models import BaseModel
+
+from typing import Optional, List
+
 from datetime import datetime
 
 from .kind import Kind
-from ..._models import BaseModel
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = ["AddressMapGetResponse", "IP", "Membership"]
-
 
 class IP(BaseModel):
     created_at: Optional[datetime] = None
 
     ip: Optional[str] = None
     """An IPv4 or IPv6 address."""
-
 
 class Membership(BaseModel):
     can_delete: Optional[bool] = None
@@ -27,7 +31,6 @@ class Membership(BaseModel):
 
     kind: Optional[Kind] = None
     """The type of the membership."""
-
 
 class AddressMapGetResponse(BaseModel):
     id: Optional[str] = None

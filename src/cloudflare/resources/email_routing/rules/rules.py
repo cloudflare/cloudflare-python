@@ -2,42 +2,53 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .catch_alls import CatchAllsResource, AsyncCatchAllsResource
+
 from ...._compat import cached_property
-from .catch_alls import (
-    CatchAllsResource,
-    AsyncCatchAllsResource,
-    CatchAllsResourceWithRawResponse,
-    AsyncCatchAllsResourceWithRawResponse,
-    CatchAllsResourceWithStreamingResponse,
-    AsyncCatchAllsResourceWithStreamingResponse,
-)
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.email_routing import rule_list_params, rule_create_params, rule_update_params
-from ....types.email_routing.action_param import ActionParam
-from ....types.email_routing.matcher_param import MatcherParam
+
 from ....types.email_routing.email_routing_rule import EmailRoutingRule
 
-__all__ = ["RulesResource", "AsyncRulesResource"]
+from ...._wrappers import ResultWrapper
 
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type, Iterable
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from ....types.email_routing.action_param import ActionParam
+
+from ....types.email_routing.matcher_param import MatcherParam
+
+from typing_extensions import Literal
+
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.email_routing import rule_create_params
+from ....types.email_routing import rule_update_params
+from ....types.email_routing import rule_list_params
+from .catch_alls import CatchAllsResource, AsyncCatchAllsResource, CatchAllsResourceWithRawResponse, AsyncCatchAllsResourceWithRawResponse, CatchAllsResourceWithStreamingResponse, AsyncCatchAllsResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["RulesResource", "AsyncRulesResource"]
 
 class RulesResource(SyncAPIResource):
     @cached_property
@@ -52,22 +63,20 @@ class RulesResource(SyncAPIResource):
     def with_streaming_response(self) -> RulesResourceWithStreamingResponse:
         return RulesResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        zone_identifier: str,
-        *,
-        actions: Iterable[ActionParam],
-        matchers: Iterable[MatcherParam],
-        enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EmailRoutingRule]:
+    def create(self,
+    zone_identifier: str,
+    *,
+    actions: Iterable[ActionParam],
+    matchers: Iterable[MatcherParam],
+    enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    priority: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[EmailRoutingRule]:
         """
         Rules consist of a set of criteria for matching emails (such as an email being
         sent to a specific custom email address) plus a set of actions to take on the
@@ -95,46 +104,37 @@ class RulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
+          )
         return self._post(
             f"/zones/{zone_identifier}/email/routing/rules",
-            body=maybe_transform(
-                {
-                    "actions": actions,
-                    "matchers": matchers,
-                    "enabled": enabled,
-                    "name": name,
-                    "priority": priority,
-                },
-                rule_create_params.RuleCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "actions": actions,
+                "matchers": matchers,
+                "enabled": enabled,
+                "name": name,
+                "priority": priority,
+            }, rule_create_params.RuleCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper),
             cast_to=cast(Type[Optional[EmailRoutingRule]], ResultWrapper[EmailRoutingRule]),
         )
 
-    def update(
-        self,
-        rule_identifier: str,
-        *,
-        zone_identifier: str,
-        actions: Iterable[ActionParam],
-        matchers: Iterable[MatcherParam],
-        enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EmailRoutingRule]:
+    def update(self,
+    rule_identifier: str,
+    *,
+    zone_identifier: str,
+    actions: Iterable[ActionParam],
+    matchers: Iterable[MatcherParam],
+    enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    priority: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[EmailRoutingRule]:
         """
         Update actions and matches, or enable/disable specific routing rules.
 
@@ -162,45 +162,38 @@ class RulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
+          )
         if not rule_identifier:
-            raise ValueError(f"Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}'
+          )
         return self._put(
             f"/zones/{zone_identifier}/email/routing/rules/{rule_identifier}",
-            body=maybe_transform(
-                {
-                    "actions": actions,
-                    "matchers": matchers,
-                    "enabled": enabled,
-                    "name": name,
-                    "priority": priority,
-                },
-                rule_update_params.RuleUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "actions": actions,
+                "matchers": matchers,
+                "enabled": enabled,
+                "name": name,
+                "priority": priority,
+            }, rule_update_params.RuleUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper),
             cast_to=cast(Type[Optional[EmailRoutingRule]], ResultWrapper[EmailRoutingRule]),
         )
 
-    def list(
-        self,
-        zone_identifier: str,
-        *,
-        enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[EmailRoutingRule]:
+    def list(self,
+    zone_identifier: str,
+    *,
+    enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[EmailRoutingRule]:
         """
         Lists existing routing rules.
 
@@ -222,39 +215,30 @@ class RulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
+          )
         return self._get_api_list(
             f"/zones/{zone_identifier}/email/routing/rules",
-            page=SyncV4PagePaginationArray[EmailRoutingRule],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "enabled": enabled,
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    rule_list_params.RuleListParams,
-                ),
-            ),
+            page = SyncV4PagePaginationArray[EmailRoutingRule],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "enabled": enabled,
+                "page": page,
+                "per_page": per_page,
+            }, rule_list_params.RuleListParams)),
             model=EmailRoutingRule,
         )
 
-    def delete(
-        self,
-        rule_identifier: str,
-        *,
-        zone_identifier: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EmailRoutingRule]:
+    def delete(self,
+    rule_identifier: str,
+    *,
+    zone_identifier: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[EmailRoutingRule]:
         """
         Delete a specific routing rule.
 
@@ -272,33 +256,29 @@ class RulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
+          )
         if not rule_identifier:
-            raise ValueError(f"Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}'
+          )
         return self._delete(
             f"/zones/{zone_identifier}/email/routing/rules/{rule_identifier}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper),
             cast_to=cast(Type[Optional[EmailRoutingRule]], ResultWrapper[EmailRoutingRule]),
         )
 
-    def get(
-        self,
-        rule_identifier: str,
-        *,
-        zone_identifier: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EmailRoutingRule]:
+    def get(self,
+    rule_identifier: str,
+    *,
+    zone_identifier: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[EmailRoutingRule]:
         """
         Get information for a specific routing rule already created.
 
@@ -316,21 +296,18 @@ class RulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
+          )
         if not rule_identifier:
-            raise ValueError(f"Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}'
+          )
         return self._get(
             f"/zones/{zone_identifier}/email/routing/rules/{rule_identifier}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper),
             cast_to=cast(Type[Optional[EmailRoutingRule]], ResultWrapper[EmailRoutingRule]),
         )
-
 
 class AsyncRulesResource(AsyncAPIResource):
     @cached_property
@@ -345,22 +322,20 @@ class AsyncRulesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRulesResourceWithStreamingResponse:
         return AsyncRulesResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        zone_identifier: str,
-        *,
-        actions: Iterable[ActionParam],
-        matchers: Iterable[MatcherParam],
-        enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EmailRoutingRule]:
+    async def create(self,
+    zone_identifier: str,
+    *,
+    actions: Iterable[ActionParam],
+    matchers: Iterable[MatcherParam],
+    enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    priority: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[EmailRoutingRule]:
         """
         Rules consist of a set of criteria for matching emails (such as an email being
         sent to a specific custom email address) plus a set of actions to take on the
@@ -388,46 +363,37 @@ class AsyncRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
+          )
         return await self._post(
             f"/zones/{zone_identifier}/email/routing/rules",
-            body=await async_maybe_transform(
-                {
-                    "actions": actions,
-                    "matchers": matchers,
-                    "enabled": enabled,
-                    "name": name,
-                    "priority": priority,
-                },
-                rule_create_params.RuleCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "actions": actions,
+                "matchers": matchers,
+                "enabled": enabled,
+                "name": name,
+                "priority": priority,
+            }, rule_create_params.RuleCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper),
             cast_to=cast(Type[Optional[EmailRoutingRule]], ResultWrapper[EmailRoutingRule]),
         )
 
-    async def update(
-        self,
-        rule_identifier: str,
-        *,
-        zone_identifier: str,
-        actions: Iterable[ActionParam],
-        matchers: Iterable[MatcherParam],
-        enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        priority: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EmailRoutingRule]:
+    async def update(self,
+    rule_identifier: str,
+    *,
+    zone_identifier: str,
+    actions: Iterable[ActionParam],
+    matchers: Iterable[MatcherParam],
+    enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    priority: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[EmailRoutingRule]:
         """
         Update actions and matches, or enable/disable specific routing rules.
 
@@ -455,45 +421,38 @@ class AsyncRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
+          )
         if not rule_identifier:
-            raise ValueError(f"Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}'
+          )
         return await self._put(
             f"/zones/{zone_identifier}/email/routing/rules/{rule_identifier}",
-            body=await async_maybe_transform(
-                {
-                    "actions": actions,
-                    "matchers": matchers,
-                    "enabled": enabled,
-                    "name": name,
-                    "priority": priority,
-                },
-                rule_update_params.RuleUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "actions": actions,
+                "matchers": matchers,
+                "enabled": enabled,
+                "name": name,
+                "priority": priority,
+            }, rule_update_params.RuleUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper),
             cast_to=cast(Type[Optional[EmailRoutingRule]], ResultWrapper[EmailRoutingRule]),
         )
 
-    def list(
-        self,
-        zone_identifier: str,
-        *,
-        enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[EmailRoutingRule, AsyncV4PagePaginationArray[EmailRoutingRule]]:
+    def list(self,
+    zone_identifier: str,
+    *,
+    enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[EmailRoutingRule, AsyncV4PagePaginationArray[EmailRoutingRule]]:
         """
         Lists existing routing rules.
 
@@ -515,39 +474,30 @@ class AsyncRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
+          )
         return self._get_api_list(
             f"/zones/{zone_identifier}/email/routing/rules",
-            page=AsyncV4PagePaginationArray[EmailRoutingRule],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "enabled": enabled,
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    rule_list_params.RuleListParams,
-                ),
-            ),
+            page = AsyncV4PagePaginationArray[EmailRoutingRule],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "enabled": enabled,
+                "page": page,
+                "per_page": per_page,
+            }, rule_list_params.RuleListParams)),
             model=EmailRoutingRule,
         )
 
-    async def delete(
-        self,
-        rule_identifier: str,
-        *,
-        zone_identifier: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EmailRoutingRule]:
+    async def delete(self,
+    rule_identifier: str,
+    *,
+    zone_identifier: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[EmailRoutingRule]:
         """
         Delete a specific routing rule.
 
@@ -565,33 +515,29 @@ class AsyncRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
+          )
         if not rule_identifier:
-            raise ValueError(f"Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}'
+          )
         return await self._delete(
             f"/zones/{zone_identifier}/email/routing/rules/{rule_identifier}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper),
             cast_to=cast(Type[Optional[EmailRoutingRule]], ResultWrapper[EmailRoutingRule]),
         )
 
-    async def get(
-        self,
-        rule_identifier: str,
-        *,
-        zone_identifier: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EmailRoutingRule]:
+    async def get(self,
+    rule_identifier: str,
+    *,
+    zone_identifier: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[EmailRoutingRule]:
         """
         Get information for a specific routing rule already created.
 
@@ -609,21 +555,18 @@ class AsyncRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
+          )
         if not rule_identifier:
-            raise ValueError(f"Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}'
+          )
         return await self._get(
             f"/zones/{zone_identifier}/email/routing/rules/{rule_identifier}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[EmailRoutingRule]]._unwrapper),
             cast_to=cast(Type[Optional[EmailRoutingRule]], ResultWrapper[EmailRoutingRule]),
         )
-
 
 class RulesResourceWithRawResponse:
     def __init__(self, rules: RulesResource) -> None:
@@ -649,7 +592,6 @@ class RulesResourceWithRawResponse:
     def catch_alls(self) -> CatchAllsResourceWithRawResponse:
         return CatchAllsResourceWithRawResponse(self._rules.catch_alls)
 
-
 class AsyncRulesResourceWithRawResponse:
     def __init__(self, rules: AsyncRulesResource) -> None:
         self._rules = rules
@@ -674,7 +616,6 @@ class AsyncRulesResourceWithRawResponse:
     def catch_alls(self) -> AsyncCatchAllsResourceWithRawResponse:
         return AsyncCatchAllsResourceWithRawResponse(self._rules.catch_alls)
 
-
 class RulesResourceWithStreamingResponse:
     def __init__(self, rules: RulesResource) -> None:
         self._rules = rules
@@ -698,7 +639,6 @@ class RulesResourceWithStreamingResponse:
     @cached_property
     def catch_alls(self) -> CatchAllsResourceWithStreamingResponse:
         return CatchAllsResourceWithStreamingResponse(self._rules.catch_alls)
-
 
 class AsyncRulesResourceWithStreamingResponse:
     def __init__(self, rules: AsyncRulesResource) -> None:

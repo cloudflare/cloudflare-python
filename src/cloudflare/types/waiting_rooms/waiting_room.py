@@ -1,15 +1,22 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from ..._models import BaseModel
+
+from typing import Optional, List
+
 from .additional_routes import AdditionalRoutes
+
 from .cookie_attributes import CookieAttributes
 
-__all__ = ["WaitingRoom"]
+from datetime import datetime
 
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["WaitingRoom"]
 
 class WaitingRoom(BaseModel):
     id: Optional[str] = None
@@ -63,27 +70,7 @@ class WaitingRoom(BaseModel):
     under the `json_response_enabled` property in other Waiting Room API calls.
     """
 
-    default_template_language: Optional[
-        Literal[
-            "en-US",
-            "es-ES",
-            "de-DE",
-            "fr-FR",
-            "it-IT",
-            "ja-JP",
-            "ko-KR",
-            "pt-BR",
-            "zh-CN",
-            "zh-TW",
-            "nl-NL",
-            "pl-PL",
-            "id-ID",
-            "tr-TR",
-            "ar-EG",
-            "ru-RU",
-            "fa-IR",
-        ]
-    ] = None
+    default_template_language: Optional[Literal["en-US", "es-ES", "de-DE", "fr-FR", "it-IT", "ja-JP", "ko-KR", "pt-BR", "zh-CN", "zh-TW", "nl-NL", "pl-PL", "id-ID", "tr-TR", "ar-EG", "ru-RU", "fa-IR"]] = None
     """The language of the default page template.
 
     If no default_template_language is provided, then `en-US` (English) will be

@@ -1,26 +1,26 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
+from ..._models import BaseModel
+
+from typing import Optional, List
+
 from typing_extensions import Literal
 
-from ..._models import BaseModel
-from .dcv_method import DCVMethod
 from .bundle_method import BundleMethod
+
 from ..shared.certificate_ca import CertificateCA
+
+from datetime import datetime
+
+from .dcv_method import DCVMethod
+
 from .domain_validation_type import DomainValidationType
 
-__all__ = [
-    "CustomHostnameListResponse",
-    "SSL",
-    "SSLSettings",
-    "SSLValidationError",
-    "SSLValidationRecord",
-    "CustomMetadata",
-    "OwnershipVerification",
-    "OwnershipVerificationHTTP",
-]
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
+__all__ = ["CustomHostnameListResponse", "SSL", "SSLSettings", "SSLValidationError", "SSLValidationRecord", "CustomMetadata", "OwnershipVerification", "OwnershipVerificationHTTP"]
 
 class SSLSettings(BaseModel):
     ciphers: Optional[List[str]] = None
@@ -41,11 +41,9 @@ class SSLSettings(BaseModel):
     tls_1_3: Optional[Literal["on", "off"]] = None
     """Whether or not TLS 1.3 is enabled."""
 
-
 class SSLValidationError(BaseModel):
     message: Optional[str] = None
     """A domain validation error."""
-
 
 class SSLValidationRecord(BaseModel):
     emails: Optional[List[str]] = None
@@ -74,7 +72,6 @@ class SSLValidationRecord(BaseModel):
     The TXT record that the certificate authority (CA) will check during domain
     validation.
     """
-
 
 class SSL(BaseModel):
     id: Optional[str] = None
@@ -121,31 +118,7 @@ class SSL(BaseModel):
     signature: Optional[str] = None
     """The signature on a custom uploaded certificate."""
 
-    status: Optional[
-        Literal[
-            "initializing",
-            "pending_validation",
-            "deleted",
-            "pending_issuance",
-            "pending_deployment",
-            "pending_deletion",
-            "pending_expiration",
-            "expired",
-            "active",
-            "initializing_timed_out",
-            "validation_timed_out",
-            "issuance_timed_out",
-            "deployment_timed_out",
-            "deletion_timed_out",
-            "pending_cleanup",
-            "staging_deployment",
-            "staging_active",
-            "deactivating",
-            "inactive",
-            "backup_issued",
-            "holding_deployment",
-        ]
-    ] = None
+    status: Optional[Literal["initializing", "pending_validation", "deleted", "pending_issuance", "pending_deployment", "pending_deletion", "pending_expiration", "expired", "active", "initializing_timed_out", "validation_timed_out", "issuance_timed_out", "deployment_timed_out", "deletion_timed_out", "pending_cleanup", "staging_deployment", "staging_active", "deactivating", "inactive", "backup_issued", "holding_deployment"]] = None
     """Status of the hostname's SSL certificates."""
 
     type: Optional[DomainValidationType] = None
@@ -168,11 +141,9 @@ class SSL(BaseModel):
     wildcard: Optional[bool] = None
     """Indicates whether the certificate covers a wildcard."""
 
-
 class CustomMetadata(BaseModel):
     key: Optional[str] = None
     """Unique metadata for this hostname."""
-
 
 class OwnershipVerification(BaseModel):
     name: Optional[str] = None
@@ -184,7 +155,6 @@ class OwnershipVerification(BaseModel):
     value: Optional[str] = None
     """Content for the record."""
 
-
 class OwnershipVerificationHTTP(BaseModel):
     http_body: Optional[str] = None
     """Token to be served."""
@@ -194,7 +164,6 @@ class OwnershipVerificationHTTP(BaseModel):
     The HTTP URL that will be checked during custom hostname verification and where
     the customer should host the token.
     """
-
 
 class CustomHostnameListResponse(BaseModel):
     id: str
@@ -236,26 +205,7 @@ class CustomHostnameListResponse(BaseModel):
     hostname.
     """
 
-    status: Optional[
-        Literal[
-            "active",
-            "pending",
-            "active_redeploying",
-            "moved",
-            "pending_deletion",
-            "deleted",
-            "pending_blocked",
-            "pending_migration",
-            "pending_provisioned",
-            "test_pending",
-            "test_active",
-            "test_active_apex",
-            "test_blocked",
-            "test_failed",
-            "provisioned",
-            "blocked",
-        ]
-    ] = None
+    status: Optional[Literal["active", "pending", "active_redeploying", "moved", "pending_deletion", "deleted", "pending_blocked", "pending_migration", "pending_provisioned", "test_pending", "test_active", "test_active_apex", "test_blocked", "test_failed", "provisioned", "blocked"]] = None
     """Status of the hostname's activation."""
 
     verification_errors: Optional[List[str]] = None

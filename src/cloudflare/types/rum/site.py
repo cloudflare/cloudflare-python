@@ -1,13 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from ..._models import BaseModel
+
+from typing import Optional, List
+
 from datetime import datetime
 
 from .rum_rule import RUMRule
-from ..._models import BaseModel
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = ["Site", "Ruleset"]
-
 
 class Ruleset(BaseModel):
     id: Optional[str] = None
@@ -20,7 +25,6 @@ class Ruleset(BaseModel):
 
     zone_tag: Optional[str] = None
     """The zone identifier."""
-
 
 class Site(BaseModel):
     auto_install: Optional[bool] = None

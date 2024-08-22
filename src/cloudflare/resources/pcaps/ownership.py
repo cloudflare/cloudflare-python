@@ -2,31 +2,41 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ...types.pcaps import ownership_create_params, ownership_validate_params
-from ..._base_client import make_request_options
+
 from ...types.pcaps.ownership import Ownership
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from ..._base_client import make_request_options
+
+from typing import Type, Optional
+
 from ...types.pcaps.ownership_get_response import OwnershipGetResponse
 
-__all__ = ["OwnershipResource", "AsyncOwnershipResource"]
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.pcaps import ownership_create_params
+from ...types.pcaps import ownership_validate_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["OwnershipResource", "AsyncOwnershipResource"]
 
 class OwnershipResource(SyncAPIResource):
     @cached_property
@@ -37,18 +47,16 @@ class OwnershipResource(SyncAPIResource):
     def with_streaming_response(self) -> OwnershipResourceWithStreamingResponse:
         return OwnershipResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        destination_conf: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ownership:
+    def create(self,
+    *,
+    account_id: str,
+    destination_conf: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Ownership:
         """
         Adds an AWS or GCP bucket to use with full packet captures.
 
@@ -66,32 +74,28 @@ class OwnershipResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/pcaps/ownership",
-            body=maybe_transform({"destination_conf": destination_conf}, ownership_create_params.OwnershipCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Ownership]._unwrapper,
-            ),
+            body=maybe_transform({
+                "destination_conf": destination_conf
+            }, ownership_create_params.OwnershipCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Ownership]._unwrapper),
             cast_to=cast(Type[Ownership], ResultWrapper[Ownership]),
         )
 
-    def delete(
-        self,
-        ownership_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    def delete(self,
+    ownership_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
         """
         Deletes buckets added to the packet captures API.
 
@@ -109,29 +113,29 @@ class OwnershipResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not ownership_id:
-            raise ValueError(f"Expected a non-empty value for `ownership_id` but received {ownership_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `ownership_id` but received {ownership_id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/pcaps/ownership/{ownership_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=NoneType,
         )
 
-    def get(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OwnershipGetResponse]:
+    def get(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[OwnershipGetResponse]:
         """
         List all buckets configured for use with PCAPs API.
 
@@ -147,32 +151,26 @@ class OwnershipResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/pcaps/ownership",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[OwnershipGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[OwnershipGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[OwnershipGetResponse]], ResultWrapper[OwnershipGetResponse]),
         )
 
-    def validate(
-        self,
-        *,
-        account_id: str,
-        destination_conf: str,
-        ownership_challenge: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ownership:
+    def validate(self,
+    *,
+    account_id: str,
+    destination_conf: str,
+    ownership_challenge: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Ownership:
         """
         Validates buckets added to the packet captures API.
 
@@ -192,26 +190,18 @@ class OwnershipResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/pcaps/ownership/validate",
-            body=maybe_transform(
-                {
-                    "destination_conf": destination_conf,
-                    "ownership_challenge": ownership_challenge,
-                },
-                ownership_validate_params.OwnershipValidateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Ownership]._unwrapper,
-            ),
+            body=maybe_transform({
+                "destination_conf": destination_conf,
+                "ownership_challenge": ownership_challenge,
+            }, ownership_validate_params.OwnershipValidateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Ownership]._unwrapper),
             cast_to=cast(Type[Ownership], ResultWrapper[Ownership]),
         )
-
 
 class AsyncOwnershipResource(AsyncAPIResource):
     @cached_property
@@ -222,18 +212,16 @@ class AsyncOwnershipResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncOwnershipResourceWithStreamingResponse:
         return AsyncOwnershipResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        destination_conf: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ownership:
+    async def create(self,
+    *,
+    account_id: str,
+    destination_conf: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Ownership:
         """
         Adds an AWS or GCP bucket to use with full packet captures.
 
@@ -251,34 +239,28 @@ class AsyncOwnershipResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/pcaps/ownership",
-            body=await async_maybe_transform(
-                {"destination_conf": destination_conf}, ownership_create_params.OwnershipCreateParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Ownership]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "destination_conf": destination_conf
+            }, ownership_create_params.OwnershipCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Ownership]._unwrapper),
             cast_to=cast(Type[Ownership], ResultWrapper[Ownership]),
         )
 
-    async def delete(
-        self,
-        ownership_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    async def delete(self,
+    ownership_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
         """
         Deletes buckets added to the packet captures API.
 
@@ -296,29 +278,29 @@ class AsyncOwnershipResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not ownership_id:
-            raise ValueError(f"Expected a non-empty value for `ownership_id` but received {ownership_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `ownership_id` but received {ownership_id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/pcaps/ownership/{ownership_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=NoneType,
         )
 
-    async def get(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OwnershipGetResponse]:
+    async def get(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[OwnershipGetResponse]:
         """
         List all buckets configured for use with PCAPs API.
 
@@ -334,32 +316,26 @@ class AsyncOwnershipResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/pcaps/ownership",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[OwnershipGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[OwnershipGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[OwnershipGetResponse]], ResultWrapper[OwnershipGetResponse]),
         )
 
-    async def validate(
-        self,
-        *,
-        account_id: str,
-        destination_conf: str,
-        ownership_challenge: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ownership:
+    async def validate(self,
+    *,
+    account_id: str,
+    destination_conf: str,
+    ownership_challenge: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Ownership:
         """
         Validates buckets added to the packet captures API.
 
@@ -379,26 +355,18 @@ class AsyncOwnershipResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/pcaps/ownership/validate",
-            body=await async_maybe_transform(
-                {
-                    "destination_conf": destination_conf,
-                    "ownership_challenge": ownership_challenge,
-                },
-                ownership_validate_params.OwnershipValidateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Ownership]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "destination_conf": destination_conf,
+                "ownership_challenge": ownership_challenge,
+            }, ownership_validate_params.OwnershipValidateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Ownership]._unwrapper),
             cast_to=cast(Type[Ownership], ResultWrapper[Ownership]),
         )
-
 
 class OwnershipResourceWithRawResponse:
     def __init__(self, ownership: OwnershipResource) -> None:
@@ -417,7 +385,6 @@ class OwnershipResourceWithRawResponse:
             ownership.validate,
         )
 
-
 class AsyncOwnershipResourceWithRawResponse:
     def __init__(self, ownership: AsyncOwnershipResource) -> None:
         self._ownership = ownership
@@ -435,7 +402,6 @@ class AsyncOwnershipResourceWithRawResponse:
             ownership.validate,
         )
 
-
 class OwnershipResourceWithStreamingResponse:
     def __init__(self, ownership: OwnershipResource) -> None:
         self._ownership = ownership
@@ -452,7 +418,6 @@ class OwnershipResourceWithStreamingResponse:
         self.validate = to_streamed_response_wrapper(
             ownership.validate,
         )
-
 
 class AsyncOwnershipResourceWithStreamingResponse:
     def __init__(self, ownership: AsyncOwnershipResource) -> None:

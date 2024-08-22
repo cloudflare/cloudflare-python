@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 __all__ = ["CountryRuleParam", "Geo"]
-
 
 class Geo(TypedDict, total=False):
     country_code: Required[str]
     """The country code that should be matched."""
-
 
 class CountryRuleParam(TypedDict, total=False):
     geo: Required[Geo]

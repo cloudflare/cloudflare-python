@@ -2,27 +2,31 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.magic_transit import IPSECTunnelCreateResponse, IPSECTunnelUpdateResponse, IPSECTunnelListResponse, IPSECTunnelDeleteResponse, IPSECTunnelGetResponse, IPSECTunnelPSKGenerateResponse
+
 from typing import Any, cast
 
+import os
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magic_transit import (
-    IPSECTunnelGetResponse,
-    IPSECTunnelListResponse,
-    IPSECTunnelCreateResponse,
-    IPSECTunnelDeleteResponse,
-    IPSECTunnelUpdateResponse,
-    IPSECTunnelPSKGenerateResponse,
-)
+from cloudflare.types.magic_transit import ipsec_tunnel_create_params
+from cloudflare.types.magic_transit import ipsec_tunnel_update_params
+from cloudflare.types.magic_transit import ipsec_tunnel_psk_generate_params
+from cloudflare.types.magic_transit import HealthCheck
+from cloudflare.types.magic_transit import HealthCheck
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestIPSECTunnels:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
@@ -32,7 +36,7 @@ class TestIPSECTunnels:
             interface_address="192.0.2.0/31",
             name="IPsec_1",
         )
-        assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -53,10 +57,11 @@ class TestIPSECTunnels:
             psk="O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
             replay_protection=False,
         )
-        assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
+
         response = client.magic_transit.ipsec_tunnels.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cloudflare_endpoint="203.0.113.1",
@@ -65,9 +70,9 @@ class TestIPSECTunnels:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ipsec_tunnel = response.parse()
-        assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -76,24 +81,24 @@ class TestIPSECTunnels:
             cloudflare_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="IPsec_1",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ipsec_tunnel = response.parse()
-            assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=["response"])
+            assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.magic_transit.ipsec_tunnels.with_raw_response.create(
-                account_id="",
-                cloudflare_endpoint="203.0.113.1",
-                interface_address="192.0.2.0/31",
-                name="IPsec_1",
-            )
+          client.magic_transit.ipsec_tunnels.with_raw_response.create(
+              account_id="",
+              cloudflare_endpoint="203.0.113.1",
+              interface_address="192.0.2.0/31",
+              name="IPsec_1",
+          )
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
@@ -104,7 +109,7 @@ class TestIPSECTunnels:
             interface_address="192.0.2.0/31",
             name="IPsec_1",
         )
-        assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -126,10 +131,11 @@ class TestIPSECTunnels:
             psk="O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
             replay_protection=False,
         )
-        assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
+
         response = client.magic_transit.ipsec_tunnels.with_raw_response.update(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -139,9 +145,9 @@ class TestIPSECTunnels:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ipsec_tunnel = response.parse()
-        assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -151,72 +157,73 @@ class TestIPSECTunnels:
             cloudflare_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="IPsec_1",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ipsec_tunnel = response.parse()
-            assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=["response"])
+            assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.magic_transit.ipsec_tunnels.with_raw_response.update(
-                ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-                cloudflare_endpoint="203.0.113.1",
-                interface_address="192.0.2.0/31",
-                name="IPsec_1",
-            )
+          client.magic_transit.ipsec_tunnels.with_raw_response.update(
+              ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="",
+              cloudflare_endpoint="203.0.113.1",
+              interface_address="192.0.2.0/31",
+              name="IPsec_1",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
-            client.magic_transit.ipsec_tunnels.with_raw_response.update(
-                ipsec_tunnel_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                cloudflare_endpoint="203.0.113.1",
-                interface_address="192.0.2.0/31",
-                name="IPsec_1",
-            )
+          client.magic_transit.ipsec_tunnels.with_raw_response.update(
+              ipsec_tunnel_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+              cloudflare_endpoint="203.0.113.1",
+              interface_address="192.0.2.0/31",
+              name="IPsec_1",
+          )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         ipsec_tunnel = client.magic_transit.ipsec_tunnels.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
+
         response = client.magic_transit.ipsec_tunnels.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ipsec_tunnel = response.parse()
-        assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.magic_transit.ipsec_tunnels.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ipsec_tunnel = response.parse()
-            assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=["response"])
+            assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.magic_transit.ipsec_tunnels.with_raw_response.list(
-                account_id="",
-            )
+          client.magic_transit.ipsec_tunnels.with_raw_response.list(
+              account_id="",
+          )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
@@ -224,47 +231,48 @@ class TestIPSECTunnels:
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
+
         response = client.magic_transit.ipsec_tunnels.with_raw_response.delete(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ipsec_tunnel = response.parse()
-        assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.magic_transit.ipsec_tunnels.with_streaming_response.delete(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ipsec_tunnel = response.parse()
-            assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=["response"])
+            assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.magic_transit.ipsec_tunnels.with_raw_response.delete(
-                ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
+          client.magic_transit.ipsec_tunnels.with_raw_response.delete(
+              ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
-            client.magic_transit.ipsec_tunnels.with_raw_response.delete(
-                ipsec_tunnel_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          client.magic_transit.ipsec_tunnels.with_raw_response.delete(
+              ipsec_tunnel_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
@@ -272,47 +280,48 @@ class TestIPSECTunnels:
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
+
         response = client.magic_transit.ipsec_tunnels.with_raw_response.get(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ipsec_tunnel = response.parse()
-        assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_transit.ipsec_tunnels.with_streaming_response.get(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ipsec_tunnel = response.parse()
-            assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=["response"])
+            assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.magic_transit.ipsec_tunnels.with_raw_response.get(
-                ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
+          client.magic_transit.ipsec_tunnels.with_raw_response.get(
+              ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
-            client.magic_transit.ipsec_tunnels.with_raw_response.get(
-                ipsec_tunnel_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          client.magic_transit.ipsec_tunnels.with_raw_response.get(
+              ipsec_tunnel_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
     @parametrize
     def test_method_psk_generate(self, client: Cloudflare) -> None:
@@ -321,10 +330,11 @@ class TestIPSECTunnels:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(IPSECTunnelPSKGenerateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelPSKGenerateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     def test_raw_response_psk_generate(self, client: Cloudflare) -> None:
+
         response = client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -332,9 +342,9 @@ class TestIPSECTunnels:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ipsec_tunnel = response.parse()
-        assert_matches_type(IPSECTunnelPSKGenerateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelPSKGenerateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     def test_streaming_response_psk_generate(self, client: Cloudflare) -> None:
@@ -342,34 +352,33 @@ class TestIPSECTunnels:
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ipsec_tunnel = response.parse()
-            assert_matches_type(IPSECTunnelPSKGenerateResponse, ipsec_tunnel, path=["response"])
+            assert_matches_type(IPSECTunnelPSKGenerateResponse, ipsec_tunnel, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_psk_generate(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
-                ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-                body={},
-            )
+          client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
+              ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="",
+              body={},
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
-            client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
-                ipsec_tunnel_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
-            )
-
-
+          client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
+              ipsec_tunnel_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+              body={},
+          )
 class TestAsyncIPSECTunnels:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -379,7 +388,7 @@ class TestAsyncIPSECTunnels:
             interface_address="192.0.2.0/31",
             name="IPsec_1",
         )
-        assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -400,10 +409,11 @@ class TestAsyncIPSECTunnels:
             psk="O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
             replay_protection=False,
         )
-        assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.magic_transit.ipsec_tunnels.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cloudflare_endpoint="203.0.113.1",
@@ -412,9 +422,9 @@ class TestAsyncIPSECTunnels:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ipsec_tunnel = await response.parse()
-        assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -423,24 +433,24 @@ class TestAsyncIPSECTunnels:
             cloudflare_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="IPsec_1",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ipsec_tunnel = await response.parse()
-            assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=["response"])
+            assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.magic_transit.ipsec_tunnels.with_raw_response.create(
-                account_id="",
-                cloudflare_endpoint="203.0.113.1",
-                interface_address="192.0.2.0/31",
-                name="IPsec_1",
-            )
+          await async_client.magic_transit.ipsec_tunnels.with_raw_response.create(
+              account_id="",
+              cloudflare_endpoint="203.0.113.1",
+              interface_address="192.0.2.0/31",
+              name="IPsec_1",
+          )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
@@ -451,7 +461,7 @@ class TestAsyncIPSECTunnels:
             interface_address="192.0.2.0/31",
             name="IPsec_1",
         )
-        assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -473,10 +483,11 @@ class TestAsyncIPSECTunnels:
             psk="O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
             replay_protection=False,
         )
-        assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.magic_transit.ipsec_tunnels.with_raw_response.update(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -486,9 +497,9 @@ class TestAsyncIPSECTunnels:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ipsec_tunnel = await response.parse()
-        assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -498,72 +509,73 @@ class TestAsyncIPSECTunnels:
             cloudflare_endpoint="203.0.113.1",
             interface_address="192.0.2.0/31",
             name="IPsec_1",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ipsec_tunnel = await response.parse()
-            assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=["response"])
+            assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.magic_transit.ipsec_tunnels.with_raw_response.update(
-                ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-                cloudflare_endpoint="203.0.113.1",
-                interface_address="192.0.2.0/31",
-                name="IPsec_1",
-            )
+          await async_client.magic_transit.ipsec_tunnels.with_raw_response.update(
+              ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="",
+              cloudflare_endpoint="203.0.113.1",
+              interface_address="192.0.2.0/31",
+              name="IPsec_1",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
-            await async_client.magic_transit.ipsec_tunnels.with_raw_response.update(
-                ipsec_tunnel_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                cloudflare_endpoint="203.0.113.1",
-                interface_address="192.0.2.0/31",
-                name="IPsec_1",
-            )
+          await async_client.magic_transit.ipsec_tunnels.with_raw_response.update(
+              ipsec_tunnel_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+              cloudflare_endpoint="203.0.113.1",
+              interface_address="192.0.2.0/31",
+              name="IPsec_1",
+          )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         ipsec_tunnel = await async_client.magic_transit.ipsec_tunnels.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.magic_transit.ipsec_tunnels.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ipsec_tunnel = await response.parse()
-        assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.ipsec_tunnels.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ipsec_tunnel = await response.parse()
-            assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=["response"])
+            assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.magic_transit.ipsec_tunnels.with_raw_response.list(
-                account_id="",
-            )
+          await async_client.magic_transit.ipsec_tunnels.with_raw_response.list(
+              account_id="",
+          )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
@@ -571,47 +583,48 @@ class TestAsyncIPSECTunnels:
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.magic_transit.ipsec_tunnels.with_raw_response.delete(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ipsec_tunnel = await response.parse()
-        assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.ipsec_tunnels.with_streaming_response.delete(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ipsec_tunnel = await response.parse()
-            assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=["response"])
+            assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.magic_transit.ipsec_tunnels.with_raw_response.delete(
-                ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
+          await async_client.magic_transit.ipsec_tunnels.with_raw_response.delete(
+              ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
-            await async_client.magic_transit.ipsec_tunnels.with_raw_response.delete(
-                ipsec_tunnel_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          await async_client.magic_transit.ipsec_tunnels.with_raw_response.delete(
+              ipsec_tunnel_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -619,47 +632,48 @@ class TestAsyncIPSECTunnels:
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.magic_transit.ipsec_tunnels.with_raw_response.get(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ipsec_tunnel = await response.parse()
-        assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.ipsec_tunnels.with_streaming_response.get(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ipsec_tunnel = await response.parse()
-            assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=["response"])
+            assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.magic_transit.ipsec_tunnels.with_raw_response.get(
-                ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
+          await async_client.magic_transit.ipsec_tunnels.with_raw_response.get(
+              ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
-            await async_client.magic_transit.ipsec_tunnels.with_raw_response.get(
-                ipsec_tunnel_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          await async_client.magic_transit.ipsec_tunnels.with_raw_response.get(
+              ipsec_tunnel_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
     @parametrize
     async def test_method_psk_generate(self, async_client: AsyncCloudflare) -> None:
@@ -668,10 +682,11 @@ class TestAsyncIPSECTunnels:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(IPSECTunnelPSKGenerateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelPSKGenerateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     async def test_raw_response_psk_generate(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -679,9 +694,9 @@ class TestAsyncIPSECTunnels:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         ipsec_tunnel = await response.parse()
-        assert_matches_type(IPSECTunnelPSKGenerateResponse, ipsec_tunnel, path=["response"])
+        assert_matches_type(IPSECTunnelPSKGenerateResponse, ipsec_tunnel, path=['response'])
 
     @parametrize
     async def test_streaming_response_psk_generate(self, async_client: AsyncCloudflare) -> None:
@@ -689,27 +704,27 @@ class TestAsyncIPSECTunnels:
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             ipsec_tunnel = await response.parse()
-            assert_matches_type(IPSECTunnelPSKGenerateResponse, ipsec_tunnel, path=["response"])
+            assert_matches_type(IPSECTunnelPSKGenerateResponse, ipsec_tunnel, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_psk_generate(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
-                ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-                body={},
-            )
+          await async_client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
+              ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="",
+              body={},
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
-            await async_client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
-                ipsec_tunnel_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
-            )
+          await async_client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
+              ipsec_tunnel_id="",
+              account_id="023e105f4ecef8ad9ca31a8372d0c353",
+              body={},
+          )

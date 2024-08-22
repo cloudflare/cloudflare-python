@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict, Required, Annotated
 
 from ...._utils import PropertyInfo
 
 __all__ = ["KolideInputParam"]
-
 
 class KolideInputParam(TypedDict, total=False):
     connection_id: Required[str]

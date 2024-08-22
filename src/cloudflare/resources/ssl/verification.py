@@ -2,32 +2,41 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ...types.ssl import verification_get_params, verification_edit_params
-from ..._base_client import make_request_options
-from ...types.ssl.verification_get_response import VerificationGetResponse
+
 from ...types.ssl.verification_edit_response import VerificationEditResponse
 
-__all__ = ["VerificationResource", "AsyncVerificationResource"]
+from ..._wrappers import ResultWrapper
 
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ..._base_client import make_request_options
+
+from typing_extensions import Literal
+
+from ...types.ssl.verification_get_response import VerificationGetResponse
+
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.ssl import verification_edit_params
+from ...types.ssl import verification_get_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["VerificationResource", "AsyncVerificationResource"]
 
 class VerificationResource(SyncAPIResource):
     @cached_property
@@ -38,19 +47,17 @@ class VerificationResource(SyncAPIResource):
     def with_streaming_response(self) -> VerificationResourceWithStreamingResponse:
         return VerificationResourceWithStreamingResponse(self)
 
-    def edit(
-        self,
-        certificate_pack_id: str,
-        *,
-        zone_id: str,
-        validation_method: Literal["http", "cname", "txt", "email"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VerificationEditResponse]:
+    def edit(self,
+    certificate_pack_id: str,
+    *,
+    zone_id: str,
+    validation_method: Literal["http", "cname", "txt", "email"],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[VerificationEditResponse]:
         """Edit SSL validation method for a certificate pack.
 
         A PATCH request will request
@@ -74,38 +81,32 @@ class VerificationResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not certificate_pack_id:
-            raise ValueError(
-                f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
-            )
+          raise ValueError(
+            f'Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}'
+          )
         return self._patch(
             f"/zones/{zone_id}/ssl/verification/{certificate_pack_id}",
-            body=maybe_transform(
-                {"validation_method": validation_method}, verification_edit_params.VerificationEditParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[VerificationEditResponse]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "validation_method": validation_method
+            }, verification_edit_params.VerificationEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[VerificationEditResponse]]._unwrapper),
             cast_to=cast(Type[Optional[VerificationEditResponse]], ResultWrapper[VerificationEditResponse]),
         )
 
-    def get(
-        self,
-        *,
-        zone_id: str,
-        retry: Literal[True] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VerificationGetResponse]:
+    def get(self,
+    *,
+    zone_id: str,
+    retry: Literal[True] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[VerificationGetResponse]:
         """
         Get SSL Verification Info for a Zone.
 
@@ -123,20 +124,16 @@ class VerificationResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get(
             f"/zones/{zone_id}/ssl/verification",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"retry": retry}, verification_get_params.VerificationGetParams),
-                post_parser=ResultWrapper[Optional[VerificationGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "retry": retry
+            }, verification_get_params.VerificationGetParams), post_parser=ResultWrapper[Optional[VerificationGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[VerificationGetResponse]], ResultWrapper[VerificationGetResponse]),
         )
-
 
 class AsyncVerificationResource(AsyncAPIResource):
     @cached_property
@@ -147,19 +144,17 @@ class AsyncVerificationResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncVerificationResourceWithStreamingResponse:
         return AsyncVerificationResourceWithStreamingResponse(self)
 
-    async def edit(
-        self,
-        certificate_pack_id: str,
-        *,
-        zone_id: str,
-        validation_method: Literal["http", "cname", "txt", "email"],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VerificationEditResponse]:
+    async def edit(self,
+    certificate_pack_id: str,
+    *,
+    zone_id: str,
+    validation_method: Literal["http", "cname", "txt", "email"],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[VerificationEditResponse]:
         """Edit SSL validation method for a certificate pack.
 
         A PATCH request will request
@@ -183,38 +178,32 @@ class AsyncVerificationResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not certificate_pack_id:
-            raise ValueError(
-                f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
-            )
+          raise ValueError(
+            f'Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}'
+          )
         return await self._patch(
             f"/zones/{zone_id}/ssl/verification/{certificate_pack_id}",
-            body=await async_maybe_transform(
-                {"validation_method": validation_method}, verification_edit_params.VerificationEditParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[VerificationEditResponse]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "validation_method": validation_method
+            }, verification_edit_params.VerificationEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[VerificationEditResponse]]._unwrapper),
             cast_to=cast(Type[Optional[VerificationEditResponse]], ResultWrapper[VerificationEditResponse]),
         )
 
-    async def get(
-        self,
-        *,
-        zone_id: str,
-        retry: Literal[True] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VerificationGetResponse]:
+    async def get(self,
+    *,
+    zone_id: str,
+    retry: Literal[True] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[VerificationGetResponse]:
         """
         Get SSL Verification Info for a Zone.
 
@@ -232,20 +221,16 @@ class AsyncVerificationResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._get(
             f"/zones/{zone_id}/ssl/verification",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"retry": retry}, verification_get_params.VerificationGetParams),
-                post_parser=ResultWrapper[Optional[VerificationGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "retry": retry
+            }, verification_get_params.VerificationGetParams), post_parser=ResultWrapper[Optional[VerificationGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[VerificationGetResponse]], ResultWrapper[VerificationGetResponse]),
         )
-
 
 class VerificationResourceWithRawResponse:
     def __init__(self, verification: VerificationResource) -> None:
@@ -258,7 +243,6 @@ class VerificationResourceWithRawResponse:
             verification.get,
         )
 
-
 class AsyncVerificationResourceWithRawResponse:
     def __init__(self, verification: AsyncVerificationResource) -> None:
         self._verification = verification
@@ -270,7 +254,6 @@ class AsyncVerificationResourceWithRawResponse:
             verification.get,
         )
 
-
 class VerificationResourceWithStreamingResponse:
     def __init__(self, verification: VerificationResource) -> None:
         self._verification = verification
@@ -281,7 +264,6 @@ class VerificationResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             verification.get,
         )
-
 
 class AsyncVerificationResourceWithStreamingResponse:
     def __init__(self, verification: AsyncVerificationResource) -> None:

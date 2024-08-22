@@ -1,13 +1,21 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
-
 from ..._models import BaseModel
+
+from typing import Optional, List
+
 from .permission_grant import PermissionGrant
 
-__all__ = ["Member", "Role", "RolePermissions", "User"]
+from typing_extensions import Literal
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+
+from pydantic import Field as FieldInfo
+
+from ..._models import BaseModel
+
+__all__ = ["Member", "Role", "RolePermissions", "User"]
 
 class RolePermissions(BaseModel):
     analytics: Optional[PermissionGrant] = None
@@ -34,7 +42,6 @@ class RolePermissions(BaseModel):
 
     zones: Optional[PermissionGrant] = None
 
-
 class Role(BaseModel):
     id: str
     """Role identifier tag."""
@@ -46,7 +53,6 @@ class Role(BaseModel):
     """Role name."""
 
     permissions: RolePermissions
-
 
 class User(BaseModel):
     email: str
@@ -66,7 +72,6 @@ class User(BaseModel):
 
     Does not apply to API authentication.
     """
-
 
 class Member(BaseModel):
     id: Optional[str] = None

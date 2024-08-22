@@ -2,12 +2,16 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Required, Literal
 
 from ..filters.firewall_filter_param import FirewallFilterParam
 
-__all__ = ["RuleUpdateParams", "Action", "ActionResponse"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
+__all__ = ["RuleUpdateParams", "Action", "ActionResponse"]
 
 class RuleUpdateParams(TypedDict, total=False):
     zone_identifier: Required[str]
@@ -21,7 +25,6 @@ class RuleUpdateParams(TypedDict, total=False):
 
     filter: Required[FirewallFilterParam]
 
-
 class ActionResponse(TypedDict, total=False):
     body: str
     """The response body to return.
@@ -34,7 +37,6 @@ class ActionResponse(TypedDict, total=False):
 
     Must be one of the following: `text/plain`, `text/xml`, or `application/json`.
     """
-
 
 class Action(TypedDict, total=False):
     mode: Literal["simulate", "ban", "challenge", "js_challenge", "managed_challenge"]

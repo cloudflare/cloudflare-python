@@ -1,35 +1,32 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from ..._models import BaseModel
+
+from typing import Optional, List
+
 from datetime import datetime
+
 from typing_extensions import Literal
 
 from .logging import Logging
-from ..._models import BaseModel
 
-__all__ = [
-    "LogCustomFieldRule",
-    "ActionParameters",
-    "ActionParametersCookieField",
-    "ActionParametersRequestField",
-    "ActionParametersResponseField",
-]
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
+__all__ = ["LogCustomFieldRule", "ActionParameters", "ActionParametersCookieField", "ActionParametersRequestField", "ActionParametersResponseField"]
 
 class ActionParametersCookieField(BaseModel):
     name: str
     """The name of the field."""
 
-
 class ActionParametersRequestField(BaseModel):
     name: str
     """The name of the field."""
 
-
 class ActionParametersResponseField(BaseModel):
     name: str
     """The name of the field."""
-
 
 class ActionParameters(BaseModel):
     cookie_fields: Optional[List[ActionParametersCookieField]] = None
@@ -40,7 +37,6 @@ class ActionParameters(BaseModel):
 
     response_fields: Optional[List[ActionParametersResponseField]] = None
     """The response fields to log."""
-
 
 class LogCustomFieldRule(BaseModel):
     last_updated: datetime

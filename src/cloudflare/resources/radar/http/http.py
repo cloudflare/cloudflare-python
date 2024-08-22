@@ -2,74 +2,53 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from .top import (
-    TopResource,
-    AsyncTopResource,
-    TopResourceWithRawResponse,
-    AsyncTopResourceWithRawResponse,
-    TopResourceWithStreamingResponse,
-    AsyncTopResourceWithStreamingResponse,
-)
-from .ases import (
-    AsesResource,
-    AsyncAsesResource,
-    AsesResourceWithRawResponse,
-    AsyncAsesResourceWithRawResponse,
-    AsesResourceWithStreamingResponse,
-    AsyncAsesResourceWithStreamingResponse,
-)
-from .summary import (
-    SummaryResource,
-    AsyncSummaryResource,
-    SummaryResourceWithRawResponse,
-    AsyncSummaryResourceWithRawResponse,
-    SummaryResourceWithStreamingResponse,
-    AsyncSummaryResourceWithStreamingResponse,
-)
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from .ases.ases import AsesResource, AsyncAsesResource
-from .locations import (
-    LocationsResource,
-    AsyncLocationsResource,
-    LocationsResourceWithRawResponse,
-    AsyncLocationsResourceWithRawResponse,
-    LocationsResourceWithStreamingResponse,
-    AsyncLocationsResourceWithStreamingResponse,
-)
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....types.radar import http_timeseries_params
-from ...._base_client import make_request_options
-from .timeseries_groups import (
-    TimeseriesGroupsResource,
-    AsyncTimeseriesGroupsResource,
-    TimeseriesGroupsResourceWithRawResponse,
-    AsyncTimeseriesGroupsResourceWithRawResponse,
-    TimeseriesGroupsResourceWithStreamingResponse,
-    AsyncTimeseriesGroupsResourceWithStreamingResponse,
-)
 from .locations.locations import LocationsResource, AsyncLocationsResource
+
+from ...._compat import cached_property
+
+from .ases.ases import AsesResource, AsyncAsesResource
+
+from .summary import SummaryResource, AsyncSummaryResource
+
+from .timeseries_groups import TimeseriesGroupsResource, AsyncTimeseriesGroupsResource
+
+from .top import TopResource, AsyncTopResource
+
 from ....types.radar.http_timeseries_response import HTTPTimeseriesResponse
 
-__all__ = ["HTTPResource", "AsyncHTTPResource"]
+from ...._wrappers import ResultWrapper
 
+from ...._utils import maybe_transform, async_maybe_transform
+
+from ...._base_client import make_request_options
+
+from typing import Type, List, Union
+
+from typing_extensions import Literal
+
+from datetime import datetime
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.radar import http_timeseries_params
+from .locations import LocationsResource, AsyncLocationsResource, LocationsResourceWithRawResponse, AsyncLocationsResourceWithRawResponse, LocationsResourceWithStreamingResponse, AsyncLocationsResourceWithStreamingResponse
+from .ases import AsesResource, AsyncAsesResource, AsesResourceWithRawResponse, AsyncAsesResourceWithRawResponse, AsesResourceWithStreamingResponse, AsyncAsesResourceWithStreamingResponse
+from .summary import SummaryResource, AsyncSummaryResource, SummaryResourceWithRawResponse, AsyncSummaryResourceWithRawResponse, SummaryResourceWithStreamingResponse, AsyncSummaryResourceWithStreamingResponse
+from .timeseries_groups import TimeseriesGroupsResource, AsyncTimeseriesGroupsResource, TimeseriesGroupsResourceWithRawResponse, AsyncTimeseriesGroupsResourceWithRawResponse, TimeseriesGroupsResourceWithStreamingResponse, AsyncTimeseriesGroupsResourceWithStreamingResponse
+from .top import TopResource, AsyncTopResource, TopResourceWithRawResponse, AsyncTopResourceWithRawResponse, TopResourceWithStreamingResponse, AsyncTopResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+
+__all__ = ["HTTPResource", "AsyncHTTPResource"]
 
 class HTTPResource(SyncAPIResource):
     @cached_property
@@ -100,26 +79,24 @@ class HTTPResource(SyncAPIResource):
     def with_streaming_response(self) -> HTTPResourceWithStreamingResponse:
         return HTTPResourceWithStreamingResponse(self)
 
-    def timeseries(
-        self,
-        *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HTTPTimeseriesResponse:
+    def timeseries(self,
+    *,
+    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+    asn: List[str] | NotGiven = NOT_GIVEN,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> HTTPTimeseriesResponse:
         """
         Get HTTP requests over time.
 
@@ -165,31 +142,20 @@ class HTTPResource(SyncAPIResource):
         """
         return self._get(
             "/radar/http/timeseries",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "agg_interval": agg_interval,
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "location": location,
-                        "name": name,
-                        "normalization": normalization,
-                    },
-                    http_timeseries_params.HTTPTimeseriesParams,
-                ),
-                post_parser=ResultWrapper[HTTPTimeseriesResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "agg_interval": agg_interval,
+                "asn": asn,
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "format": format,
+                "location": location,
+                "name": name,
+                "normalization": normalization,
+            }, http_timeseries_params.HTTPTimeseriesParams), post_parser=ResultWrapper[HTTPTimeseriesResponse]._unwrapper),
             cast_to=cast(Type[HTTPTimeseriesResponse], ResultWrapper[HTTPTimeseriesResponse]),
         )
-
 
 class AsyncHTTPResource(AsyncAPIResource):
     @cached_property
@@ -220,26 +186,24 @@ class AsyncHTTPResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncHTTPResourceWithStreamingResponse:
         return AsyncHTTPResourceWithStreamingResponse(self)
 
-    async def timeseries(
-        self,
-        *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HTTPTimeseriesResponse:
+    async def timeseries(self,
+    *,
+    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+    asn: List[str] | NotGiven = NOT_GIVEN,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> HTTPTimeseriesResponse:
         """
         Get HTTP requests over time.
 
@@ -285,31 +249,20 @@ class AsyncHTTPResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/http/timeseries",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "agg_interval": agg_interval,
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "location": location,
-                        "name": name,
-                        "normalization": normalization,
-                    },
-                    http_timeseries_params.HTTPTimeseriesParams,
-                ),
-                post_parser=ResultWrapper[HTTPTimeseriesResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "agg_interval": agg_interval,
+                "asn": asn,
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "format": format,
+                "location": location,
+                "name": name,
+                "normalization": normalization,
+            }, http_timeseries_params.HTTPTimeseriesParams), post_parser=ResultWrapper[HTTPTimeseriesResponse]._unwrapper),
             cast_to=cast(Type[HTTPTimeseriesResponse], ResultWrapper[HTTPTimeseriesResponse]),
         )
-
 
 class HTTPResourceWithRawResponse:
     def __init__(self, http: HTTPResource) -> None:
@@ -339,7 +292,6 @@ class HTTPResourceWithRawResponse:
     def top(self) -> TopResourceWithRawResponse:
         return TopResourceWithRawResponse(self._http.top)
 
-
 class AsyncHTTPResourceWithRawResponse:
     def __init__(self, http: AsyncHTTPResource) -> None:
         self._http = http
@@ -368,7 +320,6 @@ class AsyncHTTPResourceWithRawResponse:
     def top(self) -> AsyncTopResourceWithRawResponse:
         return AsyncTopResourceWithRawResponse(self._http.top)
 
-
 class HTTPResourceWithStreamingResponse:
     def __init__(self, http: HTTPResource) -> None:
         self._http = http
@@ -396,7 +347,6 @@ class HTTPResourceWithStreamingResponse:
     @cached_property
     def top(self) -> TopResourceWithStreamingResponse:
         return TopResourceWithStreamingResponse(self._http.top)
-
 
 class AsyncHTTPResourceWithStreamingResponse:
     def __init__(self, http: AsyncHTTPResource) -> None:

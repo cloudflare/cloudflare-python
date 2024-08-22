@@ -2,32 +2,38 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
-from .....types.radar.http.ases import tls_version_get_params
+
 from .....types.radar.http.ases.tls_version_get_response import TLSVersionGetResponse
 
-__all__ = ["TLSVersionResource", "AsyncTLSVersionResource"]
+from ....._wrappers import ResultWrapper
 
+from ....._utils import maybe_transform, async_maybe_transform
+
+from ....._base_client import make_request_options
+
+from typing import Type, List, Union
+
+from typing_extensions import Literal
+
+from datetime import datetime
+
+from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.radar.http.ases import tls_version_get_params
+from typing import cast
+from typing import cast
+
+__all__ = ["TLSVersionResource", "AsyncTLSVersionResource"]
 
 class TLSVersionResource(SyncAPIResource):
     @cached_property
@@ -38,34 +44,31 @@ class TLSVersionResource(SyncAPIResource):
     def with_streaming_response(self) -> TLSVersionResourceWithStreamingResponse:
         return TLSVersionResourceWithStreamingResponse(self)
 
-    def get(
-        self,
-        tls_version: Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"],
-        *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSVersionGetResponse:
+    def get(self,
+    tls_version: Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"],
+    *,
+    asn: List[str] | NotGiven = NOT_GIVEN,
+    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+    browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+    limit: int | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TLSVersionGetResponse:
         """
         Get the top autonomous systems (AS), by HTTP traffic, of the requested TLS
         protocol version. Values are a percentage out of the total traffic.
@@ -123,40 +126,31 @@ class TLSVersionResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not tls_version:
-            raise ValueError(f"Expected a non-empty value for `tls_version` but received {tls_version!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `tls_version` but received {tls_version!r}'
+          )
         return self._get(
             f"/radar/http/top/ases/tls_version/{tls_version}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "asn": asn,
-                        "bot_class": bot_class,
-                        "browser_family": browser_family,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "device_type": device_type,
-                        "format": format,
-                        "http_protocol": http_protocol,
-                        "http_version": http_version,
-                        "ip_version": ip_version,
-                        "limit": limit,
-                        "location": location,
-                        "name": name,
-                        "os": os,
-                    },
-                    tls_version_get_params.TLSVersionGetParams,
-                ),
-                post_parser=ResultWrapper[TLSVersionGetResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "asn": asn,
+                "bot_class": bot_class,
+                "browser_family": browser_family,
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "device_type": device_type,
+                "format": format,
+                "http_protocol": http_protocol,
+                "http_version": http_version,
+                "ip_version": ip_version,
+                "limit": limit,
+                "location": location,
+                "name": name,
+                "os": os,
+            }, tls_version_get_params.TLSVersionGetParams), post_parser=ResultWrapper[TLSVersionGetResponse]._unwrapper),
             cast_to=cast(Type[TLSVersionGetResponse], ResultWrapper[TLSVersionGetResponse]),
         )
-
 
 class AsyncTLSVersionResource(AsyncAPIResource):
     @cached_property
@@ -167,34 +161,31 @@ class AsyncTLSVersionResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTLSVersionResourceWithStreamingResponse:
         return AsyncTLSVersionResourceWithStreamingResponse(self)
 
-    async def get(
-        self,
-        tls_version: Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"],
-        *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-        | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSVersionGetResponse:
+    async def get(self,
+    tls_version: Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"],
+    *,
+    asn: List[str] | NotGiven = NOT_GIVEN,
+    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+    browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
+    continent: List[str] | NotGiven = NOT_GIVEN,
+    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    date_range: List[str] | NotGiven = NOT_GIVEN,
+    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+    limit: int | NotGiven = NOT_GIVEN,
+    location: List[str] | NotGiven = NOT_GIVEN,
+    name: List[str] | NotGiven = NOT_GIVEN,
+    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TLSVersionGetResponse:
         """
         Get the top autonomous systems (AS), by HTTP traffic, of the requested TLS
         protocol version. Values are a percentage out of the total traffic.
@@ -252,40 +243,31 @@ class AsyncTLSVersionResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not tls_version:
-            raise ValueError(f"Expected a non-empty value for `tls_version` but received {tls_version!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `tls_version` but received {tls_version!r}'
+          )
         return await self._get(
             f"/radar/http/top/ases/tls_version/{tls_version}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "asn": asn,
-                        "bot_class": bot_class,
-                        "browser_family": browser_family,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "device_type": device_type,
-                        "format": format,
-                        "http_protocol": http_protocol,
-                        "http_version": http_version,
-                        "ip_version": ip_version,
-                        "limit": limit,
-                        "location": location,
-                        "name": name,
-                        "os": os,
-                    },
-                    tls_version_get_params.TLSVersionGetParams,
-                ),
-                post_parser=ResultWrapper[TLSVersionGetResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "asn": asn,
+                "bot_class": bot_class,
+                "browser_family": browser_family,
+                "continent": continent,
+                "date_end": date_end,
+                "date_range": date_range,
+                "date_start": date_start,
+                "device_type": device_type,
+                "format": format,
+                "http_protocol": http_protocol,
+                "http_version": http_version,
+                "ip_version": ip_version,
+                "limit": limit,
+                "location": location,
+                "name": name,
+                "os": os,
+            }, tls_version_get_params.TLSVersionGetParams), post_parser=ResultWrapper[TLSVersionGetResponse]._unwrapper),
             cast_to=cast(Type[TLSVersionGetResponse], ResultWrapper[TLSVersionGetResponse]),
         )
-
 
 class TLSVersionResourceWithRawResponse:
     def __init__(self, tls_version: TLSVersionResource) -> None:
@@ -295,7 +277,6 @@ class TLSVersionResourceWithRawResponse:
             tls_version.get,
         )
 
-
 class AsyncTLSVersionResourceWithRawResponse:
     def __init__(self, tls_version: AsyncTLSVersionResource) -> None:
         self._tls_version = tls_version
@@ -304,7 +285,6 @@ class AsyncTLSVersionResourceWithRawResponse:
             tls_version.get,
         )
 
-
 class TLSVersionResourceWithStreamingResponse:
     def __init__(self, tls_version: TLSVersionResource) -> None:
         self._tls_version = tls_version
@@ -312,7 +292,6 @@ class TLSVersionResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             tls_version.get,
         )
-
 
 class AsyncTLSVersionResourceWithStreamingResponse:
     def __init__(self, tls_version: AsyncTLSVersionResource) -> None:

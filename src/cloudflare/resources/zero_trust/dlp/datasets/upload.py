@@ -2,31 +2,38 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
-from .....types.zero_trust.dlp.dataset import Dataset
-from .....types.zero_trust.dlp.datasets import upload_edit_params
+
 from .....types.zero_trust.dlp.datasets.new_version import NewVersion
 
-__all__ = ["UploadResource", "AsyncUploadResource"]
+from ....._wrappers import ResultWrapper
 
+from typing import Optional, Type
+
+from ....._base_client import make_request_options
+
+from .....types.zero_trust.dlp.dataset import Dataset
+
+from ....._utils import maybe_transform, async_maybe_transform
+
+from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.zero_trust.dlp.datasets import upload_edit_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["UploadResource", "AsyncUploadResource"]
 
 class UploadResource(SyncAPIResource):
     @cached_property
@@ -37,18 +44,16 @@ class UploadResource(SyncAPIResource):
     def with_streaming_response(self) -> UploadResourceWithStreamingResponse:
         return UploadResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        dataset_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NewVersion]:
+    def create(self,
+    dataset_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[NewVersion]:
         """
         Prepare to upload a new version of a dataset
 
@@ -62,35 +67,31 @@ class UploadResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not dataset_id:
-            raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `dataset_id` but received {dataset_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}/upload",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[NewVersion]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[NewVersion]]._unwrapper),
             cast_to=cast(Type[Optional[NewVersion]], ResultWrapper[NewVersion]),
         )
 
-    def edit(
-        self,
-        version: int,
-        *,
-        account_id: str,
-        dataset_id: str,
-        body: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Dataset]:
+    def edit(self,
+    version: int,
+    *,
+    account_id: str,
+    dataset_id: str,
+    body: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Dataset]:
         """This is used for single-column EDMv1 and Custom Word Lists.
 
         The EDM format can
@@ -108,22 +109,19 @@ class UploadResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not dataset_id:
-            raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `dataset_id` but received {dataset_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}/upload/{version}",
             body=maybe_transform(body, upload_edit_params.UploadEditParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Dataset]]._unwrapper),
             cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
-
 
 class AsyncUploadResource(AsyncAPIResource):
     @cached_property
@@ -134,18 +132,16 @@ class AsyncUploadResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncUploadResourceWithStreamingResponse:
         return AsyncUploadResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        dataset_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NewVersion]:
+    async def create(self,
+    dataset_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[NewVersion]:
         """
         Prepare to upload a new version of a dataset
 
@@ -159,35 +155,31 @@ class AsyncUploadResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not dataset_id:
-            raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `dataset_id` but received {dataset_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}/upload",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[NewVersion]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[NewVersion]]._unwrapper),
             cast_to=cast(Type[Optional[NewVersion]], ResultWrapper[NewVersion]),
         )
 
-    async def edit(
-        self,
-        version: int,
-        *,
-        account_id: str,
-        dataset_id: str,
-        body: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Dataset]:
+    async def edit(self,
+    version: int,
+    *,
+    account_id: str,
+    dataset_id: str,
+    body: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Dataset]:
         """This is used for single-column EDMv1 and Custom Word Lists.
 
         The EDM format can
@@ -205,22 +197,19 @@ class AsyncUploadResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not dataset_id:
-            raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `dataset_id` but received {dataset_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}/upload/{version}",
             body=await async_maybe_transform(body, upload_edit_params.UploadEditParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Dataset]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Dataset]]._unwrapper),
             cast_to=cast(Type[Optional[Dataset]], ResultWrapper[Dataset]),
         )
-
 
 class UploadResourceWithRawResponse:
     def __init__(self, upload: UploadResource) -> None:
@@ -233,7 +222,6 @@ class UploadResourceWithRawResponse:
             upload.edit,
         )
 
-
 class AsyncUploadResourceWithRawResponse:
     def __init__(self, upload: AsyncUploadResource) -> None:
         self._upload = upload
@@ -245,7 +233,6 @@ class AsyncUploadResourceWithRawResponse:
             upload.edit,
         )
 
-
 class UploadResourceWithStreamingResponse:
     def __init__(self, upload: UploadResource) -> None:
         self._upload = upload
@@ -256,7 +243,6 @@ class UploadResourceWithStreamingResponse:
         self.edit = to_streamed_response_wrapper(
             upload.edit,
         )
-
 
 class AsyncUploadResourceWithStreamingResponse:
     def __init__(self, upload: AsyncUploadResource) -> None:

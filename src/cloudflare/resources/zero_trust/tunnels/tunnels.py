@@ -2,77 +2,81 @@
 
 from __future__ import annotations
 
-from typing import Any, Union, cast
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from .token import (
-    TokenResource,
-    AsyncTokenResource,
-    TokenResourceWithRawResponse,
-    AsyncTokenResourceWithRawResponse,
-    TokenResourceWithStreamingResponse,
-    AsyncTokenResourceWithStreamingResponse,
-)
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .configurations import ConfigurationsResource, AsyncConfigurationsResource
+
 from ...._compat import cached_property
-from .connectors import (
-    ConnectorsResource,
-    AsyncConnectorsResource,
-    ConnectorsResourceWithRawResponse,
-    AsyncConnectorsResourceWithRawResponse,
-    ConnectorsResourceWithStreamingResponse,
-    AsyncConnectorsResourceWithStreamingResponse,
-)
-from .management import (
-    ManagementResource,
-    AsyncManagementResource,
-    ManagementResourceWithRawResponse,
-    AsyncManagementResourceWithRawResponse,
-    ManagementResourceWithStreamingResponse,
-    AsyncManagementResourceWithStreamingResponse,
-)
-from .connections import (
-    ConnectionsResource,
-    AsyncConnectionsResource,
-    ConnectionsResourceWithRawResponse,
-    AsyncConnectionsResourceWithRawResponse,
-    ConnectionsResourceWithStreamingResponse,
-    AsyncConnectionsResourceWithStreamingResponse,
-)
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from .configurations import (
-    ConfigurationsResource,
-    AsyncConfigurationsResource,
-    ConfigurationsResourceWithRawResponse,
-    AsyncConfigurationsResourceWithRawResponse,
-    ConfigurationsResourceWithStreamingResponse,
-    AsyncConfigurationsResourceWithStreamingResponse,
-)
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust import tunnel_edit_params, tunnel_list_params, tunnel_create_params
-from ....types.zero_trust.tunnel_get_response import TunnelGetResponse
-from ....types.zero_trust.tunnel_edit_response import TunnelEditResponse
-from ....types.zero_trust.tunnel_list_response import TunnelListResponse
+
+from .connections import ConnectionsResource, AsyncConnectionsResource
+
+from .token import TokenResource, AsyncTokenResource
+
+from .connectors import ConnectorsResource, AsyncConnectorsResource
+
+from .management import ManagementResource, AsyncManagementResource
+
 from ....types.zero_trust.tunnel_create_response import TunnelCreateResponse
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from ....types.zero_trust.tunnel_list_response import TunnelListResponse
+
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from typing import Union
+
+from datetime import datetime
+
 from ....types.zero_trust.tunnel_delete_response import TunnelDeleteResponse
 
-__all__ = ["TunnelsResource", "AsyncTunnelsResource"]
+from ....types.zero_trust.tunnel_edit_response import TunnelEditResponse
 
+from ....types.zero_trust.tunnel_get_response import TunnelGetResponse
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.zero_trust import tunnel_create_params
+from ....types.zero_trust import tunnel_list_params
+from ....types.zero_trust import tunnel_edit_params
+from .configurations import ConfigurationsResource, AsyncConfigurationsResource, ConfigurationsResourceWithRawResponse, AsyncConfigurationsResourceWithRawResponse, ConfigurationsResourceWithStreamingResponse, AsyncConfigurationsResourceWithStreamingResponse
+from .connections import ConnectionsResource, AsyncConnectionsResource, ConnectionsResourceWithRawResponse, AsyncConnectionsResourceWithRawResponse, ConnectionsResourceWithStreamingResponse, AsyncConnectionsResourceWithStreamingResponse
+from .token import TokenResource, AsyncTokenResource, TokenResourceWithRawResponse, AsyncTokenResourceWithRawResponse, TokenResourceWithStreamingResponse, AsyncTokenResourceWithStreamingResponse
+from .connectors import ConnectorsResource, AsyncConnectorsResource, ConnectorsResourceWithRawResponse, AsyncConnectorsResourceWithRawResponse, ConnectorsResourceWithStreamingResponse, AsyncConnectorsResourceWithStreamingResponse
+from .management import ManagementResource, AsyncManagementResource, ManagementResourceWithRawResponse, AsyncManagementResourceWithRawResponse, ManagementResourceWithStreamingResponse, AsyncManagementResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["TunnelsResource", "AsyncTunnelsResource"]
 
 class TunnelsResource(SyncAPIResource):
     @cached_property
@@ -103,20 +107,18 @@ class TunnelsResource(SyncAPIResource):
     def with_streaming_response(self) -> TunnelsResourceWithStreamingResponse:
         return TunnelsResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        name: str,
-        config_src: Literal["local", "cloudflare"] | NotGiven = NOT_GIVEN,
-        tunnel_secret: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelCreateResponse:
+    def create(self,
+    *,
+    account_id: str,
+    name: str,
+    config_src: Literal["local", "cloudflare"] | NotGiven = NOT_GIVEN,
+    tunnel_secret: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TunnelCreateResponse:
         """
         Creates a new Cloudflare Tunnel in an account.
 
@@ -141,54 +143,40 @@ class TunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            TunnelCreateResponse,
-            self._post(
-                f"/accounts/{account_id}/cfd_tunnel",
-                body=maybe_transform(
-                    {
-                        "name": name,
-                        "config_src": config_src,
-                        "tunnel_secret": tunnel_secret,
-                    },
-                    tunnel_create_params.TunnelCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TunnelCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TunnelCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
+        return cast(TunnelCreateResponse, self._post(
+            f"/accounts/{account_id}/cfd_tunnel",
+            body=maybe_transform({
+                "name": name,
+                "config_src": config_src,
+                "tunnel_secret": tunnel_secret,
+            }, tunnel_create_params.TunnelCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[TunnelCreateResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[TunnelCreateResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        exclude_prefix: str | NotGiven = NOT_GIVEN,
-        existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        include_prefix: str | NotGiven = NOT_GIVEN,
-        is_deleted: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["inactive", "degraded", "healthy", "down"] | NotGiven = NOT_GIVEN,
-        uuid: str | NotGiven = NOT_GIVEN,
-        was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[TunnelListResponse]:
+    def list(self,
+    *,
+    account_id: str,
+    exclude_prefix: str | NotGiven = NOT_GIVEN,
+    existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    include_prefix: str | NotGiven = NOT_GIVEN,
+    is_deleted: bool | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    status: Literal["inactive", "degraded", "healthy", "down"] | NotGiven = NOT_GIVEN,
+    uuid: str | NotGiven = NOT_GIVEN,
+    was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[TunnelListResponse]:
         """
         Lists and filters Cloudflare Tunnels in an account.
 
@@ -223,47 +211,38 @@ class TunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/cfd_tunnel",
-            page=SyncV4PagePaginationArray[TunnelListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "exclude_prefix": exclude_prefix,
-                        "existed_at": existed_at,
-                        "include_prefix": include_prefix,
-                        "is_deleted": is_deleted,
-                        "name": name,
-                        "page": page,
-                        "per_page": per_page,
-                        "status": status,
-                        "uuid": uuid,
-                        "was_active_at": was_active_at,
-                        "was_inactive_at": was_inactive_at,
-                    },
-                    tunnel_list_params.TunnelListParams,
-                ),
-            ),
+            page = SyncV4PagePaginationArray[TunnelListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "exclude_prefix": exclude_prefix,
+                "existed_at": existed_at,
+                "include_prefix": include_prefix,
+                "is_deleted": is_deleted,
+                "name": name,
+                "page": page,
+                "per_page": per_page,
+                "status": status,
+                "uuid": uuid,
+                "was_active_at": was_active_at,
+                "was_inactive_at": was_inactive_at,
+            }, tunnel_list_params.TunnelListParams)),
             model=cast(Any, TunnelListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
-    def delete(
-        self,
-        tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelDeleteResponse:
+    def delete(self,
+    tunnel_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TunnelDeleteResponse:
         """
         Deletes a Cloudflare Tunnel from an account.
 
@@ -281,40 +260,31 @@ class TunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            TunnelDeleteResponse,
-            self._delete(
-                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TunnelDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TunnelDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}'
+          )
+        return cast(TunnelDeleteResponse, self._delete(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[TunnelDeleteResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[TunnelDeleteResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    def edit(
-        self,
-        tunnel_id: str,
-        *,
-        account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        tunnel_secret: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelEditResponse:
+    def edit(self,
+    tunnel_id: str,
+    *,
+    account_id: str,
+    name: str | NotGiven = NOT_GIVEN,
+    tunnel_secret: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TunnelEditResponse:
         """
         Updates an existing Cloudflare Tunnel.
 
@@ -337,45 +307,33 @@ class TunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            TunnelEditResponse,
-            self._patch(
-                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
-                body=maybe_transform(
-                    {
-                        "name": name,
-                        "tunnel_secret": tunnel_secret,
-                    },
-                    tunnel_edit_params.TunnelEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TunnelEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TunnelEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}'
+          )
+        return cast(TunnelEditResponse, self._patch(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+            body=maybe_transform({
+                "name": name,
+                "tunnel_secret": tunnel_secret,
+            }, tunnel_edit_params.TunnelEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[TunnelEditResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[TunnelEditResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    def get(
-        self,
-        tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelGetResponse:
+    def get(self,
+    tunnel_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TunnelGetResponse:
         """
         Fetches a single Cloudflare Tunnel.
 
@@ -393,26 +351,18 @@ class TunnelsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            TunnelGetResponse,
-            self._get(
-                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TunnelGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TunnelGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
+          raise ValueError(
+            f'Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}'
+          )
+        return cast(TunnelGetResponse, self._get(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[TunnelGetResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[TunnelGetResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
 class AsyncTunnelsResource(AsyncAPIResource):
     @cached_property
@@ -443,20 +393,18 @@ class AsyncTunnelsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTunnelsResourceWithStreamingResponse:
         return AsyncTunnelsResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        name: str,
-        config_src: Literal["local", "cloudflare"] | NotGiven = NOT_GIVEN,
-        tunnel_secret: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelCreateResponse:
+    async def create(self,
+    *,
+    account_id: str,
+    name: str,
+    config_src: Literal["local", "cloudflare"] | NotGiven = NOT_GIVEN,
+    tunnel_secret: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TunnelCreateResponse:
         """
         Creates a new Cloudflare Tunnel in an account.
 
@@ -481,54 +429,40 @@ class AsyncTunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            TunnelCreateResponse,
-            await self._post(
-                f"/accounts/{account_id}/cfd_tunnel",
-                body=await async_maybe_transform(
-                    {
-                        "name": name,
-                        "config_src": config_src,
-                        "tunnel_secret": tunnel_secret,
-                    },
-                    tunnel_create_params.TunnelCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TunnelCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TunnelCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
+        return cast(TunnelCreateResponse, await self._post(
+            f"/accounts/{account_id}/cfd_tunnel",
+            body=await async_maybe_transform({
+                "name": name,
+                "config_src": config_src,
+                "tunnel_secret": tunnel_secret,
+            }, tunnel_create_params.TunnelCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[TunnelCreateResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[TunnelCreateResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        exclude_prefix: str | NotGiven = NOT_GIVEN,
-        existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        include_prefix: str | NotGiven = NOT_GIVEN,
-        is_deleted: bool | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        status: Literal["inactive", "degraded", "healthy", "down"] | NotGiven = NOT_GIVEN,
-        uuid: str | NotGiven = NOT_GIVEN,
-        was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[TunnelListResponse, AsyncV4PagePaginationArray[TunnelListResponse]]:
+    def list(self,
+    *,
+    account_id: str,
+    exclude_prefix: str | NotGiven = NOT_GIVEN,
+    existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    include_prefix: str | NotGiven = NOT_GIVEN,
+    is_deleted: bool | NotGiven = NOT_GIVEN,
+    name: str | NotGiven = NOT_GIVEN,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    status: Literal["inactive", "degraded", "healthy", "down"] | NotGiven = NOT_GIVEN,
+    uuid: str | NotGiven = NOT_GIVEN,
+    was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[TunnelListResponse, AsyncV4PagePaginationArray[TunnelListResponse]]:
         """
         Lists and filters Cloudflare Tunnels in an account.
 
@@ -563,47 +497,38 @@ class AsyncTunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/cfd_tunnel",
-            page=AsyncV4PagePaginationArray[TunnelListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "exclude_prefix": exclude_prefix,
-                        "existed_at": existed_at,
-                        "include_prefix": include_prefix,
-                        "is_deleted": is_deleted,
-                        "name": name,
-                        "page": page,
-                        "per_page": per_page,
-                        "status": status,
-                        "uuid": uuid,
-                        "was_active_at": was_active_at,
-                        "was_inactive_at": was_inactive_at,
-                    },
-                    tunnel_list_params.TunnelListParams,
-                ),
-            ),
+            page = AsyncV4PagePaginationArray[TunnelListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "exclude_prefix": exclude_prefix,
+                "existed_at": existed_at,
+                "include_prefix": include_prefix,
+                "is_deleted": is_deleted,
+                "name": name,
+                "page": page,
+                "per_page": per_page,
+                "status": status,
+                "uuid": uuid,
+                "was_active_at": was_active_at,
+                "was_inactive_at": was_inactive_at,
+            }, tunnel_list_params.TunnelListParams)),
             model=cast(Any, TunnelListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
-    async def delete(
-        self,
-        tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelDeleteResponse:
+    async def delete(self,
+    tunnel_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TunnelDeleteResponse:
         """
         Deletes a Cloudflare Tunnel from an account.
 
@@ -621,40 +546,31 @@ class AsyncTunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            TunnelDeleteResponse,
-            await self._delete(
-                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TunnelDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TunnelDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}'
+          )
+        return cast(TunnelDeleteResponse, await self._delete(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[TunnelDeleteResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[TunnelDeleteResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    async def edit(
-        self,
-        tunnel_id: str,
-        *,
-        account_id: str,
-        name: str | NotGiven = NOT_GIVEN,
-        tunnel_secret: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelEditResponse:
+    async def edit(self,
+    tunnel_id: str,
+    *,
+    account_id: str,
+    name: str | NotGiven = NOT_GIVEN,
+    tunnel_secret: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TunnelEditResponse:
         """
         Updates an existing Cloudflare Tunnel.
 
@@ -677,45 +593,33 @@ class AsyncTunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            TunnelEditResponse,
-            await self._patch(
-                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
-                body=await async_maybe_transform(
-                    {
-                        "name": name,
-                        "tunnel_secret": tunnel_secret,
-                    },
-                    tunnel_edit_params.TunnelEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TunnelEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TunnelEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}'
+          )
+        return cast(TunnelEditResponse, await self._patch(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+            body=await async_maybe_transform({
+                "name": name,
+                "tunnel_secret": tunnel_secret,
+            }, tunnel_edit_params.TunnelEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[TunnelEditResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[TunnelEditResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    async def get(
-        self,
-        tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelGetResponse:
+    async def get(self,
+    tunnel_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TunnelGetResponse:
         """
         Fetches a single Cloudflare Tunnel.
 
@@ -733,26 +637,18 @@ class AsyncTunnelsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            TunnelGetResponse,
-            await self._get(
-                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TunnelGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TunnelGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
+          raise ValueError(
+            f'Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}'
+          )
+        return cast(TunnelGetResponse, await self._get(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[TunnelGetResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[TunnelGetResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
 class TunnelsResourceWithRawResponse:
     def __init__(self, tunnels: TunnelsResource) -> None:
@@ -794,7 +690,6 @@ class TunnelsResourceWithRawResponse:
     def management(self) -> ManagementResourceWithRawResponse:
         return ManagementResourceWithRawResponse(self._tunnels.management)
 
-
 class AsyncTunnelsResourceWithRawResponse:
     def __init__(self, tunnels: AsyncTunnelsResource) -> None:
         self._tunnels = tunnels
@@ -835,7 +730,6 @@ class AsyncTunnelsResourceWithRawResponse:
     def management(self) -> AsyncManagementResourceWithRawResponse:
         return AsyncManagementResourceWithRawResponse(self._tunnels.management)
 
-
 class TunnelsResourceWithStreamingResponse:
     def __init__(self, tunnels: TunnelsResource) -> None:
         self._tunnels = tunnels
@@ -875,7 +769,6 @@ class TunnelsResourceWithStreamingResponse:
     @cached_property
     def management(self) -> ManagementResourceWithStreamingResponse:
         return ManagementResourceWithStreamingResponse(self._tunnels.management)
-
 
 class AsyncTunnelsResourceWithStreamingResponse:
     def __init__(self, tunnels: AsyncTunnelsResource) -> None:

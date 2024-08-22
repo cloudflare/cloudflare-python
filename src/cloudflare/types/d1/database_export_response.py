@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["DatabaseExportResponse", "Result"]
+from typing import Optional, List
 
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["DatabaseExportResponse", "Result"]
 
 class Result(BaseModel):
     filename: Optional[str] = None
@@ -14,7 +18,6 @@ class Result(BaseModel):
 
     signed_url: Optional[str] = None
     """The URL to download the exported SQL. Available for one hour."""
-
 
 class DatabaseExportResponse(BaseModel):
     at_bookmark: Optional[str] = None

@@ -1,14 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-from datetime import datetime
+from ..._models import BaseModel
+
 from typing_extensions import Literal
 
-from ..._models import BaseModel
+from datetime import datetime
+
+from typing import List
+
 from .widget_domain import WidgetDomain
 
-__all__ = ["WidgetListResponse"]
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
+__all__ = ["WidgetListResponse"]
 
 class WidgetListResponse(BaseModel):
     bot_fight_mode: bool

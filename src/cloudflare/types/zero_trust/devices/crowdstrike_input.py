@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from typing_extensions import Literal
-
-from pydantic import Field as FieldInfo
-
 from ...._models import BaseModel
 
-__all__ = ["CrowdstrikeInput"]
+from typing import Optional
 
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["CrowdstrikeInput"]
 
 class CrowdstrikeInput(BaseModel):
     connection_id: str
@@ -35,5 +37,5 @@ class CrowdstrikeInput(BaseModel):
     version: Optional[str] = None
     """Version"""
 
-    version_operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = FieldInfo(alias="versionOperator", default=None)
+    version_operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = FieldInfo(alias = "versionOperator", default = None)
     """Version Operator"""

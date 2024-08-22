@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["IP", "BelongsToRef"]
+from typing import Optional, List
 
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["IP", "BelongsToRef"]
 
 class BelongsToRef(BaseModel):
     id: Optional[str] = None
@@ -19,7 +23,6 @@ class BelongsToRef(BaseModel):
     """Infrastructure type of this ASN."""
 
     value: Optional[str] = None
-
 
 class IP(BaseModel):
     belongs_to_ref: Optional[BelongsToRef] = None

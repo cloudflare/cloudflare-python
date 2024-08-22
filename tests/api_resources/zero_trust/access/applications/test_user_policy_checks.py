@@ -2,20 +2,27 @@
 
 from __future__ import annotations
 
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from typing import Optional, Any, cast
+
+from cloudflare.types.zero_trust.access.applications import UserPolicyCheckListResponse
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.access.applications import UserPolicyCheckListResponse
+from cloudflare.types.zero_trust.access import AppID
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestUserPolicyChecks:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -24,7 +31,7 @@ class TestUserPolicyChecks:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -33,20 +40,21 @@ class TestUserPolicyChecks:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
+
         response = client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         user_policy_check = response.parse()
-        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -54,12 +62,12 @@ class TestUserPolicyChecks:
         with client.zero_trust.access.applications.user_policy_checks.with_streaming_response.list(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             user_policy_check = response.parse()
-            assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+            assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -67,26 +75,25 @@ class TestUserPolicyChecks:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-            client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
-                app_id="",
-                account_id="account_id",
-            )
+          client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
+              app_id="",
+              account_id="account_id",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
-                app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
+          client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
+              app_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
-                app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="account_id",
-            )
-
-
+          client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
+              app_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="account_id",
+          )
 class TestAsyncUserPolicyChecks:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -95,7 +102,7 @@ class TestAsyncUserPolicyChecks:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -104,20 +111,21 @@ class TestAsyncUserPolicyChecks:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         user_policy_check = await response.parse()
-        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+        assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -125,12 +133,12 @@ class TestAsyncUserPolicyChecks:
         async with async_client.zero_trust.access.applications.user_policy_checks.with_streaming_response.list(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             user_policy_check = await response.parse()
-            assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=["response"])
+            assert_matches_type(Optional[UserPolicyCheckListResponse], user_policy_check, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -138,19 +146,19 @@ class TestAsyncUserPolicyChecks:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-            await async_client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
-                app_id="",
-                account_id="account_id",
-            )
+          await async_client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
+              app_id="",
+              account_id="account_id",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
-                app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
+          await async_client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
+              app_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
-                app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="account_id",
-            )
+          await async_client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
+              app_id="023e105f4ecef8ad9ca31a8372d0c353",
+              account_id="account_id",
+          )

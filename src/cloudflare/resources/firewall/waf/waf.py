@@ -2,28 +2,23 @@
 
 from __future__ import annotations
 
-from .packages import (
-    PackagesResource,
-    AsyncPackagesResource,
-    PackagesResourceWithRawResponse,
-    AsyncPackagesResourceWithRawResponse,
-    PackagesResourceWithStreamingResponse,
-    AsyncPackagesResourceWithStreamingResponse,
-)
-from .overrides import (
-    OverridesResource,
-    AsyncOverridesResource,
-    OverridesResourceWithRawResponse,
-    AsyncOverridesResourceWithRawResponse,
-    OverridesResourceWithStreamingResponse,
-    AsyncOverridesResourceWithStreamingResponse,
-)
+from .overrides import OverridesResource, AsyncOverridesResource
+
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
+
 from .packages.packages import PackagesResource, AsyncPackagesResource
 
-__all__ = ["WAFResource", "AsyncWAFResource"]
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from .overrides import OverridesResource, AsyncOverridesResource, OverridesResourceWithRawResponse, AsyncOverridesResourceWithRawResponse, OverridesResourceWithStreamingResponse, AsyncOverridesResourceWithStreamingResponse
+from .packages import PackagesResource, AsyncPackagesResource, PackagesResourceWithRawResponse, AsyncPackagesResourceWithRawResponse, PackagesResourceWithStreamingResponse, AsyncPackagesResourceWithStreamingResponse
 
+__all__ = ["WAFResource", "AsyncWAFResource"]
 
 class WAFResource(SyncAPIResource):
     @cached_property
@@ -42,7 +37,6 @@ class WAFResource(SyncAPIResource):
     def with_streaming_response(self) -> WAFResourceWithStreamingResponse:
         return WAFResourceWithStreamingResponse(self)
 
-
 class AsyncWAFResource(AsyncAPIResource):
     @cached_property
     def overrides(self) -> AsyncOverridesResource:
@@ -60,7 +54,6 @@ class AsyncWAFResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncWAFResourceWithStreamingResponse:
         return AsyncWAFResourceWithStreamingResponse(self)
 
-
 class WAFResourceWithRawResponse:
     def __init__(self, waf: WAFResource) -> None:
         self._waf = waf
@@ -72,7 +65,6 @@ class WAFResourceWithRawResponse:
     @cached_property
     def packages(self) -> PackagesResourceWithRawResponse:
         return PackagesResourceWithRawResponse(self._waf.packages)
-
 
 class AsyncWAFResourceWithRawResponse:
     def __init__(self, waf: AsyncWAFResource) -> None:
@@ -86,7 +78,6 @@ class AsyncWAFResourceWithRawResponse:
     def packages(self) -> AsyncPackagesResourceWithRawResponse:
         return AsyncPackagesResourceWithRawResponse(self._waf.packages)
 
-
 class WAFResourceWithStreamingResponse:
     def __init__(self, waf: WAFResource) -> None:
         self._waf = waf
@@ -98,7 +89,6 @@ class WAFResourceWithStreamingResponse:
     @cached_property
     def packages(self) -> PackagesResourceWithStreamingResponse:
         return PackagesResourceWithStreamingResponse(self._waf.packages)
-
 
 class AsyncWAFResourceWithStreamingResponse:
     def __init__(self, waf: AsyncWAFResource) -> None:

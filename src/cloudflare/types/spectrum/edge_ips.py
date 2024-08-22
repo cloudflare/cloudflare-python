@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from typing_extensions import Literal, TypeAlias
-
 from ..._models import BaseModel
 
-__all__ = ["EdgeIPs", "UnionMember0", "UnionMember1"]
+from typing import Optional, List
 
+from typing_extensions import Literal, TypeAlias
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["EdgeIPs", "UnionMember0", "UnionMember1"]
 
 class UnionMember0(BaseModel):
     connectivity: Optional[Literal["all", "ipv4", "ipv6"]] = None
@@ -18,7 +22,6 @@ class UnionMember0(BaseModel):
     Dynamically allocated edge IPs use Spectrum anycast IPs in accordance with the
     connectivity you specify. Only valid with CNAME DNS names.
     """
-
 
 class UnionMember1(BaseModel):
     ips: Optional[List[str]] = None
@@ -33,6 +36,5 @@ class UnionMember1(BaseModel):
     Statically allocated edge IPs use customer IPs in accordance with the ips array
     you specify. Only valid with ADDRESS DNS names.
     """
-
 
 EdgeIPs: TypeAlias = Union[UnionMember0, UnionMember1]

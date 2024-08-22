@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 __all__ = ["IPRuleParam", "IP"]
-
 
 class IP(TypedDict, total=False):
     ip: Required[str]
     """An IPv4 or IPv6 CIDR block."""
-
 
 class IPRuleParam(TypedDict, total=False):
     ip: Required[IP]

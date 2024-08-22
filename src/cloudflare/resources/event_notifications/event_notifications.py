@@ -2,20 +2,20 @@
 
 from __future__ import annotations
 
-from .r2 import (
-    R2Resource,
-    AsyncR2Resource,
-    R2ResourceWithRawResponse,
-    AsyncR2ResourceWithRawResponse,
-    R2ResourceWithStreamingResponse,
-    AsyncR2ResourceWithStreamingResponse,
-)
 from .r2.r2 import R2Resource, AsyncR2Resource
+
 from ..._compat import cached_property
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from .r2 import R2Resource, AsyncR2Resource, R2ResourceWithRawResponse, AsyncR2ResourceWithRawResponse, R2ResourceWithStreamingResponse, AsyncR2ResourceWithStreamingResponse
 
 __all__ = ["EventNotificationsResource", "AsyncEventNotificationsResource"]
-
 
 class EventNotificationsResource(SyncAPIResource):
     @cached_property
@@ -30,7 +30,6 @@ class EventNotificationsResource(SyncAPIResource):
     def with_streaming_response(self) -> EventNotificationsResourceWithStreamingResponse:
         return EventNotificationsResourceWithStreamingResponse(self)
 
-
 class AsyncEventNotificationsResource(AsyncAPIResource):
     @cached_property
     def r2(self) -> AsyncR2Resource:
@@ -44,7 +43,6 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncEventNotificationsResourceWithStreamingResponse:
         return AsyncEventNotificationsResourceWithStreamingResponse(self)
 
-
 class EventNotificationsResourceWithRawResponse:
     def __init__(self, event_notifications: EventNotificationsResource) -> None:
         self._event_notifications = event_notifications
@@ -52,7 +50,6 @@ class EventNotificationsResourceWithRawResponse:
     @cached_property
     def r2(self) -> R2ResourceWithRawResponse:
         return R2ResourceWithRawResponse(self._event_notifications.r2)
-
 
 class AsyncEventNotificationsResourceWithRawResponse:
     def __init__(self, event_notifications: AsyncEventNotificationsResource) -> None:
@@ -62,7 +59,6 @@ class AsyncEventNotificationsResourceWithRawResponse:
     def r2(self) -> AsyncR2ResourceWithRawResponse:
         return AsyncR2ResourceWithRawResponse(self._event_notifications.r2)
 
-
 class EventNotificationsResourceWithStreamingResponse:
     def __init__(self, event_notifications: EventNotificationsResource) -> None:
         self._event_notifications = event_notifications
@@ -70,7 +66,6 @@ class EventNotificationsResourceWithStreamingResponse:
     @cached_property
     def r2(self) -> R2ResourceWithStreamingResponse:
         return R2ResourceWithStreamingResponse(self._event_notifications.r2)
-
 
 class AsyncEventNotificationsResourceWithStreamingResponse:
     def __init__(self, event_notifications: AsyncEventNotificationsResource) -> None:

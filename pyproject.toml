@@ -5,7 +5,7 @@ description = "The official Python library for the cloudflare API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Cloudflare", email = "api@cloudflare.com" },
+{ name = "Cloudflare", email = "api@cloudflare.com." },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
