@@ -191,7 +191,7 @@ class ConfigsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConfigDeleteResponse]:
+    ) -> ConfigDeleteResponse:
         """
         Deletes the specified Hyperdrive.
 
@@ -213,7 +213,7 @@ class ConfigsResource(SyncAPIResource):
         if not hyperdrive_id:
             raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
         return cast(
-            Optional[ConfigDeleteResponse],
+            ConfigDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
                 options=make_request_options(
@@ -221,7 +221,7 @@ class ConfigsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ConfigDeleteResponse]]._unwrapper,
+                    post_parser=ResultWrapper[ConfigDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ConfigDeleteResponse]
@@ -492,7 +492,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConfigDeleteResponse]:
+    ) -> ConfigDeleteResponse:
         """
         Deletes the specified Hyperdrive.
 
@@ -514,7 +514,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         if not hyperdrive_id:
             raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
         return cast(
-            Optional[ConfigDeleteResponse],
+            ConfigDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
                 options=make_request_options(
@@ -522,7 +522,7 @@ class AsyncConfigsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ConfigDeleteResponse]]._unwrapper,
+                    post_parser=ResultWrapper[ConfigDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ConfigDeleteResponse]
