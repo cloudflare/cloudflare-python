@@ -30,6 +30,8 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.kv.namespaces import value_update_params
+from ....types.kv.namespaces.value_delete_response import ValueDeleteResponse
+from ....types.kv.namespaces.value_update_response import ValueUpdateResponse
 
 __all__ = ["ValuesResource", "AsyncValuesResource"]
 
@@ -57,7 +59,7 @@ class ValuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[ValueUpdateResponse]:
         """Write a value identified by a key.
 
         Use URL-encoding to use special characters
@@ -111,9 +113,9 @@ class ValuesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ValueUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[ValueUpdateResponse]], ResultWrapper[ValueUpdateResponse]),
         )
 
     def delete(
@@ -128,7 +130,7 @@ class ValuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[ValueDeleteResponse]:
         """Remove a KV pair from the namespace.
 
         Use URL-encoding to use special characters
@@ -163,9 +165,9 @@ class ValuesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ValueDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[ValueDeleteResponse]], ResultWrapper[ValueDeleteResponse]),
         )
 
     def get(
@@ -244,7 +246,7 @@ class AsyncValuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[ValueUpdateResponse]:
         """Write a value identified by a key.
 
         Use URL-encoding to use special characters
@@ -298,9 +300,9 @@ class AsyncValuesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ValueUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[ValueUpdateResponse]], ResultWrapper[ValueUpdateResponse]),
         )
 
     async def delete(
@@ -315,7 +317,7 @@ class AsyncValuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[ValueDeleteResponse]:
         """Remove a KV pair from the namespace.
 
         Use URL-encoding to use special characters
@@ -350,9 +352,9 @@ class AsyncValuesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ValueDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[ValueDeleteResponse]], ResultWrapper[ValueDeleteResponse]),
         )
 
     async def get(
