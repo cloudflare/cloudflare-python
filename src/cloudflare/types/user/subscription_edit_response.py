@@ -5,4 +5,4 @@ from typing_extensions import TypeAlias
 
 __all__ = ["SubscriptionEditResponse"]
 
-SubscriptionEditResponse: TypeAlias = Union[Optional[str], Optional[object]]
+SubscriptionEditResponse: TypeAlias = Union[Optional[str], object]
