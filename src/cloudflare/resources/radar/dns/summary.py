@@ -31,6 +31,7 @@ from ....types.radar.dns import (
     summary_ip_version_params,
     summary_query_type_params,
     summary_dnssec_aware_params,
+    summary_response_ttl_params,
     summary_response_codes_params,
     summary_matching_answer_params,
 )
@@ -41,6 +42,7 @@ from ....types.radar.dns.summary_dnssec_e2e_response import SummaryDNSSECE2EResp
 from ....types.radar.dns.summary_ip_version_response import SummaryIPVersionResponse
 from ....types.radar.dns.summary_query_type_response import SummaryQueryTypeResponse
 from ....types.radar.dns.summary_dnssec_aware_response import SummaryDNSSECAwareResponse
+from ....types.radar.dns.summary_response_ttl_response import SummaryResponseTTLResponse
 from ....types.radar.dns.summary_response_codes_response import SummaryResponseCodesResponse
 from ....types.radar.dns.summary_matching_answer_response import SummaryMatchingAnswerResponse
 
@@ -803,6 +805,89 @@ class SummaryResource(SyncAPIResource):
             cast_to=cast(Type[SummaryResponseCodesResponse], ResultWrapper[SummaryResponseCodesResponse]),
         )
 
+    def response_ttl(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        tld: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryResponseTTLResponse:
+        """
+        Percentage breakdown of DNS queries per minimum answer TTL.
+
+        Args:
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          format: Format results are returned in.
+
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
+          name: Array of names that will be used to name the series in responses.
+
+          tld: Filter for ccTLD.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/dns/summary/response_ttl",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                        "tld": tld,
+                    },
+                    summary_response_ttl_params.SummaryResponseTTLParams,
+                ),
+                post_parser=ResultWrapper[SummaryResponseTTLResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[SummaryResponseTTLResponse], ResultWrapper[SummaryResponseTTLResponse]),
+        )
+
 
 class AsyncSummaryResource(AsyncAPIResource):
     @cached_property
@@ -1560,6 +1645,89 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryResponseCodesResponse], ResultWrapper[SummaryResponseCodesResponse]),
         )
 
+    async def response_ttl(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        tld: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryResponseTTLResponse:
+        """
+        Percentage breakdown of DNS queries per minimum answer TTL.
+
+        Args:
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
+
+          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
+              with `-` to exclude from results. For example, `-EU,NA` excludes results from
+              Europe, but includes results from North America.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
+
+          date_start: Array of datetimes to filter the start of a series.
+
+          format: Format results are returned in.
+
+          location: Array of comma separated list of locations (alpha-2 country codes). Start with
+              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
+              but includes results from PT.
+
+          name: Array of names that will be used to name the series in responses.
+
+          tld: Filter for ccTLD.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/dns/summary/response_ttl",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                        "tld": tld,
+                    },
+                    summary_response_ttl_params.SummaryResponseTTLParams,
+                ),
+                post_parser=ResultWrapper[SummaryResponseTTLResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[SummaryResponseTTLResponse], ResultWrapper[SummaryResponseTTLResponse]),
+        )
+
 
 class SummaryResourceWithRawResponse:
     def __init__(self, summary: SummaryResource) -> None:
@@ -1591,6 +1759,9 @@ class SummaryResourceWithRawResponse:
         )
         self.response_codes = to_raw_response_wrapper(
             summary.response_codes,
+        )
+        self.response_ttl = to_raw_response_wrapper(
+            summary.response_ttl,
         )
 
 
@@ -1625,6 +1796,9 @@ class AsyncSummaryResourceWithRawResponse:
         self.response_codes = async_to_raw_response_wrapper(
             summary.response_codes,
         )
+        self.response_ttl = async_to_raw_response_wrapper(
+            summary.response_ttl,
+        )
 
 
 class SummaryResourceWithStreamingResponse:
@@ -1658,6 +1832,9 @@ class SummaryResourceWithStreamingResponse:
         self.response_codes = to_streamed_response_wrapper(
             summary.response_codes,
         )
+        self.response_ttl = to_streamed_response_wrapper(
+            summary.response_ttl,
+        )
 
 
 class AsyncSummaryResourceWithStreamingResponse:
@@ -1690,4 +1867,7 @@ class AsyncSummaryResourceWithStreamingResponse:
         )
         self.response_codes = async_to_streamed_response_wrapper(
             summary.response_codes,
+        )
+        self.response_ttl = async_to_streamed_response_wrapper(
+            summary.response_ttl,
         )

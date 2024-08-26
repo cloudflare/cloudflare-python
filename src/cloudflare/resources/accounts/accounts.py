@@ -39,8 +39,9 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.accounts import account_list_params, account_update_params
+from ...types.accounts import account_list_params, account_create_params, account_update_params
 from ...types.accounts.account import Account
+from ...types.accounts.account_delete_response import AccountDeleteResponse
 
 __all__ = ["AccountsResource", "AsyncAccountsResource"]
 
@@ -61,6 +62,60 @@ class AccountsResource(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> AccountsResourceWithStreamingResponse:
         return AccountsResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        name: str,
+        type: Literal["standard", "enterprise"],
+        unit: account_create_params.Unit | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Account]:
+        """
+        Create an account (only available for tenant admins at this time)
+
+        Args:
+          name: Account name
+
+          type: the type of account being created. For self-serve customers, use standard. for
+              enterprise customers, use enterprise.
+
+          unit: information related to the tenant unit, and optionally, an id of the unit to
+              create the account on. see
+              https://developers.cloudflare.com/tenant/how-to/manage-accounts/
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/accounts",
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "type": type,
+                    "unit": unit,
+                },
+                account_create_params.AccountCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Account]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Account]], ResultWrapper[Account]),
+        )
 
     def update(
         self,
@@ -169,6 +224,48 @@ class AccountsResource(SyncAPIResource):
             model=Account,
         )
 
+    def delete(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[AccountDeleteResponse]:
+        """Delete a specific account (only available for tenant admins at this time).
+
+        This
+        is a permanent operation that will delete any zones or other resources under the
+        account
+
+        Args:
+          account_id: The account ID of the account to be deleted
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._delete(
+            f"/accounts/{account_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AccountDeleteResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[AccountDeleteResponse]], ResultWrapper[AccountDeleteResponse]),
+        )
+
     def get(
         self,
         *,
@@ -225,6 +322,60 @@ class AsyncAccountsResource(AsyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> AsyncAccountsResourceWithStreamingResponse:
         return AsyncAccountsResourceWithStreamingResponse(self)
+
+    async def create(
+        self,
+        *,
+        name: str,
+        type: Literal["standard", "enterprise"],
+        unit: account_create_params.Unit | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Account]:
+        """
+        Create an account (only available for tenant admins at this time)
+
+        Args:
+          name: Account name
+
+          type: the type of account being created. For self-serve customers, use standard. for
+              enterprise customers, use enterprise.
+
+          unit: information related to the tenant unit, and optionally, an id of the unit to
+              create the account on. see
+              https://developers.cloudflare.com/tenant/how-to/manage-accounts/
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/accounts",
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "type": type,
+                    "unit": unit,
+                },
+                account_create_params.AccountCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Account]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Account]], ResultWrapper[Account]),
+        )
 
     async def update(
         self,
@@ -333,6 +484,48 @@ class AsyncAccountsResource(AsyncAPIResource):
             model=Account,
         )
 
+    async def delete(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[AccountDeleteResponse]:
+        """Delete a specific account (only available for tenant admins at this time).
+
+        This
+        is a permanent operation that will delete any zones or other resources under the
+        account
+
+        Args:
+          account_id: The account ID of the account to be deleted
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._delete(
+            f"/accounts/{account_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AccountDeleteResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[AccountDeleteResponse]], ResultWrapper[AccountDeleteResponse]),
+        )
+
     async def get(
         self,
         *,
@@ -377,11 +570,17 @@ class AccountsResourceWithRawResponse:
     def __init__(self, accounts: AccountsResource) -> None:
         self._accounts = accounts
 
+        self.create = to_raw_response_wrapper(
+            accounts.create,
+        )
         self.update = to_raw_response_wrapper(
             accounts.update,
         )
         self.list = to_raw_response_wrapper(
             accounts.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            accounts.delete,
         )
         self.get = to_raw_response_wrapper(
             accounts.get,
@@ -400,11 +599,17 @@ class AsyncAccountsResourceWithRawResponse:
     def __init__(self, accounts: AsyncAccountsResource) -> None:
         self._accounts = accounts
 
+        self.create = async_to_raw_response_wrapper(
+            accounts.create,
+        )
         self.update = async_to_raw_response_wrapper(
             accounts.update,
         )
         self.list = async_to_raw_response_wrapper(
             accounts.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            accounts.delete,
         )
         self.get = async_to_raw_response_wrapper(
             accounts.get,
@@ -423,11 +628,17 @@ class AccountsResourceWithStreamingResponse:
     def __init__(self, accounts: AccountsResource) -> None:
         self._accounts = accounts
 
+        self.create = to_streamed_response_wrapper(
+            accounts.create,
+        )
         self.update = to_streamed_response_wrapper(
             accounts.update,
         )
         self.list = to_streamed_response_wrapper(
             accounts.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            accounts.delete,
         )
         self.get = to_streamed_response_wrapper(
             accounts.get,
@@ -446,11 +657,17 @@ class AsyncAccountsResourceWithStreamingResponse:
     def __init__(self, accounts: AsyncAccountsResource) -> None:
         self._accounts = accounts
 
+        self.create = async_to_streamed_response_wrapper(
+            accounts.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             accounts.update,
         )
         self.list = async_to_streamed_response_wrapper(
             accounts.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            accounts.delete,
         )
         self.get = async_to_streamed_response_wrapper(
             accounts.get,

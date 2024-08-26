@@ -324,6 +324,50 @@ class RoutesResource(SyncAPIResource):
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
+    def get(
+        self,
+        route_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Route:
+        """
+        Get a private network route in an account.
+
+        Args:
+          account_id: Cloudflare account ID
+
+          route_id: UUID of the route.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not route_id:
+            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/teamnet/routes/{route_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Route]._unwrapper,
+            ),
+            cast_to=cast(Type[Route], ResultWrapper[Route]),
+        )
+
 
 class AsyncRoutesResource(AsyncAPIResource):
     @cached_property
@@ -603,6 +647,50 @@ class AsyncRoutesResource(AsyncAPIResource):
             cast_to=cast(Type[Route], ResultWrapper[Route]),
         )
 
+    async def get(
+        self,
+        route_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Route:
+        """
+        Get a private network route in an account.
+
+        Args:
+          account_id: Cloudflare account ID
+
+          route_id: UUID of the route.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not route_id:
+            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/teamnet/routes/{route_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Route]._unwrapper,
+            ),
+            cast_to=cast(Type[Route], ResultWrapper[Route]),
+        )
+
 
 class RoutesResourceWithRawResponse:
     def __init__(self, routes: RoutesResource) -> None:
@@ -619,6 +707,9 @@ class RoutesResourceWithRawResponse:
         )
         self.edit = to_raw_response_wrapper(
             routes.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            routes.get,
         )
 
     @cached_property
@@ -646,6 +737,9 @@ class AsyncRoutesResourceWithRawResponse:
         self.edit = async_to_raw_response_wrapper(
             routes.edit,
         )
+        self.get = async_to_raw_response_wrapper(
+            routes.get,
+        )
 
     @cached_property
     def ips(self) -> AsyncIPsResourceWithRawResponse:
@@ -672,6 +766,9 @@ class RoutesResourceWithStreamingResponse:
         self.edit = to_streamed_response_wrapper(
             routes.edit,
         )
+        self.get = to_streamed_response_wrapper(
+            routes.get,
+        )
 
     @cached_property
     def ips(self) -> IPsResourceWithStreamingResponse:
@@ -697,6 +794,9 @@ class AsyncRoutesResourceWithStreamingResponse:
         )
         self.edit = async_to_streamed_response_wrapper(
             routes.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            routes.get,
         )
 
     @cached_property

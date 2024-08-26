@@ -264,6 +264,50 @@ class VirtualNetworksResource(SyncAPIResource):
             cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
         )
 
+    def get(
+        self,
+        virtual_network_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> VirtualNetwork:
+        """
+        Get a virtual network.
+
+        Args:
+          account_id: Cloudflare account ID
+
+          virtual_network_id: UUID of the virtual network.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not virtual_network_id:
+            raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+            ),
+            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
+        )
+
 
 class AsyncVirtualNetworksResource(AsyncAPIResource):
     @cached_property
@@ -497,6 +541,50 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
             cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
         )
 
+    async def get(
+        self,
+        virtual_network_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> VirtualNetwork:
+        """
+        Get a virtual network.
+
+        Args:
+          account_id: Cloudflare account ID
+
+          virtual_network_id: UUID of the virtual network.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not virtual_network_id:
+            raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+            ),
+            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
+        )
+
 
 class VirtualNetworksResourceWithRawResponse:
     def __init__(self, virtual_networks: VirtualNetworksResource) -> None:
@@ -513,6 +601,9 @@ class VirtualNetworksResourceWithRawResponse:
         )
         self.edit = to_raw_response_wrapper(
             virtual_networks.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            virtual_networks.get,
         )
 
 
@@ -532,6 +623,9 @@ class AsyncVirtualNetworksResourceWithRawResponse:
         self.edit = async_to_raw_response_wrapper(
             virtual_networks.edit,
         )
+        self.get = async_to_raw_response_wrapper(
+            virtual_networks.get,
+        )
 
 
 class VirtualNetworksResourceWithStreamingResponse:
@@ -550,6 +644,9 @@ class VirtualNetworksResourceWithStreamingResponse:
         self.edit = to_streamed_response_wrapper(
             virtual_networks.edit,
         )
+        self.get = to_streamed_response_wrapper(
+            virtual_networks.get,
+        )
 
 
 class AsyncVirtualNetworksResourceWithStreamingResponse:
@@ -567,4 +664,7 @@ class AsyncVirtualNetworksResourceWithStreamingResponse:
         )
         self.edit = async_to_streamed_response_wrapper(
             virtual_networks.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            virtual_networks.get,
         )
