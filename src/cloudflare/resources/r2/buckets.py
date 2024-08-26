@@ -22,9 +22,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncCursorPagination, AsyncCursorPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.r2.bucket import Bucket
+from ...types.r2.bucket_list_response import BucketListResponse
 
 __all__ = ["BucketsResource", "AsyncBucketsResource"]
 
@@ -110,7 +110,7 @@ class BucketsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorPagination[Bucket]:
+    ) -> BucketListResponse:
         """
         Lists all R2 buckets on your account
 
@@ -141,9 +141,8 @@ class BucketsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/accounts/{account_id}/r2/buckets",
-            page=SyncCursorPagination[Bucket],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -160,8 +159,9 @@ class BucketsResource(SyncAPIResource):
                     },
                     bucket_list_params.BucketListParams,
                 ),
+                post_parser=ResultWrapper[BucketListResponse]._unwrapper,
             ),
-            model=Bucket,
+            cast_to=cast(Type[BucketListResponse], ResultWrapper[BucketListResponse]),
         )
 
     def delete(
@@ -318,7 +318,7 @@ class AsyncBucketsResource(AsyncAPIResource):
             cast_to=cast(Type[Bucket], ResultWrapper[Bucket]),
         )
 
-    def list(
+    async def list(
         self,
         *,
         account_id: str,
@@ -334,7 +334,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Bucket, AsyncCursorPagination[Bucket]]:
+    ) -> BucketListResponse:
         """
         Lists all R2 buckets on your account
 
@@ -365,15 +365,14 @@ class AsyncBucketsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/accounts/{account_id}/r2/buckets",
-            page=AsyncCursorPagination[Bucket],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "cursor": cursor,
                         "direction": direction,
@@ -384,8 +383,9 @@ class AsyncBucketsResource(AsyncAPIResource):
                     },
                     bucket_list_params.BucketListParams,
                 ),
+                post_parser=ResultWrapper[BucketListResponse]._unwrapper,
             ),
-            model=Bucket,
+            cast_to=cast(Type[BucketListResponse], ResultWrapper[BucketListResponse]),
         )
 
     async def delete(
