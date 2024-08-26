@@ -133,6 +133,7 @@ class Cloudflare(SyncAPIClient):
     ai_gateway: resources.AIGatewayResource
     iam: resources.IAMResource
     cloud_connector: resources.CloudConnectorResource
+    botnet_feed: resources.BotnetFeedResource
     with_raw_response: CloudflareWithRawResponse
     with_streaming_response: CloudflareWithStreamedResponse
 
@@ -294,6 +295,7 @@ class Cloudflare(SyncAPIClient):
         self.ai_gateway = resources.AIGatewayResource(self)
         self.iam = resources.IAMResource(self)
         self.cloud_connector = resources.CloudConnectorResource(self)
+        self.botnet_feed = resources.BotnetFeedResource(self)
         self.with_raw_response = CloudflareWithRawResponse(self)
         self.with_streaming_response = CloudflareWithStreamedResponse(self)
 
@@ -558,6 +560,7 @@ class AsyncCloudflare(AsyncAPIClient):
     ai_gateway: resources.AsyncAIGatewayResource
     iam: resources.AsyncIAMResource
     cloud_connector: resources.AsyncCloudConnectorResource
+    botnet_feed: resources.AsyncBotnetFeedResource
     with_raw_response: AsyncCloudflareWithRawResponse
     with_streaming_response: AsyncCloudflareWithStreamedResponse
 
@@ -719,6 +722,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.ai_gateway = resources.AsyncAIGatewayResource(self)
         self.iam = resources.AsyncIAMResource(self)
         self.cloud_connector = resources.AsyncCloudConnectorResource(self)
+        self.botnet_feed = resources.AsyncBotnetFeedResource(self)
         self.with_raw_response = AsyncCloudflareWithRawResponse(self)
         self.with_streaming_response = AsyncCloudflareWithStreamedResponse(self)
 
@@ -994,6 +998,7 @@ class CloudflareWithRawResponse:
         self.ai_gateway = resources.AIGatewayResourceWithRawResponse(client.ai_gateway)
         self.iam = resources.IAMResourceWithRawResponse(client.iam)
         self.cloud_connector = resources.CloudConnectorResourceWithRawResponse(client.cloud_connector)
+        self.botnet_feed = resources.BotnetFeedResourceWithRawResponse(client.botnet_feed)
 
 
 class AsyncCloudflareWithRawResponse:
@@ -1098,6 +1103,7 @@ class AsyncCloudflareWithRawResponse:
         self.ai_gateway = resources.AsyncAIGatewayResourceWithRawResponse(client.ai_gateway)
         self.iam = resources.AsyncIAMResourceWithRawResponse(client.iam)
         self.cloud_connector = resources.AsyncCloudConnectorResourceWithRawResponse(client.cloud_connector)
+        self.botnet_feed = resources.AsyncBotnetFeedResourceWithRawResponse(client.botnet_feed)
 
 
 class CloudflareWithStreamedResponse:
@@ -1202,6 +1208,7 @@ class CloudflareWithStreamedResponse:
         self.ai_gateway = resources.AIGatewayResourceWithStreamingResponse(client.ai_gateway)
         self.iam = resources.IAMResourceWithStreamingResponse(client.iam)
         self.cloud_connector = resources.CloudConnectorResourceWithStreamingResponse(client.cloud_connector)
+        self.botnet_feed = resources.BotnetFeedResourceWithStreamingResponse(client.botnet_feed)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -1314,6 +1321,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.ai_gateway = resources.AsyncAIGatewayResourceWithStreamingResponse(client.ai_gateway)
         self.iam = resources.AsyncIAMResourceWithStreamingResponse(client.iam)
         self.cloud_connector = resources.AsyncCloudConnectorResourceWithStreamingResponse(client.cloud_connector)
+        self.botnet_feed = resources.AsyncBotnetFeedResourceWithStreamingResponse(client.botnet_feed)
 
 
 Client = Cloudflare

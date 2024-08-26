@@ -28,6 +28,7 @@ from .policy_edit_params import PolicyEditParams as PolicyEditParams
 from .tanium_input_param import TaniumInputParam as TaniumInputParam
 from .device_posture_rule import DevicePostureRule as DevicePostureRule
 from .domain_joined_input import DomainJoinedInput as DomainJoinedInput
+from .setting_edit_params import SettingEditParams as SettingEditParams
 from .workspace_one_input import WorkspaceOneInput as WorkspaceOneInput
 from .firewall_input_param import FirewallInputParam as FirewallInputParam
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams

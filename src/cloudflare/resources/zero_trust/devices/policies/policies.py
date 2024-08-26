@@ -63,6 +63,7 @@ from .fallback_domains import (
     AsyncFallbackDomainsResourceWithStreamingResponse,
 )
 from .....types.zero_trust.devices import policy_edit_params, policy_create_params
+from .default_policy.default_policy import DefaultPolicyResource, AsyncDefaultPolicyResource
 from .....types.zero_trust.devices.settings_policy import SettingsPolicy
 from .....types.zero_trust.devices.policy_delete_response import PolicyDeleteResponse
 

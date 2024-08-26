@@ -400,6 +400,14 @@ from .api_gateway import (
     APIGatewayResourceWithStreamingResponse,
     AsyncAPIGatewayResourceWithStreamingResponse,
 )
+from .botnet_feed import (
+    BotnetFeedResource,
+    AsyncBotnetFeedResource,
+    BotnetFeedResourceWithRawResponse,
+    AsyncBotnetFeedResourceWithRawResponse,
+    BotnetFeedResourceWithStreamingResponse,
+    AsyncBotnetFeedResourceWithStreamingResponse,
+)
 from .diagnostics import (
     DiagnosticsResource,
     AsyncDiagnosticsResource,
@@ -1206,4 +1214,10 @@ __all__ = [
     "AsyncCloudConnectorResourceWithRawResponse",
     "CloudConnectorResourceWithStreamingResponse",
     "AsyncCloudConnectorResourceWithStreamingResponse",
+    "BotnetFeedResource",
+    "AsyncBotnetFeedResource",
+    "BotnetFeedResourceWithRawResponse",
+    "AsyncBotnetFeedResourceWithRawResponse",
+    "BotnetFeedResourceWithStreamingResponse",
+    "AsyncBotnetFeedResourceWithStreamingResponse",
 ]
