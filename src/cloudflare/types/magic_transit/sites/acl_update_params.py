@@ -2,14 +2,20 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
-from .allowed_protocol import AllowedProtocol
 from .acl_configuration_param import ACLConfigurationParam
 
-__all__ = ["ACLUpdateParams"]
+from typing import List
 
+from .allowed_protocol import AllowedProtocol
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ...._types import FileTypes
+from ...._utils import PropertyInfo
+
+__all__ = ["ACLUpdateParams"]
 
 class ACLUpdateParams(TypedDict, total=False):
     account_id: Required[str]

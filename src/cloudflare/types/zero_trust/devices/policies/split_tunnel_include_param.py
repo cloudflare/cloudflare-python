@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 __all__ = ["SplitTunnelIncludeParam"]
-
 
 class SplitTunnelIncludeParam(TypedDict, total=False):
     address: Required[str]

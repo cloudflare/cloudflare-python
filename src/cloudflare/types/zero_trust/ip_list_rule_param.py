@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 __all__ = ["IPListRuleParam", "IPList"]
-
 
 class IPList(TypedDict, total=False):
     id: Required[str]
     """The ID of a previously created IP list."""
-
 
 class IPListRuleParam(TypedDict, total=False):
     ip_list: Required[IPList]

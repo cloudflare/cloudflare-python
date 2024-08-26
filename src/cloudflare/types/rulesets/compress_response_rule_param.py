@@ -2,23 +2,21 @@
 
 from __future__ import annotations
 
-from typing import Iterable
 from typing_extensions import Literal, TypedDict
 
 from .logging_param import LoggingParam
 
-__all__ = ["CompressResponseRuleParam", "ActionParameters", "ActionParametersAlgorithm"]
+from typing import Iterable
 
+__all__ = ["CompressResponseRuleParam", "ActionParameters", "ActionParametersAlgorithm"]
 
 class ActionParametersAlgorithm(TypedDict, total=False):
     name: Literal["none", "auto", "default", "gzip", "brotli"]
     """Name of compression algorithm to enable."""
 
-
 class ActionParameters(TypedDict, total=False):
     algorithms: Iterable[ActionParametersAlgorithm]
     """Custom order for compression algorithms."""
-
 
 class CompressResponseRuleParam(TypedDict, total=False):
     id: str

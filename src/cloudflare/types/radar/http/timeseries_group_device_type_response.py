@@ -1,11 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-
 from ...._models import BaseModel
 
-__all__ = ["TimeseriesGroupDeviceTypeResponse", "Serie0"]
+from typing import List
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["TimeseriesGroupDeviceTypeResponse", "Serie0"]
 
 class Serie0(BaseModel):
     desktop: List[str]
@@ -15,7 +18,6 @@ class Serie0(BaseModel):
     other: List[str]
 
     timestamps: List[str]
-
 
 class TimeseriesGroupDeviceTypeResponse(BaseModel):
     meta: object

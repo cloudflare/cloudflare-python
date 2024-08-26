@@ -2,16 +2,24 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
-from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import TypedDict, Required, Annotated
 
-from ..._utils import PropertyInfo
-from .cidr_list import CIDRList
+from typing import Iterable, Union, List
+
 from .policy_param import PolicyParam
 
-__all__ = ["TokenCreateParams", "Condition", "ConditionRequestIP"]
+from datetime import datetime
 
+from ..._utils import PropertyInfo
+
+from .cidr_list import CIDRList
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
+
+__all__ = ["TokenCreateParams", "Condition", "ConditionRequestIP"]
 
 class TokenCreateParams(TypedDict, total=False):
     name: Required[str]
@@ -22,29 +30,22 @@ class TokenCreateParams(TypedDict, total=False):
 
     condition: Condition
 
-    expires_on: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    expires_on: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """
     The expiration time on or after which the JWT MUST NOT be accepted for
     processing.
     """
 
-    not_before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    not_before: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """The time before which the token MUST NOT be accepted for processing."""
 
-
-_ConditionRequestIPReservedKeywords = TypedDict(
-    "_ConditionRequestIPReservedKeywords",
-    {
-        "in": List[CIDRList],
-    },
-    total=False,
-)
-
+_ConditionRequestIPReservedKeywords = TypedDict("_ConditionRequestIPReservedKeywords", {
+    "in": List[CIDRList],
+}, total=False)
 
 class ConditionRequestIP(_ConditionRequestIPReservedKeywords, total=False):
     not_in: List[CIDRList]
     """List of IPv4/IPv6 CIDR addresses."""
-
 
 class Condition(TypedDict, total=False):
     request_ip: Annotated[ConditionRequestIP, PropertyInfo(alias="request.ip")]

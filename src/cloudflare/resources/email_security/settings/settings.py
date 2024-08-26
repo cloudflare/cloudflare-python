@@ -2,51 +2,32 @@
 
 from __future__ import annotations
 
-from .domains import (
-    DomainsResource,
-    AsyncDomainsResource,
-    DomainsResourceWithRawResponse,
-    AsyncDomainsResourceWithRawResponse,
-    DomainsResourceWithStreamingResponse,
-    AsyncDomainsResourceWithStreamingResponse,
-)
+from .allow_patterns import AllowPatternsResource, AsyncAllowPatternsResource
+
 from ...._compat import cached_property
+
+from .block_senders import BlockSendersResource, AsyncBlockSendersResource
+
+from .domains import DomainsResource, AsyncDomainsResource
+
+from .impersonation_registry import ImpersonationRegistryResource, AsyncImpersonationRegistryResource
+
+from .trusted_domains import TrustedDomainsResource, AsyncTrustedDomainsResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from .block_senders import (
-    BlockSendersResource,
-    AsyncBlockSendersResource,
-    BlockSendersResourceWithRawResponse,
-    AsyncBlockSendersResourceWithRawResponse,
-    BlockSendersResourceWithStreamingResponse,
-    AsyncBlockSendersResourceWithStreamingResponse,
-)
-from .allow_patterns import (
-    AllowPatternsResource,
-    AsyncAllowPatternsResource,
-    AllowPatternsResourceWithRawResponse,
-    AsyncAllowPatternsResourceWithRawResponse,
-    AllowPatternsResourceWithStreamingResponse,
-    AsyncAllowPatternsResourceWithStreamingResponse,
-)
-from .trusted_domains import (
-    TrustedDomainsResource,
-    AsyncTrustedDomainsResource,
-    TrustedDomainsResourceWithRawResponse,
-    AsyncTrustedDomainsResourceWithRawResponse,
-    TrustedDomainsResourceWithStreamingResponse,
-    AsyncTrustedDomainsResourceWithStreamingResponse,
-)
-from .impersonation_registry import (
-    ImpersonationRegistryResource,
-    AsyncImpersonationRegistryResource,
-    ImpersonationRegistryResourceWithRawResponse,
-    AsyncImpersonationRegistryResourceWithRawResponse,
-    ImpersonationRegistryResourceWithStreamingResponse,
-    AsyncImpersonationRegistryResourceWithStreamingResponse,
-)
+from ....types import shared_params
+from .allow_patterns import AllowPatternsResource, AsyncAllowPatternsResource, AllowPatternsResourceWithRawResponse, AsyncAllowPatternsResourceWithRawResponse, AllowPatternsResourceWithStreamingResponse, AsyncAllowPatternsResourceWithStreamingResponse
+from .block_senders import BlockSendersResource, AsyncBlockSendersResource, BlockSendersResourceWithRawResponse, AsyncBlockSendersResourceWithRawResponse, BlockSendersResourceWithStreamingResponse, AsyncBlockSendersResourceWithStreamingResponse
+from .domains import DomainsResource, AsyncDomainsResource, DomainsResourceWithRawResponse, AsyncDomainsResourceWithRawResponse, DomainsResourceWithStreamingResponse, AsyncDomainsResourceWithStreamingResponse
+from .impersonation_registry import ImpersonationRegistryResource, AsyncImpersonationRegistryResource, ImpersonationRegistryResourceWithRawResponse, AsyncImpersonationRegistryResourceWithRawResponse, ImpersonationRegistryResourceWithStreamingResponse, AsyncImpersonationRegistryResourceWithStreamingResponse
+from .trusted_domains import TrustedDomainsResource, AsyncTrustedDomainsResource, TrustedDomainsResourceWithRawResponse, AsyncTrustedDomainsResourceWithRawResponse, TrustedDomainsResourceWithStreamingResponse, AsyncTrustedDomainsResourceWithStreamingResponse
 
 __all__ = ["SettingsResource", "AsyncSettingsResource"]
-
 
 class SettingsResource(SyncAPIResource):
     @cached_property
@@ -77,7 +58,6 @@ class SettingsResource(SyncAPIResource):
     def with_streaming_response(self) -> SettingsResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self)
 
-
 class AsyncSettingsResource(AsyncAPIResource):
     @cached_property
     def allow_patterns(self) -> AsyncAllowPatternsResource:
@@ -107,7 +87,6 @@ class AsyncSettingsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSettingsResourceWithStreamingResponse:
         return AsyncSettingsResourceWithStreamingResponse(self)
 
-
 class SettingsResourceWithRawResponse:
     def __init__(self, settings: SettingsResource) -> None:
         self._settings = settings
@@ -131,7 +110,6 @@ class SettingsResourceWithRawResponse:
     @cached_property
     def trusted_domains(self) -> TrustedDomainsResourceWithRawResponse:
         return TrustedDomainsResourceWithRawResponse(self._settings.trusted_domains)
-
 
 class AsyncSettingsResourceWithRawResponse:
     def __init__(self, settings: AsyncSettingsResource) -> None:
@@ -157,7 +135,6 @@ class AsyncSettingsResourceWithRawResponse:
     def trusted_domains(self) -> AsyncTrustedDomainsResourceWithRawResponse:
         return AsyncTrustedDomainsResourceWithRawResponse(self._settings.trusted_domains)
 
-
 class SettingsResourceWithStreamingResponse:
     def __init__(self, settings: SettingsResource) -> None:
         self._settings = settings
@@ -181,7 +158,6 @@ class SettingsResourceWithStreamingResponse:
     @cached_property
     def trusted_domains(self) -> TrustedDomainsResourceWithStreamingResponse:
         return TrustedDomainsResourceWithStreamingResponse(self._settings.trusted_domains)
-
 
 class AsyncSettingsResourceWithStreamingResponse:
     def __init__(self, settings: AsyncSettingsResource) -> None:

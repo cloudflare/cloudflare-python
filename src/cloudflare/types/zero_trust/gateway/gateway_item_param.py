@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["GatewayItemParam"]
 
-
 class GatewayItemParam(TypedDict, total=False):
     description: str
     """The description of the list item, if present"""

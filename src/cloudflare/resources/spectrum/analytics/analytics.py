@@ -2,29 +2,23 @@
 
 from __future__ import annotations
 
-from .events import (
-    EventsResource,
-    AsyncEventsResource,
-    EventsResourceWithRawResponse,
-    AsyncEventsResourceWithRawResponse,
-    EventsResourceWithStreamingResponse,
-    AsyncEventsResourceWithStreamingResponse,
-)
-from ...._compat import cached_property
-from .aggregates import (
-    AggregatesResource,
-    AsyncAggregatesResource,
-    AggregatesResourceWithRawResponse,
-    AsyncAggregatesResourceWithRawResponse,
-    AggregatesResourceWithStreamingResponse,
-    AsyncAggregatesResourceWithStreamingResponse,
-)
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from .events.events import EventsResource, AsyncEventsResource
 from .aggregates.aggregates import AggregatesResource, AsyncAggregatesResource
 
-__all__ = ["AnalyticsResource", "AsyncAnalyticsResource"]
+from ...._compat import cached_property
 
+from .events.events import EventsResource, AsyncEventsResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from .aggregates import AggregatesResource, AsyncAggregatesResource, AggregatesResourceWithRawResponse, AsyncAggregatesResourceWithRawResponse, AggregatesResourceWithStreamingResponse, AsyncAggregatesResourceWithStreamingResponse
+from .events import EventsResource, AsyncEventsResource, EventsResourceWithRawResponse, AsyncEventsResourceWithRawResponse, EventsResourceWithStreamingResponse, AsyncEventsResourceWithStreamingResponse
+
+__all__ = ["AnalyticsResource", "AsyncAnalyticsResource"]
 
 class AnalyticsResource(SyncAPIResource):
     @cached_property
@@ -43,7 +37,6 @@ class AnalyticsResource(SyncAPIResource):
     def with_streaming_response(self) -> AnalyticsResourceWithStreamingResponse:
         return AnalyticsResourceWithStreamingResponse(self)
 
-
 class AsyncAnalyticsResource(AsyncAPIResource):
     @cached_property
     def aggregates(self) -> AsyncAggregatesResource:
@@ -61,7 +54,6 @@ class AsyncAnalyticsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAnalyticsResourceWithStreamingResponse:
         return AsyncAnalyticsResourceWithStreamingResponse(self)
 
-
 class AnalyticsResourceWithRawResponse:
     def __init__(self, analytics: AnalyticsResource) -> None:
         self._analytics = analytics
@@ -73,7 +65,6 @@ class AnalyticsResourceWithRawResponse:
     @cached_property
     def events(self) -> EventsResourceWithRawResponse:
         return EventsResourceWithRawResponse(self._analytics.events)
-
 
 class AsyncAnalyticsResourceWithRawResponse:
     def __init__(self, analytics: AsyncAnalyticsResource) -> None:
@@ -87,7 +78,6 @@ class AsyncAnalyticsResourceWithRawResponse:
     def events(self) -> AsyncEventsResourceWithRawResponse:
         return AsyncEventsResourceWithRawResponse(self._analytics.events)
 
-
 class AnalyticsResourceWithStreamingResponse:
     def __init__(self, analytics: AnalyticsResource) -> None:
         self._analytics = analytics
@@ -99,7 +89,6 @@ class AnalyticsResourceWithStreamingResponse:
     @cached_property
     def events(self) -> EventsResourceWithStreamingResponse:
         return EventsResourceWithStreamingResponse(self._analytics.events)
-
 
 class AsyncAnalyticsResourceWithStreamingResponse:
     def __init__(self, analytics: AsyncAnalyticsResource) -> None:

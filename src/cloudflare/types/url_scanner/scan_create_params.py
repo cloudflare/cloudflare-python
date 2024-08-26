@@ -2,13 +2,18 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Required, Annotated, Literal
+
 from typing import Dict, List
-from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["ScanCreateParams"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
+__all__ = ["ScanCreateParams"]
 
 class ScanCreateParams(TypedDict, total=False):
     url: Required[str]
@@ -16,9 +21,7 @@ class ScanCreateParams(TypedDict, total=False):
     custom_headers: Annotated[Dict[str, str], PropertyInfo(alias="customHeaders")]
     """Set custom headers"""
 
-    screenshots_resolutions: Annotated[
-        List[Literal["desktop", "mobile", "tablet"]], PropertyInfo(alias="screenshotsResolutions")
-    ]
+    screenshots_resolutions: Annotated[List[Literal["desktop", "mobile", "tablet"]], PropertyInfo(alias="screenshotsResolutions")]
     """Take multiple screenshots targeting different device types"""
 
     visibility: Literal["Public", "Unlisted"]

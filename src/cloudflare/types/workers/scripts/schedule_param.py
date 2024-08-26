@@ -6,6 +6,5 @@ from typing_extensions import TypedDict
 
 __all__ = ["ScheduleParam"]
 
-
 class ScheduleParam(TypedDict, total=False):
     cron: str

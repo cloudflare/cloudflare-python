@@ -6,7 +6,6 @@ from typing_extensions import Literal, TypedDict
 
 __all__ = ["ASNConfigurationParam"]
 
-
 class ASNConfigurationParam(TypedDict, total=False):
     target: Literal["asn"]
     """The configuration target.

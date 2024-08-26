@@ -2,14 +2,20 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import TypedDict, Literal, Annotated
 
 from ...._utils import PropertyInfo
 
-__all__ = ["TimeseriesGroupBrowserFamilyParams"]
+from typing import List, Union
 
+from datetime import datetime
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ...._types import FileTypes
+from ...._utils import PropertyInfo
+
+__all__ = ["TimeseriesGroupBrowserFamilyParams"]
 
 class TimeseriesGroupBrowserFamilyParams(TypedDict, total=False):
     agg_interval: Annotated[Literal["15m", "1h", "1d", "1w"], PropertyInfo(alias="aggInterval")]
@@ -40,7 +46,7 @@ class TimeseriesGroupBrowserFamilyParams(TypedDict, total=False):
     from Europe, but includes results from North America.
     """
 
-    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
+    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format = "iso8601")]
     """End of the date range (inclusive)."""
 
     date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
@@ -50,7 +56,7 @@ class TimeseriesGroupBrowserFamilyParams(TypedDict, total=False):
     `dateEnd` parameters).
     """
 
-    date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
+    date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format = "iso8601")]
     """Array of datetimes to filter the start of a series."""
 
     device_type: Annotated[List[Literal["DESKTOP", "MOBILE", "OTHER"]], PropertyInfo(alias="deviceType")]
@@ -81,7 +87,5 @@ class TimeseriesGroupBrowserFamilyParams(TypedDict, total=False):
     os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
     """Filter for os name."""
 
-    tls_version: Annotated[
-        List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]], PropertyInfo(alias="tlsVersion")
-    ]
+    tls_version: Annotated[List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]], PropertyInfo(alias="tlsVersion")]
     """Filter for tls version."""

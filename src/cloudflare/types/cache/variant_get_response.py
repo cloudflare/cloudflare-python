@@ -1,13 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
-
 from ..._models import BaseModel
+
+from typing import Optional, List
+
 from .cache_variant_identifier import CacheVariantIdentifier
 
-__all__ = ["VariantGetResponse", "Value"]
+from datetime import datetime
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["VariantGetResponse", "Value"]
 
 class Value(BaseModel):
     avif: Optional[List[str]] = None
@@ -75,7 +80,6 @@ class Value(BaseModel):
     List of strings with the MIME types of all the variants that should be served
     for webp.
     """
-
 
 class VariantGetResponse(BaseModel):
     id: CacheVariantIdentifier

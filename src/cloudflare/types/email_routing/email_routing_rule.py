@@ -1,14 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
-
-from .action import Action
-from .matcher import Matcher
 from ..._models import BaseModel
 
-__all__ = ["EmailRoutingRule"]
+from typing import Optional, List
 
+from .action import Action
+
+from typing_extensions import Literal
+
+from .matcher import Matcher
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["EmailRoutingRule"]
 
 class EmailRoutingRule(BaseModel):
     id: Optional[str] = None

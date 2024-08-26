@@ -2,17 +2,23 @@
 
 from __future__ import annotations
 
-from typing import Union
-from datetime import datetime
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict, Annotated
 
+from typing import Union
+
+from datetime import datetime
+
+from ..._utils import PropertyInfo
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
 from ..._utils import PropertyInfo
 
 __all__ = ["LockdownListParams"]
 
-
 class LockdownListParams(TypedDict, total=False):
-    created_on: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    created_on: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """The timestamp of when the rule was created."""
 
     description: str
@@ -30,7 +36,7 @@ class LockdownListParams(TypedDict, total=False):
     ip_search: str
     """A single IP address to search for in existing rules."""
 
-    modified_on: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    modified_on: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """The timestamp of when the rule was last modified."""
 
     page: float

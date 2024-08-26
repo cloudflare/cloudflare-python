@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 __all__ = ["AnyValidServiceTokenRuleParam"]
-
 
 class AnyValidServiceTokenRuleParam(TypedDict, total=False):
     any_valid_service_token: Required[object]

@@ -2,140 +2,80 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, Optional, cast
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from .clip import (
-    ClipResource,
-    AsyncClipResource,
-    ClipResourceWithRawResponse,
-    AsyncClipResourceWithRawResponse,
-    ClipResourceWithStreamingResponse,
-    AsyncClipResourceWithStreamingResponse,
-)
-from .copy import (
-    CopyResource,
-    AsyncCopyResource,
-    CopyResourceWithRawResponse,
-    AsyncCopyResourceWithRawResponse,
-    CopyResourceWithStreamingResponse,
-    AsyncCopyResourceWithStreamingResponse,
-)
-from .keys import (
-    KeysResource,
-    AsyncKeysResource,
-    KeysResourceWithRawResponse,
-    AsyncKeysResourceWithRawResponse,
-    KeysResourceWithStreamingResponse,
-    AsyncKeysResourceWithStreamingResponse,
-)
-from .embed import (
-    EmbedResource,
-    AsyncEmbedResource,
-    EmbedResourceWithRawResponse,
-    AsyncEmbedResourceWithRawResponse,
-    EmbedResourceWithStreamingResponse,
-    AsyncEmbedResourceWithStreamingResponse,
-)
-from .token import (
-    TokenResource,
-    AsyncTokenResource,
-    TokenResourceWithRawResponse,
-    AsyncTokenResourceWithRawResponse,
-    TokenResourceWithStreamingResponse,
-    AsyncTokenResourceWithStreamingResponse,
-)
-from .videos import (
-    VideosResource,
-    AsyncVideosResource,
-    VideosResourceWithRawResponse,
-    AsyncVideosResourceWithRawResponse,
-    VideosResourceWithStreamingResponse,
-    AsyncVideosResourceWithStreamingResponse,
-)
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ..._utils import (
-    maybe_transform,
-    strip_not_given,
-    async_maybe_transform,
-)
-from .captions import (
-    CaptionsResource,
-    AsyncCaptionsResource,
-    CaptionsResourceWithRawResponse,
-    AsyncCaptionsResourceWithRawResponse,
-    CaptionsResourceWithStreamingResponse,
-    AsyncCaptionsResourceWithStreamingResponse,
-)
-from .webhooks import (
-    WebhooksResource,
-    AsyncWebhooksResource,
-    WebhooksResourceWithRawResponse,
-    AsyncWebhooksResourceWithRawResponse,
-    WebhooksResourceWithStreamingResponse,
-    AsyncWebhooksResourceWithStreamingResponse,
-)
+from .audio_tracks import AudioTracksResource, AsyncAudioTracksResource
+
 from ..._compat import cached_property
-from .downloads import (
-    DownloadsResource,
-    AsyncDownloadsResource,
-    DownloadsResourceWithRawResponse,
-    AsyncDownloadsResourceWithRawResponse,
-    DownloadsResourceWithStreamingResponse,
-    AsyncDownloadsResourceWithStreamingResponse,
-)
-from .watermarks import (
-    WatermarksResource,
-    AsyncWatermarksResource,
-    WatermarksResourceWithRawResponse,
-    AsyncWatermarksResourceWithRawResponse,
-    WatermarksResourceWithStreamingResponse,
-    AsyncWatermarksResourceWithStreamingResponse,
-)
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from .live_inputs import (
-    LiveInputsResource,
-    AsyncLiveInputsResource,
-    LiveInputsResourceWithRawResponse,
-    AsyncLiveInputsResourceWithRawResponse,
-    LiveInputsResourceWithStreamingResponse,
-    AsyncLiveInputsResourceWithStreamingResponse,
-)
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from .audio_tracks import (
-    AudioTracksResource,
-    AsyncAudioTracksResource,
-    AudioTracksResourceWithRawResponse,
-    AsyncAudioTracksResourceWithRawResponse,
-    AudioTracksResourceWithStreamingResponse,
-    AsyncAudioTracksResourceWithStreamingResponse,
-)
-from .direct_upload import (
-    DirectUploadResource,
-    AsyncDirectUploadResource,
-    DirectUploadResourceWithRawResponse,
-    AsyncDirectUploadResourceWithRawResponse,
-    DirectUploadResourceWithStreamingResponse,
-    AsyncDirectUploadResourceWithStreamingResponse,
-)
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.stream import stream_list_params, stream_create_params
-from .captions.captions import CaptionsResource, AsyncCaptionsResource
-from ...types.stream.video import Video
+
+from .videos import VideosResource, AsyncVideosResource
+
+from .clip import ClipResource, AsyncClipResource
+
+from .copy import CopyResource, AsyncCopyResource
+
+from .direct_upload import DirectUploadResource, AsyncDirectUploadResource
+
+from .keys import KeysResource, AsyncKeysResource
+
 from .live_inputs.live_inputs import LiveInputsResource, AsyncLiveInputsResource
 
-__all__ = ["StreamResource", "AsyncStreamResource"]
+from .watermarks import WatermarksResource, AsyncWatermarksResource
 
+from .webhooks import WebhooksResource, AsyncWebhooksResource
+
+from .captions.captions import CaptionsResource, AsyncCaptionsResource
+
+from .downloads import DownloadsResource, AsyncDownloadsResource
+
+from .embed import EmbedResource, AsyncEmbedResource
+
+from .token import TokenResource, AsyncTokenResource
+
+from ..._utils import is_given, strip_not_given, maybe_transform, async_maybe_transform
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from ...types.stream.video import Video
+
+from ...pagination import SyncSinglePage, AsyncSinglePage
+
+from typing import Union, Optional, Type
+
+from datetime import datetime
+
+from ..._wrappers import ResultWrapper
+
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.stream import stream_create_params
+from ...types.stream import stream_list_params
+from .audio_tracks import AudioTracksResource, AsyncAudioTracksResource, AudioTracksResourceWithRawResponse, AsyncAudioTracksResourceWithRawResponse, AudioTracksResourceWithStreamingResponse, AsyncAudioTracksResourceWithStreamingResponse
+from .videos import VideosResource, AsyncVideosResource, VideosResourceWithRawResponse, AsyncVideosResourceWithRawResponse, VideosResourceWithStreamingResponse, AsyncVideosResourceWithStreamingResponse
+from .clip import ClipResource, AsyncClipResource, ClipResourceWithRawResponse, AsyncClipResourceWithRawResponse, ClipResourceWithStreamingResponse, AsyncClipResourceWithStreamingResponse
+from .copy import CopyResource, AsyncCopyResource, CopyResourceWithRawResponse, AsyncCopyResourceWithRawResponse, CopyResourceWithStreamingResponse, AsyncCopyResourceWithStreamingResponse
+from .direct_upload import DirectUploadResource, AsyncDirectUploadResource, DirectUploadResourceWithRawResponse, AsyncDirectUploadResourceWithRawResponse, DirectUploadResourceWithStreamingResponse, AsyncDirectUploadResourceWithStreamingResponse
+from .keys import KeysResource, AsyncKeysResource, KeysResourceWithRawResponse, AsyncKeysResourceWithRawResponse, KeysResourceWithStreamingResponse, AsyncKeysResourceWithStreamingResponse
+from .live_inputs import LiveInputsResource, AsyncLiveInputsResource, LiveInputsResourceWithRawResponse, AsyncLiveInputsResourceWithRawResponse, LiveInputsResourceWithStreamingResponse, AsyncLiveInputsResourceWithStreamingResponse
+from .watermarks import WatermarksResource, AsyncWatermarksResource, WatermarksResourceWithRawResponse, AsyncWatermarksResourceWithRawResponse, WatermarksResourceWithStreamingResponse, AsyncWatermarksResourceWithStreamingResponse
+from .webhooks import WebhooksResource, AsyncWebhooksResource, WebhooksResourceWithRawResponse, AsyncWebhooksResourceWithRawResponse, WebhooksResourceWithStreamingResponse, AsyncWebhooksResourceWithStreamingResponse
+from .captions import CaptionsResource, AsyncCaptionsResource, CaptionsResourceWithRawResponse, AsyncCaptionsResourceWithRawResponse, CaptionsResourceWithStreamingResponse, AsyncCaptionsResourceWithStreamingResponse
+from .downloads import DownloadsResource, AsyncDownloadsResource, DownloadsResourceWithRawResponse, AsyncDownloadsResourceWithRawResponse, DownloadsResourceWithStreamingResponse, AsyncDownloadsResourceWithStreamingResponse
+from .embed import EmbedResource, AsyncEmbedResource, EmbedResourceWithRawResponse, AsyncEmbedResourceWithRawResponse, EmbedResourceWithStreamingResponse, AsyncEmbedResourceWithStreamingResponse
+from .token import TokenResource, AsyncTokenResource, TokenResourceWithRawResponse, AsyncTokenResourceWithRawResponse, TokenResourceWithStreamingResponse, AsyncTokenResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+
+__all__ = ["StreamResource", "AsyncStreamResource"]
 
 class StreamResource(SyncAPIResource):
     @cached_property
@@ -198,22 +138,20 @@ class StreamResource(SyncAPIResource):
     def with_streaming_response(self) -> StreamResourceWithStreamingResponse:
         return StreamResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        body: object,
-        tus_resumable: Literal["1.0.0"],
-        upload_length: int,
-        upload_creator: str | NotGiven = NOT_GIVEN,
-        upload_metadata: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    def create(self,
+    *,
+    account_id: str,
+    body: object,
+    tus_resumable: Literal["1.0.0"],
+    upload_length: int,
+    upload_creator: str | NotGiven = NOT_GIVEN,
+    upload_metadata: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
         """Initiates a video upload using the TUS protocol.
 
         On success, the server responds
@@ -245,48 +183,40 @@ class StreamResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Tus-Resumable": str(tus_resumable),
-                    "Upload-Length": str(upload_length),
-                    "Upload-Creator": upload_creator,
-                    "Upload-Metadata": upload_metadata,
-                }
-            ),
-            **(extra_headers or {}),
-        }
+        extra_headers = { **strip_not_given({
+            "Tus-Resumable": str(tus_resumable),
+            "Upload-Length": str(upload_length),
+            "Upload-Creator": upload_creator,
+            "Upload-Metadata": upload_metadata,
+        }), **(extra_headers or {}) }
         return self._post(
             f"/accounts/{account_id}/stream",
             body=maybe_transform(body, stream_create_params.StreamCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=NoneType,
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        asc: bool | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        include_counts: bool | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Video]:
+    def list(self,
+    *,
+    account_id: str,
+    asc: bool | NotGiven = NOT_GIVEN,
+    creator: str | NotGiven = NOT_GIVEN,
+    end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    include_counts: bool | NotGiven = NOT_GIVEN,
+    search: str | NotGiven = NOT_GIVEN,
+    start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"] | NotGiven = NOT_GIVEN,
+    type: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[Video]:
         """Lists up to 1000 videos from a single request.
 
         For a specific range, refer to
@@ -322,44 +252,35 @@ class StreamResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/stream",
-            page=SyncSinglePage[Video],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "asc": asc,
-                        "creator": creator,
-                        "end": end,
-                        "include_counts": include_counts,
-                        "search": search,
-                        "start": start,
-                        "status": status,
-                        "type": type,
-                    },
-                    stream_list_params.StreamListParams,
-                ),
-            ),
+            page = SyncSinglePage[Video],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "asc": asc,
+                "creator": creator,
+                "end": end,
+                "include_counts": include_counts,
+                "search": search,
+                "start": start,
+                "status": status,
+                "type": type,
+            }, stream_list_params.StreamListParams)),
             model=Video,
         )
 
-    def delete(
-        self,
-        identifier: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    def delete(self,
+    identifier: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
         """
         Deletes a video and its copies from Cloudflare Stream.
 
@@ -377,30 +298,30 @@ class StreamResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `identifier` but received {identifier!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/stream/{identifier}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=NoneType,
         )
 
-    def get(
-        self,
-        identifier: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Video]:
+    def get(self,
+    identifier: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Video]:
         """
         Fetches details for a single video.
 
@@ -418,21 +339,18 @@ class StreamResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `identifier` but received {identifier!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/stream/{identifier}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Video]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Video]]._unwrapper),
             cast_to=cast(Type[Optional[Video]], ResultWrapper[Video]),
         )
-
 
 class AsyncStreamResource(AsyncAPIResource):
     @cached_property
@@ -495,22 +413,20 @@ class AsyncStreamResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncStreamResourceWithStreamingResponse:
         return AsyncStreamResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        body: object,
-        tus_resumable: Literal["1.0.0"],
-        upload_length: int,
-        upload_creator: str | NotGiven = NOT_GIVEN,
-        upload_metadata: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    async def create(self,
+    *,
+    account_id: str,
+    body: object,
+    tus_resumable: Literal["1.0.0"],
+    upload_length: int,
+    upload_creator: str | NotGiven = NOT_GIVEN,
+    upload_metadata: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
         """Initiates a video upload using the TUS protocol.
 
         On success, the server responds
@@ -542,48 +458,40 @@ class AsyncStreamResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Tus-Resumable": str(tus_resumable),
-                    "Upload-Length": str(upload_length),
-                    "Upload-Creator": upload_creator,
-                    "Upload-Metadata": upload_metadata,
-                }
-            ),
-            **(extra_headers or {}),
-        }
+        extra_headers = { **strip_not_given({
+            "Tus-Resumable": str(tus_resumable),
+            "Upload-Length": str(upload_length),
+            "Upload-Creator": upload_creator,
+            "Upload-Metadata": upload_metadata,
+        }), **(extra_headers or {}) }
         return await self._post(
             f"/accounts/{account_id}/stream",
             body=await async_maybe_transform(body, stream_create_params.StreamCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=NoneType,
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        asc: bool | NotGiven = NOT_GIVEN,
-        creator: str | NotGiven = NOT_GIVEN,
-        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        include_counts: bool | NotGiven = NOT_GIVEN,
-        search: str | NotGiven = NOT_GIVEN,
-        start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"]
-        | NotGiven = NOT_GIVEN,
-        type: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Video, AsyncSinglePage[Video]]:
+    def list(self,
+    *,
+    account_id: str,
+    asc: bool | NotGiven = NOT_GIVEN,
+    creator: str | NotGiven = NOT_GIVEN,
+    end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    include_counts: bool | NotGiven = NOT_GIVEN,
+    search: str | NotGiven = NOT_GIVEN,
+    start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    status: Literal["pendingupload", "downloading", "queued", "inprogress", "ready", "error"] | NotGiven = NOT_GIVEN,
+    type: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Video, AsyncSinglePage[Video]]:
         """Lists up to 1000 videos from a single request.
 
         For a specific range, refer to
@@ -619,44 +527,35 @@ class AsyncStreamResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/stream",
-            page=AsyncSinglePage[Video],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "asc": asc,
-                        "creator": creator,
-                        "end": end,
-                        "include_counts": include_counts,
-                        "search": search,
-                        "start": start,
-                        "status": status,
-                        "type": type,
-                    },
-                    stream_list_params.StreamListParams,
-                ),
-            ),
+            page = AsyncSinglePage[Video],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "asc": asc,
+                "creator": creator,
+                "end": end,
+                "include_counts": include_counts,
+                "search": search,
+                "start": start,
+                "status": status,
+                "type": type,
+            }, stream_list_params.StreamListParams)),
             model=Video,
         )
 
-    async def delete(
-        self,
-        identifier: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    async def delete(self,
+    identifier: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
         """
         Deletes a video and its copies from Cloudflare Stream.
 
@@ -674,30 +573,30 @@ class AsyncStreamResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `identifier` but received {identifier!r}'
+          )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/stream/{identifier}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=NoneType,
         )
 
-    async def get(
-        self,
-        identifier: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Video]:
+    async def get(self,
+    identifier: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Video]:
         """
         Fetches details for a single video.
 
@@ -715,21 +614,18 @@ class AsyncStreamResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `identifier` but received {identifier!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/stream/{identifier}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Video]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Video]]._unwrapper),
             cast_to=cast(Type[Optional[Video]], ResultWrapper[Video]),
         )
-
 
 class StreamResourceWithRawResponse:
     def __init__(self, stream: StreamResource) -> None:
@@ -800,7 +696,6 @@ class StreamResourceWithRawResponse:
     def token(self) -> TokenResourceWithRawResponse:
         return TokenResourceWithRawResponse(self._stream.token)
 
-
 class AsyncStreamResourceWithRawResponse:
     def __init__(self, stream: AsyncStreamResource) -> None:
         self._stream = stream
@@ -870,7 +765,6 @@ class AsyncStreamResourceWithRawResponse:
     def token(self) -> AsyncTokenResourceWithRawResponse:
         return AsyncTokenResourceWithRawResponse(self._stream.token)
 
-
 class StreamResourceWithStreamingResponse:
     def __init__(self, stream: StreamResource) -> None:
         self._stream = stream
@@ -939,7 +833,6 @@ class StreamResourceWithStreamingResponse:
     @cached_property
     def token(self) -> TokenResourceWithStreamingResponse:
         return TokenResourceWithStreamingResponse(self._stream.token)
-
 
 class AsyncStreamResourceWithStreamingResponse:
     def __init__(self, stream: AsyncStreamResource) -> None:

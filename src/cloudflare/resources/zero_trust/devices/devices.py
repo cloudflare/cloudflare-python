@@ -2,93 +2,61 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
-
 import httpx
 
-from .revoke import (
-    RevokeResource,
-    AsyncRevokeResource,
-    RevokeResourceWithRawResponse,
-    AsyncRevokeResourceWithRawResponse,
-    RevokeResourceWithStreamingResponse,
-    AsyncRevokeResourceWithStreamingResponse,
-)
-from .posture import (
-    PostureResource,
-    AsyncPostureResource,
-    PostureResourceWithRawResponse,
-    AsyncPostureResourceWithRawResponse,
-    PostureResourceWithStreamingResponse,
-    AsyncPostureResourceWithStreamingResponse,
-)
-from .networks import (
-    NetworksResource,
-    AsyncNetworksResource,
-    NetworksResourceWithRawResponse,
-    AsyncNetworksResourceWithRawResponse,
-    NetworksResourceWithStreamingResponse,
-    AsyncNetworksResourceWithStreamingResponse,
-)
-from .policies import (
-    PoliciesResource,
-    AsyncPoliciesResource,
-    PoliciesResourceWithRawResponse,
-    AsyncPoliciesResourceWithRawResponse,
-    PoliciesResourceWithStreamingResponse,
-    AsyncPoliciesResourceWithStreamingResponse,
-)
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
-from .unrevoke import (
-    UnrevokeResource,
-    AsyncUnrevokeResource,
-    UnrevokeResourceWithRawResponse,
-    AsyncUnrevokeResourceWithRawResponse,
-    UnrevokeResourceWithStreamingResponse,
-    AsyncUnrevokeResourceWithStreamingResponse,
-)
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .dex_tests import (
-    DEXTestsResource,
-    AsyncDEXTestsResource,
-    DEXTestsResourceWithRawResponse,
-    AsyncDEXTestsResourceWithRawResponse,
-    DEXTestsResourceWithStreamingResponse,
-    AsyncDEXTestsResourceWithStreamingResponse,
-)
+from .dex_tests import DEXTestsResource, AsyncDEXTestsResource
+
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from .override_codes import (
-    OverrideCodesResource,
-    AsyncOverrideCodesResource,
-    OverrideCodesResourceWithRawResponse,
-    AsyncOverrideCodesResourceWithRawResponse,
-    OverrideCodesResourceWithStreamingResponse,
-    AsyncOverrideCodesResourceWithStreamingResponse,
-)
-from ...._base_client import AsyncPaginator, make_request_options
-from .posture.posture import PostureResource, AsyncPostureResource
+
+from .networks import NetworksResource, AsyncNetworksResource
+
 from .policies.policies import PoliciesResource, AsyncPoliciesResource
+
+from .posture.posture import PostureResource, AsyncPostureResource
+
+from .revoke import RevokeResource, AsyncRevokeResource
+
+from .settings import SettingsResource, AsyncSettingsResource
+
+from .unrevoke import UnrevokeResource, AsyncUnrevokeResource
+
+from .override_codes import OverrideCodesResource, AsyncOverrideCodesResource
+
 from ....types.zero_trust.device import Device
+
+from ....pagination import SyncSinglePage, AsyncSinglePage
+
+from ...._base_client import make_request_options, AsyncPaginator
+
 from ....types.zero_trust.device_get_response import DeviceGetResponse
 
-__all__ = ["DevicesResource", "AsyncDevicesResource"]
+from ...._wrappers import ResultWrapper
 
+from typing import Optional
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from .dex_tests import DEXTestsResource, AsyncDEXTestsResource, DEXTestsResourceWithRawResponse, AsyncDEXTestsResourceWithRawResponse, DEXTestsResourceWithStreamingResponse, AsyncDEXTestsResourceWithStreamingResponse
+from .networks import NetworksResource, AsyncNetworksResource, NetworksResourceWithRawResponse, AsyncNetworksResourceWithRawResponse, NetworksResourceWithStreamingResponse, AsyncNetworksResourceWithStreamingResponse
+from .policies import PoliciesResource, AsyncPoliciesResource, PoliciesResourceWithRawResponse, AsyncPoliciesResourceWithRawResponse, PoliciesResourceWithStreamingResponse, AsyncPoliciesResourceWithStreamingResponse
+from .posture import PostureResource, AsyncPostureResource, PostureResourceWithRawResponse, AsyncPostureResourceWithRawResponse, PostureResourceWithStreamingResponse, AsyncPostureResourceWithStreamingResponse
+from .revoke import RevokeResource, AsyncRevokeResource, RevokeResourceWithRawResponse, AsyncRevokeResourceWithRawResponse, RevokeResourceWithStreamingResponse, AsyncRevokeResourceWithStreamingResponse
+from .settings import SettingsResource, AsyncSettingsResource, SettingsResourceWithRawResponse, AsyncSettingsResourceWithRawResponse, SettingsResourceWithStreamingResponse, AsyncSettingsResourceWithStreamingResponse
+from .unrevoke import UnrevokeResource, AsyncUnrevokeResource, UnrevokeResourceWithRawResponse, AsyncUnrevokeResourceWithRawResponse, UnrevokeResourceWithStreamingResponse, AsyncUnrevokeResourceWithStreamingResponse
+from .override_codes import OverrideCodesResource, AsyncOverrideCodesResource, OverrideCodesResourceWithRawResponse, AsyncOverrideCodesResourceWithRawResponse, OverrideCodesResourceWithStreamingResponse, AsyncOverrideCodesResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["DevicesResource", "AsyncDevicesResource"]
 
 class DevicesResource(SyncAPIResource):
     @cached_property
@@ -131,17 +99,15 @@ class DevicesResource(SyncAPIResource):
     def with_streaming_response(self) -> DevicesResourceWithStreamingResponse:
         return DevicesResourceWithStreamingResponse(self)
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Device]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[Device]:
         """
         Fetches a list of enrolled devices.
 
@@ -155,28 +121,26 @@ class DevicesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/devices",
-            page=SyncSinglePage[Device],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = SyncSinglePage[Device],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=Device,
         )
 
-    def get(
-        self,
-        device_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceGetResponse]:
+    def get(self,
+    device_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DeviceGetResponse]:
         """
         Fetches details for a single device.
 
@@ -192,26 +156,18 @@ class DevicesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not device_id:
-            raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
-        return cast(
-            Optional[DeviceGetResponse],
-            self._get(
-                f"/accounts/{account_id}/devices/{device_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[DeviceGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[DeviceGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
+          raise ValueError(
+            f'Expected a non-empty value for `device_id` but received {device_id!r}'
+          )
+        return cast(Optional[DeviceGetResponse], self._get(
+            f"/accounts/{account_id}/devices/{device_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DeviceGetResponse]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[DeviceGetResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
 class AsyncDevicesResource(AsyncAPIResource):
     @cached_property
@@ -254,17 +210,15 @@ class AsyncDevicesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDevicesResourceWithStreamingResponse:
         return AsyncDevicesResourceWithStreamingResponse(self)
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Device, AsyncSinglePage[Device]]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Device, AsyncSinglePage[Device]]:
         """
         Fetches a list of enrolled devices.
 
@@ -278,28 +232,26 @@ class AsyncDevicesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/devices",
-            page=AsyncSinglePage[Device],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = AsyncSinglePage[Device],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=Device,
         )
 
-    async def get(
-        self,
-        device_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceGetResponse]:
+    async def get(self,
+    device_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DeviceGetResponse]:
         """
         Fetches details for a single device.
 
@@ -315,26 +267,18 @@ class AsyncDevicesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not device_id:
-            raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
-        return cast(
-            Optional[DeviceGetResponse],
-            await self._get(
-                f"/accounts/{account_id}/devices/{device_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[DeviceGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[DeviceGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
+          raise ValueError(
+            f'Expected a non-empty value for `device_id` but received {device_id!r}'
+          )
+        return cast(Optional[DeviceGetResponse], await self._get(
+            f"/accounts/{account_id}/devices/{device_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DeviceGetResponse]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[DeviceGetResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
 class DevicesResourceWithRawResponse:
     def __init__(self, devices: DevicesResource) -> None:
@@ -379,7 +323,6 @@ class DevicesResourceWithRawResponse:
     def override_codes(self) -> OverrideCodesResourceWithRawResponse:
         return OverrideCodesResourceWithRawResponse(self._devices.override_codes)
 
-
 class AsyncDevicesResourceWithRawResponse:
     def __init__(self, devices: AsyncDevicesResource) -> None:
         self._devices = devices
@@ -423,7 +366,6 @@ class AsyncDevicesResourceWithRawResponse:
     def override_codes(self) -> AsyncOverrideCodesResourceWithRawResponse:
         return AsyncOverrideCodesResourceWithRawResponse(self._devices.override_codes)
 
-
 class DevicesResourceWithStreamingResponse:
     def __init__(self, devices: DevicesResource) -> None:
         self._devices = devices
@@ -466,7 +408,6 @@ class DevicesResourceWithStreamingResponse:
     @cached_property
     def override_codes(self) -> OverrideCodesResourceWithStreamingResponse:
         return OverrideCodesResourceWithStreamingResponse(self._devices.override_codes)
-
 
 class AsyncDevicesResourceWithStreamingResponse:
     def __init__(self, devices: AsyncDevicesResource) -> None:

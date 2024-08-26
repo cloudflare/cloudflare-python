@@ -1,14 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-from datetime import datetime
-
 from ..._models import BaseModel
-from .lockdown_url import LockdownURL
+
 from .configuration import Configuration
 
-__all__ = ["Lockdown"]
+from datetime import datetime
 
+from typing import List
+
+from .lockdown_url import LockdownURL
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["Lockdown"]
 
 class Lockdown(BaseModel):
     id: str

@@ -3,51 +3,75 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Any, Type, Iterable, Optional, cast
-from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
+from .settings import SettingsResource, AsyncSettingsResource
+
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
-from ...types.pagerules import (
-    pagerule_edit_params,
-    pagerule_list_params,
-    pagerule_create_params,
-    pagerule_update_params,
-)
-from ...types.pagerules.route_param import RouteParam
-from ...types.pagerules.target_param import TargetParam
-from ...types.pagerules.pagerule_get_response import PageruleGetResponse
-from ...types.pagerules.pagerule_edit_response import PageruleEditResponse
-from ...types.pagerules.pagerule_list_response import PageruleListResponse
+
 from ...types.pagerules.pagerule_create_response import PageruleCreateResponse
-from ...types.pagerules.pagerule_delete_response import PageruleDeleteResponse
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from ..._base_client import make_request_options
+
+from typing import Iterable, Type, Optional
+
+from ...types.pagerules.route_param import RouteParam
+
+from ...types.pagerules.target_param import TargetParam
+
+from typing_extensions import Literal
+
 from ...types.pagerules.pagerule_update_response import PageruleUpdateResponse
 
-__all__ = ["PagerulesResource", "AsyncPagerulesResource"]
+from ...types.pagerules.pagerule_list_response import PageruleListResponse
 
+from ...types.pagerules.pagerule_delete_response import PageruleDeleteResponse
+
+from ...types.pagerules.pagerule_edit_response import PageruleEditResponse
+
+from ...types.pagerules.pagerule_get_response import PageruleGetResponse
+
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.pagerules import pagerule_create_params
+from ...types.pagerules import pagerule_update_params
+from ...types.pagerules import pagerule_list_params
+from ...types.pagerules import pagerule_edit_params
+from .settings import SettingsResource, AsyncSettingsResource, SettingsResourceWithRawResponse, AsyncSettingsResourceWithRawResponse, SettingsResourceWithStreamingResponse, AsyncSettingsResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["PagerulesResource", "AsyncPagerulesResource"]
 
 class PagerulesResource(SyncAPIResource):
     @cached_property
@@ -62,24 +86,20 @@ class PagerulesResource(SyncAPIResource):
     def with_streaming_response(self) -> PagerulesResourceWithStreamingResponse:
         return PagerulesResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
-    )
-    def create(
-        self,
-        *,
-        zone_id: str,
-        actions: Iterable[RouteParam],
-        targets: Iterable[TargetParam],
-        priority: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleCreateResponse:
+    @typing_extensions.deprecated("The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details.")
+    def create(self,
+    *,
+    zone_id: str,
+    actions: Iterable[RouteParam],
+    targets: Iterable[TargetParam],
+    priority: int | NotGiven = NOT_GIVEN,
+    status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PageruleCreateResponse:
         """
         Creates a new Page Rule.
 
@@ -108,52 +128,36 @@ class PagerulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            PageruleCreateResponse,
-            self._post(
-                f"/zones/{zone_id}/pagerules",
-                body=maybe_transform(
-                    {
-                        "actions": actions,
-                        "targets": targets,
-                        "priority": priority,
-                        "status": status,
-                    },
-                    pagerule_create_params.PageruleCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
+        return cast(PageruleCreateResponse, self._post(
+            f"/zones/{zone_id}/pagerules",
+            body=maybe_transform({
+                "actions": actions,
+                "targets": targets,
+                "priority": priority,
+                "status": status,
+            }, pagerule_create_params.PageruleCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[PageruleCreateResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[PageruleCreateResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    @typing_extensions.deprecated(
-        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
-    )
-    def update(
-        self,
-        pagerule_id: str,
-        *,
-        zone_id: str,
-        actions: Iterable[RouteParam],
-        targets: Iterable[TargetParam],
-        priority: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleUpdateResponse:
+    @typing_extensions.deprecated("The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details.")
+    def update(self,
+    pagerule_id: str,
+    *,
+    zone_id: str,
+    actions: Iterable[RouteParam],
+    targets: Iterable[TargetParam],
+    priority: int | NotGiven = NOT_GIVEN,
+    status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PageruleUpdateResponse:
         """Replaces the configuration of an existing Page Rule.
 
         The configuration of the
@@ -186,53 +190,39 @@ class PagerulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not pagerule_id:
-            raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
-        return cast(
-            PageruleUpdateResponse,
-            self._put(
-                f"/zones/{zone_id}/pagerules/{pagerule_id}",
-                body=maybe_transform(
-                    {
-                        "actions": actions,
-                        "targets": targets,
-                        "priority": priority,
-                        "status": status,
-                    },
-                    pagerule_update_params.PageruleUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}'
+          )
+        return cast(PageruleUpdateResponse, self._put(
+            f"/zones/{zone_id}/pagerules/{pagerule_id}",
+            body=maybe_transform({
+                "actions": actions,
+                "targets": targets,
+                "priority": priority,
+                "status": status,
+            }, pagerule_update_params.PageruleUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[PageruleUpdateResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[PageruleUpdateResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    @typing_extensions.deprecated(
-        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
-    )
-    def list(
-        self,
-        *,
-        zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        order: Literal["status", "priority"] | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleListResponse:
+    @typing_extensions.deprecated("The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details.")
+    def list(self,
+    *,
+    zone_id: str,
+    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+    match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+    order: Literal["status", "priority"] | NotGiven = NOT_GIVEN,
+    status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PageruleListResponse:
         """
         Fetches Page Rules in a zone.
 
@@ -257,43 +247,31 @@ class PagerulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get(
             f"/zones/{zone_id}/pagerules",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "direction": direction,
-                        "match": match,
-                        "order": order,
-                        "status": status,
-                    },
-                    pagerule_list_params.PageruleListParams,
-                ),
-                post_parser=ResultWrapper[PageruleListResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "direction": direction,
+                "match": match,
+                "order": order,
+                "status": status,
+            }, pagerule_list_params.PageruleListParams), post_parser=ResultWrapper[PageruleListResponse]._unwrapper),
             cast_to=cast(Type[PageruleListResponse], ResultWrapper[PageruleListResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
-    )
-    def delete(
-        self,
-        pagerule_id: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PageruleDeleteResponse]:
+    @typing_extensions.deprecated("The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details.")
+    def delete(self,
+    pagerule_id: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PageruleDeleteResponse]:
         """
         Deletes an existing Page Rule.
 
@@ -311,40 +289,34 @@ class PagerulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not pagerule_id:
-            raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}'
+          )
         return self._delete(
             f"/zones/{zone_id}/pagerules/{pagerule_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PageruleDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[PageruleDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[PageruleDeleteResponse]], ResultWrapper[PageruleDeleteResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
-    )
-    def edit(
-        self,
-        pagerule_id: str,
-        *,
-        zone_id: str,
-        actions: Iterable[RouteParam] | NotGiven = NOT_GIVEN,
-        priority: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
-        targets: Iterable[TargetParam] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleEditResponse:
+    @typing_extensions.deprecated("The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details.")
+    def edit(self,
+    pagerule_id: str,
+    *,
+    zone_id: str,
+    actions: Iterable[RouteParam] | NotGiven = NOT_GIVEN,
+    priority: int | NotGiven = NOT_GIVEN,
+    status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+    targets: Iterable[TargetParam] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PageruleEditResponse:
         """
         Updates one or more fields of an existing Page Rule.
 
@@ -375,50 +347,36 @@ class PagerulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not pagerule_id:
-            raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
-        return cast(
-            PageruleEditResponse,
-            self._patch(
-                f"/zones/{zone_id}/pagerules/{pagerule_id}",
-                body=maybe_transform(
-                    {
-                        "actions": actions,
-                        "priority": priority,
-                        "status": status,
-                        "targets": targets,
-                    },
-                    pagerule_edit_params.PageruleEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}'
+          )
+        return cast(PageruleEditResponse, self._patch(
+            f"/zones/{zone_id}/pagerules/{pagerule_id}",
+            body=maybe_transform({
+                "actions": actions,
+                "priority": priority,
+                "status": status,
+                "targets": targets,
+            }, pagerule_edit_params.PageruleEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[PageruleEditResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[PageruleEditResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    @typing_extensions.deprecated(
-        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
-    )
-    def get(
-        self,
-        pagerule_id: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleGetResponse:
+    @typing_extensions.deprecated("The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details.")
+    def get(self,
+    pagerule_id: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PageruleGetResponse:
         """
         Fetches the details of a Page Rule.
 
@@ -436,26 +394,18 @@ class PagerulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not pagerule_id:
-            raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
-        return cast(
-            PageruleGetResponse,
-            self._get(
-                f"/zones/{zone_id}/pagerules/{pagerule_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
+          raise ValueError(
+            f'Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}'
+          )
+        return cast(PageruleGetResponse, self._get(
+            f"/zones/{zone_id}/pagerules/{pagerule_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[PageruleGetResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[PageruleGetResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
 class AsyncPagerulesResource(AsyncAPIResource):
     @cached_property
@@ -470,24 +420,20 @@ class AsyncPagerulesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPagerulesResourceWithStreamingResponse:
         return AsyncPagerulesResourceWithStreamingResponse(self)
 
-    @typing_extensions.deprecated(
-        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
-    )
-    async def create(
-        self,
-        *,
-        zone_id: str,
-        actions: Iterable[RouteParam],
-        targets: Iterable[TargetParam],
-        priority: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleCreateResponse:
+    @typing_extensions.deprecated("The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details.")
+    async def create(self,
+    *,
+    zone_id: str,
+    actions: Iterable[RouteParam],
+    targets: Iterable[TargetParam],
+    priority: int | NotGiven = NOT_GIVEN,
+    status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PageruleCreateResponse:
         """
         Creates a new Page Rule.
 
@@ -516,52 +462,36 @@ class AsyncPagerulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            PageruleCreateResponse,
-            await self._post(
-                f"/zones/{zone_id}/pagerules",
-                body=await async_maybe_transform(
-                    {
-                        "actions": actions,
-                        "targets": targets,
-                        "priority": priority,
-                        "status": status,
-                    },
-                    pagerule_create_params.PageruleCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
+        return cast(PageruleCreateResponse, await self._post(
+            f"/zones/{zone_id}/pagerules",
+            body=await async_maybe_transform({
+                "actions": actions,
+                "targets": targets,
+                "priority": priority,
+                "status": status,
+            }, pagerule_create_params.PageruleCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[PageruleCreateResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[PageruleCreateResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    @typing_extensions.deprecated(
-        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
-    )
-    async def update(
-        self,
-        pagerule_id: str,
-        *,
-        zone_id: str,
-        actions: Iterable[RouteParam],
-        targets: Iterable[TargetParam],
-        priority: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleUpdateResponse:
+    @typing_extensions.deprecated("The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details.")
+    async def update(self,
+    pagerule_id: str,
+    *,
+    zone_id: str,
+    actions: Iterable[RouteParam],
+    targets: Iterable[TargetParam],
+    priority: int | NotGiven = NOT_GIVEN,
+    status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PageruleUpdateResponse:
         """Replaces the configuration of an existing Page Rule.
 
         The configuration of the
@@ -594,53 +524,39 @@ class AsyncPagerulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not pagerule_id:
-            raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
-        return cast(
-            PageruleUpdateResponse,
-            await self._put(
-                f"/zones/{zone_id}/pagerules/{pagerule_id}",
-                body=await async_maybe_transform(
-                    {
-                        "actions": actions,
-                        "targets": targets,
-                        "priority": priority,
-                        "status": status,
-                    },
-                    pagerule_update_params.PageruleUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}'
+          )
+        return cast(PageruleUpdateResponse, await self._put(
+            f"/zones/{zone_id}/pagerules/{pagerule_id}",
+            body=await async_maybe_transform({
+                "actions": actions,
+                "targets": targets,
+                "priority": priority,
+                "status": status,
+            }, pagerule_update_params.PageruleUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[PageruleUpdateResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[PageruleUpdateResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    @typing_extensions.deprecated(
-        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
-    )
-    async def list(
-        self,
-        *,
-        zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        order: Literal["status", "priority"] | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleListResponse:
+    @typing_extensions.deprecated("The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details.")
+    async def list(self,
+    *,
+    zone_id: str,
+    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+    match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+    order: Literal["status", "priority"] | NotGiven = NOT_GIVEN,
+    status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PageruleListResponse:
         """
         Fetches Page Rules in a zone.
 
@@ -665,43 +581,31 @@ class AsyncPagerulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._get(
             f"/zones/{zone_id}/pagerules",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "direction": direction,
-                        "match": match,
-                        "order": order,
-                        "status": status,
-                    },
-                    pagerule_list_params.PageruleListParams,
-                ),
-                post_parser=ResultWrapper[PageruleListResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
+                "direction": direction,
+                "match": match,
+                "order": order,
+                "status": status,
+            }, pagerule_list_params.PageruleListParams), post_parser=ResultWrapper[PageruleListResponse]._unwrapper),
             cast_to=cast(Type[PageruleListResponse], ResultWrapper[PageruleListResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
-    )
-    async def delete(
-        self,
-        pagerule_id: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PageruleDeleteResponse]:
+    @typing_extensions.deprecated("The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details.")
+    async def delete(self,
+    pagerule_id: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PageruleDeleteResponse]:
         """
         Deletes an existing Page Rule.
 
@@ -719,40 +623,34 @@ class AsyncPagerulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not pagerule_id:
-            raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}'
+          )
         return await self._delete(
             f"/zones/{zone_id}/pagerules/{pagerule_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PageruleDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[PageruleDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[PageruleDeleteResponse]], ResultWrapper[PageruleDeleteResponse]),
         )
 
-    @typing_extensions.deprecated(
-        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
-    )
-    async def edit(
-        self,
-        pagerule_id: str,
-        *,
-        zone_id: str,
-        actions: Iterable[RouteParam] | NotGiven = NOT_GIVEN,
-        priority: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
-        targets: Iterable[TargetParam] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleEditResponse:
+    @typing_extensions.deprecated("The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details.")
+    async def edit(self,
+    pagerule_id: str,
+    *,
+    zone_id: str,
+    actions: Iterable[RouteParam] | NotGiven = NOT_GIVEN,
+    priority: int | NotGiven = NOT_GIVEN,
+    status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+    targets: Iterable[TargetParam] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PageruleEditResponse:
         """
         Updates one or more fields of an existing Page Rule.
 
@@ -783,50 +681,36 @@ class AsyncPagerulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not pagerule_id:
-            raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
-        return cast(
-            PageruleEditResponse,
-            await self._patch(
-                f"/zones/{zone_id}/pagerules/{pagerule_id}",
-                body=await async_maybe_transform(
-                    {
-                        "actions": actions,
-                        "priority": priority,
-                        "status": status,
-                        "targets": targets,
-                    },
-                    pagerule_edit_params.PageruleEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}'
+          )
+        return cast(PageruleEditResponse, await self._patch(
+            f"/zones/{zone_id}/pagerules/{pagerule_id}",
+            body=await async_maybe_transform({
+                "actions": actions,
+                "priority": priority,
+                "status": status,
+                "targets": targets,
+            }, pagerule_edit_params.PageruleEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[PageruleEditResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[PageruleEditResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    @typing_extensions.deprecated(
-        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
-    )
-    async def get(
-        self,
-        pagerule_id: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleGetResponse:
+    @typing_extensions.deprecated("The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details.")
+    async def get(self,
+    pagerule_id: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PageruleGetResponse:
         """
         Fetches the details of a Page Rule.
 
@@ -844,180 +728,169 @@ class AsyncPagerulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not pagerule_id:
-            raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
-        return cast(
-            PageruleGetResponse,
-            await self._get(
-                f"/zones/{zone_id}/pagerules/{pagerule_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
+          raise ValueError(
+            f'Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}'
+          )
+        return cast(PageruleGetResponse, await self._get(
+            f"/zones/{zone_id}/pagerules/{pagerule_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[PageruleGetResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[PageruleGetResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
 class PagerulesResourceWithRawResponse:
     def __init__(self, pagerules: PagerulesResource) -> None:
         self._pagerules = pagerules
 
         self.create = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                pagerules.create  # pyright: ignore[reportDeprecated],
-            )
+        to_raw_response_wrapper(
+            pagerules.create # pyright: ignore[reportDeprecated],
+        )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                pagerules.update  # pyright: ignore[reportDeprecated],
-            )
+        to_raw_response_wrapper(
+            pagerules.update # pyright: ignore[reportDeprecated],
+        )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                pagerules.list  # pyright: ignore[reportDeprecated],
-            )
+        to_raw_response_wrapper(
+            pagerules.list # pyright: ignore[reportDeprecated],
+        )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                pagerules.delete  # pyright: ignore[reportDeprecated],
-            )
+        to_raw_response_wrapper(
+            pagerules.delete # pyright: ignore[reportDeprecated],
+        )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                pagerules.edit  # pyright: ignore[reportDeprecated],
-            )
+        to_raw_response_wrapper(
+            pagerules.edit # pyright: ignore[reportDeprecated],
+        )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
-            to_raw_response_wrapper(
-                pagerules.get  # pyright: ignore[reportDeprecated],
-            )
+        to_raw_response_wrapper(
+            pagerules.get # pyright: ignore[reportDeprecated],
+        )
         )
 
     @cached_property
     def settings(self) -> SettingsResourceWithRawResponse:
         return SettingsResourceWithRawResponse(self._pagerules.settings)
 
-
 class AsyncPagerulesResourceWithRawResponse:
     def __init__(self, pagerules: AsyncPagerulesResource) -> None:
         self._pagerules = pagerules
 
         self.create = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                pagerules.create  # pyright: ignore[reportDeprecated],
-            )
+        async_to_raw_response_wrapper(
+            pagerules.create # pyright: ignore[reportDeprecated],
+        )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                pagerules.update  # pyright: ignore[reportDeprecated],
-            )
+        async_to_raw_response_wrapper(
+            pagerules.update # pyright: ignore[reportDeprecated],
+        )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                pagerules.list  # pyright: ignore[reportDeprecated],
-            )
+        async_to_raw_response_wrapper(
+            pagerules.list # pyright: ignore[reportDeprecated],
+        )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                pagerules.delete  # pyright: ignore[reportDeprecated],
-            )
+        async_to_raw_response_wrapper(
+            pagerules.delete # pyright: ignore[reportDeprecated],
+        )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                pagerules.edit  # pyright: ignore[reportDeprecated],
-            )
+        async_to_raw_response_wrapper(
+            pagerules.edit # pyright: ignore[reportDeprecated],
+        )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
-            async_to_raw_response_wrapper(
-                pagerules.get  # pyright: ignore[reportDeprecated],
-            )
+        async_to_raw_response_wrapper(
+            pagerules.get # pyright: ignore[reportDeprecated],
+        )
         )
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
         return AsyncSettingsResourceWithRawResponse(self._pagerules.settings)
 
-
 class PagerulesResourceWithStreamingResponse:
     def __init__(self, pagerules: PagerulesResource) -> None:
         self._pagerules = pagerules
 
         self.create = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                pagerules.create  # pyright: ignore[reportDeprecated],
-            )
+        to_streamed_response_wrapper(
+            pagerules.create # pyright: ignore[reportDeprecated],
+        )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                pagerules.update  # pyright: ignore[reportDeprecated],
-            )
+        to_streamed_response_wrapper(
+            pagerules.update # pyright: ignore[reportDeprecated],
+        )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                pagerules.list  # pyright: ignore[reportDeprecated],
-            )
+        to_streamed_response_wrapper(
+            pagerules.list # pyright: ignore[reportDeprecated],
+        )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                pagerules.delete  # pyright: ignore[reportDeprecated],
-            )
+        to_streamed_response_wrapper(
+            pagerules.delete # pyright: ignore[reportDeprecated],
+        )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                pagerules.edit  # pyright: ignore[reportDeprecated],
-            )
+        to_streamed_response_wrapper(
+            pagerules.edit # pyright: ignore[reportDeprecated],
+        )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
-            to_streamed_response_wrapper(
-                pagerules.get  # pyright: ignore[reportDeprecated],
-            )
+        to_streamed_response_wrapper(
+            pagerules.get # pyright: ignore[reportDeprecated],
+        )
         )
 
     @cached_property
     def settings(self) -> SettingsResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self._pagerules.settings)
 
-
 class AsyncPagerulesResourceWithStreamingResponse:
     def __init__(self, pagerules: AsyncPagerulesResource) -> None:
         self._pagerules = pagerules
 
         self.create = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                pagerules.create  # pyright: ignore[reportDeprecated],
-            )
+        async_to_streamed_response_wrapper(
+            pagerules.create # pyright: ignore[reportDeprecated],
+        )
         )
         self.update = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                pagerules.update  # pyright: ignore[reportDeprecated],
-            )
+        async_to_streamed_response_wrapper(
+            pagerules.update # pyright: ignore[reportDeprecated],
+        )
         )
         self.list = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                pagerules.list  # pyright: ignore[reportDeprecated],
-            )
+        async_to_streamed_response_wrapper(
+            pagerules.list # pyright: ignore[reportDeprecated],
+        )
         )
         self.delete = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                pagerules.delete  # pyright: ignore[reportDeprecated],
-            )
+        async_to_streamed_response_wrapper(
+            pagerules.delete # pyright: ignore[reportDeprecated],
+        )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                pagerules.edit  # pyright: ignore[reportDeprecated],
-            )
+        async_to_streamed_response_wrapper(
+            pagerules.edit # pyright: ignore[reportDeprecated],
+        )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
-            async_to_streamed_response_wrapper(
-                pagerules.get  # pyright: ignore[reportDeprecated],
-            )
+        async_to_streamed_response_wrapper(
+            pagerules.get # pyright: ignore[reportDeprecated],
+        )
         )
 
     @cached_property

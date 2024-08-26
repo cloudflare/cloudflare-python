@@ -2,34 +2,51 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.logpush import job_create_params, job_update_params
+
 from ...types.logpush.logpush_job import LogpushJob
-from ...types.logpush.job_delete_response import JobDeleteResponse
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
 from ...types.logpush.output_options_param import OutputOptionsParam
 
-__all__ = ["JobsResource", "AsyncJobsResource"]
+from ...pagination import SyncSinglePage, AsyncSinglePage
 
+from ...types.logpush.job_delete_response import JobDeleteResponse
+
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.logpush import job_create_params
+from ...types.logpush import job_update_params
+from ...types.logpush import OutputOptions
+from ...types.logpush import OutputOptions
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["JobsResource", "AsyncJobsResource"]
 
 class JobsResource(SyncAPIResource):
     @cached_property
@@ -40,30 +57,28 @@ class JobsResource(SyncAPIResource):
     def with_streaming_response(self) -> JobsResourceWithStreamingResponse:
         return JobsResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        destination_conf: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        dataset: Optional[str] | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
-        logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
-        ownership_challenge: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushJob]:
+    def create(self,
+    *,
+    destination_conf: str,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    dataset: Optional[str] | NotGiven = NOT_GIVEN,
+    enabled: bool | NotGiven = NOT_GIVEN,
+    frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
+    kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
+    logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
+    max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
+    max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
+    max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
+    name: Optional[str] | NotGiven = NOT_GIVEN,
+    output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
+    ownership_challenge: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LogpushJob]:
         """
         Creates a new Logpush job for an account or zone.
 
@@ -131,69 +146,58 @@ class JobsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._post(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs",
-            body=maybe_transform(
-                {
-                    "destination_conf": destination_conf,
-                    "dataset": dataset,
-                    "enabled": enabled,
-                    "frequency": frequency,
-                    "kind": kind,
-                    "logpull_options": logpull_options,
-                    "max_upload_bytes": max_upload_bytes,
-                    "max_upload_interval_seconds": max_upload_interval_seconds,
-                    "max_upload_records": max_upload_records,
-                    "name": name,
-                    "output_options": output_options,
-                    "ownership_challenge": ownership_challenge,
-                },
-                job_create_params.JobCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "destination_conf": destination_conf,
+                "dataset": dataset,
+                "enabled": enabled,
+                "frequency": frequency,
+                "kind": kind,
+                "logpull_options": logpull_options,
+                "max_upload_bytes": max_upload_bytes,
+                "max_upload_interval_seconds": max_upload_interval_seconds,
+                "max_upload_records": max_upload_records,
+                "name": name,
+                "output_options": output_options,
+                "ownership_challenge": ownership_challenge,
+            }, job_create_params.JobCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper),
             cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
 
-    def update(
-        self,
-        job_id: int,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        destination_conf: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
-        logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
-        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
-        ownership_challenge: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushJob]:
+    def update(self,
+    job_id: int,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    destination_conf: str | NotGiven = NOT_GIVEN,
+    enabled: bool | NotGiven = NOT_GIVEN,
+    frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
+    kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
+    logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
+    max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
+    max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
+    max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
+    output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
+    ownership_challenge: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LogpushJob]:
         """
         Updates a Logpush job.
 
@@ -256,56 +260,45 @@ class JobsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._put(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
-            body=maybe_transform(
-                {
-                    "destination_conf": destination_conf,
-                    "enabled": enabled,
-                    "frequency": frequency,
-                    "kind": kind,
-                    "logpull_options": logpull_options,
-                    "max_upload_bytes": max_upload_bytes,
-                    "max_upload_interval_seconds": max_upload_interval_seconds,
-                    "max_upload_records": max_upload_records,
-                    "output_options": output_options,
-                    "ownership_challenge": ownership_challenge,
-                },
-                job_update_params.JobUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "destination_conf": destination_conf,
+                "enabled": enabled,
+                "frequency": frequency,
+                "kind": kind,
+                "logpull_options": logpull_options,
+                "max_upload_bytes": max_upload_bytes,
+                "max_upload_interval_seconds": max_upload_interval_seconds,
+                "max_upload_records": max_upload_records,
+                "output_options": output_options,
+                "ownership_challenge": ownership_challenge,
+            }, job_update_params.JobUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper),
             cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Optional[LogpushJob]]:
+    def list(self,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[Optional[LogpushJob]]:
         """
         Lists Logpush jobs for an account or zone.
 
@@ -323,39 +316,35 @@ class JobsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs",
-            page=SyncSinglePage[Optional[LogpushJob]],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = SyncSinglePage[Optional[LogpushJob]],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=LogpushJob,
         )
 
-    def delete(
-        self,
-        job_id: int,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[JobDeleteResponse]:
+    def delete(self,
+    job_id: int,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[JobDeleteResponse]:
         """
         Deletes a Logpush job.
 
@@ -375,42 +364,34 @@ class JobsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._delete(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[JobDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[JobDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[JobDeleteResponse]], ResultWrapper[JobDeleteResponse]),
         )
 
-    def get(
-        self,
-        job_id: int,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushJob]:
+    def get(self,
+    job_id: int,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LogpushJob]:
         """
         Gets the details of a Logpush job.
 
@@ -430,29 +411,22 @@ class JobsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._get(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper),
             cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
-
 
 class AsyncJobsResource(AsyncAPIResource):
     @cached_property
@@ -463,30 +437,28 @@ class AsyncJobsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncJobsResourceWithStreamingResponse:
         return AsyncJobsResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        destination_conf: str,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        dataset: Optional[str] | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
-        logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
-        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
-        ownership_challenge: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushJob]:
+    async def create(self,
+    *,
+    destination_conf: str,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    dataset: Optional[str] | NotGiven = NOT_GIVEN,
+    enabled: bool | NotGiven = NOT_GIVEN,
+    frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
+    kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
+    logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
+    max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
+    max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
+    max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
+    name: Optional[str] | NotGiven = NOT_GIVEN,
+    output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
+    ownership_challenge: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LogpushJob]:
         """
         Creates a new Logpush job for an account or zone.
 
@@ -554,69 +526,58 @@ class AsyncJobsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return await self._post(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs",
-            body=await async_maybe_transform(
-                {
-                    "destination_conf": destination_conf,
-                    "dataset": dataset,
-                    "enabled": enabled,
-                    "frequency": frequency,
-                    "kind": kind,
-                    "logpull_options": logpull_options,
-                    "max_upload_bytes": max_upload_bytes,
-                    "max_upload_interval_seconds": max_upload_interval_seconds,
-                    "max_upload_records": max_upload_records,
-                    "name": name,
-                    "output_options": output_options,
-                    "ownership_challenge": ownership_challenge,
-                },
-                job_create_params.JobCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "destination_conf": destination_conf,
+                "dataset": dataset,
+                "enabled": enabled,
+                "frequency": frequency,
+                "kind": kind,
+                "logpull_options": logpull_options,
+                "max_upload_bytes": max_upload_bytes,
+                "max_upload_interval_seconds": max_upload_interval_seconds,
+                "max_upload_records": max_upload_records,
+                "name": name,
+                "output_options": output_options,
+                "ownership_challenge": ownership_challenge,
+            }, job_create_params.JobCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper),
             cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
 
-    async def update(
-        self,
-        job_id: int,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        destination_conf: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
-        kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
-        logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
-        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
-        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
-        output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
-        ownership_challenge: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushJob]:
+    async def update(self,
+    job_id: int,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    destination_conf: str | NotGiven = NOT_GIVEN,
+    enabled: bool | NotGiven = NOT_GIVEN,
+    frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
+    kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
+    logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
+    max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
+    max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
+    max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
+    output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
+    ownership_challenge: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LogpushJob]:
         """
         Updates a Logpush job.
 
@@ -679,56 +640,45 @@ class AsyncJobsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return await self._put(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
-            body=await async_maybe_transform(
-                {
-                    "destination_conf": destination_conf,
-                    "enabled": enabled,
-                    "frequency": frequency,
-                    "kind": kind,
-                    "logpull_options": logpull_options,
-                    "max_upload_bytes": max_upload_bytes,
-                    "max_upload_interval_seconds": max_upload_interval_seconds,
-                    "max_upload_records": max_upload_records,
-                    "output_options": output_options,
-                    "ownership_challenge": ownership_challenge,
-                },
-                job_update_params.JobUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "destination_conf": destination_conf,
+                "enabled": enabled,
+                "frequency": frequency,
+                "kind": kind,
+                "logpull_options": logpull_options,
+                "max_upload_bytes": max_upload_bytes,
+                "max_upload_interval_seconds": max_upload_interval_seconds,
+                "max_upload_records": max_upload_records,
+                "output_options": output_options,
+                "ownership_challenge": ownership_challenge,
+            }, job_update_params.JobUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper),
             cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Optional[LogpushJob], AsyncSinglePage[Optional[LogpushJob]]]:
+    def list(self,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Optional[LogpushJob], AsyncSinglePage[Optional[LogpushJob]]]:
         """
         Lists Logpush jobs for an account or zone.
 
@@ -746,39 +696,35 @@ class AsyncJobsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs",
-            page=AsyncSinglePage[Optional[LogpushJob]],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = AsyncSinglePage[Optional[LogpushJob]],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=LogpushJob,
         )
 
-    async def delete(
-        self,
-        job_id: int,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[JobDeleteResponse]:
+    async def delete(self,
+    job_id: int,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[JobDeleteResponse]:
         """
         Deletes a Logpush job.
 
@@ -798,42 +744,34 @@ class AsyncJobsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return await self._delete(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[JobDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[JobDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[JobDeleteResponse]], ResultWrapper[JobDeleteResponse]),
         )
 
-    async def get(
-        self,
-        job_id: int,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LogpushJob]:
+    async def get(self,
+    job_id: int,
+    *,
+    account_id: str | NotGiven = NOT_GIVEN,
+    zone_id: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LogpushJob]:
         """
         Gets the details of a Logpush job.
 
@@ -853,29 +791,22 @@ class AsyncJobsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
+          raise ValueError('You cannot provide both account_id and zone_id');
 
         if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
+          account_or_zone = "accounts"
+          account_or_zone_id = account_id
         else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
+          if not zone_id:
+            raise ValueError('You must provide either account_id or zone_id');
 
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
+          account_or_zone = "zones"
+          account_or_zone_id = zone_id
         return await self._get(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LogpushJob]]._unwrapper),
             cast_to=cast(Type[Optional[LogpushJob]], ResultWrapper[LogpushJob]),
         )
-
 
 class JobsResourceWithRawResponse:
     def __init__(self, jobs: JobsResource) -> None:
@@ -897,7 +828,6 @@ class JobsResourceWithRawResponse:
             jobs.get,
         )
 
-
 class AsyncJobsResourceWithRawResponse:
     def __init__(self, jobs: AsyncJobsResource) -> None:
         self._jobs = jobs
@@ -918,7 +848,6 @@ class AsyncJobsResourceWithRawResponse:
             jobs.get,
         )
 
-
 class JobsResourceWithStreamingResponse:
     def __init__(self, jobs: JobsResource) -> None:
         self._jobs = jobs
@@ -938,7 +867,6 @@ class JobsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             jobs.get,
         )
-
 
 class AsyncJobsResourceWithStreamingResponse:
     def __init__(self, jobs: AsyncJobsResource) -> None:

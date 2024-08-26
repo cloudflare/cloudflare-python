@@ -2,34 +2,55 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.images.v1 import variant_edit_params, variant_create_params
-from ....types.images.v1.variant import Variant
-from ....types.images.v1.variant_get_response import VariantGetResponse
-from ....types.images.v1.variant_edit_response import VariantEditResponse
+
 from ....types.images.v1.variant_create_response import VariantCreateResponse
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from ...._base_client import make_request_options
+
+from typing import Type
+
+from ....types.images.v1.variant import Variant
+
 from ....types.images.v1.variant_delete_response import VariantDeleteResponse
 
-__all__ = ["VariantsResource", "AsyncVariantsResource"]
+from ....types.images.v1.variant_edit_response import VariantEditResponse
 
+from ....types.images.v1.variant_get_response import VariantGetResponse
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ....types.images.v1 import variant_create_params, variant_edit_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.images.v1 import variant_create_params
+from ....types.images.v1 import variant_edit_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["VariantsResource", "AsyncVariantsResource"]
 
 class VariantsResource(SyncAPIResource):
     @cached_property
@@ -40,20 +61,18 @@ class VariantsResource(SyncAPIResource):
     def with_streaming_response(self) -> VariantsResourceWithStreamingResponse:
         return VariantsResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        id: str,
-        options: variant_create_params.Options,
-        never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantCreateResponse:
+    def create(self,
+    *,
+    account_id: str,
+    id: str,
+    options: variant_create_params.Options,
+    never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> VariantCreateResponse:
         """
         Specify variants that allow you to resize images for different use cases.
 
@@ -74,38 +93,29 @@ class VariantsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/images/v1/variants",
-            body=maybe_transform(
-                {
-                    "id": id,
-                    "options": options,
-                    "never_require_signed_urls": never_require_signed_urls,
-                },
-                variant_create_params.VariantCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[VariantCreateResponse]._unwrapper,
-            ),
+            body=maybe_transform({
+                "id": id,
+                "options": options,
+                "never_require_signed_urls": never_require_signed_urls,
+            }, variant_create_params.VariantCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[VariantCreateResponse]._unwrapper),
             cast_to=cast(Type[VariantCreateResponse], ResultWrapper[VariantCreateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Variant:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Variant:
         """
         Lists existing variants.
 
@@ -121,31 +131,25 @@ class VariantsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/images/v1/variants",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Variant]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Variant]._unwrapper),
             cast_to=cast(Type[Variant], ResultWrapper[Variant]),
         )
 
-    def delete(
-        self,
-        variant_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantDeleteResponse:
+    def delete(self,
+    variant_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> VariantDeleteResponse:
         """
         Deleting a variant purges the cache for all images associated with the variant.
 
@@ -161,40 +165,31 @@ class VariantsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not variant_id:
-            raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
-        return cast(
-            VariantDeleteResponse,
-            self._delete(
-                f"/accounts/{account_id}/images/v1/variants/{variant_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[VariantDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[VariantDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `variant_id` but received {variant_id!r}'
+          )
+        return cast(VariantDeleteResponse, self._delete(
+            f"/accounts/{account_id}/images/v1/variants/{variant_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[VariantDeleteResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[VariantDeleteResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    def edit(
-        self,
-        variant_id: str,
-        *,
-        account_id: str,
-        options: variant_edit_params.Options,
-        never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantEditResponse:
+    def edit(self,
+    variant_id: str,
+    *,
+    account_id: str,
+    options: variant_edit_params.Options,
+    never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> VariantEditResponse:
         """
         Updating a variant purges the cache for all images associated with the variant.
 
@@ -215,40 +210,33 @@ class VariantsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not variant_id:
-            raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `variant_id` but received {variant_id!r}'
+          )
         return self._patch(
             f"/accounts/{account_id}/images/v1/variants/{variant_id}",
-            body=maybe_transform(
-                {
-                    "options": options,
-                    "never_require_signed_urls": never_require_signed_urls,
-                },
-                variant_edit_params.VariantEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[VariantEditResponse]._unwrapper,
-            ),
+            body=maybe_transform({
+                "options": options,
+                "never_require_signed_urls": never_require_signed_urls,
+            }, variant_edit_params.VariantEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[VariantEditResponse]._unwrapper),
             cast_to=cast(Type[VariantEditResponse], ResultWrapper[VariantEditResponse]),
         )
 
-    def get(
-        self,
-        variant_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantGetResponse:
+    def get(self,
+    variant_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> VariantGetResponse:
         """
         Fetch details for a single variant.
 
@@ -264,21 +252,18 @@ class VariantsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not variant_id:
-            raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `variant_id` but received {variant_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/images/v1/variants/{variant_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[VariantGetResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[VariantGetResponse]._unwrapper),
             cast_to=cast(Type[VariantGetResponse], ResultWrapper[VariantGetResponse]),
         )
-
 
 class AsyncVariantsResource(AsyncAPIResource):
     @cached_property
@@ -289,20 +274,18 @@ class AsyncVariantsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncVariantsResourceWithStreamingResponse:
         return AsyncVariantsResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        id: str,
-        options: variant_create_params.Options,
-        never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantCreateResponse:
+    async def create(self,
+    *,
+    account_id: str,
+    id: str,
+    options: variant_create_params.Options,
+    never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> VariantCreateResponse:
         """
         Specify variants that allow you to resize images for different use cases.
 
@@ -323,38 +306,29 @@ class AsyncVariantsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/images/v1/variants",
-            body=await async_maybe_transform(
-                {
-                    "id": id,
-                    "options": options,
-                    "never_require_signed_urls": never_require_signed_urls,
-                },
-                variant_create_params.VariantCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[VariantCreateResponse]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "id": id,
+                "options": options,
+                "never_require_signed_urls": never_require_signed_urls,
+            }, variant_create_params.VariantCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[VariantCreateResponse]._unwrapper),
             cast_to=cast(Type[VariantCreateResponse], ResultWrapper[VariantCreateResponse]),
         )
 
-    async def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Variant:
+    async def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Variant:
         """
         Lists existing variants.
 
@@ -370,31 +344,25 @@ class AsyncVariantsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/images/v1/variants",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Variant]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Variant]._unwrapper),
             cast_to=cast(Type[Variant], ResultWrapper[Variant]),
         )
 
-    async def delete(
-        self,
-        variant_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantDeleteResponse:
+    async def delete(self,
+    variant_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> VariantDeleteResponse:
         """
         Deleting a variant purges the cache for all images associated with the variant.
 
@@ -410,40 +378,31 @@ class AsyncVariantsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not variant_id:
-            raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
-        return cast(
-            VariantDeleteResponse,
-            await self._delete(
-                f"/accounts/{account_id}/images/v1/variants/{variant_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[VariantDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[VariantDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `variant_id` but received {variant_id!r}'
+          )
+        return cast(VariantDeleteResponse, await self._delete(
+            f"/accounts/{account_id}/images/v1/variants/{variant_id}",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[VariantDeleteResponse]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[VariantDeleteResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    async def edit(
-        self,
-        variant_id: str,
-        *,
-        account_id: str,
-        options: variant_edit_params.Options,
-        never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantEditResponse:
+    async def edit(self,
+    variant_id: str,
+    *,
+    account_id: str,
+    options: variant_edit_params.Options,
+    never_require_signed_urls: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> VariantEditResponse:
         """
         Updating a variant purges the cache for all images associated with the variant.
 
@@ -464,40 +423,33 @@ class AsyncVariantsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not variant_id:
-            raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `variant_id` but received {variant_id!r}'
+          )
         return await self._patch(
             f"/accounts/{account_id}/images/v1/variants/{variant_id}",
-            body=await async_maybe_transform(
-                {
-                    "options": options,
-                    "never_require_signed_urls": never_require_signed_urls,
-                },
-                variant_edit_params.VariantEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[VariantEditResponse]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "options": options,
+                "never_require_signed_urls": never_require_signed_urls,
+            }, variant_edit_params.VariantEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[VariantEditResponse]._unwrapper),
             cast_to=cast(Type[VariantEditResponse], ResultWrapper[VariantEditResponse]),
         )
 
-    async def get(
-        self,
-        variant_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantGetResponse:
+    async def get(self,
+    variant_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> VariantGetResponse:
         """
         Fetch details for a single variant.
 
@@ -513,21 +465,18 @@ class AsyncVariantsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not variant_id:
-            raise ValueError(f"Expected a non-empty value for `variant_id` but received {variant_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `variant_id` but received {variant_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/images/v1/variants/{variant_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[VariantGetResponse]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[VariantGetResponse]._unwrapper),
             cast_to=cast(Type[VariantGetResponse], ResultWrapper[VariantGetResponse]),
         )
-
 
 class VariantsResourceWithRawResponse:
     def __init__(self, variants: VariantsResource) -> None:
@@ -549,7 +498,6 @@ class VariantsResourceWithRawResponse:
             variants.get,
         )
 
-
 class AsyncVariantsResourceWithRawResponse:
     def __init__(self, variants: AsyncVariantsResource) -> None:
         self._variants = variants
@@ -570,7 +518,6 @@ class AsyncVariantsResourceWithRawResponse:
             variants.get,
         )
 
-
 class VariantsResourceWithStreamingResponse:
     def __init__(self, variants: VariantsResource) -> None:
         self._variants = variants
@@ -590,7 +537,6 @@ class VariantsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             variants.get,
         )
-
 
 class AsyncVariantsResourceWithStreamingResponse:
     def __init__(self, variants: AsyncVariantsResource) -> None:

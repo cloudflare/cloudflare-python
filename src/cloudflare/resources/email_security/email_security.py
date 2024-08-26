@@ -2,36 +2,26 @@
 
 from __future__ import annotations
 
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
+from .investigate import InvestigateResource, AsyncInvestigateResource
+
 from ..._compat import cached_property
-from .phishguard import (
-    PhishguardResource,
-    AsyncPhishguardResource,
-    PhishguardResourceWithRawResponse,
-    AsyncPhishguardResourceWithRawResponse,
-    PhishguardResourceWithStreamingResponse,
-    AsyncPhishguardResourceWithStreamingResponse,
-)
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .investigate import (
-    InvestigateResource,
-    AsyncInvestigateResource,
-    InvestigateResourceWithRawResponse,
-    AsyncInvestigateResourceWithRawResponse,
-    InvestigateResourceWithStreamingResponse,
-    AsyncInvestigateResourceWithStreamingResponse,
-)
+
+from .phishguard import PhishguardResource, AsyncPhishguardResource
+
 from .settings.settings import SettingsResource, AsyncSettingsResource
 
-__all__ = ["EmailSecurityResource", "AsyncEmailSecurityResource"]
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from .investigate import InvestigateResource, AsyncInvestigateResource, InvestigateResourceWithRawResponse, AsyncInvestigateResourceWithRawResponse, InvestigateResourceWithStreamingResponse, AsyncInvestigateResourceWithStreamingResponse
+from .phishguard import PhishguardResource, AsyncPhishguardResource, PhishguardResourceWithRawResponse, AsyncPhishguardResourceWithRawResponse, PhishguardResourceWithStreamingResponse, AsyncPhishguardResourceWithStreamingResponse
+from .settings import SettingsResource, AsyncSettingsResource, SettingsResourceWithRawResponse, AsyncSettingsResourceWithRawResponse, SettingsResourceWithStreamingResponse, AsyncSettingsResourceWithStreamingResponse
 
+__all__ = ["EmailSecurityResource", "AsyncEmailSecurityResource"]
 
 class EmailSecurityResource(SyncAPIResource):
     @cached_property
@@ -54,7 +44,6 @@ class EmailSecurityResource(SyncAPIResource):
     def with_streaming_response(self) -> EmailSecurityResourceWithStreamingResponse:
         return EmailSecurityResourceWithStreamingResponse(self)
 
-
 class AsyncEmailSecurityResource(AsyncAPIResource):
     @cached_property
     def investigate(self) -> AsyncInvestigateResource:
@@ -76,7 +65,6 @@ class AsyncEmailSecurityResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncEmailSecurityResourceWithStreamingResponse:
         return AsyncEmailSecurityResourceWithStreamingResponse(self)
 
-
 class EmailSecurityResourceWithRawResponse:
     def __init__(self, email_security: EmailSecurityResource) -> None:
         self._email_security = email_security
@@ -92,7 +80,6 @@ class EmailSecurityResourceWithRawResponse:
     @cached_property
     def settings(self) -> SettingsResourceWithRawResponse:
         return SettingsResourceWithRawResponse(self._email_security.settings)
-
 
 class AsyncEmailSecurityResourceWithRawResponse:
     def __init__(self, email_security: AsyncEmailSecurityResource) -> None:
@@ -110,7 +97,6 @@ class AsyncEmailSecurityResourceWithRawResponse:
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
         return AsyncSettingsResourceWithRawResponse(self._email_security.settings)
 
-
 class EmailSecurityResourceWithStreamingResponse:
     def __init__(self, email_security: EmailSecurityResource) -> None:
         self._email_security = email_security
@@ -126,7 +112,6 @@ class EmailSecurityResourceWithStreamingResponse:
     @cached_property
     def settings(self) -> SettingsResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self._email_security.settings)
-
 
 class AsyncEmailSecurityResourceWithStreamingResponse:
     def __init__(self, email_security: AsyncEmailSecurityResource) -> None:

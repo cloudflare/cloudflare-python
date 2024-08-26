@@ -1,17 +1,19 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
 from ..._models import BaseModel
 
-__all__ = ["PermissionGroupGetResponse", "Meta"]
+from typing import Optional
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["PermissionGroupGetResponse", "Meta"]
 
 class Meta(BaseModel):
     key: Optional[str] = None
 
     value: Optional[str] = None
-
 
 class PermissionGroupGetResponse(BaseModel):
     id: str

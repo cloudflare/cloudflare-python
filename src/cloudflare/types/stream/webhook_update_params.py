@@ -2,12 +2,16 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import TypedDict, Required, Annotated
 
 from ..._utils import PropertyInfo
 
-__all__ = ["WebhookUpdateParams"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
+__all__ = ["WebhookUpdateParams"]
 
 class WebhookUpdateParams(TypedDict, total=False):
     account_id: Required[str]

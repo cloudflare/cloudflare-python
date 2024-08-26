@@ -4,21 +4,26 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._base_client import make_request_options
-from ....types.shared.asn import ASN
+
 from ....types.intel.asn.subnet_get_response import SubnetGetResponse
 
-__all__ = ["SubnetsResource", "AsyncSubnetsResource"]
+from ...._base_client import make_request_options
 
+from ....types.shared.asn import ASN
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types import shared
+
+__all__ = ["SubnetsResource", "AsyncSubnetsResource"]
 
 class SubnetsResource(SyncAPIResource):
     @cached_property
@@ -29,18 +34,16 @@ class SubnetsResource(SyncAPIResource):
     def with_streaming_response(self) -> SubnetsResourceWithStreamingResponse:
         return SubnetsResourceWithStreamingResponse(self)
 
-    def get(
-        self,
-        asn: ASN,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubnetGetResponse:
+    def get(self,
+    asn: ASN,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SubnetGetResponse:
         """
         Get ASN Subnets
 
@@ -56,15 +59,14 @@ class SubnetsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/intel/asn/{asn}/subnets",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=SubnetGetResponse,
         )
-
 
 class AsyncSubnetsResource(AsyncAPIResource):
     @cached_property
@@ -75,18 +77,16 @@ class AsyncSubnetsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSubnetsResourceWithStreamingResponse:
         return AsyncSubnetsResourceWithStreamingResponse(self)
 
-    async def get(
-        self,
-        asn: ASN,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubnetGetResponse:
+    async def get(self,
+    asn: ASN,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SubnetGetResponse:
         """
         Get ASN Subnets
 
@@ -102,15 +102,14 @@ class AsyncSubnetsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/intel/asn/{asn}/subnets",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=SubnetGetResponse,
         )
-
 
 class SubnetsResourceWithRawResponse:
     def __init__(self, subnets: SubnetsResource) -> None:
@@ -120,7 +119,6 @@ class SubnetsResourceWithRawResponse:
             subnets.get,
         )
 
-
 class AsyncSubnetsResourceWithRawResponse:
     def __init__(self, subnets: AsyncSubnetsResource) -> None:
         self._subnets = subnets
@@ -129,7 +127,6 @@ class AsyncSubnetsResourceWithRawResponse:
             subnets.get,
         )
 
-
 class SubnetsResourceWithStreamingResponse:
     def __init__(self, subnets: SubnetsResource) -> None:
         self._subnets = subnets
@@ -137,7 +134,6 @@ class SubnetsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             subnets.get,
         )
-
 
 class AsyncSubnetsResourceWithStreamingResponse:
     def __init__(self, subnets: AsyncSubnetsResource) -> None:

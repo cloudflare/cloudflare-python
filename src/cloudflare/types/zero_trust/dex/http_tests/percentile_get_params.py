@@ -2,13 +2,18 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import TypedDict, Required, Annotated
 
 from ....._utils import PropertyInfo
 
-__all__ = ["PercentileGetParams"]
+from typing import List
 
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ....._types import FileTypes
+from ....._utils import PropertyInfo
+
+__all__ = ["PercentileGetParams"]
 
 class PercentileGetParams(TypedDict, total=False):
     account_id: Required[str]

@@ -2,24 +2,38 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.healthchecks import Healthcheck, HealthcheckDeleteResponse
+
 from typing import Any, cast
 
-import pytest
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.healthchecks import (
-    Healthcheck,
-    HealthcheckDeleteResponse,
-)
+from cloudflare.types.healthchecks import healthcheck_create_params
+from cloudflare.types.healthchecks import healthcheck_update_params
+from cloudflare.types.healthchecks import healthcheck_list_params
+from cloudflare.types.healthchecks import healthcheck_edit_params
+from cloudflare.types.healthchecks import HTTPConfiguration
+from cloudflare.types.healthchecks import TCPConfiguration
+from cloudflare.types.healthchecks import HTTPConfiguration
+from cloudflare.types.healthchecks import TCPConfiguration
+from cloudflare.types.healthchecks import HTTPConfiguration
+from cloudflare.types.healthchecks import TCPConfiguration
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestHealthchecks:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
@@ -28,7 +42,7 @@ class TestHealthchecks:
             address="www.example.com",
             name="server-1",
         )
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -63,10 +77,11 @@ class TestHealthchecks:
             healthcheck_timeout=0,
             type="HTTPS",
         )
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
+
         response = client.healthchecks.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
@@ -74,9 +89,9 @@ class TestHealthchecks:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         healthcheck = response.parse()
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -84,23 +99,23 @@ class TestHealthchecks:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             healthcheck = response.parse()
-            assert_matches_type(Healthcheck, healthcheck, path=["response"])
+            assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.healthchecks.with_raw_response.create(
-                zone_id="",
-                address="www.example.com",
-                name="server-1",
-            )
+          client.healthchecks.with_raw_response.create(
+              zone_id="",
+              address="www.example.com",
+              name="server-1",
+          )
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
@@ -110,7 +125,7 @@ class TestHealthchecks:
             address="www.example.com",
             name="server-1",
         )
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -146,10 +161,11 @@ class TestHealthchecks:
             healthcheck_timeout=0,
             type="HTTPS",
         )
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
+
         response = client.healthchecks.with_raw_response.update(
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -158,9 +174,9 @@ class TestHealthchecks:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         healthcheck = response.parse()
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -169,39 +185,39 @@ class TestHealthchecks:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             healthcheck = response.parse()
-            assert_matches_type(Healthcheck, healthcheck, path=["response"])
+            assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.healthchecks.with_raw_response.update(
-                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_id="",
-                address="www.example.com",
-                name="server-1",
-            )
+          client.healthchecks.with_raw_response.update(
+              healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
+              zone_id="",
+              address="www.example.com",
+              name="server-1",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
-            client.healthchecks.with_raw_response.update(
-                healthcheck_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                address="www.example.com",
-                name="server-1",
-            )
+          client.healthchecks.with_raw_response.update(
+              healthcheck_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              address="www.example.com",
+              name="server-1",
+          )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         healthcheck = client.healthchecks.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Healthcheck], healthcheck, path=['response'])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -210,38 +226,39 @@ class TestHealthchecks:
             page=1,
             per_page=5,
         )
-        assert_matches_type(SyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Healthcheck], healthcheck, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
+
         response = client.healthchecks.with_raw_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         healthcheck = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Healthcheck], healthcheck, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.healthchecks.with_streaming_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             healthcheck = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Healthcheck], healthcheck, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.healthchecks.with_raw_response.list(
-                zone_id="",
-            )
+          client.healthchecks.with_raw_response.list(
+              zone_id="",
+          )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
@@ -249,47 +266,48 @@ class TestHealthchecks:
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(HealthcheckDeleteResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthcheckDeleteResponse, healthcheck, path=['response'])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
+
         response = client.healthchecks.with_raw_response.delete(
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         healthcheck = response.parse()
-        assert_matches_type(HealthcheckDeleteResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthcheckDeleteResponse, healthcheck, path=['response'])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.healthchecks.with_streaming_response.delete(
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             healthcheck = response.parse()
-            assert_matches_type(HealthcheckDeleteResponse, healthcheck, path=["response"])
+            assert_matches_type(HealthcheckDeleteResponse, healthcheck, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.healthchecks.with_raw_response.delete(
-                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_id="",
-            )
+          client.healthchecks.with_raw_response.delete(
+              healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
+              zone_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
-            client.healthchecks.with_raw_response.delete(
-                healthcheck_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          client.healthchecks.with_raw_response.delete(
+              healthcheck_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
@@ -299,7 +317,7 @@ class TestHealthchecks:
             address="www.example.com",
             name="server-1",
         )
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -335,10 +353,11 @@ class TestHealthchecks:
             healthcheck_timeout=0,
             type="HTTPS",
         )
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
+
         response = client.healthchecks.with_raw_response.edit(
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -347,9 +366,9 @@ class TestHealthchecks:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         healthcheck = response.parse()
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -358,32 +377,32 @@ class TestHealthchecks:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             healthcheck = response.parse()
-            assert_matches_type(Healthcheck, healthcheck, path=["response"])
+            assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.healthchecks.with_raw_response.edit(
-                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_id="",
-                address="www.example.com",
-                name="server-1",
-            )
+          client.healthchecks.with_raw_response.edit(
+              healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
+              zone_id="",
+              address="www.example.com",
+              name="server-1",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
-            client.healthchecks.with_raw_response.edit(
-                healthcheck_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                address="www.example.com",
-                name="server-1",
-            )
+          client.healthchecks.with_raw_response.edit(
+              healthcheck_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              address="www.example.com",
+              name="server-1",
+          )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
@@ -391,51 +410,51 @@ class TestHealthchecks:
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
+
         response = client.healthchecks.with_raw_response.get(
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         healthcheck = response.parse()
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.healthchecks.with_streaming_response.get(
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             healthcheck = response.parse()
-            assert_matches_type(Healthcheck, healthcheck, path=["response"])
+            assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.healthchecks.with_raw_response.get(
-                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_id="",
-            )
+          client.healthchecks.with_raw_response.get(
+              healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
+              zone_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
-            client.healthchecks.with_raw_response.get(
-                healthcheck_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-
+          client.healthchecks.with_raw_response.get(
+              healthcheck_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 class TestAsyncHealthchecks:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -444,7 +463,7 @@ class TestAsyncHealthchecks:
             address="www.example.com",
             name="server-1",
         )
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -479,10 +498,11 @@ class TestAsyncHealthchecks:
             healthcheck_timeout=0,
             type="HTTPS",
         )
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.healthchecks.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
@@ -490,9 +510,9 @@ class TestAsyncHealthchecks:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         healthcheck = await response.parse()
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -500,23 +520,23 @@ class TestAsyncHealthchecks:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             healthcheck = await response.parse()
-            assert_matches_type(Healthcheck, healthcheck, path=["response"])
+            assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.healthchecks.with_raw_response.create(
-                zone_id="",
-                address="www.example.com",
-                name="server-1",
-            )
+          await async_client.healthchecks.with_raw_response.create(
+              zone_id="",
+              address="www.example.com",
+              name="server-1",
+          )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
@@ -526,7 +546,7 @@ class TestAsyncHealthchecks:
             address="www.example.com",
             name="server-1",
         )
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -562,10 +582,11 @@ class TestAsyncHealthchecks:
             healthcheck_timeout=0,
             type="HTTPS",
         )
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.healthchecks.with_raw_response.update(
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -574,9 +595,9 @@ class TestAsyncHealthchecks:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         healthcheck = await response.parse()
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -585,39 +606,39 @@ class TestAsyncHealthchecks:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             healthcheck = await response.parse()
-            assert_matches_type(Healthcheck, healthcheck, path=["response"])
+            assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.healthchecks.with_raw_response.update(
-                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_id="",
-                address="www.example.com",
-                name="server-1",
-            )
+          await async_client.healthchecks.with_raw_response.update(
+              healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
+              zone_id="",
+              address="www.example.com",
+              name="server-1",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
-            await async_client.healthchecks.with_raw_response.update(
-                healthcheck_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                address="www.example.com",
-                name="server-1",
-            )
+          await async_client.healthchecks.with_raw_response.update(
+              healthcheck_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              address="www.example.com",
+              name="server-1",
+          )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         healthcheck = await async_client.healthchecks.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Healthcheck], healthcheck, path=['response'])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -626,38 +647,39 @@ class TestAsyncHealthchecks:
             page=1,
             per_page=5,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Healthcheck], healthcheck, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.healthchecks.with_raw_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         healthcheck = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Healthcheck], healthcheck, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.healthchecks.with_streaming_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             healthcheck = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[Healthcheck], healthcheck, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.healthchecks.with_raw_response.list(
-                zone_id="",
-            )
+          await async_client.healthchecks.with_raw_response.list(
+              zone_id="",
+          )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
@@ -665,47 +687,48 @@ class TestAsyncHealthchecks:
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(HealthcheckDeleteResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthcheckDeleteResponse, healthcheck, path=['response'])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.healthchecks.with_raw_response.delete(
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         healthcheck = await response.parse()
-        assert_matches_type(HealthcheckDeleteResponse, healthcheck, path=["response"])
+        assert_matches_type(HealthcheckDeleteResponse, healthcheck, path=['response'])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.healthchecks.with_streaming_response.delete(
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             healthcheck = await response.parse()
-            assert_matches_type(HealthcheckDeleteResponse, healthcheck, path=["response"])
+            assert_matches_type(HealthcheckDeleteResponse, healthcheck, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.healthchecks.with_raw_response.delete(
-                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_id="",
-            )
+          await async_client.healthchecks.with_raw_response.delete(
+              healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
+              zone_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
-            await async_client.healthchecks.with_raw_response.delete(
-                healthcheck_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          await async_client.healthchecks.with_raw_response.delete(
+              healthcheck_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
@@ -715,7 +738,7 @@ class TestAsyncHealthchecks:
             address="www.example.com",
             name="server-1",
         )
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -751,10 +774,11 @@ class TestAsyncHealthchecks:
             healthcheck_timeout=0,
             type="HTTPS",
         )
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.healthchecks.with_raw_response.edit(
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -763,9 +787,9 @@ class TestAsyncHealthchecks:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         healthcheck = await response.parse()
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -774,32 +798,32 @@ class TestAsyncHealthchecks:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             healthcheck = await response.parse()
-            assert_matches_type(Healthcheck, healthcheck, path=["response"])
+            assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.healthchecks.with_raw_response.edit(
-                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_id="",
-                address="www.example.com",
-                name="server-1",
-            )
+          await async_client.healthchecks.with_raw_response.edit(
+              healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
+              zone_id="",
+              address="www.example.com",
+              name="server-1",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
-            await async_client.healthchecks.with_raw_response.edit(
-                healthcheck_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                address="www.example.com",
-                name="server-1",
-            )
+          await async_client.healthchecks.with_raw_response.edit(
+              healthcheck_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+              address="www.example.com",
+              name="server-1",
+          )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -807,44 +831,45 @@ class TestAsyncHealthchecks:
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.healthchecks.with_raw_response.get(
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         healthcheck = await response.parse()
-        assert_matches_type(Healthcheck, healthcheck, path=["response"])
+        assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.healthchecks.with_streaming_response.get(
             healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             healthcheck = await response.parse()
-            assert_matches_type(Healthcheck, healthcheck, path=["response"])
+            assert_matches_type(Healthcheck, healthcheck, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.healthchecks.with_raw_response.get(
-                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_id="",
-            )
+          await async_client.healthchecks.with_raw_response.get(
+              healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
+              zone_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
-            await async_client.healthchecks.with_raw_response.get(
-                healthcheck_id="",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          await async_client.healthchecks.with_raw_response.get(
+              healthcheck_id="",
+              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+          )

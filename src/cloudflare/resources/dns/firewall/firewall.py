@@ -2,44 +2,57 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from .analytics import (
-    AnalyticsResource,
-    AsyncAnalyticsResource,
-    AnalyticsResourceWithRawResponse,
-    AsyncAnalyticsResourceWithRawResponse,
-    AnalyticsResourceWithStreamingResponse,
-    AsyncAnalyticsResourceWithStreamingResponse,
-)
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....types.dns import firewall_edit_params, firewall_list_params, firewall_create_params
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import AsyncPaginator, make_request_options
 from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
-from ....types.dns.firewall_ips import FirewallIPs
-from ....types.dns.upstream_ips import UpstreamIPs
+
+from ...._compat import cached_property
+
 from ....types.dns.firewall.firewall import Firewall
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type, List
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from ....types.dns.upstream_ips import UpstreamIPs
+
 from ....types.dns.attack_mitigation_param import AttackMitigationParam
+
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
 from ....types.dns.firewall_delete_response import FirewallDeleteResponse
 
-__all__ = ["FirewallResource", "AsyncFirewallResource"]
+from ....types.dns.firewall_ips import FirewallIPs
 
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.dns import firewall_create_params
+from ....types.dns import firewall_list_params
+from ....types.dns import firewall_edit_params
+from ....types.dns import AttackMitigation
+from ....types.dns import AttackMitigation
+from .analytics import AnalyticsResource, AsyncAnalyticsResource, AnalyticsResourceWithRawResponse, AsyncAnalyticsResourceWithRawResponse, AnalyticsResourceWithStreamingResponse, AsyncAnalyticsResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["FirewallResource", "AsyncFirewallResource"]
 
 class FirewallResource(SyncAPIResource):
     @cached_property
@@ -54,27 +67,25 @@ class FirewallResource(SyncAPIResource):
     def with_streaming_response(self) -> FirewallResourceWithStreamingResponse:
         return FirewallResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        name: str,
-        upstream_ips: List[UpstreamIPs],
-        attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
-        deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
-        ecs_fallback: bool | NotGiven = NOT_GIVEN,
-        maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
-        minimum_cache_ttl: float | NotGiven = NOT_GIVEN,
-        negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
-        ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
-        retries: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Firewall]:
+    def create(self,
+    *,
+    account_id: str,
+    name: str,
+    upstream_ips: List[UpstreamIPs],
+    attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
+    deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
+    ecs_fallback: bool | NotGiven = NOT_GIVEN,
+    maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
+    minimum_cache_ttl: float | NotGiven = NOT_GIVEN,
+    negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
+    ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
+    retries: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Firewall]:
         """
         Create a configured DNS Firewall Cluster.
 
@@ -115,47 +126,38 @@ class FirewallResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/dns_firewall",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "upstream_ips": upstream_ips,
-                    "attack_mitigation": attack_mitigation,
-                    "deprecate_any_requests": deprecate_any_requests,
-                    "ecs_fallback": ecs_fallback,
-                    "maximum_cache_ttl": maximum_cache_ttl,
-                    "minimum_cache_ttl": minimum_cache_ttl,
-                    "negative_cache_ttl": negative_cache_ttl,
-                    "ratelimit": ratelimit,
-                    "retries": retries,
-                },
-                firewall_create_params.FirewallCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "name": name,
+                "upstream_ips": upstream_ips,
+                "attack_mitigation": attack_mitigation,
+                "deprecate_any_requests": deprecate_any_requests,
+                "ecs_fallback": ecs_fallback,
+                "maximum_cache_ttl": maximum_cache_ttl,
+                "minimum_cache_ttl": minimum_cache_ttl,
+                "negative_cache_ttl": negative_cache_ttl,
+                "ratelimit": ratelimit,
+                "retries": retries,
+            }, firewall_create_params.FirewallCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Firewall]]._unwrapper),
             cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[Firewall]:
+    def list(self,
+    *,
+    account_id: str,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[Firewall]:
         """
         List configured DNS Firewall clusters for an account.
 
@@ -175,38 +177,29 @@ class FirewallResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/dns_firewall",
-            page=SyncV4PagePaginationArray[Firewall],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    firewall_list_params.FirewallListParams,
-                ),
-            ),
+            page = SyncV4PagePaginationArray[Firewall],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "page": page,
+                "per_page": per_page,
+            }, firewall_list_params.FirewallListParams)),
             model=Firewall,
         )
 
-    def delete(
-        self,
-        dns_firewall_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FirewallDeleteResponse]:
+    def delete(self,
+    dns_firewall_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[FirewallDeleteResponse]:
         """
         Delete a configured DNS Firewall Cluster.
 
@@ -224,45 +217,41 @@ class FirewallResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not dns_firewall_id:
-            raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}'
+          )
         return self._delete(
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FirewallDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[FirewallDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[FirewallDeleteResponse]], ResultWrapper[FirewallDeleteResponse]),
         )
 
-    def edit(
-        self,
-        dns_firewall_id: str,
-        *,
-        account_id: str,
-        id: str,
-        deprecate_any_requests: bool,
-        dns_firewall_ips: List[FirewallIPs],
-        ecs_fallback: bool,
-        maximum_cache_ttl: float,
-        minimum_cache_ttl: float,
-        name: str,
-        upstream_ips: List[UpstreamIPs],
-        attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
-        negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
-        ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
-        retries: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Firewall]:
+    def edit(self,
+    dns_firewall_id: str,
+    *,
+    account_id: str,
+    id: str,
+    deprecate_any_requests: bool,
+    dns_firewall_ips: List[FirewallIPs],
+    ecs_fallback: bool,
+    maximum_cache_ttl: float,
+    minimum_cache_ttl: float,
+    name: str,
+    upstream_ips: List[UpstreamIPs],
+    attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
+    negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
+    ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
+    retries: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Firewall]:
         """
         Modify a DNS Firewall Cluster configuration.
 
@@ -307,50 +296,43 @@ class FirewallResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not dns_firewall_id:
-            raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}'
+          )
         return self._patch(
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
-            body=maybe_transform(
-                {
-                    "id": id,
-                    "deprecate_any_requests": deprecate_any_requests,
-                    "dns_firewall_ips": dns_firewall_ips,
-                    "ecs_fallback": ecs_fallback,
-                    "maximum_cache_ttl": maximum_cache_ttl,
-                    "minimum_cache_ttl": minimum_cache_ttl,
-                    "name": name,
-                    "upstream_ips": upstream_ips,
-                    "attack_mitigation": attack_mitigation,
-                    "negative_cache_ttl": negative_cache_ttl,
-                    "ratelimit": ratelimit,
-                    "retries": retries,
-                },
-                firewall_edit_params.FirewallEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "id": id,
+                "deprecate_any_requests": deprecate_any_requests,
+                "dns_firewall_ips": dns_firewall_ips,
+                "ecs_fallback": ecs_fallback,
+                "maximum_cache_ttl": maximum_cache_ttl,
+                "minimum_cache_ttl": minimum_cache_ttl,
+                "name": name,
+                "upstream_ips": upstream_ips,
+                "attack_mitigation": attack_mitigation,
+                "negative_cache_ttl": negative_cache_ttl,
+                "ratelimit": ratelimit,
+                "retries": retries,
+            }, firewall_edit_params.FirewallEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Firewall]]._unwrapper),
             cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
         )
 
-    def get(
-        self,
-        dns_firewall_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Firewall]:
+    def get(self,
+    dns_firewall_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Firewall]:
         """
         Show a single configured DNS Firewall cluster for an account.
 
@@ -368,21 +350,18 @@ class FirewallResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not dns_firewall_id:
-            raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Firewall]]._unwrapper),
             cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
         )
-
 
 class AsyncFirewallResource(AsyncAPIResource):
     @cached_property
@@ -397,27 +376,25 @@ class AsyncFirewallResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncFirewallResourceWithStreamingResponse:
         return AsyncFirewallResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        name: str,
-        upstream_ips: List[UpstreamIPs],
-        attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
-        deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
-        ecs_fallback: bool | NotGiven = NOT_GIVEN,
-        maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
-        minimum_cache_ttl: float | NotGiven = NOT_GIVEN,
-        negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
-        ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
-        retries: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Firewall]:
+    async def create(self,
+    *,
+    account_id: str,
+    name: str,
+    upstream_ips: List[UpstreamIPs],
+    attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
+    deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
+    ecs_fallback: bool | NotGiven = NOT_GIVEN,
+    maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
+    minimum_cache_ttl: float | NotGiven = NOT_GIVEN,
+    negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
+    ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
+    retries: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Firewall]:
         """
         Create a configured DNS Firewall Cluster.
 
@@ -458,47 +435,38 @@ class AsyncFirewallResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/dns_firewall",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "upstream_ips": upstream_ips,
-                    "attack_mitigation": attack_mitigation,
-                    "deprecate_any_requests": deprecate_any_requests,
-                    "ecs_fallback": ecs_fallback,
-                    "maximum_cache_ttl": maximum_cache_ttl,
-                    "minimum_cache_ttl": minimum_cache_ttl,
-                    "negative_cache_ttl": negative_cache_ttl,
-                    "ratelimit": ratelimit,
-                    "retries": retries,
-                },
-                firewall_create_params.FirewallCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "name": name,
+                "upstream_ips": upstream_ips,
+                "attack_mitigation": attack_mitigation,
+                "deprecate_any_requests": deprecate_any_requests,
+                "ecs_fallback": ecs_fallback,
+                "maximum_cache_ttl": maximum_cache_ttl,
+                "minimum_cache_ttl": minimum_cache_ttl,
+                "negative_cache_ttl": negative_cache_ttl,
+                "ratelimit": ratelimit,
+                "retries": retries,
+            }, firewall_create_params.FirewallCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Firewall]]._unwrapper),
             cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Firewall, AsyncV4PagePaginationArray[Firewall]]:
+    def list(self,
+    *,
+    account_id: str,
+    page: float | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Firewall, AsyncV4PagePaginationArray[Firewall]]:
         """
         List configured DNS Firewall clusters for an account.
 
@@ -518,38 +486,29 @@ class AsyncFirewallResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/dns_firewall",
-            page=AsyncV4PagePaginationArray[Firewall],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    firewall_list_params.FirewallListParams,
-                ),
-            ),
+            page = AsyncV4PagePaginationArray[Firewall],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "page": page,
+                "per_page": per_page,
+            }, firewall_list_params.FirewallListParams)),
             model=Firewall,
         )
 
-    async def delete(
-        self,
-        dns_firewall_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FirewallDeleteResponse]:
+    async def delete(self,
+    dns_firewall_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[FirewallDeleteResponse]:
         """
         Delete a configured DNS Firewall Cluster.
 
@@ -567,45 +526,41 @@ class AsyncFirewallResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not dns_firewall_id:
-            raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}'
+          )
         return await self._delete(
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FirewallDeleteResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[FirewallDeleteResponse]]._unwrapper),
             cast_to=cast(Type[Optional[FirewallDeleteResponse]], ResultWrapper[FirewallDeleteResponse]),
         )
 
-    async def edit(
-        self,
-        dns_firewall_id: str,
-        *,
-        account_id: str,
-        id: str,
-        deprecate_any_requests: bool,
-        dns_firewall_ips: List[FirewallIPs],
-        ecs_fallback: bool,
-        maximum_cache_ttl: float,
-        minimum_cache_ttl: float,
-        name: str,
-        upstream_ips: List[UpstreamIPs],
-        attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
-        negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
-        ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
-        retries: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Firewall]:
+    async def edit(self,
+    dns_firewall_id: str,
+    *,
+    account_id: str,
+    id: str,
+    deprecate_any_requests: bool,
+    dns_firewall_ips: List[FirewallIPs],
+    ecs_fallback: bool,
+    maximum_cache_ttl: float,
+    minimum_cache_ttl: float,
+    name: str,
+    upstream_ips: List[UpstreamIPs],
+    attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
+    negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
+    ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
+    retries: float | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Firewall]:
         """
         Modify a DNS Firewall Cluster configuration.
 
@@ -650,50 +605,43 @@ class AsyncFirewallResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not dns_firewall_id:
-            raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}'
+          )
         return await self._patch(
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
-            body=await async_maybe_transform(
-                {
-                    "id": id,
-                    "deprecate_any_requests": deprecate_any_requests,
-                    "dns_firewall_ips": dns_firewall_ips,
-                    "ecs_fallback": ecs_fallback,
-                    "maximum_cache_ttl": maximum_cache_ttl,
-                    "minimum_cache_ttl": minimum_cache_ttl,
-                    "name": name,
-                    "upstream_ips": upstream_ips,
-                    "attack_mitigation": attack_mitigation,
-                    "negative_cache_ttl": negative_cache_ttl,
-                    "ratelimit": ratelimit,
-                    "retries": retries,
-                },
-                firewall_edit_params.FirewallEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "id": id,
+                "deprecate_any_requests": deprecate_any_requests,
+                "dns_firewall_ips": dns_firewall_ips,
+                "ecs_fallback": ecs_fallback,
+                "maximum_cache_ttl": maximum_cache_ttl,
+                "minimum_cache_ttl": minimum_cache_ttl,
+                "name": name,
+                "upstream_ips": upstream_ips,
+                "attack_mitigation": attack_mitigation,
+                "negative_cache_ttl": negative_cache_ttl,
+                "ratelimit": ratelimit,
+                "retries": retries,
+            }, firewall_edit_params.FirewallEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Firewall]]._unwrapper),
             cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
         )
 
-    async def get(
-        self,
-        dns_firewall_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Firewall]:
+    async def get(self,
+    dns_firewall_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Firewall]:
         """
         Show a single configured DNS Firewall cluster for an account.
 
@@ -711,21 +659,18 @@ class AsyncFirewallResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not dns_firewall_id:
-            raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Firewall]]._unwrapper),
             cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
         )
-
 
 class FirewallResourceWithRawResponse:
     def __init__(self, firewall: FirewallResource) -> None:
@@ -751,7 +696,6 @@ class FirewallResourceWithRawResponse:
     def analytics(self) -> AnalyticsResourceWithRawResponse:
         return AnalyticsResourceWithRawResponse(self._firewall.analytics)
 
-
 class AsyncFirewallResourceWithRawResponse:
     def __init__(self, firewall: AsyncFirewallResource) -> None:
         self._firewall = firewall
@@ -776,7 +720,6 @@ class AsyncFirewallResourceWithRawResponse:
     def analytics(self) -> AsyncAnalyticsResourceWithRawResponse:
         return AsyncAnalyticsResourceWithRawResponse(self._firewall.analytics)
 
-
 class FirewallResourceWithStreamingResponse:
     def __init__(self, firewall: FirewallResource) -> None:
         self._firewall = firewall
@@ -800,7 +743,6 @@ class FirewallResourceWithStreamingResponse:
     @cached_property
     def analytics(self) -> AnalyticsResourceWithStreamingResponse:
         return AnalyticsResourceWithStreamingResponse(self._firewall.analytics)
-
 
 class AsyncFirewallResourceWithStreamingResponse:
     def __init__(self, firewall: AsyncFirewallResource) -> None:

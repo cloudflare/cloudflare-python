@@ -1,13 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from ...._models import BaseModel
 
-__all__ = ["CertificateGetResponse"]
+from typing import Optional
 
+from datetime import datetime
+
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["CertificateGetResponse"]
 
 class CertificateGetResponse(BaseModel):
     id: Optional[str] = None
@@ -28,17 +33,7 @@ class CertificateGetResponse(BaseModel):
     signature: Optional[str] = None
     """The type of hash used for the certificate."""
 
-    status: Optional[
-        Literal[
-            "initializing",
-            "pending_deployment",
-            "pending_deletion",
-            "active",
-            "deleted",
-            "deployment_timed_out",
-            "deletion_timed_out",
-        ]
-    ] = None
+    status: Optional[Literal["initializing", "pending_deployment", "pending_deletion", "active", "deleted", "deployment_timed_out", "deletion_timed_out"]] = None
     """Status of the certificate or the association."""
 
     uploaded_on: Optional[datetime] = None

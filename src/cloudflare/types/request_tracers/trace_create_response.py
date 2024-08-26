@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
-from ..._compat import PYDANTIC_V2
 from ..._models import BaseModel
 
-__all__ = ["TraceCreateResponse"]
+from typing import Optional
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+from ..._compat import PYDANTIC_V2
+
+__all__ = ["TraceCreateResponse"]
 
 class TraceCreateResponse(BaseModel):
     status_code: Optional[int] = None
@@ -16,10 +19,9 @@ class TraceCreateResponse(BaseModel):
 
     trace: Optional["Trace"] = None
 
-
 from .trace import Trace
 
 if PYDANTIC_V2:
-    TraceCreateResponse.model_rebuild()
+  TraceCreateResponse.model_rebuild()
 else:
-    TraceCreateResponse.update_forward_refs()  # type: ignore
+  TraceCreateResponse.update_forward_refs()  # type: ignore

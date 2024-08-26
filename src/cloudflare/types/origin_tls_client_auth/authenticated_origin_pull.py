@@ -1,29 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["AuthenticatedOriginPull"]
+from typing import Optional
 
+from typing_extensions import Literal
+
+from datetime import datetime
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["AuthenticatedOriginPull"]
 
 class AuthenticatedOriginPull(BaseModel):
     cert_id: Optional[str] = None
     """Identifier"""
 
-    cert_status: Optional[
-        Literal[
-            "initializing",
-            "pending_deployment",
-            "pending_deletion",
-            "active",
-            "deleted",
-            "deployment_timed_out",
-            "deletion_timed_out",
-        ]
-    ] = None
+    cert_status: Optional[Literal["initializing", "pending_deployment", "pending_deletion", "active", "deleted", "deployment_timed_out", "deletion_timed_out"]] = None
     """Status of the certificate or the association."""
 
     cert_updated_at: Optional[datetime] = None
@@ -62,17 +57,7 @@ class AuthenticatedOriginPull(BaseModel):
     signature: Optional[str] = None
     """The type of hash used for the certificate."""
 
-    status: Optional[
-        Literal[
-            "initializing",
-            "pending_deployment",
-            "pending_deletion",
-            "active",
-            "deleted",
-            "deployment_timed_out",
-            "deletion_timed_out",
-        ]
-    ] = None
+    status: Optional[Literal["initializing", "pending_deployment", "pending_deletion", "active", "deleted", "deployment_timed_out", "deletion_timed_out"]] = None
     """Status of the certificate or the association."""
 
     updated_at: Optional[datetime] = None

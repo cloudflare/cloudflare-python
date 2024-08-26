@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .location_get_params import LocationGetParams as LocationGetParams
 from .location_get_response import LocationGetResponse as LocationGetResponse
+from .location_get_params import LocationGetParams as LocationGetParams

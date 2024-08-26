@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from .iqi_summary_params import IQISummaryParams as IQISummaryParams
 from .iqi_summary_response import IQISummaryResponse as IQISummaryResponse
-from .speed_summary_params import SpeedSummaryParams as SpeedSummaryParams
-from .speed_histogram_params import SpeedHistogramParams as SpeedHistogramParams
-from .speed_summary_response import SpeedSummaryResponse as SpeedSummaryResponse
-from .speed_histogram_response import SpeedHistogramResponse as SpeedHistogramResponse
-from .iqi_timeseries_groups_params import IQITimeseriesGroupsParams as IQITimeseriesGroupsParams
 from .iqi_timeseries_groups_response import IQITimeseriesGroupsResponse as IQITimeseriesGroupsResponse
+from .iqi_summary_params import IQISummaryParams as IQISummaryParams
+from .iqi_timeseries_groups_params import IQITimeseriesGroupsParams as IQITimeseriesGroupsParams
+from .speed_histogram_response import SpeedHistogramResponse as SpeedHistogramResponse
+from .speed_summary_response import SpeedSummaryResponse as SpeedSummaryResponse
+from .speed_histogram_params import SpeedHistogramParams as SpeedHistogramParams
+from .speed_summary_params import SpeedSummaryParams as SpeedSummaryParams

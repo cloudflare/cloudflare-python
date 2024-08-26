@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["AttackMitigationParam"]
 
-
 class AttackMitigationParam(TypedDict, total=False):
     enabled: bool
     """

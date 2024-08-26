@@ -2,33 +2,44 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
-
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ....._wrappers import ResultWrapper
-from .....pagination import SyncSinglePage, AsyncSinglePage
-from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.devices.policies.include_get_response import IncludeGetResponse
-from .....types.zero_trust.devices.policies.split_tunnel_include import SplitTunnelInclude
+
 from .....types.zero_trust.devices.policies.include_update_response import IncludeUpdateResponse
+
+from ....._wrappers import ResultWrapper
+
+from typing import Iterable, Optional, Type
+
 from .....types.zero_trust.devices.policies.split_tunnel_include_param import SplitTunnelIncludeParam
 
-__all__ = ["IncludesResource", "AsyncIncludesResource"]
+from ....._utils import maybe_transform, async_maybe_transform
 
+from ....._base_client import make_request_options, AsyncPaginator
+
+from .....types.zero_trust.devices.policies.split_tunnel_include import SplitTunnelInclude
+
+from .....pagination import SyncSinglePage, AsyncSinglePage
+
+from .....types.zero_trust.devices.policies.include_get_response import IncludeGetResponse
+
+from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.zero_trust.devices.policies import include_update_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["IncludesResource", "AsyncIncludesResource"]
 
 class IncludesResource(SyncAPIResource):
     @cached_property
@@ -39,18 +50,16 @@ class IncludesResource(SyncAPIResource):
     def with_streaming_response(self) -> IncludesResourceWithStreamingResponse:
         return IncludesResourceWithStreamingResponse(self)
 
-    def update(
-        self,
-        *,
-        account_id: str,
-        body: Iterable[SplitTunnelIncludeParam],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IncludeUpdateResponse]:
+    def update(self,
+    *,
+    account_id: str,
+    body: Iterable[SplitTunnelIncludeParam],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IncludeUpdateResponse]:
         """
         Sets the list of routes included in the WARP client's tunnel.
 
@@ -64,31 +73,25 @@ class IncludesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._put(
             f"/accounts/{account_id}/devices/policy/include",
             body=maybe_transform(body, Iterable[SplitTunnelIncludeParam]),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IncludeUpdateResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IncludeUpdateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[IncludeUpdateResponse]], ResultWrapper[IncludeUpdateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[SplitTunnelInclude]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[SplitTunnelInclude]:
         """
         Fetches the list of routes included in the WARP client's tunnel.
 
@@ -102,28 +105,26 @@ class IncludesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/include",
-            page=SyncSinglePage[SplitTunnelInclude],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = SyncSinglePage[SplitTunnelInclude],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=SplitTunnelInclude,
         )
 
-    def get(
-        self,
-        policy_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IncludeGetResponse]:
+    def get(self,
+    policy_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IncludeGetResponse]:
         """
         Fetches the list of routes included in the WARP client's tunnel for a specific
         device settings profile.
@@ -140,21 +141,18 @@ class IncludesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not policy_id:
-            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/devices/policy/{policy_id}/include",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IncludeGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IncludeGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[IncludeGetResponse]], ResultWrapper[IncludeGetResponse]),
         )
-
 
 class AsyncIncludesResource(AsyncAPIResource):
     @cached_property
@@ -165,18 +163,16 @@ class AsyncIncludesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncIncludesResourceWithStreamingResponse:
         return AsyncIncludesResourceWithStreamingResponse(self)
 
-    async def update(
-        self,
-        *,
-        account_id: str,
-        body: Iterable[SplitTunnelIncludeParam],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IncludeUpdateResponse]:
+    async def update(self,
+    *,
+    account_id: str,
+    body: Iterable[SplitTunnelIncludeParam],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IncludeUpdateResponse]:
         """
         Sets the list of routes included in the WARP client's tunnel.
 
@@ -190,31 +186,25 @@ class AsyncIncludesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._put(
             f"/accounts/{account_id}/devices/policy/include",
             body=await async_maybe_transform(body, Iterable[SplitTunnelIncludeParam]),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IncludeUpdateResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IncludeUpdateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[IncludeUpdateResponse]], ResultWrapper[IncludeUpdateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[SplitTunnelInclude, AsyncSinglePage[SplitTunnelInclude]]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[SplitTunnelInclude, AsyncSinglePage[SplitTunnelInclude]]:
         """
         Fetches the list of routes included in the WARP client's tunnel.
 
@@ -228,28 +218,26 @@ class AsyncIncludesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/include",
-            page=AsyncSinglePage[SplitTunnelInclude],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = AsyncSinglePage[SplitTunnelInclude],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=SplitTunnelInclude,
         )
 
-    async def get(
-        self,
-        policy_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IncludeGetResponse]:
+    async def get(self,
+    policy_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IncludeGetResponse]:
         """
         Fetches the list of routes included in the WARP client's tunnel for a specific
         device settings profile.
@@ -266,21 +254,18 @@ class AsyncIncludesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not policy_id:
-            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/devices/policy/{policy_id}/include",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IncludeGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IncludeGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[IncludeGetResponse]], ResultWrapper[IncludeGetResponse]),
         )
-
 
 class IncludesResourceWithRawResponse:
     def __init__(self, includes: IncludesResource) -> None:
@@ -296,7 +281,6 @@ class IncludesResourceWithRawResponse:
             includes.get,
         )
 
-
 class AsyncIncludesResourceWithRawResponse:
     def __init__(self, includes: AsyncIncludesResource) -> None:
         self._includes = includes
@@ -311,7 +295,6 @@ class AsyncIncludesResourceWithRawResponse:
             includes.get,
         )
 
-
 class IncludesResourceWithStreamingResponse:
     def __init__(self, includes: IncludesResource) -> None:
         self._includes = includes
@@ -325,7 +308,6 @@ class IncludesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             includes.get,
         )
-
 
 class AsyncIncludesResourceWithStreamingResponse:
     def __init__(self, includes: AsyncIncludesResource) -> None:

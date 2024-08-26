@@ -2,19 +2,20 @@
 
 from __future__ import annotations
 
+from .analytics import AnalyticsResource, AsyncAnalyticsResource
+
 from ..._compat import cached_property
-from .analytics import (
-    AnalyticsResource,
-    AsyncAnalyticsResource,
-    AnalyticsResourceWithRawResponse,
-    AsyncAnalyticsResourceWithRawResponse,
-    AnalyticsResourceWithStreamingResponse,
-    AsyncAnalyticsResourceWithStreamingResponse,
-)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from .analytics import AnalyticsResource, AsyncAnalyticsResource, AnalyticsResourceWithRawResponse, AsyncAnalyticsResourceWithRawResponse, AnalyticsResourceWithStreamingResponse, AsyncAnalyticsResourceWithStreamingResponse
 
 __all__ = ["StorageResource", "AsyncStorageResource"]
-
 
 class StorageResource(SyncAPIResource):
     @cached_property
@@ -29,7 +30,6 @@ class StorageResource(SyncAPIResource):
     def with_streaming_response(self) -> StorageResourceWithStreamingResponse:
         return StorageResourceWithStreamingResponse(self)
 
-
 class AsyncStorageResource(AsyncAPIResource):
     @cached_property
     def analytics(self) -> AsyncAnalyticsResource:
@@ -43,7 +43,6 @@ class AsyncStorageResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncStorageResourceWithStreamingResponse:
         return AsyncStorageResourceWithStreamingResponse(self)
 
-
 class StorageResourceWithRawResponse:
     def __init__(self, storage: StorageResource) -> None:
         self._storage = storage
@@ -51,7 +50,6 @@ class StorageResourceWithRawResponse:
     @cached_property
     def analytics(self) -> AnalyticsResourceWithRawResponse:
         return AnalyticsResourceWithRawResponse(self._storage.analytics)
-
 
 class AsyncStorageResourceWithRawResponse:
     def __init__(self, storage: AsyncStorageResource) -> None:
@@ -61,7 +59,6 @@ class AsyncStorageResourceWithRawResponse:
     def analytics(self) -> AsyncAnalyticsResourceWithRawResponse:
         return AsyncAnalyticsResourceWithRawResponse(self._storage.analytics)
 
-
 class StorageResourceWithStreamingResponse:
     def __init__(self, storage: StorageResource) -> None:
         self._storage = storage
@@ -69,7 +66,6 @@ class StorageResourceWithStreamingResponse:
     @cached_property
     def analytics(self) -> AnalyticsResourceWithStreamingResponse:
         return AnalyticsResourceWithStreamingResponse(self._storage.analytics)
-
 
 class AsyncStorageResourceWithStreamingResponse:
     def __init__(self, storage: AsyncStorageResource) -> None:

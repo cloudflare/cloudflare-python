@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["PCAPFilterParam"]
 
-
 class PCAPFilterParam(TypedDict, total=False):
     destination_address: str
     """The destination IP address of the packet."""

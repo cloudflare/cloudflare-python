@@ -2,24 +2,33 @@
 
 from __future__ import annotations
 
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.firewall.waf import Override, OverrideDeleteResponse
+
+from typing import Any, cast, Optional
+
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.firewall.waf import (
-    Override,
-    OverrideDeleteResponse,
-)
+from cloudflare.types.firewall.waf import override_create_params
+from cloudflare.types.firewall.waf import override_update_params
+from cloudflare.types.firewall.waf import override_list_params
+from cloudflare.types.firewall.waf import RewriteAction
+from cloudflare.types.firewall.waf import WAFRule
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestOverrides:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -28,20 +37,21 @@ class TestOverrides:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
-        assert_matches_type(Override, override, path=["response"])
+        assert_matches_type(Override, override, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
+
         response = client.firewall.waf.overrides.with_raw_response.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         override = response.parse()
-        assert_matches_type(Override, override, path=["response"])
+        assert_matches_type(Override, override, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -49,12 +59,12 @@ class TestOverrides:
         with client.firewall.waf.overrides.with_streaming_response.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             override = response.parse()
-            assert_matches_type(Override, override, path=["response"])
+            assert_matches_type(Override, override, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -62,10 +72,10 @@ class TestOverrides:
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
-            client.firewall.waf.overrides.with_raw_response.create(
-                zone_identifier="",
-                urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
-            )
+          client.firewall.waf.overrides.with_raw_response.create(
+              zone_identifier="",
+              urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+          )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -75,10 +85,12 @@ class TestOverrides:
             path_id="de677e5818985db1285d0e80225f06e5",
             body_id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
-            rules={"100015": "challenge"},
+            rules={
+                "100015": "challenge"
+            },
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
-        assert_matches_type(Override, override, path=["response"])
+        assert_matches_type(Override, override, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -94,27 +106,32 @@ class TestOverrides:
                 "disable": "challenge",
                 "simulate": "challenge",
             },
-            rules={"100015": "challenge"},
+            rules={
+                "100015": "challenge"
+            },
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
-        assert_matches_type(Override, override, path=["response"])
+        assert_matches_type(Override, override, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
+
         response = client.firewall.waf.overrides.with_raw_response.update(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             path_id="de677e5818985db1285d0e80225f06e5",
             body_id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
-            rules={"100015": "challenge"},
+            rules={
+                "100015": "challenge"
+            },
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         override = response.parse()
-        assert_matches_type(Override, override, path=["response"])
+        assert_matches_type(Override, override, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -124,14 +141,16 @@ class TestOverrides:
             path_id="de677e5818985db1285d0e80225f06e5",
             body_id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
-            rules={"100015": "challenge"},
+            rules={
+                "100015": "challenge"
+            },
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             override = response.parse()
-            assert_matches_type(Override, override, path=["response"])
+            assert_matches_type(Override, override, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -139,31 +158,35 @@ class TestOverrides:
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
-            client.firewall.waf.overrides.with_raw_response.update(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                path_id="",
-                body_id="",
-                rewrite_action={},
-                rules={"100015": "challenge"},
-                urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
-            )
+          client.firewall.waf.overrides.with_raw_response.update(
+              zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+              path_id="",
+              body_id="",
+              rewrite_action={},
+              rules={
+                  "100015": "challenge"
+              },
+              urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
-            client.firewall.waf.overrides.with_raw_response.update(
-                zone_identifier="",
-                path_id="de677e5818985db1285d0e80225f06e5",
-                body_id="023e105f4ecef8ad9ca31a8372d0c353",
-                rewrite_action={},
-                rules={"100015": "challenge"},
-                urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
-            )
+          client.firewall.waf.overrides.with_raw_response.update(
+              zone_identifier="",
+              path_id="de677e5818985db1285d0e80225f06e5",
+              body_id="023e105f4ecef8ad9ca31a8372d0c353",
+              rewrite_action={},
+              rules={
+                  "100015": "challenge"
+              },
+              urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+          )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         override = client.firewall.waf.overrides.list(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[Override], override, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Override], override, path=['response'])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -172,38 +195,39 @@ class TestOverrides:
             page=1,
             per_page=5,
         )
-        assert_matches_type(SyncV4PagePaginationArray[Override], override, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Override], override, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
+
         response = client.firewall.waf.overrides.with_raw_response.list(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         override = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[Override], override, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Override], override, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.firewall.waf.overrides.with_streaming_response.list(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             override = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[Override], override, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Override], override, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
-            client.firewall.waf.overrides.with_raw_response.list(
-                zone_identifier="",
-            )
+          client.firewall.waf.overrides.with_raw_response.list(
+              zone_identifier="",
+          )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
@@ -211,47 +235,48 @@ class TestOverrides:
             id="de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[OverrideDeleteResponse], override, path=["response"])
+        assert_matches_type(Optional[OverrideDeleteResponse], override, path=['response'])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
+
         response = client.firewall.waf.overrides.with_raw_response.delete(
             id="de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         override = response.parse()
-        assert_matches_type(Optional[OverrideDeleteResponse], override, path=["response"])
+        assert_matches_type(Optional[OverrideDeleteResponse], override, path=['response'])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.firewall.waf.overrides.with_streaming_response.delete(
             id="de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             override = response.parse()
-            assert_matches_type(Optional[OverrideDeleteResponse], override, path=["response"])
+            assert_matches_type(Optional[OverrideDeleteResponse], override, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
-            client.firewall.waf.overrides.with_raw_response.delete(
-                id="de677e5818985db1285d0e80225f06e5",
-                zone_identifier="",
-            )
+          client.firewall.waf.overrides.with_raw_response.delete(
+              id="de677e5818985db1285d0e80225f06e5",
+              zone_identifier="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.firewall.waf.overrides.with_raw_response.delete(
-                id="",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          client.firewall.waf.overrides.with_raw_response.delete(
+              id="",
+              zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
@@ -259,51 +284,51 @@ class TestOverrides:
             id="de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Override, override, path=["response"])
+        assert_matches_type(Override, override, path=['response'])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
+
         response = client.firewall.waf.overrides.with_raw_response.get(
             id="de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         override = response.parse()
-        assert_matches_type(Override, override, path=["response"])
+        assert_matches_type(Override, override, path=['response'])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.firewall.waf.overrides.with_streaming_response.get(
             id="de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             override = response.parse()
-            assert_matches_type(Override, override, path=["response"])
+            assert_matches_type(Override, override, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
-            client.firewall.waf.overrides.with_raw_response.get(
-                id="de677e5818985db1285d0e80225f06e5",
-                zone_identifier="",
-            )
+          client.firewall.waf.overrides.with_raw_response.get(
+              id="de677e5818985db1285d0e80225f06e5",
+              zone_identifier="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.firewall.waf.overrides.with_raw_response.get(
-                id="",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-
+          client.firewall.waf.overrides.with_raw_response.get(
+              id="",
+              zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 class TestAsyncOverrides:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -312,20 +337,21 @@ class TestAsyncOverrides:
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
-        assert_matches_type(Override, override, path=["response"])
+        assert_matches_type(Override, override, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.firewall.waf.overrides.with_raw_response.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         override = await response.parse()
-        assert_matches_type(Override, override, path=["response"])
+        assert_matches_type(Override, override, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -333,12 +359,12 @@ class TestAsyncOverrides:
         async with async_client.firewall.waf.overrides.with_streaming_response.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             override = await response.parse()
-            assert_matches_type(Override, override, path=["response"])
+            assert_matches_type(Override, override, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -346,10 +372,10 @@ class TestAsyncOverrides:
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
-            await async_client.firewall.waf.overrides.with_raw_response.create(
-                zone_identifier="",
-                urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
-            )
+          await async_client.firewall.waf.overrides.with_raw_response.create(
+              zone_identifier="",
+              urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+          )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -359,10 +385,12 @@ class TestAsyncOverrides:
             path_id="de677e5818985db1285d0e80225f06e5",
             body_id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
-            rules={"100015": "challenge"},
+            rules={
+                "100015": "challenge"
+            },
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
-        assert_matches_type(Override, override, path=["response"])
+        assert_matches_type(Override, override, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -378,27 +406,32 @@ class TestAsyncOverrides:
                 "disable": "challenge",
                 "simulate": "challenge",
             },
-            rules={"100015": "challenge"},
+            rules={
+                "100015": "challenge"
+            },
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
-        assert_matches_type(Override, override, path=["response"])
+        assert_matches_type(Override, override, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.firewall.waf.overrides.with_raw_response.update(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             path_id="de677e5818985db1285d0e80225f06e5",
             body_id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
-            rules={"100015": "challenge"},
+            rules={
+                "100015": "challenge"
+            },
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         override = await response.parse()
-        assert_matches_type(Override, override, path=["response"])
+        assert_matches_type(Override, override, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -408,14 +441,16 @@ class TestAsyncOverrides:
             path_id="de677e5818985db1285d0e80225f06e5",
             body_id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
-            rules={"100015": "challenge"},
+            rules={
+                "100015": "challenge"
+            },
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             override = await response.parse()
-            assert_matches_type(Override, override, path=["response"])
+            assert_matches_type(Override, override, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -423,31 +458,35 @@ class TestAsyncOverrides:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
-            await async_client.firewall.waf.overrides.with_raw_response.update(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                path_id="",
-                body_id="",
-                rewrite_action={},
-                rules={"100015": "challenge"},
-                urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
-            )
+          await async_client.firewall.waf.overrides.with_raw_response.update(
+              zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+              path_id="",
+              body_id="",
+              rewrite_action={},
+              rules={
+                  "100015": "challenge"
+              },
+              urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
-            await async_client.firewall.waf.overrides.with_raw_response.update(
-                zone_identifier="",
-                path_id="de677e5818985db1285d0e80225f06e5",
-                body_id="023e105f4ecef8ad9ca31a8372d0c353",
-                rewrite_action={},
-                rules={"100015": "challenge"},
-                urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
-            )
+          await async_client.firewall.waf.overrides.with_raw_response.update(
+              zone_identifier="",
+              path_id="de677e5818985db1285d0e80225f06e5",
+              body_id="023e105f4ecef8ad9ca31a8372d0c353",
+              rewrite_action={},
+              rules={
+                  "100015": "challenge"
+              },
+              urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+          )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         override = await async_client.firewall.waf.overrides.list(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Override], override, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Override], override, path=['response'])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -456,38 +495,39 @@ class TestAsyncOverrides:
             page=1,
             per_page=5,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Override], override, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Override], override, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.firewall.waf.overrides.with_raw_response.list(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         override = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[Override], override, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Override], override, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.waf.overrides.with_streaming_response.list(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             override = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[Override], override, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[Override], override, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
-            await async_client.firewall.waf.overrides.with_raw_response.list(
-                zone_identifier="",
-            )
+          await async_client.firewall.waf.overrides.with_raw_response.list(
+              zone_identifier="",
+          )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
@@ -495,47 +535,48 @@ class TestAsyncOverrides:
             id="de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[OverrideDeleteResponse], override, path=["response"])
+        assert_matches_type(Optional[OverrideDeleteResponse], override, path=['response'])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.firewall.waf.overrides.with_raw_response.delete(
             id="de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         override = await response.parse()
-        assert_matches_type(Optional[OverrideDeleteResponse], override, path=["response"])
+        assert_matches_type(Optional[OverrideDeleteResponse], override, path=['response'])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.waf.overrides.with_streaming_response.delete(
             id="de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             override = await response.parse()
-            assert_matches_type(Optional[OverrideDeleteResponse], override, path=["response"])
+            assert_matches_type(Optional[OverrideDeleteResponse], override, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
-            await async_client.firewall.waf.overrides.with_raw_response.delete(
-                id="de677e5818985db1285d0e80225f06e5",
-                zone_identifier="",
-            )
+          await async_client.firewall.waf.overrides.with_raw_response.delete(
+              id="de677e5818985db1285d0e80225f06e5",
+              zone_identifier="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.firewall.waf.overrides.with_raw_response.delete(
-                id="",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          await async_client.firewall.waf.overrides.with_raw_response.delete(
+              id="",
+              zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -543,44 +584,45 @@ class TestAsyncOverrides:
             id="de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Override, override, path=["response"])
+        assert_matches_type(Override, override, path=['response'])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.firewall.waf.overrides.with_raw_response.get(
             id="de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         override = await response.parse()
-        assert_matches_type(Override, override, path=["response"])
+        assert_matches_type(Override, override, path=['response'])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.waf.overrides.with_streaming_response.get(
             id="de677e5818985db1285d0e80225f06e5",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             override = await response.parse()
-            assert_matches_type(Override, override, path=["response"])
+            assert_matches_type(Override, override, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
-            await async_client.firewall.waf.overrides.with_raw_response.get(
-                id="de677e5818985db1285d0e80225f06e5",
-                zone_identifier="",
-            )
+          await async_client.firewall.waf.overrides.with_raw_response.get(
+              id="de677e5818985db1285d0e80225f06e5",
+              zone_identifier="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.firewall.waf.overrides.with_raw_response.get(
-                id="",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          await async_client.firewall.waf.overrides.with_raw_response.get(
+              id="",
+              zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+          )

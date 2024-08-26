@@ -1,11 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-
 from ..._models import BaseModel
 
-__all__ = ["QueryResult", "Meta"]
+from typing import Optional, List
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["QueryResult", "Meta"]
 
 class Meta(BaseModel):
     changed_db: Optional[bool] = None
@@ -21,7 +24,6 @@ class Meta(BaseModel):
     rows_written: Optional[float] = None
 
     size_after: Optional[float] = None
-
 
 class QueryResult(BaseModel):
     meta: Optional[Meta] = None

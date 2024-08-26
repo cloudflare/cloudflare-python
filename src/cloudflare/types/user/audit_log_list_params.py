@@ -2,14 +2,20 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Annotated, Literal
+
 from typing import Union
+
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["AuditLogListParams", "Action", "Actor", "Zone"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
+__all__ = ["AuditLogListParams", "Action", "Actor", "Zone"]
 
 class AuditLogListParams(TypedDict, total=False):
     id: str
@@ -19,7 +25,7 @@ class AuditLogListParams(TypedDict, total=False):
 
     actor: Actor
 
-    before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    before: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """Limits the returned results to logs older than the specified date.
 
     This can be a date string `2019-04-30` or an absolute timestamp that conforms to
@@ -41,7 +47,7 @@ class AuditLogListParams(TypedDict, total=False):
     per_page: float
     """Sets the number of results to return per page."""
 
-    since: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    since: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """Limits the returned results to logs newer than the specified date.
 
     This can be a date string `2019-04-30` or an absolute timestamp that conforms to
@@ -50,11 +56,9 @@ class AuditLogListParams(TypedDict, total=False):
 
     zone: Zone
 
-
 class Action(TypedDict, total=False):
     type: str
     """Filters by the action type."""
-
 
 class Actor(TypedDict, total=False):
     email: str
@@ -65,7 +69,6 @@ class Actor(TypedDict, total=False):
     Filters by the IP address of the request that made the change by specific IP
     address or valid CIDR Range.
     """
-
 
 class Zone(TypedDict, total=False):
     name: str

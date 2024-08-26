@@ -1,15 +1,22 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from ...._models import BaseModel
+
 from typing import List, Optional
+
+from ..firewall_ips import FirewallIPs
+
 from datetime import datetime
 
-from ...._models import BaseModel
-from ..firewall_ips import FirewallIPs
 from ..upstream_ips import UpstreamIPs
+
 from ..attack_mitigation import AttackMitigation
 
-__all__ = ["Firewall"]
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
+__all__ = ["Firewall"]
 
 class Firewall(BaseModel):
     id: str

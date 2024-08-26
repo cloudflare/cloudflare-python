@@ -2,32 +2,44 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from .._wrappers import ResultWrapper
-from .._base_client import make_request_options
-from ..types.dnssec import dnssec_edit_params
-from ..types.dnssec.dnssec import DNSSEC
+
 from ..types.dnssec.dnssec_delete_response import DNSSECDeleteResponse
 
-__all__ = ["DNSSECResource", "AsyncDNSSECResource"]
+from .._wrappers import ResultWrapper
 
+from typing import Optional, Type
+
+from .._base_client import make_request_options
+
+from ..types.dnssec.dnssec import DNSSEC
+
+from .._utils import maybe_transform, async_maybe_transform
+
+from typing_extensions import Literal
+
+from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from .._resource import SyncAPIResource, AsyncAPIResource
+from ..types import shared_params
+from ..types.dnssec import dnssec_edit_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["DNSSECResource", "AsyncDNSSECResource"]
 
 class DNSSECResource(SyncAPIResource):
     @cached_property
@@ -38,17 +50,15 @@ class DNSSECResource(SyncAPIResource):
     def with_streaming_response(self) -> DNSSECResourceWithStreamingResponse:
         return DNSSECResourceWithStreamingResponse(self)
 
-    def delete(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DNSSECDeleteResponse]:
+    def delete(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DNSSECDeleteResponse]:
         """
         Delete DNSSEC.
 
@@ -64,38 +74,27 @@ class DNSSECResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[DNSSECDeleteResponse],
-            self._delete(
-                f"/zones/{zone_id}/dnssec",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[DNSSECDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[DNSSECDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
+        return cast(Optional[DNSSECDeleteResponse], self._delete(
+            f"/zones/{zone_id}/dnssec",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DNSSECDeleteResponse]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[DNSSECDeleteResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    def edit(
-        self,
-        *,
-        zone_id: str,
-        dnssec_multi_signer: bool | NotGiven = NOT_GIVEN,
-        dnssec_presigned: bool | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DNSSEC]:
+    def edit(self,
+    *,
+    zone_id: str,
+    dnssec_multi_signer: bool | NotGiven = NOT_GIVEN,
+    dnssec_presigned: bool | NotGiven = NOT_GIVEN,
+    status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DNSSEC]:
         """
         Enable or disable DNSSEC.
 
@@ -130,38 +129,29 @@ class DNSSECResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._patch(
             f"/zones/{zone_id}/dnssec",
-            body=maybe_transform(
-                {
-                    "dnssec_multi_signer": dnssec_multi_signer,
-                    "dnssec_presigned": dnssec_presigned,
-                    "status": status,
-                },
-                dnssec_edit_params.DNSSECEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DNSSEC]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "dnssec_multi_signer": dnssec_multi_signer,
+                "dnssec_presigned": dnssec_presigned,
+                "status": status,
+            }, dnssec_edit_params.DNSSECEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DNSSEC]]._unwrapper),
             cast_to=cast(Type[Optional[DNSSEC]], ResultWrapper[DNSSEC]),
         )
 
-    def get(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DNSSEC]:
+    def get(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DNSSEC]:
         """
         Details about DNSSEC status and configuration.
 
@@ -177,19 +167,14 @@ class DNSSECResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get(
             f"/zones/{zone_id}/dnssec",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DNSSEC]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DNSSEC]]._unwrapper),
             cast_to=cast(Type[Optional[DNSSEC]], ResultWrapper[DNSSEC]),
         )
-
 
 class AsyncDNSSECResource(AsyncAPIResource):
     @cached_property
@@ -200,17 +185,15 @@ class AsyncDNSSECResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDNSSECResourceWithStreamingResponse:
         return AsyncDNSSECResourceWithStreamingResponse(self)
 
-    async def delete(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DNSSECDeleteResponse]:
+    async def delete(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DNSSECDeleteResponse]:
         """
         Delete DNSSEC.
 
@@ -226,38 +209,27 @@ class AsyncDNSSECResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[DNSSECDeleteResponse],
-            await self._delete(
-                f"/zones/{zone_id}/dnssec",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[DNSSECDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[DNSSECDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
+        return cast(Optional[DNSSECDeleteResponse], await self._delete(
+            f"/zones/{zone_id}/dnssec",
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DNSSECDeleteResponse]]._unwrapper),
+            cast_to=cast(Any, ResultWrapper[DNSSECDeleteResponse]),  # Union types cannot be passed in as arguments in the type system
+        ))
 
-    async def edit(
-        self,
-        *,
-        zone_id: str,
-        dnssec_multi_signer: bool | NotGiven = NOT_GIVEN,
-        dnssec_presigned: bool | NotGiven = NOT_GIVEN,
-        status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DNSSEC]:
+    async def edit(self,
+    *,
+    zone_id: str,
+    dnssec_multi_signer: bool | NotGiven = NOT_GIVEN,
+    dnssec_presigned: bool | NotGiven = NOT_GIVEN,
+    status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DNSSEC]:
         """
         Enable or disable DNSSEC.
 
@@ -292,38 +264,29 @@ class AsyncDNSSECResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._patch(
             f"/zones/{zone_id}/dnssec",
-            body=await async_maybe_transform(
-                {
-                    "dnssec_multi_signer": dnssec_multi_signer,
-                    "dnssec_presigned": dnssec_presigned,
-                    "status": status,
-                },
-                dnssec_edit_params.DNSSECEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DNSSEC]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "dnssec_multi_signer": dnssec_multi_signer,
+                "dnssec_presigned": dnssec_presigned,
+                "status": status,
+            }, dnssec_edit_params.DNSSECEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DNSSEC]]._unwrapper),
             cast_to=cast(Type[Optional[DNSSEC]], ResultWrapper[DNSSEC]),
         )
 
-    async def get(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DNSSEC]:
+    async def get(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DNSSEC]:
         """
         Details about DNSSEC status and configuration.
 
@@ -339,19 +302,14 @@ class AsyncDNSSECResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._get(
             f"/zones/{zone_id}/dnssec",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DNSSEC]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DNSSEC]]._unwrapper),
             cast_to=cast(Type[Optional[DNSSEC]], ResultWrapper[DNSSEC]),
         )
-
 
 class DNSSECResourceWithRawResponse:
     def __init__(self, dnssec: DNSSECResource) -> None:
@@ -367,7 +325,6 @@ class DNSSECResourceWithRawResponse:
             dnssec.get,
         )
 
-
 class AsyncDNSSECResourceWithRawResponse:
     def __init__(self, dnssec: AsyncDNSSECResource) -> None:
         self._dnssec = dnssec
@@ -382,7 +339,6 @@ class AsyncDNSSECResourceWithRawResponse:
             dnssec.get,
         )
 
-
 class DNSSECResourceWithStreamingResponse:
     def __init__(self, dnssec: DNSSECResource) -> None:
         self._dnssec = dnssec
@@ -396,7 +352,6 @@ class DNSSECResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             dnssec.get,
         )
-
 
 class AsyncDNSSECResourceWithStreamingResponse:
     def __init__(self, dnssec: AsyncDNSSECResource) -> None:

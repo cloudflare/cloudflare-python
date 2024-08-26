@@ -2,15 +2,22 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 from .decision import Decision
+
+from typing import Iterable
+
 from ..access_rule_param import AccessRuleParam
+
 from .applications.approval_group_param import ApprovalGroupParam
 
-__all__ = ["PolicyUpdateParams"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ...._types import FileTypes
+from ...._utils import PropertyInfo
 
+__all__ = ["PolicyUpdateParams"]
 
 class PolicyUpdateParams(TypedDict, total=False):
     account_id: Required[str]

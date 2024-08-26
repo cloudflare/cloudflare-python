@@ -2,21 +2,32 @@
 
 from __future__ import annotations
 
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from typing import Optional, Any, cast
+
+from cloudflare.types.logpush import LogpushJob, JobDeleteResponse
+
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.logpush import LogpushJob, JobDeleteResponse
+from cloudflare.types.logpush import job_create_params
+from cloudflare.types.logpush import job_update_params
+from cloudflare.types.logpush import OutputOptions
+from cloudflare.types.logpush import OutputOptions
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestJobs:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -25,7 +36,7 @@ class TestJobs:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="account_id",
         )
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -58,20 +69,21 @@ class TestJobs:
             },
             ownership_challenge="00000000000000000000",
         )
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
+
         response = client.logpush.jobs.with_raw_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         job = response.parse()
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -79,12 +91,12 @@ class TestJobs:
         with client.logpush.jobs.with_streaming_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             job = response.parse()
-            assert_matches_type(Optional[LogpushJob], job, path=["response"])
+            assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -92,16 +104,16 @@ class TestJobs:
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.logpush.jobs.with_raw_response.create(
-                destination_conf="s3://mybucket/logs?region=us-west-2",
-                account_id="",
-            )
+          client.logpush.jobs.with_raw_response.create(
+              destination_conf="s3://mybucket/logs?region=us-west-2",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.logpush.jobs.with_raw_response.create(
-                destination_conf="s3://mybucket/logs?region=us-west-2",
-                account_id="account_id",
-            )
+          client.logpush.jobs.with_raw_response.create(
+              destination_conf="s3://mybucket/logs?region=us-west-2",
+              account_id="account_id",
+          )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -110,7 +122,7 @@ class TestJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -142,20 +154,21 @@ class TestJobs:
             },
             ownership_challenge="00000000000000000000",
         )
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
+
         response = client.logpush.jobs.with_raw_response.update(
             job_id=1,
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         job = response.parse()
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -163,12 +176,12 @@ class TestJobs:
         with client.logpush.jobs.with_streaming_response.update(
             job_id=1,
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             job = response.parse()
-            assert_matches_type(Optional[LogpushJob], job, path=["response"])
+            assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -176,16 +189,16 @@ class TestJobs:
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.logpush.jobs.with_raw_response.update(
-                job_id=1,
-                account_id="",
-            )
+          client.logpush.jobs.with_raw_response.update(
+              job_id=1,
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.logpush.jobs.with_raw_response.update(
-                job_id=1,
-                account_id="account_id",
-            )
+          client.logpush.jobs.with_raw_response.update(
+              job_id=1,
+              account_id="account_id",
+          )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -193,7 +206,7 @@ class TestJobs:
         job = client.logpush.jobs.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[Optional[LogpushJob]], job, path=["response"])
+        assert_matches_type(SyncSinglePage[Optional[LogpushJob]], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -201,31 +214,32 @@ class TestJobs:
         job = client.logpush.jobs.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[Optional[LogpushJob]], job, path=["response"])
+        assert_matches_type(SyncSinglePage[Optional[LogpushJob]], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
+
         response = client.logpush.jobs.with_raw_response.list(
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         job = response.parse()
-        assert_matches_type(SyncSinglePage[Optional[LogpushJob]], job, path=["response"])
+        assert_matches_type(SyncSinglePage[Optional[LogpushJob]], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.logpush.jobs.with_streaming_response.list(
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             job = response.parse()
-            assert_matches_type(SyncSinglePage[Optional[LogpushJob]], job, path=["response"])
+            assert_matches_type(SyncSinglePage[Optional[LogpushJob]], job, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -233,14 +247,14 @@ class TestJobs:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.logpush.jobs.with_raw_response.list(
-                account_id="",
-            )
+          client.logpush.jobs.with_raw_response.list(
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.logpush.jobs.with_raw_response.list(
-                account_id="account_id",
-            )
+          client.logpush.jobs.with_raw_response.list(
+              account_id="account_id",
+          )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -249,7 +263,7 @@ class TestJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -258,20 +272,21 @@ class TestJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
+
         response = client.logpush.jobs.with_raw_response.delete(
             job_id=1,
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         job = response.parse()
-        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -279,12 +294,12 @@ class TestJobs:
         with client.logpush.jobs.with_streaming_response.delete(
             job_id=1,
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             job = response.parse()
-            assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
+            assert_matches_type(Optional[JobDeleteResponse], job, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -292,16 +307,16 @@ class TestJobs:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.logpush.jobs.with_raw_response.delete(
-                job_id=1,
-                account_id="",
-            )
+          client.logpush.jobs.with_raw_response.delete(
+              job_id=1,
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.logpush.jobs.with_raw_response.delete(
-                job_id=1,
-                account_id="account_id",
-            )
+          client.logpush.jobs.with_raw_response.delete(
+              job_id=1,
+              account_id="account_id",
+          )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -310,7 +325,7 @@ class TestJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -319,20 +334,21 @@ class TestJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
+
         response = client.logpush.jobs.with_raw_response.get(
             job_id=1,
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         job = response.parse()
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -340,12 +356,12 @@ class TestJobs:
         with client.logpush.jobs.with_streaming_response.get(
             job_id=1,
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             job = response.parse()
-            assert_matches_type(Optional[LogpushJob], job, path=["response"])
+            assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -353,20 +369,19 @@ class TestJobs:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.logpush.jobs.with_raw_response.get(
-                job_id=1,
-                account_id="",
-            )
+          client.logpush.jobs.with_raw_response.get(
+              job_id=1,
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.logpush.jobs.with_raw_response.get(
-                job_id=1,
-                account_id="account_id",
-            )
-
-
+          client.logpush.jobs.with_raw_response.get(
+              job_id=1,
+              account_id="account_id",
+          )
 class TestAsyncJobs:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -375,7 +390,7 @@ class TestAsyncJobs:
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="account_id",
         )
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -408,20 +423,21 @@ class TestAsyncJobs:
             },
             ownership_challenge="00000000000000000000",
         )
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.logpush.jobs.with_raw_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         job = await response.parse()
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -429,12 +445,12 @@ class TestAsyncJobs:
         async with async_client.logpush.jobs.with_streaming_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             job = await response.parse()
-            assert_matches_type(Optional[LogpushJob], job, path=["response"])
+            assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -442,16 +458,16 @@ class TestAsyncJobs:
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.logpush.jobs.with_raw_response.create(
-                destination_conf="s3://mybucket/logs?region=us-west-2",
-                account_id="",
-            )
+          await async_client.logpush.jobs.with_raw_response.create(
+              destination_conf="s3://mybucket/logs?region=us-west-2",
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.logpush.jobs.with_raw_response.create(
-                destination_conf="s3://mybucket/logs?region=us-west-2",
-                account_id="account_id",
-            )
+          await async_client.logpush.jobs.with_raw_response.create(
+              destination_conf="s3://mybucket/logs?region=us-west-2",
+              account_id="account_id",
+          )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -460,7 +476,7 @@ class TestAsyncJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -492,20 +508,21 @@ class TestAsyncJobs:
             },
             ownership_challenge="00000000000000000000",
         )
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.logpush.jobs.with_raw_response.update(
             job_id=1,
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         job = await response.parse()
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -513,12 +530,12 @@ class TestAsyncJobs:
         async with async_client.logpush.jobs.with_streaming_response.update(
             job_id=1,
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             job = await response.parse()
-            assert_matches_type(Optional[LogpushJob], job, path=["response"])
+            assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -526,16 +543,16 @@ class TestAsyncJobs:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.logpush.jobs.with_raw_response.update(
-                job_id=1,
-                account_id="",
-            )
+          await async_client.logpush.jobs.with_raw_response.update(
+              job_id=1,
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.logpush.jobs.with_raw_response.update(
-                job_id=1,
-                account_id="account_id",
-            )
+          await async_client.logpush.jobs.with_raw_response.update(
+              job_id=1,
+              account_id="account_id",
+          )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -543,7 +560,7 @@ class TestAsyncJobs:
         job = await async_client.logpush.jobs.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[Optional[LogpushJob]], job, path=["response"])
+        assert_matches_type(AsyncSinglePage[Optional[LogpushJob]], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -551,31 +568,32 @@ class TestAsyncJobs:
         job = await async_client.logpush.jobs.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[Optional[LogpushJob]], job, path=["response"])
+        assert_matches_type(AsyncSinglePage[Optional[LogpushJob]], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.logpush.jobs.with_raw_response.list(
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         job = await response.parse()
-        assert_matches_type(AsyncSinglePage[Optional[LogpushJob]], job, path=["response"])
+        assert_matches_type(AsyncSinglePage[Optional[LogpushJob]], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.jobs.with_streaming_response.list(
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             job = await response.parse()
-            assert_matches_type(AsyncSinglePage[Optional[LogpushJob]], job, path=["response"])
+            assert_matches_type(AsyncSinglePage[Optional[LogpushJob]], job, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -583,14 +601,14 @@ class TestAsyncJobs:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.logpush.jobs.with_raw_response.list(
-                account_id="",
-            )
+          await async_client.logpush.jobs.with_raw_response.list(
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.logpush.jobs.with_raw_response.list(
-                account_id="account_id",
-            )
+          await async_client.logpush.jobs.with_raw_response.list(
+              account_id="account_id",
+          )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -599,7 +617,7 @@ class TestAsyncJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -608,20 +626,21 @@ class TestAsyncJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.logpush.jobs.with_raw_response.delete(
             job_id=1,
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         job = await response.parse()
-        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -629,12 +648,12 @@ class TestAsyncJobs:
         async with async_client.logpush.jobs.with_streaming_response.delete(
             job_id=1,
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             job = await response.parse()
-            assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
+            assert_matches_type(Optional[JobDeleteResponse], job, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -642,16 +661,16 @@ class TestAsyncJobs:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.logpush.jobs.with_raw_response.delete(
-                job_id=1,
-                account_id="",
-            )
+          await async_client.logpush.jobs.with_raw_response.delete(
+              job_id=1,
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.logpush.jobs.with_raw_response.delete(
-                job_id=1,
-                account_id="account_id",
-            )
+          await async_client.logpush.jobs.with_raw_response.delete(
+              job_id=1,
+              account_id="account_id",
+          )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -660,7 +679,7 @@ class TestAsyncJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -669,20 +688,21 @@ class TestAsyncJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.logpush.jobs.with_raw_response.get(
             job_id=1,
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         job = await response.parse()
-        assert_matches_type(Optional[LogpushJob], job, path=["response"])
+        assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -690,12 +710,12 @@ class TestAsyncJobs:
         async with async_client.logpush.jobs.with_streaming_response.get(
             job_id=1,
             account_id="account_id",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             job = await response.parse()
-            assert_matches_type(Optional[LogpushJob], job, path=["response"])
+            assert_matches_type(Optional[LogpushJob], job, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -703,13 +723,13 @@ class TestAsyncJobs:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.logpush.jobs.with_raw_response.get(
-                job_id=1,
-                account_id="",
-            )
+          await async_client.logpush.jobs.with_raw_response.get(
+              job_id=1,
+              account_id="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.logpush.jobs.with_raw_response.get(
-                job_id=1,
-                account_id="account_id",
-            )
+          await async_client.logpush.jobs.with_raw_response.get(
+              job_id=1,
+              account_id="account_id",
+          )

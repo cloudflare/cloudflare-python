@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
-
 from .header_param import HeaderParam
 
-__all__ = ["OriginParam"]
+from typing_extensions import TypedDict
 
+__all__ = ["OriginParam"]
 
 class OriginParam(TypedDict, total=False):
     address: str

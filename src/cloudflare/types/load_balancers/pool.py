@@ -1,17 +1,26 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from ..._models import BaseModel
+
+from typing import Optional, List
+
+from .check_region import CheckRegion
+
 from datetime import datetime
 
-from .origin import Origin
-from ..._models import BaseModel
-from .check_region import CheckRegion
 from .load_shedding import LoadShedding
-from .origin_steering import OriginSteering
+
 from .notification_filter import NotificationFilter
 
-__all__ = ["Pool"]
+from .origin_steering import OriginSteering
 
+from .origin import Origin
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["Pool"]
 
 class Pool(BaseModel):
     id: Optional[str] = None

@@ -2,12 +2,16 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 from .configuration_param import ConfigurationParam
 
-__all__ = ["ConfigUpdateParams", "Caching"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
+__all__ = ["ConfigUpdateParams", "Caching"]
 
 class ConfigUpdateParams(TypedDict, total=False):
     account_id: Required[str]
@@ -18,7 +22,6 @@ class ConfigUpdateParams(TypedDict, total=False):
     origin: Required[ConfigurationParam]
 
     caching: Caching
-
 
 class Caching(TypedDict, total=False):
     disabled: bool

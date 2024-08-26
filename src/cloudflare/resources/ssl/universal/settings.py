@@ -2,30 +2,36 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.ssl.universal import setting_edit_params
+
 from ....types.ssl.universal.universal_ssl_settings import UniversalSSLSettings
 
-__all__ = ["SettingsResource", "AsyncSettingsResource"]
+from ...._wrappers import ResultWrapper
 
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ...._base_client import make_request_options
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.ssl.universal import setting_edit_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["SettingsResource", "AsyncSettingsResource"]
 
 class SettingsResource(SyncAPIResource):
     @cached_property
@@ -36,18 +42,16 @@ class SettingsResource(SyncAPIResource):
     def with_streaming_response(self) -> SettingsResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self)
 
-    def edit(
-        self,
-        *,
-        zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UniversalSSLSettings]:
+    def edit(self,
+    *,
+    zone_id: str,
+    enabled: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[UniversalSSLSettings]:
         """
         Patch Universal SSL Settings for a Zone.
 
@@ -89,31 +93,27 @@ class SettingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._patch(
             f"/zones/{zone_id}/ssl/universal/settings",
-            body=maybe_transform({"enabled": enabled}, setting_edit_params.SettingEditParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[UniversalSSLSettings]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "enabled": enabled
+            }, setting_edit_params.SettingEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[UniversalSSLSettings]]._unwrapper),
             cast_to=cast(Type[Optional[UniversalSSLSettings]], ResultWrapper[UniversalSSLSettings]),
         )
 
-    def get(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UniversalSSLSettings]:
+    def get(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[UniversalSSLSettings]:
         """
         Get Universal SSL Settings for a Zone.
 
@@ -129,19 +129,14 @@ class SettingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get(
             f"/zones/{zone_id}/ssl/universal/settings",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[UniversalSSLSettings]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[UniversalSSLSettings]]._unwrapper),
             cast_to=cast(Type[Optional[UniversalSSLSettings]], ResultWrapper[UniversalSSLSettings]),
         )
-
 
 class AsyncSettingsResource(AsyncAPIResource):
     @cached_property
@@ -152,18 +147,16 @@ class AsyncSettingsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSettingsResourceWithStreamingResponse:
         return AsyncSettingsResourceWithStreamingResponse(self)
 
-    async def edit(
-        self,
-        *,
-        zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UniversalSSLSettings]:
+    async def edit(self,
+    *,
+    zone_id: str,
+    enabled: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[UniversalSSLSettings]:
         """
         Patch Universal SSL Settings for a Zone.
 
@@ -205,31 +198,27 @@ class AsyncSettingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._patch(
             f"/zones/{zone_id}/ssl/universal/settings",
-            body=await async_maybe_transform({"enabled": enabled}, setting_edit_params.SettingEditParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[UniversalSSLSettings]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "enabled": enabled
+            }, setting_edit_params.SettingEditParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[UniversalSSLSettings]]._unwrapper),
             cast_to=cast(Type[Optional[UniversalSSLSettings]], ResultWrapper[UniversalSSLSettings]),
         )
 
-    async def get(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UniversalSSLSettings]:
+    async def get(self,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[UniversalSSLSettings]:
         """
         Get Universal SSL Settings for a Zone.
 
@@ -245,19 +234,14 @@ class AsyncSettingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return await self._get(
             f"/zones/{zone_id}/ssl/universal/settings",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[UniversalSSLSettings]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[UniversalSSLSettings]]._unwrapper),
             cast_to=cast(Type[Optional[UniversalSSLSettings]], ResultWrapper[UniversalSSLSettings]),
         )
-
 
 class SettingsResourceWithRawResponse:
     def __init__(self, settings: SettingsResource) -> None:
@@ -270,7 +254,6 @@ class SettingsResourceWithRawResponse:
             settings.get,
         )
 
-
 class AsyncSettingsResourceWithRawResponse:
     def __init__(self, settings: AsyncSettingsResource) -> None:
         self._settings = settings
@@ -282,7 +265,6 @@ class AsyncSettingsResourceWithRawResponse:
             settings.get,
         )
 
-
 class SettingsResourceWithStreamingResponse:
     def __init__(self, settings: SettingsResource) -> None:
         self._settings = settings
@@ -293,7 +275,6 @@ class SettingsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             settings.get,
         )
-
 
 class AsyncSettingsResourceWithStreamingResponse:
     def __init__(self, settings: AsyncSettingsResource) -> None:

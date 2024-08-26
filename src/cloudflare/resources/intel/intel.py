@@ -2,103 +2,50 @@
 
 from __future__ import annotations
 
-from .asn import (
-    ASNResource,
-    AsyncASNResource,
-    ASNResourceWithRawResponse,
-    AsyncASNResourceWithRawResponse,
-    ASNResourceWithStreamingResponse,
-    AsyncASNResourceWithStreamingResponse,
-)
-from .dns import (
-    DNSResource,
-    AsyncDNSResource,
-    DNSResourceWithRawResponse,
-    AsyncDNSResourceWithRawResponse,
-    DNSResourceWithStreamingResponse,
-    AsyncDNSResourceWithStreamingResponse,
-)
-from .ips import (
-    IPsResource,
-    AsyncIPsResource,
-    IPsResourceWithRawResponse,
-    AsyncIPsResourceWithRawResponse,
-    IPsResourceWithStreamingResponse,
-    AsyncIPsResourceWithStreamingResponse,
-)
-from .whois import (
-    WhoisResource,
-    AsyncWhoisResource,
-    WhoisResourceWithRawResponse,
-    AsyncWhoisResourceWithRawResponse,
-    WhoisResourceWithStreamingResponse,
-    AsyncWhoisResourceWithStreamingResponse,
-)
 from .asn.asn import ASNResource, AsyncASNResource
-from .domains import (
-    DomainsResource,
-    AsyncDomainsResource,
-    DomainsResourceWithRawResponse,
-    AsyncDomainsResourceWithRawResponse,
-    DomainsResourceWithStreamingResponse,
-    AsyncDomainsResourceWithStreamingResponse,
-)
-from .ip_lists import (
-    IPListsResource,
-    AsyncIPListsResource,
-    IPListsResourceWithRawResponse,
-    AsyncIPListsResourceWithRawResponse,
-    IPListsResourceWithStreamingResponse,
-    AsyncIPListsResourceWithStreamingResponse,
-)
+
 from ..._compat import cached_property
-from .sinkholes import (
-    SinkholesResource,
-    AsyncSinkholesResource,
-    SinkholesResourceWithRawResponse,
-    AsyncSinkholesResourceWithRawResponse,
-    SinkholesResourceWithStreamingResponse,
-    AsyncSinkholesResourceWithStreamingResponse,
-)
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .domain_history import (
-    DomainHistoryResource,
-    AsyncDomainHistoryResource,
-    DomainHistoryResourceWithRawResponse,
-    AsyncDomainHistoryResourceWithRawResponse,
-    DomainHistoryResourceWithStreamingResponse,
-    AsyncDomainHistoryResourceWithStreamingResponse,
-)
+
+from .dns import DNSResource, AsyncDNSResource
+
 from .domains.domains import DomainsResource, AsyncDomainsResource
-from .indicator_feeds import (
-    IndicatorFeedsResource,
-    AsyncIndicatorFeedsResource,
-    IndicatorFeedsResourceWithRawResponse,
-    AsyncIndicatorFeedsResourceWithRawResponse,
-    IndicatorFeedsResourceWithStreamingResponse,
-    AsyncIndicatorFeedsResourceWithStreamingResponse,
-)
-from .miscategorizations import (
-    MiscategorizationsResource,
-    AsyncMiscategorizationsResource,
-    MiscategorizationsResourceWithRawResponse,
-    AsyncMiscategorizationsResourceWithRawResponse,
-    MiscategorizationsResourceWithStreamingResponse,
-    AsyncMiscategorizationsResourceWithStreamingResponse,
-)
-from .attack_surface_report import (
-    AttackSurfaceReportResource,
-    AsyncAttackSurfaceReportResource,
-    AttackSurfaceReportResourceWithRawResponse,
-    AsyncAttackSurfaceReportResourceWithRawResponse,
-    AttackSurfaceReportResourceWithStreamingResponse,
-    AsyncAttackSurfaceReportResourceWithStreamingResponse,
-)
+
+from .domain_history import DomainHistoryResource, AsyncDomainHistoryResource
+
+from .ips import IPsResource, AsyncIPsResource
+
+from .ip_lists import IPListsResource, AsyncIPListsResource
+
+from .miscategorizations import MiscategorizationsResource, AsyncMiscategorizationsResource
+
+from .whois import WhoisResource, AsyncWhoisResource
+
 from .indicator_feeds.indicator_feeds import IndicatorFeedsResource, AsyncIndicatorFeedsResource
+
+from .sinkholes import SinkholesResource, AsyncSinkholesResource
+
 from .attack_surface_report.attack_surface_report import AttackSurfaceReportResource, AsyncAttackSurfaceReportResource
 
-__all__ = ["IntelResource", "AsyncIntelResource"]
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from .asn import ASNResource, AsyncASNResource, ASNResourceWithRawResponse, AsyncASNResourceWithRawResponse, ASNResourceWithStreamingResponse, AsyncASNResourceWithStreamingResponse
+from .dns import DNSResource, AsyncDNSResource, DNSResourceWithRawResponse, AsyncDNSResourceWithRawResponse, DNSResourceWithStreamingResponse, AsyncDNSResourceWithStreamingResponse
+from .domains import DomainsResource, AsyncDomainsResource, DomainsResourceWithRawResponse, AsyncDomainsResourceWithRawResponse, DomainsResourceWithStreamingResponse, AsyncDomainsResourceWithStreamingResponse
+from .domain_history import DomainHistoryResource, AsyncDomainHistoryResource, DomainHistoryResourceWithRawResponse, AsyncDomainHistoryResourceWithRawResponse, DomainHistoryResourceWithStreamingResponse, AsyncDomainHistoryResourceWithStreamingResponse
+from .ips import IPsResource, AsyncIPsResource, IPsResourceWithRawResponse, AsyncIPsResourceWithRawResponse, IPsResourceWithStreamingResponse, AsyncIPsResourceWithStreamingResponse
+from .ip_lists import IPListsResource, AsyncIPListsResource, IPListsResourceWithRawResponse, AsyncIPListsResourceWithRawResponse, IPListsResourceWithStreamingResponse, AsyncIPListsResourceWithStreamingResponse
+from .miscategorizations import MiscategorizationsResource, AsyncMiscategorizationsResource, MiscategorizationsResourceWithRawResponse, AsyncMiscategorizationsResourceWithRawResponse, MiscategorizationsResourceWithStreamingResponse, AsyncMiscategorizationsResourceWithStreamingResponse
+from .whois import WhoisResource, AsyncWhoisResource, WhoisResourceWithRawResponse, AsyncWhoisResourceWithRawResponse, WhoisResourceWithStreamingResponse, AsyncWhoisResourceWithStreamingResponse
+from .indicator_feeds import IndicatorFeedsResource, AsyncIndicatorFeedsResource, IndicatorFeedsResourceWithRawResponse, AsyncIndicatorFeedsResourceWithRawResponse, IndicatorFeedsResourceWithStreamingResponse, AsyncIndicatorFeedsResourceWithStreamingResponse
+from .sinkholes import SinkholesResource, AsyncSinkholesResource, SinkholesResourceWithRawResponse, AsyncSinkholesResourceWithRawResponse, SinkholesResourceWithStreamingResponse, AsyncSinkholesResourceWithStreamingResponse
+from .attack_surface_report import AttackSurfaceReportResource, AsyncAttackSurfaceReportResource, AttackSurfaceReportResourceWithRawResponse, AsyncAttackSurfaceReportResourceWithRawResponse, AttackSurfaceReportResourceWithStreamingResponse, AsyncAttackSurfaceReportResourceWithStreamingResponse
 
+__all__ = ["IntelResource", "AsyncIntelResource"]
 
 class IntelResource(SyncAPIResource):
     @cached_property
@@ -153,7 +100,6 @@ class IntelResource(SyncAPIResource):
     def with_streaming_response(self) -> IntelResourceWithStreamingResponse:
         return IntelResourceWithStreamingResponse(self)
 
-
 class AsyncIntelResource(AsyncAPIResource):
     @cached_property
     def asn(self) -> AsyncASNResource:
@@ -207,7 +153,6 @@ class AsyncIntelResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncIntelResourceWithStreamingResponse:
         return AsyncIntelResourceWithStreamingResponse(self)
 
-
 class IntelResourceWithRawResponse:
     def __init__(self, intel: IntelResource) -> None:
         self._intel = intel
@@ -255,7 +200,6 @@ class IntelResourceWithRawResponse:
     @cached_property
     def attack_surface_report(self) -> AttackSurfaceReportResourceWithRawResponse:
         return AttackSurfaceReportResourceWithRawResponse(self._intel.attack_surface_report)
-
 
 class AsyncIntelResourceWithRawResponse:
     def __init__(self, intel: AsyncIntelResource) -> None:
@@ -305,7 +249,6 @@ class AsyncIntelResourceWithRawResponse:
     def attack_surface_report(self) -> AsyncAttackSurfaceReportResourceWithRawResponse:
         return AsyncAttackSurfaceReportResourceWithRawResponse(self._intel.attack_surface_report)
 
-
 class IntelResourceWithStreamingResponse:
     def __init__(self, intel: IntelResource) -> None:
         self._intel = intel
@@ -353,7 +296,6 @@ class IntelResourceWithStreamingResponse:
     @cached_property
     def attack_surface_report(self) -> AttackSurfaceReportResourceWithStreamingResponse:
         return AttackSurfaceReportResourceWithStreamingResponse(self._intel.attack_surface_report)
-
 
 class AsyncIntelResourceWithStreamingResponse:
     def __init__(self, intel: AsyncIntelResource) -> None:

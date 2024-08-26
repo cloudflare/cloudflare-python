@@ -2,13 +2,18 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Required, Literal
 
-from .geo_restrictions_param import GeoRestrictionsParam
 from ..custom_hostnames.bundle_method import BundleMethod
 
-__all__ = ["CustomCertificateCreateParams"]
+from .geo_restrictions_param import GeoRestrictionsParam
 
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
+
+__all__ = ["CustomCertificateCreateParams"]
 
 class CustomCertificateCreateParams(TypedDict, total=False):
     zone_id: Required[str]

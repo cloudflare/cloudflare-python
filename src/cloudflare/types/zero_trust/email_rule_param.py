@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 __all__ = ["EmailRuleParam", "Email"]
-
 
 class Email(TypedDict, total=False):
     email: Required[str]
     """The email of the user."""
-
 
 class EmailRuleParam(TypedDict, total=False):
     email: Required[Email]

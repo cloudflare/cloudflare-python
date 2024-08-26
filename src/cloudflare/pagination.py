@@ -1,41 +1,33 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Generic, TypeVar, Optional, cast
+from ._models import GenericModel, BaseModel
+
+from typing import Generic, Optional, List
+
 from typing_extensions import override
 
-from ._models import BaseModel, GenericModel
-from ._base_client import BasePage, PageInfo, BaseSyncPage, BaseAsyncPage
+import re
+from typing import Optional, TypeVar, List, Generic, Dict, Any, Type, Mapping, cast
+from typing_extensions import TypedDict, Literal, Annotated, Protocol, runtime_checkable
 
-__all__ = [
-    "V4PagePaginationResult",
-    "V4PagePaginationResultInfo",
-    "SyncV4PagePagination",
-    "AsyncV4PagePagination",
-    "V4PagePaginationArrayResultInfo",
-    "SyncV4PagePaginationArray",
-    "AsyncV4PagePaginationArray",
-    "CursorPaginationResultInfo",
-    "SyncCursorPagination",
-    "AsyncCursorPagination",
-    "CursorLimitPaginationResultInfo",
-    "SyncCursorLimitPagination",
-    "AsyncCursorLimitPagination",
-    "SyncSinglePage",
-    "AsyncSinglePage",
-]
+from httpx import URL, Response
+from pydantic import Field as FieldInfo
 
-_T = TypeVar("_T")
+from ._models import BaseModel
+from ._utils import PropertyInfo, is_mapping
+from ._base_client import BasePage, BaseSyncPage, BaseAsyncPage, PageInfo
 
+__all__ = ["V4PagePaginationResult", "V4PagePaginationResultInfo", "SyncV4PagePagination", "AsyncV4PagePagination", "V4PagePaginationArrayResultInfo", "SyncV4PagePaginationArray", "AsyncV4PagePaginationArray", "CursorPaginationResultInfo", "SyncCursorPagination", "AsyncCursorPagination", "CursorLimitPaginationResultInfo", "SyncCursorLimitPagination", "AsyncCursorLimitPagination", "SyncSinglePage", "AsyncSinglePage"]
+
+_T = TypeVar('_T')
 
 class V4PagePaginationResult(GenericModel, Generic[_T]):
     items: Optional[List[_T]] = None
-
 
 class V4PagePaginationResultInfo(BaseModel):
     page: Optional[int] = None
 
     per_page: Optional[int] = None
-
 
 class SyncV4PagePagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     result: Optional[V4PagePaginationResult[_T]] = None
@@ -44,18 +36,19 @@ class SyncV4PagePagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     @override
     def _get_page_items(self) -> List[_T]:
         items = None
-        if self.result is not None:
-            items = self.result.items
+        if self.result is not None :
+          items = self.result.items
         if not items:
             return []
         return items
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        last_page = cast("int | None", self._options.params.get("page")) or 1
+        last_page = cast('int | None', self._options.params.get('page')) or 1
 
-        return PageInfo(params={"page": last_page + 1})
-
+        return PageInfo(params={
+            "page": last_page + 1
+        })
 
 class AsyncV4PagePagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     result: Optional[V4PagePaginationResult[_T]] = None
@@ -64,24 +57,24 @@ class AsyncV4PagePagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     @override
     def _get_page_items(self) -> List[_T]:
         items = None
-        if self.result is not None:
-            items = self.result.items
+        if self.result is not None :
+          items = self.result.items
         if not items:
             return []
         return items
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        last_page = cast("int | None", self._options.params.get("page")) or 1
+        last_page = cast('int | None', self._options.params.get('page')) or 1
 
-        return PageInfo(params={"page": last_page + 1})
-
+        return PageInfo(params={
+            "page": last_page + 1
+        })
 
 class V4PagePaginationArrayResultInfo(BaseModel):
     page: Optional[int] = None
 
     per_page: Optional[int] = None
-
 
 class SyncV4PagePaginationArray(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     result: List[_T]
@@ -96,10 +89,11 @@ class SyncV4PagePaginationArray(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        last_page = cast("int | None", self._options.params.get("page")) or 1
+        last_page = cast('int | None', self._options.params.get('page')) or 1
 
-        return PageInfo(params={"page": last_page + 1})
-
+        return PageInfo(params={
+            "page": last_page + 1
+        })
 
 class AsyncV4PagePaginationArray(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     result: List[_T]
@@ -114,10 +108,11 @@ class AsyncV4PagePaginationArray(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        last_page = cast("int | None", self._options.params.get("page")) or 1
+        last_page = cast('int | None', self._options.params.get('page')) or 1
 
-        return PageInfo(params={"page": last_page + 1})
-
+        return PageInfo(params={
+            "page": last_page + 1
+        })
 
 class CursorPaginationResultInfo(BaseModel):
     count: Optional[int] = None
@@ -125,7 +120,6 @@ class CursorPaginationResultInfo(BaseModel):
     cursor: Optional[str] = None
 
     per_page: Optional[int] = None
-
 
 class SyncCursorPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     result: List[_T]
@@ -141,13 +135,12 @@ class SyncCursorPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     @override
     def next_page_info(self) -> Optional[PageInfo]:
         cursor = None
-        if self.result_info is not None:
-            cursor = self.result_info.cursor
+        if self.result_info is not None :
+          cursor = self.result_info.cursor
         if not cursor:
-            return None
+          return None
 
-        return PageInfo(params={"cursor": cursor})
-
+        return PageInfo(params={'cursor': cursor})
 
 class AsyncCursorPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     result: List[_T]
@@ -163,13 +156,12 @@ class AsyncCursorPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     @override
     def next_page_info(self) -> Optional[PageInfo]:
         cursor = None
-        if self.result_info is not None:
-            cursor = self.result_info.cursor
+        if self.result_info is not None :
+          cursor = self.result_info.cursor
         if not cursor:
-            return None
+          return None
 
-        return PageInfo(params={"cursor": cursor})
-
+        return PageInfo(params={'cursor': cursor})
 
 class CursorLimitPaginationResultInfo(BaseModel):
     count: Optional[int] = None
@@ -177,7 +169,6 @@ class CursorLimitPaginationResultInfo(BaseModel):
     cursor: Optional[str] = None
 
     per_page: Optional[int] = None
-
 
 class SyncCursorLimitPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     result: List[_T]
@@ -193,13 +184,12 @@ class SyncCursorLimitPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     @override
     def next_page_info(self) -> Optional[PageInfo]:
         cursor = None
-        if self.result_info is not None:
-            cursor = self.result_info.cursor
+        if self.result_info is not None :
+          cursor = self.result_info.cursor
         if not cursor:
-            return None
+          return None
 
-        return PageInfo(params={"cursor": cursor})
-
+        return PageInfo(params={'cursor': cursor})
 
 class AsyncCursorLimitPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     result: List[_T]
@@ -215,13 +205,12 @@ class AsyncCursorLimitPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     @override
     def next_page_info(self) -> Optional[PageInfo]:
         cursor = None
-        if self.result_info is not None:
-            cursor = self.result_info.cursor
+        if self.result_info is not None :
+          cursor = self.result_info.cursor
         if not cursor:
-            return None
+          return None
 
-        return PageInfo(params={"cursor": cursor})
-
+        return PageInfo(params={'cursor': cursor})
 
 class SyncSinglePage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     result: List[_T]
@@ -240,7 +229,6 @@ class SyncSinglePage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
         so there will never be a next page.
         """
         return None
-
 
 class AsyncSinglePage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     result: List[_T]

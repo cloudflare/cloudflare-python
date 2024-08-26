@@ -6,7 +6,6 @@ from typing_extensions import Literal, TypedDict
 
 __all__ = ["RewriteActionParam"]
 
-
 class RewriteActionParam(TypedDict, total=False):
     block: Literal["challenge", "block", "simulate", "disable", "default"]
     """The WAF rule action to apply."""

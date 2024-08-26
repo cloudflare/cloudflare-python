@@ -2,35 +2,135 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.radar.attacks.layer7 import TimeseriesGroupGetResponse, TimeseriesGroupHTTPMethodResponse, TimeseriesGroupHTTPVersionResponse, TimeseriesGroupIndustryResponse, TimeseriesGroupIPVersionResponse, TimeseriesGroupManagedRulesResponse, TimeseriesGroupMitigationProductResponse, TimeseriesGroupVerticalResponse
+
 from typing import Any, cast
 
+import os
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.radar.attacks.layer7 import timeseries_group_get_params
+from cloudflare.types.radar.attacks.layer7 import timeseries_group_http_method_params
+from cloudflare.types.radar.attacks.layer7 import timeseries_group_http_version_params
+from cloudflare.types.radar.attacks.layer7 import timeseries_group_industry_params
+from cloudflare.types.radar.attacks.layer7 import timeseries_group_ip_version_params
+from cloudflare.types.radar.attacks.layer7 import timeseries_group_managed_rules_params
+from cloudflare.types.radar.attacks.layer7 import timeseries_group_mitigation_product_params
+from cloudflare.types.radar.attacks.layer7 import timeseries_group_vertical_params
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar.attacks.layer7 import (
-    TimeseriesGroupGetResponse,
-    TimeseriesGroupIndustryResponse,
-    TimeseriesGroupVerticalResponse,
-    TimeseriesGroupIPVersionResponse,
-    TimeseriesGroupHTTPMethodResponse,
-    TimeseriesGroupHTTPVersionResponse,
-    TimeseriesGroupManagedRulesResponse,
-    TimeseriesGroupMitigationProductResponse,
-)
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestTimeseriesGroups:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.get()
-        assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
@@ -38,47 +138,40 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string", "string", "string"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
+
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.get()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = response.parse()
-        assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.get() as response:
+        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.get() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = response.parse()
-            assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_http_method(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.http_method()
-        assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_method_http_method_with_all_params(self, client: Cloudflare) -> None:
@@ -86,17 +179,9 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
             ip_version=["IPv4", "IPv6"],
@@ -105,32 +190,33 @@ class TestTimeseriesGroups:
             name=["string", "string", "string"],
             normalization="PERCENTAGE",
         )
-        assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_raw_response_http_method(self, client: Cloudflare) -> None:
+
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.http_method()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = response.parse()
-        assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_streaming_response_http_method(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_method() as response:
+        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_method() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = response.parse()
-            assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_http_version(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.http_version()
-        assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_method_http_version_with_all_params(self, client: Cloudflare) -> None:
@@ -138,17 +224,9 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             ip_version=["IPv4", "IPv6"],
@@ -157,32 +235,33 @@ class TestTimeseriesGroups:
             name=["string", "string", "string"],
             normalization="PERCENTAGE",
         )
-        assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_raw_response_http_version(self, client: Cloudflare) -> None:
+
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.http_version()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = response.parse()
-        assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_streaming_response_http_version(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_version() as response:
+        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_version() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = response.parse()
-            assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_industry(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.industry()
-        assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_method_industry_with_all_params(self, client: Cloudflare) -> None:
@@ -190,17 +269,9 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -211,32 +282,33 @@ class TestTimeseriesGroups:
             name=["string", "string", "string"],
             normalization="PERCENTAGE",
         )
-        assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_raw_response_industry(self, client: Cloudflare) -> None:
+
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.industry()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = response.parse()
-        assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_streaming_response_industry(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.industry() as response:
+        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.industry() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = response.parse()
-            assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_ip_version(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.ip_version()
-        assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
@@ -244,17 +316,9 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -263,32 +327,33 @@ class TestTimeseriesGroups:
             name=["string", "string", "string"],
             normalization="PERCENTAGE",
         )
-        assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_raw_response_ip_version(self, client: Cloudflare) -> None:
+
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.ip_version()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = response.parse()
-        assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_streaming_response_ip_version(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.ip_version() as response:
+        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.ip_version() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = response.parse()
-            assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_managed_rules(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.managed_rules()
-        assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_method_managed_rules_with_all_params(self, client: Cloudflare) -> None:
@@ -296,17 +361,9 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -316,32 +373,33 @@ class TestTimeseriesGroups:
             name=["string", "string", "string"],
             normalization="PERCENTAGE",
         )
-        assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_raw_response_managed_rules(self, client: Cloudflare) -> None:
+
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.managed_rules()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = response.parse()
-        assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_streaming_response_managed_rules(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.managed_rules() as response:
+        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.managed_rules() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = response.parse()
-            assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_mitigation_product(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.mitigation_product()
-        assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_method_mitigation_product_with_all_params(self, client: Cloudflare) -> None:
@@ -349,17 +407,9 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -368,32 +418,33 @@ class TestTimeseriesGroups:
             name=["string", "string", "string"],
             normalization="PERCENTAGE",
         )
-        assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_raw_response_mitigation_product(self, client: Cloudflare) -> None:
+
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.mitigation_product()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = response.parse()
-        assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_streaming_response_mitigation_product(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.mitigation_product() as response:
+        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.mitigation_product() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = response.parse()
-            assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_vertical(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.vertical()
-        assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_method_vertical_with_all_params(self, client: Cloudflare) -> None:
@@ -401,17 +452,9 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -422,36 +465,36 @@ class TestTimeseriesGroups:
             name=["string", "string", "string"],
             normalization="PERCENTAGE",
         )
-        assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_raw_response_vertical(self, client: Cloudflare) -> None:
+
         response = client.radar.attacks.layer7.timeseries_groups.with_raw_response.vertical()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = response.parse()
-        assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=['response'])
 
     @parametrize
     def test_streaming_response_vertical(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.vertical() as response:
+        with client.radar.attacks.layer7.timeseries_groups.with_streaming_response.vertical() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = response.parse()
-            assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
-
-
 class TestAsyncTimeseriesGroups:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.get()
-        assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -459,47 +502,40 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string", "string", "string"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.get()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = await response.parse()
-        assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.get() as response:
+        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.get() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = await response.parse()
-            assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_http_method(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.http_method()
-        assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_method_http_method_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -507,17 +543,9 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
             ip_version=["IPv4", "IPv6"],
@@ -526,32 +554,33 @@ class TestAsyncTimeseriesGroups:
             name=["string", "string", "string"],
             normalization="PERCENTAGE",
         )
-        assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_raw_response_http_method(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.http_method()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = await response.parse()
-        assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_streaming_response_http_method(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_method() as response:
+        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_method() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = await response.parse()
-            assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_http_version(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.http_version()
-        assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_method_http_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -559,17 +588,9 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             ip_version=["IPv4", "IPv6"],
@@ -578,32 +599,33 @@ class TestAsyncTimeseriesGroups:
             name=["string", "string", "string"],
             normalization="PERCENTAGE",
         )
-        assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_raw_response_http_version(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.http_version()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = await response.parse()
-        assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_streaming_response_http_version(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_version() as response:
+        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_version() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = await response.parse()
-            assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_industry(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.industry()
-        assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_method_industry_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -611,17 +633,9 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -632,32 +646,33 @@ class TestAsyncTimeseriesGroups:
             name=["string", "string", "string"],
             normalization="PERCENTAGE",
         )
-        assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_raw_response_industry(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.industry()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = await response.parse()
-        assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_streaming_response_industry(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.industry() as response:
+        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.industry() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = await response.parse()
-            assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_ip_version(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.ip_version()
-        assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -665,17 +680,9 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -684,32 +691,33 @@ class TestAsyncTimeseriesGroups:
             name=["string", "string", "string"],
             normalization="PERCENTAGE",
         )
-        assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_raw_response_ip_version(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.ip_version()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = await response.parse()
-        assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_streaming_response_ip_version(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.ip_version() as response:
+        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.ip_version() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = await response.parse()
-            assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_managed_rules(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.managed_rules()
-        assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_method_managed_rules_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -717,17 +725,9 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -737,32 +737,33 @@ class TestAsyncTimeseriesGroups:
             name=["string", "string", "string"],
             normalization="PERCENTAGE",
         )
-        assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_raw_response_managed_rules(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.managed_rules()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = await response.parse()
-        assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_streaming_response_managed_rules(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.managed_rules() as response:
+        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.managed_rules() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = await response.parse()
-            assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_mitigation_product(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.mitigation_product()
-        assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_method_mitigation_product_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -770,17 +771,9 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -789,32 +782,33 @@ class TestAsyncTimeseriesGroups:
             name=["string", "string", "string"],
             normalization="PERCENTAGE",
         )
-        assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_raw_response_mitigation_product(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.mitigation_product()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = await response.parse()
-        assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_streaming_response_mitigation_product(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.mitigation_product() as response:
+        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.mitigation_product() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = await response.parse()
-            assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_vertical(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.vertical()
-        assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_method_vertical_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -822,17 +816,9 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -843,24 +829,25 @@ class TestAsyncTimeseriesGroups:
             name=["string", "string", "string"],
             normalization="PERCENTAGE",
         )
-        assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_raw_response_vertical(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.radar.attacks.layer7.timeseries_groups.with_raw_response.vertical()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         timeseries_group = await response.parse()
-        assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
+        assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=['response'])
 
     @parametrize
     async def test_streaming_response_vertical(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.vertical() as response:
+        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.vertical() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             timeseries_group = await response.parse()
-            assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
+            assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=['response'])
 
         assert cast(Any, response.is_closed) is True

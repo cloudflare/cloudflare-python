@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from .stage import Stage as Stage
-from .project import Project as Project
 from .deployment import Deployment as Deployment
-from .project_edit_params import ProjectEditParams as ProjectEditParams
+from .project import Project as Project
+from .stage import Stage as Stage
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
+from .project_edit_params import ProjectEditParams as ProjectEditParams

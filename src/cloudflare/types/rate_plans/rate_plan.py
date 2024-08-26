@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["RatePlan", "Component"]
+from typing import Optional, List
 
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["RatePlan", "Component"]
 
 class Component(BaseModel):
     default: Optional[float] = None
@@ -17,7 +21,6 @@ class Component(BaseModel):
 
     unit_price: Optional[float] = None
     """The unit price of the addon."""
-
 
 class RatePlan(BaseModel):
     id: Optional[str] = None

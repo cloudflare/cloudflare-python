@@ -1,14 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
-
 from ..._models import BaseModel
-from ..ssl.request_validity import RequestValidity
+
+from typing import List, Optional
+
 from ..shared.certificate_request_type import CertificateRequestType
 
-__all__ = ["OriginCACertificateDeleteResponse"]
+from ..ssl.request_validity import RequestValidity
 
+from datetime import datetime
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["OriginCACertificateDeleteResponse"]
 
 class OriginCACertificateDeleteResponse(BaseModel):
     csr: str

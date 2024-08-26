@@ -2,22 +2,18 @@
 
 from __future__ import annotations
 
-from typing import Union
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+from typing_extensions import TypedDict, Required, Annotated, Literal, TypeAlias
 
-from ..._utils import PropertyInfo
 from .provider import Provider
 
-__all__ = [
-    "SippyUpdateParams",
-    "R2EnableSippyAws",
-    "R2EnableSippyAwsDestination",
-    "R2EnableSippyAwsSource",
-    "R2EnableSippyGcs",
-    "R2EnableSippyGcsDestination",
-    "R2EnableSippyGcsSource",
-]
+from ..._utils import PropertyInfo
 
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
+
+__all__ = ["SippyUpdateParams", "R2EnableSippyAws", "R2EnableSippyAwsDestination", "R2EnableSippyAwsSource", "R2EnableSippyGcs", "R2EnableSippyGcsDestination", "R2EnableSippyGcsSource"]
 
 class R2EnableSippyAws(TypedDict, total=False):
     account_id: Required[str]
@@ -28,7 +24,6 @@ class R2EnableSippyAws(TypedDict, total=False):
 
     source: R2EnableSippyAwsSource
     """AWS S3 bucket to copy objects from"""
-
 
 class R2EnableSippyAwsDestination(TypedDict, total=False):
     access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
@@ -53,7 +48,6 @@ class R2EnableSippyAwsDestination(TypedDict, total=False):
     this token to the bucket you're enabling Sippy for.
     """
 
-
 class R2EnableSippyAwsSource(TypedDict, total=False):
     access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
     """Access Key ID of an IAM credential (ideally scoped to a single S3 bucket)"""
@@ -69,7 +63,6 @@ class R2EnableSippyAwsSource(TypedDict, total=False):
     secret_access_key: Annotated[str, PropertyInfo(alias="secretAccessKey")]
     """Secret Access Key of an IAM credential (ideally scoped to a single S3 bucket)"""
 
-
 class R2EnableSippyGcs(TypedDict, total=False):
     account_id: Required[str]
     """Account ID"""
@@ -79,7 +72,6 @@ class R2EnableSippyGcs(TypedDict, total=False):
 
     source: R2EnableSippyGcsSource
     """GCS bucket to copy objects from"""
-
 
 class R2EnableSippyGcsDestination(TypedDict, total=False):
     access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
@@ -104,7 +96,6 @@ class R2EnableSippyGcsDestination(TypedDict, total=False):
     this token to the bucket you're enabling Sippy for.
     """
 
-
 class R2EnableSippyGcsSource(TypedDict, total=False):
     bucket: str
     """Name of the GCS bucket"""
@@ -116,6 +107,5 @@ class R2EnableSippyGcsSource(TypedDict, total=False):
     """Private Key of an IAM credential (ideally scoped to a single GCS bucket)"""
 
     provider: Literal["gcs"]
-
 
 SippyUpdateParams: TypeAlias = Union[R2EnableSippyAws, R2EnableSippyGcs]

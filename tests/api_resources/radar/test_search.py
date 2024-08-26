@@ -2,27 +2,34 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.radar import SearchGlobalResponse
+
 from typing import Any, cast
 
+import os
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.radar import SearchGlobalResponse
+from cloudflare.types.radar import search_global_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestSearch:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_global(self, client: Cloudflare) -> None:
         search = client.radar.search.global_(
             query="United",
         )
-        assert_matches_type(SearchGlobalResponse, search, path=["response"])
+        assert_matches_type(SearchGlobalResponse, search, path=['response'])
 
     @parametrize
     def test_method_global_with_all_params(self, client: Cloudflare) -> None:
@@ -34,42 +41,42 @@ class TestSearch:
             limit=5,
             limit_per_group=0,
         )
-        assert_matches_type(SearchGlobalResponse, search, path=["response"])
+        assert_matches_type(SearchGlobalResponse, search, path=['response'])
 
     @parametrize
     def test_raw_response_global(self, client: Cloudflare) -> None:
+
         response = client.radar.search.with_raw_response.global_(
             query="United",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         search = response.parse()
-        assert_matches_type(SearchGlobalResponse, search, path=["response"])
+        assert_matches_type(SearchGlobalResponse, search, path=['response'])
 
     @parametrize
     def test_streaming_response_global(self, client: Cloudflare) -> None:
         with client.radar.search.with_streaming_response.global_(
             query="United",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             search = response.parse()
-            assert_matches_type(SearchGlobalResponse, search, path=["response"])
+            assert_matches_type(SearchGlobalResponse, search, path=['response'])
 
         assert cast(Any, response.is_closed) is True
-
-
 class TestAsyncSearch:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     async def test_method_global(self, async_client: AsyncCloudflare) -> None:
         search = await async_client.radar.search.global_(
             query="United",
         )
-        assert_matches_type(SearchGlobalResponse, search, path=["response"])
+        assert_matches_type(SearchGlobalResponse, search, path=['response'])
 
     @parametrize
     async def test_method_global_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -81,28 +88,29 @@ class TestAsyncSearch:
             limit=5,
             limit_per_group=0,
         )
-        assert_matches_type(SearchGlobalResponse, search, path=["response"])
+        assert_matches_type(SearchGlobalResponse, search, path=['response'])
 
     @parametrize
     async def test_raw_response_global(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.radar.search.with_raw_response.global_(
             query="United",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         search = await response.parse()
-        assert_matches_type(SearchGlobalResponse, search, path=["response"])
+        assert_matches_type(SearchGlobalResponse, search, path=['response'])
 
     @parametrize
     async def test_streaming_response_global(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.search.with_streaming_response.global_(
             query="United",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             search = await response.parse()
-            assert_matches_type(SearchGlobalResponse, search, path=["response"])
+            assert_matches_type(SearchGlobalResponse, search, path=['response'])
 
         assert cast(Any, response.is_closed) is True

@@ -2,30 +2,34 @@
 
 from __future__ import annotations
 
-from typing import Dict
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._base_client import make_request_options
-from ....types.zero_trust.risk_scoring import behaviour_update_params
-from ....types.zero_trust.risk_scoring.behaviour_get_response import BehaviourGetResponse
+
 from ....types.zero_trust.risk_scoring.behaviour_update_response import BehaviourUpdateResponse
 
-__all__ = ["BehavioursResource", "AsyncBehavioursResource"]
+from ...._utils import maybe_transform, async_maybe_transform
 
+from ...._base_client import make_request_options
+
+from typing import Dict
+
+from ....types.zero_trust.risk_scoring.behaviour_get_response import BehaviourGetResponse
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+from ....types.zero_trust.risk_scoring import behaviour_update_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.zero_trust.risk_scoring import behaviour_update_params
+
+__all__ = ["BehavioursResource", "AsyncBehavioursResource"]
 
 class BehavioursResource(SyncAPIResource):
     @cached_property
@@ -36,18 +40,16 @@ class BehavioursResource(SyncAPIResource):
     def with_streaming_response(self) -> BehavioursResourceWithStreamingResponse:
         return BehavioursResourceWithStreamingResponse(self)
 
-    def update(
-        self,
-        *,
-        account_id: str,
-        behaviors: Dict[str, behaviour_update_params.Behaviors],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BehaviourUpdateResponse:
+    def update(self,
+    *,
+    account_id: str,
+    behaviors: Dict[str, behaviour_update_params.Behaviors],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> BehaviourUpdateResponse:
         """
         Update configuration for risk behaviors
 
@@ -61,27 +63,27 @@ class BehavioursResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._put(
             f"/accounts/{account_id}/zt_risk_scoring/behaviors",
-            body=maybe_transform({"behaviors": behaviors}, behaviour_update_params.BehaviourUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            body=maybe_transform({
+                "behaviors": behaviors
+            }, behaviour_update_params.BehaviourUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=BehaviourUpdateResponse,
         )
 
-    def get(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BehaviourGetResponse:
+    def get(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> BehaviourGetResponse:
         """
         Get all behaviors and associated configuration
 
@@ -95,15 +97,14 @@ class BehavioursResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/zt_risk_scoring/behaviors",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=BehaviourGetResponse,
         )
-
 
 class AsyncBehavioursResource(AsyncAPIResource):
     @cached_property
@@ -114,18 +115,16 @@ class AsyncBehavioursResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncBehavioursResourceWithStreamingResponse:
         return AsyncBehavioursResourceWithStreamingResponse(self)
 
-    async def update(
-        self,
-        *,
-        account_id: str,
-        behaviors: Dict[str, behaviour_update_params.Behaviors],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BehaviourUpdateResponse:
+    async def update(self,
+    *,
+    account_id: str,
+    behaviors: Dict[str, behaviour_update_params.Behaviors],
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> BehaviourUpdateResponse:
         """
         Update configuration for risk behaviors
 
@@ -139,27 +138,27 @@ class AsyncBehavioursResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._put(
             f"/accounts/{account_id}/zt_risk_scoring/behaviors",
-            body=await async_maybe_transform({"behaviors": behaviors}, behaviour_update_params.BehaviourUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            body=await async_maybe_transform({
+                "behaviors": behaviors
+            }, behaviour_update_params.BehaviourUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=BehaviourUpdateResponse,
         )
 
-    async def get(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BehaviourGetResponse:
+    async def get(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> BehaviourGetResponse:
         """
         Get all behaviors and associated configuration
 
@@ -173,15 +172,14 @@ class AsyncBehavioursResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/zt_risk_scoring/behaviors",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=BehaviourGetResponse,
         )
-
 
 class BehavioursResourceWithRawResponse:
     def __init__(self, behaviours: BehavioursResource) -> None:
@@ -194,7 +192,6 @@ class BehavioursResourceWithRawResponse:
             behaviours.get,
         )
 
-
 class AsyncBehavioursResourceWithRawResponse:
     def __init__(self, behaviours: AsyncBehavioursResource) -> None:
         self._behaviours = behaviours
@@ -206,7 +203,6 @@ class AsyncBehavioursResourceWithRawResponse:
             behaviours.get,
         )
 
-
 class BehavioursResourceWithStreamingResponse:
     def __init__(self, behaviours: BehavioursResource) -> None:
         self._behaviours = behaviours
@@ -217,7 +213,6 @@ class BehavioursResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             behaviours.get,
         )
-
 
 class AsyncBehavioursResourceWithStreamingResponse:
     def __init__(self, behaviours: AsyncBehavioursResource) -> None:

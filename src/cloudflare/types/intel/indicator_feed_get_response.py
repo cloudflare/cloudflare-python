@@ -1,13 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from datetime import datetime
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["IndicatorFeedGetResponse"]
+from typing import Optional
 
+from datetime import datetime
+
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["IndicatorFeedGetResponse"]
 
 class IndicatorFeedGetResponse(BaseModel):
     id: Optional[int] = None
@@ -28,9 +33,7 @@ class IndicatorFeedGetResponse(BaseModel):
     is_public: Optional[bool] = None
     """Whether the indicator feed is exposed to customers"""
 
-    latest_upload_status: Optional[Literal["Mirroring", "Unifying", "Loading", "Provisioning", "Complete", "Error"]] = (
-        None
-    )
+    latest_upload_status: Optional[Literal["Mirroring", "Unifying", "Loading", "Provisioning", "Complete", "Error"]] = None
     """Status of the latest snapshot uploaded"""
 
     modified_on: Optional[datetime] = None

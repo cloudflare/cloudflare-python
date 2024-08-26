@@ -1,14 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from ...._models import BaseModel
+
+from typing import Optional, List
 
 from .nat import Nat
-from ...._models import BaseModel
+
 from .routed_subnet import RoutedSubnet
+
 from .lan_static_addressing import LANStaticAddressing
 
-__all__ = ["LAN"]
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
+__all__ = ["LAN"]
 
 class LAN(BaseModel):
     id: Optional[str] = None

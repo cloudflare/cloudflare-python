@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["SiteLocationParam"]
 
-
 class SiteLocationParam(TypedDict, total=False):
     lat: str
     """Latitude"""

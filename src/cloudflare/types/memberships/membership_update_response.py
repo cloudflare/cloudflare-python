@@ -1,24 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
-
 from ..._models import BaseModel
-from ..accounts.account import Account
+
+from typing import Optional, List
+
 from ..shared.permission_grant import PermissionGrant
 
-__all__ = [
-    "MembershipUpdateResponse",
-    "Permissions",
-    "Policy",
-    "PolicyPermissionGroup",
-    "PolicyPermissionGroupMeta",
-    "PolicyResourceGroup",
-    "PolicyResourceGroupScope",
-    "PolicyResourceGroupScopeObject",
-    "PolicyResourceGroupMeta",
-]
+from typing_extensions import Literal
 
+from ..accounts.account import Account
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["MembershipUpdateResponse", "Permissions", "Policy", "PolicyPermissionGroup", "PolicyPermissionGroupMeta", "PolicyResourceGroup", "PolicyResourceGroupScope", "PolicyResourceGroupScopeObject", "PolicyResourceGroupMeta"]
 
 class Permissions(BaseModel):
     analytics: Optional[PermissionGrant] = None
@@ -45,12 +41,10 @@ class Permissions(BaseModel):
 
     zones: Optional[PermissionGrant] = None
 
-
 class PolicyPermissionGroupMeta(BaseModel):
     key: Optional[str] = None
 
     value: Optional[str] = None
-
 
 class PolicyPermissionGroup(BaseModel):
     id: str
@@ -62,14 +56,12 @@ class PolicyPermissionGroup(BaseModel):
     name: Optional[str] = None
     """Name of the group."""
 
-
 class PolicyResourceGroupScopeObject(BaseModel):
     key: str
     """
     This is a combination of pre-defined resource name and identifier (like Zone ID
     etc.)
     """
-
 
 class PolicyResourceGroupScope(BaseModel):
     key: str
@@ -81,12 +73,10 @@ class PolicyResourceGroupScope(BaseModel):
     objects: List[PolicyResourceGroupScopeObject]
     """A list of scope objects for additional context."""
 
-
 class PolicyResourceGroupMeta(BaseModel):
     key: Optional[str] = None
 
     value: Optional[str] = None
-
 
 class PolicyResourceGroup(BaseModel):
     id: str
@@ -101,7 +91,6 @@ class PolicyResourceGroup(BaseModel):
     name: Optional[str] = None
     """Name of the resource group."""
 
-
 class Policy(BaseModel):
     id: Optional[str] = None
     """Policy identifier."""
@@ -114,7 +103,6 @@ class Policy(BaseModel):
 
     resource_groups: Optional[List[PolicyResourceGroup]] = None
     """A list of resource groups that the policy applies to."""
-
 
 class MembershipUpdateResponse(BaseModel):
     id: Optional[str] = None

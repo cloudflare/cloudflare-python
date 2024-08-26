@@ -1,18 +1,28 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-
 from ..._models import BaseModel
-from .default_pools import DefaultPools
-from .random_steering import RandomSteering
-from .steering_policy import SteeringPolicy
+
+from typing import Optional, Dict, List
+
 from .adaptive_routing import AdaptiveRouting
-from .session_affinity import SessionAffinity
+
+from .default_pools import DefaultPools
+
 from .location_strategy import LocationStrategy
+
+from .random_steering import RandomSteering
+
+from .session_affinity import SessionAffinity
+
 from .session_affinity_attributes import SessionAffinityAttributes
 
-__all__ = ["Rules", "FixedResponse", "Overrides"]
+from .steering_policy import SteeringPolicy
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["Rules", "FixedResponse", "Overrides"]
 
 class FixedResponse(BaseModel):
     content_type: Optional[str] = None
@@ -26,7 +36,6 @@ class FixedResponse(BaseModel):
 
     status_code: Optional[int] = None
     """The http status code to respond with."""
-
 
 class Overrides(BaseModel):
     adaptive_routing: Optional[AdaptiveRouting] = None
@@ -163,7 +172,6 @@ class Overrides(BaseModel):
     Time to live (TTL) of the DNS entry for the IP address returned by this load
     balancer. This only applies to gray-clouded (unproxied) load balancers.
     """
-
 
 class Rules(BaseModel):
     condition: Optional[str] = None

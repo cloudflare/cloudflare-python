@@ -2,43 +2,54 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from .references import (
-    ReferencesResource,
-    AsyncReferencesResource,
-    ReferencesResourceWithRawResponse,
-    AsyncReferencesResourceWithRawResponse,
-    ReferencesResourceWithStreamingResponse,
-    AsyncReferencesResourceWithStreamingResponse,
-)
+from .references import ReferencesResource, AsyncReferencesResource
+
 from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ....._wrappers import ResultWrapper
-from .....pagination import SyncSinglePage, AsyncSinglePage
-from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.risk_scoring import integration_create_params, integration_update_params
-from .....types.zero_trust.risk_scoring.integration_get_response import IntegrationGetResponse
-from .....types.zero_trust.risk_scoring.integration_list_response import IntegrationListResponse
+
 from .....types.zero_trust.risk_scoring.integration_create_response import IntegrationCreateResponse
+
+from ....._wrappers import ResultWrapper
+
+from ....._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ....._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
 from .....types.zero_trust.risk_scoring.integration_update_response import IntegrationUpdateResponse
 
-__all__ = ["IntegrationsResource", "AsyncIntegrationsResource"]
+from .....types.zero_trust.risk_scoring.integration_list_response import IntegrationListResponse
 
+from .....pagination import SyncSinglePage, AsyncSinglePage
+
+from .....types.zero_trust.risk_scoring.integration_get_response import IntegrationGetResponse
+
+from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.zero_trust.risk_scoring import integration_create_params
+from .....types.zero_trust.risk_scoring import integration_update_params
+from .references import ReferencesResource, AsyncReferencesResource, ReferencesResourceWithRawResponse, AsyncReferencesResourceWithRawResponse, ReferencesResourceWithStreamingResponse, AsyncReferencesResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["IntegrationsResource", "AsyncIntegrationsResource"]
 
 class IntegrationsResource(SyncAPIResource):
     @cached_property
@@ -53,20 +64,18 @@ class IntegrationsResource(SyncAPIResource):
     def with_streaming_response(self) -> IntegrationsResourceWithStreamingResponse:
         return IntegrationsResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        integration_type: Literal["Okta"],
-        tenant_url: str,
-        reference_id: Optional[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IntegrationCreateResponse]:
+    def create(self,
+    *,
+    account_id: str,
+    integration_type: Literal["Okta"],
+    tenant_url: str,
+    reference_id: Optional[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IntegrationCreateResponse]:
         """
         Create new risk score integration.
 
@@ -86,42 +95,33 @@ class IntegrationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/zt_risk_scoring/integrations",
-            body=maybe_transform(
-                {
-                    "integration_type": integration_type,
-                    "tenant_url": tenant_url,
-                    "reference_id": reference_id,
-                },
-                integration_create_params.IntegrationCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IntegrationCreateResponse]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "integration_type": integration_type,
+                "tenant_url": tenant_url,
+                "reference_id": reference_id,
+            }, integration_create_params.IntegrationCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IntegrationCreateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[IntegrationCreateResponse]], ResultWrapper[IntegrationCreateResponse]),
         )
 
-    def update(
-        self,
-        integration_id: str,
-        *,
-        account_id: str,
-        active: bool,
-        tenant_url: str,
-        reference_id: Optional[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IntegrationUpdateResponse]:
+    def update(self,
+    integration_id: str,
+    *,
+    account_id: str,
+    active: bool,
+    tenant_url: str,
+    reference_id: Optional[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IntegrationUpdateResponse]:
         """
         Overwrite the reference_id, tenant_url, and active values with the ones provided
 
@@ -144,40 +144,33 @@ class IntegrationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not integration_id:
-            raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `integration_id` but received {integration_id!r}'
+          )
         return self._put(
             f"/accounts/{account_id}/zt_risk_scoring/integrations/{integration_id}",
-            body=maybe_transform(
-                {
-                    "active": active,
-                    "tenant_url": tenant_url,
-                    "reference_id": reference_id,
-                },
-                integration_update_params.IntegrationUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IntegrationUpdateResponse]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "active": active,
+                "tenant_url": tenant_url,
+                "reference_id": reference_id,
+            }, integration_update_params.IntegrationUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IntegrationUpdateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[IntegrationUpdateResponse]], ResultWrapper[IntegrationUpdateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[IntegrationListResponse]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[IntegrationListResponse]:
         """
         List all risk score integrations for the account.
 
@@ -191,28 +184,26 @@ class IntegrationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/zt_risk_scoring/integrations",
-            page=SyncSinglePage[IntegrationListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = SyncSinglePage[IntegrationListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=IntegrationListResponse,
         )
 
-    def delete(
-        self,
-        integration_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    def delete(self,
+    integration_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
         """
         Delete a risk score integration.
 
@@ -226,33 +217,29 @@ class IntegrationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not integration_id:
-            raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `integration_id` but received {integration_id!r}'
+          )
         return self._delete(
             f"/accounts/{account_id}/zt_risk_scoring/integrations/{integration_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    def get(
-        self,
-        integration_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IntegrationGetResponse]:
+    def get(self,
+    integration_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IntegrationGetResponse]:
         """
         Get risk score integration by id.
 
@@ -266,21 +253,18 @@ class IntegrationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not integration_id:
-            raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `integration_id` but received {integration_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/zt_risk_scoring/integrations/{integration_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IntegrationGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IntegrationGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[IntegrationGetResponse]], ResultWrapper[IntegrationGetResponse]),
         )
-
 
 class AsyncIntegrationsResource(AsyncAPIResource):
     @cached_property
@@ -295,20 +279,18 @@ class AsyncIntegrationsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncIntegrationsResourceWithStreamingResponse:
         return AsyncIntegrationsResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        integration_type: Literal["Okta"],
-        tenant_url: str,
-        reference_id: Optional[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IntegrationCreateResponse]:
+    async def create(self,
+    *,
+    account_id: str,
+    integration_type: Literal["Okta"],
+    tenant_url: str,
+    reference_id: Optional[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IntegrationCreateResponse]:
         """
         Create new risk score integration.
 
@@ -328,42 +310,33 @@ class AsyncIntegrationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/zt_risk_scoring/integrations",
-            body=await async_maybe_transform(
-                {
-                    "integration_type": integration_type,
-                    "tenant_url": tenant_url,
-                    "reference_id": reference_id,
-                },
-                integration_create_params.IntegrationCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IntegrationCreateResponse]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "integration_type": integration_type,
+                "tenant_url": tenant_url,
+                "reference_id": reference_id,
+            }, integration_create_params.IntegrationCreateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IntegrationCreateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[IntegrationCreateResponse]], ResultWrapper[IntegrationCreateResponse]),
         )
 
-    async def update(
-        self,
-        integration_id: str,
-        *,
-        account_id: str,
-        active: bool,
-        tenant_url: str,
-        reference_id: Optional[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IntegrationUpdateResponse]:
+    async def update(self,
+    integration_id: str,
+    *,
+    account_id: str,
+    active: bool,
+    tenant_url: str,
+    reference_id: Optional[str] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IntegrationUpdateResponse]:
         """
         Overwrite the reference_id, tenant_url, and active values with the ones provided
 
@@ -386,40 +359,33 @@ class AsyncIntegrationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not integration_id:
-            raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `integration_id` but received {integration_id!r}'
+          )
         return await self._put(
             f"/accounts/{account_id}/zt_risk_scoring/integrations/{integration_id}",
-            body=await async_maybe_transform(
-                {
-                    "active": active,
-                    "tenant_url": tenant_url,
-                    "reference_id": reference_id,
-                },
-                integration_update_params.IntegrationUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IntegrationUpdateResponse]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "active": active,
+                "tenant_url": tenant_url,
+                "reference_id": reference_id,
+            }, integration_update_params.IntegrationUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IntegrationUpdateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[IntegrationUpdateResponse]], ResultWrapper[IntegrationUpdateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[IntegrationListResponse, AsyncSinglePage[IntegrationListResponse]]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[IntegrationListResponse, AsyncSinglePage[IntegrationListResponse]]:
         """
         List all risk score integrations for the account.
 
@@ -433,28 +399,26 @@ class AsyncIntegrationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get_api_list(
             f"/accounts/{account_id}/zt_risk_scoring/integrations",
-            page=AsyncSinglePage[IntegrationListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            page = AsyncSinglePage[IntegrationListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             model=IntegrationListResponse,
         )
 
-    async def delete(
-        self,
-        integration_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    async def delete(self,
+    integration_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
         """
         Delete a risk score integration.
 
@@ -468,33 +432,29 @@ class AsyncIntegrationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not integration_id:
-            raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `integration_id` but received {integration_id!r}'
+          )
         return await self._delete(
             f"/accounts/{account_id}/zt_risk_scoring/integrations/{integration_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    async def get(
-        self,
-        integration_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IntegrationGetResponse]:
+    async def get(self,
+    integration_id: str,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IntegrationGetResponse]:
         """
         Get risk score integration by id.
 
@@ -508,21 +468,18 @@ class AsyncIntegrationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         if not integration_id:
-            raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `integration_id` but received {integration_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/zt_risk_scoring/integrations/{integration_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IntegrationGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IntegrationGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[IntegrationGetResponse]], ResultWrapper[IntegrationGetResponse]),
         )
-
 
 class IntegrationsResourceWithRawResponse:
     def __init__(self, integrations: IntegrationsResource) -> None:
@@ -548,7 +505,6 @@ class IntegrationsResourceWithRawResponse:
     def references(self) -> ReferencesResourceWithRawResponse:
         return ReferencesResourceWithRawResponse(self._integrations.references)
 
-
 class AsyncIntegrationsResourceWithRawResponse:
     def __init__(self, integrations: AsyncIntegrationsResource) -> None:
         self._integrations = integrations
@@ -573,7 +529,6 @@ class AsyncIntegrationsResourceWithRawResponse:
     def references(self) -> AsyncReferencesResourceWithRawResponse:
         return AsyncReferencesResourceWithRawResponse(self._integrations.references)
 
-
 class IntegrationsResourceWithStreamingResponse:
     def __init__(self, integrations: IntegrationsResource) -> None:
         self._integrations = integrations
@@ -597,7 +552,6 @@ class IntegrationsResourceWithStreamingResponse:
     @cached_property
     def references(self) -> ReferencesResourceWithStreamingResponse:
         return ReferencesResourceWithStreamingResponse(self._integrations.references)
-
 
 class AsyncIntegrationsResourceWithStreamingResponse:
     def __init__(self, integrations: AsyncIntegrationsResource) -> None:

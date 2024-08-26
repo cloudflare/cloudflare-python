@@ -1,19 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union
-from typing_extensions import Literal, TypeAlias
-
 from ....._models import BaseModel
-from .waf_rule_group import WAFRuleGroup
+
+from typing import List
+
 from .allowed_modes_anomaly import AllowedModesAnomaly
 
-__all__ = [
-    "RuleListResponse",
-    "WAFManagedRulesAnomalyRule",
-    "WAFManagedRulesTraditionalDenyRule",
-    "WAFManagedRulesTraditionalAllowRule",
-]
+from .waf_rule_group import WAFRuleGroup
 
+from typing_extensions import Literal, TypeAlias
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["RuleListResponse", "WAFManagedRulesAnomalyRule", "WAFManagedRulesTraditionalDenyRule", "WAFManagedRulesTraditionalAllowRule"]
 
 class WAFManagedRulesAnomalyRule(BaseModel):
     id: str
@@ -43,7 +44,6 @@ class WAFManagedRulesAnomalyRule(BaseModel):
     priority: str
     """The order in which the individual WAF rule is executed within its rule group."""
 
-
 class WAFManagedRulesTraditionalDenyRule(BaseModel):
     id: str
     """The unique identifier of the WAF rule."""
@@ -72,7 +72,6 @@ class WAFManagedRulesTraditionalDenyRule(BaseModel):
     priority: str
     """The order in which the individual WAF rule is executed within its rule group."""
 
-
 class WAFManagedRulesTraditionalAllowRule(BaseModel):
     id: str
     """The unique identifier of the WAF rule."""
@@ -98,7 +97,4 @@ class WAFManagedRulesTraditionalAllowRule(BaseModel):
     priority: str
     """The order in which the individual WAF rule is executed within its rule group."""
 
-
-RuleListResponse: TypeAlias = Union[
-    WAFManagedRulesAnomalyRule, WAFManagedRulesTraditionalDenyRule, WAFManagedRulesTraditionalAllowRule
-]
+RuleListResponse: TypeAlias = Union[WAFManagedRulesAnomalyRule, WAFManagedRulesTraditionalDenyRule, WAFManagedRulesTraditionalAllowRule]

@@ -1,13 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from typing_extensions import Literal
-
 from ..._models import BaseModel
+
+from typing import Optional
+
 from .pcap_filter import PCAPFilter
 
-__all__ = ["PCAP"]
+from typing_extensions import Literal
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["PCAP"]
 
 class PCAP(BaseModel):
     id: Optional[str] = None
@@ -16,11 +21,7 @@ class PCAP(BaseModel):
     filter_v1: Optional[PCAPFilter] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
 
-    status: Optional[
-        Literal[
-            "unknown", "success", "pending", "running", "conversion_pending", "conversion_running", "complete", "failed"
-        ]
-    ] = None
+    status: Optional[Literal["unknown", "success", "pending", "running", "conversion_pending", "conversion_running", "complete", "failed"]] = None
     """The status of the packet capture request."""
 
     submitted: Optional[str] = None

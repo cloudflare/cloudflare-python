@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict, Required
 
 from .logging_param import LoggingParam
 
 __all__ = ["BlockRuleParam", "ActionParameters", "ActionParametersResponse"]
-
 
 class ActionParametersResponse(TypedDict, total=False):
     content: Required[str]
@@ -19,11 +18,9 @@ class ActionParametersResponse(TypedDict, total=False):
     status_code: Required[int]
     """The status code to return."""
 
-
 class ActionParameters(TypedDict, total=False):
     response: ActionParametersResponse
     """The response to show when the block is applied."""
-
 
 class BlockRuleParam(TypedDict, total=False):
     id: str

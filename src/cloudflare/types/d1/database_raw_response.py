@@ -1,17 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from typing_extensions import TypeAlias
-
 from ..._models import BaseModel
 
-__all__ = [
-    "DatabaseRawResponse",
-    "DatabaseRawResponseItem",
-    "DatabaseRawResponseItemMeta",
-    "DatabaseRawResponseItemResults",
-]
+from typing import Optional, List, Union
 
+from typing_extensions import TypeAlias
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["DatabaseRawResponse", "DatabaseRawResponseItem", "DatabaseRawResponseItemMeta", "DatabaseRawResponseItemResults"]
 
 class DatabaseRawResponseItemMeta(BaseModel):
     changed_db: Optional[bool] = None
@@ -28,12 +27,10 @@ class DatabaseRawResponseItemMeta(BaseModel):
 
     size_after: Optional[float] = None
 
-
 class DatabaseRawResponseItemResults(BaseModel):
     columns: Optional[List[str]] = None
 
     rows: Optional[List[List[Union[float, str, object]]]] = None
-
 
 class DatabaseRawResponseItem(BaseModel):
     meta: Optional[DatabaseRawResponseItemMeta] = None
@@ -41,6 +38,5 @@ class DatabaseRawResponseItem(BaseModel):
     results: Optional[DatabaseRawResponseItemResults] = None
 
     success: Optional[bool] = None
-
 
 DatabaseRawResponse: TypeAlias = List[DatabaseRawResponseItem]

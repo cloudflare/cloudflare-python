@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-from typing_extensions import TypeAlias
-
 from ..._models import BaseModel
 
-__all__ = ["AvailableAlertListResponse", "AvailableAlertListResponseItem"]
+from typing import Optional, List
 
+from typing_extensions import TypeAlias
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["AvailableAlertListResponse", "AvailableAlertListResponseItem"]
 
 class AvailableAlertListResponseItem(BaseModel):
     description: Optional[str] = None
@@ -23,6 +27,5 @@ class AvailableAlertListResponseItem(BaseModel):
 
     type: Optional[str] = None
     """Use this value when creating and updating a notification policy."""
-
 
 AvailableAlertListResponse: TypeAlias = Dict[str, List[AvailableAlertListResponseItem]]

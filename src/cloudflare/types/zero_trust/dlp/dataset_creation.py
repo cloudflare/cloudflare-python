@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-
-from .dataset import Dataset
 from ...._models import BaseModel
 
-__all__ = ["DatasetCreation"]
+from .dataset import Dataset
 
+from typing import Optional
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["DatasetCreation"]
 
 class DatasetCreation(BaseModel):
     dataset: Dataset

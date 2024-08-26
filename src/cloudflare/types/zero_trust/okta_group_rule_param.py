@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 __all__ = ["OktaGroupRuleParam", "Okta"]
-
 
 class Okta(TypedDict, total=False):
     connection_id: Required[str]
@@ -13,7 +12,6 @@ class Okta(TypedDict, total=False):
 
     email: Required[str]
     """The email of the Okta group."""
-
 
 class OktaGroupRuleParam(TypedDict, total=False):
     okta: Required[Okta]

@@ -2,25 +2,33 @@
 
 from __future__ import annotations
 
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from typing import Optional, Any, cast
+
+from cloudflare.types.cloudforce_one.requests import Message, MessageDeleteResponse, MessageGetResponse
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.cloudforce_one.requests import message_create_params
+from cloudflare.types.cloudforce_one.requests import message_update_params
+from cloudflare.types.cloudforce_one.requests import message_get_params
 from cloudflare._utils import parse_datetime
-from cloudflare.types.cloudforce_one.requests import (
-    Message,
-    MessageGetResponse,
-    MessageDeleteResponse,
-)
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
+from cloudflare._utils import parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestMessage:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
@@ -28,7 +36,7 @@ class TestMessage:
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Message], message, path=["response"])
+        assert_matches_type(Optional[Message], message, path=['response'])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -37,47 +45,48 @@ class TestMessage:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="Can you elaborate on the type of DoS that occurred?",
         )
-        assert_matches_type(Optional[Message], message, path=["response"])
+        assert_matches_type(Optional[Message], message, path=['response'])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
+
         response = client.cloudforce_one.requests.message.with_raw_response.create(
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         message = response.parse()
-        assert_matches_type(Optional[Message], message, path=["response"])
+        assert_matches_type(Optional[Message], message, path=['response'])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.message.with_streaming_response.create(
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             message = response.parse()
-            assert_matches_type(Optional[Message], message, path=["response"])
+            assert_matches_type(Optional[Message], message, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            client.cloudforce_one.requests.message.with_raw_response.create(
-                request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_identifier="",
-            )
+          client.cloudforce_one.requests.message.with_raw_response.create(
+              request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+              account_identifier="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `request_identifier` but received ''"):
-            client.cloudforce_one.requests.message.with_raw_response.create(
-                request_identifier="",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          client.cloudforce_one.requests.message.with_raw_response.create(
+              request_identifier="",
+              account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
@@ -86,7 +95,7 @@ class TestMessage:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
-        assert_matches_type(Optional[Message], message, path=["response"])
+        assert_matches_type(Optional[Message], message, path=['response'])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -100,10 +109,11 @@ class TestMessage:
             summary="DoS attack",
             tlp="clear",
         )
-        assert_matches_type(Optional[Message], message, path=["response"])
+        assert_matches_type(Optional[Message], message, path=['response'])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
+
         response = client.cloudforce_one.requests.message.with_raw_response.update(
             message_identifer=0,
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
@@ -111,9 +121,9 @@ class TestMessage:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         message = response.parse()
-        assert_matches_type(Optional[Message], message, path=["response"])
+        assert_matches_type(Optional[Message], message, path=['response'])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -121,30 +131,30 @@ class TestMessage:
             message_identifer=0,
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             message = response.parse()
-            assert_matches_type(Optional[Message], message, path=["response"])
+            assert_matches_type(Optional[Message], message, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            client.cloudforce_one.requests.message.with_raw_response.update(
-                message_identifer=0,
-                account_identifier="",
-                request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            )
+          client.cloudforce_one.requests.message.with_raw_response.update(
+              message_identifer=0,
+              account_identifier="",
+              request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `request_identifier` but received ''"):
-            client.cloudforce_one.requests.message.with_raw_response.update(
-                message_identifer=0,
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                request_identifier="",
-            )
+          client.cloudforce_one.requests.message.with_raw_response.update(
+              message_identifer=0,
+              account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+              request_identifier="",
+          )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
@@ -153,10 +163,11 @@ class TestMessage:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
-        assert_matches_type(MessageDeleteResponse, message, path=["response"])
+        assert_matches_type(MessageDeleteResponse, message, path=['response'])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
+
         response = client.cloudforce_one.requests.message.with_raw_response.delete(
             message_identifer=0,
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
@@ -164,9 +175,9 @@ class TestMessage:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         message = response.parse()
-        assert_matches_type(MessageDeleteResponse, message, path=["response"])
+        assert_matches_type(MessageDeleteResponse, message, path=['response'])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -174,30 +185,30 @@ class TestMessage:
             message_identifer=0,
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             message = response.parse()
-            assert_matches_type(MessageDeleteResponse, message, path=["response"])
+            assert_matches_type(MessageDeleteResponse, message, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            client.cloudforce_one.requests.message.with_raw_response.delete(
-                message_identifer=0,
-                account_identifier="",
-                request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            )
+          client.cloudforce_one.requests.message.with_raw_response.delete(
+              message_identifer=0,
+              account_identifier="",
+              request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `request_identifier` but received ''"):
-            client.cloudforce_one.requests.message.with_raw_response.delete(
-                message_identifer=0,
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                request_identifier="",
-            )
+          client.cloudforce_one.requests.message.with_raw_response.delete(
+              message_identifer=0,
+              account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+              request_identifier="",
+          )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
@@ -207,7 +218,7 @@ class TestMessage:
             page=0,
             per_page=10,
         )
-        assert_matches_type(Optional[MessageGetResponse], message, path=["response"])
+        assert_matches_type(Optional[MessageGetResponse], message, path=['response'])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
@@ -221,10 +232,11 @@ class TestMessage:
             sort_by="created",
             sort_order="asc",
         )
-        assert_matches_type(Optional[MessageGetResponse], message, path=["response"])
+        assert_matches_type(Optional[MessageGetResponse], message, path=['response'])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
+
         response = client.cloudforce_one.requests.message.with_raw_response.get(
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
@@ -233,9 +245,9 @@ class TestMessage:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         message = response.parse()
-        assert_matches_type(Optional[MessageGetResponse], message, path=["response"])
+        assert_matches_type(Optional[MessageGetResponse], message, path=['response'])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -244,36 +256,35 @@ class TestMessage:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             page=0,
             per_page=10,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             message = response.parse()
-            assert_matches_type(Optional[MessageGetResponse], message, path=["response"])
+            assert_matches_type(Optional[MessageGetResponse], message, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            client.cloudforce_one.requests.message.with_raw_response.get(
-                request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_identifier="",
-                page=0,
-                per_page=10,
-            )
+          client.cloudforce_one.requests.message.with_raw_response.get(
+              request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+              account_identifier="",
+              page=0,
+              per_page=10,
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `request_identifier` but received ''"):
-            client.cloudforce_one.requests.message.with_raw_response.get(
-                request_identifier="",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                page=0,
-                per_page=10,
-            )
-
-
+          client.cloudforce_one.requests.message.with_raw_response.get(
+              request_identifier="",
+              account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+              page=0,
+              per_page=10,
+          )
 class TestAsyncMessage:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -281,7 +292,7 @@ class TestAsyncMessage:
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Message], message, path=["response"])
+        assert_matches_type(Optional[Message], message, path=['response'])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -290,47 +301,48 @@ class TestAsyncMessage:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="Can you elaborate on the type of DoS that occurred?",
         )
-        assert_matches_type(Optional[Message], message, path=["response"])
+        assert_matches_type(Optional[Message], message, path=['response'])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.cloudforce_one.requests.message.with_raw_response.create(
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         message = await response.parse()
-        assert_matches_type(Optional[Message], message, path=["response"])
+        assert_matches_type(Optional[Message], message, path=['response'])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.message.with_streaming_response.create(
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             message = await response.parse()
-            assert_matches_type(Optional[Message], message, path=["response"])
+            assert_matches_type(Optional[Message], message, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            await async_client.cloudforce_one.requests.message.with_raw_response.create(
-                request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_identifier="",
-            )
+          await async_client.cloudforce_one.requests.message.with_raw_response.create(
+              request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+              account_identifier="",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `request_identifier` but received ''"):
-            await async_client.cloudforce_one.requests.message.with_raw_response.create(
-                request_identifier="",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            )
+          await async_client.cloudforce_one.requests.message.with_raw_response.create(
+              request_identifier="",
+              account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+          )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
@@ -339,7 +351,7 @@ class TestAsyncMessage:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
-        assert_matches_type(Optional[Message], message, path=["response"])
+        assert_matches_type(Optional[Message], message, path=['response'])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -353,10 +365,11 @@ class TestAsyncMessage:
             summary="DoS attack",
             tlp="clear",
         )
-        assert_matches_type(Optional[Message], message, path=["response"])
+        assert_matches_type(Optional[Message], message, path=['response'])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.cloudforce_one.requests.message.with_raw_response.update(
             message_identifer=0,
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
@@ -364,9 +377,9 @@ class TestAsyncMessage:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         message = await response.parse()
-        assert_matches_type(Optional[Message], message, path=["response"])
+        assert_matches_type(Optional[Message], message, path=['response'])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -374,30 +387,30 @@ class TestAsyncMessage:
             message_identifer=0,
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             message = await response.parse()
-            assert_matches_type(Optional[Message], message, path=["response"])
+            assert_matches_type(Optional[Message], message, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            await async_client.cloudforce_one.requests.message.with_raw_response.update(
-                message_identifer=0,
-                account_identifier="",
-                request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            )
+          await async_client.cloudforce_one.requests.message.with_raw_response.update(
+              message_identifer=0,
+              account_identifier="",
+              request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `request_identifier` but received ''"):
-            await async_client.cloudforce_one.requests.message.with_raw_response.update(
-                message_identifer=0,
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                request_identifier="",
-            )
+          await async_client.cloudforce_one.requests.message.with_raw_response.update(
+              message_identifer=0,
+              account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+              request_identifier="",
+          )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
@@ -406,10 +419,11 @@ class TestAsyncMessage:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
-        assert_matches_type(MessageDeleteResponse, message, path=["response"])
+        assert_matches_type(MessageDeleteResponse, message, path=['response'])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.cloudforce_one.requests.message.with_raw_response.delete(
             message_identifer=0,
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
@@ -417,9 +431,9 @@ class TestAsyncMessage:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         message = await response.parse()
-        assert_matches_type(MessageDeleteResponse, message, path=["response"])
+        assert_matches_type(MessageDeleteResponse, message, path=['response'])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -427,30 +441,30 @@ class TestAsyncMessage:
             message_identifer=0,
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             message = await response.parse()
-            assert_matches_type(MessageDeleteResponse, message, path=["response"])
+            assert_matches_type(MessageDeleteResponse, message, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            await async_client.cloudforce_one.requests.message.with_raw_response.delete(
-                message_identifer=0,
-                account_identifier="",
-                request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            )
+          await async_client.cloudforce_one.requests.message.with_raw_response.delete(
+              message_identifer=0,
+              account_identifier="",
+              request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `request_identifier` but received ''"):
-            await async_client.cloudforce_one.requests.message.with_raw_response.delete(
-                message_identifer=0,
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                request_identifier="",
-            )
+          await async_client.cloudforce_one.requests.message.with_raw_response.delete(
+              message_identifer=0,
+              account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+              request_identifier="",
+          )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -460,7 +474,7 @@ class TestAsyncMessage:
             page=0,
             per_page=10,
         )
-        assert_matches_type(Optional[MessageGetResponse], message, path=["response"])
+        assert_matches_type(Optional[MessageGetResponse], message, path=['response'])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -474,10 +488,11 @@ class TestAsyncMessage:
             sort_by="created",
             sort_order="asc",
         )
-        assert_matches_type(Optional[MessageGetResponse], message, path=["response"])
+        assert_matches_type(Optional[MessageGetResponse], message, path=['response'])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.cloudforce_one.requests.message.with_raw_response.get(
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
@@ -486,9 +501,9 @@ class TestAsyncMessage:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         message = await response.parse()
-        assert_matches_type(Optional[MessageGetResponse], message, path=["response"])
+        assert_matches_type(Optional[MessageGetResponse], message, path=['response'])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -497,29 +512,29 @@ class TestAsyncMessage:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             page=0,
             per_page=10,
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             message = await response.parse()
-            assert_matches_type(Optional[MessageGetResponse], message, path=["response"])
+            assert_matches_type(Optional[MessageGetResponse], message, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
-            await async_client.cloudforce_one.requests.message.with_raw_response.get(
-                request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_identifier="",
-                page=0,
-                per_page=10,
-            )
+          await async_client.cloudforce_one.requests.message.with_raw_response.get(
+              request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+              account_identifier="",
+              page=0,
+              per_page=10,
+          )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `request_identifier` but received ''"):
-            await async_client.cloudforce_one.requests.message.with_raw_response.get(
-                request_identifier="",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                page=0,
-                per_page=10,
-            )
+          await async_client.cloudforce_one.requests.message.with_raw_response.get(
+              request_identifier="",
+              account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+              page=0,
+              per_page=10,
+          )

@@ -1,17 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union
-from typing_extensions import Literal, TypeAlias
-
 from ..._models import BaseModel
 
-__all__ = [
-    "Configuration",
-    "AuthIDCharacteristic",
-    "AuthIDCharacteristicAPIShieldAuthIDCharacteristic",
-    "AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim",
-]
+from typing_extensions import Literal, TypeAlias
 
+from typing import List
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["Configuration", "AuthIDCharacteristic", "AuthIDCharacteristicAPIShieldAuthIDCharacteristic", "AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim"]
 
 class AuthIDCharacteristicAPIShieldAuthIDCharacteristic(BaseModel):
     name: str
@@ -19,7 +18,6 @@ class AuthIDCharacteristicAPIShieldAuthIDCharacteristic(BaseModel):
 
     type: Literal["header", "cookie"]
     """The type of characteristic."""
-
 
 class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim(BaseModel):
     name: str
@@ -36,11 +34,7 @@ class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim(BaseModel):
     type: Literal["jwt"]
     """The type of characteristic."""
 
-
-AuthIDCharacteristic: TypeAlias = Union[
-    AuthIDCharacteristicAPIShieldAuthIDCharacteristic, AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim
-]
-
+AuthIDCharacteristic: TypeAlias = Union[AuthIDCharacteristicAPIShieldAuthIDCharacteristic, AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim]
 
 class Configuration(BaseModel):
     auth_id_characteristics: List[AuthIDCharacteristic]

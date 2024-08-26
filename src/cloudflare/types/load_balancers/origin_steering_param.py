@@ -6,7 +6,6 @@ from typing_extensions import Literal, TypedDict
 
 __all__ = ["OriginSteeringParam"]
 
-
 class OriginSteeringParam(TypedDict, total=False):
     policy: Literal["random", "hash", "least_outstanding_requests", "least_connections"]
     """The type of origin steering policy to use.

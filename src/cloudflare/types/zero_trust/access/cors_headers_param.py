@@ -3,14 +3,16 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import TypedDict
 
 from .allowed_headers import AllowedHeaders
+
 from .allowed_methods import AllowedMethods
+
 from .allowed_origins import AllowedOrigins
 
-__all__ = ["CORSHeadersParam"]
+from typing_extensions import TypedDict
 
+__all__ = ["CORSHeadersParam"]
 
 class CORSHeadersParam(TypedDict, total=False):
     allow_all_headers: bool

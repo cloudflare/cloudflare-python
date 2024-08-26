@@ -2,30 +2,36 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.zero_trust.devices import setting_update_params
+
 from ....types.zero_trust.devices.device_settings import DeviceSettings
 
-__all__ = ["SettingsResource", "AsyncSettingsResource"]
+from ...._wrappers import ResultWrapper
 
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ...._base_client import make_request_options
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.zero_trust.devices import setting_update_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["SettingsResource", "AsyncSettingsResource"]
 
 class SettingsResource(SyncAPIResource):
     @cached_property
@@ -36,22 +42,20 @@ class SettingsResource(SyncAPIResource):
     def with_streaming_response(self) -> SettingsResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self)
 
-    def update(
-        self,
-        *,
-        account_id: str,
-        disable_for_time: float | NotGiven = NOT_GIVEN,
-        gateway_proxy_enabled: bool | NotGiven = NOT_GIVEN,
-        gateway_udp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
-        root_certificate_installation_enabled: bool | NotGiven = NOT_GIVEN,
-        use_zt_virtual_ip: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceSettings]:
+    def update(self,
+    *,
+    account_id: str,
+    disable_for_time: float | NotGiven = NOT_GIVEN,
+    gateway_proxy_enabled: bool | NotGiven = NOT_GIVEN,
+    gateway_udp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
+    root_certificate_installation_enabled: bool | NotGiven = NOT_GIVEN,
+    use_zt_virtual_ip: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DeviceSettings]:
         """
         Updates the current device settings for a Zero Trust account.
 
@@ -76,40 +80,31 @@ class SettingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._put(
             f"/accounts/{account_id}/devices/settings",
-            body=maybe_transform(
-                {
-                    "disable_for_time": disable_for_time,
-                    "gateway_proxy_enabled": gateway_proxy_enabled,
-                    "gateway_udp_proxy_enabled": gateway_udp_proxy_enabled,
-                    "root_certificate_installation_enabled": root_certificate_installation_enabled,
-                    "use_zt_virtual_ip": use_zt_virtual_ip,
-                },
-                setting_update_params.SettingUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeviceSettings]]._unwrapper,
-            ),
+            body=maybe_transform({
+                "disable_for_time": disable_for_time,
+                "gateway_proxy_enabled": gateway_proxy_enabled,
+                "gateway_udp_proxy_enabled": gateway_udp_proxy_enabled,
+                "root_certificate_installation_enabled": root_certificate_installation_enabled,
+                "use_zt_virtual_ip": use_zt_virtual_ip,
+            }, setting_update_params.SettingUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DeviceSettings]]._unwrapper),
             cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceSettings]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DeviceSettings]:
         """
         Describes the current device settings for a Zero Trust account.
 
@@ -123,19 +118,14 @@ class SettingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/devices/settings",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeviceSettings]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DeviceSettings]]._unwrapper),
             cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
         )
-
 
 class AsyncSettingsResource(AsyncAPIResource):
     @cached_property
@@ -146,22 +136,20 @@ class AsyncSettingsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSettingsResourceWithStreamingResponse:
         return AsyncSettingsResourceWithStreamingResponse(self)
 
-    async def update(
-        self,
-        *,
-        account_id: str,
-        disable_for_time: float | NotGiven = NOT_GIVEN,
-        gateway_proxy_enabled: bool | NotGiven = NOT_GIVEN,
-        gateway_udp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
-        root_certificate_installation_enabled: bool | NotGiven = NOT_GIVEN,
-        use_zt_virtual_ip: bool | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceSettings]:
+    async def update(self,
+    *,
+    account_id: str,
+    disable_for_time: float | NotGiven = NOT_GIVEN,
+    gateway_proxy_enabled: bool | NotGiven = NOT_GIVEN,
+    gateway_udp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
+    root_certificate_installation_enabled: bool | NotGiven = NOT_GIVEN,
+    use_zt_virtual_ip: bool | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DeviceSettings]:
         """
         Updates the current device settings for a Zero Trust account.
 
@@ -186,40 +174,31 @@ class AsyncSettingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._put(
             f"/accounts/{account_id}/devices/settings",
-            body=await async_maybe_transform(
-                {
-                    "disable_for_time": disable_for_time,
-                    "gateway_proxy_enabled": gateway_proxy_enabled,
-                    "gateway_udp_proxy_enabled": gateway_udp_proxy_enabled,
-                    "root_certificate_installation_enabled": root_certificate_installation_enabled,
-                    "use_zt_virtual_ip": use_zt_virtual_ip,
-                },
-                setting_update_params.SettingUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeviceSettings]]._unwrapper,
-            ),
+            body=await async_maybe_transform({
+                "disable_for_time": disable_for_time,
+                "gateway_proxy_enabled": gateway_proxy_enabled,
+                "gateway_udp_proxy_enabled": gateway_udp_proxy_enabled,
+                "root_certificate_installation_enabled": root_certificate_installation_enabled,
+                "use_zt_virtual_ip": use_zt_virtual_ip,
+            }, setting_update_params.SettingUpdateParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DeviceSettings]]._unwrapper),
             cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
         )
 
-    async def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceSettings]:
+    async def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[DeviceSettings]:
         """
         Describes the current device settings for a Zero Trust account.
 
@@ -233,19 +212,14 @@ class AsyncSettingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/devices/settings",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DeviceSettings]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DeviceSettings]]._unwrapper),
             cast_to=cast(Type[Optional[DeviceSettings]], ResultWrapper[DeviceSettings]),
         )
-
 
 class SettingsResourceWithRawResponse:
     def __init__(self, settings: SettingsResource) -> None:
@@ -258,7 +232,6 @@ class SettingsResourceWithRawResponse:
             settings.list,
         )
 
-
 class AsyncSettingsResourceWithRawResponse:
     def __init__(self, settings: AsyncSettingsResource) -> None:
         self._settings = settings
@@ -270,7 +243,6 @@ class AsyncSettingsResourceWithRawResponse:
             settings.list,
         )
 
-
 class SettingsResourceWithStreamingResponse:
     def __init__(self, settings: SettingsResource) -> None:
         self._settings = settings
@@ -281,7 +253,6 @@ class SettingsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             settings.list,
         )
-
 
 class AsyncSettingsResourceWithStreamingResponse:
     def __init__(self, settings: AsyncSettingsResource) -> None:

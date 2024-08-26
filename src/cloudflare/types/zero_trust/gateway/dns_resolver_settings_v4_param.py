@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 __all__ = ["DNSResolverSettingsV4Param"]
-
 
 class DNSResolverSettingsV4Param(TypedDict, total=False):
     ip: Required[str]

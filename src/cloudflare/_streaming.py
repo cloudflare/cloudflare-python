@@ -9,7 +9,9 @@ from typing_extensions import Self, Protocol, TypeGuard, override, get_origin, r
 
 import httpx
 
-from ._utils import extract_type_var_from_base
+from ._utils import is_mapping, is_dict, extract_type_var_from_base
+from ._exceptions import APIError
+from ._response import APIResponse, AsyncAPIResponse
 
 if TYPE_CHECKING:
     from ._client import Cloudflare, AsyncCloudflare
@@ -53,10 +55,10 @@ class Stream(Generic[_T]):
         response = self.response
         process_data = self._client._process_response_data
         iterator = self._iter_events()
-
+        
         for sse in iterator:
             yield process_data(data=sse.json(), cast_to=cast_to, response=response)
-
+        
         # Ensure the entire stream is consumed
         for _sse in iterator:
             ...
@@ -117,10 +119,10 @@ class AsyncStream(Generic[_T]):
         response = self.response
         process_data = self._client._process_response_data
         iterator = self._iter_events()
-
+        
         async for sse in iterator:
             yield process_data(data=sse.json(), cast_to=cast_to, response=response)
-
+        
         # Ensure the entire stream is consumed
         async for _sse in iterator:
             ...

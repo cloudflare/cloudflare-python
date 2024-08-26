@@ -1,61 +1,42 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from datetime import datetime
+from .scim_config_authentication_http_basic import SCIMConfigAuthenticationHTTPBasic
+
+from .scim_config_authentication_oauth_bearer_token import SCIMConfigAuthenticationOAuthBearerToken
+
+from .scim_config_authentication_oauth2 import SCIMConfigAuthenticationOauth2
+
 from typing_extensions import TypeAlias
 
 from ...._models import BaseModel
-from .allowed_idps import AllowedIdPs
-from .cors_headers import CORSHeaders
-from .oidc_saas_app import OIDCSaaSApp
-from .saml_saas_app import SAMLSaaSApp
-from .application_type import ApplicationType
-from .application_policy import ApplicationPolicy
+
+from typing import Optional, List
+
 from .scim_config_mapping import SCIMConfigMapping
+
+from .allowed_idps import AllowedIdPs
+
+from .cors_headers import CORSHeaders
+
+from datetime import datetime
+
+from .application_policy import ApplicationPolicy
+
 from .self_hosted_domains import SelfHostedDomains
-from .scim_config_authentication_oauth2 import SCIMConfigAuthenticationOauth2
-from .scim_config_authentication_http_basic import SCIMConfigAuthenticationHTTPBasic
-from .scim_config_authentication_oauth_bearer_token import SCIMConfigAuthenticationOAuthBearerToken
 
-__all__ = [
-    "ApplicationGetResponse",
-    "SelfHostedApplication",
-    "SelfHostedApplicationSCIMConfig",
-    "SelfHostedApplicationSCIMConfigAuthentication",
-    "SaaSApplication",
-    "SaaSApplicationSaaSApp",
-    "SaaSApplicationSCIMConfig",
-    "SaaSApplicationSCIMConfigAuthentication",
-    "BrowserSSHApplication",
-    "BrowserSSHApplicationSCIMConfig",
-    "BrowserSSHApplicationSCIMConfigAuthentication",
-    "BrowserVNCApplication",
-    "BrowserVNCApplicationSCIMConfig",
-    "BrowserVNCApplicationSCIMConfigAuthentication",
-    "AppLauncherApplication",
-    "AppLauncherApplicationFooterLink",
-    "AppLauncherApplicationLandingPageDesign",
-    "AppLauncherApplicationSCIMConfig",
-    "AppLauncherApplicationSCIMConfigAuthentication",
-    "DeviceEnrollmentPermissionsApplication",
-    "DeviceEnrollmentPermissionsApplicationFooterLink",
-    "DeviceEnrollmentPermissionsApplicationLandingPageDesign",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfig",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication",
-    "BrowserIsolationPermissionsApplication",
-    "BrowserIsolationPermissionsApplicationFooterLink",
-    "BrowserIsolationPermissionsApplicationLandingPageDesign",
-    "BrowserIsolationPermissionsApplicationSCIMConfig",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication",
-    "BookmarkApplication",
-    "BookmarkApplicationSCIMConfig",
-    "BookmarkApplicationSCIMConfigAuthentication",
-]
+from .saml_saas_app import SAMLSaaSApp
 
-SelfHostedApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
-]
+from .oidc_saas_app import OIDCSaaSApp
 
+from .application_type import ApplicationType
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["ApplicationGetResponse", "SelfHostedApplication", "SelfHostedApplicationSCIMConfig", "SelfHostedApplicationSCIMConfigAuthentication", "SaaSApplication", "SaaSApplicationSaaSApp", "SaaSApplicationSCIMConfig", "SaaSApplicationSCIMConfigAuthentication", "BrowserSSHApplication", "BrowserSSHApplicationSCIMConfig", "BrowserSSHApplicationSCIMConfigAuthentication", "BrowserVNCApplication", "BrowserVNCApplicationSCIMConfig", "BrowserVNCApplicationSCIMConfigAuthentication", "AppLauncherApplication", "AppLauncherApplicationFooterLink", "AppLauncherApplicationLandingPageDesign", "AppLauncherApplicationSCIMConfig", "AppLauncherApplicationSCIMConfigAuthentication", "DeviceEnrollmentPermissionsApplication", "DeviceEnrollmentPermissionsApplicationFooterLink", "DeviceEnrollmentPermissionsApplicationLandingPageDesign", "DeviceEnrollmentPermissionsApplicationSCIMConfig", "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication", "BrowserIsolationPermissionsApplication", "BrowserIsolationPermissionsApplicationFooterLink", "BrowserIsolationPermissionsApplicationLandingPageDesign", "BrowserIsolationPermissionsApplicationSCIMConfig", "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication", "BookmarkApplication", "BookmarkApplicationSCIMConfig", "BookmarkApplicationSCIMConfigAuthentication"]
+
+SelfHostedApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2]
 
 class SelfHostedApplicationSCIMConfig(BaseModel):
     idp_uid: str
@@ -88,7 +69,6 @@ class SelfHostedApplicationSCIMConfig(BaseModel):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class SelfHostedApplication(BaseModel):
     domain: str
@@ -225,13 +205,9 @@ class SelfHostedApplication(BaseModel):
 
     updated_at: Optional[datetime] = None
 
-
 SaaSApplicationSaaSApp: TypeAlias = Union[SAMLSaaSApp, OIDCSaaSApp]
 
-SaaSApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
-]
-
+SaaSApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2]
 
 class SaaSApplicationSCIMConfig(BaseModel):
     idp_uid: str
@@ -264,7 +240,6 @@ class SaaSApplicationSCIMConfig(BaseModel):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class SaaSApplication(BaseModel):
     id: Optional[str] = None
@@ -322,11 +297,7 @@ class SaaSApplication(BaseModel):
 
     updated_at: Optional[datetime] = None
 
-
-BrowserSSHApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
-]
-
+BrowserSSHApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2]
 
 class BrowserSSHApplicationSCIMConfig(BaseModel):
     idp_uid: str
@@ -359,7 +330,6 @@ class BrowserSSHApplicationSCIMConfig(BaseModel):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class BrowserSSHApplication(BaseModel):
     domain: str
@@ -496,11 +466,7 @@ class BrowserSSHApplication(BaseModel):
 
     updated_at: Optional[datetime] = None
 
-
-BrowserVNCApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
-]
-
+BrowserVNCApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2]
 
 class BrowserVNCApplicationSCIMConfig(BaseModel):
     idp_uid: str
@@ -533,7 +499,6 @@ class BrowserVNCApplicationSCIMConfig(BaseModel):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class BrowserVNCApplication(BaseModel):
     domain: str
@@ -670,14 +635,12 @@ class BrowserVNCApplication(BaseModel):
 
     updated_at: Optional[datetime] = None
 
-
 class AppLauncherApplicationFooterLink(BaseModel):
     name: str
     """The hypertext in the footer link."""
 
     url: str
     """the hyperlink in the footer link."""
-
 
 class AppLauncherApplicationLandingPageDesign(BaseModel):
     button_color: Optional[str] = None
@@ -695,11 +658,7 @@ class AppLauncherApplicationLandingPageDesign(BaseModel):
     title: Optional[str] = None
     """The title shown on the landing page."""
 
-
-AppLauncherApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
-]
-
+AppLauncherApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2]
 
 class AppLauncherApplicationSCIMConfig(BaseModel):
     idp_uid: str
@@ -732,7 +691,6 @@ class AppLauncherApplicationSCIMConfig(BaseModel):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class AppLauncherApplication(BaseModel):
     type: ApplicationType
@@ -805,14 +763,12 @@ class AppLauncherApplication(BaseModel):
 
     updated_at: Optional[datetime] = None
 
-
 class DeviceEnrollmentPermissionsApplicationFooterLink(BaseModel):
     name: str
     """The hypertext in the footer link."""
 
     url: str
     """the hyperlink in the footer link."""
-
 
 class DeviceEnrollmentPermissionsApplicationLandingPageDesign(BaseModel):
     button_color: Optional[str] = None
@@ -830,11 +786,7 @@ class DeviceEnrollmentPermissionsApplicationLandingPageDesign(BaseModel):
     title: Optional[str] = None
     """The title shown on the landing page."""
 
-
-DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
-]
-
+DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2]
 
 class DeviceEnrollmentPermissionsApplicationSCIMConfig(BaseModel):
     idp_uid: str
@@ -867,7 +819,6 @@ class DeviceEnrollmentPermissionsApplicationSCIMConfig(BaseModel):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class DeviceEnrollmentPermissionsApplication(BaseModel):
     type: ApplicationType
@@ -940,14 +891,12 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
 
     updated_at: Optional[datetime] = None
 
-
 class BrowserIsolationPermissionsApplicationFooterLink(BaseModel):
     name: str
     """The hypertext in the footer link."""
 
     url: str
     """the hyperlink in the footer link."""
-
 
 class BrowserIsolationPermissionsApplicationLandingPageDesign(BaseModel):
     button_color: Optional[str] = None
@@ -965,11 +914,7 @@ class BrowserIsolationPermissionsApplicationLandingPageDesign(BaseModel):
     title: Optional[str] = None
     """The title shown on the landing page."""
 
-
-BrowserIsolationPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
-]
-
+BrowserIsolationPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2]
 
 class BrowserIsolationPermissionsApplicationSCIMConfig(BaseModel):
     idp_uid: str
@@ -1002,7 +947,6 @@ class BrowserIsolationPermissionsApplicationSCIMConfig(BaseModel):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class BrowserIsolationPermissionsApplication(BaseModel):
     type: ApplicationType
@@ -1075,11 +1019,7 @@ class BrowserIsolationPermissionsApplication(BaseModel):
 
     updated_at: Optional[datetime] = None
 
-
-BookmarkApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
-]
-
+BookmarkApplicationSCIMConfigAuthentication: TypeAlias = Union[SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2]
 
 class BookmarkApplicationSCIMConfig(BaseModel):
     idp_uid: str
@@ -1112,7 +1052,6 @@ class BookmarkApplicationSCIMConfig(BaseModel):
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
-
 
 class BookmarkApplication(BaseModel):
     id: Optional[str] = None
@@ -1152,14 +1091,4 @@ class BookmarkApplication(BaseModel):
 
     updated_at: Optional[datetime] = None
 
-
-ApplicationGetResponse: TypeAlias = Union[
-    SelfHostedApplication,
-    SaaSApplication,
-    BrowserSSHApplication,
-    BrowserVNCApplication,
-    AppLauncherApplication,
-    DeviceEnrollmentPermissionsApplication,
-    BrowserIsolationPermissionsApplication,
-    BookmarkApplication,
-]
+ApplicationGetResponse: TypeAlias = Union[SelfHostedApplication, SaaSApplication, BrowserSSHApplication, BrowserVNCApplication, AppLauncherApplication, DeviceEnrollmentPermissionsApplication, BrowserIsolationPermissionsApplication, BookmarkApplication]

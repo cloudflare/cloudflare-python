@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 __all__ = ["SCIMConfigMappingParam", "Operations"]
-
 
 class Operations(TypedDict, total=False):
     create: bool
@@ -16,7 +15,6 @@ class Operations(TypedDict, total=False):
 
     update: bool
     """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
 
 class SCIMConfigMappingParam(TypedDict, total=False):
     schema: Required[str]

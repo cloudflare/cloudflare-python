@@ -1,22 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-from datetime import datetime
-from typing_extensions import Literal
-
-from .stage import Stage
 from ..._models import BaseModel
 
-__all__ = [
-    "Deployment",
-    "BuildConfig",
-    "DeploymentTrigger",
-    "DeploymentTriggerMetadata",
-    "EnvVars",
-    "Source",
-    "SourceConfig",
-]
+from typing import Optional, List, Dict
 
+from typing_extensions import Literal
+
+from datetime import datetime
+
+from .stage import Stage
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["Deployment", "BuildConfig", "DeploymentTrigger", "DeploymentTriggerMetadata", "EnvVars", "Source", "SourceConfig"]
 
 class BuildConfig(BaseModel):
     build_caching: Optional[bool] = None
@@ -37,7 +35,6 @@ class BuildConfig(BaseModel):
     web_analytics_token: Optional[str] = None
     """The auth token for analytics."""
 
-
 class DeploymentTriggerMetadata(BaseModel):
     branch: Optional[str] = None
     """Where the trigger happened."""
@@ -48,7 +45,6 @@ class DeploymentTriggerMetadata(BaseModel):
     commit_message: Optional[str] = None
     """Message of the deployment trigger commit."""
 
-
 class DeploymentTrigger(BaseModel):
     metadata: Optional[DeploymentTriggerMetadata] = None
     """Additional info about the trigger."""
@@ -56,14 +52,12 @@ class DeploymentTrigger(BaseModel):
     type: Optional[str] = None
     """What caused the deployment."""
 
-
 class EnvVars(BaseModel):
     value: str
     """Environment variable value."""
 
     type: Optional[str] = None
     """The type of environment variable."""
-
 
 class SourceConfig(BaseModel):
     deployments_enabled: Optional[bool] = None
@@ -88,12 +82,10 @@ class SourceConfig(BaseModel):
 
     repo_name: Optional[str] = None
 
-
 class Source(BaseModel):
     config: Optional[SourceConfig] = None
 
     type: Optional[str] = None
-
 
 class Deployment(BaseModel):
     id: Optional[str] = None

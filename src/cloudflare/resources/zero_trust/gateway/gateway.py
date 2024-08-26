@@ -2,107 +2,65 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from .lists import (
-    ListsResource,
-    AsyncListsResource,
-    ListsResourceWithRawResponse,
-    AsyncListsResourceWithRawResponse,
-    ListsResourceWithStreamingResponse,
-    AsyncListsResourceWithStreamingResponse,
-)
-from .rules import (
-    RulesResource,
-    AsyncRulesResource,
-    RulesResourceWithRawResponse,
-    AsyncRulesResourceWithRawResponse,
-    RulesResourceWithStreamingResponse,
-    AsyncRulesResourceWithStreamingResponse,
-)
-from .logging import (
-    LoggingResource,
-    AsyncLoggingResource,
-    LoggingResourceWithRawResponse,
-    AsyncLoggingResourceWithRawResponse,
-    LoggingResourceWithStreamingResponse,
-    AsyncLoggingResourceWithStreamingResponse,
-)
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .app_types import (
-    AppTypesResource,
-    AsyncAppTypesResource,
-    AppTypesResourceWithRawResponse,
-    AsyncAppTypesResourceWithRawResponse,
-    AppTypesResourceWithStreamingResponse,
-    AsyncAppTypesResourceWithStreamingResponse,
-)
-from .locations import (
-    LocationsResource,
-    AsyncLocationsResource,
-    LocationsResourceWithRawResponse,
-    AsyncLocationsResourceWithRawResponse,
-    LocationsResourceWithStreamingResponse,
-    AsyncLocationsResourceWithStreamingResponse,
-)
+from .audit_ssh_settings import AuditSSHSettingsResource, AsyncAuditSSHSettingsResource
+
 from ...._compat import cached_property
-from .categories import (
-    CategoriesResource,
-    AsyncCategoriesResource,
-    CategoriesResourceWithRawResponse,
-    AsyncCategoriesResourceWithRawResponse,
-    CategoriesResourceWithStreamingResponse,
-    AsyncCategoriesResourceWithStreamingResponse,
-)
+
+from .categories import CategoriesResource, AsyncCategoriesResource
+
+from .app_types import AppTypesResource, AsyncAppTypesResource
+
+from .configurations import ConfigurationsResource, AsyncConfigurationsResource
+
 from .lists.lists import ListsResource, AsyncListsResource
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from .certificates import (
-    CertificatesResource,
-    AsyncCertificatesResource,
-    CertificatesResourceWithRawResponse,
-    AsyncCertificatesResourceWithRawResponse,
-    CertificatesResourceWithStreamingResponse,
-    AsyncCertificatesResourceWithStreamingResponse,
-)
-from .configurations import (
-    ConfigurationsResource,
-    AsyncConfigurationsResource,
-    ConfigurationsResourceWithRawResponse,
-    AsyncConfigurationsResourceWithRawResponse,
-    ConfigurationsResourceWithStreamingResponse,
-    AsyncConfigurationsResourceWithStreamingResponse,
-)
-from ...._base_client import make_request_options
-from .proxy_endpoints import (
-    ProxyEndpointsResource,
-    AsyncProxyEndpointsResource,
-    ProxyEndpointsResourceWithRawResponse,
-    AsyncProxyEndpointsResourceWithRawResponse,
-    ProxyEndpointsResourceWithStreamingResponse,
-    AsyncProxyEndpointsResourceWithStreamingResponse,
-)
-from .audit_ssh_settings import (
-    AuditSSHSettingsResource,
-    AsyncAuditSSHSettingsResource,
-    AuditSSHSettingsResourceWithRawResponse,
-    AsyncAuditSSHSettingsResourceWithRawResponse,
-    AuditSSHSettingsResourceWithStreamingResponse,
-    AsyncAuditSSHSettingsResourceWithStreamingResponse,
-)
-from ....types.zero_trust.gateway_list_response import GatewayListResponse
+
+from .locations import LocationsResource, AsyncLocationsResource
+
+from .logging import LoggingResource, AsyncLoggingResource
+
+from .proxy_endpoints import ProxyEndpointsResource, AsyncProxyEndpointsResource
+
+from .rules import RulesResource, AsyncRulesResource
+
+from .certificates import CertificatesResource, AsyncCertificatesResource
+
 from ....types.zero_trust.gateway_create_response import GatewayCreateResponse
 
-__all__ = ["GatewayResource", "AsyncGatewayResource"]
+from ...._wrappers import ResultWrapper
 
+from typing import Optional, Type
+
+from ...._base_client import make_request_options
+
+from ....types.zero_trust.gateway_list_response import GatewayListResponse
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from .audit_ssh_settings import AuditSSHSettingsResource, AsyncAuditSSHSettingsResource, AuditSSHSettingsResourceWithRawResponse, AsyncAuditSSHSettingsResourceWithRawResponse, AuditSSHSettingsResourceWithStreamingResponse, AsyncAuditSSHSettingsResourceWithStreamingResponse
+from .categories import CategoriesResource, AsyncCategoriesResource, CategoriesResourceWithRawResponse, AsyncCategoriesResourceWithRawResponse, CategoriesResourceWithStreamingResponse, AsyncCategoriesResourceWithStreamingResponse
+from .app_types import AppTypesResource, AsyncAppTypesResource, AppTypesResourceWithRawResponse, AsyncAppTypesResourceWithRawResponse, AppTypesResourceWithStreamingResponse, AsyncAppTypesResourceWithStreamingResponse
+from .configurations import ConfigurationsResource, AsyncConfigurationsResource, ConfigurationsResourceWithRawResponse, AsyncConfigurationsResourceWithRawResponse, ConfigurationsResourceWithStreamingResponse, AsyncConfigurationsResourceWithStreamingResponse
+from .lists import ListsResource, AsyncListsResource, ListsResourceWithRawResponse, AsyncListsResourceWithRawResponse, ListsResourceWithStreamingResponse, AsyncListsResourceWithStreamingResponse
+from .locations import LocationsResource, AsyncLocationsResource, LocationsResourceWithRawResponse, AsyncLocationsResourceWithRawResponse, LocationsResourceWithStreamingResponse, AsyncLocationsResourceWithStreamingResponse
+from .logging import LoggingResource, AsyncLoggingResource, LoggingResourceWithRawResponse, AsyncLoggingResourceWithRawResponse, LoggingResourceWithStreamingResponse, AsyncLoggingResourceWithStreamingResponse
+from .proxy_endpoints import ProxyEndpointsResource, AsyncProxyEndpointsResource, ProxyEndpointsResourceWithRawResponse, AsyncProxyEndpointsResourceWithRawResponse, ProxyEndpointsResourceWithStreamingResponse, AsyncProxyEndpointsResourceWithStreamingResponse
+from .rules import RulesResource, AsyncRulesResource, RulesResourceWithRawResponse, AsyncRulesResourceWithRawResponse, RulesResourceWithStreamingResponse, AsyncRulesResourceWithStreamingResponse
+from .certificates import CertificatesResource, AsyncCertificatesResource, CertificatesResourceWithRawResponse, AsyncCertificatesResourceWithRawResponse, CertificatesResourceWithStreamingResponse, AsyncCertificatesResourceWithStreamingResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+
+__all__ = ["GatewayResource", "AsyncGatewayResource"]
 
 class GatewayResource(SyncAPIResource):
     @cached_property
@@ -153,17 +111,15 @@ class GatewayResource(SyncAPIResource):
     def with_streaming_response(self) -> GatewayResourceWithStreamingResponse:
         return GatewayResourceWithStreamingResponse(self)
 
-    def create(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[GatewayCreateResponse]:
+    def create(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[GatewayCreateResponse]:
         """
         Creates a Zero Trust account with an existing Cloudflare account.
 
@@ -177,30 +133,24 @@ class GatewayResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._post(
             f"/accounts/{account_id}/gateway",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[GatewayCreateResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[GatewayCreateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[GatewayCreateResponse]], ResultWrapper[GatewayCreateResponse]),
         )
 
-    def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[GatewayListResponse]:
+    def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[GatewayListResponse]:
         """
         Gets information about the current Zero Trust account.
 
@@ -214,19 +164,14 @@ class GatewayResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return self._get(
             f"/accounts/{account_id}/gateway",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[GatewayListResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[GatewayListResponse]]._unwrapper),
             cast_to=cast(Type[Optional[GatewayListResponse]], ResultWrapper[GatewayListResponse]),
         )
-
 
 class AsyncGatewayResource(AsyncAPIResource):
     @cached_property
@@ -277,17 +222,15 @@ class AsyncGatewayResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncGatewayResourceWithStreamingResponse:
         return AsyncGatewayResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[GatewayCreateResponse]:
+    async def create(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[GatewayCreateResponse]:
         """
         Creates a Zero Trust account with an existing Cloudflare account.
 
@@ -301,30 +244,24 @@ class AsyncGatewayResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._post(
             f"/accounts/{account_id}/gateway",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[GatewayCreateResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[GatewayCreateResponse]]._unwrapper),
             cast_to=cast(Type[Optional[GatewayCreateResponse]], ResultWrapper[GatewayCreateResponse]),
         )
 
-    async def list(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[GatewayListResponse]:
+    async def list(self,
+    *,
+    account_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[GatewayListResponse]:
         """
         Gets information about the current Zero Trust account.
 
@@ -338,19 +275,14 @@ class AsyncGatewayResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `account_id` but received {account_id!r}'
+          )
         return await self._get(
             f"/accounts/{account_id}/gateway",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[GatewayListResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[GatewayListResponse]]._unwrapper),
             cast_to=cast(Type[Optional[GatewayListResponse]], ResultWrapper[GatewayListResponse]),
         )
-
 
 class GatewayResourceWithRawResponse:
     def __init__(self, gateway: GatewayResource) -> None:
@@ -403,7 +335,6 @@ class GatewayResourceWithRawResponse:
     def certificates(self) -> CertificatesResourceWithRawResponse:
         return CertificatesResourceWithRawResponse(self._gateway.certificates)
 
-
 class AsyncGatewayResourceWithRawResponse:
     def __init__(self, gateway: AsyncGatewayResource) -> None:
         self._gateway = gateway
@@ -455,7 +386,6 @@ class AsyncGatewayResourceWithRawResponse:
     def certificates(self) -> AsyncCertificatesResourceWithRawResponse:
         return AsyncCertificatesResourceWithRawResponse(self._gateway.certificates)
 
-
 class GatewayResourceWithStreamingResponse:
     def __init__(self, gateway: GatewayResource) -> None:
         self._gateway = gateway
@@ -506,7 +436,6 @@ class GatewayResourceWithStreamingResponse:
     @cached_property
     def certificates(self) -> CertificatesResourceWithStreamingResponse:
         return CertificatesResourceWithStreamingResponse(self._gateway.certificates)
-
 
 class AsyncGatewayResourceWithStreamingResponse:
     def __init__(self, gateway: AsyncGatewayResource) -> None:

@@ -2,30 +2,40 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.page_shield import script_list_params
+
 from ...types.page_shield.script import Script
+
+from ...pagination import SyncSinglePage, AsyncSinglePage
+
+from ..._utils import maybe_transform
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
 from ...types.page_shield.script_get_response import ScriptGetResponse
 
-__all__ = ["ScriptsResource", "AsyncScriptsResource"]
+from ..._wrappers import ResultWrapper
 
+from typing import Optional, Type
+
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.page_shield import script_list_params
+from typing import cast
+from typing import cast
+
+__all__ = ["ScriptsResource", "AsyncScriptsResource"]
 
 class ScriptsResource(SyncAPIResource):
     @cached_property
@@ -36,30 +46,28 @@ class ScriptsResource(SyncAPIResource):
     def with_streaming_response(self) -> ScriptsResourceWithStreamingResponse:
         return ScriptsResourceWithStreamingResponse(self)
 
-    def list(
-        self,
-        *,
-        zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        exclude_cdn_cgi: bool | NotGiven = NOT_GIVEN,
-        exclude_duplicates: bool | NotGiven = NOT_GIVEN,
-        exclude_urls: str | NotGiven = NOT_GIVEN,
-        export: Literal["csv"] | NotGiven = NOT_GIVEN,
-        hosts: str | NotGiven = NOT_GIVEN,
-        order_by: Literal["first_seen_at", "last_seen_at"] | NotGiven = NOT_GIVEN,
-        page: str | NotGiven = NOT_GIVEN,
-        page_url: str | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        prioritize_malicious: bool | NotGiven = NOT_GIVEN,
-        status: str | NotGiven = NOT_GIVEN,
-        urls: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Script]:
+    def list(self,
+    *,
+    zone_id: str,
+    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+    exclude_cdn_cgi: bool | NotGiven = NOT_GIVEN,
+    exclude_duplicates: bool | NotGiven = NOT_GIVEN,
+    exclude_urls: str | NotGiven = NOT_GIVEN,
+    export: Literal["csv"] | NotGiven = NOT_GIVEN,
+    hosts: str | NotGiven = NOT_GIVEN,
+    order_by: Literal["first_seen_at", "last_seen_at"] | NotGiven = NOT_GIVEN,
+    page: str | NotGiven = NOT_GIVEN,
+    page_url: str | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    prioritize_malicious: bool | NotGiven = NOT_GIVEN,
+    status: str | NotGiven = NOT_GIVEN,
+    urls: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[Script]:
         """
         Lists all scripts detected by Page Shield.
 
@@ -126,49 +134,40 @@ class ScriptsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get_api_list(
             f"/zones/{zone_id}/page_shield/scripts",
-            page=SyncSinglePage[Script],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "direction": direction,
-                        "exclude_cdn_cgi": exclude_cdn_cgi,
-                        "exclude_duplicates": exclude_duplicates,
-                        "exclude_urls": exclude_urls,
-                        "export": export,
-                        "hosts": hosts,
-                        "order_by": order_by,
-                        "page": page,
-                        "page_url": page_url,
-                        "per_page": per_page,
-                        "prioritize_malicious": prioritize_malicious,
-                        "status": status,
-                        "urls": urls,
-                    },
-                    script_list_params.ScriptListParams,
-                ),
-            ),
+            page = SyncSinglePage[Script],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "direction": direction,
+                "exclude_cdn_cgi": exclude_cdn_cgi,
+                "exclude_duplicates": exclude_duplicates,
+                "exclude_urls": exclude_urls,
+                "export": export,
+                "hosts": hosts,
+                "order_by": order_by,
+                "page": page,
+                "page_url": page_url,
+                "per_page": per_page,
+                "prioritize_malicious": prioritize_malicious,
+                "status": status,
+                "urls": urls,
+            }, script_list_params.ScriptListParams)),
             model=Script,
         )
 
-    def get(
-        self,
-        script_id: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptGetResponse]:
+    def get(self,
+    script_id: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ScriptGetResponse]:
         """
         Fetches a script detected by Page Shield by script ID.
 
@@ -186,21 +185,18 @@ class ScriptsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not script_id:
-            raise ValueError(f"Expected a non-empty value for `script_id` but received {script_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `script_id` but received {script_id!r}'
+          )
         return self._get(
             f"/zones/{zone_id}/page_shield/scripts/{script_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ScriptGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[ScriptGetResponse]], ResultWrapper[ScriptGetResponse]),
         )
-
 
 class AsyncScriptsResource(AsyncAPIResource):
     @cached_property
@@ -211,30 +207,28 @@ class AsyncScriptsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncScriptsResourceWithStreamingResponse:
         return AsyncScriptsResourceWithStreamingResponse(self)
 
-    def list(
-        self,
-        *,
-        zone_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        exclude_cdn_cgi: bool | NotGiven = NOT_GIVEN,
-        exclude_duplicates: bool | NotGiven = NOT_GIVEN,
-        exclude_urls: str | NotGiven = NOT_GIVEN,
-        export: Literal["csv"] | NotGiven = NOT_GIVEN,
-        hosts: str | NotGiven = NOT_GIVEN,
-        order_by: Literal["first_seen_at", "last_seen_at"] | NotGiven = NOT_GIVEN,
-        page: str | NotGiven = NOT_GIVEN,
-        page_url: str | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        prioritize_malicious: bool | NotGiven = NOT_GIVEN,
-        status: str | NotGiven = NOT_GIVEN,
-        urls: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Script, AsyncSinglePage[Script]]:
+    def list(self,
+    *,
+    zone_id: str,
+    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+    exclude_cdn_cgi: bool | NotGiven = NOT_GIVEN,
+    exclude_duplicates: bool | NotGiven = NOT_GIVEN,
+    exclude_urls: str | NotGiven = NOT_GIVEN,
+    export: Literal["csv"] | NotGiven = NOT_GIVEN,
+    hosts: str | NotGiven = NOT_GIVEN,
+    order_by: Literal["first_seen_at", "last_seen_at"] | NotGiven = NOT_GIVEN,
+    page: str | NotGiven = NOT_GIVEN,
+    page_url: str | NotGiven = NOT_GIVEN,
+    per_page: float | NotGiven = NOT_GIVEN,
+    prioritize_malicious: bool | NotGiven = NOT_GIVEN,
+    status: str | NotGiven = NOT_GIVEN,
+    urls: str | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Script, AsyncSinglePage[Script]]:
         """
         Lists all scripts detected by Page Shield.
 
@@ -301,49 +295,40 @@ class AsyncScriptsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         return self._get_api_list(
             f"/zones/{zone_id}/page_shield/scripts",
-            page=AsyncSinglePage[Script],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "direction": direction,
-                        "exclude_cdn_cgi": exclude_cdn_cgi,
-                        "exclude_duplicates": exclude_duplicates,
-                        "exclude_urls": exclude_urls,
-                        "export": export,
-                        "hosts": hosts,
-                        "order_by": order_by,
-                        "page": page,
-                        "page_url": page_url,
-                        "per_page": per_page,
-                        "prioritize_malicious": prioritize_malicious,
-                        "status": status,
-                        "urls": urls,
-                    },
-                    script_list_params.ScriptListParams,
-                ),
-            ),
+            page = AsyncSinglePage[Script],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "direction": direction,
+                "exclude_cdn_cgi": exclude_cdn_cgi,
+                "exclude_duplicates": exclude_duplicates,
+                "exclude_urls": exclude_urls,
+                "export": export,
+                "hosts": hosts,
+                "order_by": order_by,
+                "page": page,
+                "page_url": page_url,
+                "per_page": per_page,
+                "prioritize_malicious": prioritize_malicious,
+                "status": status,
+                "urls": urls,
+            }, script_list_params.ScriptListParams)),
             model=Script,
         )
 
-    async def get(
-        self,
-        script_id: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptGetResponse]:
+    async def get(self,
+    script_id: str,
+    *,
+    zone_id: str,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ScriptGetResponse]:
         """
         Fetches a script detected by Page Shield by script ID.
 
@@ -361,21 +346,18 @@ class AsyncScriptsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not script_id:
-            raise ValueError(f"Expected a non-empty value for `script_id` but received {script_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `script_id` but received {script_id!r}'
+          )
         return await self._get(
             f"/zones/{zone_id}/page_shield/scripts/{script_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ScriptGetResponse]]._unwrapper,
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ScriptGetResponse]]._unwrapper),
             cast_to=cast(Type[Optional[ScriptGetResponse]], ResultWrapper[ScriptGetResponse]),
         )
-
 
 class ScriptsResourceWithRawResponse:
     def __init__(self, scripts: ScriptsResource) -> None:
@@ -388,7 +370,6 @@ class ScriptsResourceWithRawResponse:
             scripts.get,
         )
 
-
 class AsyncScriptsResourceWithRawResponse:
     def __init__(self, scripts: AsyncScriptsResource) -> None:
         self._scripts = scripts
@@ -400,7 +381,6 @@ class AsyncScriptsResourceWithRawResponse:
             scripts.get,
         )
 
-
 class ScriptsResourceWithStreamingResponse:
     def __init__(self, scripts: ScriptsResource) -> None:
         self._scripts = scripts
@@ -411,7 +391,6 @@ class ScriptsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             scripts.get,
         )
-
 
 class AsyncScriptsResourceWithStreamingResponse:
     def __init__(self, scripts: AsyncScriptsResource) -> None:

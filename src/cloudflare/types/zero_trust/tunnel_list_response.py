@@ -1,14 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from datetime import datetime
-from typing_extensions import Literal, TypeAlias
-
-from ..._models import BaseModel
 from ..shared.cloudflare_tunnel import CloudflareTunnel
 
-__all__ = ["TunnelListResponse", "TunnelWARPConnectorTunnel", "TunnelWARPConnectorTunnelConnection"]
+from ..._models import BaseModel
 
+from typing import Optional, List
+
+from datetime import datetime
+
+from typing_extensions import Literal, TypeAlias
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["TunnelListResponse", "TunnelWARPConnectorTunnel", "TunnelWARPConnectorTunnelConnection"]
 
 class TunnelWARPConnectorTunnelConnection(BaseModel):
     id: Optional[str] = None
@@ -39,7 +45,6 @@ class TunnelWARPConnectorTunnelConnection(BaseModel):
 
     uuid: Optional[str] = None
     """UUID of the Cloudflare Tunnel connection."""
-
 
 class TunnelWARPConnectorTunnel(BaseModel):
     id: Optional[str] = None
@@ -89,6 +94,5 @@ class TunnelWARPConnectorTunnel(BaseModel):
 
     tun_type: Optional[Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"]] = None
     """The type of tunnel."""
-
 
 TunnelListResponse: TypeAlias = Union[CloudflareTunnel, TunnelWARPConnectorTunnel]

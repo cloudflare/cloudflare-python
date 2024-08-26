@@ -2,20 +2,26 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Annotated, Literal
+
 from typing import Union
+
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
-__all__ = ["HistoryListParams"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ...._types import FileTypes
+from ...._utils import PropertyInfo
 
+__all__ = ["HistoryListParams"]
 
 class HistoryListParams(TypedDict, total=False):
     action: str
     """The billing item action."""
 
-    occurred_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    occurred_at: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
     """When the billing item was created."""
 
     order: Literal["type", "occurred_at", "action"]

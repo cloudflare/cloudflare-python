@@ -1,12 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
-
 from ..._models import BaseModel
 
-__all__ = ["DispatchNamespaceBinding", "Outbound", "OutboundWorker"]
+from typing import Optional, List
 
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["DispatchNamespaceBinding", "Outbound", "OutboundWorker"]
 
 class OutboundWorker(BaseModel):
     environment: Optional[str] = None
@@ -14,7 +18,6 @@ class OutboundWorker(BaseModel):
 
     service: Optional[str] = None
     """Name of the outbound worker"""
-
 
 class Outbound(BaseModel):
     params: Optional[List[str]] = None
@@ -25,7 +28,6 @@ class Outbound(BaseModel):
 
     worker: Optional[OutboundWorker] = None
     """Outbound worker"""
-
 
 class DispatchNamespaceBinding(BaseModel):
     name: str

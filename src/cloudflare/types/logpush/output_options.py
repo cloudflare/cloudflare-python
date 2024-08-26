@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal
-
-from pydantic import Field as FieldInfo
-
 from ..._models import BaseModel
 
-__all__ = ["OutputOptions"]
+from typing import Optional, List
 
+from typing_extensions import Literal
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["OutputOptions"]
 
 class OutputOptions(BaseModel):
     batch_prefix: Optional[str] = None
@@ -17,7 +19,7 @@ class OutputOptions(BaseModel):
     batch_suffix: Optional[str] = None
     """String to be appended after each batch."""
 
-    cve_2021_4428: Optional[bool] = FieldInfo(alias="CVE-2021-4428", default=None)
+    cve_2021_4428: Optional[bool] = FieldInfo(alias = "CVE-2021-4428", default = None)
     """
     If set to true, will cause all occurrences of `${` in the generated files to be
     replaced with `x{`.

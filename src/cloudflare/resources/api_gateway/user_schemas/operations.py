@@ -2,28 +2,36 @@
 
 from __future__ import annotations
 
-from typing import Any, List, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.api_gateway.user_schemas import operation_list_params
+
 from ....types.api_gateway.user_schemas.operation_list_response import OperationListResponse
 
-__all__ = ["OperationsResource", "AsyncOperationsResource"]
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
+from ...._utils import maybe_transform
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from typing import List
+
+from typing_extensions import Literal
+
+from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.api_gateway.user_schemas import operation_list_params
+from typing import cast
+from typing import cast
+
+__all__ = ["OperationsResource", "AsyncOperationsResource"]
 
 class OperationsResource(SyncAPIResource):
     @cached_property
@@ -34,25 +42,23 @@ class OperationsResource(SyncAPIResource):
     def with_streaming_response(self) -> OperationsResourceWithStreamingResponse:
         return OperationsResourceWithStreamingResponse(self)
 
-    def list(
-        self,
-        schema_id: str,
-        *,
-        zone_id: str,
-        endpoint: str | NotGiven = NOT_GIVEN,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
-        host: List[str] | NotGiven = NOT_GIVEN,
-        method: List[str] | NotGiven = NOT_GIVEN,
-        operation_status: Literal["new", "existing"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[OperationListResponse]:
+    def list(self,
+    schema_id: str,
+    *,
+    zone_id: str,
+    endpoint: str | NotGiven = NOT_GIVEN,
+    feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
+    host: List[str] | NotGiven = NOT_GIVEN,
+    method: List[str] | NotGiven = NOT_GIVEN,
+    operation_status: Literal["new", "existing"] | NotGiven = NOT_GIVEN,
+    page: int | NotGiven = NOT_GIVEN,
+    per_page: int | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[OperationListResponse]:
         """Retrieves all operations from the schema.
 
         Operations that already exist in API
@@ -89,33 +95,27 @@ class OperationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not schema_id:
-            raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `schema_id` but received {schema_id!r}'
+          )
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}/operations",
-            page=SyncV4PagePaginationArray[OperationListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "endpoint": endpoint,
-                        "feature": feature,
-                        "host": host,
-                        "method": method,
-                        "operation_status": operation_status,
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    operation_list_params.OperationListParams,
-                ),
-            ),
+            page = SyncV4PagePaginationArray[OperationListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "endpoint": endpoint,
+                "feature": feature,
+                "host": host,
+                "method": method,
+                "operation_status": operation_status,
+                "page": page,
+                "per_page": per_page,
+            }, operation_list_params.OperationListParams)),
             model=cast(Any, OperationListResponse),  # Union types cannot be passed in as arguments in the type system
         )
-
 
 class AsyncOperationsResource(AsyncAPIResource):
     @cached_property
@@ -126,25 +126,23 @@ class AsyncOperationsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncOperationsResourceWithStreamingResponse:
         return AsyncOperationsResourceWithStreamingResponse(self)
 
-    def list(
-        self,
-        schema_id: str,
-        *,
-        zone_id: str,
-        endpoint: str | NotGiven = NOT_GIVEN,
-        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
-        host: List[str] | NotGiven = NOT_GIVEN,
-        method: List[str] | NotGiven = NOT_GIVEN,
-        operation_status: Literal["new", "existing"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[OperationListResponse, AsyncV4PagePaginationArray[OperationListResponse]]:
+    def list(self,
+    schema_id: str,
+    *,
+    zone_id: str,
+    endpoint: str | NotGiven = NOT_GIVEN,
+    feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
+    host: List[str] | NotGiven = NOT_GIVEN,
+    method: List[str] | NotGiven = NOT_GIVEN,
+    operation_status: Literal["new", "existing"] | NotGiven = NOT_GIVEN,
+    page: int | NotGiven = NOT_GIVEN,
+    per_page: int | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[OperationListResponse, AsyncV4PagePaginationArray[OperationListResponse]]:
         """Retrieves all operations from the schema.
 
         Operations that already exist in API
@@ -181,33 +179,27 @@ class AsyncOperationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
+          )
         if not schema_id:
-            raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
+          raise ValueError(
+            f'Expected a non-empty value for `schema_id` but received {schema_id!r}'
+          )
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}/operations",
-            page=AsyncV4PagePaginationArray[OperationListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "endpoint": endpoint,
-                        "feature": feature,
-                        "host": host,
-                        "method": method,
-                        "operation_status": operation_status,
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    operation_list_params.OperationListParams,
-                ),
-            ),
+            page = AsyncV4PagePaginationArray[OperationListResponse],
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
+                "endpoint": endpoint,
+                "feature": feature,
+                "host": host,
+                "method": method,
+                "operation_status": operation_status,
+                "page": page,
+                "per_page": per_page,
+            }, operation_list_params.OperationListParams)),
             model=cast(Any, OperationListResponse),  # Union types cannot be passed in as arguments in the type system
         )
-
 
 class OperationsResourceWithRawResponse:
     def __init__(self, operations: OperationsResource) -> None:
@@ -217,7 +209,6 @@ class OperationsResourceWithRawResponse:
             operations.list,
         )
 
-
 class AsyncOperationsResourceWithRawResponse:
     def __init__(self, operations: AsyncOperationsResource) -> None:
         self._operations = operations
@@ -226,7 +217,6 @@ class AsyncOperationsResourceWithRawResponse:
             operations.list,
         )
 
-
 class OperationsResourceWithStreamingResponse:
     def __init__(self, operations: OperationsResource) -> None:
         self._operations = operations
@@ -234,7 +224,6 @@ class OperationsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             operations.list,
         )
-
 
 class AsyncOperationsResourceWithStreamingResponse:
     def __init__(self, operations: AsyncOperationsResource) -> None:

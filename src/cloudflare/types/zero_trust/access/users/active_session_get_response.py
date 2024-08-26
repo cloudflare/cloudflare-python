@@ -1,24 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
-
-from pydantic import Field as FieldInfo
-
 from ....._models import BaseModel
+
+from typing import Optional, Dict
+
 from ..applications.user_policy_check_geo import UserPolicyCheckGeo
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = ["ActiveSessionGetResponse", "DeviceSessions", "DevicePosture", "DevicePostureCheck", "IdP", "MTLSAuth"]
 
-
 class DeviceSessions(BaseModel):
     last_authenticated: Optional[float] = None
-
 
 class DevicePostureCheck(BaseModel):
     exists: Optional[bool] = None
 
     path: Optional[str] = None
-
 
 class DevicePosture(BaseModel):
     id: Optional[str] = None
@@ -39,12 +39,10 @@ class DevicePosture(BaseModel):
 
     type: Optional[str] = None
 
-
 class IdP(BaseModel):
     id: Optional[str] = None
 
     type: Optional[str] = None
-
 
 class MTLSAuth(BaseModel):
     auth_status: Optional[str] = None
@@ -57,7 +55,6 @@ class MTLSAuth(BaseModel):
 
     cert_serial: Optional[str] = None
 
-
 class ActiveSessionGetResponse(BaseModel):
     account_id: Optional[str] = None
 
@@ -69,7 +66,7 @@ class ActiveSessionGetResponse(BaseModel):
 
     device_sessions: Optional[Dict[str, DeviceSessions]] = None
 
-    device_posture: Optional[Dict[str, DevicePosture]] = FieldInfo(alias="devicePosture", default=None)
+    device_posture: Optional[Dict[str, DevicePosture]] = FieldInfo(alias = "devicePosture", default = None)
 
     email: Optional[str] = None
 
@@ -85,7 +82,7 @@ class ActiveSessionGetResponse(BaseModel):
 
     is_warp: Optional[bool] = None
 
-    is_active: Optional[bool] = FieldInfo(alias="isActive", default=None)
+    is_active: Optional[bool] = FieldInfo(alias = "isActive", default = None)
 
     mtls_auth: Optional[MTLSAuth] = None
 

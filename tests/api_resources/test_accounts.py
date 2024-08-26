@@ -2,21 +2,30 @@
 
 from __future__ import annotations
 
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from typing import Optional, Any, cast
+
+from cloudflare.types.accounts import Account
+
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.accounts import Account
+from cloudflare.types.accounts import account_update_params
+from cloudflare.types.accounts import account_list_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-
 class TestAccounts:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
@@ -24,7 +33,7 @@ class TestAccounts:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             name="Demo Account",
         )
-        assert_matches_type(Optional[Account], account, path=["response"])
+        assert_matches_type(Optional[Account], account, path=['response'])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -38,46 +47,47 @@ class TestAccounts:
                 "use_account_custom_ns_by_default": True,
             },
         )
-        assert_matches_type(Optional[Account], account, path=["response"])
+        assert_matches_type(Optional[Account], account, path=['response'])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
+
         response = client.accounts.with_raw_response.update(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             name="Demo Account",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         account = response.parse()
-        assert_matches_type(Optional[Account], account, path=["response"])
+        assert_matches_type(Optional[Account], account, path=['response'])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.accounts.with_streaming_response.update(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             name="Demo Account",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             account = response.parse()
-            assert_matches_type(Optional[Account], account, path=["response"])
+            assert_matches_type(Optional[Account], account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.accounts.with_raw_response.update(
-                account_id="",
-                name="Demo Account",
-            )
+          client.accounts.with_raw_response.update(
+              account_id="",
+              name="Demo Account",
+          )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         account = client.accounts.list()
-        assert_matches_type(SyncV4PagePaginationArray[Account], account, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Account], account, path=['response'])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -87,25 +97,26 @@ class TestAccounts:
             page=1,
             per_page=5,
         )
-        assert_matches_type(SyncV4PagePaginationArray[Account], account, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Account], account, path=['response'])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
+
         response = client.accounts.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         account = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[Account], account, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Account], account, path=['response'])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.accounts.with_streaming_response.list() as response:
+        with client.accounts.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             account = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[Account], account, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Account], account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -114,42 +125,42 @@ class TestAccounts:
         account = client.accounts.get(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
-        assert_matches_type(Optional[Account], account, path=["response"])
+        assert_matches_type(Optional[Account], account, path=['response'])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
+
         response = client.accounts.with_raw_response.get(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         account = response.parse()
-        assert_matches_type(Optional[Account], account, path=["response"])
+        assert_matches_type(Optional[Account], account, path=['response'])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.accounts.with_streaming_response.get(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             account = response.parse()
-            assert_matches_type(Optional[Account], account, path=["response"])
+            assert_matches_type(Optional[Account], account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.accounts.with_raw_response.get(
-                account_id="",
-            )
-
-
+          client.accounts.with_raw_response.get(
+              account_id="",
+          )
 class TestAsyncAccounts:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
@@ -157,7 +168,7 @@ class TestAsyncAccounts:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             name="Demo Account",
         )
-        assert_matches_type(Optional[Account], account, path=["response"])
+        assert_matches_type(Optional[Account], account, path=['response'])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -171,46 +182,47 @@ class TestAsyncAccounts:
                 "use_account_custom_ns_by_default": True,
             },
         )
-        assert_matches_type(Optional[Account], account, path=["response"])
+        assert_matches_type(Optional[Account], account, path=['response'])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.accounts.with_raw_response.update(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             name="Demo Account",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         account = await response.parse()
-        assert_matches_type(Optional[Account], account, path=["response"])
+        assert_matches_type(Optional[Account], account, path=['response'])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.with_streaming_response.update(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             name="Demo Account",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             account = await response.parse()
-            assert_matches_type(Optional[Account], account, path=["response"])
+            assert_matches_type(Optional[Account], account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.accounts.with_raw_response.update(
-                account_id="",
-                name="Demo Account",
-            )
+          await async_client.accounts.with_raw_response.update(
+              account_id="",
+              name="Demo Account",
+          )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.list()
-        assert_matches_type(AsyncV4PagePaginationArray[Account], account, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Account], account, path=['response'])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -220,25 +232,26 @@ class TestAsyncAccounts:
             page=1,
             per_page=5,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Account], account, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Account], account, path=['response'])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.accounts.with_raw_response.list()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         account = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[Account], account, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Account], account, path=['response'])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.accounts.with_streaming_response.list() as response:
+        async with async_client.accounts.with_streaming_response.list() as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             account = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[Account], account, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[Account], account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -247,35 +260,36 @@ class TestAsyncAccounts:
         account = await async_client.accounts.get(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
-        assert_matches_type(Optional[Account], account, path=["response"])
+        assert_matches_type(Optional[Account], account, path=['response'])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+
         response = await async_client.accounts.with_raw_response.get(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         account = await response.parse()
-        assert_matches_type(Optional[Account], account, path=["response"])
+        assert_matches_type(Optional[Account], account, path=['response'])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.with_streaming_response.get(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-        ) as response:
+        ) as response :
             assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             account = await response.parse()
-            assert_matches_type(Optional[Account], account, path=["response"])
+            assert_matches_type(Optional[Account], account, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.accounts.with_raw_response.get(
-                account_id="",
-            )
+          await async_client.accounts.with_raw_response.get(
+              account_id="",
+          )

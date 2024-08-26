@@ -1,11 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-
 from ..._models import BaseModel
 
-__all__ = ["DatasetListResponse", "Dataset"]
+from typing import List
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["DatasetListResponse", "Dataset"]
 
 class Dataset(BaseModel):
     id: int
@@ -19,7 +22,6 @@ class Dataset(BaseModel):
     title: str
 
     type: str
-
 
 class DatasetListResponse(BaseModel):
     datasets: List[Dataset]

@@ -1,27 +1,25 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Union, Optional
-from datetime import datetime
+from ..._models import BaseModel
+
 from typing_extensions import Literal, TypeAlias
 
-from .logging import Logging
-from ..._models import BaseModel
+from typing import Optional, Dict, List
+
 from .rewrite_uri_part import RewriteURIPart
 
-__all__ = [
-    "RewriteRule",
-    "ActionParameters",
-    "ActionParametersHeaders",
-    "ActionParametersHeadersRemoveHeader",
-    "ActionParametersHeadersStaticHeader",
-    "ActionParametersHeadersDynamicHeader",
-    "ActionParametersURI",
-]
+from datetime import datetime
 
+from .logging import Logging
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
+__all__ = ["RewriteRule", "ActionParameters", "ActionParametersHeaders", "ActionParametersHeadersRemoveHeader", "ActionParametersHeadersStaticHeader", "ActionParametersHeadersDynamicHeader", "ActionParametersURI"]
 
 class ActionParametersHeadersRemoveHeader(BaseModel):
     operation: Literal["remove"]
-
 
 class ActionParametersHeadersStaticHeader(BaseModel):
     operation: Literal["set"]
@@ -29,18 +27,13 @@ class ActionParametersHeadersStaticHeader(BaseModel):
     value: str
     """Static value for the header."""
 
-
 class ActionParametersHeadersDynamicHeader(BaseModel):
     expression: str
     """Expression for the header value."""
 
     operation: Literal["set"]
 
-
-ActionParametersHeaders: TypeAlias = Union[
-    ActionParametersHeadersRemoveHeader, ActionParametersHeadersStaticHeader, ActionParametersHeadersDynamicHeader
-]
-
+ActionParametersHeaders: TypeAlias = Union[ActionParametersHeadersRemoveHeader, ActionParametersHeadersStaticHeader, ActionParametersHeadersDynamicHeader]
 
 class ActionParametersURI(BaseModel):
     path: Optional[RewriteURIPart] = None
@@ -49,14 +42,12 @@ class ActionParametersURI(BaseModel):
     query: Optional[RewriteURIPart] = None
     """Query portion rewrite."""
 
-
 class ActionParameters(BaseModel):
     headers: Optional[Dict[str, ActionParametersHeaders]] = None
     """Map of request headers to modify."""
 
     uri: Optional[ActionParametersURI] = None
     """URI to rewrite the request to."""
-
 
 class RewriteRule(BaseModel):
     last_updated: datetime

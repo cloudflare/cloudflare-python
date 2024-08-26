@@ -6,7 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["GenericOAuthConfigParam"]
 
-
 class GenericOAuthConfigParam(TypedDict, total=False):
     client_id: str
     """Your OAuth Client ID"""
