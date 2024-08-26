@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .tag_list_response import TagListResponse as TagListResponse
 from .tag_update_params import TagUpdateParams as TagUpdateParams
+from .secret_get_response import SecretGetResponse as SecretGetResponse
 from .setting_edit_params import SettingEditParams as SettingEditParams
 from .tag_update_response import TagUpdateResponse as TagUpdateResponse
 from .binding_get_response import BindingGetResponse as BindingGetResponse

@@ -14,6 +14,14 @@ from .upload import (
     UploadResourceWithStreamingResponse,
     AsyncUploadResourceWithStreamingResponse,
 )
+from .versions import (
+    VersionsResource,
+    AsyncVersionsResource,
+    VersionsResourceWithRawResponse,
+    AsyncVersionsResourceWithRawResponse,
+    VersionsResourceWithStreamingResponse,
+    AsyncVersionsResourceWithStreamingResponse,
+)
 from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ....._utils import (
     maybe_transform,
@@ -30,6 +38,7 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
+from .versions.versions import VersionsResource, AsyncVersionsResource
 from .....types.zero_trust.dlp import dataset_create_params, dataset_update_params
 from .....types.zero_trust.dlp.dataset import Dataset
 from .....types.zero_trust.dlp.dataset_creation import DatasetCreation
@@ -41,6 +50,10 @@ class DatasetsResource(SyncAPIResource):
     @cached_property
     def upload(self) -> UploadResource:
         return UploadResource(self._client)
+
+    @cached_property
+    def versions(self) -> VersionsResource:
+        return VersionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> DatasetsResourceWithRawResponse:
@@ -283,6 +296,10 @@ class AsyncDatasetsResource(AsyncAPIResource):
     @cached_property
     def upload(self) -> AsyncUploadResource:
         return AsyncUploadResource(self._client)
+
+    @cached_property
+    def versions(self) -> AsyncVersionsResource:
+        return AsyncVersionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDatasetsResourceWithRawResponse:
@@ -545,6 +562,10 @@ class DatasetsResourceWithRawResponse:
     def upload(self) -> UploadResourceWithRawResponse:
         return UploadResourceWithRawResponse(self._datasets.upload)
 
+    @cached_property
+    def versions(self) -> VersionsResourceWithRawResponse:
+        return VersionsResourceWithRawResponse(self._datasets.versions)
+
 
 class AsyncDatasetsResourceWithRawResponse:
     def __init__(self, datasets: AsyncDatasetsResource) -> None:
@@ -569,6 +590,10 @@ class AsyncDatasetsResourceWithRawResponse:
     @cached_property
     def upload(self) -> AsyncUploadResourceWithRawResponse:
         return AsyncUploadResourceWithRawResponse(self._datasets.upload)
+
+    @cached_property
+    def versions(self) -> AsyncVersionsResourceWithRawResponse:
+        return AsyncVersionsResourceWithRawResponse(self._datasets.versions)
 
 
 class DatasetsResourceWithStreamingResponse:
@@ -595,6 +620,10 @@ class DatasetsResourceWithStreamingResponse:
     def upload(self) -> UploadResourceWithStreamingResponse:
         return UploadResourceWithStreamingResponse(self._datasets.upload)
 
+    @cached_property
+    def versions(self) -> VersionsResourceWithStreamingResponse:
+        return VersionsResourceWithStreamingResponse(self._datasets.versions)
+
 
 class AsyncDatasetsResourceWithStreamingResponse:
     def __init__(self, datasets: AsyncDatasetsResource) -> None:
@@ -619,3 +648,7 @@ class AsyncDatasetsResourceWithStreamingResponse:
     @cached_property
     def upload(self) -> AsyncUploadResourceWithStreamingResponse:
         return AsyncUploadResourceWithStreamingResponse(self._datasets.upload)
+
+    @cached_property
+    def versions(self) -> AsyncVersionsResourceWithStreamingResponse:
+        return AsyncVersionsResourceWithStreamingResponse(self._datasets.versions)
