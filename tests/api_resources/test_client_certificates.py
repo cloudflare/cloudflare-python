@@ -24,7 +24,7 @@ class TestClientCertificates:
     def test_method_create(self, client: Cloudflare) -> None:
         client_certificate = client.client_certificates.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
+            csr="-----BEGIN CERTIFICATE REQUEST-----\\nMIICY....\\n-----END CERTIFICATE REQUEST-----\\n",
             validity_days=3650,
         )
         assert_matches_type(Optional[ClientCertificate], client_certificate, path=["response"])
@@ -33,7 +33,7 @@ class TestClientCertificates:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.client_certificates.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
+            csr="-----BEGIN CERTIFICATE REQUEST-----\\nMIICY....\\n-----END CERTIFICATE REQUEST-----\\n",
             validity_days=3650,
         )
 
@@ -46,7 +46,7 @@ class TestClientCertificates:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.client_certificates.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
+            csr="-----BEGIN CERTIFICATE REQUEST-----\\nMIICY....\\n-----END CERTIFICATE REQUEST-----\\n",
             validity_days=3650,
         ) as response:
             assert not response.is_closed
@@ -62,7 +62,7 @@ class TestClientCertificates:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.client_certificates.with_raw_response.create(
                 zone_id="",
-                csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
+                csr="-----BEGIN CERTIFICATE REQUEST-----\\nMIICY....\\n-----END CERTIFICATE REQUEST-----\\n",
                 validity_days=3650,
             )
 
@@ -268,7 +268,7 @@ class TestAsyncClientCertificates:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         client_certificate = await async_client.client_certificates.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
+            csr="-----BEGIN CERTIFICATE REQUEST-----\\nMIICY....\\n-----END CERTIFICATE REQUEST-----\\n",
             validity_days=3650,
         )
         assert_matches_type(Optional[ClientCertificate], client_certificate, path=["response"])
@@ -277,7 +277,7 @@ class TestAsyncClientCertificates:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.client_certificates.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
+            csr="-----BEGIN CERTIFICATE REQUEST-----\\nMIICY....\\n-----END CERTIFICATE REQUEST-----\\n",
             validity_days=3650,
         )
 
@@ -290,7 +290,7 @@ class TestAsyncClientCertificates:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.client_certificates.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
+            csr="-----BEGIN CERTIFICATE REQUEST-----\\nMIICY....\\n-----END CERTIFICATE REQUEST-----\\n",
             validity_days=3650,
         ) as response:
             assert not response.is_closed
@@ -306,7 +306,7 @@ class TestAsyncClientCertificates:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.client_certificates.with_raw_response.create(
                 zone_id="",
-                csr="-----BEGIN CERTIFICATE REQUEST-----\nMIICY....\n-----END CERTIFICATE REQUEST-----\n",
+                csr="-----BEGIN CERTIFICATE REQUEST-----\\nMIICY....\\n-----END CERTIFICATE REQUEST-----\\n",
                 validity_days=3650,
             )
 
