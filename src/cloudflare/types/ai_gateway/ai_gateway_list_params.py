@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["AIGatewayListParams"]
 
@@ -15,6 +15,9 @@ class AIGatewayListParams(TypedDict, total=False):
 
     order_by: str
     """Order By Column Name"""
+
+    order_by_direction: Literal["ASC", "DESC"]
+    """Order By Direction"""
 
     page: int
 
