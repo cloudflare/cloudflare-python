@@ -6,6 +6,7 @@ from typing_extensions import TypedDict
 
 __all__ = ["ActivityLogSettingsParam"]
 
+
 class ActivityLogSettingsParam(TypedDict, total=False):
     enabled: bool
     """Enable activity logging."""

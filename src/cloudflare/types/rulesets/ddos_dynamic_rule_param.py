@@ -8,6 +8,7 @@ from .logging_param import LoggingParam
 
 __all__ = ["DDoSDynamicRuleParam"]
 
+
 class DDoSDynamicRuleParam(TypedDict, total=False):
     id: str
     """The unique ID of the rule."""

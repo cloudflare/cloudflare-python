@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
+from typing_extensions import Literal
+
 from ....._models import BaseModel
 
-from typing import Optional
-
-from typing_extensions import Literal
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["ServiceBinding", "Provisioning"]
+
 
 class Provisioning(BaseModel):
     state: Optional[Literal["provisioning", "active"]] = None
@@ -18,6 +14,7 @@ class Provisioning(BaseModel):
     When a binding has been deployed to a majority of Cloudflare datacenters, the
     binding will become active and can be used with its associated service.
     """
+
 
 class ServiceBinding(BaseModel):
     id: Optional[str] = None

@@ -6,6 +6,7 @@ from typing_extensions import TypedDict
 
 __all__ = ["AdditionalRoutesParam"]
 
+
 class AdditionalRoutesParam(TypedDict, total=False):
     host: str
     """The hostname to which this waiting room will be applied (no wildcards).

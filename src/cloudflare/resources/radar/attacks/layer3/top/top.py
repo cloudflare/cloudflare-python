@@ -2,51 +2,42 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
-from .locations import LocationsResource, AsyncLocationsResource
-
+from .locations import (
+    LocationsResource,
+    AsyncLocationsResource,
+    LocationsResourceWithRawResponse,
+    AsyncLocationsResourceWithRawResponse,
+    LocationsResourceWithStreamingResponse,
+    AsyncLocationsResourceWithStreamingResponse,
+)
+from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ......_utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ......_compat import cached_property
-
-from ......types.radar.attacks.layer3.top_attacks_response import TopAttacksResponse
-
+from ......_resource import SyncAPIResource, AsyncAPIResource
+from ......_response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ......_wrappers import ResultWrapper
-
-from ......_utils import maybe_transform, async_maybe_transform
-
 from ......_base_client import make_request_options
-
-from typing import Type, List, Union
-
-from datetime import datetime
-
-from typing_extensions import Literal
-
+from ......types.radar.attacks.layer3 import top_attacks_params, top_industry_params, top_vertical_params
+from ......types.radar.attacks.layer3.top_attacks_response import TopAttacksResponse
 from ......types.radar.attacks.layer3.top_industry_response import TopIndustryResponse
-
 from ......types.radar.attacks.layer3.top_vertical_response import TopVerticalResponse
 
-from ......_response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ......_utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ......_types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ......_resource import SyncAPIResource, AsyncAPIResource
-from ......types import shared_params
-from ......types.radar.attacks.layer3 import top_attacks_params
-from ......types.radar.attacks.layer3 import top_industry_params
-from ......types.radar.attacks.layer3 import top_vertical_params
-from .locations import LocationsResource, AsyncLocationsResource, LocationsResourceWithRawResponse, AsyncLocationsResourceWithRawResponse, LocationsResourceWithStreamingResponse, AsyncLocationsResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["TopResource", "AsyncTopResource"]
+
 
 class TopResource(SyncAPIResource):
     @cached_property
@@ -61,27 +52,29 @@ class TopResource(SyncAPIResource):
     def with_streaming_response(self) -> TopResourceWithStreamingResponse:
         return TopResourceWithStreamingResponse(self)
 
-    def attacks(self,
-    *,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    limit_direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-    limit_per_location: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    normalization: Literal["PERCENTAGE", "MIN_MAX"] | NotGiven = NOT_GIVEN,
-    protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopAttacksResponse:
+    def attacks(
+        self,
+        *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        limit_direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
+        limit_per_location: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE", "MIN_MAX"] | NotGiven = NOT_GIVEN,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopAttacksResponse:
         """Get the top attacks from origin to target location.
 
         Values are a percentage out
@@ -136,42 +129,54 @@ class TopResource(SyncAPIResource):
         """
         return self._get(
             "/radar/attacks/layer3/top/attacks",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "ip_version": ip_version,
-                "limit": limit,
-                "limit_direction": limit_direction,
-                "limit_per_location": limit_per_location,
-                "location": location,
-                "name": name,
-                "normalization": normalization,
-                "protocol": protocol,
-            }, top_attacks_params.TopAttacksParams), post_parser=ResultWrapper[TopAttacksResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "limit": limit,
+                        "limit_direction": limit_direction,
+                        "limit_per_location": limit_per_location,
+                        "location": location,
+                        "name": name,
+                        "normalization": normalization,
+                        "protocol": protocol,
+                    },
+                    top_attacks_params.TopAttacksParams,
+                ),
+                post_parser=ResultWrapper[TopAttacksResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopAttacksResponse], ResultWrapper[TopAttacksResponse]),
         )
 
-    def industry(self,
-    *,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopIndustryResponse:
+    def industry(
+        self,
+        *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopIndustryResponse:
         """
         Get the Industry of attacks.
 
@@ -212,39 +217,51 @@ class TopResource(SyncAPIResource):
         """
         return self._get(
             "/radar/attacks/layer3/top/industry",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "ip_version": ip_version,
-                "limit": limit,
-                "location": location,
-                "name": name,
-                "protocol": protocol,
-            }, top_industry_params.TopIndustryParams), post_parser=ResultWrapper[TopIndustryResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                        "protocol": protocol,
+                    },
+                    top_industry_params.TopIndustryParams,
+                ),
+                post_parser=ResultWrapper[TopIndustryResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopIndustryResponse], ResultWrapper[TopIndustryResponse]),
         )
 
-    def vertical(self,
-    *,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopVerticalResponse:
+    def vertical(
+        self,
+        *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopVerticalResponse:
         """
         Get the Verticals of attacks.
 
@@ -285,20 +302,31 @@ class TopResource(SyncAPIResource):
         """
         return self._get(
             "/radar/attacks/layer3/top/vertical",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "ip_version": ip_version,
-                "limit": limit,
-                "location": location,
-                "name": name,
-                "protocol": protocol,
-            }, top_vertical_params.TopVerticalParams), post_parser=ResultWrapper[TopVerticalResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                        "protocol": protocol,
+                    },
+                    top_vertical_params.TopVerticalParams,
+                ),
+                post_parser=ResultWrapper[TopVerticalResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopVerticalResponse], ResultWrapper[TopVerticalResponse]),
         )
+
 
 class AsyncTopResource(AsyncAPIResource):
     @cached_property
@@ -313,27 +341,29 @@ class AsyncTopResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTopResourceWithStreamingResponse:
         return AsyncTopResourceWithStreamingResponse(self)
 
-    async def attacks(self,
-    *,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    limit_direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
-    limit_per_location: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    normalization: Literal["PERCENTAGE", "MIN_MAX"] | NotGiven = NOT_GIVEN,
-    protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopAttacksResponse:
+    async def attacks(
+        self,
+        *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        limit_direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
+        limit_per_location: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE", "MIN_MAX"] | NotGiven = NOT_GIVEN,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopAttacksResponse:
         """Get the top attacks from origin to target location.
 
         Values are a percentage out
@@ -388,42 +418,54 @@ class AsyncTopResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/attacks/layer3/top/attacks",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "ip_version": ip_version,
-                "limit": limit,
-                "limit_direction": limit_direction,
-                "limit_per_location": limit_per_location,
-                "location": location,
-                "name": name,
-                "normalization": normalization,
-                "protocol": protocol,
-            }, top_attacks_params.TopAttacksParams), post_parser=ResultWrapper[TopAttacksResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "limit": limit,
+                        "limit_direction": limit_direction,
+                        "limit_per_location": limit_per_location,
+                        "location": location,
+                        "name": name,
+                        "normalization": normalization,
+                        "protocol": protocol,
+                    },
+                    top_attacks_params.TopAttacksParams,
+                ),
+                post_parser=ResultWrapper[TopAttacksResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopAttacksResponse], ResultWrapper[TopAttacksResponse]),
         )
 
-    async def industry(self,
-    *,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopIndustryResponse:
+    async def industry(
+        self,
+        *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopIndustryResponse:
         """
         Get the Industry of attacks.
 
@@ -464,39 +506,51 @@ class AsyncTopResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/attacks/layer3/top/industry",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "ip_version": ip_version,
-                "limit": limit,
-                "location": location,
-                "name": name,
-                "protocol": protocol,
-            }, top_industry_params.TopIndustryParams), post_parser=ResultWrapper[TopIndustryResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                        "protocol": protocol,
+                    },
+                    top_industry_params.TopIndustryParams,
+                ),
+                post_parser=ResultWrapper[TopIndustryResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopIndustryResponse], ResultWrapper[TopIndustryResponse]),
         )
 
-    async def vertical(self,
-    *,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopVerticalResponse:
+    async def vertical(
+        self,
+        *,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopVerticalResponse:
         """
         Get the Verticals of attacks.
 
@@ -537,20 +591,31 @@ class AsyncTopResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/attacks/layer3/top/vertical",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "ip_version": ip_version,
-                "limit": limit,
-                "location": location,
-                "name": name,
-                "protocol": protocol,
-            }, top_vertical_params.TopVerticalParams), post_parser=ResultWrapper[TopVerticalResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                        "protocol": protocol,
+                    },
+                    top_vertical_params.TopVerticalParams,
+                ),
+                post_parser=ResultWrapper[TopVerticalResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopVerticalResponse], ResultWrapper[TopVerticalResponse]),
         )
+
 
 class TopResourceWithRawResponse:
     def __init__(self, top: TopResource) -> None:
@@ -570,6 +635,7 @@ class TopResourceWithRawResponse:
     def locations(self) -> LocationsResourceWithRawResponse:
         return LocationsResourceWithRawResponse(self._top.locations)
 
+
 class AsyncTopResourceWithRawResponse:
     def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
@@ -588,6 +654,7 @@ class AsyncTopResourceWithRawResponse:
     def locations(self) -> AsyncLocationsResourceWithRawResponse:
         return AsyncLocationsResourceWithRawResponse(self._top.locations)
 
+
 class TopResourceWithStreamingResponse:
     def __init__(self, top: TopResource) -> None:
         self._top = top
@@ -605,6 +672,7 @@ class TopResourceWithStreamingResponse:
     @cached_property
     def locations(self) -> LocationsResourceWithStreamingResponse:
         return LocationsResourceWithStreamingResponse(self._top.locations)
+
 
 class AsyncTopResourceWithStreamingResponse:
     def __init__(self, top: AsyncTopResource) -> None:

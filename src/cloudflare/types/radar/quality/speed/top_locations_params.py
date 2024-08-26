@@ -2,20 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Annotated, Literal
-
 from typing import List, Union
-
 from datetime import datetime
+from typing_extensions import Literal, Annotated, TypedDict
 
-from ....._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ....._types import FileTypes
 from ....._utils import PropertyInfo
 
 __all__ = ["TopLocationsParams"]
+
 
 class TopLocationsParams(TypedDict, total=False):
     asn: List[str]
@@ -32,7 +26,7 @@ class TopLocationsParams(TypedDict, total=False):
     from Europe, but includes results from North America.
     """
 
-    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format = "iso8601")]
+    date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
     format: Literal["JSON", "CSV"]
@@ -51,7 +45,12 @@ class TopLocationsParams(TypedDict, total=False):
     name: List[str]
     """Array of names that will be used to name the series in responses."""
 
-    order_by: Annotated[Literal["BANDWIDTH_DOWNLOAD", "BANDWIDTH_UPLOAD", "LATENCY_IDLE", "LATENCY_LOADED", "JITTER_IDLE", "JITTER_LOADED"], PropertyInfo(alias="orderBy")]
+    order_by: Annotated[
+        Literal[
+            "BANDWIDTH_DOWNLOAD", "BANDWIDTH_UPLOAD", "LATENCY_IDLE", "LATENCY_LOADED", "JITTER_IDLE", "JITTER_LOADED"
+        ],
+        PropertyInfo(alias="orderBy"),
+    ]
     """Metric to order the results by."""
 
     reverse: bool

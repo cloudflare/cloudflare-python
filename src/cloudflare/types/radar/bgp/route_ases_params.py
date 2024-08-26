@@ -2,16 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Literal, Annotated
+from typing_extensions import Literal, Annotated, TypedDict
 
-from ...._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ...._types import FileTypes
 from ...._utils import PropertyInfo
 
 __all__ = ["RouteAsesParams"]
+
 
 class RouteAsesParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
@@ -23,7 +19,10 @@ class RouteAsesParams(TypedDict, total=False):
     location: str
     """Location Alpha2 code."""
 
-    sort_by: Annotated[Literal["cone", "pfxs", "ipv4", "ipv6", "rpki_valid", "rpki_invalid", "rpki_unknown"], PropertyInfo(alias="sortBy")]
+    sort_by: Annotated[
+        Literal["cone", "pfxs", "ipv4", "ipv6", "rpki_valid", "rpki_invalid", "rpki_unknown"],
+        PropertyInfo(alias="sortBy"),
+    ]
     """Return order results by given type"""
 
     sort_order: Annotated[Literal["asc", "desc"], PropertyInfo(alias="sortOrder")]

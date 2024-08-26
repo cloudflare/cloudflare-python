@@ -2,39 +2,38 @@
 
 from __future__ import annotations
 
+from typing import Any, Union, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .fields import FieldsResource, AsyncFieldsResource
-
+from .fields import (
+    FieldsResource,
+    AsyncFieldsResource,
+    FieldsResourceWithRawResponse,
+    AsyncFieldsResourceWithRawResponse,
+    FieldsResourceWithStreamingResponse,
+    AsyncFieldsResourceWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....types.logs import received_get_params
+from ...._base_client import make_request_options
 from ....types.logs.received_get_response import ReceivedGetResponse
 
-from ...._utils import maybe_transform, async_maybe_transform
-
-from ...._base_client import make_request_options
-
-from typing import Union
-
-from typing_extensions import Literal
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.logs import received_get_params
-from .fields import FieldsResource, AsyncFieldsResource, FieldsResourceWithRawResponse, AsyncFieldsResourceWithRawResponse, FieldsResourceWithStreamingResponse, AsyncFieldsResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["ReceivedResource", "AsyncReceivedResource"]
+
 
 class ReceivedResource(SyncAPIResource):
     @cached_property
@@ -49,21 +48,23 @@ class ReceivedResource(SyncAPIResource):
     def with_streaming_response(self) -> ReceivedResourceWithStreamingResponse:
         return ReceivedResourceWithStreamingResponse(self)
 
-    def get(self,
-    *,
-    zone_id: str,
-    end: Union[str, int],
-    count: int | NotGiven = NOT_GIVEN,
-    fields: str | NotGiven = NOT_GIVEN,
-    sample: float | NotGiven = NOT_GIVEN,
-    start: Union[str, int] | NotGiven = NOT_GIVEN,
-    timestamps: Literal["unix", "unixnano", "rfc3339"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> ReceivedGetResponse:
+    def get(
+        self,
+        *,
+        zone_id: str,
+        end: Union[str, int],
+        count: int | NotGiven = NOT_GIVEN,
+        fields: str | NotGiven = NOT_GIVEN,
+        sample: float | NotGiven = NOT_GIVEN,
+        start: Union[str, int] | NotGiven = NOT_GIVEN,
+        timestamps: Literal["unix", "unixnano", "rfc3339"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ReceivedGetResponse:
         """The `/received` api route allows customers to retrieve their edge HTTP logs.
 
         The
@@ -129,21 +130,34 @@ class ReceivedResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
-        return cast(ReceivedGetResponse, self._get(
-            f"/zones/{zone_id}/logs/received",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "end": end,
-                "count": count,
-                "fields": fields,
-                "sample": sample,
-                "start": start,
-                "timestamps": timestamps,
-            }, received_get_params.ReceivedGetParams)),
-            cast_to=cast(Any, ReceivedGetResponse),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return cast(
+            ReceivedGetResponse,
+            self._get(
+                f"/zones/{zone_id}/logs/received",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "end": end,
+                            "count": count,
+                            "fields": fields,
+                            "sample": sample,
+                            "start": start,
+                            "timestamps": timestamps,
+                        },
+                        received_get_params.ReceivedGetParams,
+                    ),
+                ),
+                cast_to=cast(
+                    Any, ReceivedGetResponse
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class AsyncReceivedResource(AsyncAPIResource):
     @cached_property
@@ -158,21 +172,23 @@ class AsyncReceivedResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncReceivedResourceWithStreamingResponse:
         return AsyncReceivedResourceWithStreamingResponse(self)
 
-    async def get(self,
-    *,
-    zone_id: str,
-    end: Union[str, int],
-    count: int | NotGiven = NOT_GIVEN,
-    fields: str | NotGiven = NOT_GIVEN,
-    sample: float | NotGiven = NOT_GIVEN,
-    start: Union[str, int] | NotGiven = NOT_GIVEN,
-    timestamps: Literal["unix", "unixnano", "rfc3339"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> ReceivedGetResponse:
+    async def get(
+        self,
+        *,
+        zone_id: str,
+        end: Union[str, int],
+        count: int | NotGiven = NOT_GIVEN,
+        fields: str | NotGiven = NOT_GIVEN,
+        sample: float | NotGiven = NOT_GIVEN,
+        start: Union[str, int] | NotGiven = NOT_GIVEN,
+        timestamps: Literal["unix", "unixnano", "rfc3339"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ReceivedGetResponse:
         """The `/received` api route allows customers to retrieve their edge HTTP logs.
 
         The
@@ -238,21 +254,34 @@ class AsyncReceivedResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
-        return cast(ReceivedGetResponse, await self._get(
-            f"/zones/{zone_id}/logs/received",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "end": end,
-                "count": count,
-                "fields": fields,
-                "sample": sample,
-                "start": start,
-                "timestamps": timestamps,
-            }, received_get_params.ReceivedGetParams)),
-            cast_to=cast(Any, ReceivedGetResponse),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return cast(
+            ReceivedGetResponse,
+            await self._get(
+                f"/zones/{zone_id}/logs/received",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "end": end,
+                            "count": count,
+                            "fields": fields,
+                            "sample": sample,
+                            "start": start,
+                            "timestamps": timestamps,
+                        },
+                        received_get_params.ReceivedGetParams,
+                    ),
+                ),
+                cast_to=cast(
+                    Any, ReceivedGetResponse
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class ReceivedResourceWithRawResponse:
     def __init__(self, received: ReceivedResource) -> None:
@@ -266,6 +295,7 @@ class ReceivedResourceWithRawResponse:
     def fields(self) -> FieldsResourceWithRawResponse:
         return FieldsResourceWithRawResponse(self._received.fields)
 
+
 class AsyncReceivedResourceWithRawResponse:
     def __init__(self, received: AsyncReceivedResource) -> None:
         self._received = received
@@ -278,6 +308,7 @@ class AsyncReceivedResourceWithRawResponse:
     def fields(self) -> AsyncFieldsResourceWithRawResponse:
         return AsyncFieldsResourceWithRawResponse(self._received.fields)
 
+
 class ReceivedResourceWithStreamingResponse:
     def __init__(self, received: ReceivedResource) -> None:
         self._received = received
@@ -289,6 +320,7 @@ class ReceivedResourceWithStreamingResponse:
     @cached_property
     def fields(self) -> FieldsResourceWithStreamingResponse:
         return FieldsResourceWithStreamingResponse(self._received.fields)
+
 
 class AsyncReceivedResourceWithStreamingResponse:
     def __init__(self, received: AsyncReceivedResource) -> None:

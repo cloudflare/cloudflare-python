@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ....._models import BaseModel
-
 from typing import Optional
-
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
+from ....._models import BaseModel
+
 __all__ = ["AccessRequests"]
+
 
 class AccessRequests(BaseModel):
     action: Optional[str] = None
@@ -33,7 +31,7 @@ class AccessRequests(BaseModel):
     ip_address: Optional[str] = None
     """The IP address of the authenticating user."""
 
-    rayid: Optional[str] = FieldInfo(alias = "ray_id", default = None)
+    rayid: Optional[str] = FieldInfo(alias="ray_id", default=None)
     """The unique identifier for the request to Cloudflare."""
 
     user_email: Optional[str] = None

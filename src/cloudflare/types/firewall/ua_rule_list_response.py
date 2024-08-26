@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
+from typing_extensions import Literal
+
 from ..._models import BaseModel
 
-from typing import Optional
-
-from typing_extensions import Literal
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["UARuleListResponse", "Configuration"]
+
 
 class Configuration(BaseModel):
     target: Optional[str] = None
@@ -24,6 +20,7 @@ class Configuration(BaseModel):
 
     This value will be compared to the received `User-Agent` HTTP header value.
     """
+
 
 class UARuleListResponse(BaseModel):
     id: Optional[str] = None

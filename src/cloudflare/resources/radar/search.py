@@ -2,36 +2,31 @@
 
 from __future__ import annotations
 
+from typing import List, Type, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ...types.radar import search_global_params
+from ..._base_client import make_request_options
 from ...types.radar.search_global_response import SearchGlobalResponse
 
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options
-
-from typing import Type, List
-
-from typing_extensions import Literal
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.radar import search_global_params
-from typing import cast
-from typing import cast
-
 __all__ = ["SearchResource", "AsyncSearchResource"]
+
 
 class SearchResource(SyncAPIResource):
     @cached_property
@@ -42,20 +37,22 @@ class SearchResource(SyncAPIResource):
     def with_streaming_response(self) -> SearchResourceWithStreamingResponse:
         return SearchResourceWithStreamingResponse(self)
 
-    def global_(self,
-    *,
-    query: str,
-    exclude: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    include: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    limit_per_group: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SearchGlobalResponse:
+    def global_(
+        self,
+        *,
+        query: str,
+        exclude: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        include: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        limit_per_group: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SearchGlobalResponse:
         """
         Lets you search for locations, autonomous systems (AS) and reports.
 
@@ -82,16 +79,27 @@ class SearchResource(SyncAPIResource):
         """
         return self._get(
             "/radar/search/global",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "query": query,
-                "exclude": exclude,
-                "format": format,
-                "include": include,
-                "limit": limit,
-                "limit_per_group": limit_per_group,
-            }, search_global_params.SearchGlobalParams), post_parser=ResultWrapper[SearchGlobalResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "query": query,
+                        "exclude": exclude,
+                        "format": format,
+                        "include": include,
+                        "limit": limit,
+                        "limit_per_group": limit_per_group,
+                    },
+                    search_global_params.SearchGlobalParams,
+                ),
+                post_parser=ResultWrapper[SearchGlobalResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SearchGlobalResponse], ResultWrapper[SearchGlobalResponse]),
         )
+
 
 class AsyncSearchResource(AsyncAPIResource):
     @cached_property
@@ -102,20 +110,22 @@ class AsyncSearchResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSearchResourceWithStreamingResponse:
         return AsyncSearchResourceWithStreamingResponse(self)
 
-    async def global_(self,
-    *,
-    query: str,
-    exclude: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    include: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    limit_per_group: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SearchGlobalResponse:
+    async def global_(
+        self,
+        *,
+        query: str,
+        exclude: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        include: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        limit_per_group: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SearchGlobalResponse:
         """
         Lets you search for locations, autonomous systems (AS) and reports.
 
@@ -142,16 +152,27 @@ class AsyncSearchResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/search/global",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "query": query,
-                "exclude": exclude,
-                "format": format,
-                "include": include,
-                "limit": limit,
-                "limit_per_group": limit_per_group,
-            }, search_global_params.SearchGlobalParams), post_parser=ResultWrapper[SearchGlobalResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "query": query,
+                        "exclude": exclude,
+                        "format": format,
+                        "include": include,
+                        "limit": limit,
+                        "limit_per_group": limit_per_group,
+                    },
+                    search_global_params.SearchGlobalParams,
+                ),
+                post_parser=ResultWrapper[SearchGlobalResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SearchGlobalResponse], ResultWrapper[SearchGlobalResponse]),
         )
+
 
 class SearchResourceWithRawResponse:
     def __init__(self, search: SearchResource) -> None:
@@ -161,6 +182,7 @@ class SearchResourceWithRawResponse:
             search.global_,
         )
 
+
 class AsyncSearchResourceWithRawResponse:
     def __init__(self, search: AsyncSearchResource) -> None:
         self._search = search
@@ -169,6 +191,7 @@ class AsyncSearchResourceWithRawResponse:
             search.global_,
         )
 
+
 class SearchResourceWithStreamingResponse:
     def __init__(self, search: SearchResource) -> None:
         self._search = search
@@ -176,6 +199,7 @@ class SearchResourceWithStreamingResponse:
         self.global_ = to_streamed_response_wrapper(
             search.global_,
         )
+
 
 class AsyncSearchResourceWithStreamingResponse:
     def __init__(self, search: AsyncSearchResource) -> None:

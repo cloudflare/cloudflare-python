@@ -2,42 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
-
-from ..types.origin_post_quantum_encryption.origin_post_quantum_encryption_update_response import OriginPostQuantumEncryptionUpdateResponse
-
-from .._wrappers import ResultWrapper
-
-from .._utils import maybe_transform, async_maybe_transform
-
-from .._base_client import make_request_options
-
-from typing_extensions import Literal
-
-from ..types.origin_post_quantum_encryption.origin_post_quantum_encryption_get_response import OriginPostQuantumEncryptionGetResponse
-
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from .._resource import SyncAPIResource, AsyncAPIResource
-from ..types import shared_params
+from .._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from .._wrappers import ResultWrapper
+from .._base_client import make_request_options
 from ..types.origin_post_quantum_encryption import origin_post_quantum_encryption_update_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
 
 __all__ = ["OriginPostQuantumEncryptionResource", "AsyncOriginPostQuantumEncryptionResource"]
+
 
 class OriginPostQuantumEncryptionResource(SyncAPIResource):
     @cached_property
@@ -48,16 +36,18 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
     def with_streaming_response(self) -> OriginPostQuantumEncryptionResourceWithStreamingResponse:
         return OriginPostQuantumEncryptionResourceWithStreamingResponse(self)
 
-    def update(self,
-    *,
-    zone_id: str,
-    value: Literal["preferred", "supported", "off"],
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> OriginPostQuantumEncryptionUpdateResponse:
+    def update(
+        self,
+        *,
+        zone_id: str,
+        value: Literal["preferred", "supported", "off"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
         connecting to your origin. Preferred instructs Cloudflare to opportunistically
@@ -80,27 +70,33 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
-        return cast(OriginPostQuantumEncryptionUpdateResponse, self._put(
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._put(
             f"/zones/{zone_id}/cache/origin_post_quantum_encryption",
-            body=maybe_transform({
-                "value": value
-            }, origin_post_quantum_encryption_update_params.OriginPostQuantumEncryptionUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[OriginPostQuantumEncryptionUpdateResponse]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[OriginPostQuantumEncryptionUpdateResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            body=maybe_transform(
+                {"value": value}, origin_post_quantum_encryption_update_params.OriginPostQuantumEncryptionUpdateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
 
-    def get(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> OriginPostQuantumEncryptionGetResponse:
+    def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
         connecting to your origin. Preferred instructs Cloudflare to opportunistically
@@ -121,14 +117,19 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
-        return cast(OriginPostQuantumEncryptionGetResponse, self._get(
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get(
             f"/zones/{zone_id}/cache/origin_post_quantum_encryption",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[OriginPostQuantumEncryptionGetResponse]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[OriginPostQuantumEncryptionGetResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
 
 class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
     @cached_property
@@ -139,16 +140,18 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse:
         return AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse(self)
 
-    async def update(self,
-    *,
-    zone_id: str,
-    value: Literal["preferred", "supported", "off"],
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> OriginPostQuantumEncryptionUpdateResponse:
+    async def update(
+        self,
+        *,
+        zone_id: str,
+        value: Literal["preferred", "supported", "off"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
         connecting to your origin. Preferred instructs Cloudflare to opportunistically
@@ -171,27 +174,33 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
-        return cast(OriginPostQuantumEncryptionUpdateResponse, await self._put(
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._put(
             f"/zones/{zone_id}/cache/origin_post_quantum_encryption",
-            body=await async_maybe_transform({
-                "value": value
-            }, origin_post_quantum_encryption_update_params.OriginPostQuantumEncryptionUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[OriginPostQuantumEncryptionUpdateResponse]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[OriginPostQuantumEncryptionUpdateResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            body=await async_maybe_transform(
+                {"value": value}, origin_post_quantum_encryption_update_params.OriginPostQuantumEncryptionUpdateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
 
-    async def get(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> OriginPostQuantumEncryptionGetResponse:
+    async def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
         connecting to your origin. Preferred instructs Cloudflare to opportunistically
@@ -212,14 +221,19 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
-        return cast(OriginPostQuantumEncryptionGetResponse, await self._get(
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._get(
             f"/zones/{zone_id}/cache/origin_post_quantum_encryption",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[OriginPostQuantumEncryptionGetResponse]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[OriginPostQuantumEncryptionGetResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
 
 class OriginPostQuantumEncryptionResourceWithRawResponse:
     def __init__(self, origin_post_quantum_encryption: OriginPostQuantumEncryptionResource) -> None:
@@ -232,6 +246,7 @@ class OriginPostQuantumEncryptionResourceWithRawResponse:
             origin_post_quantum_encryption.get,
         )
 
+
 class AsyncOriginPostQuantumEncryptionResourceWithRawResponse:
     def __init__(self, origin_post_quantum_encryption: AsyncOriginPostQuantumEncryptionResource) -> None:
         self._origin_post_quantum_encryption = origin_post_quantum_encryption
@@ -243,6 +258,7 @@ class AsyncOriginPostQuantumEncryptionResourceWithRawResponse:
             origin_post_quantum_encryption.get,
         )
 
+
 class OriginPostQuantumEncryptionResourceWithStreamingResponse:
     def __init__(self, origin_post_quantum_encryption: OriginPostQuantumEncryptionResource) -> None:
         self._origin_post_quantum_encryption = origin_post_quantum_encryption
@@ -253,6 +269,7 @@ class OriginPostQuantumEncryptionResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             origin_post_quantum_encryption.get,
         )
+
 
 class AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse:
     def __init__(self, origin_post_quantum_encryption: AsyncOriginPostQuantumEncryptionResource) -> None:

@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Union, Optional
+from typing_extensions import Literal
+
 from ..._models import BaseModel
 
-from typing import Optional, Union
-
-from typing_extensions import Literal
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["DNSRecord"]
+
 
 class DNSRecord(BaseModel):
     content: Optional[str] = None
@@ -31,5 +27,26 @@ class DNSRecord(BaseModel):
     Must be between 60 and 86400, or 1 for 'automatic'.
     """
 
-    type: Optional[Literal["A", "AAAA", "CNAME", "HTTPS", "TXT", "SRV", "LOC", "MX", "NS", "CERT", "DNSKEY", "DS", "NAPTR", "SMIMEA", "SSHFP", "SVCB", "TLSA", "URI"]] = None
+    type: Optional[
+        Literal[
+            "A",
+            "AAAA",
+            "CNAME",
+            "HTTPS",
+            "TXT",
+            "SRV",
+            "LOC",
+            "MX",
+            "NS",
+            "CERT",
+            "DNSKEY",
+            "DS",
+            "NAPTR",
+            "SMIMEA",
+            "SSHFP",
+            "SVCB",
+            "TLSA",
+            "URI",
+        ]
+    ] = None
     """DNS record type."""

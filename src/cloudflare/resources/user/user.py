@@ -2,52 +2,79 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .audit_logs import AuditLogsResource, AsyncAuditLogsResource
-
+from .tokens import (
+    TokensResource,
+    AsyncTokensResource,
+    TokensResourceWithRawResponse,
+    AsyncTokensResourceWithRawResponse,
+    TokensResourceWithStreamingResponse,
+    AsyncTokensResourceWithStreamingResponse,
+)
+from .billing import (
+    BillingResource,
+    AsyncBillingResource,
+    BillingResourceWithRawResponse,
+    AsyncBillingResourceWithRawResponse,
+    BillingResourceWithStreamingResponse,
+    AsyncBillingResourceWithStreamingResponse,
+)
+from .invites import (
+    InvitesResource,
+    AsyncInvitesResource,
+    InvitesResourceWithRawResponse,
+    AsyncInvitesResourceWithRawResponse,
+    InvitesResourceWithStreamingResponse,
+    AsyncInvitesResourceWithStreamingResponse,
+)
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
+from .audit_logs import (
+    AuditLogsResource,
+    AsyncAuditLogsResource,
+    AuditLogsResourceWithRawResponse,
+    AsyncAuditLogsResourceWithRawResponse,
+    AuditLogsResourceWithStreamingResponse,
+    AsyncAuditLogsResourceWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ...types.user import user_edit_params
+from .organizations import (
+    OrganizationsResource,
+    AsyncOrganizationsResource,
+    OrganizationsResourceWithRawResponse,
+    AsyncOrganizationsResourceWithRawResponse,
+    OrganizationsResourceWithStreamingResponse,
+    AsyncOrganizationsResourceWithStreamingResponse,
+)
+from .subscriptions import (
+    SubscriptionsResource,
+    AsyncSubscriptionsResource,
+    SubscriptionsResourceWithRawResponse,
+    AsyncSubscriptionsResourceWithRawResponse,
+    SubscriptionsResourceWithStreamingResponse,
+    AsyncSubscriptionsResourceWithStreamingResponse,
+)
+from .tokens.tokens import TokensResource, AsyncTokensResource
+from ..._base_client import make_request_options
 from .billing.billing import BillingResource, AsyncBillingResource
 
-from .invites import InvitesResource, AsyncInvitesResource
-
-from .organizations import OrganizationsResource, AsyncOrganizationsResource
-
-from .subscriptions import SubscriptionsResource, AsyncSubscriptionsResource
-
-from .tokens.tokens import TokensResource, AsyncTokensResource
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ..._base_client import make_request_options
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.user import user_edit_params
-from .audit_logs import AuditLogsResource, AsyncAuditLogsResource, AuditLogsResourceWithRawResponse, AsyncAuditLogsResourceWithRawResponse, AuditLogsResourceWithStreamingResponse, AsyncAuditLogsResourceWithStreamingResponse
-from .billing import BillingResource, AsyncBillingResource, BillingResourceWithRawResponse, AsyncBillingResourceWithRawResponse, BillingResourceWithStreamingResponse, AsyncBillingResourceWithStreamingResponse
-from .invites import InvitesResource, AsyncInvitesResource, InvitesResourceWithRawResponse, AsyncInvitesResourceWithRawResponse, InvitesResourceWithStreamingResponse, AsyncInvitesResourceWithStreamingResponse
-from .organizations import OrganizationsResource, AsyncOrganizationsResource, OrganizationsResourceWithRawResponse, AsyncOrganizationsResourceWithRawResponse, OrganizationsResourceWithStreamingResponse, AsyncOrganizationsResourceWithStreamingResponse
-from .subscriptions import SubscriptionsResource, AsyncSubscriptionsResource, SubscriptionsResourceWithRawResponse, AsyncSubscriptionsResourceWithRawResponse, SubscriptionsResourceWithStreamingResponse, AsyncSubscriptionsResourceWithStreamingResponse
-from .tokens import TokensResource, AsyncTokensResource, TokensResourceWithRawResponse, AsyncTokensResourceWithRawResponse, TokensResourceWithStreamingResponse, AsyncTokensResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["UserResource", "AsyncUserResource"]
+
 
 class UserResource(SyncAPIResource):
     @cached_property
@@ -82,19 +109,21 @@ class UserResource(SyncAPIResource):
     def with_streaming_response(self) -> UserResourceWithStreamingResponse:
         return UserResourceWithStreamingResponse(self)
 
-    def edit(self,
-    *,
-    country: Optional[str] | NotGiven = NOT_GIVEN,
-    first_name: Optional[str] | NotGiven = NOT_GIVEN,
-    last_name: Optional[str] | NotGiven = NOT_GIVEN,
-    telephone: Optional[str] | NotGiven = NOT_GIVEN,
-    zipcode: Optional[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    def edit(
+        self,
+        *,
+        country: Optional[str] | NotGiven = NOT_GIVEN,
+        first_name: Optional[str] | NotGiven = NOT_GIVEN,
+        last_name: Optional[str] | NotGiven = NOT_GIVEN,
+        telephone: Optional[str] | NotGiven = NOT_GIVEN,
+        zipcode: Optional[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Edit part of your user details.
 
@@ -119,31 +148,49 @@ class UserResource(SyncAPIResource):
         """
         return self._patch(
             "/user",
-            body=maybe_transform({
-                "country": country,
-                "first_name": first_name,
-                "last_name": last_name,
-                "telephone": telephone,
-                "zipcode": zipcode,
-            }, user_edit_params.UserEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "country": country,
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "telephone": telephone,
+                    "zipcode": zipcode,
+                },
+                user_edit_params.UserEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    def get(self,
-    *,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    def get(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """User Details"""
         return self._get(
             "/user",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
+
 
 class AsyncUserResource(AsyncAPIResource):
     @cached_property
@@ -178,19 +225,21 @@ class AsyncUserResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncUserResourceWithStreamingResponse:
         return AsyncUserResourceWithStreamingResponse(self)
 
-    async def edit(self,
-    *,
-    country: Optional[str] | NotGiven = NOT_GIVEN,
-    first_name: Optional[str] | NotGiven = NOT_GIVEN,
-    last_name: Optional[str] | NotGiven = NOT_GIVEN,
-    telephone: Optional[str] | NotGiven = NOT_GIVEN,
-    zipcode: Optional[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    async def edit(
+        self,
+        *,
+        country: Optional[str] | NotGiven = NOT_GIVEN,
+        first_name: Optional[str] | NotGiven = NOT_GIVEN,
+        last_name: Optional[str] | NotGiven = NOT_GIVEN,
+        telephone: Optional[str] | NotGiven = NOT_GIVEN,
+        zipcode: Optional[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Edit part of your user details.
 
@@ -215,31 +264,49 @@ class AsyncUserResource(AsyncAPIResource):
         """
         return await self._patch(
             "/user",
-            body=await async_maybe_transform({
-                "country": country,
-                "first_name": first_name,
-                "last_name": last_name,
-                "telephone": telephone,
-                "zipcode": zipcode,
-            }, user_edit_params.UserEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "country": country,
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "telephone": telephone,
+                    "zipcode": zipcode,
+                },
+                user_edit_params.UserEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    async def get(self,
-    *,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    async def get(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """User Details"""
         return await self._get(
             "/user",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
+
 
 class UserResourceWithRawResponse:
     def __init__(self, user: UserResource) -> None:
@@ -276,6 +343,7 @@ class UserResourceWithRawResponse:
     def tokens(self) -> TokensResourceWithRawResponse:
         return TokensResourceWithRawResponse(self._user.tokens)
 
+
 class AsyncUserResourceWithRawResponse:
     def __init__(self, user: AsyncUserResource) -> None:
         self._user = user
@@ -311,6 +379,7 @@ class AsyncUserResourceWithRawResponse:
     def tokens(self) -> AsyncTokensResourceWithRawResponse:
         return AsyncTokensResourceWithRawResponse(self._user.tokens)
 
+
 class UserResourceWithStreamingResponse:
     def __init__(self, user: UserResource) -> None:
         self._user = user
@@ -345,6 +414,7 @@ class UserResourceWithStreamingResponse:
     @cached_property
     def tokens(self) -> TokensResourceWithStreamingResponse:
         return TokensResourceWithStreamingResponse(self._user.tokens)
+
 
 class AsyncUserResourceWithStreamingResponse:
     def __init__(self, user: AsyncUserResource) -> None:

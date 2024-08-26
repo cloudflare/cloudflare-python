@@ -2,24 +2,16 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, TypeAlias
+from typing import List, Union
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .dns_param import DNSParam
-
 from .edge_ips_param import EdgeIPsParam
-
-from typing import List
-
 from .origin_dns_param import OriginDNSParam
-
 from .origin_port_param import OriginPortParam
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
 __all__ = ["AppUpdateParams", "SpectrumConfigAppConfig", "SpectrumConfigPaygoAppConfig"]
+
 
 class SpectrumConfigAppConfig(TypedDict, total=False):
     zone_id: Required[str]
@@ -90,6 +82,7 @@ class SpectrumConfigAppConfig(TypedDict, total=False):
     field.
     """
 
+
 class SpectrumConfigPaygoAppConfig(TypedDict, total=False):
     zone_id: Required[str]
     """Zone identifier."""
@@ -109,5 +102,6 @@ class SpectrumConfigPaygoAppConfig(TypedDict, total=False):
 
     Array may contain multiple IP addresses for load balancing.
     """
+
 
 AppUpdateParams: TypeAlias = Union[SpectrumConfigAppConfig, SpectrumConfigPaygoAppConfig]

@@ -1,24 +1,30 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Dict, List, Optional
+from typing_extensions import Literal
+
 from ...._models import BaseModel
-
-from typing import Optional, List, Dict
-
 from .dns_resolver_settings_v4 import DNSResolverSettingsV4
-
 from .dns_resolver_settings_v6 import DNSResolverSettingsV6
 
-from typing_extensions import Literal
+__all__ = [
+    "RuleSetting",
+    "AuditSSH",
+    "BISOAdminControls",
+    "CheckSession",
+    "DNSResolvers",
+    "Egress",
+    "L4override",
+    "NotificationSettings",
+    "PayloadLog",
+    "UntrustedCERT",
+]
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
-__all__ = ["RuleSetting", "AuditSSH", "BISOAdminControls", "CheckSession", "DNSResolvers", "Egress", "L4override", "NotificationSettings", "PayloadLog", "UntrustedCERT"]
 
 class AuditSSH(BaseModel):
     command_logging: Optional[bool] = None
     """Enable to turn on SSH command logging."""
+
 
 class BISOAdminControls(BaseModel):
     dcp: Optional[bool] = None
@@ -36,6 +42,7 @@ class BISOAdminControls(BaseModel):
     du: Optional[bool] = None
     """Set to false to enable uploading."""
 
+
 class CheckSession(BaseModel):
     duration: Optional[str] = None
     """Configure how fresh the session needs to be to be considered valid."""
@@ -43,10 +50,12 @@ class CheckSession(BaseModel):
     enforce: Optional[bool] = None
     """Set to true to enable session enforcement."""
 
+
 class DNSResolvers(BaseModel):
     ipv4: Optional[List[DNSResolverSettingsV4]] = None
 
     ipv6: Optional[List[DNSResolverSettingsV6]] = None
+
 
 class Egress(BaseModel):
     ipv4: Optional[str] = None
@@ -62,12 +71,14 @@ class Egress(BaseModel):
     ipv6: Optional[str] = None
     """The IPv6 range to be used for egress."""
 
+
 class L4override(BaseModel):
     ip: Optional[str] = None
     """IPv4 or IPv6 address."""
 
     port: Optional[int] = None
     """A port number to use for TCP/UDP overrides."""
+
 
 class NotificationSettings(BaseModel):
     enabled: Optional[bool] = None
@@ -82,9 +93,11 @@ class NotificationSettings(BaseModel):
     If not set, the notification will open a block page.
     """
 
+
 class PayloadLog(BaseModel):
     enabled: Optional[bool] = None
     """Set to true to enable DLP payload logging for this rule."""
+
 
 class UntrustedCERT(BaseModel):
     action: Optional[Literal["pass_through", "block", "error"]] = None
@@ -92,6 +105,7 @@ class UntrustedCERT(BaseModel):
 
     The default action is an error with HTTP code 526.
     """
+
 
 class RuleSetting(BaseModel):
     add_headers: Optional[Dict[str, str]] = None

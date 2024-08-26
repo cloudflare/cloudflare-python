@@ -2,20 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated, Literal
-
 from typing import Union
-
 from datetime import datetime
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
 from ..._utils import PropertyInfo
 
 __all__ = ["InvestigateListParams"]
+
 
 class InvestigateListParams(TypedDict, total=False):
     account_id: Required[str]
@@ -32,7 +26,7 @@ class InvestigateListParams(TypedDict, total=False):
     domain: str
     """Filter by the sender domain"""
 
-    end: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The end of the search date range. Defaults to `now`."""
 
     final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK"]
@@ -82,5 +76,5 @@ class InvestigateListParams(TypedDict, total=False):
 
     sender: str
 
-    start: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The beginning of the search date range. Defaults to `now - 30 days`."""

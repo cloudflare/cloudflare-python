@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
+from typing_extensions import Required, TypedDict
 
 __all__ = ["CertificateSettingsParam"]
+
 
 class CertificateSettingsParam(TypedDict, total=False):
     china_network: Required[bool]

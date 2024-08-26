@@ -2,62 +2,96 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
-from .bot_class import BotClassResource, AsyncBotClassResource
-
+from .os import (
+    OSResource,
+    AsyncOSResource,
+    OSResourceWithRawResponse,
+    AsyncOSResourceWithRawResponse,
+    OSResourceWithStreamingResponse,
+    AsyncOSResourceWithStreamingResponse,
+)
+from .bot_class import (
+    BotClassResource,
+    AsyncBotClassResource,
+    BotClassResourceWithRawResponse,
+    AsyncBotClassResourceWithRawResponse,
+    BotClassResourceWithStreamingResponse,
+    AsyncBotClassResourceWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from .ip_version import (
+    IPVersionResource,
+    AsyncIPVersionResource,
+    IPVersionResourceWithRawResponse,
+    AsyncIPVersionResourceWithRawResponse,
+    IPVersionResourceWithStreamingResponse,
+    AsyncIPVersionResourceWithStreamingResponse,
+)
 from ....._compat import cached_property
-
-from .device_type import DeviceTypeResource, AsyncDeviceTypeResource
-
-from .http_protocol import HTTPProtocolResource, AsyncHTTPProtocolResource
-
-from .http_method import HTTPMethodResource, AsyncHTTPMethodResource
-
-from .ip_version import IPVersionResource, AsyncIPVersionResource
-
-from .os import OSResource, AsyncOSResource
-
-from .tls_version import TLSVersionResource, AsyncTLSVersionResource
-
-from .browser_family import BrowserFamilyResource, AsyncBrowserFamilyResource
-
+from .device_type import (
+    DeviceTypeResource,
+    AsyncDeviceTypeResource,
+    DeviceTypeResourceWithRawResponse,
+    AsyncDeviceTypeResourceWithRawResponse,
+    DeviceTypeResourceWithStreamingResponse,
+    AsyncDeviceTypeResourceWithStreamingResponse,
+)
+from .http_method import (
+    HTTPMethodResource,
+    AsyncHTTPMethodResource,
+    HTTPMethodResourceWithRawResponse,
+    AsyncHTTPMethodResourceWithRawResponse,
+    HTTPMethodResourceWithStreamingResponse,
+    AsyncHTTPMethodResourceWithStreamingResponse,
+)
+from .tls_version import (
+    TLSVersionResource,
+    AsyncTLSVersionResource,
+    TLSVersionResourceWithRawResponse,
+    AsyncTLSVersionResourceWithRawResponse,
+    TLSVersionResourceWithStreamingResponse,
+    AsyncTLSVersionResourceWithStreamingResponse,
+)
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....._wrappers import ResultWrapper
+from .http_protocol import (
+    HTTPProtocolResource,
+    AsyncHTTPProtocolResource,
+    HTTPProtocolResourceWithRawResponse,
+    AsyncHTTPProtocolResourceWithRawResponse,
+    HTTPProtocolResourceWithStreamingResponse,
+    AsyncHTTPProtocolResourceWithStreamingResponse,
+)
+from .browser_family import (
+    BrowserFamilyResource,
+    AsyncBrowserFamilyResource,
+    BrowserFamilyResourceWithRawResponse,
+    AsyncBrowserFamilyResourceWithRawResponse,
+    BrowserFamilyResourceWithStreamingResponse,
+    AsyncBrowserFamilyResourceWithStreamingResponse,
+)
+from ....._base_client import make_request_options
+from .....types.radar.http import ase_get_params
 from .....types.radar.http.ase_get_response import AseGetResponse
 
-from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from ....._base_client import make_request_options
-
-from typing import Type, List, Union
-
-from typing_extensions import Literal
-
-from datetime import datetime
-
-from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.radar.http import ase_get_params
-from .bot_class import BotClassResource, AsyncBotClassResource, BotClassResourceWithRawResponse, AsyncBotClassResourceWithRawResponse, BotClassResourceWithStreamingResponse, AsyncBotClassResourceWithStreamingResponse
-from .device_type import DeviceTypeResource, AsyncDeviceTypeResource, DeviceTypeResourceWithRawResponse, AsyncDeviceTypeResourceWithRawResponse, DeviceTypeResourceWithStreamingResponse, AsyncDeviceTypeResourceWithStreamingResponse
-from .http_protocol import HTTPProtocolResource, AsyncHTTPProtocolResource, HTTPProtocolResourceWithRawResponse, AsyncHTTPProtocolResourceWithRawResponse, HTTPProtocolResourceWithStreamingResponse, AsyncHTTPProtocolResourceWithStreamingResponse
-from .http_method import HTTPMethodResource, AsyncHTTPMethodResource, HTTPMethodResourceWithRawResponse, AsyncHTTPMethodResourceWithRawResponse, HTTPMethodResourceWithStreamingResponse, AsyncHTTPMethodResourceWithStreamingResponse
-from .ip_version import IPVersionResource, AsyncIPVersionResource, IPVersionResourceWithRawResponse, AsyncIPVersionResourceWithRawResponse, IPVersionResourceWithStreamingResponse, AsyncIPVersionResourceWithStreamingResponse
-from .os import OSResource, AsyncOSResource, OSResourceWithRawResponse, AsyncOSResourceWithRawResponse, OSResourceWithStreamingResponse, AsyncOSResourceWithStreamingResponse
-from .tls_version import TLSVersionResource, AsyncTLSVersionResource, TLSVersionResourceWithRawResponse, AsyncTLSVersionResourceWithRawResponse, TLSVersionResourceWithStreamingResponse, AsyncTLSVersionResourceWithStreamingResponse
-from .browser_family import BrowserFamilyResource, AsyncBrowserFamilyResource, BrowserFamilyResourceWithRawResponse, AsyncBrowserFamilyResourceWithRawResponse, BrowserFamilyResourceWithStreamingResponse, AsyncBrowserFamilyResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-
 __all__ = ["AsesResource", "AsyncAsesResource"]
+
 
 class AsesResource(SyncAPIResource):
     @cached_property
@@ -100,31 +134,34 @@ class AsesResource(SyncAPIResource):
     def with_streaming_response(self) -> AsesResourceWithStreamingResponse:
         return AsesResourceWithStreamingResponse(self)
 
-    def get(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AseGetResponse:
+    def get(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AseGetResponse:
         """Get the top autonomous systems by HTTP traffic.
 
         Values are a percentage out of
@@ -184,27 +221,38 @@ class AsesResource(SyncAPIResource):
         """
         return self._get(
             "/radar/http/top/ases",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "asn": asn,
-                "bot_class": bot_class,
-                "browser_family": browser_family,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "limit": limit,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, ase_get_params.AseGetParams), post_parser=ResultWrapper[AseGetResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "browser_family": browser_family,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    ase_get_params.AseGetParams,
+                ),
+                post_parser=ResultWrapper[AseGetResponse]._unwrapper,
+            ),
             cast_to=cast(Type[AseGetResponse], ResultWrapper[AseGetResponse]),
         )
+
 
 class AsyncAsesResource(AsyncAPIResource):
     @cached_property
@@ -247,31 +295,34 @@ class AsyncAsesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAsesResourceWithStreamingResponse:
         return AsyncAsesResourceWithStreamingResponse(self)
 
-    async def get(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AseGetResponse:
+    async def get(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AseGetResponse:
         """Get the top autonomous systems by HTTP traffic.
 
         Values are a percentage out of
@@ -331,27 +382,38 @@ class AsyncAsesResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/http/top/ases",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "asn": asn,
-                "bot_class": bot_class,
-                "browser_family": browser_family,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "limit": limit,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, ase_get_params.AseGetParams), post_parser=ResultWrapper[AseGetResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "browser_family": browser_family,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    ase_get_params.AseGetParams,
+                ),
+                post_parser=ResultWrapper[AseGetResponse]._unwrapper,
+            ),
             cast_to=cast(Type[AseGetResponse], ResultWrapper[AseGetResponse]),
         )
+
 
 class AsesResourceWithRawResponse:
     def __init__(self, ases: AsesResource) -> None:
@@ -393,6 +455,7 @@ class AsesResourceWithRawResponse:
     def browser_family(self) -> BrowserFamilyResourceWithRawResponse:
         return BrowserFamilyResourceWithRawResponse(self._ases.browser_family)
 
+
 class AsyncAsesResourceWithRawResponse:
     def __init__(self, ases: AsyncAsesResource) -> None:
         self._ases = ases
@@ -433,6 +496,7 @@ class AsyncAsesResourceWithRawResponse:
     def browser_family(self) -> AsyncBrowserFamilyResourceWithRawResponse:
         return AsyncBrowserFamilyResourceWithRawResponse(self._ases.browser_family)
 
+
 class AsesResourceWithStreamingResponse:
     def __init__(self, ases: AsesResource) -> None:
         self._ases = ases
@@ -472,6 +536,7 @@ class AsesResourceWithStreamingResponse:
     @cached_property
     def browser_family(self) -> BrowserFamilyResourceWithStreamingResponse:
         return BrowserFamilyResourceWithStreamingResponse(self._ases.browser_family)
+
 
 class AsyncAsesResourceWithStreamingResponse:
     def __init__(self, ases: AsyncAsesResource) -> None:

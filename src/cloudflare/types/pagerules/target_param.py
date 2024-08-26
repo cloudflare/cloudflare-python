@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict, Required
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["TargetParam", "Constraint"]
+
 
 class Constraint(TypedDict, total=False):
     operator: Required[Literal["matches", "contains", "equals", "not_equal", "not_contain"]]
@@ -17,6 +18,7 @@ class Constraint(TypedDict, total=False):
 
     The pattern may contain up to four asterisks ('\\**') as placeholders.
     """
+
 
 class TargetParam(TypedDict, total=False):
     constraint: Constraint

@@ -2,20 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
-
 from typing import Iterable
+from typing_extensions import Literal, Required, TypedDict
 
 from .route_param import RouteParam
-
 from .target_param import TargetParam
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
 __all__ = ["PageruleUpdateParams"]
+
 
 class PageruleUpdateParams(TypedDict, total=False):
     zone_id: Required[str]

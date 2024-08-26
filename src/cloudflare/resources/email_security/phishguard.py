@@ -2,34 +2,28 @@
 
 from __future__ import annotations
 
-import httpx
-
-from ..._compat import cached_property
-
-from ...types.email_security.phishguard_list_response import PhishguardListResponse
-
-from ...pagination import SyncSinglePage, AsyncSinglePage
-
-from ..._utils import maybe_transform
-
-from ..._base_client import make_request_options, AsyncPaginator
-
 from typing import Union
-
 from datetime import date
 
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+import httpx
 
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
+from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.email_security import phishguard_list_params
+from ...types.email_security.phishguard_list_response import PhishguardListResponse
 
 __all__ = ["PhishguardResource", "AsyncPhishguardResource"]
+
 
 class PhishguardResource(SyncAPIResource):
     @cached_property
@@ -40,17 +34,19 @@ class PhishguardResource(SyncAPIResource):
     def with_streaming_response(self) -> PhishguardResourceWithStreamingResponse:
         return PhishguardResourceWithStreamingResponse(self)
 
-    def list(self,
-    *,
-    account_id: str,
-    from_date: Union[str, date],
-    to_date: Union[str, date],
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[PhishguardListResponse]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        from_date: Union[str, date],
+        to_date: Union[str, date],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[PhishguardListResponse]:
         """
         Get PhishGuard reports
 
@@ -66,18 +62,26 @@ class PhishguardResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/email-security/phishguard/reports",
-            page = SyncSinglePage[PhishguardListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "from_date": from_date,
-                "to_date": to_date,
-            }, phishguard_list_params.PhishguardListParams)),
+            page=SyncSinglePage[PhishguardListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "from_date": from_date,
+                        "to_date": to_date,
+                    },
+                    phishguard_list_params.PhishguardListParams,
+                ),
+            ),
             model=PhishguardListResponse,
         )
+
 
 class AsyncPhishguardResource(AsyncAPIResource):
     @cached_property
@@ -88,17 +92,19 @@ class AsyncPhishguardResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPhishguardResourceWithStreamingResponse:
         return AsyncPhishguardResourceWithStreamingResponse(self)
 
-    def list(self,
-    *,
-    account_id: str,
-    from_date: Union[str, date],
-    to_date: Union[str, date],
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[PhishguardListResponse, AsyncSinglePage[PhishguardListResponse]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        from_date: Union[str, date],
+        to_date: Union[str, date],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[PhishguardListResponse, AsyncSinglePage[PhishguardListResponse]]:
         """
         Get PhishGuard reports
 
@@ -114,18 +120,26 @@ class AsyncPhishguardResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/email-security/phishguard/reports",
-            page = AsyncSinglePage[PhishguardListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "from_date": from_date,
-                "to_date": to_date,
-            }, phishguard_list_params.PhishguardListParams)),
+            page=AsyncSinglePage[PhishguardListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "from_date": from_date,
+                        "to_date": to_date,
+                    },
+                    phishguard_list_params.PhishguardListParams,
+                ),
+            ),
             model=PhishguardListResponse,
         )
+
 
 class PhishguardResourceWithRawResponse:
     def __init__(self, phishguard: PhishguardResource) -> None:
@@ -135,6 +149,7 @@ class PhishguardResourceWithRawResponse:
             phishguard.list,
         )
 
+
 class AsyncPhishguardResourceWithRawResponse:
     def __init__(self, phishguard: AsyncPhishguardResource) -> None:
         self._phishguard = phishguard
@@ -143,6 +158,7 @@ class AsyncPhishguardResourceWithRawResponse:
             phishguard.list,
         )
 
+
 class PhishguardResourceWithStreamingResponse:
     def __init__(self, phishguard: PhishguardResource) -> None:
         self._phishguard = phishguard
@@ -150,6 +166,7 @@ class PhishguardResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             phishguard.list,
         )
+
 
 class AsyncPhishguardResourceWithStreamingResponse:
     def __init__(self, phishguard: AsyncPhishguardResource) -> None:

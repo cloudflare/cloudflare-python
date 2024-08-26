@@ -2,43 +2,42 @@
 
 from __future__ import annotations
 
+from typing import Any, Optional, cast
+
 import httpx
 
-from .custom import CustomResource, AsyncCustomResource
-
+from .custom import (
+    CustomResource,
+    AsyncCustomResource,
+    CustomResourceWithRawResponse,
+    AsyncCustomResourceWithRawResponse,
+    CustomResourceWithStreamingResponse,
+    AsyncCustomResourceWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .predefined import (
+    PredefinedResource,
+    AsyncPredefinedResource,
+    PredefinedResourceWithRawResponse,
+    AsyncPredefinedResourceWithRawResponse,
+    PredefinedResourceWithStreamingResponse,
+    AsyncPredefinedResourceWithStreamingResponse,
+)
 from ....._compat import cached_property
-
-from .predefined import PredefinedResource, AsyncPredefinedResource
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.dlp.profile import Profile
 
-from .....pagination import SyncSinglePage, AsyncSinglePage
-
-from ....._base_client import make_request_options, AsyncPaginator
-
-from ....._wrappers import ResultWrapper
-
-from typing import Optional
-
-from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .custom import CustomResource, AsyncCustomResource, CustomResourceWithRawResponse, AsyncCustomResourceWithRawResponse, CustomResourceWithStreamingResponse, AsyncCustomResourceWithStreamingResponse
-from .predefined import PredefinedResource, AsyncPredefinedResource, PredefinedResourceWithRawResponse, AsyncPredefinedResourceWithRawResponse, PredefinedResourceWithStreamingResponse, AsyncPredefinedResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["ProfilesResource", "AsyncProfilesResource"]
+
 
 class ProfilesResource(SyncAPIResource):
     @cached_property
@@ -57,15 +56,17 @@ class ProfilesResource(SyncAPIResource):
     def with_streaming_response(self) -> ProfilesResourceWithStreamingResponse:
         return ProfilesResourceWithStreamingResponse(self)
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[Profile]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[Profile]:
         """
         Lists all DLP profiles in an account.
 
@@ -79,26 +80,28 @@ class ProfilesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dlp/profiles",
-            page = SyncSinglePage[Profile],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[Profile],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=cast(Any, Profile),  # Union types cannot be passed in as arguments in the type system
         )
 
-    def get(self,
-    profile_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Profile]:
+    def get(
+        self,
+        profile_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Profile]:
         """
         Fetches a DLP profile by ID
 
@@ -112,18 +115,26 @@ class ProfilesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not profile_id:
-          raise ValueError(
-            f'Expected a non-empty value for `profile_id` but received {profile_id!r}'
-          )
-        return cast(Optional[Profile], self._get(
-            f"/accounts/{account_id}/dlp/profiles/{profile_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Profile]]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[Profile]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
+        return cast(
+            Optional[Profile],
+            self._get(
+                f"/accounts/{account_id}/dlp/profiles/{profile_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[Profile]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class AsyncProfilesResource(AsyncAPIResource):
     @cached_property
@@ -142,15 +153,17 @@ class AsyncProfilesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncProfilesResourceWithStreamingResponse:
         return AsyncProfilesResourceWithStreamingResponse(self)
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Profile, AsyncSinglePage[Profile]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[Profile, AsyncSinglePage[Profile]]:
         """
         Lists all DLP profiles in an account.
 
@@ -164,26 +177,28 @@ class AsyncProfilesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dlp/profiles",
-            page = AsyncSinglePage[Profile],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[Profile],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=cast(Any, Profile),  # Union types cannot be passed in as arguments in the type system
         )
 
-    async def get(self,
-    profile_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Profile]:
+    async def get(
+        self,
+        profile_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Profile]:
         """
         Fetches a DLP profile by ID
 
@@ -197,18 +212,26 @@ class AsyncProfilesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not profile_id:
-          raise ValueError(
-            f'Expected a non-empty value for `profile_id` but received {profile_id!r}'
-          )
-        return cast(Optional[Profile], await self._get(
-            f"/accounts/{account_id}/dlp/profiles/{profile_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Profile]]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[Profile]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
+        return cast(
+            Optional[Profile],
+            await self._get(
+                f"/accounts/{account_id}/dlp/profiles/{profile_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[Profile]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class ProfilesResourceWithRawResponse:
     def __init__(self, profiles: ProfilesResource) -> None:
@@ -229,6 +252,7 @@ class ProfilesResourceWithRawResponse:
     def predefined(self) -> PredefinedResourceWithRawResponse:
         return PredefinedResourceWithRawResponse(self._profiles.predefined)
 
+
 class AsyncProfilesResourceWithRawResponse:
     def __init__(self, profiles: AsyncProfilesResource) -> None:
         self._profiles = profiles
@@ -248,6 +272,7 @@ class AsyncProfilesResourceWithRawResponse:
     def predefined(self) -> AsyncPredefinedResourceWithRawResponse:
         return AsyncPredefinedResourceWithRawResponse(self._profiles.predefined)
 
+
 class ProfilesResourceWithStreamingResponse:
     def __init__(self, profiles: ProfilesResource) -> None:
         self._profiles = profiles
@@ -266,6 +291,7 @@ class ProfilesResourceWithStreamingResponse:
     @cached_property
     def predefined(self) -> PredefinedResourceWithStreamingResponse:
         return PredefinedResourceWithStreamingResponse(self._profiles.predefined)
+
 
 class AsyncProfilesResourceWithStreamingResponse:
     def __init__(self, profiles: AsyncProfilesResource) -> None:

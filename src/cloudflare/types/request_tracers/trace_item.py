@@ -2,16 +2,13 @@
 
 from __future__ import annotations
 
-from ..._models import BaseModel
-
 from typing import Optional
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from ..._compat import PYDANTIC_V2
+from ..._models import BaseModel
 
 __all__ = ["TraceItem"]
+
 
 class TraceItem(BaseModel):
     action: Optional[str] = None
@@ -43,9 +40,10 @@ class TraceItem(BaseModel):
     type: Optional[str] = None
     """Tracing step type"""
 
+
 from .trace import Trace
 
 if PYDANTIC_V2:
-  TraceItem.model_rebuild()
+    TraceItem.model_rebuild()
 else:
-  TraceItem.update_forward_refs()  # type: ignore
+    TraceItem.update_forward_refs()  # type: ignore

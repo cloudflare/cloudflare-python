@@ -6,6 +6,7 @@ from typing_extensions import TypedDict
 
 __all__ = ["AdaptiveRoutingParam"]
 
+
 class AdaptiveRoutingParam(TypedDict, total=False):
     failover_across_pools: bool
     """

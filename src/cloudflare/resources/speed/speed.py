@@ -2,26 +2,36 @@
 
 from __future__ import annotations
 
-from .schedule import ScheduleResource, AsyncScheduleResource
-
+from .pages import (
+    PagesResource,
+    AsyncPagesResource,
+    PagesResourceWithRawResponse,
+    AsyncPagesResourceWithRawResponse,
+    PagesResourceWithStreamingResponse,
+    AsyncPagesResourceWithStreamingResponse,
+)
+from .schedule import (
+    ScheduleResource,
+    AsyncScheduleResource,
+    ScheduleResourceWithRawResponse,
+    AsyncScheduleResourceWithRawResponse,
+    ScheduleResourceWithStreamingResponse,
+    AsyncScheduleResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
-
-from .availabilities import AvailabilitiesResource, AsyncAvailabilitiesResource
-
-from .pages.pages import PagesResource, AsyncPagesResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from .schedule import ScheduleResource, AsyncScheduleResource, ScheduleResourceWithRawResponse, AsyncScheduleResourceWithRawResponse, ScheduleResourceWithStreamingResponse, AsyncScheduleResourceWithStreamingResponse
-from .availabilities import AvailabilitiesResource, AsyncAvailabilitiesResource, AvailabilitiesResourceWithRawResponse, AsyncAvailabilitiesResourceWithRawResponse, AvailabilitiesResourceWithStreamingResponse, AsyncAvailabilitiesResourceWithStreamingResponse
-from .pages import PagesResource, AsyncPagesResource, PagesResourceWithRawResponse, AsyncPagesResourceWithRawResponse, PagesResourceWithStreamingResponse, AsyncPagesResourceWithStreamingResponse
+from .pages.pages import PagesResource, AsyncPagesResource
+from .availabilities import (
+    AvailabilitiesResource,
+    AsyncAvailabilitiesResource,
+    AvailabilitiesResourceWithRawResponse,
+    AsyncAvailabilitiesResourceWithRawResponse,
+    AvailabilitiesResourceWithStreamingResponse,
+    AsyncAvailabilitiesResourceWithStreamingResponse,
+)
 
 __all__ = ["SpeedResource", "AsyncSpeedResource"]
+
 
 class SpeedResource(SyncAPIResource):
     @cached_property
@@ -44,6 +54,7 @@ class SpeedResource(SyncAPIResource):
     def with_streaming_response(self) -> SpeedResourceWithStreamingResponse:
         return SpeedResourceWithStreamingResponse(self)
 
+
 class AsyncSpeedResource(AsyncAPIResource):
     @cached_property
     def schedule(self) -> AsyncScheduleResource:
@@ -65,6 +76,7 @@ class AsyncSpeedResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSpeedResourceWithStreamingResponse:
         return AsyncSpeedResourceWithStreamingResponse(self)
 
+
 class SpeedResourceWithRawResponse:
     def __init__(self, speed: SpeedResource) -> None:
         self._speed = speed
@@ -80,6 +92,7 @@ class SpeedResourceWithRawResponse:
     @cached_property
     def pages(self) -> PagesResourceWithRawResponse:
         return PagesResourceWithRawResponse(self._speed.pages)
+
 
 class AsyncSpeedResourceWithRawResponse:
     def __init__(self, speed: AsyncSpeedResource) -> None:
@@ -97,6 +110,7 @@ class AsyncSpeedResourceWithRawResponse:
     def pages(self) -> AsyncPagesResourceWithRawResponse:
         return AsyncPagesResourceWithRawResponse(self._speed.pages)
 
+
 class SpeedResourceWithStreamingResponse:
     def __init__(self, speed: SpeedResource) -> None:
         self._speed = speed
@@ -112,6 +126,7 @@ class SpeedResourceWithStreamingResponse:
     @cached_property
     def pages(self) -> PagesResourceWithStreamingResponse:
         return PagesResourceWithStreamingResponse(self._speed.pages)
+
 
 class AsyncSpeedResourceWithStreamingResponse:
     def __init__(self, speed: AsyncSpeedResource) -> None:

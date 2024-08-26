@@ -2,38 +2,31 @@
 
 from __future__ import annotations
 
+from typing import Type, Iterable, Optional, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.workers.script_setting import ScriptSetting
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type, Iterable
-
 from ...._base_client import make_request_options
-
+from ....types.workers.scripts import setting_edit_params
+from ....types.workers.script_setting import ScriptSetting
 from ....types.workers.scripts.consumer_script_param import ConsumerScriptParam
 
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.workers.scripts import setting_edit_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["SettingsResource", "AsyncSettingsResource"]
+
 
 class SettingsResource(SyncAPIResource):
     @cached_property
@@ -44,18 +37,20 @@ class SettingsResource(SyncAPIResource):
     def with_streaming_response(self) -> SettingsResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self)
 
-    def edit(self,
-    script_name: str,
-    *,
-    account_id: str,
-    logpush: bool | NotGiven = NOT_GIVEN,
-    tail_consumers: Iterable[ConsumerScriptParam] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ScriptSetting]:
+    def edit(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        logpush: bool | NotGiven = NOT_GIVEN,
+        tail_consumers: Iterable[ConsumerScriptParam] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ScriptSetting]:
         """
         Patch script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -79,33 +74,40 @@ class SettingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
-          raise ValueError(
-            f'Expected a non-empty value for `script_name` but received {script_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._patch(
             f"/accounts/{account_id}/workers/scripts/{script_name}/script-settings",
-            body=maybe_transform({
-                "logpush": logpush,
-                "tail_consumers": tail_consumers,
-            }, setting_edit_params.SettingEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "logpush": logpush,
+                    "tail_consumers": tail_consumers,
+                },
+                setting_edit_params.SettingEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
         )
 
-    def get(self,
-    script_name: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ScriptSetting]:
+    def get(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ScriptSetting]:
         """
         Get script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -125,18 +127,21 @@ class SettingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
-          raise ValueError(
-            f'Expected a non-empty value for `script_name` but received {script_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._get(
             f"/accounts/{account_id}/workers/scripts/{script_name}/script-settings",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
         )
+
 
 class AsyncSettingsResource(AsyncAPIResource):
     @cached_property
@@ -147,18 +152,20 @@ class AsyncSettingsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSettingsResourceWithStreamingResponse:
         return AsyncSettingsResourceWithStreamingResponse(self)
 
-    async def edit(self,
-    script_name: str,
-    *,
-    account_id: str,
-    logpush: bool | NotGiven = NOT_GIVEN,
-    tail_consumers: Iterable[ConsumerScriptParam] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ScriptSetting]:
+    async def edit(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        logpush: bool | NotGiven = NOT_GIVEN,
+        tail_consumers: Iterable[ConsumerScriptParam] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ScriptSetting]:
         """
         Patch script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -182,33 +189,40 @@ class AsyncSettingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
-          raise ValueError(
-            f'Expected a non-empty value for `script_name` but received {script_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._patch(
             f"/accounts/{account_id}/workers/scripts/{script_name}/script-settings",
-            body=await async_maybe_transform({
-                "logpush": logpush,
-                "tail_consumers": tail_consumers,
-            }, setting_edit_params.SettingEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "logpush": logpush,
+                    "tail_consumers": tail_consumers,
+                },
+                setting_edit_params.SettingEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
         )
 
-    async def get(self,
-    script_name: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ScriptSetting]:
+    async def get(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ScriptSetting]:
         """
         Get script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
@@ -228,18 +242,21 @@ class AsyncSettingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
-          raise ValueError(
-            f'Expected a non-empty value for `script_name` but received {script_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._get(
             f"/accounts/{account_id}/workers/scripts/{script_name}/script-settings",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ScriptSetting]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ScriptSetting]], ResultWrapper[ScriptSetting]),
         )
+
 
 class SettingsResourceWithRawResponse:
     def __init__(self, settings: SettingsResource) -> None:
@@ -252,6 +269,7 @@ class SettingsResourceWithRawResponse:
             settings.get,
         )
 
+
 class AsyncSettingsResourceWithRawResponse:
     def __init__(self, settings: AsyncSettingsResource) -> None:
         self._settings = settings
@@ -263,6 +281,7 @@ class AsyncSettingsResourceWithRawResponse:
             settings.get,
         )
 
+
 class SettingsResourceWithStreamingResponse:
     def __init__(self, settings: SettingsResource) -> None:
         self._settings = settings
@@ -273,6 +292,7 @@ class SettingsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             settings.get,
         )
+
 
 class AsyncSettingsResourceWithStreamingResponse:
     def __init__(self, settings: AsyncSettingsResource) -> None:

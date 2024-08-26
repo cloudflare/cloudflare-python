@@ -2,53 +2,35 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.radar.as112.top_dnssec_response import TopDNSSECResponse
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
 from ...._base_client import make_request_options
-
-from typing import Type, List, Union
-
-from typing_extensions import Literal
-
-from datetime import datetime
-
+from ....types.radar.as112 import top_edns_params, top_dnssec_params, top_locations_params, top_ip_version_params
 from ....types.radar.as112.top_edns_response import TopEdnsResponse
-
+from ....types.radar.as112.top_dnssec_response import TopDNSSECResponse
+from ....types.radar.as112.top_locations_response import TopLocationsResponse
 from ....types.radar.as112.top_ip_version_response import TopIPVersionResponse
 
-from ....types.radar.as112.top_locations_response import TopLocationsResponse
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.radar.as112 import top_dnssec_params
-from ....types.radar.as112 import top_edns_params
-from ....types.radar.as112 import top_ip_version_params
-from ....types.radar.as112 import top_locations_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["TopResource", "AsyncTopResource"]
+
 
 class TopResource(SyncAPIResource):
     @cached_property
@@ -59,24 +41,26 @@ class TopResource(SyncAPIResource):
     def with_streaming_response(self) -> TopResourceWithStreamingResponse:
         return TopResourceWithStreamingResponse(self)
 
-    def dnssec(self,
-    dnssec: Literal["SUPPORTED", "NOT_SUPPORTED"],
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopDNSSECResponse:
+    def dnssec(
+        self,
+        dnssec: Literal["SUPPORTED", "NOT_SUPPORTED"],
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopDNSSECResponse:
         """
         Get the top locations by DNS queries DNSSEC support to AS112.
 
@@ -118,43 +102,53 @@ class TopResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not dnssec:
-          raise ValueError(
-            f'Expected a non-empty value for `dnssec` but received {dnssec!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `dnssec` but received {dnssec!r}")
         return self._get(
             f"/radar/as112/top/locations/dnssec/{dnssec}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "limit": limit,
-                "location": location,
-                "name": name,
-            }, top_dnssec_params.TopDNSSECParams), post_parser=ResultWrapper[TopDNSSECResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                    },
+                    top_dnssec_params.TopDNSSECParams,
+                ),
+                post_parser=ResultWrapper[TopDNSSECResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopDNSSECResponse], ResultWrapper[TopDNSSECResponse]),
         )
 
-    def edns(self,
-    edns: Literal["SUPPORTED", "NOT_SUPPORTED"],
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopEdnsResponse:
+    def edns(
+        self,
+        edns: Literal["SUPPORTED", "NOT_SUPPORTED"],
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopEdnsResponse:
         """
         Get the top locations, by DNS queries EDNS support to AS112.
 
@@ -196,43 +190,53 @@ class TopResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not edns:
-          raise ValueError(
-            f'Expected a non-empty value for `edns` but received {edns!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `edns` but received {edns!r}")
         return self._get(
             f"/radar/as112/top/locations/edns/{edns}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "limit": limit,
-                "location": location,
-                "name": name,
-            }, top_edns_params.TopEdnsParams), post_parser=ResultWrapper[TopEdnsResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                    },
+                    top_edns_params.TopEdnsParams,
+                ),
+                post_parser=ResultWrapper[TopEdnsResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopEdnsResponse], ResultWrapper[TopEdnsResponse]),
         )
 
-    def ip_version(self,
-    ip_version: Literal["IPv4", "IPv6"],
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopIPVersionResponse:
+    def ip_version(
+        self,
+        ip_version: Literal["IPv4", "IPv6"],
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopIPVersionResponse:
         """
         Get the top locations by DNS queries IP version to AS112.
 
@@ -274,42 +278,52 @@ class TopResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not ip_version:
-          raise ValueError(
-            f'Expected a non-empty value for `ip_version` but received {ip_version!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `ip_version` but received {ip_version!r}")
         return self._get(
             f"/radar/as112/top/locations/ip_version/{ip_version}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "limit": limit,
-                "location": location,
-                "name": name,
-            }, top_ip_version_params.TopIPVersionParams), post_parser=ResultWrapper[TopIPVersionResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                    },
+                    top_ip_version_params.TopIPVersionParams,
+                ),
+                post_parser=ResultWrapper[TopIPVersionResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopIPVersionResponse], ResultWrapper[TopIPVersionResponse]),
         )
 
-    def locations(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopLocationsResponse:
+    def locations(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopLocationsResponse:
         """Get the top locations by AS112 DNS queries.
 
         Values are a percentage out of the
@@ -352,19 +366,30 @@ class TopResource(SyncAPIResource):
         """
         return self._get(
             "/radar/as112/top/locations",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "limit": limit,
-                "location": location,
-                "name": name,
-            }, top_locations_params.TopLocationsParams), post_parser=ResultWrapper[TopLocationsResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                    },
+                    top_locations_params.TopLocationsParams,
+                ),
+                post_parser=ResultWrapper[TopLocationsResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopLocationsResponse], ResultWrapper[TopLocationsResponse]),
         )
+
 
 class AsyncTopResource(AsyncAPIResource):
     @cached_property
@@ -375,24 +400,26 @@ class AsyncTopResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTopResourceWithStreamingResponse:
         return AsyncTopResourceWithStreamingResponse(self)
 
-    async def dnssec(self,
-    dnssec: Literal["SUPPORTED", "NOT_SUPPORTED"],
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopDNSSECResponse:
+    async def dnssec(
+        self,
+        dnssec: Literal["SUPPORTED", "NOT_SUPPORTED"],
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopDNSSECResponse:
         """
         Get the top locations by DNS queries DNSSEC support to AS112.
 
@@ -434,43 +461,53 @@ class AsyncTopResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not dnssec:
-          raise ValueError(
-            f'Expected a non-empty value for `dnssec` but received {dnssec!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `dnssec` but received {dnssec!r}")
         return await self._get(
             f"/radar/as112/top/locations/dnssec/{dnssec}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "limit": limit,
-                "location": location,
-                "name": name,
-            }, top_dnssec_params.TopDNSSECParams), post_parser=ResultWrapper[TopDNSSECResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                    },
+                    top_dnssec_params.TopDNSSECParams,
+                ),
+                post_parser=ResultWrapper[TopDNSSECResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopDNSSECResponse], ResultWrapper[TopDNSSECResponse]),
         )
 
-    async def edns(self,
-    edns: Literal["SUPPORTED", "NOT_SUPPORTED"],
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopEdnsResponse:
+    async def edns(
+        self,
+        edns: Literal["SUPPORTED", "NOT_SUPPORTED"],
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopEdnsResponse:
         """
         Get the top locations, by DNS queries EDNS support to AS112.
 
@@ -512,43 +549,53 @@ class AsyncTopResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not edns:
-          raise ValueError(
-            f'Expected a non-empty value for `edns` but received {edns!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `edns` but received {edns!r}")
         return await self._get(
             f"/radar/as112/top/locations/edns/{edns}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "limit": limit,
-                "location": location,
-                "name": name,
-            }, top_edns_params.TopEdnsParams), post_parser=ResultWrapper[TopEdnsResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                    },
+                    top_edns_params.TopEdnsParams,
+                ),
+                post_parser=ResultWrapper[TopEdnsResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopEdnsResponse], ResultWrapper[TopEdnsResponse]),
         )
 
-    async def ip_version(self,
-    ip_version: Literal["IPv4", "IPv6"],
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopIPVersionResponse:
+    async def ip_version(
+        self,
+        ip_version: Literal["IPv4", "IPv6"],
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopIPVersionResponse:
         """
         Get the top locations by DNS queries IP version to AS112.
 
@@ -590,42 +637,52 @@ class AsyncTopResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not ip_version:
-          raise ValueError(
-            f'Expected a non-empty value for `ip_version` but received {ip_version!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `ip_version` but received {ip_version!r}")
         return await self._get(
             f"/radar/as112/top/locations/ip_version/{ip_version}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "limit": limit,
-                "location": location,
-                "name": name,
-            }, top_ip_version_params.TopIPVersionParams), post_parser=ResultWrapper[TopIPVersionResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                    },
+                    top_ip_version_params.TopIPVersionParams,
+                ),
+                post_parser=ResultWrapper[TopIPVersionResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopIPVersionResponse], ResultWrapper[TopIPVersionResponse]),
         )
 
-    async def locations(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopLocationsResponse:
+    async def locations(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopLocationsResponse:
         """Get the top locations by AS112 DNS queries.
 
         Values are a percentage out of the
@@ -668,19 +725,30 @@ class AsyncTopResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/as112/top/locations",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "limit": limit,
-                "location": location,
-                "name": name,
-            }, top_locations_params.TopLocationsParams), post_parser=ResultWrapper[TopLocationsResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                    },
+                    top_locations_params.TopLocationsParams,
+                ),
+                post_parser=ResultWrapper[TopLocationsResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopLocationsResponse], ResultWrapper[TopLocationsResponse]),
         )
+
 
 class TopResourceWithRawResponse:
     def __init__(self, top: TopResource) -> None:
@@ -699,6 +767,7 @@ class TopResourceWithRawResponse:
             top.locations,
         )
 
+
 class AsyncTopResourceWithRawResponse:
     def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
@@ -716,6 +785,7 @@ class AsyncTopResourceWithRawResponse:
             top.locations,
         )
 
+
 class TopResourceWithStreamingResponse:
     def __init__(self, top: TopResource) -> None:
         self._top = top
@@ -732,6 +802,7 @@ class TopResourceWithStreamingResponse:
         self.locations = to_streamed_response_wrapper(
             top.locations,
         )
+
 
 class AsyncTopResourceWithStreamingResponse:
     def __init__(self, top: AsyncTopResource) -> None:

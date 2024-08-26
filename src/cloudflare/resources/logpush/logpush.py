@@ -2,32 +2,52 @@
 
 from __future__ import annotations
 
+from .edge import (
+    EdgeResource,
+    AsyncEdgeResource,
+    EdgeResourceWithRawResponse,
+    AsyncEdgeResourceWithRawResponse,
+    EdgeResourceWithStreamingResponse,
+    AsyncEdgeResourceWithStreamingResponse,
+)
+from .jobs import (
+    JobsResource,
+    AsyncJobsResource,
+    JobsResourceWithRawResponse,
+    AsyncJobsResourceWithRawResponse,
+    JobsResourceWithStreamingResponse,
+    AsyncJobsResourceWithStreamingResponse,
+)
+from .datasets import (
+    DatasetsResource,
+    AsyncDatasetsResource,
+    DatasetsResourceWithRawResponse,
+    AsyncDatasetsResourceWithRawResponse,
+    DatasetsResourceWithStreamingResponse,
+    AsyncDatasetsResourceWithStreamingResponse,
+)
+from .validate import (
+    ValidateResource,
+    AsyncValidateResource,
+    ValidateResourceWithRawResponse,
+    AsyncValidateResourceWithRawResponse,
+    ValidateResourceWithStreamingResponse,
+    AsyncValidateResourceWithStreamingResponse,
+)
+from ..._compat import cached_property
+from .ownership import (
+    OwnershipResource,
+    AsyncOwnershipResource,
+    OwnershipResourceWithRawResponse,
+    AsyncOwnershipResourceWithRawResponse,
+    OwnershipResourceWithStreamingResponse,
+    AsyncOwnershipResourceWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from .datasets.datasets import DatasetsResource, AsyncDatasetsResource
 
-from ..._compat import cached_property
-
-from .edge import EdgeResource, AsyncEdgeResource
-
-from .jobs import JobsResource, AsyncJobsResource
-
-from .ownership import OwnershipResource, AsyncOwnershipResource
-
-from .validate import ValidateResource, AsyncValidateResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from .datasets import DatasetsResource, AsyncDatasetsResource, DatasetsResourceWithRawResponse, AsyncDatasetsResourceWithRawResponse, DatasetsResourceWithStreamingResponse, AsyncDatasetsResourceWithStreamingResponse
-from .edge import EdgeResource, AsyncEdgeResource, EdgeResourceWithRawResponse, AsyncEdgeResourceWithRawResponse, EdgeResourceWithStreamingResponse, AsyncEdgeResourceWithStreamingResponse
-from .jobs import JobsResource, AsyncJobsResource, JobsResourceWithRawResponse, AsyncJobsResourceWithRawResponse, JobsResourceWithStreamingResponse, AsyncJobsResourceWithStreamingResponse
-from .ownership import OwnershipResource, AsyncOwnershipResource, OwnershipResourceWithRawResponse, AsyncOwnershipResourceWithRawResponse, OwnershipResourceWithStreamingResponse, AsyncOwnershipResourceWithStreamingResponse
-from .validate import ValidateResource, AsyncValidateResource, ValidateResourceWithRawResponse, AsyncValidateResourceWithRawResponse, ValidateResourceWithStreamingResponse, AsyncValidateResourceWithStreamingResponse
-
 __all__ = ["LogpushResource", "AsyncLogpushResource"]
+
 
 class LogpushResource(SyncAPIResource):
     @cached_property
@@ -58,6 +78,7 @@ class LogpushResource(SyncAPIResource):
     def with_streaming_response(self) -> LogpushResourceWithStreamingResponse:
         return LogpushResourceWithStreamingResponse(self)
 
+
 class AsyncLogpushResource(AsyncAPIResource):
     @cached_property
     def datasets(self) -> AsyncDatasetsResource:
@@ -87,6 +108,7 @@ class AsyncLogpushResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncLogpushResourceWithStreamingResponse:
         return AsyncLogpushResourceWithStreamingResponse(self)
 
+
 class LogpushResourceWithRawResponse:
     def __init__(self, logpush: LogpushResource) -> None:
         self._logpush = logpush
@@ -110,6 +132,7 @@ class LogpushResourceWithRawResponse:
     @cached_property
     def validate(self) -> ValidateResourceWithRawResponse:
         return ValidateResourceWithRawResponse(self._logpush.validate)
+
 
 class AsyncLogpushResourceWithRawResponse:
     def __init__(self, logpush: AsyncLogpushResource) -> None:
@@ -135,6 +158,7 @@ class AsyncLogpushResourceWithRawResponse:
     def validate(self) -> AsyncValidateResourceWithRawResponse:
         return AsyncValidateResourceWithRawResponse(self._logpush.validate)
 
+
 class LogpushResourceWithStreamingResponse:
     def __init__(self, logpush: LogpushResource) -> None:
         self._logpush = logpush
@@ -158,6 +182,7 @@ class LogpushResourceWithStreamingResponse:
     @cached_property
     def validate(self) -> ValidateResourceWithStreamingResponse:
         return ValidateResourceWithStreamingResponse(self._logpush.validate)
+
 
 class AsyncLogpushResourceWithStreamingResponse:
     def __init__(self, logpush: AsyncLogpushResource) -> None:

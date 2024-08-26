@@ -1,14 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
 from typing import List, Optional
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
 __all__ = ["ResourceGroupUpdateResponse", "Scope", "ScopeObject", "Meta"]
+
 
 class ScopeObject(BaseModel):
     key: str
@@ -16,6 +13,7 @@ class ScopeObject(BaseModel):
     This is a combination of pre-defined resource name and identifier (like Zone ID
     etc.)
     """
+
 
 class Scope(BaseModel):
     key: str
@@ -27,10 +25,12 @@ class Scope(BaseModel):
     objects: List[ScopeObject]
     """A list of scope objects for additional context."""
 
+
 class Meta(BaseModel):
     key: Optional[str] = None
 
     value: Optional[str] = None
+
 
 class ResourceGroupUpdateResponse(BaseModel):
     id: str

@@ -2,39 +2,31 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ..._base_client import make_request_options
+from ...types.logpush import validate_origin_params, validate_destination_params
+from ...types.logpush.validate_origin_response import ValidateOriginResponse
 from ...types.logpush.validate_destination_response import ValidateDestinationResponse
 
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ..._base_client import make_request_options
-
-from ...types.logpush.validate_origin_response import ValidateOriginResponse
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.logpush import validate_destination_params
-from ...types.logpush import validate_origin_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["ValidateResource", "AsyncValidateResource"]
+
 
 class ValidateResource(SyncAPIResource):
     @cached_property
@@ -45,17 +37,19 @@ class ValidateResource(SyncAPIResource):
     def with_streaming_response(self) -> ValidateResourceWithStreamingResponse:
         return ValidateResourceWithStreamingResponse(self)
 
-    def destination(self,
-    *,
-    destination_conf: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ValidateDestinationResponse]:
+    def destination(
+        self,
+        *,
+        destination_conf: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ValidateDestinationResponse]:
         """
         Checks if there is an existing job with a destination.
 
@@ -77,37 +71,45 @@ class ValidateResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/validate/destination/exists",
-            body=maybe_transform({
-                "destination_conf": destination_conf
-            }, validate_destination_params.ValidateDestinationParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ValidateDestinationResponse]]._unwrapper),
+            body=maybe_transform(
+                {"destination_conf": destination_conf}, validate_destination_params.ValidateDestinationParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ValidateDestinationResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ValidateDestinationResponse]], ResultWrapper[ValidateDestinationResponse]),
         )
 
-    def origin(self,
-    *,
-    logpull_options: Optional[str],
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ValidateOriginResponse]:
+    def origin(
+        self,
+        *,
+        logpull_options: Optional[str],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ValidateOriginResponse]:
         """
         Validates logpull origin with logpull_options.
 
@@ -131,25 +133,30 @@ class ValidateResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/validate/origin",
-            body=maybe_transform({
-                "logpull_options": logpull_options
-            }, validate_origin_params.ValidateOriginParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ValidateOriginResponse]]._unwrapper),
+            body=maybe_transform({"logpull_options": logpull_options}, validate_origin_params.ValidateOriginParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ValidateOriginResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ValidateOriginResponse]], ResultWrapper[ValidateOriginResponse]),
         )
+
 
 class AsyncValidateResource(AsyncAPIResource):
     @cached_property
@@ -160,17 +167,19 @@ class AsyncValidateResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncValidateResourceWithStreamingResponse:
         return AsyncValidateResourceWithStreamingResponse(self)
 
-    async def destination(self,
-    *,
-    destination_conf: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ValidateDestinationResponse]:
+    async def destination(
+        self,
+        *,
+        destination_conf: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ValidateDestinationResponse]:
         """
         Checks if there is an existing job with a destination.
 
@@ -192,37 +201,45 @@ class AsyncValidateResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/validate/destination/exists",
-            body=await async_maybe_transform({
-                "destination_conf": destination_conf
-            }, validate_destination_params.ValidateDestinationParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ValidateDestinationResponse]]._unwrapper),
+            body=await async_maybe_transform(
+                {"destination_conf": destination_conf}, validate_destination_params.ValidateDestinationParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ValidateDestinationResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ValidateDestinationResponse]], ResultWrapper[ValidateDestinationResponse]),
         )
 
-    async def origin(self,
-    *,
-    logpull_options: Optional[str],
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ValidateOriginResponse]:
+    async def origin(
+        self,
+        *,
+        logpull_options: Optional[str],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ValidateOriginResponse]:
         """
         Validates logpull origin with logpull_options.
 
@@ -246,25 +263,32 @@ class AsyncValidateResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/validate/origin",
-            body=await async_maybe_transform({
-                "logpull_options": logpull_options
-            }, validate_origin_params.ValidateOriginParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ValidateOriginResponse]]._unwrapper),
+            body=await async_maybe_transform(
+                {"logpull_options": logpull_options}, validate_origin_params.ValidateOriginParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ValidateOriginResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ValidateOriginResponse]], ResultWrapper[ValidateOriginResponse]),
         )
+
 
 class ValidateResourceWithRawResponse:
     def __init__(self, validate: ValidateResource) -> None:
@@ -277,6 +301,7 @@ class ValidateResourceWithRawResponse:
             validate.origin,
         )
 
+
 class AsyncValidateResourceWithRawResponse:
     def __init__(self, validate: AsyncValidateResource) -> None:
         self._validate = validate
@@ -288,6 +313,7 @@ class AsyncValidateResourceWithRawResponse:
             validate.origin,
         )
 
+
 class ValidateResourceWithStreamingResponse:
     def __init__(self, validate: ValidateResource) -> None:
         self._validate = validate
@@ -298,6 +324,7 @@ class ValidateResourceWithStreamingResponse:
         self.origin = to_streamed_response_wrapper(
             validate.origin,
         )
+
 
 class AsyncValidateResourceWithStreamingResponse:
     def __init__(self, validate: AsyncValidateResource) -> None:

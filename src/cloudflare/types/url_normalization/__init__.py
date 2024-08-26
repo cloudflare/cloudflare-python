@@ -2,6 +2,6 @@
 
 from __future__ import annotations
 
-from .url_normalization_update_response import URLNormalizationUpdateResponse as URLNormalizationUpdateResponse
 from .url_normalization_get_response import URLNormalizationGetResponse as URLNormalizationGetResponse
 from .url_normalization_update_params import URLNormalizationUpdateParams as URLNormalizationUpdateParams
+from .url_normalization_update_response import URLNormalizationUpdateResponse as URLNormalizationUpdateResponse

@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from typing import List
-
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["PolicyFilterParam"]
+
 
 class PolicyFilterParam(TypedDict, total=False):
     actions: List[str]
@@ -51,7 +51,9 @@ class PolicyFilterParam(TypedDict, total=False):
     health_check_id: List[str]
     """Used for configuring health_check_status_notification"""
 
-    incident_impact: List[Literal["INCIDENT_IMPACT_NONE", "INCIDENT_IMPACT_MINOR", "INCIDENT_IMPACT_MAJOR", "INCIDENT_IMPACT_CRITICAL"]]
+    incident_impact: List[
+        Literal["INCIDENT_IMPACT_NONE", "INCIDENT_IMPACT_MINOR", "INCIDENT_IMPACT_MAJOR", "INCIDENT_IMPACT_CRITICAL"]
+    ]
     """Used for configuring incident_alert"""
 
     input_id: List[str]

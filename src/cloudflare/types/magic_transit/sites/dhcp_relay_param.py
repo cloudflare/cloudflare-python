@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from typing import List
-
 from typing_extensions import TypedDict
 
 __all__ = ["DHCPRelayParam"]
+
 
 class DHCPRelayParam(TypedDict, total=False):
     server_addresses: List[str]

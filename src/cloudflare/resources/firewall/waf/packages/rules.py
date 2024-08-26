@@ -2,49 +2,34 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....._wrappers import ResultWrapper
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.firewall.waf.packages import rule_edit_params, rule_list_params
+from .....types.firewall.waf.packages.rule_get_response import RuleGetResponse
+from .....types.firewall.waf.packages.rule_edit_response import RuleEditResponse
 from .....types.firewall.waf.packages.rule_list_response import RuleListResponse
 
-from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from ....._base_client import make_request_options, AsyncPaginator
-
-from typing_extensions import Literal
-
-from .....types.firewall.waf.packages.rule_edit_response import RuleEditResponse
-
-from ....._wrappers import ResultWrapper
-
-from .....types.firewall.waf.packages.rule_get_response import RuleGetResponse
-
-from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.firewall.waf.packages import rule_list_params
-from .....types.firewall.waf.packages import rule_edit_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["RulesResource", "AsyncRulesResource"]
+
 
 class RulesResource(SyncAPIResource):
     @cached_property
@@ -55,25 +40,27 @@ class RulesResource(SyncAPIResource):
     def with_streaming_response(self) -> RulesResourceWithStreamingResponse:
         return RulesResourceWithStreamingResponse(self)
 
-    def list(self,
-    package_id: str,
-    *,
-    zone_id: str,
-    description: str | NotGiven = NOT_GIVEN,
-    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-    group_id: str | NotGiven = NOT_GIVEN,
-    match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-    mode: Literal["DIS", "CHL", "BLK", "SIM"] | NotGiven = NOT_GIVEN,
-    order: Literal["priority", "group_id", "description"] | NotGiven = NOT_GIVEN,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    priority: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[RuleListResponse]:
+    def list(
+        self,
+        package_id: str,
+        *,
+        zone_id: str,
+        description: str | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        group_id: str | NotGiven = NOT_GIVEN,
+        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+        mode: Literal["DIS", "CHL", "BLK", "SIM"] | NotGiven = NOT_GIVEN,
+        order: Literal["priority", "group_id", "description"] | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        priority: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[RuleListResponse]:
         """
         Fetches WAF rules in a WAF package.
 
@@ -113,42 +100,49 @@ class RulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
-          raise ValueError(
-            f'Expected a non-empty value for `package_id` but received {package_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules",
-            page = SyncV4PagePaginationArray[RuleListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "description": description,
-                "direction": direction,
-                "group_id": group_id,
-                "match": match,
-                "mode": mode,
-                "order": order,
-                "page": page,
-                "per_page": per_page,
-                "priority": priority,
-            }, rule_list_params.RuleListParams)),
+            page=SyncV4PagePaginationArray[RuleListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "description": description,
+                        "direction": direction,
+                        "group_id": group_id,
+                        "match": match,
+                        "mode": mode,
+                        "order": order,
+                        "page": page,
+                        "per_page": per_page,
+                        "priority": priority,
+                    },
+                    rule_list_params.RuleListParams,
+                ),
+            ),
             model=cast(Any, RuleListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
-    def edit(self,
-    rule_id: str,
-    *,
-    zone_id: str,
-    package_id: str,
-    mode: Literal["default", "disable", "simulate", "block", "challenge", "on", "off"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RuleEditResponse:
+    def edit(
+        self,
+        rule_id: str,
+        *,
+        zone_id: str,
+        package_id: str,
+        mode: Literal["default", "disable", "simulate", "block", "challenge", "on", "off"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
         """Updates a WAF rule.
 
         You can only update the mode/action of the rule.
@@ -175,37 +169,42 @@ class RulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
-          raise ValueError(
-            f'Expected a non-empty value for `package_id` but received {package_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
         if not rule_id:
-          raise ValueError(
-            f'Expected a non-empty value for `rule_id` but received {rule_id!r}'
-          )
-        return cast(RuleEditResponse, self._patch(
-            f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
-            body=maybe_transform({
-                "mode": mode
-            }, rule_edit_params.RuleEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[RuleEditResponse]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[RuleEditResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
+        return cast(
+            RuleEditResponse,
+            self._patch(
+                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
+                body=maybe_transform({"mode": mode}, rule_edit_params.RuleEditParams),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[RuleEditResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RuleEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
 
-    def get(self,
-    rule_id: str,
-    *,
-    zone_id: str,
-    package_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RuleGetResponse:
+    def get(
+        self,
+        rule_id: str,
+        *,
+        zone_id: str,
+        package_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleGetResponse:
         """
         Fetches the details of a WAF rule in a WAF package.
 
@@ -228,22 +227,28 @@ class RulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
-          raise ValueError(
-            f'Expected a non-empty value for `package_id` but received {package_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
         if not rule_id:
-          raise ValueError(
-            f'Expected a non-empty value for `rule_id` but received {rule_id!r}'
-          )
-        return cast(RuleGetResponse, self._get(
-            f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[RuleGetResponse]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[RuleGetResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
+        return cast(
+            RuleGetResponse,
+            self._get(
+                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[RuleGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RuleGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class AsyncRulesResource(AsyncAPIResource):
     @cached_property
@@ -254,25 +259,27 @@ class AsyncRulesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRulesResourceWithStreamingResponse:
         return AsyncRulesResourceWithStreamingResponse(self)
 
-    def list(self,
-    package_id: str,
-    *,
-    zone_id: str,
-    description: str | NotGiven = NOT_GIVEN,
-    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-    group_id: str | NotGiven = NOT_GIVEN,
-    match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-    mode: Literal["DIS", "CHL", "BLK", "SIM"] | NotGiven = NOT_GIVEN,
-    order: Literal["priority", "group_id", "description"] | NotGiven = NOT_GIVEN,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    priority: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[RuleListResponse, AsyncV4PagePaginationArray[RuleListResponse]]:
+    def list(
+        self,
+        package_id: str,
+        *,
+        zone_id: str,
+        description: str | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        group_id: str | NotGiven = NOT_GIVEN,
+        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+        mode: Literal["DIS", "CHL", "BLK", "SIM"] | NotGiven = NOT_GIVEN,
+        order: Literal["priority", "group_id", "description"] | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        priority: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[RuleListResponse, AsyncV4PagePaginationArray[RuleListResponse]]:
         """
         Fetches WAF rules in a WAF package.
 
@@ -312,42 +319,49 @@ class AsyncRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
-          raise ValueError(
-            f'Expected a non-empty value for `package_id` but received {package_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules",
-            page = AsyncV4PagePaginationArray[RuleListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "description": description,
-                "direction": direction,
-                "group_id": group_id,
-                "match": match,
-                "mode": mode,
-                "order": order,
-                "page": page,
-                "per_page": per_page,
-                "priority": priority,
-            }, rule_list_params.RuleListParams)),
+            page=AsyncV4PagePaginationArray[RuleListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "description": description,
+                        "direction": direction,
+                        "group_id": group_id,
+                        "match": match,
+                        "mode": mode,
+                        "order": order,
+                        "page": page,
+                        "per_page": per_page,
+                        "priority": priority,
+                    },
+                    rule_list_params.RuleListParams,
+                ),
+            ),
             model=cast(Any, RuleListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
-    async def edit(self,
-    rule_id: str,
-    *,
-    zone_id: str,
-    package_id: str,
-    mode: Literal["default", "disable", "simulate", "block", "challenge", "on", "off"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RuleEditResponse:
+    async def edit(
+        self,
+        rule_id: str,
+        *,
+        zone_id: str,
+        package_id: str,
+        mode: Literal["default", "disable", "simulate", "block", "challenge", "on", "off"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleEditResponse:
         """Updates a WAF rule.
 
         You can only update the mode/action of the rule.
@@ -374,37 +388,42 @@ class AsyncRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
-          raise ValueError(
-            f'Expected a non-empty value for `package_id` but received {package_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
         if not rule_id:
-          raise ValueError(
-            f'Expected a non-empty value for `rule_id` but received {rule_id!r}'
-          )
-        return cast(RuleEditResponse, await self._patch(
-            f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
-            body=await async_maybe_transform({
-                "mode": mode
-            }, rule_edit_params.RuleEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[RuleEditResponse]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[RuleEditResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
+        return cast(
+            RuleEditResponse,
+            await self._patch(
+                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
+                body=await async_maybe_transform({"mode": mode}, rule_edit_params.RuleEditParams),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[RuleEditResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RuleEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
 
-    async def get(self,
-    rule_id: str,
-    *,
-    zone_id: str,
-    package_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RuleGetResponse:
+    async def get(
+        self,
+        rule_id: str,
+        *,
+        zone_id: str,
+        package_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RuleGetResponse:
         """
         Fetches the details of a WAF rule in a WAF package.
 
@@ -427,22 +446,28 @@ class AsyncRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not package_id:
-          raise ValueError(
-            f'Expected a non-empty value for `package_id` but received {package_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `package_id` but received {package_id!r}")
         if not rule_id:
-          raise ValueError(
-            f'Expected a non-empty value for `rule_id` but received {rule_id!r}'
-          )
-        return cast(RuleGetResponse, await self._get(
-            f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[RuleGetResponse]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[RuleGetResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
+        return cast(
+            RuleGetResponse,
+            await self._get(
+                f"/zones/{zone_id}/firewall/waf/packages/{package_id}/rules/{rule_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[RuleGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RuleGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class RulesResourceWithRawResponse:
     def __init__(self, rules: RulesResource) -> None:
@@ -458,6 +483,7 @@ class RulesResourceWithRawResponse:
             rules.get,
         )
 
+
 class AsyncRulesResourceWithRawResponse:
     def __init__(self, rules: AsyncRulesResource) -> None:
         self._rules = rules
@@ -472,6 +498,7 @@ class AsyncRulesResourceWithRawResponse:
             rules.get,
         )
 
+
 class RulesResourceWithStreamingResponse:
     def __init__(self, rules: RulesResource) -> None:
         self._rules = rules
@@ -485,6 +512,7 @@ class RulesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             rules.get,
         )
+
 
 class AsyncRulesResourceWithStreamingResponse:
     def __init__(self, rules: AsyncRulesResource) -> None:

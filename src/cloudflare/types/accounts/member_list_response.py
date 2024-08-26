@@ -1,23 +1,29 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
+from typing import List, Optional
 from typing_extensions import Literal
 
+from ..._models import BaseModel
 from ..shared.role import Role
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+__all__ = [
+    "MemberListResponse",
+    "Policy",
+    "PolicyPermissionGroup",
+    "PolicyPermissionGroupMeta",
+    "PolicyResourceGroup",
+    "PolicyResourceGroupScope",
+    "PolicyResourceGroupScopeObject",
+    "PolicyResourceGroupMeta",
+    "User",
+]
 
-__all__ = ["MemberListResponse", "Policy", "PolicyPermissionGroup", "PolicyPermissionGroupMeta", "PolicyResourceGroup", "PolicyResourceGroupScope", "PolicyResourceGroupScopeObject", "PolicyResourceGroupMeta", "User"]
 
 class PolicyPermissionGroupMeta(BaseModel):
     key: Optional[str] = None
 
     value: Optional[str] = None
+
 
 class PolicyPermissionGroup(BaseModel):
     id: str
@@ -29,12 +35,14 @@ class PolicyPermissionGroup(BaseModel):
     name: Optional[str] = None
     """Name of the group."""
 
+
 class PolicyResourceGroupScopeObject(BaseModel):
     key: str
     """
     This is a combination of pre-defined resource name and identifier (like Zone ID
     etc.)
     """
+
 
 class PolicyResourceGroupScope(BaseModel):
     key: str
@@ -46,10 +54,12 @@ class PolicyResourceGroupScope(BaseModel):
     objects: List[PolicyResourceGroupScopeObject]
     """A list of scope objects for additional context."""
 
+
 class PolicyResourceGroupMeta(BaseModel):
     key: Optional[str] = None
 
     value: Optional[str] = None
+
 
 class PolicyResourceGroup(BaseModel):
     id: str
@@ -64,6 +74,7 @@ class PolicyResourceGroup(BaseModel):
     name: Optional[str] = None
     """Name of the resource group."""
 
+
 class Policy(BaseModel):
     id: Optional[str] = None
     """Policy identifier."""
@@ -76,6 +87,7 @@ class Policy(BaseModel):
 
     resource_groups: Optional[List[PolicyResourceGroup]] = None
     """A list of resource groups that the policy applies to."""
+
 
 class User(BaseModel):
     email: str
@@ -95,6 +107,7 @@ class User(BaseModel):
 
     Does not apply to API authentication.
     """
+
 
 class MemberListResponse(BaseModel):
     id: Optional[str] = None

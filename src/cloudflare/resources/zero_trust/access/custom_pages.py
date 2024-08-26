@@ -2,49 +2,34 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.zero_trust.access.custom_page_without_html import CustomPageWithoutHTML
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from typing_extensions import Literal
-
 from ....pagination import SyncSinglePage, AsyncSinglePage
-
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.zero_trust.access import custom_page_create_params, custom_page_update_params
+from ....types.zero_trust.access.custom_page import CustomPage
+from ....types.zero_trust.access.custom_page_without_html import CustomPageWithoutHTML
 from ....types.zero_trust.access.custom_page_delete_response import CustomPageDeleteResponse
 
-from ....types.zero_trust.access.custom_page import CustomPage
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.zero_trust.access import custom_page_create_params
-from ....types.zero_trust.access import custom_page_update_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["CustomPagesResource", "AsyncCustomPagesResource"]
+
 
 class CustomPagesResource(SyncAPIResource):
     @cached_property
@@ -55,20 +40,22 @@ class CustomPagesResource(SyncAPIResource):
     def with_streaming_response(self) -> CustomPagesResourceWithStreamingResponse:
         return CustomPagesResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    custom_html: str,
-    name: str,
-    type: Literal["identity_denied", "forbidden"],
-    app_count: int | NotGiven = NOT_GIVEN,
-    uid: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CustomPageWithoutHTML]:
+    def create(
+        self,
+        *,
+        account_id: str,
+        custom_html: str,
+        name: str,
+        type: Literal["identity_denied", "forbidden"],
+        app_count: int | NotGiven = NOT_GIVEN,
+        uid: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CustomPageWithoutHTML]:
         """
         Create a custom page
 
@@ -94,37 +81,46 @@ class CustomPagesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/access/custom_pages",
-            body=maybe_transform({
-                "custom_html": custom_html,
-                "name": name,
-                "type": type,
-                "app_count": app_count,
-                "uid": uid,
-            }, custom_page_create_params.CustomPageCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CustomPageWithoutHTML]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "custom_html": custom_html,
+                    "name": name,
+                    "type": type,
+                    "app_count": app_count,
+                    "uid": uid,
+                },
+                custom_page_create_params.CustomPageCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomPageWithoutHTML]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CustomPageWithoutHTML]], ResultWrapper[CustomPageWithoutHTML]),
         )
 
-    def update(self,
-    custom_page_id: str,
-    *,
-    account_id: str,
-    custom_html: str,
-    name: str,
-    type: Literal["identity_denied", "forbidden"],
-    app_count: int | NotGiven = NOT_GIVEN,
-    uid: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CustomPageWithoutHTML]:
+    def update(
+        self,
+        custom_page_id: str,
+        *,
+        account_id: str,
+        custom_html: str,
+        name: str,
+        type: Literal["identity_denied", "forbidden"],
+        app_count: int | NotGiven = NOT_GIVEN,
+        uid: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CustomPageWithoutHTML]:
         """
         Update a custom page
 
@@ -152,35 +148,42 @@ class CustomPagesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not custom_page_id:
-          raise ValueError(
-            f'Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}")
         return self._put(
             f"/accounts/{account_id}/access/custom_pages/{custom_page_id}",
-            body=maybe_transform({
-                "custom_html": custom_html,
-                "name": name,
-                "type": type,
-                "app_count": app_count,
-                "uid": uid,
-            }, custom_page_update_params.CustomPageUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CustomPageWithoutHTML]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "custom_html": custom_html,
+                    "name": name,
+                    "type": type,
+                    "app_count": app_count,
+                    "uid": uid,
+                },
+                custom_page_update_params.CustomPageUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomPageWithoutHTML]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CustomPageWithoutHTML]], ResultWrapper[CustomPageWithoutHTML]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[CustomPageWithoutHTML]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[CustomPageWithoutHTML]:
         """
         List custom pages
 
@@ -196,26 +199,28 @@ class CustomPagesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/access/custom_pages",
-            page = SyncSinglePage[CustomPageWithoutHTML],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[CustomPageWithoutHTML],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=CustomPageWithoutHTML,
         )
 
-    def delete(self,
-    custom_page_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CustomPageDeleteResponse]:
+    def delete(
+        self,
+        custom_page_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CustomPageDeleteResponse]:
         """
         Delete a custom page
 
@@ -233,29 +238,33 @@ class CustomPagesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not custom_page_id:
-          raise ValueError(
-            f'Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}")
         return self._delete(
             f"/accounts/{account_id}/access/custom_pages/{custom_page_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CustomPageDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomPageDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CustomPageDeleteResponse]], ResultWrapper[CustomPageDeleteResponse]),
         )
 
-    def get(self,
-    custom_page_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CustomPage]:
+    def get(
+        self,
+        custom_page_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CustomPage]:
         """
         Fetches a custom page and also returns its HTML.
 
@@ -273,18 +282,21 @@ class CustomPagesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not custom_page_id:
-          raise ValueError(
-            f'Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}")
         return self._get(
             f"/accounts/{account_id}/access/custom_pages/{custom_page_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CustomPage]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomPage]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CustomPage]], ResultWrapper[CustomPage]),
         )
+
 
 class AsyncCustomPagesResource(AsyncAPIResource):
     @cached_property
@@ -295,20 +307,22 @@ class AsyncCustomPagesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncCustomPagesResourceWithStreamingResponse:
         return AsyncCustomPagesResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    custom_html: str,
-    name: str,
-    type: Literal["identity_denied", "forbidden"],
-    app_count: int | NotGiven = NOT_GIVEN,
-    uid: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CustomPageWithoutHTML]:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        custom_html: str,
+        name: str,
+        type: Literal["identity_denied", "forbidden"],
+        app_count: int | NotGiven = NOT_GIVEN,
+        uid: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CustomPageWithoutHTML]:
         """
         Create a custom page
 
@@ -334,37 +348,46 @@ class AsyncCustomPagesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/access/custom_pages",
-            body=await async_maybe_transform({
-                "custom_html": custom_html,
-                "name": name,
-                "type": type,
-                "app_count": app_count,
-                "uid": uid,
-            }, custom_page_create_params.CustomPageCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CustomPageWithoutHTML]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "custom_html": custom_html,
+                    "name": name,
+                    "type": type,
+                    "app_count": app_count,
+                    "uid": uid,
+                },
+                custom_page_create_params.CustomPageCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomPageWithoutHTML]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CustomPageWithoutHTML]], ResultWrapper[CustomPageWithoutHTML]),
         )
 
-    async def update(self,
-    custom_page_id: str,
-    *,
-    account_id: str,
-    custom_html: str,
-    name: str,
-    type: Literal["identity_denied", "forbidden"],
-    app_count: int | NotGiven = NOT_GIVEN,
-    uid: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CustomPageWithoutHTML]:
+    async def update(
+        self,
+        custom_page_id: str,
+        *,
+        account_id: str,
+        custom_html: str,
+        name: str,
+        type: Literal["identity_denied", "forbidden"],
+        app_count: int | NotGiven = NOT_GIVEN,
+        uid: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CustomPageWithoutHTML]:
         """
         Update a custom page
 
@@ -392,35 +415,42 @@ class AsyncCustomPagesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not custom_page_id:
-          raise ValueError(
-            f'Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}")
         return await self._put(
             f"/accounts/{account_id}/access/custom_pages/{custom_page_id}",
-            body=await async_maybe_transform({
-                "custom_html": custom_html,
-                "name": name,
-                "type": type,
-                "app_count": app_count,
-                "uid": uid,
-            }, custom_page_update_params.CustomPageUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CustomPageWithoutHTML]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "custom_html": custom_html,
+                    "name": name,
+                    "type": type,
+                    "app_count": app_count,
+                    "uid": uid,
+                },
+                custom_page_update_params.CustomPageUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomPageWithoutHTML]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CustomPageWithoutHTML]], ResultWrapper[CustomPageWithoutHTML]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[CustomPageWithoutHTML, AsyncSinglePage[CustomPageWithoutHTML]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[CustomPageWithoutHTML, AsyncSinglePage[CustomPageWithoutHTML]]:
         """
         List custom pages
 
@@ -436,26 +466,28 @@ class AsyncCustomPagesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/access/custom_pages",
-            page = AsyncSinglePage[CustomPageWithoutHTML],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[CustomPageWithoutHTML],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=CustomPageWithoutHTML,
         )
 
-    async def delete(self,
-    custom_page_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CustomPageDeleteResponse]:
+    async def delete(
+        self,
+        custom_page_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CustomPageDeleteResponse]:
         """
         Delete a custom page
 
@@ -473,29 +505,33 @@ class AsyncCustomPagesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not custom_page_id:
-          raise ValueError(
-            f'Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/access/custom_pages/{custom_page_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CustomPageDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomPageDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CustomPageDeleteResponse]], ResultWrapper[CustomPageDeleteResponse]),
         )
 
-    async def get(self,
-    custom_page_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CustomPage]:
+    async def get(
+        self,
+        custom_page_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CustomPage]:
         """
         Fetches a custom page and also returns its HTML.
 
@@ -513,18 +549,21 @@ class AsyncCustomPagesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not custom_page_id:
-          raise ValueError(
-            f'Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `custom_page_id` but received {custom_page_id!r}")
         return await self._get(
             f"/accounts/{account_id}/access/custom_pages/{custom_page_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CustomPage]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomPage]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CustomPage]], ResultWrapper[CustomPage]),
         )
+
 
 class CustomPagesResourceWithRawResponse:
     def __init__(self, custom_pages: CustomPagesResource) -> None:
@@ -546,6 +585,7 @@ class CustomPagesResourceWithRawResponse:
             custom_pages.get,
         )
 
+
 class AsyncCustomPagesResourceWithRawResponse:
     def __init__(self, custom_pages: AsyncCustomPagesResource) -> None:
         self._custom_pages = custom_pages
@@ -566,6 +606,7 @@ class AsyncCustomPagesResourceWithRawResponse:
             custom_pages.get,
         )
 
+
 class CustomPagesResourceWithStreamingResponse:
     def __init__(self, custom_pages: CustomPagesResource) -> None:
         self._custom_pages = custom_pages
@@ -585,6 +626,7 @@ class CustomPagesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             custom_pages.get,
         )
+
 
 class AsyncCustomPagesResourceWithStreamingResponse:
     def __init__(self, custom_pages: AsyncCustomPagesResource) -> None:

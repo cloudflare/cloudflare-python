@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
 from typing import Optional
-
 from typing_extensions import Literal
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
+from ...._models import BaseModel
+
 __all__ = ["TaniumInput"]
+
 
 class TaniumInput(BaseModel):
     connection_id: str
@@ -25,7 +23,7 @@ class TaniumInput(BaseModel):
     risk_level: Optional[Literal["low", "medium", "high", "critical"]] = None
     """For more details on risk level, refer to the Tanium documentation."""
 
-    score_operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = FieldInfo(alias = "scoreOperator", default = None)
+    score_operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = FieldInfo(alias="scoreOperator", default=None)
     """Score Operator"""
 
     total_score: Optional[float] = None

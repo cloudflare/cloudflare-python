@@ -2,29 +2,20 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from typing import Optional, Any, cast
-
-from cloudflare.types.stream import Caption
-
-from cloudflare.types.stream.captions import LanguageDeleteResponse
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.stream.captions import language_update_params
+from cloudflare.types.stream import Caption
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-class TestLanguage:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
 
+class TestLanguage:
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
@@ -33,11 +24,10 @@ class TestLanguage:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
-        assert_matches_type(Optional[Caption], language, path=['response'])
+        assert_matches_type(Optional[Caption], language, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-
         response = client.stream.captions.language.with_raw_response.create(
             language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -45,9 +35,9 @@ class TestLanguage:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         language = response.parse()
-        assert_matches_type(Optional[Caption], language, path=['response'])
+        assert_matches_type(Optional[Caption], language, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -55,37 +45,37 @@ class TestLanguage:
             language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             language = response.parse()
-            assert_matches_type(Optional[Caption], language, path=['response'])
+            assert_matches_type(Optional[Caption], language, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.stream.captions.language.with_raw_response.create(
-              language="tr",
-              account_id="",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-          )
+            client.stream.captions.language.with_raw_response.create(
+                language="tr",
+                account_id="",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-          client.stream.captions.language.with_raw_response.create(
-              language="tr",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="",
-          )
+            client.stream.captions.language.with_raw_response.create(
+                language="tr",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `language` but received ''"):
-          client.stream.captions.language.with_raw_response.create(
-              language="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-          )
+            client.stream.captions.language.with_raw_response.create(
+                language="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -96,12 +86,11 @@ class TestLanguage:
             identifier="ea95132c15732412d22c1476fa83f27a",
             file="@/Users/kyle/Desktop/tr.vtt",
         )
-        assert_matches_type(Optional[Caption], language, path=['response'])
+        assert_matches_type(Optional[Caption], language, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
-
         response = client.stream.captions.language.with_raw_response.update(
             language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -110,9 +99,9 @@ class TestLanguage:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         language = response.parse()
-        assert_matches_type(Optional[Caption], language, path=['response'])
+        assert_matches_type(Optional[Caption], language, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -122,12 +111,12 @@ class TestLanguage:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
             file="@/Users/kyle/Desktop/tr.vtt",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             language = response.parse()
-            assert_matches_type(Optional[Caption], language, path=['response'])
+            assert_matches_type(Optional[Caption], language, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -135,28 +124,28 @@ class TestLanguage:
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.stream.captions.language.with_raw_response.update(
-              language="tr",
-              account_id="",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-              file="@/Users/kyle/Desktop/tr.vtt",
-          )
+            client.stream.captions.language.with_raw_response.update(
+                language="tr",
+                account_id="",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+                file="@/Users/kyle/Desktop/tr.vtt",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-          client.stream.captions.language.with_raw_response.update(
-              language="tr",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="",
-              file="@/Users/kyle/Desktop/tr.vtt",
-          )
+            client.stream.captions.language.with_raw_response.update(
+                language="tr",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="",
+                file="@/Users/kyle/Desktop/tr.vtt",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `language` but received ''"):
-          client.stream.captions.language.with_raw_response.update(
-              language="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-              file="@/Users/kyle/Desktop/tr.vtt",
-          )
+            client.stream.captions.language.with_raw_response.update(
+                language="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+                file="@/Users/kyle/Desktop/tr.vtt",
+            )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
@@ -165,11 +154,10 @@ class TestLanguage:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
-        assert_matches_type(str, language, path=['response'])
+        assert_matches_type(str, language, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-
         response = client.stream.captions.language.with_raw_response.delete(
             language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -177,9 +165,9 @@ class TestLanguage:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         language = response.parse()
-        assert_matches_type(str, language, path=['response'])
+        assert_matches_type(str, language, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -187,37 +175,37 @@ class TestLanguage:
             language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             language = response.parse()
-            assert_matches_type(str, language, path=['response'])
+            assert_matches_type(str, language, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.stream.captions.language.with_raw_response.delete(
-              language="tr",
-              account_id="",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-          )
+            client.stream.captions.language.with_raw_response.delete(
+                language="tr",
+                account_id="",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-          client.stream.captions.language.with_raw_response.delete(
-              language="tr",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="",
-          )
+            client.stream.captions.language.with_raw_response.delete(
+                language="tr",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `language` but received ''"):
-          client.stream.captions.language.with_raw_response.delete(
-              language="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-          )
+            client.stream.captions.language.with_raw_response.delete(
+                language="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+            )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
@@ -226,11 +214,10 @@ class TestLanguage:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
-        assert_matches_type(Optional[Caption], language, path=['response'])
+        assert_matches_type(Optional[Caption], language, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-
         response = client.stream.captions.language.with_raw_response.get(
             language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -238,9 +225,9 @@ class TestLanguage:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         language = response.parse()
-        assert_matches_type(Optional[Caption], language, path=['response'])
+        assert_matches_type(Optional[Caption], language, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -248,40 +235,41 @@ class TestLanguage:
             language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             language = response.parse()
-            assert_matches_type(Optional[Caption], language, path=['response'])
+            assert_matches_type(Optional[Caption], language, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.stream.captions.language.with_raw_response.get(
-              language="tr",
-              account_id="",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-          )
+            client.stream.captions.language.with_raw_response.get(
+                language="tr",
+                account_id="",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-          client.stream.captions.language.with_raw_response.get(
-              language="tr",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="",
-          )
+            client.stream.captions.language.with_raw_response.get(
+                language="tr",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `language` but received ''"):
-          client.stream.captions.language.with_raw_response.get(
-              language="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-          )
-class TestAsyncLanguage:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+            client.stream.captions.language.with_raw_response.get(
+                language="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+            )
 
+
+class TestAsyncLanguage:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -290,11 +278,10 @@ class TestAsyncLanguage:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
-        assert_matches_type(Optional[Caption], language, path=['response'])
+        assert_matches_type(Optional[Caption], language, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.stream.captions.language.with_raw_response.create(
             language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -302,9 +289,9 @@ class TestAsyncLanguage:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         language = await response.parse()
-        assert_matches_type(Optional[Caption], language, path=['response'])
+        assert_matches_type(Optional[Caption], language, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -312,37 +299,37 @@ class TestAsyncLanguage:
             language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             language = await response.parse()
-            assert_matches_type(Optional[Caption], language, path=['response'])
+            assert_matches_type(Optional[Caption], language, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.stream.captions.language.with_raw_response.create(
-              language="tr",
-              account_id="",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-          )
+            await async_client.stream.captions.language.with_raw_response.create(
+                language="tr",
+                account_id="",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-          await async_client.stream.captions.language.with_raw_response.create(
-              language="tr",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="",
-          )
+            await async_client.stream.captions.language.with_raw_response.create(
+                language="tr",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `language` but received ''"):
-          await async_client.stream.captions.language.with_raw_response.create(
-              language="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-          )
+            await async_client.stream.captions.language.with_raw_response.create(
+                language="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -353,12 +340,11 @@ class TestAsyncLanguage:
             identifier="ea95132c15732412d22c1476fa83f27a",
             file="@/Users/kyle/Desktop/tr.vtt",
         )
-        assert_matches_type(Optional[Caption], language, path=['response'])
+        assert_matches_type(Optional[Caption], language, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.stream.captions.language.with_raw_response.update(
             language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -367,9 +353,9 @@ class TestAsyncLanguage:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         language = await response.parse()
-        assert_matches_type(Optional[Caption], language, path=['response'])
+        assert_matches_type(Optional[Caption], language, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -379,12 +365,12 @@ class TestAsyncLanguage:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
             file="@/Users/kyle/Desktop/tr.vtt",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             language = await response.parse()
-            assert_matches_type(Optional[Caption], language, path=['response'])
+            assert_matches_type(Optional[Caption], language, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -392,28 +378,28 @@ class TestAsyncLanguage:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.stream.captions.language.with_raw_response.update(
-              language="tr",
-              account_id="",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-              file="@/Users/kyle/Desktop/tr.vtt",
-          )
+            await async_client.stream.captions.language.with_raw_response.update(
+                language="tr",
+                account_id="",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+                file="@/Users/kyle/Desktop/tr.vtt",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-          await async_client.stream.captions.language.with_raw_response.update(
-              language="tr",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="",
-              file="@/Users/kyle/Desktop/tr.vtt",
-          )
+            await async_client.stream.captions.language.with_raw_response.update(
+                language="tr",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="",
+                file="@/Users/kyle/Desktop/tr.vtt",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `language` but received ''"):
-          await async_client.stream.captions.language.with_raw_response.update(
-              language="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-              file="@/Users/kyle/Desktop/tr.vtt",
-          )
+            await async_client.stream.captions.language.with_raw_response.update(
+                language="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+                file="@/Users/kyle/Desktop/tr.vtt",
+            )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
@@ -422,11 +408,10 @@ class TestAsyncLanguage:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
-        assert_matches_type(str, language, path=['response'])
+        assert_matches_type(str, language, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.stream.captions.language.with_raw_response.delete(
             language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -434,9 +419,9 @@ class TestAsyncLanguage:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         language = await response.parse()
-        assert_matches_type(str, language, path=['response'])
+        assert_matches_type(str, language, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -444,37 +429,37 @@ class TestAsyncLanguage:
             language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             language = await response.parse()
-            assert_matches_type(str, language, path=['response'])
+            assert_matches_type(str, language, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.stream.captions.language.with_raw_response.delete(
-              language="tr",
-              account_id="",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-          )
+            await async_client.stream.captions.language.with_raw_response.delete(
+                language="tr",
+                account_id="",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-          await async_client.stream.captions.language.with_raw_response.delete(
-              language="tr",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="",
-          )
+            await async_client.stream.captions.language.with_raw_response.delete(
+                language="tr",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `language` but received ''"):
-          await async_client.stream.captions.language.with_raw_response.delete(
-              language="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-          )
+            await async_client.stream.captions.language.with_raw_response.delete(
+                language="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+            )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -483,11 +468,10 @@ class TestAsyncLanguage:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
-        assert_matches_type(Optional[Caption], language, path=['response'])
+        assert_matches_type(Optional[Caption], language, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.stream.captions.language.with_raw_response.get(
             language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -495,9 +479,9 @@ class TestAsyncLanguage:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         language = await response.parse()
-        assert_matches_type(Optional[Caption], language, path=['response'])
+        assert_matches_type(Optional[Caption], language, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -505,34 +489,34 @@ class TestAsyncLanguage:
             language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             language = await response.parse()
-            assert_matches_type(Optional[Caption], language, path=['response'])
+            assert_matches_type(Optional[Caption], language, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.stream.captions.language.with_raw_response.get(
-              language="tr",
-              account_id="",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-          )
+            await async_client.stream.captions.language.with_raw_response.get(
+                language="tr",
+                account_id="",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-          await async_client.stream.captions.language.with_raw_response.get(
-              language="tr",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="",
-          )
+            await async_client.stream.captions.language.with_raw_response.get(
+                language="tr",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `language` but received ''"):
-          await async_client.stream.captions.language.with_raw_response.get(
-              language="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              identifier="ea95132c15732412d22c1476fa83f27a",
-          )
+            await async_client.stream.captions.language.with_raw_response.get(
+                language="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="ea95132c15732412d22c1476fa83f27a",
+            )

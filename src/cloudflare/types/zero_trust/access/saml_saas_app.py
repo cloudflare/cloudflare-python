@@ -1,24 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
 from typing import Optional
-
-from .saas_app_name_format import SaaSAppNameFormat
-
-from .saas_app_source import SaaSAppSource
-
+from datetime import datetime
 from typing_extensions import Literal
 
-from datetime import datetime
-
+from ...._models import BaseModel
+from .saas_app_source import SaaSAppSource
+from .saas_app_name_format import SaaSAppNameFormat
 from .saas_app_name_id_format import SaaSAppNameIDFormat
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["SAMLSaaSApp", "CustomAttributes"]
+
 
 class CustomAttributes(BaseModel):
     friendly_name: Optional[str] = None
@@ -34,6 +26,7 @@ class CustomAttributes(BaseModel):
     """If the attribute is required when building a SAML assertion."""
 
     source: Optional[SaaSAppSource] = None
+
 
 class SAMLSaaSApp(BaseModel):
     auth_type: Optional[Literal["saml", "oidc"]] = None

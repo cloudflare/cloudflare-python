@@ -2,63 +2,44 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.radar.as112.summary_dnssec_response import SummaryDNSSECResponse
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
 from ...._base_client import make_request_options
-
-from typing import Type, List, Union
-
-from datetime import datetime
-
-from typing_extensions import Literal
-
+from ....types.radar.as112 import (
+    summary_edns_params,
+    summary_dnssec_params,
+    summary_protocol_params,
+    summary_ip_version_params,
+    summary_query_type_params,
+    summary_response_codes_params,
+)
 from ....types.radar.as112.summary_edns_response import SummaryEdnsResponse
-
-from ....types.radar.as112.summary_ip_version_response import SummaryIPVersionResponse
-
+from ....types.radar.as112.summary_dnssec_response import SummaryDNSSECResponse
 from ....types.radar.as112.summary_protocol_response import SummaryProtocolResponse
-
+from ....types.radar.as112.summary_ip_version_response import SummaryIPVersionResponse
 from ....types.radar.as112.summary_query_type_response import SummaryQueryTypeResponse
-
 from ....types.radar.as112.summary_response_codes_response import SummaryResponseCodesResponse
 
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.radar.as112 import summary_dnssec_params
-from ....types.radar.as112 import summary_edns_params
-from ....types.radar.as112 import summary_ip_version_params
-from ....types.radar.as112 import summary_protocol_params
-from ....types.radar.as112 import summary_query_type_params
-from ....types.radar.as112 import summary_response_codes_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["SummaryResource", "AsyncSummaryResource"]
+
 
 class SummaryResource(SyncAPIResource):
     @cached_property
@@ -69,22 +50,24 @@ class SummaryResource(SyncAPIResource):
     def with_streaming_response(self) -> SummaryResourceWithStreamingResponse:
         return SummaryResourceWithStreamingResponse(self)
 
-    def dnssec(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryDNSSECResponse:
+    def dnssec(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryDNSSECResponse:
         """
         Percentage distribution of DNS queries to AS112 by DNSSEC support.
 
@@ -123,35 +106,47 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/as112/summary/dnssec",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-            }, summary_dnssec_params.SummaryDNSSECParams), post_parser=ResultWrapper[SummaryDNSSECResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    summary_dnssec_params.SummaryDNSSECParams,
+                ),
+                post_parser=ResultWrapper[SummaryDNSSECResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryDNSSECResponse], ResultWrapper[SummaryDNSSECResponse]),
         )
 
-    def edns(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryEdnsResponse:
+    def edns(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryEdnsResponse:
         """
         Percentage distribution of DNS queries, to AS112, by EDNS support.
 
@@ -190,35 +185,47 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/as112/summary/edns",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-            }, summary_edns_params.SummaryEdnsParams), post_parser=ResultWrapper[SummaryEdnsResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    summary_edns_params.SummaryEdnsParams,
+                ),
+                post_parser=ResultWrapper[SummaryEdnsResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryEdnsResponse], ResultWrapper[SummaryEdnsResponse]),
         )
 
-    def ip_version(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryIPVersionResponse:
+    def ip_version(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryIPVersionResponse:
         """
         Percentage distribution of DNS queries to AS112 per IP Version.
 
@@ -257,35 +264,47 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/as112/summary/ip_version",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-            }, summary_ip_version_params.SummaryIPVersionParams), post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    summary_ip_version_params.SummaryIPVersionParams,
+                ),
+                post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    def protocol(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryProtocolResponse:
+    def protocol(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryProtocolResponse:
         """
         Percentage distribution of DNS queries to AS112 per protocol.
 
@@ -324,35 +343,47 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/as112/summary/protocol",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-            }, summary_protocol_params.SummaryProtocolParams), post_parser=ResultWrapper[SummaryProtocolResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    summary_protocol_params.SummaryProtocolParams,
+                ),
+                post_parser=ResultWrapper[SummaryProtocolResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryProtocolResponse], ResultWrapper[SummaryProtocolResponse]),
         )
 
-    def query_type(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryQueryTypeResponse:
+    def query_type(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryQueryTypeResponse:
         """
         Percentage distribution of DNS queries to AS112 by Query Type.
 
@@ -391,35 +422,47 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/as112/summary/query_type",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-            }, summary_query_type_params.SummaryQueryTypeParams), post_parser=ResultWrapper[SummaryQueryTypeResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    summary_query_type_params.SummaryQueryTypeParams,
+                ),
+                post_parser=ResultWrapper[SummaryQueryTypeResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryQueryTypeResponse], ResultWrapper[SummaryQueryTypeResponse]),
         )
 
-    def response_codes(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryResponseCodesResponse:
+    def response_codes(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryResponseCodesResponse:
         """
         Percentage distribution of AS112 dns requests classified per Response Codes.
 
@@ -458,18 +501,29 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/as112/summary/response_codes",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-            }, summary_response_codes_params.SummaryResponseCodesParams), post_parser=ResultWrapper[SummaryResponseCodesResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    summary_response_codes_params.SummaryResponseCodesParams,
+                ),
+                post_parser=ResultWrapper[SummaryResponseCodesResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryResponseCodesResponse], ResultWrapper[SummaryResponseCodesResponse]),
         )
+
 
 class AsyncSummaryResource(AsyncAPIResource):
     @cached_property
@@ -480,22 +534,24 @@ class AsyncSummaryResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSummaryResourceWithStreamingResponse:
         return AsyncSummaryResourceWithStreamingResponse(self)
 
-    async def dnssec(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryDNSSECResponse:
+    async def dnssec(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryDNSSECResponse:
         """
         Percentage distribution of DNS queries to AS112 by DNSSEC support.
 
@@ -534,35 +590,47 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/as112/summary/dnssec",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-            }, summary_dnssec_params.SummaryDNSSECParams), post_parser=ResultWrapper[SummaryDNSSECResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    summary_dnssec_params.SummaryDNSSECParams,
+                ),
+                post_parser=ResultWrapper[SummaryDNSSECResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryDNSSECResponse], ResultWrapper[SummaryDNSSECResponse]),
         )
 
-    async def edns(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryEdnsResponse:
+    async def edns(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryEdnsResponse:
         """
         Percentage distribution of DNS queries, to AS112, by EDNS support.
 
@@ -601,35 +669,47 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/as112/summary/edns",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-            }, summary_edns_params.SummaryEdnsParams), post_parser=ResultWrapper[SummaryEdnsResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    summary_edns_params.SummaryEdnsParams,
+                ),
+                post_parser=ResultWrapper[SummaryEdnsResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryEdnsResponse], ResultWrapper[SummaryEdnsResponse]),
         )
 
-    async def ip_version(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryIPVersionResponse:
+    async def ip_version(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryIPVersionResponse:
         """
         Percentage distribution of DNS queries to AS112 per IP Version.
 
@@ -668,35 +748,47 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/as112/summary/ip_version",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-            }, summary_ip_version_params.SummaryIPVersionParams), post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    summary_ip_version_params.SummaryIPVersionParams,
+                ),
+                post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    async def protocol(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryProtocolResponse:
+    async def protocol(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryProtocolResponse:
         """
         Percentage distribution of DNS queries to AS112 per protocol.
 
@@ -735,35 +827,47 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/as112/summary/protocol",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-            }, summary_protocol_params.SummaryProtocolParams), post_parser=ResultWrapper[SummaryProtocolResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    summary_protocol_params.SummaryProtocolParams,
+                ),
+                post_parser=ResultWrapper[SummaryProtocolResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryProtocolResponse], ResultWrapper[SummaryProtocolResponse]),
         )
 
-    async def query_type(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryQueryTypeResponse:
+    async def query_type(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryQueryTypeResponse:
         """
         Percentage distribution of DNS queries to AS112 by Query Type.
 
@@ -802,35 +906,47 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/as112/summary/query_type",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-            }, summary_query_type_params.SummaryQueryTypeParams), post_parser=ResultWrapper[SummaryQueryTypeResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    summary_query_type_params.SummaryQueryTypeParams,
+                ),
+                post_parser=ResultWrapper[SummaryQueryTypeResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryQueryTypeResponse], ResultWrapper[SummaryQueryTypeResponse]),
         )
 
-    async def response_codes(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryResponseCodesResponse:
+    async def response_codes(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryResponseCodesResponse:
         """
         Percentage distribution of AS112 dns requests classified per Response Codes.
 
@@ -869,18 +985,29 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/as112/summary/response_codes",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-            }, summary_response_codes_params.SummaryResponseCodesParams), post_parser=ResultWrapper[SummaryResponseCodesResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    summary_response_codes_params.SummaryResponseCodesParams,
+                ),
+                post_parser=ResultWrapper[SummaryResponseCodesResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryResponseCodesResponse], ResultWrapper[SummaryResponseCodesResponse]),
         )
+
 
 class SummaryResourceWithRawResponse:
     def __init__(self, summary: SummaryResource) -> None:
@@ -905,6 +1032,7 @@ class SummaryResourceWithRawResponse:
             summary.response_codes,
         )
 
+
 class AsyncSummaryResourceWithRawResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
@@ -928,6 +1056,7 @@ class AsyncSummaryResourceWithRawResponse:
             summary.response_codes,
         )
 
+
 class SummaryResourceWithStreamingResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
@@ -950,6 +1079,7 @@ class SummaryResourceWithStreamingResponse:
         self.response_codes = to_streamed_response_wrapper(
             summary.response_codes,
         )
+
 
 class AsyncSummaryResourceWithStreamingResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:

@@ -2,53 +2,36 @@
 
 from __future__ import annotations
 
+from typing import Type, Iterable, Optional, cast
+
 import httpx
 
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
-
-from .....types.zero_trust.access.application_policy import ApplicationPolicy
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type, Iterable
-
-from ....._base_client import make_request_options, AsyncPaginator
-
-from .....types.zero_trust.access.decision import Decision
-
-from .....types.zero_trust.access_rule_param import AccessRuleParam
-
-from .....types.zero_trust.access.applications.approval_group_param import ApprovalGroupParam
-
 from .....pagination import SyncSinglePage, AsyncSinglePage
-
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.zero_trust.access import Decision
+from .....types.zero_trust.access.decision import Decision
+from .....types.zero_trust.access_rule_param import AccessRuleParam
+from .....types.zero_trust.access.applications import policy_create_params, policy_update_params
+from .....types.zero_trust.access.application_policy import ApplicationPolicy
+from .....types.zero_trust.access.applications.approval_group_param import ApprovalGroupParam
 from .....types.zero_trust.access.applications.policy_delete_response import PolicyDeleteResponse
 
-from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.zero_trust.access.applications import policy_create_params
-from .....types.zero_trust.access.applications import policy_update_params
-from .....types.zero_trust.access import Decision
-from .....types.zero_trust.access import Decision
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
+
 
 class PoliciesResource(SyncAPIResource):
     @cached_property
@@ -59,29 +42,31 @@ class PoliciesResource(SyncAPIResource):
     def with_streaming_response(self) -> PoliciesResourceWithStreamingResponse:
         return PoliciesResourceWithStreamingResponse(self)
 
-    def create(self,
-    app_id: str,
-    *,
-    decision: Decision,
-    include: Iterable[AccessRuleParam],
-    name: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
-    approval_required: bool | NotGiven = NOT_GIVEN,
-    exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-    isolation_required: bool | NotGiven = NOT_GIVEN,
-    precedence: int | NotGiven = NOT_GIVEN,
-    purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
-    purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-    require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationPolicy]:
+    def create(
+        self,
+        app_id: str,
+        *,
+        decision: Decision,
+        include: Iterable[AccessRuleParam],
+        name: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
+        approval_required: bool | NotGiven = NOT_GIVEN,
+        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
+        isolation_required: bool | NotGiven = NOT_GIVEN,
+        precedence: int | NotGiven = NOT_GIVEN,
+        purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
+        purpose_justification_required: bool | NotGiven = NOT_GIVEN,
+        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationPolicy]:
         """
         Creates a policy applying exclusive to a single application that defines the
         users or groups who can reach it. We recommend creating a reusable policy
@@ -137,65 +122,74 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
-            body=maybe_transform({
-                "decision": decision,
-                "include": include,
-                "name": name,
-                "approval_groups": approval_groups,
-                "approval_required": approval_required,
-                "exclude": exclude,
-                "isolation_required": isolation_required,
-                "precedence": precedence,
-                "purpose_justification_prompt": purpose_justification_prompt,
-                "purpose_justification_required": purpose_justification_required,
-                "require": require,
-                "session_duration": session_duration,
-            }, policy_create_params.PolicyCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "decision": decision,
+                    "include": include,
+                    "name": name,
+                    "approval_groups": approval_groups,
+                    "approval_required": approval_required,
+                    "exclude": exclude,
+                    "isolation_required": isolation_required,
+                    "precedence": precedence,
+                    "purpose_justification_prompt": purpose_justification_prompt,
+                    "purpose_justification_required": purpose_justification_required,
+                    "require": require,
+                    "session_duration": session_duration,
+                },
+                policy_create_params.PolicyCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ApplicationPolicy]], ResultWrapper[ApplicationPolicy]),
         )
 
-    def update(self,
-    policy_id: str,
-    *,
-    app_id: str,
-    decision: Decision,
-    include: Iterable[AccessRuleParam],
-    name: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
-    approval_required: bool | NotGiven = NOT_GIVEN,
-    exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-    isolation_required: bool | NotGiven = NOT_GIVEN,
-    precedence: int | NotGiven = NOT_GIVEN,
-    purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
-    purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-    require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationPolicy]:
+    def update(
+        self,
+        policy_id: str,
+        *,
+        app_id: str,
+        decision: Decision,
+        include: Iterable[AccessRuleParam],
+        name: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
+        approval_required: bool | NotGiven = NOT_GIVEN,
+        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
+        isolation_required: bool | NotGiven = NOT_GIVEN,
+        precedence: int | NotGiven = NOT_GIVEN,
+        purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
+        purpose_justification_required: bool | NotGiven = NOT_GIVEN,
+        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationPolicy]:
         """Updates an Access policy specific to an application.
 
         To update a reusable
@@ -252,56 +246,63 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._put(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
-            body=maybe_transform({
-                "decision": decision,
-                "include": include,
-                "name": name,
-                "approval_groups": approval_groups,
-                "approval_required": approval_required,
-                "exclude": exclude,
-                "isolation_required": isolation_required,
-                "precedence": precedence,
-                "purpose_justification_prompt": purpose_justification_prompt,
-                "purpose_justification_required": purpose_justification_required,
-                "require": require,
-                "session_duration": session_duration,
-            }, policy_update_params.PolicyUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "decision": decision,
+                    "include": include,
+                    "name": name,
+                    "approval_groups": approval_groups,
+                    "approval_required": approval_required,
+                    "exclude": exclude,
+                    "isolation_required": isolation_required,
+                    "precedence": precedence,
+                    "purpose_justification_prompt": purpose_justification_prompt,
+                    "purpose_justification_required": purpose_justification_required,
+                    "require": require,
+                    "session_duration": session_duration,
+                },
+                policy_update_params.PolicyUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ApplicationPolicy]], ResultWrapper[ApplicationPolicy]),
         )
 
-    def list(self,
-    app_id: str,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[ApplicationPolicy]:
+    def list(
+        self,
+        app_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[ApplicationPolicy]:
         """Lists Access policies configured for an application.
 
         Returns both exclusively
@@ -323,40 +324,42 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
-            page = SyncSinglePage[ApplicationPolicy],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[ApplicationPolicy],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=ApplicationPolicy,
         )
 
-    def delete(self,
-    policy_id: str,
-    *,
-    app_id: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PolicyDeleteResponse]:
+    def delete(
+        self,
+        policy_id: str,
+        *,
+        app_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PolicyDeleteResponse]:
         """Deletes an Access policy specific to an application.
 
         To delete a reusable
@@ -380,43 +383,47 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._delete(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[PolicyDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[PolicyDeleteResponse]], ResultWrapper[PolicyDeleteResponse]),
         )
 
-    def get(self,
-    policy_id: str,
-    *,
-    app_id: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationPolicy]:
+    def get(
+        self,
+        policy_id: str,
+        *,
+        app_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationPolicy]:
         """Fetches a single Access policy configured for an application.
 
         Returns both
@@ -440,30 +447,33 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ApplicationPolicy]], ResultWrapper[ApplicationPolicy]),
         )
+
 
 class AsyncPoliciesResource(AsyncAPIResource):
     @cached_property
@@ -474,29 +484,31 @@ class AsyncPoliciesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPoliciesResourceWithStreamingResponse:
         return AsyncPoliciesResourceWithStreamingResponse(self)
 
-    async def create(self,
-    app_id: str,
-    *,
-    decision: Decision,
-    include: Iterable[AccessRuleParam],
-    name: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
-    approval_required: bool | NotGiven = NOT_GIVEN,
-    exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-    isolation_required: bool | NotGiven = NOT_GIVEN,
-    precedence: int | NotGiven = NOT_GIVEN,
-    purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
-    purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-    require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationPolicy]:
+    async def create(
+        self,
+        app_id: str,
+        *,
+        decision: Decision,
+        include: Iterable[AccessRuleParam],
+        name: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
+        approval_required: bool | NotGiven = NOT_GIVEN,
+        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
+        isolation_required: bool | NotGiven = NOT_GIVEN,
+        precedence: int | NotGiven = NOT_GIVEN,
+        purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
+        purpose_justification_required: bool | NotGiven = NOT_GIVEN,
+        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationPolicy]:
         """
         Creates a policy applying exclusive to a single application that defines the
         users or groups who can reach it. We recommend creating a reusable policy
@@ -552,65 +564,74 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
-            body=await async_maybe_transform({
-                "decision": decision,
-                "include": include,
-                "name": name,
-                "approval_groups": approval_groups,
-                "approval_required": approval_required,
-                "exclude": exclude,
-                "isolation_required": isolation_required,
-                "precedence": precedence,
-                "purpose_justification_prompt": purpose_justification_prompt,
-                "purpose_justification_required": purpose_justification_required,
-                "require": require,
-                "session_duration": session_duration,
-            }, policy_create_params.PolicyCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "decision": decision,
+                    "include": include,
+                    "name": name,
+                    "approval_groups": approval_groups,
+                    "approval_required": approval_required,
+                    "exclude": exclude,
+                    "isolation_required": isolation_required,
+                    "precedence": precedence,
+                    "purpose_justification_prompt": purpose_justification_prompt,
+                    "purpose_justification_required": purpose_justification_required,
+                    "require": require,
+                    "session_duration": session_duration,
+                },
+                policy_create_params.PolicyCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ApplicationPolicy]], ResultWrapper[ApplicationPolicy]),
         )
 
-    async def update(self,
-    policy_id: str,
-    *,
-    app_id: str,
-    decision: Decision,
-    include: Iterable[AccessRuleParam],
-    name: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
-    approval_required: bool | NotGiven = NOT_GIVEN,
-    exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-    isolation_required: bool | NotGiven = NOT_GIVEN,
-    precedence: int | NotGiven = NOT_GIVEN,
-    purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
-    purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-    require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationPolicy]:
+    async def update(
+        self,
+        policy_id: str,
+        *,
+        app_id: str,
+        decision: Decision,
+        include: Iterable[AccessRuleParam],
+        name: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
+        approval_required: bool | NotGiven = NOT_GIVEN,
+        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
+        isolation_required: bool | NotGiven = NOT_GIVEN,
+        precedence: int | NotGiven = NOT_GIVEN,
+        purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
+        purpose_justification_required: bool | NotGiven = NOT_GIVEN,
+        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationPolicy]:
         """Updates an Access policy specific to an application.
 
         To update a reusable
@@ -667,56 +688,63 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._put(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
-            body=await async_maybe_transform({
-                "decision": decision,
-                "include": include,
-                "name": name,
-                "approval_groups": approval_groups,
-                "approval_required": approval_required,
-                "exclude": exclude,
-                "isolation_required": isolation_required,
-                "precedence": precedence,
-                "purpose_justification_prompt": purpose_justification_prompt,
-                "purpose_justification_required": purpose_justification_required,
-                "require": require,
-                "session_duration": session_duration,
-            }, policy_update_params.PolicyUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "decision": decision,
+                    "include": include,
+                    "name": name,
+                    "approval_groups": approval_groups,
+                    "approval_required": approval_required,
+                    "exclude": exclude,
+                    "isolation_required": isolation_required,
+                    "precedence": precedence,
+                    "purpose_justification_prompt": purpose_justification_prompt,
+                    "purpose_justification_required": purpose_justification_required,
+                    "require": require,
+                    "session_duration": session_duration,
+                },
+                policy_update_params.PolicyUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ApplicationPolicy]], ResultWrapper[ApplicationPolicy]),
         )
 
-    def list(self,
-    app_id: str,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[ApplicationPolicy, AsyncSinglePage[ApplicationPolicy]]:
+    def list(
+        self,
+        app_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[ApplicationPolicy, AsyncSinglePage[ApplicationPolicy]]:
         """Lists Access policies configured for an application.
 
         Returns both exclusively
@@ -738,40 +766,42 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
-            page = AsyncSinglePage[ApplicationPolicy],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[ApplicationPolicy],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=ApplicationPolicy,
         )
 
-    async def delete(self,
-    policy_id: str,
-    *,
-    app_id: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PolicyDeleteResponse]:
+    async def delete(
+        self,
+        policy_id: str,
+        *,
+        app_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PolicyDeleteResponse]:
         """Deletes an Access policy specific to an application.
 
         To delete a reusable
@@ -795,43 +825,47 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._delete(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[PolicyDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[PolicyDeleteResponse]], ResultWrapper[PolicyDeleteResponse]),
         )
 
-    async def get(self,
-    policy_id: str,
-    *,
-    app_id: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationPolicy]:
+    async def get(
+        self,
+        policy_id: str,
+        *,
+        app_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationPolicy]:
         """Fetches a single Access policy configured for an application.
 
         Returns both
@@ -855,30 +889,33 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._get(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ApplicationPolicy]], ResultWrapper[ApplicationPolicy]),
         )
+
 
 class PoliciesResourceWithRawResponse:
     def __init__(self, policies: PoliciesResource) -> None:
@@ -900,6 +937,7 @@ class PoliciesResourceWithRawResponse:
             policies.get,
         )
 
+
 class AsyncPoliciesResourceWithRawResponse:
     def __init__(self, policies: AsyncPoliciesResource) -> None:
         self._policies = policies
@@ -920,6 +958,7 @@ class AsyncPoliciesResourceWithRawResponse:
             policies.get,
         )
 
+
 class PoliciesResourceWithStreamingResponse:
     def __init__(self, policies: PoliciesResource) -> None:
         self._policies = policies
@@ -939,6 +978,7 @@ class PoliciesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             policies.get,
         )
+
 
 class AsyncPoliciesResourceWithStreamingResponse:
     def __init__(self, policies: AsyncPoliciesResource) -> None:

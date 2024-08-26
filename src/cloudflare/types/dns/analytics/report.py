@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
 from typing import List, Optional
-
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ...._models import BaseModel
 
 __all__ = ["Report", "Data", "Query"]
+
 
 class Data(BaseModel):
     dimensions: List[str]
@@ -21,6 +17,7 @@ class Data(BaseModel):
 
     metrics: List[float]
     """Array with one item per requested metric. Each item is a single value."""
+
 
 class Query(BaseModel):
     dimensions: List[str]
@@ -46,6 +43,7 @@ class Query(BaseModel):
     Array of dimensions to sort by, where each dimension may be prefixed by -
     (descending) or + (ascending).
     """
+
 
 class Report(BaseModel):
     data: List[Data]

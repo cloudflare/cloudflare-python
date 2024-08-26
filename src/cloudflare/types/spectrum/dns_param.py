@@ -6,6 +6,7 @@ from typing_extensions import Literal, TypedDict
 
 __all__ = ["DNSParam"]
 
+
 class DNSParam(TypedDict, total=False):
     name: str
     """The name of the DNS record associated with the application."""

@@ -1,22 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
 from typing import Optional
-
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
+from ..._models import BaseModel
+
 __all__ = ["Watermark"]
+
 
 class Watermark(BaseModel):
     created: Optional[datetime] = None
     """The date and a time a watermark profile was created."""
 
-    downloaded_from: Optional[str] = FieldInfo(alias = "downloadedFrom", default = None)
+    downloaded_from: Optional[str] = FieldInfo(alias="downloadedFrom", default=None)
     """The source URL for a downloaded image.
 
     If the watermark profile was created via direct upload, this field is null.

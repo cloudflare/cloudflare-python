@@ -1,28 +1,21 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List, Optional
+from datetime import datetime
+from typing_extensions import Literal
+
 from ..._models import BaseModel
-
-from typing import Optional, List
-
+from .rate_plan import RatePlan
+from .subscription_zone import SubscriptionZone
 from .subscription_component import SubscriptionComponent
 
-from datetime import datetime
-
-from typing_extensions import Literal
-
-from .rate_plan import RatePlan
-
-from .subscription_zone import SubscriptionZone
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["Subscription", "App"]
+
 
 class App(BaseModel):
     install_id: Optional[str] = None
     """app install id."""
+
 
 class Subscription(BaseModel):
     id: Optional[str] = None

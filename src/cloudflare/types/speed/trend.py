@@ -1,14 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
+from typing import List, Optional
 
-from typing import Optional, List
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
+from ..._models import BaseModel
+
 __all__ = ["Trend"]
+
 
 class Trend(BaseModel):
     cls: Optional[List[Optional[float]]] = None
@@ -20,7 +19,7 @@ class Trend(BaseModel):
     lcp: Optional[List[Optional[float]]] = None
     """Largest Contentful Paint trend."""
 
-    performance_score: Optional[List[Optional[float]]] = FieldInfo(alias = "performanceScore", default = None)
+    performance_score: Optional[List[Optional[float]]] = FieldInfo(alias="performanceScore", default=None)
     """The Lighthouse score trend."""
 
     si: Optional[List[Optional[float]]] = None

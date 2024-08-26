@@ -2,36 +2,29 @@
 
 from __future__ import annotations
 
+from typing import Union
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.ai_gateway import log_list_params
 from ...types.ai_gateway.log_list_response import LogListResponse
 
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
-from ..._utils import maybe_transform
-
-from ..._base_client import make_request_options, AsyncPaginator
-
-from typing_extensions import Literal
-
-from typing import Union
-
-from datetime import datetime
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.ai_gateway import log_list_params
-
 __all__ = ["LogsResource", "AsyncLogsResource"]
+
 
 class LogsResource(SyncAPIResource):
     @cached_property
@@ -42,25 +35,27 @@ class LogsResource(SyncAPIResource):
     def with_streaming_response(self) -> LogsResourceWithStreamingResponse:
         return LogsResourceWithStreamingResponse(self)
 
-    def list(self,
-    id: str,
-    *,
-    account_id: str,
-    cached: bool | NotGiven = NOT_GIVEN,
-    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-    end_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    order_by: Literal["created_at", "provider"] | NotGiven = NOT_GIVEN,
-    page: int | NotGiven = NOT_GIVEN,
-    per_page: int | NotGiven = NOT_GIVEN,
-    search: str | NotGiven = NOT_GIVEN,
-    start_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    success: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[LogListResponse]:
+    def list(
+        self,
+        id: str,
+        *,
+        account_id: str,
+        cached: bool | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        end_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        order_by: Literal["created_at", "provider"] | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
+        start_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        success: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[LogListResponse]:
         """
         List Gateway Logs
 
@@ -76,29 +71,35 @@ class LogsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
-          raise ValueError(
-            f'Expected a non-empty value for `id` but received {id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/ai-gateway/gateways/{id}/logs",
-            page = SyncV4PagePaginationArray[LogListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "cached": cached,
-                "direction": direction,
-                "end_date": end_date,
-                "order_by": order_by,
-                "page": page,
-                "per_page": per_page,
-                "search": search,
-                "start_date": start_date,
-                "success": success,
-            }, log_list_params.LogListParams)),
+            page=SyncV4PagePaginationArray[LogListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "cached": cached,
+                        "direction": direction,
+                        "end_date": end_date,
+                        "order_by": order_by,
+                        "page": page,
+                        "per_page": per_page,
+                        "search": search,
+                        "start_date": start_date,
+                        "success": success,
+                    },
+                    log_list_params.LogListParams,
+                ),
+            ),
             model=LogListResponse,
         )
+
 
 class AsyncLogsResource(AsyncAPIResource):
     @cached_property
@@ -109,25 +110,27 @@ class AsyncLogsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncLogsResourceWithStreamingResponse:
         return AsyncLogsResourceWithStreamingResponse(self)
 
-    def list(self,
-    id: str,
-    *,
-    account_id: str,
-    cached: bool | NotGiven = NOT_GIVEN,
-    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-    end_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    order_by: Literal["created_at", "provider"] | NotGiven = NOT_GIVEN,
-    page: int | NotGiven = NOT_GIVEN,
-    per_page: int | NotGiven = NOT_GIVEN,
-    search: str | NotGiven = NOT_GIVEN,
-    start_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    success: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[LogListResponse, AsyncV4PagePaginationArray[LogListResponse]]:
+    def list(
+        self,
+        id: str,
+        *,
+        account_id: str,
+        cached: bool | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        end_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        order_by: Literal["created_at", "provider"] | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
+        start_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        success: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[LogListResponse, AsyncV4PagePaginationArray[LogListResponse]]:
         """
         List Gateway Logs
 
@@ -143,29 +146,35 @@ class AsyncLogsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not id:
-          raise ValueError(
-            f'Expected a non-empty value for `id` but received {id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/ai-gateway/gateways/{id}/logs",
-            page = AsyncV4PagePaginationArray[LogListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "cached": cached,
-                "direction": direction,
-                "end_date": end_date,
-                "order_by": order_by,
-                "page": page,
-                "per_page": per_page,
-                "search": search,
-                "start_date": start_date,
-                "success": success,
-            }, log_list_params.LogListParams)),
+            page=AsyncV4PagePaginationArray[LogListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "cached": cached,
+                        "direction": direction,
+                        "end_date": end_date,
+                        "order_by": order_by,
+                        "page": page,
+                        "per_page": per_page,
+                        "search": search,
+                        "start_date": start_date,
+                        "success": success,
+                    },
+                    log_list_params.LogListParams,
+                ),
+            ),
             model=LogListResponse,
         )
+
 
 class LogsResourceWithRawResponse:
     def __init__(self, logs: LogsResource) -> None:
@@ -175,6 +184,7 @@ class LogsResourceWithRawResponse:
             logs.list,
         )
 
+
 class AsyncLogsResourceWithRawResponse:
     def __init__(self, logs: AsyncLogsResource) -> None:
         self._logs = logs
@@ -183,6 +193,7 @@ class AsyncLogsResourceWithRawResponse:
             logs.list,
         )
 
+
 class LogsResourceWithStreamingResponse:
     def __init__(self, logs: LogsResource) -> None:
         self._logs = logs
@@ -190,6 +201,7 @@ class LogsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             logs.list,
         )
+
 
 class AsyncLogsResourceWithStreamingResponse:
     def __init__(self, logs: AsyncLogsResource) -> None:

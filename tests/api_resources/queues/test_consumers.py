@@ -2,28 +2,25 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from typing import Optional, Any, cast
-
-from cloudflare.types.queues import ConsumerCreateResponse, ConsumerUpdateResponse, ConsumerDeleteResponse, ConsumerGetResponse
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.queues import consumer_create_params
-from cloudflare.types.queues import consumer_update_params
+from cloudflare.types.queues import (
+    ConsumerGetResponse,
+    ConsumerCreateResponse,
+    ConsumerDeleteResponse,
+    ConsumerUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-class TestConsumers:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
 
+class TestConsumers:
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
@@ -42,11 +39,10 @@ class TestConsumers:
                 "type": "worker",
             },
         )
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-
         response = client.queues.consumers.with_raw_response.create(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -64,9 +60,9 @@ class TestConsumers:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = response.parse()
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -84,50 +80,50 @@ class TestConsumers:
                 },
                 "type": "worker",
             },
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = response.parse()
-            assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=['response'])
+            assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.queues.consumers.with_raw_response.create(
-              queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-              body={
-                  "dead_letter_queue": "example-dlq",
-                  "environment": "production",
-                  "script_name": "example-consumer",
-                  "settings": {
-                      "batch_size": 10,
-                      "max_retries": 3,
-                      "max_wait_time_ms": 5000,
-                  },
-                  "type": "worker",
-              },
-          )
+            client.queues.consumers.with_raw_response.create(
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                body={
+                    "dead_letter_queue": "example-dlq",
+                    "environment": "production",
+                    "script_name": "example-consumer",
+                    "settings": {
+                        "batch_size": 10,
+                        "max_retries": 3,
+                        "max_wait_time_ms": 5000,
+                    },
+                    "type": "worker",
+                },
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-          client.queues.consumers.with_raw_response.create(
-              queue_id="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              body={
-                  "dead_letter_queue": "example-dlq",
-                  "environment": "production",
-                  "script_name": "example-consumer",
-                  "settings": {
-                      "batch_size": 10,
-                      "max_retries": 3,
-                      "max_wait_time_ms": 5000,
-                  },
-                  "type": "worker",
-              },
-          )
+            client.queues.consumers.with_raw_response.create(
+                queue_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={
+                    "dead_letter_queue": "example-dlq",
+                    "environment": "production",
+                    "script_name": "example-consumer",
+                    "settings": {
+                        "batch_size": 10,
+                        "max_retries": 3,
+                        "max_wait_time_ms": 5000,
+                    },
+                    "type": "worker",
+                },
+            )
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
@@ -139,16 +135,13 @@ class TestConsumers:
                 "dead_letter_queue": "updated-example-dlq",
                 "environment": "production",
                 "script_name": "example-consumer",
-                "settings": {
-                    "batch_size": 100
-                },
+                "settings": {"batch_size": 100},
             },
         )
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
-
         response = client.queues.consumers.with_raw_response.update(
             consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -157,16 +150,14 @@ class TestConsumers:
                 "dead_letter_queue": "updated-example-dlq",
                 "environment": "production",
                 "script_name": "example-consumer",
-                "settings": {
-                    "batch_size": 100
-                },
+                "settings": {"batch_size": 100},
             },
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = response.parse()
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -178,65 +169,57 @@ class TestConsumers:
                 "dead_letter_queue": "updated-example-dlq",
                 "environment": "production",
                 "script_name": "example-consumer",
-                "settings": {
-                    "batch_size": 100
-                },
+                "settings": {"batch_size": 100},
             },
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = response.parse()
-            assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=['response'])
+            assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.queues.consumers.with_raw_response.update(
-              consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-              queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-              body={
-                  "dead_letter_queue": "updated-example-dlq",
-                  "environment": "production",
-                  "script_name": "example-consumer",
-                  "settings": {
-                      "batch_size": 100
-                  },
-              },
-          )
+            client.queues.consumers.with_raw_response.update(
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={
+                    "dead_letter_queue": "updated-example-dlq",
+                    "environment": "production",
+                    "script_name": "example-consumer",
+                    "settings": {"batch_size": 100},
+                },
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-          client.queues.consumers.with_raw_response.update(
-              consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              queue_id="",
-              body={
-                  "dead_letter_queue": "updated-example-dlq",
-                  "environment": "production",
-                  "script_name": "example-consumer",
-                  "settings": {
-                      "batch_size": 100
-                  },
-              },
-          )
+            client.queues.consumers.with_raw_response.update(
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                queue_id="",
+                body={
+                    "dead_letter_queue": "updated-example-dlq",
+                    "environment": "production",
+                    "script_name": "example-consumer",
+                    "settings": {"batch_size": 100},
+                },
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `consumer_id` but received ''"):
-          client.queues.consumers.with_raw_response.update(
-              consumer_id="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-              body={
-                  "dead_letter_queue": "updated-example-dlq",
-                  "environment": "production",
-                  "script_name": "example-consumer",
-                  "settings": {
-                      "batch_size": 100
-                  },
-              },
-          )
+            client.queues.consumers.with_raw_response.update(
+                consumer_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={
+                    "dead_letter_queue": "updated-example-dlq",
+                    "environment": "production",
+                    "script_name": "example-consumer",
+                    "settings": {"batch_size": 100},
+                },
+            )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
@@ -245,11 +228,10 @@ class TestConsumers:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ConsumerDeleteResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerDeleteResponse], consumer, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-
         response = client.queues.consumers.with_raw_response.delete(
             consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -257,9 +239,9 @@ class TestConsumers:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = response.parse()
-        assert_matches_type(Optional[ConsumerDeleteResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerDeleteResponse], consumer, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -267,37 +249,37 @@ class TestConsumers:
             consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = response.parse()
-            assert_matches_type(Optional[ConsumerDeleteResponse], consumer, path=['response'])
+            assert_matches_type(Optional[ConsumerDeleteResponse], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.queues.consumers.with_raw_response.delete(
-              consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-              queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-          )
+            client.queues.consumers.with_raw_response.delete(
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-          client.queues.consumers.with_raw_response.delete(
-              consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              queue_id="",
-          )
+            client.queues.consumers.with_raw_response.delete(
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                queue_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `consumer_id` but received ''"):
-          client.queues.consumers.with_raw_response.delete(
-              consumer_id="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-          )
+            client.queues.consumers.with_raw_response.delete(
+                consumer_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
@@ -305,51 +287,51 @@ class TestConsumers:
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ConsumerGetResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerGetResponse], consumer, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-
         response = client.queues.consumers.with_raw_response.get(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = response.parse()
-        assert_matches_type(Optional[ConsumerGetResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerGetResponse], consumer, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.queues.consumers.with_streaming_response.get(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = response.parse()
-            assert_matches_type(Optional[ConsumerGetResponse], consumer, path=['response'])
+            assert_matches_type(Optional[ConsumerGetResponse], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.queues.consumers.with_raw_response.get(
-              queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-          )
+            client.queues.consumers.with_raw_response.get(
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-          client.queues.consumers.with_raw_response.get(
-              queue_id="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-          )
-class TestAsyncConsumers:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+            client.queues.consumers.with_raw_response.get(
+                queue_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
+
+class TestAsyncConsumers:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
@@ -368,11 +350,10 @@ class TestAsyncConsumers:
                 "type": "worker",
             },
         )
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.queues.consumers.with_raw_response.create(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -390,9 +371,9 @@ class TestAsyncConsumers:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = await response.parse()
-        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -410,50 +391,50 @@ class TestAsyncConsumers:
                 },
                 "type": "worker",
             },
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = await response.parse()
-            assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=['response'])
+            assert_matches_type(Optional[ConsumerCreateResponse], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.queues.consumers.with_raw_response.create(
-              queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-              body={
-                  "dead_letter_queue": "example-dlq",
-                  "environment": "production",
-                  "script_name": "example-consumer",
-                  "settings": {
-                      "batch_size": 10,
-                      "max_retries": 3,
-                      "max_wait_time_ms": 5000,
-                  },
-                  "type": "worker",
-              },
-          )
+            await async_client.queues.consumers.with_raw_response.create(
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                body={
+                    "dead_letter_queue": "example-dlq",
+                    "environment": "production",
+                    "script_name": "example-consumer",
+                    "settings": {
+                        "batch_size": 10,
+                        "max_retries": 3,
+                        "max_wait_time_ms": 5000,
+                    },
+                    "type": "worker",
+                },
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-          await async_client.queues.consumers.with_raw_response.create(
-              queue_id="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              body={
-                  "dead_letter_queue": "example-dlq",
-                  "environment": "production",
-                  "script_name": "example-consumer",
-                  "settings": {
-                      "batch_size": 10,
-                      "max_retries": 3,
-                      "max_wait_time_ms": 5000,
-                  },
-                  "type": "worker",
-              },
-          )
+            await async_client.queues.consumers.with_raw_response.create(
+                queue_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={
+                    "dead_letter_queue": "example-dlq",
+                    "environment": "production",
+                    "script_name": "example-consumer",
+                    "settings": {
+                        "batch_size": 10,
+                        "max_retries": 3,
+                        "max_wait_time_ms": 5000,
+                    },
+                    "type": "worker",
+                },
+            )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
@@ -465,16 +446,13 @@ class TestAsyncConsumers:
                 "dead_letter_queue": "updated-example-dlq",
                 "environment": "production",
                 "script_name": "example-consumer",
-                "settings": {
-                    "batch_size": 100
-                },
+                "settings": {"batch_size": 100},
             },
         )
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.queues.consumers.with_raw_response.update(
             consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -483,16 +461,14 @@ class TestAsyncConsumers:
                 "dead_letter_queue": "updated-example-dlq",
                 "environment": "production",
                 "script_name": "example-consumer",
-                "settings": {
-                    "batch_size": 100
-                },
+                "settings": {"batch_size": 100},
             },
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = await response.parse()
-        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -504,65 +480,57 @@ class TestAsyncConsumers:
                 "dead_letter_queue": "updated-example-dlq",
                 "environment": "production",
                 "script_name": "example-consumer",
-                "settings": {
-                    "batch_size": 100
-                },
+                "settings": {"batch_size": 100},
             },
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = await response.parse()
-            assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=['response'])
+            assert_matches_type(Optional[ConsumerUpdateResponse], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.queues.consumers.with_raw_response.update(
-              consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-              queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-              body={
-                  "dead_letter_queue": "updated-example-dlq",
-                  "environment": "production",
-                  "script_name": "example-consumer",
-                  "settings": {
-                      "batch_size": 100
-                  },
-              },
-          )
+            await async_client.queues.consumers.with_raw_response.update(
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={
+                    "dead_letter_queue": "updated-example-dlq",
+                    "environment": "production",
+                    "script_name": "example-consumer",
+                    "settings": {"batch_size": 100},
+                },
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-          await async_client.queues.consumers.with_raw_response.update(
-              consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              queue_id="",
-              body={
-                  "dead_letter_queue": "updated-example-dlq",
-                  "environment": "production",
-                  "script_name": "example-consumer",
-                  "settings": {
-                      "batch_size": 100
-                  },
-              },
-          )
+            await async_client.queues.consumers.with_raw_response.update(
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                queue_id="",
+                body={
+                    "dead_letter_queue": "updated-example-dlq",
+                    "environment": "production",
+                    "script_name": "example-consumer",
+                    "settings": {"batch_size": 100},
+                },
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `consumer_id` but received ''"):
-          await async_client.queues.consumers.with_raw_response.update(
-              consumer_id="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-              body={
-                  "dead_letter_queue": "updated-example-dlq",
-                  "environment": "production",
-                  "script_name": "example-consumer",
-                  "settings": {
-                      "batch_size": 100
-                  },
-              },
-          )
+            await async_client.queues.consumers.with_raw_response.update(
+                consumer_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={
+                    "dead_letter_queue": "updated-example-dlq",
+                    "environment": "production",
+                    "script_name": "example-consumer",
+                    "settings": {"batch_size": 100},
+                },
+            )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
@@ -571,11 +539,10 @@ class TestAsyncConsumers:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ConsumerDeleteResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerDeleteResponse], consumer, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.queues.consumers.with_raw_response.delete(
             consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -583,9 +550,9 @@ class TestAsyncConsumers:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = await response.parse()
-        assert_matches_type(Optional[ConsumerDeleteResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerDeleteResponse], consumer, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -593,37 +560,37 @@ class TestAsyncConsumers:
             consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = await response.parse()
-            assert_matches_type(Optional[ConsumerDeleteResponse], consumer, path=['response'])
+            assert_matches_type(Optional[ConsumerDeleteResponse], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.queues.consumers.with_raw_response.delete(
-              consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-              queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-          )
+            await async_client.queues.consumers.with_raw_response.delete(
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-          await async_client.queues.consumers.with_raw_response.delete(
-              consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              queue_id="",
-          )
+            await async_client.queues.consumers.with_raw_response.delete(
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                queue_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `consumer_id` but received ''"):
-          await async_client.queues.consumers.with_raw_response.delete(
-              consumer_id="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-          )
+            await async_client.queues.consumers.with_raw_response.delete(
+                consumer_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -631,45 +598,44 @@ class TestAsyncConsumers:
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ConsumerGetResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerGetResponse], consumer, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.queues.consumers.with_raw_response.get(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         consumer = await response.parse()
-        assert_matches_type(Optional[ConsumerGetResponse], consumer, path=['response'])
+        assert_matches_type(Optional[ConsumerGetResponse], consumer, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.queues.consumers.with_streaming_response.get(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             consumer = await response.parse()
-            assert_matches_type(Optional[ConsumerGetResponse], consumer, path=['response'])
+            assert_matches_type(Optional[ConsumerGetResponse], consumer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.queues.consumers.with_raw_response.get(
-              queue_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-          )
+            await async_client.queues.consumers.with_raw_response.get(
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-          await async_client.queues.consumers.with_raw_response.get(
-              queue_id="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-          )
+            await async_client.queues.consumers.with_raw_response.get(
+                queue_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )

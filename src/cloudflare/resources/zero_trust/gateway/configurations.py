@@ -2,47 +2,36 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.zero_trust.gateway.configuration_update_response import ConfigurationUpdateResponse
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
 from ...._base_client import make_request_options
-
+from ....types.zero_trust.gateway import (
+    configuration_edit_params,
+    configuration_update_params,
+)
+from ....types.zero_trust.gateway.configuration_get_response import ConfigurationGetResponse
+from ....types.zero_trust.gateway.configuration_edit_response import ConfigurationEditResponse
+from ....types.zero_trust.gateway.configuration_update_response import ConfigurationUpdateResponse
 from ....types.zero_trust.gateway.gateway_configuration_settings_param import GatewayConfigurationSettingsParam
 
-from ....types.zero_trust.gateway.configuration_edit_response import ConfigurationEditResponse
-
-from ....types.zero_trust.gateway.configuration_get_response import ConfigurationGetResponse
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.zero_trust.gateway import configuration_update_params
-from ....types.zero_trust.gateway import configuration_edit_params
-from ....types.zero_trust.gateway import GatewayConfigurationSettings
-from ....types.zero_trust.gateway import GatewayConfigurationSettings
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["ConfigurationsResource", "AsyncConfigurationsResource"]
+
 
 class ConfigurationsResource(SyncAPIResource):
     @cached_property
@@ -53,16 +42,18 @@ class ConfigurationsResource(SyncAPIResource):
     def with_streaming_response(self) -> ConfigurationsResourceWithStreamingResponse:
         return ConfigurationsResourceWithStreamingResponse(self)
 
-    def update(self,
-    *,
-    account_id: str,
-    settings: GatewayConfigurationSettingsParam | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ConfigurationUpdateResponse]:
+    def update(
+        self,
+        *,
+        account_id: str,
+        settings: GatewayConfigurationSettingsParam | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ConfigurationUpdateResponse]:
         """
         Updates the current Zero Trust account configuration.
 
@@ -78,28 +69,32 @@ class ConfigurationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
             f"/accounts/{account_id}/gateway/configuration",
-            body=maybe_transform({
-                "settings": settings
-            }, configuration_update_params.ConfigurationUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ConfigurationUpdateResponse]]._unwrapper),
+            body=maybe_transform({"settings": settings}, configuration_update_params.ConfigurationUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ConfigurationUpdateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ConfigurationUpdateResponse]], ResultWrapper[ConfigurationUpdateResponse]),
         )
 
-    def edit(self,
-    *,
-    account_id: str,
-    settings: GatewayConfigurationSettingsParam | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ConfigurationEditResponse]:
+    def edit(
+        self,
+        *,
+        account_id: str,
+        settings: GatewayConfigurationSettingsParam | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ConfigurationEditResponse]:
         """Patches the current Zero Trust account configuration.
 
         This endpoint can update a
@@ -120,27 +115,31 @@ class ConfigurationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._patch(
             f"/accounts/{account_id}/gateway/configuration",
-            body=maybe_transform({
-                "settings": settings
-            }, configuration_edit_params.ConfigurationEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ConfigurationEditResponse]]._unwrapper),
+            body=maybe_transform({"settings": settings}, configuration_edit_params.ConfigurationEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ConfigurationEditResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ConfigurationEditResponse]], ResultWrapper[ConfigurationEditResponse]),
         )
 
-    def get(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ConfigurationGetResponse]:
+    def get(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ConfigurationGetResponse]:
         """
         Fetches the current Zero Trust account configuration.
 
@@ -154,14 +153,19 @@ class ConfigurationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/gateway/configuration",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ConfigurationGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ConfigurationGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ConfigurationGetResponse]], ResultWrapper[ConfigurationGetResponse]),
         )
+
 
 class AsyncConfigurationsResource(AsyncAPIResource):
     @cached_property
@@ -172,16 +176,18 @@ class AsyncConfigurationsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncConfigurationsResourceWithStreamingResponse:
         return AsyncConfigurationsResourceWithStreamingResponse(self)
 
-    async def update(self,
-    *,
-    account_id: str,
-    settings: GatewayConfigurationSettingsParam | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ConfigurationUpdateResponse]:
+    async def update(
+        self,
+        *,
+        account_id: str,
+        settings: GatewayConfigurationSettingsParam | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ConfigurationUpdateResponse]:
         """
         Updates the current Zero Trust account configuration.
 
@@ -197,28 +203,34 @@ class AsyncConfigurationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/gateway/configuration",
-            body=await async_maybe_transform({
-                "settings": settings
-            }, configuration_update_params.ConfigurationUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ConfigurationUpdateResponse]]._unwrapper),
+            body=await async_maybe_transform(
+                {"settings": settings}, configuration_update_params.ConfigurationUpdateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ConfigurationUpdateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ConfigurationUpdateResponse]], ResultWrapper[ConfigurationUpdateResponse]),
         )
 
-    async def edit(self,
-    *,
-    account_id: str,
-    settings: GatewayConfigurationSettingsParam | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ConfigurationEditResponse]:
+    async def edit(
+        self,
+        *,
+        account_id: str,
+        settings: GatewayConfigurationSettingsParam | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ConfigurationEditResponse]:
         """Patches the current Zero Trust account configuration.
 
         This endpoint can update a
@@ -239,27 +251,31 @@ class AsyncConfigurationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/gateway/configuration",
-            body=await async_maybe_transform({
-                "settings": settings
-            }, configuration_edit_params.ConfigurationEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ConfigurationEditResponse]]._unwrapper),
+            body=await async_maybe_transform({"settings": settings}, configuration_edit_params.ConfigurationEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ConfigurationEditResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ConfigurationEditResponse]], ResultWrapper[ConfigurationEditResponse]),
         )
 
-    async def get(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ConfigurationGetResponse]:
+    async def get(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ConfigurationGetResponse]:
         """
         Fetches the current Zero Trust account configuration.
 
@@ -273,14 +289,19 @@ class AsyncConfigurationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/gateway/configuration",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ConfigurationGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ConfigurationGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ConfigurationGetResponse]], ResultWrapper[ConfigurationGetResponse]),
         )
+
 
 class ConfigurationsResourceWithRawResponse:
     def __init__(self, configurations: ConfigurationsResource) -> None:
@@ -296,6 +317,7 @@ class ConfigurationsResourceWithRawResponse:
             configurations.get,
         )
 
+
 class AsyncConfigurationsResourceWithRawResponse:
     def __init__(self, configurations: AsyncConfigurationsResource) -> None:
         self._configurations = configurations
@@ -310,6 +332,7 @@ class AsyncConfigurationsResourceWithRawResponse:
             configurations.get,
         )
 
+
 class ConfigurationsResourceWithStreamingResponse:
     def __init__(self, configurations: ConfigurationsResource) -> None:
         self._configurations = configurations
@@ -323,6 +346,7 @@ class ConfigurationsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             configurations.get,
         )
+
 
 class AsyncConfigurationsResourceWithStreamingResponse:
     def __init__(self, configurations: AsyncConfigurationsResource) -> None:

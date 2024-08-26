@@ -2,95 +2,26 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from typing import Optional, Any, cast
-
-from cloudflare.types.dns import Record, RecordDeleteResponse, RecordExportResponse, RecordImportResponse, RecordScanResponse
-
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.dns import record_create_params
-from cloudflare.types.dns import record_update_params
-from cloudflare.types.dns import record_list_params
-from cloudflare.types.dns import record_edit_params
-from cloudflare.types.dns import record_import_params
-from cloudflare.types.dns import record_scan_params
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types import shared
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
-from cloudflare.types.dns import TTL
+from cloudflare.types.dns import (
+    Record,
+    RecordScanResponse,
+    RecordDeleteResponse,
+    RecordImportResponse,
+)
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-class TestRecords:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
 
+class TestRecords:
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -101,7 +32,7 @@ class TestRecords:
             name="example.com",
             type="A",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -117,12 +48,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
@@ -131,9 +61,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -143,12 +73,12 @@ class TestRecords:
             content="198.51.100.4",
             name="example.com",
             type="A",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -156,12 +86,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              content="198.51.100.4",
-              name="example.com",
-              type="A",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                content="198.51.100.4",
+                name="example.com",
+                type="A",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -172,7 +102,7 @@ class TestRecords:
             name="example.com",
             type="AAAA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -188,12 +118,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
@@ -202,9 +131,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -214,12 +143,12 @@ class TestRecords:
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -227,12 +156,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              content="2400:cb00:2049::1",
-              name="example.com",
-              type="AAAA",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                content="2400:cb00:2049::1",
+                name="example.com",
+                type="AAAA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -243,7 +172,7 @@ class TestRecords:
             name="example.com",
             type="CAA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -262,12 +191,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_3(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -276,9 +204,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -288,12 +216,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="CAA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -301,12 +229,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="CAA",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="CAA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -317,7 +245,7 @@ class TestRecords:
             name="example.com",
             type="CERT",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -337,12 +265,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_4(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -351,9 +278,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -363,12 +290,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="CERT",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -376,12 +303,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="CERT",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="CERT",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -392,7 +319,7 @@ class TestRecords:
             name="example.com",
             type="CNAME",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -408,12 +335,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_5(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="content",
@@ -422,9 +348,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -434,12 +360,12 @@ class TestRecords:
             content="content",
             name="example.com",
             type="CNAME",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -447,12 +373,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              content="content",
-              name="example.com",
-              type="CNAME",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                content="content",
+                name="example.com",
+                type="CNAME",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -463,7 +389,7 @@ class TestRecords:
             name="example.com",
             type="DNSKEY",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -483,12 +409,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_6(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -497,9 +422,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -509,12 +434,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="DNSKEY",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -522,12 +447,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="DNSKEY",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="DNSKEY",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -538,7 +463,7 @@ class TestRecords:
             name="example.com",
             type="DS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -558,12 +483,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_7(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -572,9 +496,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -584,12 +508,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="DS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -597,12 +521,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="DS",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="DS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -613,7 +537,7 @@ class TestRecords:
             name="example.com",
             type="HTTPS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -623,7 +547,7 @@ class TestRecords:
             data={
                 "priority": 1,
                 "target": ".",
-                "value": "alpn=\"h3,h2\" ipv4hint=\"127.0.0.1\" ipv6hint=\"::1\"",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
             name="example.com",
             type="HTTPS",
@@ -632,12 +556,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_8(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -646,9 +569,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -658,12 +581,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="HTTPS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -671,12 +594,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="HTTPS",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="HTTPS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -687,7 +610,7 @@ class TestRecords:
             name="example.com",
             type="LOC",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -715,12 +638,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_9(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -729,9 +651,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -741,12 +663,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="LOC",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -754,12 +676,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="LOC",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="LOC",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -771,7 +693,7 @@ class TestRecords:
             priority=10,
             type="MX",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -787,12 +709,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_10(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
@@ -802,9 +723,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -815,12 +736,12 @@ class TestRecords:
             name="example.com",
             priority=10,
             type="MX",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -828,13 +749,13 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              content="mx.example.com",
-              name="example.com",
-              priority=10,
-              type="MX",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                content="mx.example.com",
+                name="example.com",
+                priority=10,
+                type="MX",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -845,7 +766,7 @@ class TestRecords:
             name="example.com",
             type="NAPTR",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -867,12 +788,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_11(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -881,9 +801,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -893,12 +813,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="NAPTR",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -906,12 +826,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_11(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="NAPTR",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="NAPTR",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -922,7 +842,7 @@ class TestRecords:
             name="example.com",
             type="NS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -937,12 +857,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_12(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
@@ -951,9 +870,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -963,12 +882,12 @@ class TestRecords:
             content="ns1.example.com",
             name="example.com",
             type="NS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -976,12 +895,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_12(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              content="ns1.example.com",
-              name="example.com",
-              type="NS",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                content="ns1.example.com",
+                name="example.com",
+                type="NS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -992,7 +911,7 @@ class TestRecords:
             name="example.com",
             type="PTR",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1007,12 +926,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_13(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
@@ -1021,9 +939,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1033,12 +951,12 @@ class TestRecords:
             content="example.com",
             name="example.com",
             type="PTR",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1046,12 +964,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_13(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              content="example.com",
-              name="example.com",
-              type="PTR",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                content="example.com",
+                name="example.com",
+                type="PTR",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1062,7 +980,7 @@ class TestRecords:
             name="example.com",
             type="SMIMEA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1082,12 +1000,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_14(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -1096,9 +1013,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1108,12 +1025,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="SMIMEA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1121,12 +1038,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_14(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SMIMEA",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SMIMEA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1137,7 +1054,7 @@ class TestRecords:
             name="_sip._tcp.example.com",
             type="SRV",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1160,12 +1077,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_15(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -1174,9 +1090,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1186,12 +1102,12 @@ class TestRecords:
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1199,12 +1115,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_15(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="_sip._tcp.example.com",
-              type="SRV",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="_sip._tcp.example.com",
+                type="SRV",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1215,7 +1131,7 @@ class TestRecords:
             name="example.com",
             type="SSHFP",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1234,12 +1150,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_16(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -1248,9 +1163,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1260,12 +1175,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="SSHFP",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1273,12 +1188,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_16(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SSHFP",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SSHFP",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1289,7 +1204,7 @@ class TestRecords:
             name="example.com",
             type="SVCB",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1299,7 +1214,7 @@ class TestRecords:
             data={
                 "priority": 1,
                 "target": ".",
-                "value": "alpn=\"h3,h2\" ipv4hint=\"127.0.0.1\" ipv6hint=\"::1\"",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
             name="example.com",
             type="SVCB",
@@ -1308,12 +1223,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_17(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -1322,9 +1236,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1334,12 +1248,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="SVCB",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1347,12 +1261,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_17(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SVCB",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SVCB",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1363,7 +1277,7 @@ class TestRecords:
             name="example.com",
             type="TLSA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1383,12 +1297,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_18(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -1397,9 +1310,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1409,12 +1322,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="TLSA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1422,12 +1335,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_18(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="TLSA",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="TLSA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1438,7 +1351,7 @@ class TestRecords:
             name="example.com",
             type="TXT",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1453,12 +1366,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_19(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
@@ -1467,9 +1379,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1479,12 +1391,12 @@ class TestRecords:
             content="example text content",
             name="example.com",
             type="TXT",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1492,12 +1404,12 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_19(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              content="example text content",
-              name="example.com",
-              type="TXT",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                content="example text content",
+                name="example.com",
+                type="TXT",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1509,7 +1421,7 @@ class TestRecords:
             priority=10,
             type="URI",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1528,12 +1440,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_20(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -1543,9 +1454,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1556,12 +1467,12 @@ class TestRecords:
             name="example.com",
             priority=10,
             type="URI",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1569,13 +1480,13 @@ class TestRecords:
     @parametrize
     def test_path_params_create_overload_20(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              priority=10,
-              type="URI",
-          )
+            client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                priority=10,
+                type="URI",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1587,7 +1498,7 @@ class TestRecords:
             name="example.com",
             type="A",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1604,12 +1515,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1619,9 +1529,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1632,12 +1542,12 @@ class TestRecords:
             content="198.51.100.4",
             name="example.com",
             type="A",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1645,22 +1555,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="198.51.100.4",
-              name="example.com",
-              type="A",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="198.51.100.4",
+                name="example.com",
+                type="A",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="198.51.100.4",
-              name="example.com",
-              type="A",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="198.51.100.4",
+                name="example.com",
+                type="A",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1672,7 +1582,7 @@ class TestRecords:
             name="example.com",
             type="AAAA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1689,12 +1599,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1704,9 +1613,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1717,12 +1626,12 @@ class TestRecords:
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1730,22 +1639,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="2400:cb00:2049::1",
-              name="example.com",
-              type="AAAA",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="2400:cb00:2049::1",
+                name="example.com",
+                type="AAAA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="2400:cb00:2049::1",
-              name="example.com",
-              type="AAAA",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="2400:cb00:2049::1",
+                name="example.com",
+                type="AAAA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1757,7 +1666,7 @@ class TestRecords:
             name="example.com",
             type="CAA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1777,12 +1686,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_3(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1792,9 +1700,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1805,12 +1713,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="CAA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1818,22 +1726,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="CAA",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="CAA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="CAA",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="CAA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1845,7 +1753,7 @@ class TestRecords:
             name="example.com",
             type="CERT",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1866,12 +1774,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_4(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1881,9 +1788,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1894,12 +1801,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="CERT",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1907,22 +1814,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="CERT",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="CERT",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="CERT",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="CERT",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1934,7 +1841,7 @@ class TestRecords:
             name="example.com",
             type="CNAME",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1951,12 +1858,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_5(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1966,9 +1872,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1979,12 +1885,12 @@ class TestRecords:
             content="content",
             name="example.com",
             type="CNAME",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1992,22 +1898,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="content",
-              name="example.com",
-              type="CNAME",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="content",
+                name="example.com",
+                type="CNAME",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="content",
-              name="example.com",
-              type="CNAME",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="content",
+                name="example.com",
+                type="CNAME",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2019,7 +1925,7 @@ class TestRecords:
             name="example.com",
             type="DNSKEY",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2040,12 +1946,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_6(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2055,9 +1960,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2068,12 +1973,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="DNSKEY",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2081,22 +1986,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="DNSKEY",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="DNSKEY",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="DNSKEY",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="DNSKEY",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2108,7 +2013,7 @@ class TestRecords:
             name="example.com",
             type="DS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2129,12 +2034,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_7(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2144,9 +2048,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2157,12 +2061,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="DS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2170,22 +2074,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="DS",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="DS",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="DS",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="DS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2197,7 +2101,7 @@ class TestRecords:
             name="example.com",
             type="HTTPS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2208,7 +2112,7 @@ class TestRecords:
             data={
                 "priority": 1,
                 "target": ".",
-                "value": "alpn=\"h3,h2\" ipv4hint=\"127.0.0.1\" ipv6hint=\"::1\"",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
             name="example.com",
             type="HTTPS",
@@ -2217,12 +2121,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_8(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2232,9 +2135,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2245,12 +2148,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="HTTPS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2258,22 +2161,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="HTTPS",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="HTTPS",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="HTTPS",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="HTTPS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2285,7 +2188,7 @@ class TestRecords:
             name="example.com",
             type="LOC",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2314,12 +2217,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_9(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2329,9 +2231,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2342,12 +2244,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="LOC",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2355,22 +2257,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="LOC",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="LOC",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="LOC",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="LOC",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2383,7 +2285,7 @@ class TestRecords:
             priority=10,
             type="MX",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2400,12 +2302,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_10(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2416,9 +2317,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2430,12 +2331,12 @@ class TestRecords:
             name="example.com",
             priority=10,
             type="MX",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2443,24 +2344,24 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="mx.example.com",
-              name="example.com",
-              priority=10,
-              type="MX",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="mx.example.com",
+                name="example.com",
+                priority=10,
+                type="MX",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="mx.example.com",
-              name="example.com",
-              priority=10,
-              type="MX",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="mx.example.com",
+                name="example.com",
+                priority=10,
+                type="MX",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2472,7 +2373,7 @@ class TestRecords:
             name="example.com",
             type="NAPTR",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2495,12 +2396,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_11(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2510,9 +2410,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2523,12 +2423,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="NAPTR",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2536,22 +2436,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_11(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="NAPTR",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="NAPTR",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="NAPTR",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="NAPTR",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2563,7 +2463,7 @@ class TestRecords:
             name="example.com",
             type="NS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2579,12 +2479,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_12(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2594,9 +2493,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2607,12 +2506,12 @@ class TestRecords:
             content="ns1.example.com",
             name="example.com",
             type="NS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2620,22 +2519,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_12(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="ns1.example.com",
-              name="example.com",
-              type="NS",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="ns1.example.com",
+                name="example.com",
+                type="NS",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="ns1.example.com",
-              name="example.com",
-              type="NS",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="ns1.example.com",
+                name="example.com",
+                type="NS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2647,7 +2546,7 @@ class TestRecords:
             name="example.com",
             type="PTR",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2663,12 +2562,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_13(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2678,9 +2576,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2691,12 +2589,12 @@ class TestRecords:
             content="example.com",
             name="example.com",
             type="PTR",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2704,22 +2602,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_13(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="example.com",
-              name="example.com",
-              type="PTR",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="example.com",
+                name="example.com",
+                type="PTR",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="example.com",
-              name="example.com",
-              type="PTR",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="example.com",
+                name="example.com",
+                type="PTR",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2731,7 +2629,7 @@ class TestRecords:
             name="example.com",
             type="SMIMEA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2752,12 +2650,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_14(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2767,9 +2664,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2780,12 +2677,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="SMIMEA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2793,22 +2690,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_14(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SMIMEA",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SMIMEA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="SMIMEA",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="SMIMEA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2820,7 +2717,7 @@ class TestRecords:
             name="_sip._tcp.example.com",
             type="SRV",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2844,12 +2741,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_15(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2859,9 +2755,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2872,12 +2768,12 @@ class TestRecords:
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2885,22 +2781,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_15(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="_sip._tcp.example.com",
-              type="SRV",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="_sip._tcp.example.com",
+                type="SRV",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="_sip._tcp.example.com",
-              type="SRV",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="_sip._tcp.example.com",
+                type="SRV",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2912,7 +2808,7 @@ class TestRecords:
             name="example.com",
             type="SSHFP",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2932,12 +2828,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_16(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2947,9 +2842,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2960,12 +2855,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="SSHFP",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2973,22 +2868,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_16(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SSHFP",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SSHFP",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="SSHFP",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="SSHFP",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3000,7 +2895,7 @@ class TestRecords:
             name="example.com",
             type="SVCB",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3011,7 +2906,7 @@ class TestRecords:
             data={
                 "priority": 1,
                 "target": ".",
-                "value": "alpn=\"h3,h2\" ipv4hint=\"127.0.0.1\" ipv6hint=\"::1\"",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
             name="example.com",
             type="SVCB",
@@ -3020,12 +2915,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_17(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3035,9 +2929,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3048,12 +2942,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="SVCB",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3061,22 +2955,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_17(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SVCB",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SVCB",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="SVCB",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="SVCB",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3088,7 +2982,7 @@ class TestRecords:
             name="example.com",
             type="TLSA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3109,12 +3003,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_18(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3124,9 +3017,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3137,12 +3030,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="TLSA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3150,22 +3043,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_18(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="TLSA",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="TLSA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="TLSA",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="TLSA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3177,7 +3070,7 @@ class TestRecords:
             name="example.com",
             type="TXT",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3193,12 +3086,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_19(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3208,9 +3100,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3221,12 +3113,12 @@ class TestRecords:
             content="example text content",
             name="example.com",
             type="TXT",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3234,22 +3126,22 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_19(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="example text content",
-              name="example.com",
-              type="TXT",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="example text content",
+                name="example.com",
+                type="TXT",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="example text content",
-              name="example.com",
-              type="TXT",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="example text content",
+                name="example.com",
+                type="TXT",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3262,7 +3154,7 @@ class TestRecords:
             priority=10,
             type="URI",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3282,12 +3174,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_20(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3298,9 +3189,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3312,12 +3203,12 @@ class TestRecords:
             name="example.com",
             priority=10,
             type="URI",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3325,31 +3216,31 @@ class TestRecords:
     @parametrize
     def test_path_params_update_overload_20(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              priority=10,
-              type="URI",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                priority=10,
+                type="URI",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              priority=10,
-              type="URI",
-          )
+            client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                priority=10,
+                type="URI",
+            )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         record = client.dns.records.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[Record], record, path=['response'])
+        assert_matches_type(SyncV4PagePaginationArray[Record], record, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -3383,39 +3274,38 @@ class TestRecords:
             tag_match="any",
             type="A",
         )
-        assert_matches_type(SyncV4PagePaginationArray[Record], record, path=['response'])
+        assert_matches_type(SyncV4PagePaginationArray[Record], record, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[Record], record, path=['response'])
+        assert_matches_type(SyncV4PagePaginationArray[Record], record, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[Record], record, path=['response'])
+            assert_matches_type(SyncV4PagePaginationArray[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.list(
-              zone_id="",
-          )
+            client.dns.records.with_raw_response.list(
+                zone_id="",
+            )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
@@ -3423,48 +3313,47 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordDeleteResponse], record, path=['response'])
+        assert_matches_type(Optional[RecordDeleteResponse], record, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.delete(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordDeleteResponse], record, path=['response'])
+        assert_matches_type(Optional[RecordDeleteResponse], record, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.delete(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordDeleteResponse], record, path=['response'])
+            assert_matches_type(Optional[RecordDeleteResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.delete(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-          )
+            client.dns.records.with_raw_response.delete(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.delete(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-          )
+            client.dns.records.with_raw_response.delete(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3476,7 +3365,7 @@ class TestRecords:
             name="example.com",
             type="A",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3493,12 +3382,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_1(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3508,9 +3396,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3521,12 +3409,12 @@ class TestRecords:
             content="198.51.100.4",
             name="example.com",
             type="A",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3534,22 +3422,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="198.51.100.4",
-              name="example.com",
-              type="A",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="198.51.100.4",
+                name="example.com",
+                type="A",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="198.51.100.4",
-              name="example.com",
-              type="A",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="198.51.100.4",
+                name="example.com",
+                type="A",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3561,7 +3449,7 @@ class TestRecords:
             name="example.com",
             type="AAAA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3578,12 +3466,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_2(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3593,9 +3480,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3606,12 +3493,12 @@ class TestRecords:
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3619,22 +3506,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="2400:cb00:2049::1",
-              name="example.com",
-              type="AAAA",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="2400:cb00:2049::1",
+                name="example.com",
+                type="AAAA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="2400:cb00:2049::1",
-              name="example.com",
-              type="AAAA",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="2400:cb00:2049::1",
+                name="example.com",
+                type="AAAA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3646,7 +3533,7 @@ class TestRecords:
             name="example.com",
             type="CAA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3666,12 +3553,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_3(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3681,9 +3567,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3694,12 +3580,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="CAA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3707,22 +3593,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="CAA",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="CAA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="CAA",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="CAA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3734,7 +3620,7 @@ class TestRecords:
             name="example.com",
             type="CERT",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3755,12 +3641,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_4(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3770,9 +3655,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3783,12 +3668,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="CERT",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3796,22 +3681,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="CERT",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="CERT",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="CERT",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="CERT",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3823,7 +3708,7 @@ class TestRecords:
             name="example.com",
             type="CNAME",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3840,12 +3725,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_5(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3855,9 +3739,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3868,12 +3752,12 @@ class TestRecords:
             content="content",
             name="example.com",
             type="CNAME",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3881,22 +3765,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="content",
-              name="example.com",
-              type="CNAME",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="content",
+                name="example.com",
+                type="CNAME",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="content",
-              name="example.com",
-              type="CNAME",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="content",
+                name="example.com",
+                type="CNAME",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3908,7 +3792,7 @@ class TestRecords:
             name="example.com",
             type="DNSKEY",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3929,12 +3813,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_6(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3944,9 +3827,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3957,12 +3840,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="DNSKEY",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3970,22 +3853,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="DNSKEY",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="DNSKEY",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="DNSKEY",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="DNSKEY",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3997,7 +3880,7 @@ class TestRecords:
             name="example.com",
             type="DS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4018,12 +3901,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_7(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4033,9 +3915,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4046,12 +3928,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="DS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4059,22 +3941,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="DS",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="DS",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="DS",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="DS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4086,7 +3968,7 @@ class TestRecords:
             name="example.com",
             type="HTTPS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4097,7 +3979,7 @@ class TestRecords:
             data={
                 "priority": 1,
                 "target": ".",
-                "value": "alpn=\"h3,h2\" ipv4hint=\"127.0.0.1\" ipv6hint=\"::1\"",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
             name="example.com",
             type="HTTPS",
@@ -4106,12 +3988,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_8(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4121,9 +4002,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4134,12 +4015,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="HTTPS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4147,22 +4028,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="HTTPS",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="HTTPS",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="HTTPS",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="HTTPS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4174,7 +4055,7 @@ class TestRecords:
             name="example.com",
             type="LOC",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4203,12 +4084,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_9(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4218,9 +4098,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4231,12 +4111,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="LOC",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4244,22 +4124,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="LOC",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="LOC",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="LOC",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="LOC",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4272,7 +4152,7 @@ class TestRecords:
             priority=10,
             type="MX",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4289,12 +4169,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_10(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4305,9 +4184,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4319,12 +4198,12 @@ class TestRecords:
             name="example.com",
             priority=10,
             type="MX",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4332,24 +4211,24 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="mx.example.com",
-              name="example.com",
-              priority=10,
-              type="MX",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="mx.example.com",
+                name="example.com",
+                priority=10,
+                type="MX",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="mx.example.com",
-              name="example.com",
-              priority=10,
-              type="MX",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="mx.example.com",
+                name="example.com",
+                priority=10,
+                type="MX",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4361,7 +4240,7 @@ class TestRecords:
             name="example.com",
             type="NAPTR",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4384,12 +4263,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_11(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4399,9 +4277,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4412,12 +4290,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="NAPTR",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4425,22 +4303,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_11(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="NAPTR",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="NAPTR",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="NAPTR",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="NAPTR",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4452,7 +4330,7 @@ class TestRecords:
             name="example.com",
             type="NS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4468,12 +4346,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_12(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4483,9 +4360,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4496,12 +4373,12 @@ class TestRecords:
             content="ns1.example.com",
             name="example.com",
             type="NS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4509,22 +4386,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_12(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="ns1.example.com",
-              name="example.com",
-              type="NS",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="ns1.example.com",
+                name="example.com",
+                type="NS",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="ns1.example.com",
-              name="example.com",
-              type="NS",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="ns1.example.com",
+                name="example.com",
+                type="NS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4536,7 +4413,7 @@ class TestRecords:
             name="example.com",
             type="PTR",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4552,12 +4429,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_13(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4567,9 +4443,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4580,12 +4456,12 @@ class TestRecords:
             content="example.com",
             name="example.com",
             type="PTR",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4593,22 +4469,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_13(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="example.com",
-              name="example.com",
-              type="PTR",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="example.com",
+                name="example.com",
+                type="PTR",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="example.com",
-              name="example.com",
-              type="PTR",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="example.com",
+                name="example.com",
+                type="PTR",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4620,7 +4496,7 @@ class TestRecords:
             name="example.com",
             type="SMIMEA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4641,12 +4517,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_14(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4656,9 +4531,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4669,12 +4544,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="SMIMEA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4682,22 +4557,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_14(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SMIMEA",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SMIMEA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="SMIMEA",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="SMIMEA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4709,7 +4584,7 @@ class TestRecords:
             name="_sip._tcp.example.com",
             type="SRV",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4733,12 +4608,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_15(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4748,9 +4622,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4761,12 +4635,12 @@ class TestRecords:
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4774,22 +4648,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_15(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="_sip._tcp.example.com",
-              type="SRV",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="_sip._tcp.example.com",
+                type="SRV",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="_sip._tcp.example.com",
-              type="SRV",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="_sip._tcp.example.com",
+                type="SRV",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4801,7 +4675,7 @@ class TestRecords:
             name="example.com",
             type="SSHFP",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4821,12 +4695,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_16(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4836,9 +4709,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4849,12 +4722,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="SSHFP",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4862,22 +4735,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_16(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SSHFP",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SSHFP",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="SSHFP",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="SSHFP",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4889,7 +4762,7 @@ class TestRecords:
             name="example.com",
             type="SVCB",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4900,7 +4773,7 @@ class TestRecords:
             data={
                 "priority": 1,
                 "target": ".",
-                "value": "alpn=\"h3,h2\" ipv4hint=\"127.0.0.1\" ipv6hint=\"::1\"",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
             name="example.com",
             type="SVCB",
@@ -4909,12 +4782,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_17(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4924,9 +4796,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4937,12 +4809,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="SVCB",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4950,22 +4822,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_17(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SVCB",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SVCB",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="SVCB",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="SVCB",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4977,7 +4849,7 @@ class TestRecords:
             name="example.com",
             type="TLSA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4998,12 +4870,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_18(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5013,9 +4884,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5026,12 +4897,12 @@ class TestRecords:
             data={},
             name="example.com",
             type="TLSA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5039,22 +4910,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_18(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="TLSA",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="TLSA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="TLSA",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="TLSA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5066,7 +4937,7 @@ class TestRecords:
             name="example.com",
             type="TXT",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5082,12 +4953,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_19(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5097,9 +4967,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5110,12 +4980,12 @@ class TestRecords:
             content="example text content",
             name="example.com",
             type="TXT",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5123,22 +4993,22 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_19(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="example text content",
-              name="example.com",
-              type="TXT",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="example text content",
+                name="example.com",
+                type="TXT",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="example text content",
-              name="example.com",
-              type="TXT",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="example text content",
+                name="example.com",
+                type="TXT",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5151,7 +5021,7 @@ class TestRecords:
             priority=10,
             type="URI",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5171,12 +5041,11 @@ class TestRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit_overload_20(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5187,9 +5056,9 @@ class TestRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5201,12 +5070,12 @@ class TestRecords:
             name="example.com",
             priority=10,
             type="URI",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5214,63 +5083,62 @@ class TestRecords:
     @parametrize
     def test_path_params_edit_overload_20(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              priority=10,
-              type="URI",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                priority=10,
+                type="URI",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              priority=10,
-              type="URI",
-          )
+            client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                priority=10,
+                type="URI",
+            )
 
     @parametrize
     def test_method_export(self, client: Cloudflare) -> None:
         record = client.dns.records.export(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(str, record, path=['response'])
+        assert_matches_type(str, record, path=["response"])
 
     @parametrize
     def test_raw_response_export(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.export(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(str, record, path=['response'])
+        assert_matches_type(str, record, path=["response"])
 
     @parametrize
     def test_streaming_response_export(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.export(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(str, record, path=['response'])
+            assert_matches_type(str, record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_export(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.export(
-              zone_id="",
-          )
+            client.dns.records.with_raw_response.export(
+                zone_id="",
+            )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
@@ -5278,48 +5146,47 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.get(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.get(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.get(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-          )
+            client.dns.records.with_raw_response.get(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          client.dns.records.with_raw_response.get(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-          )
+            client.dns.records.with_raw_response.get(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5328,7 +5195,7 @@ class TestRecords:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="www.example.com. 300 IN  A 127.0.0.1",
         )
-        assert_matches_type(Optional[RecordImportResponse], record, path=['response'])
+        assert_matches_type(Optional[RecordImportResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5338,21 +5205,20 @@ class TestRecords:
             file="www.example.com. 300 IN  A 127.0.0.1",
             proxied="true",
         )
-        assert_matches_type(Optional[RecordImportResponse], record, path=['response'])
+        assert_matches_type(Optional[RecordImportResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_import(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.import_(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="www.example.com. 300 IN  A 127.0.0.1",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordImportResponse], record, path=['response'])
+        assert_matches_type(Optional[RecordImportResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5360,12 +5226,12 @@ class TestRecords:
         with client.dns.records.with_streaming_response.import_(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="www.example.com. 300 IN  A 127.0.0.1",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordImportResponse], record, path=['response'])
+            assert_matches_type(Optional[RecordImportResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5373,10 +5239,10 @@ class TestRecords:
     @parametrize
     def test_path_params_import(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.import_(
-              zone_id="",
-              file="www.example.com. 300 IN  A 127.0.0.1",
-          )
+            client.dns.records.with_raw_response.import_(
+                zone_id="",
+                file="www.example.com. 300 IN  A 127.0.0.1",
+            )
 
     @parametrize
     def test_method_scan(self, client: Cloudflare) -> None:
@@ -5384,45 +5250,45 @@ class TestRecords:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[RecordScanResponse], record, path=['response'])
+        assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
 
     @parametrize
     def test_raw_response_scan(self, client: Cloudflare) -> None:
-
         response = client.dns.records.with_raw_response.scan(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordScanResponse], record, path=['response'])
+        assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
 
     @parametrize
     def test_streaming_response_scan(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.scan(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordScanResponse], record, path=['response'])
+            assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_scan(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.dns.records.with_raw_response.scan(
-              zone_id="",
-              body={},
-          )
-class TestAsyncRecords:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+            client.dns.records.with_raw_response.scan(
+                zone_id="",
+                body={},
+            )
 
+
+class TestAsyncRecords:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5433,7 +5299,7 @@ class TestAsyncRecords:
             name="example.com",
             type="A",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5449,12 +5315,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
@@ -5463,9 +5328,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5475,12 +5340,12 @@ class TestAsyncRecords:
             content="198.51.100.4",
             name="example.com",
             type="A",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5488,12 +5353,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              content="198.51.100.4",
-              name="example.com",
-              type="A",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                content="198.51.100.4",
+                name="example.com",
+                type="A",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5504,7 +5369,7 @@ class TestAsyncRecords:
             name="example.com",
             type="AAAA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5520,12 +5385,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
@@ -5534,9 +5398,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5546,12 +5410,12 @@ class TestAsyncRecords:
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5559,12 +5423,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              content="2400:cb00:2049::1",
-              name="example.com",
-              type="AAAA",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                content="2400:cb00:2049::1",
+                name="example.com",
+                type="AAAA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5575,7 +5439,7 @@ class TestAsyncRecords:
             name="example.com",
             type="CAA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5594,12 +5458,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -5608,9 +5471,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5620,12 +5483,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="CAA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5633,12 +5496,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="CAA",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="CAA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5649,7 +5512,7 @@ class TestAsyncRecords:
             name="example.com",
             type="CERT",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5669,12 +5532,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -5683,9 +5545,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5695,12 +5557,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="CERT",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5708,12 +5570,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="CERT",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="CERT",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5724,7 +5586,7 @@ class TestAsyncRecords:
             name="example.com",
             type="CNAME",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5740,12 +5602,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="content",
@@ -5754,9 +5615,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5766,12 +5627,12 @@ class TestAsyncRecords:
             content="content",
             name="example.com",
             type="CNAME",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5779,12 +5640,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              content="content",
-              name="example.com",
-              type="CNAME",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                content="content",
+                name="example.com",
+                type="CNAME",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5795,7 +5656,7 @@ class TestAsyncRecords:
             name="example.com",
             type="DNSKEY",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5815,12 +5676,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -5829,9 +5689,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5841,12 +5701,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="DNSKEY",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5854,12 +5714,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="DNSKEY",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="DNSKEY",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5870,7 +5730,7 @@ class TestAsyncRecords:
             name="example.com",
             type="DS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5890,12 +5750,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -5904,9 +5763,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5916,12 +5775,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="DS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5929,12 +5788,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="DS",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="DS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5945,7 +5804,7 @@ class TestAsyncRecords:
             name="example.com",
             type="HTTPS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5955,7 +5814,7 @@ class TestAsyncRecords:
             data={
                 "priority": 1,
                 "target": ".",
-                "value": "alpn=\"h3,h2\" ipv4hint=\"127.0.0.1\" ipv6hint=\"::1\"",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
             name="example.com",
             type="HTTPS",
@@ -5964,12 +5823,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -5978,9 +5836,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5990,12 +5848,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="HTTPS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6003,12 +5861,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="HTTPS",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="HTTPS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6019,7 +5877,7 @@ class TestAsyncRecords:
             name="example.com",
             type="LOC",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6047,12 +5905,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_9(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -6061,9 +5918,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6073,12 +5930,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="LOC",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6086,12 +5943,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="LOC",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="LOC",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6103,7 +5960,7 @@ class TestAsyncRecords:
             priority=10,
             type="MX",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6119,12 +5976,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_10(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
@@ -6134,9 +5990,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6147,12 +6003,12 @@ class TestAsyncRecords:
             name="example.com",
             priority=10,
             type="MX",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6160,13 +6016,13 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              content="mx.example.com",
-              name="example.com",
-              priority=10,
-              type="MX",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                content="mx.example.com",
+                name="example.com",
+                priority=10,
+                type="MX",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6177,7 +6033,7 @@ class TestAsyncRecords:
             name="example.com",
             type="NAPTR",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6199,12 +6055,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_11(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -6213,9 +6068,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6225,12 +6080,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="NAPTR",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6238,12 +6093,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_11(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="NAPTR",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="NAPTR",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6254,7 +6109,7 @@ class TestAsyncRecords:
             name="example.com",
             type="NS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6269,12 +6124,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_12(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
@@ -6283,9 +6137,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6295,12 +6149,12 @@ class TestAsyncRecords:
             content="ns1.example.com",
             name="example.com",
             type="NS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6308,12 +6162,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_12(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              content="ns1.example.com",
-              name="example.com",
-              type="NS",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                content="ns1.example.com",
+                name="example.com",
+                type="NS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6324,7 +6178,7 @@ class TestAsyncRecords:
             name="example.com",
             type="PTR",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6339,12 +6193,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_13(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
@@ -6353,9 +6206,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6365,12 +6218,12 @@ class TestAsyncRecords:
             content="example.com",
             name="example.com",
             type="PTR",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6378,12 +6231,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_13(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              content="example.com",
-              name="example.com",
-              type="PTR",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                content="example.com",
+                name="example.com",
+                type="PTR",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6394,7 +6247,7 @@ class TestAsyncRecords:
             name="example.com",
             type="SMIMEA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6414,12 +6267,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_14(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -6428,9 +6280,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6440,12 +6292,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="SMIMEA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6453,12 +6305,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_14(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SMIMEA",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SMIMEA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6469,7 +6321,7 @@ class TestAsyncRecords:
             name="_sip._tcp.example.com",
             type="SRV",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6492,12 +6344,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_15(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -6506,9 +6357,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6518,12 +6369,12 @@ class TestAsyncRecords:
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6531,12 +6382,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_15(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="_sip._tcp.example.com",
-              type="SRV",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="_sip._tcp.example.com",
+                type="SRV",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6547,7 +6398,7 @@ class TestAsyncRecords:
             name="example.com",
             type="SSHFP",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6566,12 +6417,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_16(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -6580,9 +6430,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6592,12 +6442,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="SSHFP",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6605,12 +6455,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_16(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SSHFP",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SSHFP",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6621,7 +6471,7 @@ class TestAsyncRecords:
             name="example.com",
             type="SVCB",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6631,7 +6481,7 @@ class TestAsyncRecords:
             data={
                 "priority": 1,
                 "target": ".",
-                "value": "alpn=\"h3,h2\" ipv4hint=\"127.0.0.1\" ipv6hint=\"::1\"",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
             name="example.com",
             type="SVCB",
@@ -6640,12 +6490,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_17(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -6654,9 +6503,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6666,12 +6515,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="SVCB",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6679,12 +6528,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_17(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SVCB",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SVCB",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6695,7 +6544,7 @@ class TestAsyncRecords:
             name="example.com",
             type="TLSA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6715,12 +6564,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_18(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -6729,9 +6577,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6741,12 +6589,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="TLSA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6754,12 +6602,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_18(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              type="TLSA",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                type="TLSA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6770,7 +6618,7 @@ class TestAsyncRecords:
             name="example.com",
             type="TXT",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6785,12 +6633,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_19(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
@@ -6799,9 +6646,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6811,12 +6658,12 @@ class TestAsyncRecords:
             content="example text content",
             name="example.com",
             type="TXT",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6824,12 +6671,12 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_19(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              content="example text content",
-              name="example.com",
-              type="TXT",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                content="example text content",
+                name="example.com",
+                type="TXT",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6841,7 +6688,7 @@ class TestAsyncRecords:
             priority=10,
             type="URI",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6860,12 +6707,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_20(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
@@ -6875,9 +6721,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6888,12 +6734,12 @@ class TestAsyncRecords:
             name="example.com",
             priority=10,
             type="URI",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6901,13 +6747,13 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_create_overload_20(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.create(
-              zone_id="",
-              data={},
-              name="example.com",
-              priority=10,
-              type="URI",
-          )
+            await async_client.dns.records.with_raw_response.create(
+                zone_id="",
+                data={},
+                name="example.com",
+                priority=10,
+                type="URI",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6919,7 +6765,7 @@ class TestAsyncRecords:
             name="example.com",
             type="A",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6936,12 +6782,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -6951,9 +6796,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6964,12 +6809,12 @@ class TestAsyncRecords:
             content="198.51.100.4",
             name="example.com",
             type="A",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6977,22 +6822,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="198.51.100.4",
-              name="example.com",
-              type="A",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="198.51.100.4",
+                name="example.com",
+                type="A",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="198.51.100.4",
-              name="example.com",
-              type="A",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="198.51.100.4",
+                name="example.com",
+                type="A",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7004,7 +6849,7 @@ class TestAsyncRecords:
             name="example.com",
             type="AAAA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7021,12 +6866,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -7036,9 +6880,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7049,12 +6893,12 @@ class TestAsyncRecords:
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7062,22 +6906,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="2400:cb00:2049::1",
-              name="example.com",
-              type="AAAA",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="2400:cb00:2049::1",
+                name="example.com",
+                type="AAAA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="2400:cb00:2049::1",
-              name="example.com",
-              type="AAAA",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="2400:cb00:2049::1",
+                name="example.com",
+                type="AAAA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7089,7 +6933,7 @@ class TestAsyncRecords:
             name="example.com",
             type="CAA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7109,12 +6953,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -7124,9 +6967,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7137,12 +6980,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="CAA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7150,22 +6993,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="CAA",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="CAA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="CAA",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="CAA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7177,7 +7020,7 @@ class TestAsyncRecords:
             name="example.com",
             type="CERT",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7198,12 +7041,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -7213,9 +7055,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7226,12 +7068,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="CERT",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7239,22 +7081,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="CERT",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="CERT",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="CERT",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="CERT",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7266,7 +7108,7 @@ class TestAsyncRecords:
             name="example.com",
             type="CNAME",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7283,12 +7125,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -7298,9 +7139,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7311,12 +7152,12 @@ class TestAsyncRecords:
             content="content",
             name="example.com",
             type="CNAME",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7324,22 +7165,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="content",
-              name="example.com",
-              type="CNAME",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="content",
+                name="example.com",
+                type="CNAME",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="content",
-              name="example.com",
-              type="CNAME",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="content",
+                name="example.com",
+                type="CNAME",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7351,7 +7192,7 @@ class TestAsyncRecords:
             name="example.com",
             type="DNSKEY",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7372,12 +7213,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -7387,9 +7227,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7400,12 +7240,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="DNSKEY",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7413,22 +7253,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="DNSKEY",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="DNSKEY",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="DNSKEY",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="DNSKEY",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7440,7 +7280,7 @@ class TestAsyncRecords:
             name="example.com",
             type="DS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7461,12 +7301,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -7476,9 +7315,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7489,12 +7328,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="DS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7502,22 +7341,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="DS",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="DS",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="DS",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="DS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7529,7 +7368,7 @@ class TestAsyncRecords:
             name="example.com",
             type="HTTPS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7540,7 +7379,7 @@ class TestAsyncRecords:
             data={
                 "priority": 1,
                 "target": ".",
-                "value": "alpn=\"h3,h2\" ipv4hint=\"127.0.0.1\" ipv6hint=\"::1\"",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
             name="example.com",
             type="HTTPS",
@@ -7549,12 +7388,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -7564,9 +7402,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7577,12 +7415,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="HTTPS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7590,22 +7428,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="HTTPS",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="HTTPS",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="HTTPS",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="HTTPS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7617,7 +7455,7 @@ class TestAsyncRecords:
             name="example.com",
             type="LOC",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7646,12 +7484,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_9(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -7661,9 +7498,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7674,12 +7511,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="LOC",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7687,22 +7524,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="LOC",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="LOC",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="LOC",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="LOC",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7715,7 +7552,7 @@ class TestAsyncRecords:
             priority=10,
             type="MX",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7732,12 +7569,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_10(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -7748,9 +7584,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7762,12 +7598,12 @@ class TestAsyncRecords:
             name="example.com",
             priority=10,
             type="MX",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7775,24 +7611,24 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="mx.example.com",
-              name="example.com",
-              priority=10,
-              type="MX",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="mx.example.com",
+                name="example.com",
+                priority=10,
+                type="MX",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="mx.example.com",
-              name="example.com",
-              priority=10,
-              type="MX",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="mx.example.com",
+                name="example.com",
+                priority=10,
+                type="MX",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7804,7 +7640,7 @@ class TestAsyncRecords:
             name="example.com",
             type="NAPTR",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7827,12 +7663,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_11(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -7842,9 +7677,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7855,12 +7690,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="NAPTR",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7868,22 +7703,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_11(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="NAPTR",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="NAPTR",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="NAPTR",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="NAPTR",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7895,7 +7730,7 @@ class TestAsyncRecords:
             name="example.com",
             type="NS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7911,12 +7746,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_12(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -7926,9 +7760,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7939,12 +7773,12 @@ class TestAsyncRecords:
             content="ns1.example.com",
             name="example.com",
             type="NS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7952,22 +7786,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_12(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="ns1.example.com",
-              name="example.com",
-              type="NS",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="ns1.example.com",
+                name="example.com",
+                type="NS",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="ns1.example.com",
-              name="example.com",
-              type="NS",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="ns1.example.com",
+                name="example.com",
+                type="NS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7979,7 +7813,7 @@ class TestAsyncRecords:
             name="example.com",
             type="PTR",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7995,12 +7829,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_13(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -8010,9 +7843,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8023,12 +7856,12 @@ class TestAsyncRecords:
             content="example.com",
             name="example.com",
             type="PTR",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8036,22 +7869,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_13(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="example.com",
-              name="example.com",
-              type="PTR",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="example.com",
+                name="example.com",
+                type="PTR",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="example.com",
-              name="example.com",
-              type="PTR",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="example.com",
+                name="example.com",
+                type="PTR",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8063,7 +7896,7 @@ class TestAsyncRecords:
             name="example.com",
             type="SMIMEA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8084,12 +7917,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_14(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -8099,9 +7931,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8112,12 +7944,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="SMIMEA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8125,22 +7957,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_14(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SMIMEA",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SMIMEA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="SMIMEA",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="SMIMEA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8152,7 +7984,7 @@ class TestAsyncRecords:
             name="_sip._tcp.example.com",
             type="SRV",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8176,12 +8008,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_15(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -8191,9 +8022,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8204,12 +8035,12 @@ class TestAsyncRecords:
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8217,22 +8048,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_15(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="_sip._tcp.example.com",
-              type="SRV",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="_sip._tcp.example.com",
+                type="SRV",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="_sip._tcp.example.com",
-              type="SRV",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="_sip._tcp.example.com",
+                type="SRV",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8244,7 +8075,7 @@ class TestAsyncRecords:
             name="example.com",
             type="SSHFP",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8264,12 +8095,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_16(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -8279,9 +8109,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8292,12 +8122,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="SSHFP",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8305,22 +8135,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_16(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SSHFP",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SSHFP",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="SSHFP",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="SSHFP",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8332,7 +8162,7 @@ class TestAsyncRecords:
             name="example.com",
             type="SVCB",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8343,7 +8173,7 @@ class TestAsyncRecords:
             data={
                 "priority": 1,
                 "target": ".",
-                "value": "alpn=\"h3,h2\" ipv4hint=\"127.0.0.1\" ipv6hint=\"::1\"",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
             name="example.com",
             type="SVCB",
@@ -8352,12 +8182,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_17(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -8367,9 +8196,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8380,12 +8209,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="SVCB",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8393,22 +8222,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_17(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SVCB",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SVCB",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="SVCB",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="SVCB",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8420,7 +8249,7 @@ class TestAsyncRecords:
             name="example.com",
             type="TLSA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8441,12 +8270,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_18(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -8456,9 +8284,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8469,12 +8297,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="TLSA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8482,22 +8310,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_18(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="TLSA",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="TLSA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="TLSA",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="TLSA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8509,7 +8337,7 @@ class TestAsyncRecords:
             name="example.com",
             type="TXT",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8525,12 +8353,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_19(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -8540,9 +8367,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8553,12 +8380,12 @@ class TestAsyncRecords:
             content="example text content",
             name="example.com",
             type="TXT",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8566,22 +8393,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_19(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="example text content",
-              name="example.com",
-              type="TXT",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="example text content",
+                name="example.com",
+                type="TXT",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="example text content",
-              name="example.com",
-              type="TXT",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="example text content",
+                name="example.com",
+                type="TXT",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8594,7 +8421,7 @@ class TestAsyncRecords:
             priority=10,
             type="URI",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8614,12 +8441,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_20(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -8630,9 +8456,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8644,12 +8470,12 @@ class TestAsyncRecords:
             name="example.com",
             priority=10,
             type="URI",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8657,31 +8483,31 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_update_overload_20(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              priority=10,
-              type="URI",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                priority=10,
+                type="URI",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.update(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              priority=10,
-              type="URI",
-          )
+            await async_client.dns.records.with_raw_response.update(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                priority=10,
+                type="URI",
+            )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Record], record, path=['response'])
+        assert_matches_type(AsyncV4PagePaginationArray[Record], record, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -8715,39 +8541,38 @@ class TestAsyncRecords:
             tag_match="any",
             type="A",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[Record], record, path=['response'])
+        assert_matches_type(AsyncV4PagePaginationArray[Record], record, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[Record], record, path=['response'])
+        assert_matches_type(AsyncV4PagePaginationArray[Record], record, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[Record], record, path=['response'])
+            assert_matches_type(AsyncV4PagePaginationArray[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.list(
-              zone_id="",
-          )
+            await async_client.dns.records.with_raw_response.list(
+                zone_id="",
+            )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
@@ -8755,48 +8580,47 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordDeleteResponse], record, path=['response'])
+        assert_matches_type(Optional[RecordDeleteResponse], record, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.delete(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordDeleteResponse], record, path=['response'])
+        assert_matches_type(Optional[RecordDeleteResponse], record, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.delete(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordDeleteResponse], record, path=['response'])
+            assert_matches_type(Optional[RecordDeleteResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.delete(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-          )
+            await async_client.dns.records.with_raw_response.delete(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.delete(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-          )
+            await async_client.dns.records.with_raw_response.delete(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8808,7 +8632,7 @@ class TestAsyncRecords:
             name="example.com",
             type="A",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8825,12 +8649,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -8840,9 +8663,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8853,12 +8676,12 @@ class TestAsyncRecords:
             content="198.51.100.4",
             name="example.com",
             type="A",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8866,22 +8689,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="198.51.100.4",
-              name="example.com",
-              type="A",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="198.51.100.4",
+                name="example.com",
+                type="A",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="198.51.100.4",
-              name="example.com",
-              type="A",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="198.51.100.4",
+                name="example.com",
+                type="A",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8893,7 +8716,7 @@ class TestAsyncRecords:
             name="example.com",
             type="AAAA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8910,12 +8733,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -8925,9 +8747,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8938,12 +8760,12 @@ class TestAsyncRecords:
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8951,22 +8773,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="2400:cb00:2049::1",
-              name="example.com",
-              type="AAAA",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="2400:cb00:2049::1",
+                name="example.com",
+                type="AAAA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="2400:cb00:2049::1",
-              name="example.com",
-              type="AAAA",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="2400:cb00:2049::1",
+                name="example.com",
+                type="AAAA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8978,7 +8800,7 @@ class TestAsyncRecords:
             name="example.com",
             type="CAA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8998,12 +8820,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -9013,9 +8834,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9026,12 +8847,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="CAA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9039,22 +8860,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="CAA",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="CAA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="CAA",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="CAA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9066,7 +8887,7 @@ class TestAsyncRecords:
             name="example.com",
             type="CERT",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9087,12 +8908,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -9102,9 +8922,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9115,12 +8935,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="CERT",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9128,22 +8948,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="CERT",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="CERT",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="CERT",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="CERT",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9155,7 +8975,7 @@ class TestAsyncRecords:
             name="example.com",
             type="CNAME",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9172,12 +8992,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -9187,9 +9006,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9200,12 +9019,12 @@ class TestAsyncRecords:
             content="content",
             name="example.com",
             type="CNAME",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9213,22 +9032,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="content",
-              name="example.com",
-              type="CNAME",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="content",
+                name="example.com",
+                type="CNAME",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="content",
-              name="example.com",
-              type="CNAME",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="content",
+                name="example.com",
+                type="CNAME",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9240,7 +9059,7 @@ class TestAsyncRecords:
             name="example.com",
             type="DNSKEY",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9261,12 +9080,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -9276,9 +9094,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9289,12 +9107,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="DNSKEY",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9302,22 +9120,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="DNSKEY",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="DNSKEY",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="DNSKEY",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="DNSKEY",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9329,7 +9147,7 @@ class TestAsyncRecords:
             name="example.com",
             type="DS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9350,12 +9168,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -9365,9 +9182,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9378,12 +9195,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="DS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9391,22 +9208,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="DS",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="DS",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="DS",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="DS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9418,7 +9235,7 @@ class TestAsyncRecords:
             name="example.com",
             type="HTTPS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9429,7 +9246,7 @@ class TestAsyncRecords:
             data={
                 "priority": 1,
                 "target": ".",
-                "value": "alpn=\"h3,h2\" ipv4hint=\"127.0.0.1\" ipv6hint=\"::1\"",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
             name="example.com",
             type="HTTPS",
@@ -9438,12 +9255,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -9453,9 +9269,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9466,12 +9282,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="HTTPS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9479,22 +9295,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="HTTPS",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="HTTPS",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="HTTPS",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="HTTPS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9506,7 +9322,7 @@ class TestAsyncRecords:
             name="example.com",
             type="LOC",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9535,12 +9351,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -9550,9 +9365,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9563,12 +9378,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="LOC",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9576,22 +9391,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="LOC",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="LOC",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="LOC",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="LOC",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9604,7 +9419,7 @@ class TestAsyncRecords:
             priority=10,
             type="MX",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9621,12 +9436,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -9637,9 +9451,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9651,12 +9465,12 @@ class TestAsyncRecords:
             name="example.com",
             priority=10,
             type="MX",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9664,24 +9478,24 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="mx.example.com",
-              name="example.com",
-              priority=10,
-              type="MX",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="mx.example.com",
+                name="example.com",
+                priority=10,
+                type="MX",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="mx.example.com",
-              name="example.com",
-              priority=10,
-              type="MX",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="mx.example.com",
+                name="example.com",
+                priority=10,
+                type="MX",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9693,7 +9507,7 @@ class TestAsyncRecords:
             name="example.com",
             type="NAPTR",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9716,12 +9530,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -9731,9 +9544,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9744,12 +9557,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="NAPTR",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9757,22 +9570,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="NAPTR",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="NAPTR",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="NAPTR",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="NAPTR",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9784,7 +9597,7 @@ class TestAsyncRecords:
             name="example.com",
             type="NS",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9800,12 +9613,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -9815,9 +9627,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9828,12 +9640,12 @@ class TestAsyncRecords:
             content="ns1.example.com",
             name="example.com",
             type="NS",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9841,22 +9653,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="ns1.example.com",
-              name="example.com",
-              type="NS",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="ns1.example.com",
+                name="example.com",
+                type="NS",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="ns1.example.com",
-              name="example.com",
-              type="NS",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="ns1.example.com",
+                name="example.com",
+                type="NS",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9868,7 +9680,7 @@ class TestAsyncRecords:
             name="example.com",
             type="PTR",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9884,12 +9696,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -9899,9 +9710,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9912,12 +9723,12 @@ class TestAsyncRecords:
             content="example.com",
             name="example.com",
             type="PTR",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9925,22 +9736,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="example.com",
-              name="example.com",
-              type="PTR",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="example.com",
+                name="example.com",
+                type="PTR",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="example.com",
-              name="example.com",
-              type="PTR",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="example.com",
+                name="example.com",
+                type="PTR",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9952,7 +9763,7 @@ class TestAsyncRecords:
             name="example.com",
             type="SMIMEA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9973,12 +9784,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -9988,9 +9798,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10001,12 +9811,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="SMIMEA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -10014,22 +9824,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SMIMEA",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SMIMEA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="SMIMEA",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="SMIMEA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10041,7 +9851,7 @@ class TestAsyncRecords:
             name="_sip._tcp.example.com",
             type="SRV",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10065,12 +9875,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -10080,9 +9889,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10093,12 +9902,12 @@ class TestAsyncRecords:
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -10106,22 +9915,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="_sip._tcp.example.com",
-              type="SRV",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="_sip._tcp.example.com",
+                type="SRV",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="_sip._tcp.example.com",
-              type="SRV",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="_sip._tcp.example.com",
+                type="SRV",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10133,7 +9942,7 @@ class TestAsyncRecords:
             name="example.com",
             type="SSHFP",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10153,12 +9962,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -10168,9 +9976,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10181,12 +9989,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="SSHFP",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -10194,22 +10002,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SSHFP",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SSHFP",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="SSHFP",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="SSHFP",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10221,7 +10029,7 @@ class TestAsyncRecords:
             name="example.com",
             type="SVCB",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10232,7 +10040,7 @@ class TestAsyncRecords:
             data={
                 "priority": 1,
                 "target": ".",
-                "value": "alpn=\"h3,h2\" ipv4hint=\"127.0.0.1\" ipv6hint=\"::1\"",
+                "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
             name="example.com",
             type="SVCB",
@@ -10241,12 +10049,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -10256,9 +10063,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10269,12 +10076,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="SVCB",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -10282,22 +10089,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="SVCB",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="SVCB",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="SVCB",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="SVCB",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10309,7 +10116,7 @@ class TestAsyncRecords:
             name="example.com",
             type="TLSA",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10330,12 +10137,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -10345,9 +10151,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10358,12 +10164,12 @@ class TestAsyncRecords:
             data={},
             name="example.com",
             type="TLSA",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -10371,22 +10177,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              type="TLSA",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                type="TLSA",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              type="TLSA",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                type="TLSA",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10398,7 +10204,7 @@ class TestAsyncRecords:
             name="example.com",
             type="TXT",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10414,12 +10220,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -10429,9 +10234,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10442,12 +10247,12 @@ class TestAsyncRecords:
             content="example text content",
             name="example.com",
             type="TXT",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -10455,22 +10260,22 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              content="example text content",
-              name="example.com",
-              type="TXT",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                content="example text content",
+                name="example.com",
+                type="TXT",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              content="example text content",
-              name="example.com",
-              type="TXT",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="example text content",
+                name="example.com",
+                type="TXT",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10483,7 +10288,7 @@ class TestAsyncRecords:
             priority=10,
             type="URI",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10503,12 +10308,11 @@ class TestAsyncRecords:
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -10519,9 +10323,9 @@ class TestAsyncRecords:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10533,12 +10337,12 @@ class TestAsyncRecords:
             name="example.com",
             priority=10,
             type="URI",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -10546,63 +10350,62 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-              data={},
-              name="example.com",
-              priority=10,
-              type="URI",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+                data={},
+                name="example.com",
+                priority=10,
+                type="URI",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.edit(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-              data={},
-              name="example.com",
-              priority=10,
-              type="URI",
-          )
+            await async_client.dns.records.with_raw_response.edit(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                data={},
+                name="example.com",
+                priority=10,
+                type="URI",
+            )
 
     @parametrize
     async def test_method_export(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.export(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(str, record, path=['response'])
+        assert_matches_type(str, record, path=["response"])
 
     @parametrize
     async def test_raw_response_export(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.export(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(str, record, path=['response'])
+        assert_matches_type(str, record, path=["response"])
 
     @parametrize
     async def test_streaming_response_export(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.export(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(str, record, path=['response'])
+            assert_matches_type(str, record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_export(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.export(
-              zone_id="",
-          )
+            await async_client.dns.records.with_raw_response.export(
+                zone_id="",
+            )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
@@ -10610,48 +10413,47 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.get(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[Record], record, path=['response'])
+        assert_matches_type(Optional[Record], record, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.get(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[Record], record, path=['response'])
+            assert_matches_type(Optional[Record], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.get(
-              dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
-              zone_id="",
-          )
+            await async_client.dns.records.with_raw_response.get(
+                dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
-          await async_client.dns.records.with_raw_response.get(
-              dns_record_id="",
-              zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-          )
+            await async_client.dns.records.with_raw_response.get(
+                dns_record_id="",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10660,7 +10462,7 @@ class TestAsyncRecords:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="www.example.com. 300 IN  A 127.0.0.1",
         )
-        assert_matches_type(Optional[RecordImportResponse], record, path=['response'])
+        assert_matches_type(Optional[RecordImportResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10670,21 +10472,20 @@ class TestAsyncRecords:
             file="www.example.com. 300 IN  A 127.0.0.1",
             proxied="true",
         )
-        assert_matches_type(Optional[RecordImportResponse], record, path=['response'])
+        assert_matches_type(Optional[RecordImportResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_import(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.import_(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="www.example.com. 300 IN  A 127.0.0.1",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordImportResponse], record, path=['response'])
+        assert_matches_type(Optional[RecordImportResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -10692,12 +10493,12 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.import_(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             file="www.example.com. 300 IN  A 127.0.0.1",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordImportResponse], record, path=['response'])
+            assert_matches_type(Optional[RecordImportResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -10705,10 +10506,10 @@ class TestAsyncRecords:
     @parametrize
     async def test_path_params_import(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.import_(
-              zone_id="",
-              file="www.example.com. 300 IN  A 127.0.0.1",
-          )
+            await async_client.dns.records.with_raw_response.import_(
+                zone_id="",
+                file="www.example.com. 300 IN  A 127.0.0.1",
+            )
 
     @parametrize
     async def test_method_scan(self, async_client: AsyncCloudflare) -> None:
@@ -10716,39 +10517,38 @@ class TestAsyncRecords:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[RecordScanResponse], record, path=['response'])
+        assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
 
     @parametrize
     async def test_raw_response_scan(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.dns.records.with_raw_response.scan(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordScanResponse], record, path=['response'])
+        assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
 
     @parametrize
     async def test_streaming_response_scan(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.scan(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordScanResponse], record, path=['response'])
+            assert_matches_type(Optional[RecordScanResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_scan(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.dns.records.with_raw_response.scan(
-              zone_id="",
-              body={},
-          )
+            await async_client.dns.records.with_raw_response.scan(
+                zone_id="",
+                body={},
+            )

@@ -1,20 +1,22 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
-from typing_extensions import TypeAlias, Literal
-
+from typing import List, Union, Optional
 from datetime import datetime
+from typing_extensions import Literal, TypeAlias
 
 from .logging import Logging
+from ..._models import BaseModel
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+__all__ = [
+    "RedirectRule",
+    "ActionParameters",
+    "ActionParametersFromList",
+    "ActionParametersFromValue",
+    "ActionParametersFromValueTargetURL",
+    "ActionParametersFromValueTargetURLStaticURLRedirect",
+    "ActionParametersFromValueTargetURLDynamicURLRedirect",
+]
 
-__all__ = ["RedirectRule", "ActionParameters", "ActionParametersFromList", "ActionParametersFromValue", "ActionParametersFromValueTargetURL", "ActionParametersFromValueTargetURLStaticURLRedirect", "ActionParametersFromValueTargetURLDynamicURLRedirect"]
 
 class ActionParametersFromList(BaseModel):
     key: Optional[str] = None
@@ -23,15 +25,21 @@ class ActionParametersFromList(BaseModel):
     name: Optional[str] = None
     """The name of the list to match against."""
 
+
 class ActionParametersFromValueTargetURLStaticURLRedirect(BaseModel):
     value: Optional[str] = None
     """The URL to redirect the request to."""
+
 
 class ActionParametersFromValueTargetURLDynamicURLRedirect(BaseModel):
     expression: Optional[str] = None
     """An expression to evaluate to get the URL to redirect the request to."""
 
-ActionParametersFromValueTargetURL: TypeAlias = Union[ActionParametersFromValueTargetURLStaticURLRedirect, ActionParametersFromValueTargetURLDynamicURLRedirect]
+
+ActionParametersFromValueTargetURL: TypeAlias = Union[
+    ActionParametersFromValueTargetURLStaticURLRedirect, ActionParametersFromValueTargetURLDynamicURLRedirect
+]
+
 
 class ActionParametersFromValue(BaseModel):
     preserve_query_string: Optional[bool] = None
@@ -43,12 +51,14 @@ class ActionParametersFromValue(BaseModel):
     target_url: Optional[ActionParametersFromValueTargetURL] = None
     """The URL to redirect the request to."""
 
+
 class ActionParameters(BaseModel):
     from_list: Optional[ActionParametersFromList] = None
     """Serve a redirect based on a bulk list lookup."""
 
     from_value: Optional[ActionParametersFromValue] = None
     """Serve a redirect based on the request properties."""
+
 
 class RedirectRule(BaseModel):
     last_updated: datetime

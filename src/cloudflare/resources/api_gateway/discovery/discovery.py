@@ -2,34 +2,33 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
-from .operations import OperationsResource, AsyncOperationsResource
-
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-
+from .operations import (
+    OperationsResource,
+    AsyncOperationsResource,
+    OperationsResourceWithRawResponse,
+    AsyncOperationsResourceWithRawResponse,
+    OperationsResourceWithStreamingResponse,
+    AsyncOperationsResourceWithStreamingResponse,
+)
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ...._base_client import make_request_options
 from ....types.api_gateway.discovery_get_response import DiscoveryGetResponse
 
-from ...._wrappers import ResultWrapper
-
-from ...._base_client import make_request_options
-
-from typing import Type
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from .operations import OperationsResource, AsyncOperationsResource, OperationsResourceWithRawResponse, AsyncOperationsResourceWithRawResponse, OperationsResourceWithStreamingResponse, AsyncOperationsResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-
 __all__ = ["DiscoveryResource", "AsyncDiscoveryResource"]
+
 
 class DiscoveryResource(SyncAPIResource):
     @cached_property
@@ -44,15 +43,17 @@ class DiscoveryResource(SyncAPIResource):
     def with_streaming_response(self) -> DiscoveryResourceWithStreamingResponse:
         return DiscoveryResourceWithStreamingResponse(self)
 
-    def get(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DiscoveryGetResponse:
+    def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DiscoveryGetResponse:
         """
         Retrieve the most up to date view of discovered operations, rendered as OpenAPI
         schemas
@@ -69,14 +70,19 @@ class DiscoveryResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
             f"/zones/{zone_id}/api_gateway/discovery",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[DiscoveryGetResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DiscoveryGetResponse]._unwrapper,
+            ),
             cast_to=cast(Type[DiscoveryGetResponse], ResultWrapper[DiscoveryGetResponse]),
         )
+
 
 class AsyncDiscoveryResource(AsyncAPIResource):
     @cached_property
@@ -91,15 +97,17 @@ class AsyncDiscoveryResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDiscoveryResourceWithStreamingResponse:
         return AsyncDiscoveryResourceWithStreamingResponse(self)
 
-    async def get(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DiscoveryGetResponse:
+    async def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DiscoveryGetResponse:
         """
         Retrieve the most up to date view of discovered operations, rendered as OpenAPI
         schemas
@@ -116,14 +124,19 @@ class AsyncDiscoveryResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
             f"/zones/{zone_id}/api_gateway/discovery",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[DiscoveryGetResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DiscoveryGetResponse]._unwrapper,
+            ),
             cast_to=cast(Type[DiscoveryGetResponse], ResultWrapper[DiscoveryGetResponse]),
         )
+
 
 class DiscoveryResourceWithRawResponse:
     def __init__(self, discovery: DiscoveryResource) -> None:
@@ -137,6 +150,7 @@ class DiscoveryResourceWithRawResponse:
     def operations(self) -> OperationsResourceWithRawResponse:
         return OperationsResourceWithRawResponse(self._discovery.operations)
 
+
 class AsyncDiscoveryResourceWithRawResponse:
     def __init__(self, discovery: AsyncDiscoveryResource) -> None:
         self._discovery = discovery
@@ -149,6 +163,7 @@ class AsyncDiscoveryResourceWithRawResponse:
     def operations(self) -> AsyncOperationsResourceWithRawResponse:
         return AsyncOperationsResourceWithRawResponse(self._discovery.operations)
 
+
 class DiscoveryResourceWithStreamingResponse:
     def __init__(self, discovery: DiscoveryResource) -> None:
         self._discovery = discovery
@@ -160,6 +175,7 @@ class DiscoveryResourceWithStreamingResponse:
     @cached_property
     def operations(self) -> OperationsResourceWithStreamingResponse:
         return OperationsResourceWithStreamingResponse(self._discovery.operations)
+
 
 class AsyncDiscoveryResourceWithStreamingResponse:
     def __init__(self, discovery: AsyncDiscoveryResource) -> None:

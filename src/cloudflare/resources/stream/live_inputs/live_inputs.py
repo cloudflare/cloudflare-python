@@ -2,49 +2,39 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .outputs import OutputsResource, AsyncOutputsResource
-
+from .outputs import (
+    OutputsResource,
+    AsyncOutputsResource,
+    OutputsResourceWithRawResponse,
+    AsyncOutputsResourceWithRawResponse,
+    OutputsResourceWithStreamingResponse,
+    AsyncOutputsResourceWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.stream.live_input import LiveInput
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
 from ...._base_client import make_request_options
-
+from ....types.stream import live_input_list_params, live_input_create_params, live_input_update_params
+from ....types.stream.live_input import LiveInput
 from ....types.stream.live_input_list_response import LiveInputListResponse
 
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-from ....types.stream import live_input_create_params, live_input_update_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.stream import live_input_create_params
-from ....types.stream import live_input_update_params
-from ....types.stream import live_input_list_params
-from .outputs import OutputsResource, AsyncOutputsResource, OutputsResourceWithRawResponse, AsyncOutputsResourceWithRawResponse, OutputsResourceWithStreamingResponse, AsyncOutputsResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["LiveInputsResource", "AsyncLiveInputsResource"]
+
 
 class LiveInputsResource(SyncAPIResource):
     @cached_property
@@ -59,19 +49,21 @@ class LiveInputsResource(SyncAPIResource):
     def with_streaming_response(self) -> LiveInputsResourceWithStreamingResponse:
         return LiveInputsResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    default_creator: str | NotGiven = NOT_GIVEN,
-    delete_recording_after_days: float | NotGiven = NOT_GIVEN,
-    meta: object | NotGiven = NOT_GIVEN,
-    recording: live_input_create_params.Recording | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LiveInput]:
+    def create(
+        self,
+        *,
+        account_id: str,
+        default_creator: str | NotGiven = NOT_GIVEN,
+        delete_recording_after_days: float | NotGiven = NOT_GIVEN,
+        meta: object | NotGiven = NOT_GIVEN,
+        recording: live_input_create_params.Recording | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[LiveInput]:
         """
         Creates a live input, and returns credentials that you or your users can use to
         stream live video to Cloudflare Stream.
@@ -103,35 +95,44 @@ class LiveInputsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/stream/live_inputs",
-            body=maybe_transform({
-                "default_creator": default_creator,
-                "delete_recording_after_days": delete_recording_after_days,
-                "meta": meta,
-                "recording": recording,
-            }, live_input_create_params.LiveInputCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "default_creator": default_creator,
+                    "delete_recording_after_days": delete_recording_after_days,
+                    "meta": meta,
+                    "recording": recording,
+                },
+                live_input_create_params.LiveInputCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[LiveInput]], ResultWrapper[LiveInput]),
         )
 
-    def update(self,
-    live_input_identifier: str,
-    *,
-    account_id: str,
-    default_creator: str | NotGiven = NOT_GIVEN,
-    delete_recording_after_days: float | NotGiven = NOT_GIVEN,
-    meta: object | NotGiven = NOT_GIVEN,
-    recording: live_input_update_params.Recording | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LiveInput]:
+    def update(
+        self,
+        live_input_identifier: str,
+        *,
+        account_id: str,
+        default_creator: str | NotGiven = NOT_GIVEN,
+        delete_recording_after_days: float | NotGiven = NOT_GIVEN,
+        meta: object | NotGiven = NOT_GIVEN,
+        recording: live_input_update_params.Recording | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[LiveInput]:
         """
         Updates a specified live input.
 
@@ -164,35 +165,44 @@ class LiveInputsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
+            )
         return self._put(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
-            body=maybe_transform({
-                "default_creator": default_creator,
-                "delete_recording_after_days": delete_recording_after_days,
-                "meta": meta,
-                "recording": recording,
-            }, live_input_update_params.LiveInputUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "default_creator": default_creator,
+                    "delete_recording_after_days": delete_recording_after_days,
+                    "meta": meta,
+                    "recording": recording,
+                },
+                live_input_update_params.LiveInputUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[LiveInput]], ResultWrapper[LiveInput]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    include_counts: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LiveInputListResponse]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        include_counts: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[LiveInputListResponse]:
         """Lists the live inputs created for an account.
 
         To get the credentials needed to
@@ -213,27 +223,32 @@ class LiveInputsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/stream/live_inputs",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "include_counts": include_counts
-            }, live_input_list_params.LiveInputListParams), post_parser=ResultWrapper[Optional[LiveInputListResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"include_counts": include_counts}, live_input_list_params.LiveInputListParams),
+                post_parser=ResultWrapper[Optional[LiveInputListResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[LiveInputListResponse]], ResultWrapper[LiveInputListResponse]),
         )
 
-    def delete(self,
-    live_input_identifier: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
+    def delete(
+        self,
+        live_input_identifier: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
         """
         Prevents a live input from being streamed to and makes the live input
         inaccessible to any future API calls.
@@ -252,30 +267,32 @@ class LiveInputsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
+            )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=NoneType,
         )
 
-    def get(self,
-    live_input_identifier: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LiveInput]:
+    def get(
+        self,
+        live_input_identifier: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[LiveInput]:
         """
         Retrieves details of an existing live input.
 
@@ -293,18 +310,23 @@ class LiveInputsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
+            )
         return self._get(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[LiveInput]], ResultWrapper[LiveInput]),
         )
+
 
 class AsyncLiveInputsResource(AsyncAPIResource):
     @cached_property
@@ -319,19 +341,21 @@ class AsyncLiveInputsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncLiveInputsResourceWithStreamingResponse:
         return AsyncLiveInputsResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    default_creator: str | NotGiven = NOT_GIVEN,
-    delete_recording_after_days: float | NotGiven = NOT_GIVEN,
-    meta: object | NotGiven = NOT_GIVEN,
-    recording: live_input_create_params.Recording | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LiveInput]:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        default_creator: str | NotGiven = NOT_GIVEN,
+        delete_recording_after_days: float | NotGiven = NOT_GIVEN,
+        meta: object | NotGiven = NOT_GIVEN,
+        recording: live_input_create_params.Recording | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[LiveInput]:
         """
         Creates a live input, and returns credentials that you or your users can use to
         stream live video to Cloudflare Stream.
@@ -363,35 +387,44 @@ class AsyncLiveInputsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/stream/live_inputs",
-            body=await async_maybe_transform({
-                "default_creator": default_creator,
-                "delete_recording_after_days": delete_recording_after_days,
-                "meta": meta,
-                "recording": recording,
-            }, live_input_create_params.LiveInputCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "default_creator": default_creator,
+                    "delete_recording_after_days": delete_recording_after_days,
+                    "meta": meta,
+                    "recording": recording,
+                },
+                live_input_create_params.LiveInputCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[LiveInput]], ResultWrapper[LiveInput]),
         )
 
-    async def update(self,
-    live_input_identifier: str,
-    *,
-    account_id: str,
-    default_creator: str | NotGiven = NOT_GIVEN,
-    delete_recording_after_days: float | NotGiven = NOT_GIVEN,
-    meta: object | NotGiven = NOT_GIVEN,
-    recording: live_input_update_params.Recording | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LiveInput]:
+    async def update(
+        self,
+        live_input_identifier: str,
+        *,
+        account_id: str,
+        default_creator: str | NotGiven = NOT_GIVEN,
+        delete_recording_after_days: float | NotGiven = NOT_GIVEN,
+        meta: object | NotGiven = NOT_GIVEN,
+        recording: live_input_update_params.Recording | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[LiveInput]:
         """
         Updates a specified live input.
 
@@ -424,35 +457,44 @@ class AsyncLiveInputsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
+            )
         return await self._put(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
-            body=await async_maybe_transform({
-                "default_creator": default_creator,
-                "delete_recording_after_days": delete_recording_after_days,
-                "meta": meta,
-                "recording": recording,
-            }, live_input_update_params.LiveInputUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "default_creator": default_creator,
+                    "delete_recording_after_days": delete_recording_after_days,
+                    "meta": meta,
+                    "recording": recording,
+                },
+                live_input_update_params.LiveInputUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[LiveInput]], ResultWrapper[LiveInput]),
         )
 
-    async def list(self,
-    *,
-    account_id: str,
-    include_counts: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LiveInputListResponse]:
+    async def list(
+        self,
+        *,
+        account_id: str,
+        include_counts: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[LiveInputListResponse]:
         """Lists the live inputs created for an account.
 
         To get the credentials needed to
@@ -473,27 +515,34 @@ class AsyncLiveInputsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/stream/live_inputs",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "include_counts": include_counts
-            }, live_input_list_params.LiveInputListParams), post_parser=ResultWrapper[Optional[LiveInputListResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"include_counts": include_counts}, live_input_list_params.LiveInputListParams
+                ),
+                post_parser=ResultWrapper[Optional[LiveInputListResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[LiveInputListResponse]], ResultWrapper[LiveInputListResponse]),
         )
 
-    async def delete(self,
-    live_input_identifier: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
+    async def delete(
+        self,
+        live_input_identifier: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
         """
         Prevents a live input from being streamed to and makes the live input
         inaccessible to any future API calls.
@@ -512,30 +561,32 @@ class AsyncLiveInputsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
+            )
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=NoneType,
         )
 
-    async def get(self,
-    live_input_identifier: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LiveInput]:
+    async def get(
+        self,
+        live_input_identifier: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[LiveInput]:
         """
         Retrieves details of an existing live input.
 
@@ -553,18 +604,23 @@ class AsyncLiveInputsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not live_input_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `live_input_identifier` but received {live_input_identifier!r}"
+            )
         return await self._get(
             f"/accounts/{account_id}/stream/live_inputs/{live_input_identifier}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[LiveInput]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[LiveInput]], ResultWrapper[LiveInput]),
         )
+
 
 class LiveInputsResourceWithRawResponse:
     def __init__(self, live_inputs: LiveInputsResource) -> None:
@@ -590,6 +646,7 @@ class LiveInputsResourceWithRawResponse:
     def outputs(self) -> OutputsResourceWithRawResponse:
         return OutputsResourceWithRawResponse(self._live_inputs.outputs)
 
+
 class AsyncLiveInputsResourceWithRawResponse:
     def __init__(self, live_inputs: AsyncLiveInputsResource) -> None:
         self._live_inputs = live_inputs
@@ -614,6 +671,7 @@ class AsyncLiveInputsResourceWithRawResponse:
     def outputs(self) -> AsyncOutputsResourceWithRawResponse:
         return AsyncOutputsResourceWithRawResponse(self._live_inputs.outputs)
 
+
 class LiveInputsResourceWithStreamingResponse:
     def __init__(self, live_inputs: LiveInputsResource) -> None:
         self._live_inputs = live_inputs
@@ -637,6 +695,7 @@ class LiveInputsResourceWithStreamingResponse:
     @cached_property
     def outputs(self) -> OutputsResourceWithStreamingResponse:
         return OutputsResourceWithStreamingResponse(self._live_inputs.outputs)
+
 
 class AsyncLiveInputsResourceWithStreamingResponse:
     def __init__(self, live_inputs: AsyncLiveInputsResource) -> None:

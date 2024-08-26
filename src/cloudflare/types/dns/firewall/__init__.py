@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .firewall import Firewall as Firewall
 from .delta import Delta as Delta
+from .firewall import Firewall as Firewall

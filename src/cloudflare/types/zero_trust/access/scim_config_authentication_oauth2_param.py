@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict, Required
-
 from typing import List
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["SCIMConfigAuthenticationOauth2Param"]
+
 
 class SCIMConfigAuthenticationOauth2Param(TypedDict, total=False):
     authorization_url: Required[str]

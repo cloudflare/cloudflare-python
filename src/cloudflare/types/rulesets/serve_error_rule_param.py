@@ -8,6 +8,7 @@ from .logging_param import LoggingParam
 
 __all__ = ["ServeErrorRuleParam", "ActionParameters"]
 
+
 class ActionParameters(TypedDict, total=False):
     content: str
     """Error response content."""
@@ -17,6 +18,7 @@ class ActionParameters(TypedDict, total=False):
 
     status_code: float
     """The status code to use for the error."""
+
 
 class ServeErrorRuleParam(TypedDict, total=False):
     id: str

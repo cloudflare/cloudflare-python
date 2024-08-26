@@ -1,14 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
 from typing import Optional
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
+from ...._models import BaseModel
+
 __all__ = ["Output"]
+
 
 class Output(BaseModel):
     enabled: Optional[bool] = None
@@ -20,7 +19,7 @@ class Output(BaseModel):
     Twitch.
     """
 
-    stream_key: Optional[str] = FieldInfo(alias = "streamKey", default = None)
+    stream_key: Optional[str] = FieldInfo(alias="streamKey", default=None)
     """The streamKey used to authenticate against an output's target."""
 
     uid: Optional[str] = None

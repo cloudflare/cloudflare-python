@@ -2,13 +2,31 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict, Required
+from typing import Dict, List, Iterable
+from typing_extensions import Literal, Required, TypedDict
 
 from .logging_param import LoggingParam
 
-from typing import Iterable, List, Dict
+__all__ = [
+    "SetCacheSettingsRuleParam",
+    "ActionParameters",
+    "ActionParametersBrowserTTL",
+    "ActionParametersCacheKey",
+    "ActionParametersCacheKeyCustomKey",
+    "ActionParametersCacheKeyCustomKeyCookie",
+    "ActionParametersCacheKeyCustomKeyHeader",
+    "ActionParametersCacheKeyCustomKeyHost",
+    "ActionParametersCacheKeyCustomKeyQueryString",
+    "ActionParametersCacheKeyCustomKeyQueryStringExclude",
+    "ActionParametersCacheKeyCustomKeyQueryStringInclude",
+    "ActionParametersCacheKeyCustomKeyUser",
+    "ActionParametersCacheReserve",
+    "ActionParametersEdgeTTL",
+    "ActionParametersEdgeTTLStatusCodeTTL",
+    "ActionParametersEdgeTTLStatusCodeTTLStatusCodeRange",
+    "ActionParametersServeStale",
+]
 
-__all__ = ["SetCacheSettingsRuleParam", "ActionParameters", "ActionParametersBrowserTTL", "ActionParametersCacheKey", "ActionParametersCacheKeyCustomKey", "ActionParametersCacheKeyCustomKeyCookie", "ActionParametersCacheKeyCustomKeyHeader", "ActionParametersCacheKeyCustomKeyHost", "ActionParametersCacheKeyCustomKeyQueryString", "ActionParametersCacheKeyCustomKeyQueryStringExclude", "ActionParametersCacheKeyCustomKeyQueryStringInclude", "ActionParametersCacheKeyCustomKeyUser", "ActionParametersCacheReserve", "ActionParametersEdgeTTL", "ActionParametersEdgeTTLStatusCodeTTL", "ActionParametersEdgeTTLStatusCodeTTLStatusCodeRange", "ActionParametersServeStale"]
 
 class ActionParametersBrowserTTL(TypedDict, total=False):
     mode: Required[Literal["respect_origin", "bypass_by_default", "override_origin"]]
@@ -16,6 +34,7 @@ class ActionParametersBrowserTTL(TypedDict, total=False):
 
     default: int
     """The TTL (in seconds) if you choose override_origin mode."""
+
 
 class ActionParametersCacheKeyCustomKeyCookie(TypedDict, total=False):
     check_presence: List[str]
@@ -26,6 +45,7 @@ class ActionParametersCacheKeyCustomKeyCookie(TypedDict, total=False):
 
     include: List[str]
     """Include these cookies' names and their values."""
+
 
 class ActionParametersCacheKeyCustomKeyHeader(TypedDict, total=False):
     check_presence: List[str]
@@ -51,6 +71,7 @@ class ActionParametersCacheKeyCustomKeyHeader(TypedDict, total=False):
     include: List[str]
     """Include these headers' names and their values."""
 
+
 class ActionParametersCacheKeyCustomKeyHost(TypedDict, total=False):
     resolved: bool
     """Use the resolved host in the cache key.
@@ -58,6 +79,7 @@ class ActionParametersCacheKeyCustomKeyHost(TypedDict, total=False):
     A value of true will use the resolved host, while a value or false will use the
     original host.
     """
+
 
 class ActionParametersCacheKeyCustomKeyQueryStringExclude(TypedDict, total=False):
     all: bool
@@ -70,12 +92,14 @@ class ActionParametersCacheKeyCustomKeyQueryStringExclude(TypedDict, total=False
     build the cache key.
     """
 
+
 class ActionParametersCacheKeyCustomKeyQueryStringInclude(TypedDict, total=False):
     all: bool
     """Use all query string parameters in the cache key."""
 
     list: List[str]
     """A list of query string parameters used to build the cache key."""
+
 
 class ActionParametersCacheKeyCustomKeyQueryString(TypedDict, total=False):
     exclude: ActionParametersCacheKeyCustomKeyQueryStringExclude
@@ -90,6 +114,7 @@ class ActionParametersCacheKeyCustomKeyQueryString(TypedDict, total=False):
     request.
     """
 
+
 class ActionParametersCacheKeyCustomKeyUser(TypedDict, total=False):
     device_type: bool
     """Use the user agent's device type in the cache key."""
@@ -99,6 +124,7 @@ class ActionParametersCacheKeyCustomKeyUser(TypedDict, total=False):
 
     lang: bool
     """Use the user agent's language in the cache key."""
+
 
 class ActionParametersCacheKeyCustomKey(TypedDict, total=False):
     cookie: ActionParametersCacheKeyCustomKeyCookie
@@ -118,6 +144,7 @@ class ActionParametersCacheKeyCustomKey(TypedDict, total=False):
 
     user: ActionParametersCacheKeyCustomKeyUser
     """Characteristics of the request user agent used in building the cache key."""
+
 
 class ActionParametersCacheKey(TypedDict, total=False):
     cache_by_device_type: bool
@@ -141,6 +168,7 @@ class ActionParametersCacheKey(TypedDict, total=False):
     those query parameters are in. A value of true ignores the query strings' order.
     """
 
+
 class ActionParametersCacheReserve(TypedDict, total=False):
     eligible: Required[bool]
     """Determines whether cache reserve is enabled.
@@ -152,13 +180,22 @@ class ActionParametersCacheReserve(TypedDict, total=False):
     min_file_size: Required[int]
     """The minimum file size eligible for store in cache reserve."""
 
-_ActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords = TypedDict("_ActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords", {
-    "from": int,
-}, total=False)
 
-class ActionParametersEdgeTTLStatusCodeTTLStatusCodeRange(_ActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords, total=False):
+_ActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords = TypedDict(
+    "_ActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords",
+    {
+        "from": int,
+    },
+    total=False,
+)
+
+
+class ActionParametersEdgeTTLStatusCodeTTLStatusCodeRange(
+    _ActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords, total=False
+):
     to: Required[int]
     """response status code upper bound"""
+
 
 class ActionParametersEdgeTTLStatusCodeTTL(TypedDict, total=False):
     value: Required[int]
@@ -175,6 +212,7 @@ class ActionParametersEdgeTTLStatusCodeTTL(TypedDict, total=False):
     status_code_value: int
     """Set the ttl for responses with this specific status code"""
 
+
 class ActionParametersEdgeTTL(TypedDict, total=False):
     default: Required[int]
     """The TTL (in seconds) if you choose override_origin mode."""
@@ -185,6 +223,7 @@ class ActionParametersEdgeTTL(TypedDict, total=False):
     status_code_ttl: Required[Iterable[ActionParametersEdgeTTLStatusCodeTTL]]
     """List of single status codes, or status code ranges to apply the selected mode"""
 
+
 class ActionParametersServeStale(TypedDict, total=False):
     disable_stale_while_updating: Required[bool]
     """Defines whether Cloudflare should serve stale content while updating.
@@ -192,6 +231,7 @@ class ActionParametersServeStale(TypedDict, total=False):
     If true, Cloudflare will not serve stale content while getting the latest
     content from the origin.
     """
+
 
 class ActionParameters(TypedDict, total=False):
     additional_cacheable_ports: Iterable[int]
@@ -259,6 +299,7 @@ class ActionParameters(TypedDict, total=False):
     from the origin. If on, Cloudflare will not serve stale content while getting
     the latest content from the origin.
     """
+
 
 class SetCacheSettingsRuleParam(TypedDict, total=False):
     id: str

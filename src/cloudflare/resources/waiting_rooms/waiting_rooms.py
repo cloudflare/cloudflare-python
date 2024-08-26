@@ -2,73 +2,81 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Iterable, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .page import PageResource, AsyncPageResource
-
+from .page import (
+    PageResource,
+    AsyncPageResource,
+    PageResourceWithRawResponse,
+    AsyncPageResourceWithRawResponse,
+    PageResourceWithStreamingResponse,
+    AsyncPageResourceWithStreamingResponse,
+)
+from .rules import (
+    RulesResource,
+    AsyncRulesResource,
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
+)
+from .events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
+)
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from .settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
+from .statuses import (
+    StatusesResource,
+    AsyncStatusesResource,
+    StatusesResourceWithRawResponse,
+    AsyncStatusesResourceWithRawResponse,
+    StatusesResourceWithStreamingResponse,
+    AsyncStatusesResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
-
-from .events.events import EventsResource, AsyncEventsResource
-
-from .rules import RulesResource, AsyncRulesResource
-
-from .statuses import StatusesResource, AsyncStatusesResource
-
-from .settings import SettingsResource, AsyncSettingsResource
-
-from ...types.waiting_rooms.waiting_room import WaitingRoom
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options, AsyncPaginator
-
-from typing import Type, Iterable, List
-
-from ...types.waiting_rooms.additional_routes_param import AdditionalRoutesParam
-
-from ...types.waiting_rooms.cookie_attributes_param import CookieAttributesParam
-
-from typing_extensions import Literal
-
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
+from .events.events import EventsResource, AsyncEventsResource
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.waiting_rooms import (
+    waiting_room_edit_params,
+    waiting_room_list_params,
+    waiting_room_create_params,
+    waiting_room_update_params,
+)
+from ...types.waiting_rooms.waiting_room import WaitingRoom
+from ...types.waiting_rooms.additional_routes_param import AdditionalRoutesParam
+from ...types.waiting_rooms.cookie_attributes_param import CookieAttributesParam
 from ...types.waiting_rooms.waiting_room_delete_response import WaitingRoomDeleteResponse
 
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.waiting_rooms import waiting_room_create_params
-from ...types.waiting_rooms import waiting_room_update_params
-from ...types.waiting_rooms import waiting_room_list_params
-from ...types.waiting_rooms import waiting_room_edit_params
-from ...types.waiting_rooms import CookieAttributes
-from ...types.waiting_rooms import CookieAttributes
-from ...types.waiting_rooms import CookieAttributes
-from .page import PageResource, AsyncPageResource, PageResourceWithRawResponse, AsyncPageResourceWithRawResponse, PageResourceWithStreamingResponse, AsyncPageResourceWithStreamingResponse
-from .events import EventsResource, AsyncEventsResource, EventsResourceWithRawResponse, AsyncEventsResourceWithRawResponse, EventsResourceWithStreamingResponse, AsyncEventsResourceWithStreamingResponse
-from .rules import RulesResource, AsyncRulesResource, RulesResourceWithRawResponse, AsyncRulesResourceWithRawResponse, RulesResourceWithStreamingResponse, AsyncRulesResourceWithStreamingResponse
-from .statuses import StatusesResource, AsyncStatusesResource, StatusesResourceWithRawResponse, AsyncStatusesResourceWithRawResponse, StatusesResourceWithStreamingResponse, AsyncStatusesResourceWithStreamingResponse
-from .settings import SettingsResource, AsyncSettingsResource, SettingsResourceWithRawResponse, AsyncSettingsResourceWithRawResponse, SettingsResourceWithStreamingResponse, AsyncSettingsResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["WaitingRoomsResource", "AsyncWaitingRoomsResource"]
+
 
 class WaitingRoomsResource(SyncAPIResource):
     @cached_property
@@ -99,34 +107,55 @@ class WaitingRoomsResource(SyncAPIResource):
     def with_streaming_response(self) -> WaitingRoomsResourceWithStreamingResponse:
         return WaitingRoomsResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    zone_id: str,
-    host: str,
-    name: str,
-    new_users_per_minute: int,
-    total_active_users: int,
-    additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
-    cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
-    cookie_suffix: str | NotGiven = NOT_GIVEN,
-    custom_page_html: str | NotGiven = NOT_GIVEN,
-    default_template_language: Literal["en-US", "es-ES", "de-DE", "fr-FR", "it-IT", "ja-JP", "ko-KR", "pt-BR", "zh-CN", "zh-TW", "nl-NL", "pl-PL", "id-ID", "tr-TR", "ar-EG", "ru-RU", "fa-IR"] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_session_renewal: bool | NotGiven = NOT_GIVEN,
-    enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
-    json_response_enabled: bool | NotGiven = NOT_GIVEN,
-    path: str | NotGiven = NOT_GIVEN,
-    queue_all: bool | NotGiven = NOT_GIVEN,
-    queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
-    queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
-    session_duration: int | NotGiven = NOT_GIVEN,
-    suspended: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> WaitingRoom:
+    def create(
+        self,
+        *,
+        zone_id: str,
+        host: str,
+        name: str,
+        new_users_per_minute: int,
+        total_active_users: int,
+        additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
+        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
+        cookie_suffix: str | NotGiven = NOT_GIVEN,
+        custom_page_html: str | NotGiven = NOT_GIVEN,
+        default_template_language: Literal[
+            "en-US",
+            "es-ES",
+            "de-DE",
+            "fr-FR",
+            "it-IT",
+            "ja-JP",
+            "ko-KR",
+            "pt-BR",
+            "zh-CN",
+            "zh-TW",
+            "nl-NL",
+            "pl-PL",
+            "id-ID",
+            "tr-TR",
+            "ar-EG",
+            "ru-RU",
+            "fa-IR",
+        ]
+        | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_session_renewal: bool | NotGiven = NOT_GIVEN,
+        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
+        json_response_enabled: bool | NotGiven = NOT_GIVEN,
+        path: str | NotGiven = NOT_GIVEN,
+        queue_all: bool | NotGiven = NOT_GIVEN,
+        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
+        queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
+        session_duration: int | NotGiven = NOT_GIVEN,
+        suspended: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WaitingRoom:
         """
         Creates a new waiting room.
 
@@ -400,65 +429,93 @@ class WaitingRoomsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/waiting_rooms",
-            body=maybe_transform({
-                "host": host,
-                "name": name,
-                "new_users_per_minute": new_users_per_minute,
-                "total_active_users": total_active_users,
-                "additional_routes": additional_routes,
-                "cookie_attributes": cookie_attributes,
-                "cookie_suffix": cookie_suffix,
-                "custom_page_html": custom_page_html,
-                "default_template_language": default_template_language,
-                "description": description,
-                "disable_session_renewal": disable_session_renewal,
-                "enabled_origin_commands": enabled_origin_commands,
-                "json_response_enabled": json_response_enabled,
-                "path": path,
-                "queue_all": queue_all,
-                "queueing_method": queueing_method,
-                "queueing_status_code": queueing_status_code,
-                "session_duration": session_duration,
-                "suspended": suspended,
-            }, waiting_room_create_params.WaitingRoomCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[WaitingRoom]._unwrapper),
+            body=maybe_transform(
+                {
+                    "host": host,
+                    "name": name,
+                    "new_users_per_minute": new_users_per_minute,
+                    "total_active_users": total_active_users,
+                    "additional_routes": additional_routes,
+                    "cookie_attributes": cookie_attributes,
+                    "cookie_suffix": cookie_suffix,
+                    "custom_page_html": custom_page_html,
+                    "default_template_language": default_template_language,
+                    "description": description,
+                    "disable_session_renewal": disable_session_renewal,
+                    "enabled_origin_commands": enabled_origin_commands,
+                    "json_response_enabled": json_response_enabled,
+                    "path": path,
+                    "queue_all": queue_all,
+                    "queueing_method": queueing_method,
+                    "queueing_status_code": queueing_status_code,
+                    "session_duration": session_duration,
+                    "suspended": suspended,
+                },
+                waiting_room_create_params.WaitingRoomCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
+            ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
-    def update(self,
-    waiting_room_id: str,
-    *,
-    zone_id: str,
-    host: str,
-    name: str,
-    new_users_per_minute: int,
-    total_active_users: int,
-    additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
-    cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
-    cookie_suffix: str | NotGiven = NOT_GIVEN,
-    custom_page_html: str | NotGiven = NOT_GIVEN,
-    default_template_language: Literal["en-US", "es-ES", "de-DE", "fr-FR", "it-IT", "ja-JP", "ko-KR", "pt-BR", "zh-CN", "zh-TW", "nl-NL", "pl-PL", "id-ID", "tr-TR", "ar-EG", "ru-RU", "fa-IR"] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_session_renewal: bool | NotGiven = NOT_GIVEN,
-    enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
-    json_response_enabled: bool | NotGiven = NOT_GIVEN,
-    path: str | NotGiven = NOT_GIVEN,
-    queue_all: bool | NotGiven = NOT_GIVEN,
-    queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
-    queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
-    session_duration: int | NotGiven = NOT_GIVEN,
-    suspended: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> WaitingRoom:
+    def update(
+        self,
+        waiting_room_id: str,
+        *,
+        zone_id: str,
+        host: str,
+        name: str,
+        new_users_per_minute: int,
+        total_active_users: int,
+        additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
+        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
+        cookie_suffix: str | NotGiven = NOT_GIVEN,
+        custom_page_html: str | NotGiven = NOT_GIVEN,
+        default_template_language: Literal[
+            "en-US",
+            "es-ES",
+            "de-DE",
+            "fr-FR",
+            "it-IT",
+            "ja-JP",
+            "ko-KR",
+            "pt-BR",
+            "zh-CN",
+            "zh-TW",
+            "nl-NL",
+            "pl-PL",
+            "id-ID",
+            "tr-TR",
+            "ar-EG",
+            "ru-RU",
+            "fa-IR",
+        ]
+        | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_session_renewal: bool | NotGiven = NOT_GIVEN,
+        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
+        json_response_enabled: bool | NotGiven = NOT_GIVEN,
+        path: str | NotGiven = NOT_GIVEN,
+        queue_all: bool | NotGiven = NOT_GIVEN,
+        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
+        queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
+        session_duration: int | NotGiven = NOT_GIVEN,
+        suspended: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WaitingRoom:
         """
         Updates a configured waiting room.
 
@@ -732,51 +789,58 @@ class WaitingRoomsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._put(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
-            body=maybe_transform({
-                "host": host,
-                "name": name,
-                "new_users_per_minute": new_users_per_minute,
-                "total_active_users": total_active_users,
-                "additional_routes": additional_routes,
-                "cookie_attributes": cookie_attributes,
-                "cookie_suffix": cookie_suffix,
-                "custom_page_html": custom_page_html,
-                "default_template_language": default_template_language,
-                "description": description,
-                "disable_session_renewal": disable_session_renewal,
-                "enabled_origin_commands": enabled_origin_commands,
-                "json_response_enabled": json_response_enabled,
-                "path": path,
-                "queue_all": queue_all,
-                "queueing_method": queueing_method,
-                "queueing_status_code": queueing_status_code,
-                "session_duration": session_duration,
-                "suspended": suspended,
-            }, waiting_room_update_params.WaitingRoomUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[WaitingRoom]._unwrapper),
+            body=maybe_transform(
+                {
+                    "host": host,
+                    "name": name,
+                    "new_users_per_minute": new_users_per_minute,
+                    "total_active_users": total_active_users,
+                    "additional_routes": additional_routes,
+                    "cookie_attributes": cookie_attributes,
+                    "cookie_suffix": cookie_suffix,
+                    "custom_page_html": custom_page_html,
+                    "default_template_language": default_template_language,
+                    "description": description,
+                    "disable_session_renewal": disable_session_renewal,
+                    "enabled_origin_commands": enabled_origin_commands,
+                    "json_response_enabled": json_response_enabled,
+                    "path": path,
+                    "queue_all": queue_all,
+                    "queueing_method": queueing_method,
+                    "queueing_status_code": queueing_status_code,
+                    "session_duration": session_duration,
+                    "suspended": suspended,
+                },
+                waiting_room_update_params.WaitingRoomUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
+            ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
-    def list(self,
-    *,
-    zone_id: str,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[WaitingRoom]:
+    def list(
+        self,
+        *,
+        zone_id: str,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[WaitingRoom]:
         """
         Lists waiting rooms.
 
@@ -796,29 +860,38 @@ class WaitingRoomsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms",
-            page = SyncV4PagePaginationArray[WaitingRoom],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "page": page,
-                "per_page": per_page,
-            }, waiting_room_list_params.WaitingRoomListParams)),
+            page=SyncV4PagePaginationArray[WaitingRoom],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    waiting_room_list_params.WaitingRoomListParams,
+                ),
+            ),
             model=WaitingRoom,
         )
 
-    def delete(self,
-    waiting_room_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> WaitingRoomDeleteResponse:
+    def delete(
+        self,
+        waiting_room_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WaitingRoomDeleteResponse:
         """
         Deletes a waiting room.
 
@@ -834,48 +907,71 @@ class WaitingRoomsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._delete(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[WaitingRoomDeleteResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WaitingRoomDeleteResponse]._unwrapper,
+            ),
             cast_to=cast(Type[WaitingRoomDeleteResponse], ResultWrapper[WaitingRoomDeleteResponse]),
         )
 
-    def edit(self,
-    waiting_room_id: str,
-    *,
-    zone_id: str,
-    host: str,
-    name: str,
-    new_users_per_minute: int,
-    total_active_users: int,
-    additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
-    cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
-    cookie_suffix: str | NotGiven = NOT_GIVEN,
-    custom_page_html: str | NotGiven = NOT_GIVEN,
-    default_template_language: Literal["en-US", "es-ES", "de-DE", "fr-FR", "it-IT", "ja-JP", "ko-KR", "pt-BR", "zh-CN", "zh-TW", "nl-NL", "pl-PL", "id-ID", "tr-TR", "ar-EG", "ru-RU", "fa-IR"] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_session_renewal: bool | NotGiven = NOT_GIVEN,
-    enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
-    json_response_enabled: bool | NotGiven = NOT_GIVEN,
-    path: str | NotGiven = NOT_GIVEN,
-    queue_all: bool | NotGiven = NOT_GIVEN,
-    queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
-    queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
-    session_duration: int | NotGiven = NOT_GIVEN,
-    suspended: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> WaitingRoom:
+    def edit(
+        self,
+        waiting_room_id: str,
+        *,
+        zone_id: str,
+        host: str,
+        name: str,
+        new_users_per_minute: int,
+        total_active_users: int,
+        additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
+        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
+        cookie_suffix: str | NotGiven = NOT_GIVEN,
+        custom_page_html: str | NotGiven = NOT_GIVEN,
+        default_template_language: Literal[
+            "en-US",
+            "es-ES",
+            "de-DE",
+            "fr-FR",
+            "it-IT",
+            "ja-JP",
+            "ko-KR",
+            "pt-BR",
+            "zh-CN",
+            "zh-TW",
+            "nl-NL",
+            "pl-PL",
+            "id-ID",
+            "tr-TR",
+            "ar-EG",
+            "ru-RU",
+            "fa-IR",
+        ]
+        | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_session_renewal: bool | NotGiven = NOT_GIVEN,
+        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
+        json_response_enabled: bool | NotGiven = NOT_GIVEN,
+        path: str | NotGiven = NOT_GIVEN,
+        queue_all: bool | NotGiven = NOT_GIVEN,
+        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
+        queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
+        session_duration: int | NotGiven = NOT_GIVEN,
+        suspended: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WaitingRoom:
         """
         Patches a configured waiting room.
 
@@ -1149,50 +1245,57 @@ class WaitingRoomsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._patch(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
-            body=maybe_transform({
-                "host": host,
-                "name": name,
-                "new_users_per_minute": new_users_per_minute,
-                "total_active_users": total_active_users,
-                "additional_routes": additional_routes,
-                "cookie_attributes": cookie_attributes,
-                "cookie_suffix": cookie_suffix,
-                "custom_page_html": custom_page_html,
-                "default_template_language": default_template_language,
-                "description": description,
-                "disable_session_renewal": disable_session_renewal,
-                "enabled_origin_commands": enabled_origin_commands,
-                "json_response_enabled": json_response_enabled,
-                "path": path,
-                "queue_all": queue_all,
-                "queueing_method": queueing_method,
-                "queueing_status_code": queueing_status_code,
-                "session_duration": session_duration,
-                "suspended": suspended,
-            }, waiting_room_edit_params.WaitingRoomEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[WaitingRoom]._unwrapper),
+            body=maybe_transform(
+                {
+                    "host": host,
+                    "name": name,
+                    "new_users_per_minute": new_users_per_minute,
+                    "total_active_users": total_active_users,
+                    "additional_routes": additional_routes,
+                    "cookie_attributes": cookie_attributes,
+                    "cookie_suffix": cookie_suffix,
+                    "custom_page_html": custom_page_html,
+                    "default_template_language": default_template_language,
+                    "description": description,
+                    "disable_session_renewal": disable_session_renewal,
+                    "enabled_origin_commands": enabled_origin_commands,
+                    "json_response_enabled": json_response_enabled,
+                    "path": path,
+                    "queue_all": queue_all,
+                    "queueing_method": queueing_method,
+                    "queueing_status_code": queueing_status_code,
+                    "session_duration": session_duration,
+                    "suspended": suspended,
+                },
+                waiting_room_edit_params.WaitingRoomEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
+            ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
-    def get(self,
-    waiting_room_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> WaitingRoom:
+    def get(
+        self,
+        waiting_room_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WaitingRoom:
         """
         Fetches a single configured waiting room.
 
@@ -1208,18 +1311,21 @@ class WaitingRoomsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[WaitingRoom]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
+            ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
+
 
 class AsyncWaitingRoomsResource(AsyncAPIResource):
     @cached_property
@@ -1250,34 +1356,55 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncWaitingRoomsResourceWithStreamingResponse:
         return AsyncWaitingRoomsResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    zone_id: str,
-    host: str,
-    name: str,
-    new_users_per_minute: int,
-    total_active_users: int,
-    additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
-    cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
-    cookie_suffix: str | NotGiven = NOT_GIVEN,
-    custom_page_html: str | NotGiven = NOT_GIVEN,
-    default_template_language: Literal["en-US", "es-ES", "de-DE", "fr-FR", "it-IT", "ja-JP", "ko-KR", "pt-BR", "zh-CN", "zh-TW", "nl-NL", "pl-PL", "id-ID", "tr-TR", "ar-EG", "ru-RU", "fa-IR"] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_session_renewal: bool | NotGiven = NOT_GIVEN,
-    enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
-    json_response_enabled: bool | NotGiven = NOT_GIVEN,
-    path: str | NotGiven = NOT_GIVEN,
-    queue_all: bool | NotGiven = NOT_GIVEN,
-    queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
-    queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
-    session_duration: int | NotGiven = NOT_GIVEN,
-    suspended: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> WaitingRoom:
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        host: str,
+        name: str,
+        new_users_per_minute: int,
+        total_active_users: int,
+        additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
+        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
+        cookie_suffix: str | NotGiven = NOT_GIVEN,
+        custom_page_html: str | NotGiven = NOT_GIVEN,
+        default_template_language: Literal[
+            "en-US",
+            "es-ES",
+            "de-DE",
+            "fr-FR",
+            "it-IT",
+            "ja-JP",
+            "ko-KR",
+            "pt-BR",
+            "zh-CN",
+            "zh-TW",
+            "nl-NL",
+            "pl-PL",
+            "id-ID",
+            "tr-TR",
+            "ar-EG",
+            "ru-RU",
+            "fa-IR",
+        ]
+        | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_session_renewal: bool | NotGiven = NOT_GIVEN,
+        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
+        json_response_enabled: bool | NotGiven = NOT_GIVEN,
+        path: str | NotGiven = NOT_GIVEN,
+        queue_all: bool | NotGiven = NOT_GIVEN,
+        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
+        queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
+        session_duration: int | NotGiven = NOT_GIVEN,
+        suspended: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WaitingRoom:
         """
         Creates a new waiting room.
 
@@ -1551,65 +1678,93 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/waiting_rooms",
-            body=await async_maybe_transform({
-                "host": host,
-                "name": name,
-                "new_users_per_minute": new_users_per_minute,
-                "total_active_users": total_active_users,
-                "additional_routes": additional_routes,
-                "cookie_attributes": cookie_attributes,
-                "cookie_suffix": cookie_suffix,
-                "custom_page_html": custom_page_html,
-                "default_template_language": default_template_language,
-                "description": description,
-                "disable_session_renewal": disable_session_renewal,
-                "enabled_origin_commands": enabled_origin_commands,
-                "json_response_enabled": json_response_enabled,
-                "path": path,
-                "queue_all": queue_all,
-                "queueing_method": queueing_method,
-                "queueing_status_code": queueing_status_code,
-                "session_duration": session_duration,
-                "suspended": suspended,
-            }, waiting_room_create_params.WaitingRoomCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[WaitingRoom]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "host": host,
+                    "name": name,
+                    "new_users_per_minute": new_users_per_minute,
+                    "total_active_users": total_active_users,
+                    "additional_routes": additional_routes,
+                    "cookie_attributes": cookie_attributes,
+                    "cookie_suffix": cookie_suffix,
+                    "custom_page_html": custom_page_html,
+                    "default_template_language": default_template_language,
+                    "description": description,
+                    "disable_session_renewal": disable_session_renewal,
+                    "enabled_origin_commands": enabled_origin_commands,
+                    "json_response_enabled": json_response_enabled,
+                    "path": path,
+                    "queue_all": queue_all,
+                    "queueing_method": queueing_method,
+                    "queueing_status_code": queueing_status_code,
+                    "session_duration": session_duration,
+                    "suspended": suspended,
+                },
+                waiting_room_create_params.WaitingRoomCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
+            ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
-    async def update(self,
-    waiting_room_id: str,
-    *,
-    zone_id: str,
-    host: str,
-    name: str,
-    new_users_per_minute: int,
-    total_active_users: int,
-    additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
-    cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
-    cookie_suffix: str | NotGiven = NOT_GIVEN,
-    custom_page_html: str | NotGiven = NOT_GIVEN,
-    default_template_language: Literal["en-US", "es-ES", "de-DE", "fr-FR", "it-IT", "ja-JP", "ko-KR", "pt-BR", "zh-CN", "zh-TW", "nl-NL", "pl-PL", "id-ID", "tr-TR", "ar-EG", "ru-RU", "fa-IR"] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_session_renewal: bool | NotGiven = NOT_GIVEN,
-    enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
-    json_response_enabled: bool | NotGiven = NOT_GIVEN,
-    path: str | NotGiven = NOT_GIVEN,
-    queue_all: bool | NotGiven = NOT_GIVEN,
-    queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
-    queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
-    session_duration: int | NotGiven = NOT_GIVEN,
-    suspended: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> WaitingRoom:
+    async def update(
+        self,
+        waiting_room_id: str,
+        *,
+        zone_id: str,
+        host: str,
+        name: str,
+        new_users_per_minute: int,
+        total_active_users: int,
+        additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
+        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
+        cookie_suffix: str | NotGiven = NOT_GIVEN,
+        custom_page_html: str | NotGiven = NOT_GIVEN,
+        default_template_language: Literal[
+            "en-US",
+            "es-ES",
+            "de-DE",
+            "fr-FR",
+            "it-IT",
+            "ja-JP",
+            "ko-KR",
+            "pt-BR",
+            "zh-CN",
+            "zh-TW",
+            "nl-NL",
+            "pl-PL",
+            "id-ID",
+            "tr-TR",
+            "ar-EG",
+            "ru-RU",
+            "fa-IR",
+        ]
+        | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_session_renewal: bool | NotGiven = NOT_GIVEN,
+        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
+        json_response_enabled: bool | NotGiven = NOT_GIVEN,
+        path: str | NotGiven = NOT_GIVEN,
+        queue_all: bool | NotGiven = NOT_GIVEN,
+        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
+        queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
+        session_duration: int | NotGiven = NOT_GIVEN,
+        suspended: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WaitingRoom:
         """
         Updates a configured waiting room.
 
@@ -1883,51 +2038,58 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._put(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
-            body=await async_maybe_transform({
-                "host": host,
-                "name": name,
-                "new_users_per_minute": new_users_per_minute,
-                "total_active_users": total_active_users,
-                "additional_routes": additional_routes,
-                "cookie_attributes": cookie_attributes,
-                "cookie_suffix": cookie_suffix,
-                "custom_page_html": custom_page_html,
-                "default_template_language": default_template_language,
-                "description": description,
-                "disable_session_renewal": disable_session_renewal,
-                "enabled_origin_commands": enabled_origin_commands,
-                "json_response_enabled": json_response_enabled,
-                "path": path,
-                "queue_all": queue_all,
-                "queueing_method": queueing_method,
-                "queueing_status_code": queueing_status_code,
-                "session_duration": session_duration,
-                "suspended": suspended,
-            }, waiting_room_update_params.WaitingRoomUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[WaitingRoom]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "host": host,
+                    "name": name,
+                    "new_users_per_minute": new_users_per_minute,
+                    "total_active_users": total_active_users,
+                    "additional_routes": additional_routes,
+                    "cookie_attributes": cookie_attributes,
+                    "cookie_suffix": cookie_suffix,
+                    "custom_page_html": custom_page_html,
+                    "default_template_language": default_template_language,
+                    "description": description,
+                    "disable_session_renewal": disable_session_renewal,
+                    "enabled_origin_commands": enabled_origin_commands,
+                    "json_response_enabled": json_response_enabled,
+                    "path": path,
+                    "queue_all": queue_all,
+                    "queueing_method": queueing_method,
+                    "queueing_status_code": queueing_status_code,
+                    "session_duration": session_duration,
+                    "suspended": suspended,
+                },
+                waiting_room_update_params.WaitingRoomUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
+            ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
-    def list(self,
-    *,
-    zone_id: str,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[WaitingRoom, AsyncV4PagePaginationArray[WaitingRoom]]:
+    def list(
+        self,
+        *,
+        zone_id: str,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[WaitingRoom, AsyncV4PagePaginationArray[WaitingRoom]]:
         """
         Lists waiting rooms.
 
@@ -1947,29 +2109,38 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms",
-            page = AsyncV4PagePaginationArray[WaitingRoom],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "page": page,
-                "per_page": per_page,
-            }, waiting_room_list_params.WaitingRoomListParams)),
+            page=AsyncV4PagePaginationArray[WaitingRoom],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    waiting_room_list_params.WaitingRoomListParams,
+                ),
+            ),
             model=WaitingRoom,
         )
 
-    async def delete(self,
-    waiting_room_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> WaitingRoomDeleteResponse:
+    async def delete(
+        self,
+        waiting_room_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WaitingRoomDeleteResponse:
         """
         Deletes a waiting room.
 
@@ -1985,48 +2156,71 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[WaitingRoomDeleteResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WaitingRoomDeleteResponse]._unwrapper,
+            ),
             cast_to=cast(Type[WaitingRoomDeleteResponse], ResultWrapper[WaitingRoomDeleteResponse]),
         )
 
-    async def edit(self,
-    waiting_room_id: str,
-    *,
-    zone_id: str,
-    host: str,
-    name: str,
-    new_users_per_minute: int,
-    total_active_users: int,
-    additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
-    cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
-    cookie_suffix: str | NotGiven = NOT_GIVEN,
-    custom_page_html: str | NotGiven = NOT_GIVEN,
-    default_template_language: Literal["en-US", "es-ES", "de-DE", "fr-FR", "it-IT", "ja-JP", "ko-KR", "pt-BR", "zh-CN", "zh-TW", "nl-NL", "pl-PL", "id-ID", "tr-TR", "ar-EG", "ru-RU", "fa-IR"] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_session_renewal: bool | NotGiven = NOT_GIVEN,
-    enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
-    json_response_enabled: bool | NotGiven = NOT_GIVEN,
-    path: str | NotGiven = NOT_GIVEN,
-    queue_all: bool | NotGiven = NOT_GIVEN,
-    queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
-    queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
-    session_duration: int | NotGiven = NOT_GIVEN,
-    suspended: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> WaitingRoom:
+    async def edit(
+        self,
+        waiting_room_id: str,
+        *,
+        zone_id: str,
+        host: str,
+        name: str,
+        new_users_per_minute: int,
+        total_active_users: int,
+        additional_routes: Iterable[AdditionalRoutesParam] | NotGiven = NOT_GIVEN,
+        cookie_attributes: CookieAttributesParam | NotGiven = NOT_GIVEN,
+        cookie_suffix: str | NotGiven = NOT_GIVEN,
+        custom_page_html: str | NotGiven = NOT_GIVEN,
+        default_template_language: Literal[
+            "en-US",
+            "es-ES",
+            "de-DE",
+            "fr-FR",
+            "it-IT",
+            "ja-JP",
+            "ko-KR",
+            "pt-BR",
+            "zh-CN",
+            "zh-TW",
+            "nl-NL",
+            "pl-PL",
+            "id-ID",
+            "tr-TR",
+            "ar-EG",
+            "ru-RU",
+            "fa-IR",
+        ]
+        | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_session_renewal: bool | NotGiven = NOT_GIVEN,
+        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
+        json_response_enabled: bool | NotGiven = NOT_GIVEN,
+        path: str | NotGiven = NOT_GIVEN,
+        queue_all: bool | NotGiven = NOT_GIVEN,
+        queueing_method: Literal["fifo", "random", "passthrough", "reject"] | NotGiven = NOT_GIVEN,
+        queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
+        session_duration: int | NotGiven = NOT_GIVEN,
+        suspended: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WaitingRoom:
         """
         Patches a configured waiting room.
 
@@ -2300,50 +2494,57 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
-            body=await async_maybe_transform({
-                "host": host,
-                "name": name,
-                "new_users_per_minute": new_users_per_minute,
-                "total_active_users": total_active_users,
-                "additional_routes": additional_routes,
-                "cookie_attributes": cookie_attributes,
-                "cookie_suffix": cookie_suffix,
-                "custom_page_html": custom_page_html,
-                "default_template_language": default_template_language,
-                "description": description,
-                "disable_session_renewal": disable_session_renewal,
-                "enabled_origin_commands": enabled_origin_commands,
-                "json_response_enabled": json_response_enabled,
-                "path": path,
-                "queue_all": queue_all,
-                "queueing_method": queueing_method,
-                "queueing_status_code": queueing_status_code,
-                "session_duration": session_duration,
-                "suspended": suspended,
-            }, waiting_room_edit_params.WaitingRoomEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[WaitingRoom]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "host": host,
+                    "name": name,
+                    "new_users_per_minute": new_users_per_minute,
+                    "total_active_users": total_active_users,
+                    "additional_routes": additional_routes,
+                    "cookie_attributes": cookie_attributes,
+                    "cookie_suffix": cookie_suffix,
+                    "custom_page_html": custom_page_html,
+                    "default_template_language": default_template_language,
+                    "description": description,
+                    "disable_session_renewal": disable_session_renewal,
+                    "enabled_origin_commands": enabled_origin_commands,
+                    "json_response_enabled": json_response_enabled,
+                    "path": path,
+                    "queue_all": queue_all,
+                    "queueing_method": queueing_method,
+                    "queueing_status_code": queueing_status_code,
+                    "session_duration": session_duration,
+                    "suspended": suspended,
+                },
+                waiting_room_edit_params.WaitingRoomEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
+            ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
-    async def get(self,
-    waiting_room_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> WaitingRoom:
+    async def get(
+        self,
+        waiting_room_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> WaitingRoom:
         """
         Fetches a single configured waiting room.
 
@@ -2359,18 +2560,21 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._get(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[WaitingRoom]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WaitingRoom]._unwrapper,
+            ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
+
 
 class WaitingRoomsResourceWithRawResponse:
     def __init__(self, waiting_rooms: WaitingRoomsResource) -> None:
@@ -2415,6 +2619,7 @@ class WaitingRoomsResourceWithRawResponse:
     def settings(self) -> SettingsResourceWithRawResponse:
         return SettingsResourceWithRawResponse(self._waiting_rooms.settings)
 
+
 class AsyncWaitingRoomsResourceWithRawResponse:
     def __init__(self, waiting_rooms: AsyncWaitingRoomsResource) -> None:
         self._waiting_rooms = waiting_rooms
@@ -2458,6 +2663,7 @@ class AsyncWaitingRoomsResourceWithRawResponse:
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
         return AsyncSettingsResourceWithRawResponse(self._waiting_rooms.settings)
 
+
 class WaitingRoomsResourceWithStreamingResponse:
     def __init__(self, waiting_rooms: WaitingRoomsResource) -> None:
         self._waiting_rooms = waiting_rooms
@@ -2500,6 +2706,7 @@ class WaitingRoomsResourceWithStreamingResponse:
     @cached_property
     def settings(self) -> SettingsResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self._waiting_rooms.settings)
+
 
 class AsyncWaitingRoomsResourceWithStreamingResponse:
     def __init__(self, waiting_rooms: AsyncWaitingRoomsResource) -> None:

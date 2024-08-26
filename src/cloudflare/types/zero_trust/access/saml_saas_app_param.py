@@ -4,13 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
+from .saas_app_name_format import SaaSAppNameFormat
+from .saas_app_source_param import SaaSAppSourceParam
 from .saas_app_name_id_format import SaaSAppNameIDFormat
 
-from .saas_app_name_format import SaaSAppNameFormat
-
-from .saas_app_source_param import SaaSAppSourceParam
-
 __all__ = ["SAMLSaaSAppParam", "CustomAttributes"]
+
 
 class CustomAttributes(TypedDict, total=False):
     friendly_name: str
@@ -26,6 +25,7 @@ class CustomAttributes(TypedDict, total=False):
     """If the attribute is required when building a SAML assertion."""
 
     source: SaaSAppSourceParam
+
 
 class SAMLSaaSAppParam(TypedDict, total=False):
     auth_type: Literal["saml", "oidc"]

@@ -2,51 +2,49 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .order import OrderResource, AsyncOrderResource
-
+from .order import (
+    OrderResource,
+    AsyncOrderResource,
+    OrderResourceWithRawResponse,
+    AsyncOrderResourceWithRawResponse,
+    OrderResourceWithStreamingResponse,
+    AsyncOrderResourceWithStreamingResponse,
+)
+from .quota import (
+    QuotaResource,
+    AsyncQuotaResource,
+    QuotaResourceWithRawResponse,
+    AsyncQuotaResourceWithRawResponse,
+    QuotaResourceWithStreamingResponse,
+    AsyncQuotaResourceWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from .quota import QuotaResource, AsyncQuotaResource
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ....types.ssl import certificate_pack_edit_params, certificate_pack_list_params
 from ....pagination import SyncSinglePage, AsyncSinglePage
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from typing_extensions import Literal
-
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.ssl.certificate_pack_edit_response import CertificatePackEditResponse
 from ....types.ssl.certificate_pack_delete_response import CertificatePackDeleteResponse
 
-from ...._wrappers import ResultWrapper
-
-from typing import Optional, Type
-
-from ....types.ssl.certificate_pack_edit_response import CertificatePackEditResponse
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.ssl import certificate_pack_list_params
-from ....types.ssl import certificate_pack_edit_params
-from .order import OrderResource, AsyncOrderResource, OrderResourceWithRawResponse, AsyncOrderResourceWithRawResponse, OrderResourceWithStreamingResponse, AsyncOrderResourceWithStreamingResponse
-from .quota import QuotaResource, AsyncQuotaResource, QuotaResourceWithRawResponse, AsyncQuotaResourceWithRawResponse, QuotaResourceWithStreamingResponse, AsyncQuotaResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["CertificatePacksResource", "AsyncCertificatePacksResource"]
+
 
 class CertificatePacksResource(SyncAPIResource):
     @cached_property
@@ -65,16 +63,18 @@ class CertificatePacksResource(SyncAPIResource):
     def with_streaming_response(self) -> CertificatePacksResourceWithStreamingResponse:
         return CertificatePacksResourceWithStreamingResponse(self)
 
-    def list(self,
-    *,
-    zone_id: str,
-    status: Literal["all"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[object]:
+    def list(
+        self,
+        *,
+        zone_id: str,
+        status: Literal["all"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[object]:
         """
         For a given zone, list all active certificate packs.
 
@@ -92,28 +92,32 @@ class CertificatePacksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/ssl/certificate_packs",
-            page = SyncSinglePage[object],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "status": status
-            }, certificate_pack_list_params.CertificatePackListParams)),
+            page=SyncSinglePage[object],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"status": status}, certificate_pack_list_params.CertificatePackListParams),
+            ),
             model=object,
         )
 
-    def delete(self,
-    certificate_pack_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CertificatePackDeleteResponse]:
+    def delete(
+        self,
+        certificate_pack_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificatePackDeleteResponse]:
         """
         For a given zone, delete an advanced certificate pack.
 
@@ -131,30 +135,36 @@ class CertificatePacksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_pack_id:
-          raise ValueError(
-            f'Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
+            )
         return self._delete(
             f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CertificatePackDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificatePackDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CertificatePackDeleteResponse]], ResultWrapper[CertificatePackDeleteResponse]),
         )
 
-    def edit(self,
-    certificate_pack_id: str,
-    *,
-    zone_id: str,
-    body: object,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CertificatePackEditResponse]:
+    def edit(
+        self,
+        certificate_pack_id: str,
+        *,
+        zone_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificatePackEditResponse]:
         """For a given zone, restart validation for an advanced certificate pack.
 
         This is
@@ -175,30 +185,36 @@ class CertificatePacksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_pack_id:
-          raise ValueError(
-            f'Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
+            )
         return self._patch(
             f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
             body=maybe_transform(body, certificate_pack_edit_params.CertificatePackEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CertificatePackEditResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificatePackEditResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CertificatePackEditResponse]], ResultWrapper[CertificatePackEditResponse]),
         )
 
-    def get(self,
-    certificate_pack_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    def get(
+        self,
+        certificate_pack_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         For a given zone, get a certificate pack.
 
@@ -216,18 +232,23 @@ class CertificatePacksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_pack_id:
-          raise ValueError(
-            f'Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
+            )
         return self._get(
             f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
+
 
 class AsyncCertificatePacksResource(AsyncAPIResource):
     @cached_property
@@ -246,16 +267,18 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncCertificatePacksResourceWithStreamingResponse:
         return AsyncCertificatePacksResourceWithStreamingResponse(self)
 
-    def list(self,
-    *,
-    zone_id: str,
-    status: Literal["all"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[object, AsyncSinglePage[object]]:
+    def list(
+        self,
+        *,
+        zone_id: str,
+        status: Literal["all"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
         """
         For a given zone, list all active certificate packs.
 
@@ -273,28 +296,32 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/ssl/certificate_packs",
-            page = AsyncSinglePage[object],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "status": status
-            }, certificate_pack_list_params.CertificatePackListParams)),
+            page=AsyncSinglePage[object],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"status": status}, certificate_pack_list_params.CertificatePackListParams),
+            ),
             model=object,
         )
 
-    async def delete(self,
-    certificate_pack_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CertificatePackDeleteResponse]:
+    async def delete(
+        self,
+        certificate_pack_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificatePackDeleteResponse]:
         """
         For a given zone, delete an advanced certificate pack.
 
@@ -312,30 +339,36 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_pack_id:
-          raise ValueError(
-            f'Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
+            )
         return await self._delete(
             f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CertificatePackDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificatePackDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CertificatePackDeleteResponse]], ResultWrapper[CertificatePackDeleteResponse]),
         )
 
-    async def edit(self,
-    certificate_pack_id: str,
-    *,
-    zone_id: str,
-    body: object,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CertificatePackEditResponse]:
+    async def edit(
+        self,
+        certificate_pack_id: str,
+        *,
+        zone_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificatePackEditResponse]:
         """For a given zone, restart validation for an advanced certificate pack.
 
         This is
@@ -356,30 +389,36 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_pack_id:
-          raise ValueError(
-            f'Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
+            )
         return await self._patch(
             f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
             body=await async_maybe_transform(body, certificate_pack_edit_params.CertificatePackEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CertificatePackEditResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificatePackEditResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CertificatePackEditResponse]], ResultWrapper[CertificatePackEditResponse]),
         )
 
-    async def get(self,
-    certificate_pack_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    async def get(
+        self,
+        certificate_pack_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         For a given zone, get a certificate pack.
 
@@ -397,18 +436,23 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not certificate_pack_id:
-          raise ValueError(
-            f'Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
+            )
         return await self._get(
             f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
+
 
 class CertificatePacksResourceWithRawResponse:
     def __init__(self, certificate_packs: CertificatePacksResource) -> None:
@@ -435,6 +479,7 @@ class CertificatePacksResourceWithRawResponse:
     def quota(self) -> QuotaResourceWithRawResponse:
         return QuotaResourceWithRawResponse(self._certificate_packs.quota)
 
+
 class AsyncCertificatePacksResourceWithRawResponse:
     def __init__(self, certificate_packs: AsyncCertificatePacksResource) -> None:
         self._certificate_packs = certificate_packs
@@ -460,6 +505,7 @@ class AsyncCertificatePacksResourceWithRawResponse:
     def quota(self) -> AsyncQuotaResourceWithRawResponse:
         return AsyncQuotaResourceWithRawResponse(self._certificate_packs.quota)
 
+
 class CertificatePacksResourceWithStreamingResponse:
     def __init__(self, certificate_packs: CertificatePacksResource) -> None:
         self._certificate_packs = certificate_packs
@@ -484,6 +530,7 @@ class CertificatePacksResourceWithStreamingResponse:
     @cached_property
     def quota(self) -> QuotaResourceWithStreamingResponse:
         return QuotaResourceWithStreamingResponse(self._certificate_packs.quota)
+
 
 class AsyncCertificatePacksResourceWithStreamingResponse:
     def __init__(self, certificate_packs: AsyncCertificatePacksResource) -> None:

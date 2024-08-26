@@ -2,53 +2,27 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from typing import Optional, Any, cast
-
-from cloudflare.types.zero_trust.access import ApplicationCreateResponse, ApplicationUpdateResponse, ApplicationListResponse, ApplicationDeleteResponse, ApplicationGetResponse
-
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.access import application_create_params
-from cloudflare.types.zero_trust.access import application_update_params
-from cloudflare.types.zero_trust.access import CORSHeaders
-from cloudflare.types.zero_trust.access import CORSHeaders
-from cloudflare.types.zero_trust.access import CORSHeaders
-from cloudflare.types.zero_trust.access import ApplicationType
-from cloudflare.types.zero_trust.access import ApplicationType
-from cloudflare.types.zero_trust.access import ApplicationType
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import CORSHeaders
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import CORSHeaders
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import CORSHeaders
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import ApplicationType
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import ApplicationType
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import ApplicationType
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import AppID
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.zero_trust.access import (
+    ApplicationGetResponse,
+    ApplicationListResponse,
+    ApplicationCreateResponse,
+    ApplicationDeleteResponse,
+    ApplicationUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-class TestApplications:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
 
+class TestApplications:
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -58,7 +32,7 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -68,7 +42,11 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -84,23 +62,31 @@ class TestApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -112,37 +98,41 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -150,12 +140,11 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
             type="self_hosted",
@@ -163,9 +152,9 @@ class TestApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -174,12 +163,12 @@ class TestApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -187,18 +176,18 @@ class TestApplications:
     @parametrize
     def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              domain="test.example.com/admin",
-              type="self_hosted",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              domain="test.example.com/admin",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -206,29 +195,41 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -264,67 +265,70 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             tags=["engineers", "engineers", "engineers"],
             type="saas",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.create(
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -332,14 +336,14 @@ class TestApplications:
     @parametrize
     def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -349,7 +353,7 @@ class TestApplications:
             type="ssh",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -359,7 +363,11 @@ class TestApplications:
             type="ssh",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -375,23 +383,31 @@ class TestApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -403,37 +419,41 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -441,12 +461,11 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_3(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
             type="ssh",
@@ -454,9 +473,9 @@ class TestApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -465,12 +484,12 @@ class TestApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -478,18 +497,18 @@ class TestApplications:
     @parametrize
     def test_path_params_create_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              domain="test.example.com/admin",
-              type="ssh",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              domain="test.example.com/admin",
-              type="ssh",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -499,7 +518,7 @@ class TestApplications:
             type="vnc",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -509,7 +528,11 @@ class TestApplications:
             type="vnc",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -525,23 +548,31 @@ class TestApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -553,37 +584,41 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -591,12 +626,11 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_4(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
             type="vnc",
@@ -604,9 +638,9 @@ class TestApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -615,12 +649,12 @@ class TestApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -628,18 +662,18 @@ class TestApplications:
     @parametrize
     def test_path_params_create_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              domain="test.example.com/admin",
-              type="vnc",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              domain="test.example.com/admin",
-              type="vnc",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -648,7 +682,7 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -656,14 +690,20 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
-            footer_links=[{
-                "name": "Cloudflare's Privacy Policy",
-                "url": "https://www.cloudflare.com/privacypolicy/",
-            }],
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
             header_bg_color="#ff0000",
             landing_page_design={
                 "button_color": "#ff0000",
@@ -672,16 +712,20 @@ class TestApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "idp_uid": "idp_uid",
                 "remote_uri": "remote_uri",
@@ -692,56 +736,59 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_5(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.create(
             type="self_hosted",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -749,12 +796,12 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.create(
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -762,16 +809,16 @@ class TestApplications:
     @parametrize
     def test_path_params_create_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              type="self_hosted",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              type="self_hosted",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -780,7 +827,7 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -788,14 +835,20 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
-            footer_links=[{
-                "name": "Cloudflare's Privacy Policy",
-                "url": "https://www.cloudflare.com/privacypolicy/",
-            }],
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
             header_bg_color="#ff0000",
             landing_page_design={
                 "button_color": "#ff0000",
@@ -804,16 +857,20 @@ class TestApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "idp_uid": "idp_uid",
                 "remote_uri": "remote_uri",
@@ -824,56 +881,59 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_6(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.create(
             type="self_hosted",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -881,12 +941,12 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.create(
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -894,16 +954,16 @@ class TestApplications:
     @parametrize
     def test_path_params_create_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              type="self_hosted",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              type="self_hosted",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -912,7 +972,7 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -920,14 +980,20 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
-            footer_links=[{
-                "name": "Cloudflare's Privacy Policy",
-                "url": "https://www.cloudflare.com/privacypolicy/",
-            }],
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
             header_bg_color="#ff0000",
             landing_page_design={
                 "button_color": "#ff0000",
@@ -936,16 +1002,20 @@ class TestApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "idp_uid": "idp_uid",
                 "remote_uri": "remote_uri",
@@ -956,56 +1026,59 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_7(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.create(
             type="self_hosted",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1013,12 +1086,12 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.create(
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1026,16 +1099,16 @@ class TestApplications:
     @parametrize
     def test_path_params_create_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              type="self_hosted",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              type="self_hosted",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1043,7 +1116,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1064,67 +1137,70 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_8(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.create(
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_create_overload_8(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1132,14 +1208,14 @@ class TestApplications:
     @parametrize
     def test_path_params_create_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.create(
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.create(
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1150,7 +1226,7 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1161,7 +1237,11 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -1177,23 +1257,31 @@ class TestApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -1205,37 +1293,41 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -1243,12 +1335,11 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
@@ -1257,9 +1348,9 @@ class TestApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1269,12 +1360,12 @@ class TestApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1282,28 +1373,28 @@ class TestApplications:
     @parametrize
     def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              domain="test.example.com/admin",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              domain="test.example.com/admin",
-              type="self_hosted",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              domain="test.example.com/admin",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1312,7 +1403,7 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1320,22 +1411,34 @@ class TestApplications:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -1371,56 +1474,59 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             tags=["engineers", "engineers", "engineers"],
             type="saas",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1428,12 +1534,12 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1441,22 +1547,22 @@ class TestApplications:
     @parametrize
     def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1467,7 +1573,7 @@ class TestApplications:
             type="ssh",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1478,7 +1584,11 @@ class TestApplications:
             type="ssh",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -1494,23 +1604,31 @@ class TestApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -1522,37 +1640,41 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -1560,12 +1682,11 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_3(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
@@ -1574,9 +1695,9 @@ class TestApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1586,12 +1707,12 @@ class TestApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1599,28 +1720,28 @@ class TestApplications:
     @parametrize
     def test_path_params_update_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              domain="test.example.com/admin",
-              type="ssh",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              domain="test.example.com/admin",
-              type="ssh",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              domain="test.example.com/admin",
-              type="ssh",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1631,7 +1752,7 @@ class TestApplications:
             type="vnc",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1642,7 +1763,11 @@ class TestApplications:
             type="vnc",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -1658,23 +1783,31 @@ class TestApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -1686,37 +1819,41 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -1724,12 +1861,11 @@ class TestApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_4(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
@@ -1738,9 +1874,9 @@ class TestApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1750,12 +1886,12 @@ class TestApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1763,28 +1899,28 @@ class TestApplications:
     @parametrize
     def test_path_params_update_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              domain="test.example.com/admin",
-              type="vnc",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              domain="test.example.com/admin",
-              type="vnc",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              domain="test.example.com/admin",
-              type="vnc",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1794,7 +1930,7 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1803,14 +1939,20 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
-            footer_links=[{
-                "name": "Cloudflare's Privacy Policy",
-                "url": "https://www.cloudflare.com/privacypolicy/",
-            }],
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
             header_bg_color="#ff0000",
             landing_page_design={
                 "button_color": "#ff0000",
@@ -1819,16 +1961,20 @@ class TestApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "idp_uid": "idp_uid",
                 "remote_uri": "remote_uri",
@@ -1839,47 +1985,50 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_5(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
@@ -1887,9 +2036,9 @@ class TestApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1898,12 +2047,12 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1911,25 +2060,25 @@ class TestApplications:
     @parametrize
     def test_path_params_update_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              type="self_hosted",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1939,7 +2088,7 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1948,14 +2097,20 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
-            footer_links=[{
-                "name": "Cloudflare's Privacy Policy",
-                "url": "https://www.cloudflare.com/privacypolicy/",
-            }],
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
             header_bg_color="#ff0000",
             landing_page_design={
                 "button_color": "#ff0000",
@@ -1964,16 +2119,20 @@ class TestApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "idp_uid": "idp_uid",
                 "remote_uri": "remote_uri",
@@ -1984,47 +2143,50 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_6(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
@@ -2032,9 +2194,9 @@ class TestApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2043,12 +2205,12 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2056,25 +2218,25 @@ class TestApplications:
     @parametrize
     def test_path_params_update_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              type="self_hosted",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2084,7 +2246,7 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2093,14 +2255,20 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
-            footer_links=[{
-                "name": "Cloudflare's Privacy Policy",
-                "url": "https://www.cloudflare.com/privacypolicy/",
-            }],
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
             header_bg_color="#ff0000",
             landing_page_design={
                 "button_color": "#ff0000",
@@ -2109,16 +2277,20 @@ class TestApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "idp_uid": "idp_uid",
                 "remote_uri": "remote_uri",
@@ -2129,47 +2301,50 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_7(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
@@ -2177,9 +2352,9 @@ class TestApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2188,12 +2363,12 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2201,25 +2376,25 @@ class TestApplications:
     @parametrize
     def test_path_params_update_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              type="self_hosted",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2228,7 +2403,7 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2250,56 +2425,59 @@ class TestApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_8(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2307,12 +2485,12 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2320,22 +2498,22 @@ class TestApplications:
     @parametrize
     def test_path_params_update_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2343,7 +2521,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=['response'])
+        assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2351,32 +2529,31 @@ class TestApplications:
         application = client.zero_trust.access.applications.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=['response'])
+        assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.list(
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=['response'])
+        assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.list(
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=['response'])
+            assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2384,14 +2561,14 @@ class TestApplications:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.list(
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.list(
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.list(
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.list(
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2400,7 +2577,7 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2409,21 +2586,20 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.delete(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2431,12 +2607,12 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.delete(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationDeleteResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2444,22 +2620,22 @@ class TestApplications:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.delete(
-              app_id="",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.delete(
+                app_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.delete(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.delete(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.delete(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.delete(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2468,7 +2644,7 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationGetResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationGetResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2477,21 +2653,20 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationGetResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationGetResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.get(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(Optional[ApplicationGetResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationGetResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2499,12 +2674,12 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.get(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(Optional[ApplicationGetResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationGetResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2512,22 +2687,22 @@ class TestApplications:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.get(
-              app_id="",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.get(
+                app_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.get(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.get(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.get(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.get(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2536,7 +2711,7 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(object, application, path=['response'])
+        assert_matches_type(object, application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2545,21 +2720,20 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(object, application, path=['response'])
+        assert_matches_type(object, application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_revoke_tokens(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.access.applications.with_raw_response.revoke_tokens(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = response.parse()
-        assert_matches_type(object, application, path=['response'])
+        assert_matches_type(object, application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2567,12 +2741,12 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.revoke_tokens(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = response.parse()
-            assert_matches_type(object, application, path=['response'])
+            assert_matches_type(object, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2580,25 +2754,26 @@ class TestApplications:
     @parametrize
     def test_path_params_revoke_tokens(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.revoke_tokens(
-              app_id="",
-              account_id="account_id",
-          )
+            client.zero_trust.access.applications.with_raw_response.revoke_tokens(
+                app_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.revoke_tokens(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-          )
+            client.zero_trust.access.applications.with_raw_response.revoke_tokens(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.access.applications.with_raw_response.revoke_tokens(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="account_id",
-          )
-class TestAsyncApplications:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+            client.zero_trust.access.applications.with_raw_response.revoke_tokens(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
+            )
 
+
+class TestAsyncApplications:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2608,7 +2783,7 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2618,7 +2793,11 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -2634,23 +2813,31 @@ class TestAsyncApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -2662,37 +2849,41 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -2700,12 +2891,11 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
             type="self_hosted",
@@ -2713,9 +2903,9 @@ class TestAsyncApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2724,12 +2914,12 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2737,18 +2927,18 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              domain="test.example.com/admin",
-              type="self_hosted",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              domain="test.example.com/admin",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2756,29 +2946,41 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -2814,67 +3016,70 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             tags=["engineers", "engineers", "engineers"],
             type="saas",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2882,14 +3087,14 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2899,7 +3104,7 @@ class TestAsyncApplications:
             type="ssh",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2909,7 +3114,11 @@ class TestAsyncApplications:
             type="ssh",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -2925,23 +3134,31 @@ class TestAsyncApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -2953,37 +3170,41 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -2991,12 +3212,11 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
             type="ssh",
@@ -3004,9 +3224,9 @@ class TestAsyncApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3015,12 +3235,12 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3028,18 +3248,18 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              domain="test.example.com/admin",
-              type="ssh",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              domain="test.example.com/admin",
-              type="ssh",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3049,7 +3269,7 @@ class TestAsyncApplications:
             type="vnc",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3059,7 +3279,11 @@ class TestAsyncApplications:
             type="vnc",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -3075,23 +3299,31 @@ class TestAsyncApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -3103,37 +3335,41 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -3141,12 +3377,11 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
             type="vnc",
@@ -3154,9 +3389,9 @@ class TestAsyncApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3165,12 +3400,12 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3178,18 +3413,18 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              domain="test.example.com/admin",
-              type="vnc",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              domain="test.example.com/admin",
-              type="vnc",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3198,7 +3433,7 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3206,14 +3441,20 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
-            footer_links=[{
-                "name": "Cloudflare's Privacy Policy",
-                "url": "https://www.cloudflare.com/privacypolicy/",
-            }],
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
             header_bg_color="#ff0000",
             landing_page_design={
                 "button_color": "#ff0000",
@@ -3222,16 +3463,20 @@ class TestAsyncApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "idp_uid": "idp_uid",
                 "remote_uri": "remote_uri",
@@ -3242,56 +3487,59 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             type="self_hosted",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3299,12 +3547,12 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3312,16 +3560,16 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              type="self_hosted",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              type="self_hosted",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3330,7 +3578,7 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3338,14 +3586,20 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
-            footer_links=[{
-                "name": "Cloudflare's Privacy Policy",
-                "url": "https://www.cloudflare.com/privacypolicy/",
-            }],
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
             header_bg_color="#ff0000",
             landing_page_design={
                 "button_color": "#ff0000",
@@ -3354,16 +3608,20 @@ class TestAsyncApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "idp_uid": "idp_uid",
                 "remote_uri": "remote_uri",
@@ -3374,56 +3632,59 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             type="self_hosted",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3431,12 +3692,12 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3444,16 +3705,16 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              type="self_hosted",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              type="self_hosted",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3462,7 +3723,7 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3470,14 +3731,20 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
-            footer_links=[{
-                "name": "Cloudflare's Privacy Policy",
-                "url": "https://www.cloudflare.com/privacypolicy/",
-            }],
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
             header_bg_color="#ff0000",
             landing_page_design={
                 "button_color": "#ff0000",
@@ -3486,16 +3753,20 @@ class TestAsyncApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "idp_uid": "idp_uid",
                 "remote_uri": "remote_uri",
@@ -3506,56 +3777,59 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             type="self_hosted",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3563,12 +3837,12 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3576,16 +3850,16 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              type="self_hosted",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              type="self_hosted",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3593,7 +3867,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3614,67 +3888,70 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationCreateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3682,14 +3959,14 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.create(
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.create(
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3700,7 +3977,7 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3711,7 +3988,11 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -3727,23 +4008,31 @@ class TestAsyncApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -3755,37 +4044,41 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -3793,12 +4086,11 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
@@ -3807,9 +4099,9 @@ class TestAsyncApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3819,12 +4111,12 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3832,28 +4124,28 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              domain="test.example.com/admin",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              domain="test.example.com/admin",
-              type="self_hosted",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              domain="test.example.com/admin",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3862,7 +4154,7 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3870,22 +4162,34 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -3921,56 +4225,59 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             tags=["engineers", "engineers", "engineers"],
             type="saas",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3978,12 +4285,12 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3991,22 +4298,22 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4017,7 +4324,7 @@ class TestAsyncApplications:
             type="ssh",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4028,7 +4335,11 @@ class TestAsyncApplications:
             type="ssh",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -4044,23 +4355,31 @@ class TestAsyncApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -4072,37 +4391,41 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -4110,12 +4433,11 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
@@ -4124,9 +4446,9 @@ class TestAsyncApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4136,12 +4458,12 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="ssh",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4149,28 +4471,28 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              domain="test.example.com/admin",
-              type="ssh",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              domain="test.example.com/admin",
-              type="ssh",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              domain="test.example.com/admin",
-              type="ssh",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4181,7 +4503,7 @@ class TestAsyncApplications:
             type="vnc",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4192,7 +4514,11 @@ class TestAsyncApplications:
             type="vnc",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -4208,23 +4534,31 @@ class TestAsyncApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            custom_pages=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -4236,37 +4570,41 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -4274,12 +4612,11 @@ class TestAsyncApplications:
             skip_interstitial=True,
             tags=["engineers", "engineers", "engineers"],
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
@@ -4288,9 +4625,9 @@ class TestAsyncApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4300,12 +4637,12 @@ class TestAsyncApplications:
             domain="test.example.com/admin",
             type="vnc",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4313,28 +4650,28 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              domain="test.example.com/admin",
-              type="vnc",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              domain="test.example.com/admin",
-              type="vnc",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              domain="test.example.com/admin",
-              type="vnc",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4344,7 +4681,7 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4353,14 +4690,20 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
-            footer_links=[{
-                "name": "Cloudflare's Privacy Policy",
-                "url": "https://www.cloudflare.com/privacypolicy/",
-            }],
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
             header_bg_color="#ff0000",
             landing_page_design={
                 "button_color": "#ff0000",
@@ -4369,16 +4712,20 @@ class TestAsyncApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "idp_uid": "idp_uid",
                 "remote_uri": "remote_uri",
@@ -4389,47 +4736,50 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
@@ -4437,9 +4787,9 @@ class TestAsyncApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4448,12 +4798,12 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4461,25 +4811,25 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              type="self_hosted",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4489,7 +4839,7 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4498,14 +4848,20 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
-            footer_links=[{
-                "name": "Cloudflare's Privacy Policy",
-                "url": "https://www.cloudflare.com/privacypolicy/",
-            }],
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
             header_bg_color="#ff0000",
             landing_page_design={
                 "button_color": "#ff0000",
@@ -4514,16 +4870,20 @@ class TestAsyncApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "idp_uid": "idp_uid",
                 "remote_uri": "remote_uri",
@@ -4534,47 +4894,50 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
@@ -4582,9 +4945,9 @@ class TestAsyncApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4593,12 +4956,12 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4606,25 +4969,25 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              type="self_hosted",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4634,7 +4997,7 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4643,14 +5006,20 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=["699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252", "699d98642c564d2e855e9661899b7252"],
+            allowed_idps=[
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+                "699d98642c564d2e855e9661899b7252",
+            ],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
-            footer_links=[{
-                "name": "Cloudflare's Privacy Policy",
-                "url": "https://www.cloudflare.com/privacypolicy/",
-            }],
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
             header_bg_color="#ff0000",
             landing_page_design={
                 "button_color": "#ff0000",
@@ -4659,16 +5028,20 @@ class TestAsyncApplications:
                 "message": "Log in below to reach your applications behind Access.",
                 "title": "Welcome back!",
             },
-            policies=[{
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }, {
-                "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "precedence": 0,
-            }],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "idp_uid": "idp_uid",
                 "remote_uri": "remote_uri",
@@ -4679,47 +5052,50 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             session_duration="24h",
             skip_app_launcher_login_page=True,
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
@@ -4727,9 +5103,9 @@ class TestAsyncApplications:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4738,12 +5114,12 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4751,25 +5127,25 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              type="self_hosted",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="self_hosted",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              type="self_hosted",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                type="self_hosted",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4778,7 +5154,7 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4800,56 +5176,59 @@ class TestAsyncApplications:
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "mappings": [{
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                "mappings": [
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }, {
-                    "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                    "enabled": True,
-                    "filter": "title pr or userType eq \"Intern\"",
-                    "operations": {
-                        "create": True,
-                        "delete": True,
-                        "update": True,
+                    {
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
-                    "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                }],
+                ],
             },
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4857,12 +5236,12 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4870,22 +5249,22 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.update(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4893,7 +5272,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=['response'])
+        assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4901,32 +5280,31 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=['response'])
+        assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.list(
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=['response'])
+        assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.list(
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=['response'])
+            assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4934,14 +5312,14 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.list(
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.list(
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.list(
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.list(
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4950,7 +5328,7 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4959,21 +5337,20 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.delete(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4981,12 +5358,12 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.delete(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationDeleteResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4994,22 +5371,22 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.delete(
-              app_id="",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.delete(
+                app_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.delete(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.delete(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.delete(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.delete(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5018,7 +5395,7 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationGetResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationGetResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5027,21 +5404,20 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationGetResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationGetResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.get(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(Optional[ApplicationGetResponse], application, path=['response'])
+        assert_matches_type(Optional[ApplicationGetResponse], application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5049,12 +5425,12 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.get(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(Optional[ApplicationGetResponse], application, path=['response'])
+            assert_matches_type(Optional[ApplicationGetResponse], application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5062,22 +5438,22 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.get(
-              app_id="",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.get(
+                app_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.get(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.get(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.get(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.get(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5086,7 +5462,7 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(object, application, path=['response'])
+        assert_matches_type(object, application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5095,21 +5471,20 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
-        assert_matches_type(object, application, path=['response'])
+        assert_matches_type(object, application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_revoke_tokens(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         application = await response.parse()
-        assert_matches_type(object, application, path=['response'])
+        assert_matches_type(object, application, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5117,12 +5492,12 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.revoke_tokens(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             application = await response.parse()
-            assert_matches_type(object, application, path=['response'])
+            assert_matches_type(object, application, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5130,19 +5505,19 @@ class TestAsyncApplications:
     @parametrize
     async def test_path_params_revoke_tokens(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
-              app_id="",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
+                app_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
-              app_id="023e105f4ecef8ad9ca31a8372d0c353",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
+            )

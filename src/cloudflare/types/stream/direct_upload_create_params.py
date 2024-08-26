@@ -2,22 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated
+from typing import List, Union
+from datetime import datetime
+from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-
-from typing import List, Union
-
 from .allowed_origins import AllowedOrigins
 
-from datetime import datetime
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
 __all__ = ["DirectUploadCreateParams", "Watermark"]
+
 
 class DirectUploadCreateParams(TypedDict, total=False):
     account_id: Required[str]
@@ -41,7 +34,7 @@ class DirectUploadCreateParams(TypedDict, total=False):
     creator: str
     """A user-defined identifier for the media creator."""
 
-    expiry: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    expiry: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The date and time after upload when videos will not be accepted."""
 
     meta: object
@@ -57,7 +50,7 @@ class DirectUploadCreateParams(TypedDict, total=False):
     the video.
     """
 
-    scheduled_deletion: Annotated[Union[str, datetime], PropertyInfo(alias="scheduledDeletion", format = "iso8601")]
+    scheduled_deletion: Annotated[Union[str, datetime], PropertyInfo(alias="scheduledDeletion", format="iso8601")]
     """Indicates the date and time at which the video will be deleted.
 
     Omit the field to indicate no change, or include with a `null` value to remove
@@ -77,6 +70,7 @@ class DirectUploadCreateParams(TypedDict, total=False):
 
     upload_creator: Annotated[str, PropertyInfo(alias="Upload-Creator")]
     """A user-defined identifier for the media creator."""
+
 
 class Watermark(TypedDict, total=False):
     uid: str

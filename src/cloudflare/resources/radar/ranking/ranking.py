@@ -2,46 +2,41 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
-from .domain import DomainResource, AsyncDomainResource
-
+from .domain import (
+    DomainResource,
+    AsyncDomainResource,
+    DomainResourceWithRawResponse,
+    AsyncDomainResourceWithRawResponse,
+    DomainResourceWithStreamingResponse,
+    AsyncDomainResourceWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ....types.radar import ranking_top_params, ranking_timeseries_groups_params
+from ...._base_client import make_request_options
+from ....types.radar.ranking_top_response import RankingTopResponse
 from ....types.radar.ranking_timeseries_groups_response import RankingTimeseriesGroupsResponse
 
-from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from ...._base_client import make_request_options
-
-from typing import Type, List, Union
-
-from datetime import datetime
-
-from typing_extensions import Literal
-
-from ....types.radar.ranking_top_response import RankingTopResponse
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.radar import ranking_timeseries_groups_params
-from ....types.radar import ranking_top_params
-from .domain import DomainResource, AsyncDomainResource, DomainResourceWithRawResponse, AsyncDomainResourceWithRawResponse, DomainResourceWithStreamingResponse, AsyncDomainResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["RankingResource", "AsyncRankingResource"]
+
 
 class RankingResource(SyncAPIResource):
     @cached_property
@@ -56,23 +51,25 @@ class RankingResource(SyncAPIResource):
     def with_streaming_response(self) -> RankingResourceWithStreamingResponse:
         return RankingResourceWithStreamingResponse(self)
 
-    def timeseries_groups(self,
-    *,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    domains: List[str] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RankingTimeseriesGroupsResponse:
+    def timeseries_groups(
+        self,
+        *,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        domains: List[str] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RankingTimeseriesGroupsResponse:
         """Gets Domains Rank updates change over time.
 
         Raw values are returned.
@@ -108,34 +105,46 @@ class RankingResource(SyncAPIResource):
         """
         return self._get(
             "/radar/ranking/timeseries_groups",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "domains": domains,
-                "format": format,
-                "limit": limit,
-                "location": location,
-                "name": name,
-                "ranking_type": ranking_type,
-            }, ranking_timeseries_groups_params.RankingTimeseriesGroupsParams), post_parser=ResultWrapper[RankingTimeseriesGroupsResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "domains": domains,
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                        "ranking_type": ranking_type,
+                    },
+                    ranking_timeseries_groups_params.RankingTimeseriesGroupsParams,
+                ),
+                post_parser=ResultWrapper[RankingTimeseriesGroupsResponse]._unwrapper,
+            ),
             cast_to=cast(Type[RankingTimeseriesGroupsResponse], ResultWrapper[RankingTimeseriesGroupsResponse]),
         )
 
-    def top(self,
-    *,
-    date: List[str] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RankingTopResponse:
+    def top(
+        self,
+        *,
+        date: List[str] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RankingTopResponse:
         """Get top or trending domains based on their rank.
 
         Popular domains are domains of
@@ -166,16 +175,27 @@ class RankingResource(SyncAPIResource):
         """
         return self._get(
             "/radar/ranking/top",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "date": date,
-                "format": format,
-                "limit": limit,
-                "location": location,
-                "name": name,
-                "ranking_type": ranking_type,
-            }, ranking_top_params.RankingTopParams), post_parser=ResultWrapper[RankingTopResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "date": date,
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                        "ranking_type": ranking_type,
+                    },
+                    ranking_top_params.RankingTopParams,
+                ),
+                post_parser=ResultWrapper[RankingTopResponse]._unwrapper,
+            ),
             cast_to=cast(Type[RankingTopResponse], ResultWrapper[RankingTopResponse]),
         )
+
 
 class AsyncRankingResource(AsyncAPIResource):
     @cached_property
@@ -190,23 +210,25 @@ class AsyncRankingResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRankingResourceWithStreamingResponse:
         return AsyncRankingResourceWithStreamingResponse(self)
 
-    async def timeseries_groups(self,
-    *,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    domains: List[str] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RankingTimeseriesGroupsResponse:
+    async def timeseries_groups(
+        self,
+        *,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        domains: List[str] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RankingTimeseriesGroupsResponse:
         """Gets Domains Rank updates change over time.
 
         Raw values are returned.
@@ -242,34 +264,46 @@ class AsyncRankingResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/ranking/timeseries_groups",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "domains": domains,
-                "format": format,
-                "limit": limit,
-                "location": location,
-                "name": name,
-                "ranking_type": ranking_type,
-            }, ranking_timeseries_groups_params.RankingTimeseriesGroupsParams), post_parser=ResultWrapper[RankingTimeseriesGroupsResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "domains": domains,
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                        "ranking_type": ranking_type,
+                    },
+                    ranking_timeseries_groups_params.RankingTimeseriesGroupsParams,
+                ),
+                post_parser=ResultWrapper[RankingTimeseriesGroupsResponse]._unwrapper,
+            ),
             cast_to=cast(Type[RankingTimeseriesGroupsResponse], ResultWrapper[RankingTimeseriesGroupsResponse]),
         )
 
-    async def top(self,
-    *,
-    date: List[str] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RankingTopResponse:
+    async def top(
+        self,
+        *,
+        date: List[str] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RankingTopResponse:
         """Get top or trending domains based on their rank.
 
         Popular domains are domains of
@@ -300,16 +334,27 @@ class AsyncRankingResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/ranking/top",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "date": date,
-                "format": format,
-                "limit": limit,
-                "location": location,
-                "name": name,
-                "ranking_type": ranking_type,
-            }, ranking_top_params.RankingTopParams), post_parser=ResultWrapper[RankingTopResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "date": date,
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "name": name,
+                        "ranking_type": ranking_type,
+                    },
+                    ranking_top_params.RankingTopParams,
+                ),
+                post_parser=ResultWrapper[RankingTopResponse]._unwrapper,
+            ),
             cast_to=cast(Type[RankingTopResponse], ResultWrapper[RankingTopResponse]),
         )
+
 
 class RankingResourceWithRawResponse:
     def __init__(self, ranking: RankingResource) -> None:
@@ -326,6 +371,7 @@ class RankingResourceWithRawResponse:
     def domain(self) -> DomainResourceWithRawResponse:
         return DomainResourceWithRawResponse(self._ranking.domain)
 
+
 class AsyncRankingResourceWithRawResponse:
     def __init__(self, ranking: AsyncRankingResource) -> None:
         self._ranking = ranking
@@ -341,6 +387,7 @@ class AsyncRankingResourceWithRawResponse:
     def domain(self) -> AsyncDomainResourceWithRawResponse:
         return AsyncDomainResourceWithRawResponse(self._ranking.domain)
 
+
 class RankingResourceWithStreamingResponse:
     def __init__(self, ranking: RankingResource) -> None:
         self._ranking = ranking
@@ -355,6 +402,7 @@ class RankingResourceWithStreamingResponse:
     @cached_property
     def domain(self) -> DomainResourceWithStreamingResponse:
         return DomainResourceWithStreamingResponse(self._ranking.domain)
+
 
 class AsyncRankingResourceWithStreamingResponse:
     def __init__(self, ranking: AsyncRankingResource) -> None:

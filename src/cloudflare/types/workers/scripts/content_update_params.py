@@ -2,22 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated
-
 from typing import List
+from typing_extensions import Required, Annotated, TypedDict
 
 from ...._types import FileTypes
-
 from ...._utils import PropertyInfo
-
 from ..worker_metadata_param import WorkerMetadataParam
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ...._types import FileTypes
-from ...._utils import PropertyInfo
-
 __all__ = ["ContentUpdateParams"]
+
 
 class ContentUpdateParams(TypedDict, total=False):
     account_id: Required[str]

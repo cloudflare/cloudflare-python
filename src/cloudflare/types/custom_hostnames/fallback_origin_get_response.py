@@ -1,18 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List, Optional
+from datetime import datetime
+from typing_extensions import Literal
+
 from ..._models import BaseModel
 
-from typing import Optional, List
-
-from datetime import datetime
-
-from typing_extensions import Literal
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["FallbackOriginGetResponse"]
+
 
 class FallbackOriginGetResponse(BaseModel):
     created_at: Optional[datetime] = None
@@ -27,7 +22,16 @@ class FallbackOriginGetResponse(BaseModel):
     origin: Optional[str] = None
     """Your origin hostname that requests to your custom hostnames will be sent to."""
 
-    status: Optional[Literal["initializing", "pending_deployment", "pending_deletion", "active", "deployment_timed_out", "deletion_timed_out"]] = None
+    status: Optional[
+        Literal[
+            "initializing",
+            "pending_deployment",
+            "pending_deletion",
+            "active",
+            "deployment_timed_out",
+            "deletion_timed_out",
+        ]
+    ] = None
     """Status of the fallback origin's activation."""
 
     updated_at: Optional[datetime] = None

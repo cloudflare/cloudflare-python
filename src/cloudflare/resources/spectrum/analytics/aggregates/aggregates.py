@@ -2,20 +2,19 @@
 
 from __future__ import annotations
 
-from .currents import CurrentsResource, AsyncCurrentsResource
-
+from .currents import (
+    CurrentsResource,
+    AsyncCurrentsResource,
+    CurrentsResourceWithRawResponse,
+    AsyncCurrentsResourceWithRawResponse,
+    CurrentsResourceWithStreamingResponse,
+    AsyncCurrentsResourceWithStreamingResponse,
+)
 from ....._compat import cached_property
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .currents import CurrentsResource, AsyncCurrentsResource, CurrentsResourceWithRawResponse, AsyncCurrentsResourceWithRawResponse, CurrentsResourceWithStreamingResponse, AsyncCurrentsResourceWithStreamingResponse
 
 __all__ = ["AggregatesResource", "AsyncAggregatesResource"]
+
 
 class AggregatesResource(SyncAPIResource):
     @cached_property
@@ -30,6 +29,7 @@ class AggregatesResource(SyncAPIResource):
     def with_streaming_response(self) -> AggregatesResourceWithStreamingResponse:
         return AggregatesResourceWithStreamingResponse(self)
 
+
 class AsyncAggregatesResource(AsyncAPIResource):
     @cached_property
     def currents(self) -> AsyncCurrentsResource:
@@ -43,6 +43,7 @@ class AsyncAggregatesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAggregatesResourceWithStreamingResponse:
         return AsyncAggregatesResourceWithStreamingResponse(self)
 
+
 class AggregatesResourceWithRawResponse:
     def __init__(self, aggregates: AggregatesResource) -> None:
         self._aggregates = aggregates
@@ -50,6 +51,7 @@ class AggregatesResourceWithRawResponse:
     @cached_property
     def currents(self) -> CurrentsResourceWithRawResponse:
         return CurrentsResourceWithRawResponse(self._aggregates.currents)
+
 
 class AsyncAggregatesResourceWithRawResponse:
     def __init__(self, aggregates: AsyncAggregatesResource) -> None:
@@ -59,6 +61,7 @@ class AsyncAggregatesResourceWithRawResponse:
     def currents(self) -> AsyncCurrentsResourceWithRawResponse:
         return AsyncCurrentsResourceWithRawResponse(self._aggregates.currents)
 
+
 class AggregatesResourceWithStreamingResponse:
     def __init__(self, aggregates: AggregatesResource) -> None:
         self._aggregates = aggregates
@@ -66,6 +69,7 @@ class AggregatesResourceWithStreamingResponse:
     @cached_property
     def currents(self) -> CurrentsResourceWithStreamingResponse:
         return CurrentsResourceWithStreamingResponse(self._aggregates.currents)
+
 
 class AsyncAggregatesResourceWithStreamingResponse:
     def __init__(self, aggregates: AsyncAggregatesResource) -> None:

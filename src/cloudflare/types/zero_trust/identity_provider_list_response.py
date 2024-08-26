@@ -1,24 +1,39 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .azure_ad import AzureAD
-
-from ..._models import BaseModel
-
-from typing import Optional, List
-
-from .identity_provider_type import IdentityProviderType
-
-from .identity_provider_scim_config import IdentityProviderSCIMConfig
-
-from .generic_oauth_config import GenericOAuthConfig
-
+from typing import List, Union, Optional
 from typing_extensions import TypeAlias
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from .azure_ad import AzureAD
+from ..._models import BaseModel
+from .generic_oauth_config import GenericOAuthConfig
+from .identity_provider_type import IdentityProviderType
+from .identity_provider_scim_config import IdentityProviderSCIMConfig
 
-__all__ = ["IdentityProviderListResponse", "AccessCentrify", "AccessCentrifyConfig", "AccessFacebook", "AccessGitHub", "AccessGoogle", "AccessGoogleConfig", "AccessGoogleApps", "AccessGoogleAppsConfig", "AccessLinkedin", "AccessOIDC", "AccessOIDCConfig", "AccessOkta", "AccessOktaConfig", "AccessOnelogin", "AccessOneloginConfig", "AccessPingone", "AccessPingoneConfig", "AccessSAML", "AccessSAMLConfig", "AccessSAMLConfigHeaderAttribute", "AccessYandex"]
+__all__ = [
+    "IdentityProviderListResponse",
+    "AccessCentrify",
+    "AccessCentrifyConfig",
+    "AccessFacebook",
+    "AccessGitHub",
+    "AccessGoogle",
+    "AccessGoogleConfig",
+    "AccessGoogleApps",
+    "AccessGoogleAppsConfig",
+    "AccessLinkedin",
+    "AccessOIDC",
+    "AccessOIDCConfig",
+    "AccessOkta",
+    "AccessOktaConfig",
+    "AccessOnelogin",
+    "AccessOneloginConfig",
+    "AccessPingone",
+    "AccessPingoneConfig",
+    "AccessSAML",
+    "AccessSAMLConfig",
+    "AccessSAMLConfigHeaderAttribute",
+    "AccessYandex",
+]
+
 
 class AccessCentrifyConfig(BaseModel):
     centrify_account: Optional[str] = None
@@ -38,6 +53,7 @@ class AccessCentrifyConfig(BaseModel):
 
     email_claim_name: Optional[str] = None
     """The claim name for email in the id_token response."""
+
 
 class AccessCentrify(BaseModel):
     config: AccessCentrifyConfig
@@ -66,6 +82,7 @@ class AccessCentrify(BaseModel):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessFacebook(BaseModel):
     config: GenericOAuthConfig
     """The configuration parameters for the identity provider.
@@ -92,6 +109,7 @@ class AccessFacebook(BaseModel):
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
+
 
 class AccessGitHub(BaseModel):
     config: GenericOAuthConfig
@@ -120,6 +138,7 @@ class AccessGitHub(BaseModel):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessGoogleConfig(BaseModel):
     claims: Optional[List[str]] = None
     """Custom claims"""
@@ -132,6 +151,7 @@ class AccessGoogleConfig(BaseModel):
 
     email_claim_name: Optional[str] = None
     """The claim name for email in the id_token response."""
+
 
 class AccessGoogle(BaseModel):
     config: AccessGoogleConfig
@@ -160,6 +180,7 @@ class AccessGoogle(BaseModel):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessGoogleAppsConfig(BaseModel):
     apps_domain: Optional[str] = None
     """Your companies TLD"""
@@ -175,6 +196,7 @@ class AccessGoogleAppsConfig(BaseModel):
 
     email_claim_name: Optional[str] = None
     """The claim name for email in the id_token response."""
+
 
 class AccessGoogleApps(BaseModel):
     config: AccessGoogleAppsConfig
@@ -203,6 +225,7 @@ class AccessGoogleApps(BaseModel):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessLinkedin(BaseModel):
     config: GenericOAuthConfig
     """The configuration parameters for the identity provider.
@@ -230,6 +253,7 @@ class AccessLinkedin(BaseModel):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessOIDCConfig(BaseModel):
     auth_url: Optional[str] = None
     """The authorization_endpoint URL of your IdP"""
@@ -254,6 +278,7 @@ class AccessOIDCConfig(BaseModel):
 
     token_url: Optional[str] = None
     """The token_endpoint URL of your IdP"""
+
 
 class AccessOIDC(BaseModel):
     config: AccessOIDCConfig
@@ -282,6 +307,7 @@ class AccessOIDC(BaseModel):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessOktaConfig(BaseModel):
     authorization_server_id: Optional[str] = None
     """Your okta authorization server id"""
@@ -300,6 +326,7 @@ class AccessOktaConfig(BaseModel):
 
     okta_account: Optional[str] = None
     """Your okta account url"""
+
 
 class AccessOkta(BaseModel):
     config: AccessOktaConfig
@@ -328,6 +355,7 @@ class AccessOkta(BaseModel):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessOneloginConfig(BaseModel):
     claims: Optional[List[str]] = None
     """Custom claims"""
@@ -343,6 +371,7 @@ class AccessOneloginConfig(BaseModel):
 
     onelogin_account: Optional[str] = None
     """Your OneLogin account url"""
+
 
 class AccessOnelogin(BaseModel):
     config: AccessOneloginConfig
@@ -371,6 +400,7 @@ class AccessOnelogin(BaseModel):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessPingoneConfig(BaseModel):
     claims: Optional[List[str]] = None
     """Custom claims"""
@@ -386,6 +416,7 @@ class AccessPingoneConfig(BaseModel):
 
     ping_env_id: Optional[str] = None
     """Your PingOne environment identifier"""
+
 
 class AccessPingone(BaseModel):
     config: AccessPingoneConfig
@@ -414,12 +445,14 @@ class AccessPingone(BaseModel):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessSAMLConfigHeaderAttribute(BaseModel):
     attribute_name: Optional[str] = None
     """attribute name from the IDP"""
 
     header_name: Optional[str] = None
     """header that will be added on the request to the origin"""
+
 
 class AccessSAMLConfig(BaseModel):
     attributes: Optional[List[str]] = None
@@ -452,6 +485,7 @@ class AccessSAMLConfig(BaseModel):
     sso_target_url: Optional[str] = None
     """URL to send the SAML authentication requests to"""
 
+
 class AccessSAML(BaseModel):
     config: AccessSAMLConfig
     """The configuration parameters for the identity provider.
@@ -478,6 +512,7 @@ class AccessSAML(BaseModel):
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
+
 
 class AccessYandex(BaseModel):
     config: GenericOAuthConfig
@@ -506,4 +541,19 @@ class AccessYandex(BaseModel):
     Management (SCIM) with the identity provider.
     """
 
-IdentityProviderListResponse: TypeAlias = Union[AzureAD, AccessCentrify, AccessFacebook, AccessGitHub, AccessGoogle, AccessGoogleApps, AccessLinkedin, AccessOIDC, AccessOkta, AccessOnelogin, AccessPingone, AccessSAML, AccessYandex]
+
+IdentityProviderListResponse: TypeAlias = Union[
+    AzureAD,
+    AccessCentrify,
+    AccessFacebook,
+    AccessGitHub,
+    AccessGoogle,
+    AccessGoogleApps,
+    AccessLinkedin,
+    AccessOIDC,
+    AccessOkta,
+    AccessOnelogin,
+    AccessPingone,
+    AccessSAML,
+    AccessYandex,
+]

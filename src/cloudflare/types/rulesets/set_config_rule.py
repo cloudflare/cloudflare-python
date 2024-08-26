@@ -1,20 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
-from typing_extensions import Literal
-
+from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .logging import Logging
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
 __all__ = ["SetConfigRule", "ActionParameters", "ActionParametersAutominify"]
+
 
 class ActionParametersAutominify(BaseModel):
     css: Optional[bool] = None
@@ -25,6 +19,7 @@ class ActionParametersAutominify(BaseModel):
 
     js: Optional[bool] = None
     """Minify JS files."""
+
 
 class ActionParameters(BaseModel):
     automatic_https_rewrites: Optional[bool] = None
@@ -77,6 +72,7 @@ class ActionParameters(BaseModel):
 
     sxg: Optional[bool] = None
     """Turn on or off Signed Exchanges (SXG)."""
+
 
 class SetConfigRule(BaseModel):
     last_updated: datetime

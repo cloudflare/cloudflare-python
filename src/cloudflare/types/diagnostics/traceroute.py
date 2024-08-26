@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List, Optional
+from typing_extensions import Literal
+
 from ..._models import BaseModel
 
-from typing import Optional, List
-
-from typing_extensions import Literal
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["Traceroute", "Colo", "ColoColo", "ColoHop", "ColoHopNode"]
+
 
 class ColoColo(BaseModel):
     city: Optional[str] = None
@@ -18,6 +14,7 @@ class ColoColo(BaseModel):
 
     name: Optional[str] = None
     """Source colo name."""
+
 
 class ColoHopNode(BaseModel):
     asn: Optional[str] = None
@@ -51,6 +48,7 @@ class ColoHopNode(BaseModel):
     std_dev_rtt_ms: Optional[float] = None
     """Standard deviation of the RTTs in ms."""
 
+
 class ColoHop(BaseModel):
     nodes: Optional[List[ColoHopNode]] = None
     """An array of node objects."""
@@ -64,10 +62,19 @@ class ColoHop(BaseModel):
     packets_ttl: Optional[int] = None
     """The time to live (TTL)."""
 
+
 class Colo(BaseModel):
     colo: Optional[ColoColo] = None
 
-    error: Optional[Literal["", "Could not gather traceroute data: Code 1", "Could not gather traceroute data: Code 2", "Could not gather traceroute data: Code 3", "Could not gather traceroute data: Code 4"]] = None
+    error: Optional[
+        Literal[
+            "",
+            "Could not gather traceroute data: Code 1",
+            "Could not gather traceroute data: Code 2",
+            "Could not gather traceroute data: Code 3",
+            "Could not gather traceroute data: Code 4",
+        ]
+    ] = None
     """Errors resulting from collecting traceroute from colo to target."""
 
     hops: Optional[List[ColoHop]] = None
@@ -77,6 +84,7 @@ class Colo(BaseModel):
 
     traceroute_time_ms: Optional[int] = None
     """Total time of traceroute in ms."""
+
 
 class Traceroute(BaseModel):
     colos: Optional[List[Colo]] = None

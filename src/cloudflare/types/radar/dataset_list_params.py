@@ -2,16 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Literal, Annotated
+from typing_extensions import Literal, Annotated, TypedDict
 
-from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
 from ..._utils import PropertyInfo
 
 __all__ = ["DatasetListParams"]
+
 
 class DatasetListParams(TypedDict, total=False):
     dataset_type: Annotated[Literal["RANKING_BUCKET", "REPORT"], PropertyInfo(alias="datasetType")]

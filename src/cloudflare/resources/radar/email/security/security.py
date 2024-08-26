@@ -2,26 +2,36 @@
 
 from __future__ import annotations
 
+from .top import (
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
+)
+from .summary import (
+    SummaryResource,
+    AsyncSummaryResource,
+    SummaryResourceWithRawResponse,
+    AsyncSummaryResourceWithRawResponse,
+    SummaryResourceWithStreamingResponse,
+    AsyncSummaryResourceWithStreamingResponse,
+)
 from .top.top import TopResource, AsyncTopResource
-
 from ....._compat import cached_property
-
-from .summary import SummaryResource, AsyncSummaryResource
-
-from .timeseries_groups import TimeseriesGroupsResource, AsyncTimeseriesGroupsResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .top import TopResource, AsyncTopResource, TopResourceWithRawResponse, AsyncTopResourceWithRawResponse, TopResourceWithStreamingResponse, AsyncTopResourceWithStreamingResponse
-from .summary import SummaryResource, AsyncSummaryResource, SummaryResourceWithRawResponse, AsyncSummaryResourceWithRawResponse, SummaryResourceWithStreamingResponse, AsyncSummaryResourceWithStreamingResponse
-from .timeseries_groups import TimeseriesGroupsResource, AsyncTimeseriesGroupsResource, TimeseriesGroupsResourceWithRawResponse, AsyncTimeseriesGroupsResourceWithRawResponse, TimeseriesGroupsResourceWithStreamingResponse, AsyncTimeseriesGroupsResourceWithStreamingResponse
+from .timeseries_groups import (
+    TimeseriesGroupsResource,
+    AsyncTimeseriesGroupsResource,
+    TimeseriesGroupsResourceWithRawResponse,
+    AsyncTimeseriesGroupsResourceWithRawResponse,
+    TimeseriesGroupsResourceWithStreamingResponse,
+    AsyncTimeseriesGroupsResourceWithStreamingResponse,
+)
 
 __all__ = ["SecurityResource", "AsyncSecurityResource"]
+
 
 class SecurityResource(SyncAPIResource):
     @cached_property
@@ -44,6 +54,7 @@ class SecurityResource(SyncAPIResource):
     def with_streaming_response(self) -> SecurityResourceWithStreamingResponse:
         return SecurityResourceWithStreamingResponse(self)
 
+
 class AsyncSecurityResource(AsyncAPIResource):
     @cached_property
     def top(self) -> AsyncTopResource:
@@ -65,6 +76,7 @@ class AsyncSecurityResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSecurityResourceWithStreamingResponse:
         return AsyncSecurityResourceWithStreamingResponse(self)
 
+
 class SecurityResourceWithRawResponse:
     def __init__(self, security: SecurityResource) -> None:
         self._security = security
@@ -80,6 +92,7 @@ class SecurityResourceWithRawResponse:
     @cached_property
     def timeseries_groups(self) -> TimeseriesGroupsResourceWithRawResponse:
         return TimeseriesGroupsResourceWithRawResponse(self._security.timeseries_groups)
+
 
 class AsyncSecurityResourceWithRawResponse:
     def __init__(self, security: AsyncSecurityResource) -> None:
@@ -97,6 +110,7 @@ class AsyncSecurityResourceWithRawResponse:
     def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
         return AsyncTimeseriesGroupsResourceWithRawResponse(self._security.timeseries_groups)
 
+
 class SecurityResourceWithStreamingResponse:
     def __init__(self, security: SecurityResource) -> None:
         self._security = security
@@ -112,6 +126,7 @@ class SecurityResourceWithStreamingResponse:
     @cached_property
     def timeseries_groups(self) -> TimeseriesGroupsResourceWithStreamingResponse:
         return TimeseriesGroupsResourceWithStreamingResponse(self._security.timeseries_groups)
+
 
 class AsyncSecurityResourceWithStreamingResponse:
     def __init__(self, security: AsyncSecurityResource) -> None:

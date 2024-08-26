@@ -2,34 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...types.logs import rayid_get_params
+from ..._base_client import make_request_options
 from ...types.logs.rayid_get_response import RayIDGetResponse
 
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options
-
-from typing_extensions import Literal
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.logs import rayid_get_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["RayIDResource", "AsyncRayIDResource"]
+
 
 class RayIDResource(SyncAPIResource):
     @cached_property
@@ -40,18 +36,20 @@ class RayIDResource(SyncAPIResource):
     def with_streaming_response(self) -> RayIDResourceWithStreamingResponse:
         return RayIDResourceWithStreamingResponse(self)
 
-    def get(self,
-    rayid: str,
-    *,
-    zone_id: str,
-    fields: str | NotGiven = NOT_GIVEN,
-    timestamps: Literal["unix", "unixnano", "rfc3339"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RayIDGetResponse:
+    def get(
+        self,
+        rayid: str,
+        *,
+        zone_id: str,
+        fields: str | NotGiven = NOT_GIVEN,
+        timestamps: Literal["unix", "unixnano", "rfc3339"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RayIDGetResponse:
         """The `/rayids` api route allows lookups by specific rayid.
 
         The rayids route will
@@ -89,21 +87,30 @@ class RayIDResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rayid:
-          raise ValueError(
-            f'Expected a non-empty value for `rayid` but received {rayid!r}'
-          )
-        return cast(RayIDGetResponse, self._get(
-            f"/zones/{zone_id}/logs/rayids/{rayid}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "fields": fields,
-                "timestamps": timestamps,
-            }, rayid_get_params.RayIDGetParams)),
-            cast_to=cast(Any, RayIDGetResponse),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `rayid` but received {rayid!r}")
+        return cast(
+            RayIDGetResponse,
+            self._get(
+                f"/zones/{zone_id}/logs/rayids/{rayid}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform(
+                        {
+                            "fields": fields,
+                            "timestamps": timestamps,
+                        },
+                        rayid_get_params.RayIDGetParams,
+                    ),
+                ),
+                cast_to=cast(Any, RayIDGetResponse),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class AsyncRayIDResource(AsyncAPIResource):
     @cached_property
@@ -114,18 +121,20 @@ class AsyncRayIDResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRayIDResourceWithStreamingResponse:
         return AsyncRayIDResourceWithStreamingResponse(self)
 
-    async def get(self,
-    rayid: str,
-    *,
-    zone_id: str,
-    fields: str | NotGiven = NOT_GIVEN,
-    timestamps: Literal["unix", "unixnano", "rfc3339"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RayIDGetResponse:
+    async def get(
+        self,
+        rayid: str,
+        *,
+        zone_id: str,
+        fields: str | NotGiven = NOT_GIVEN,
+        timestamps: Literal["unix", "unixnano", "rfc3339"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RayIDGetResponse:
         """The `/rayids` api route allows lookups by specific rayid.
 
         The rayids route will
@@ -163,21 +172,30 @@ class AsyncRayIDResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rayid:
-          raise ValueError(
-            f'Expected a non-empty value for `rayid` but received {rayid!r}'
-          )
-        return cast(RayIDGetResponse, await self._get(
-            f"/zones/{zone_id}/logs/rayids/{rayid}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "fields": fields,
-                "timestamps": timestamps,
-            }, rayid_get_params.RayIDGetParams)),
-            cast_to=cast(Any, RayIDGetResponse),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `rayid` but received {rayid!r}")
+        return cast(
+            RayIDGetResponse,
+            await self._get(
+                f"/zones/{zone_id}/logs/rayids/{rayid}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform(
+                        {
+                            "fields": fields,
+                            "timestamps": timestamps,
+                        },
+                        rayid_get_params.RayIDGetParams,
+                    ),
+                ),
+                cast_to=cast(Any, RayIDGetResponse),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class RayIDResourceWithRawResponse:
     def __init__(self, rayid: RayIDResource) -> None:
@@ -187,6 +205,7 @@ class RayIDResourceWithRawResponse:
             rayid.get,
         )
 
+
 class AsyncRayIDResourceWithRawResponse:
     def __init__(self, rayid: AsyncRayIDResource) -> None:
         self._rayid = rayid
@@ -195,6 +214,7 @@ class AsyncRayIDResourceWithRawResponse:
             rayid.get,
         )
 
+
 class RayIDResourceWithStreamingResponse:
     def __init__(self, rayid: RayIDResource) -> None:
         self._rayid = rayid
@@ -202,6 +222,7 @@ class RayIDResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             rayid.get,
         )
+
 
 class AsyncRayIDResourceWithStreamingResponse:
     def __init__(self, rayid: AsyncRayIDResource) -> None:

@@ -2,53 +2,43 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Iterable, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .schema_validation import SchemaValidationResource, AsyncSchemaValidationResource
-
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.api_gateway.operation_create_response import OperationCreateResponse
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from typing import Iterable, Type, List
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from ....types.api_gateway.operation_list_response import OperationListResponse
-
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
-from typing_extensions import Literal
-
+from ...._base_client import AsyncPaginator, make_request_options
+from .schema_validation import (
+    SchemaValidationResource,
+    AsyncSchemaValidationResource,
+    SchemaValidationResourceWithRawResponse,
+    AsyncSchemaValidationResourceWithRawResponse,
+    SchemaValidationResourceWithStreamingResponse,
+    AsyncSchemaValidationResourceWithStreamingResponse,
+)
+from ....types.api_gateway import operation_get_params, operation_list_params, operation_create_params
+from ....types.api_gateway.operation_get_response import OperationGetResponse
+from ....types.api_gateway.operation_list_response import OperationListResponse
+from ....types.api_gateway.operation_create_response import OperationCreateResponse
 from ....types.api_gateway.operation_delete_response import OperationDeleteResponse
 
-from ....types.api_gateway.operation_get_response import OperationGetResponse
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-from ....types.api_gateway import operation_create_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.api_gateway import operation_create_params
-from ....types.api_gateway import operation_list_params
-from ....types.api_gateway import operation_get_params
-from .schema_validation import SchemaValidationResource, AsyncSchemaValidationResource, SchemaValidationResourceWithRawResponse, AsyncSchemaValidationResourceWithRawResponse, SchemaValidationResourceWithStreamingResponse, AsyncSchemaValidationResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["OperationsResource", "AsyncOperationsResource"]
+
 
 class OperationsResource(SyncAPIResource):
     @cached_property
@@ -63,16 +53,18 @@ class OperationsResource(SyncAPIResource):
     def with_streaming_response(self) -> OperationsResourceWithStreamingResponse:
         return OperationsResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    zone_id: str,
-    body: Iterable[operation_create_params.Body],
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> OperationCreateResponse:
+    def create(
+        self,
+        *,
+        zone_id: str,
+        body: Iterable[operation_create_params.Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OperationCreateResponse:
         """Add one or more operations to a zone.
 
         Endpoints can contain path variables.
@@ -93,33 +85,39 @@ class OperationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/api_gateway/operations",
             body=maybe_transform(body, Iterable[operation_create_params.Body]),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[OperationCreateResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[OperationCreateResponse]._unwrapper,
+            ),
             cast_to=cast(Type[OperationCreateResponse], ResultWrapper[OperationCreateResponse]),
         )
 
-    def list(self,
-    *,
-    zone_id: str,
-    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-    endpoint: str | NotGiven = NOT_GIVEN,
-    feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
-    host: List[str] | NotGiven = NOT_GIVEN,
-    method: List[str] | NotGiven = NOT_GIVEN,
-    order: Literal["method", "host", "endpoint", "thresholds.$key"] | NotGiven = NOT_GIVEN,
-    page: int | NotGiven = NOT_GIVEN,
-    per_page: int | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[OperationListResponse]:
+    def list(
+        self,
+        *,
+        zone_id: str,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        endpoint: str | NotGiven = NOT_GIVEN,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
+        host: List[str] | NotGiven = NOT_GIVEN,
+        method: List[str] | NotGiven = NOT_GIVEN,
+        order: Literal["method", "host", "endpoint", "thresholds.$key"] | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[OperationListResponse]:
         """
         Retrieve information about all operations on a zone
 
@@ -154,35 +152,44 @@ class OperationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/operations",
-            page = SyncV4PagePaginationArray[OperationListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "direction": direction,
-                "endpoint": endpoint,
-                "feature": feature,
-                "host": host,
-                "method": method,
-                "order": order,
-                "page": page,
-                "per_page": per_page,
-            }, operation_list_params.OperationListParams)),
+            page=SyncV4PagePaginationArray[OperationListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "endpoint": endpoint,
+                        "feature": feature,
+                        "host": host,
+                        "method": method,
+                        "order": order,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    operation_list_params.OperationListParams,
+                ),
+            ),
             model=OperationListResponse,
         )
 
-    def delete(self,
-    operation_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> OperationDeleteResponse:
+    def delete(
+        self,
+        operation_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OperationDeleteResponse:
         """
         Delete an operation
 
@@ -200,30 +207,30 @@ class OperationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
-          raise ValueError(
-            f'Expected a non-empty value for `operation_id` but received {operation_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return self._delete(
             f"/zones/{zone_id}/api_gateway/operations/{operation_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=OperationDeleteResponse,
         )
 
-    def get(self,
-    operation_id: str,
-    *,
-    zone_id: str,
-    feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> OperationGetResponse:
+    def get(
+        self,
+        operation_id: str,
+        *,
+        zone_id: str,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OperationGetResponse:
         """
         Retrieve information about an operation
 
@@ -245,20 +252,22 @@ class OperationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
-          raise ValueError(
-            f'Expected a non-empty value for `operation_id` but received {operation_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return self._get(
             f"/zones/{zone_id}/api_gateway/operations/{operation_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "feature": feature
-            }, operation_get_params.OperationGetParams), post_parser=ResultWrapper[OperationGetResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"feature": feature}, operation_get_params.OperationGetParams),
+                post_parser=ResultWrapper[OperationGetResponse]._unwrapper,
+            ),
             cast_to=cast(Type[OperationGetResponse], ResultWrapper[OperationGetResponse]),
         )
+
 
 class AsyncOperationsResource(AsyncAPIResource):
     @cached_property
@@ -273,16 +282,18 @@ class AsyncOperationsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncOperationsResourceWithStreamingResponse:
         return AsyncOperationsResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    zone_id: str,
-    body: Iterable[operation_create_params.Body],
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> OperationCreateResponse:
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        body: Iterable[operation_create_params.Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OperationCreateResponse:
         """Add one or more operations to a zone.
 
         Endpoints can contain path variables.
@@ -303,33 +314,39 @@ class AsyncOperationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/api_gateway/operations",
             body=await async_maybe_transform(body, Iterable[operation_create_params.Body]),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[OperationCreateResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[OperationCreateResponse]._unwrapper,
+            ),
             cast_to=cast(Type[OperationCreateResponse], ResultWrapper[OperationCreateResponse]),
         )
 
-    def list(self,
-    *,
-    zone_id: str,
-    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-    endpoint: str | NotGiven = NOT_GIVEN,
-    feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
-    host: List[str] | NotGiven = NOT_GIVEN,
-    method: List[str] | NotGiven = NOT_GIVEN,
-    order: Literal["method", "host", "endpoint", "thresholds.$key"] | NotGiven = NOT_GIVEN,
-    page: int | NotGiven = NOT_GIVEN,
-    per_page: int | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[OperationListResponse, AsyncV4PagePaginationArray[OperationListResponse]]:
+    def list(
+        self,
+        *,
+        zone_id: str,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        endpoint: str | NotGiven = NOT_GIVEN,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
+        host: List[str] | NotGiven = NOT_GIVEN,
+        method: List[str] | NotGiven = NOT_GIVEN,
+        order: Literal["method", "host", "endpoint", "thresholds.$key"] | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[OperationListResponse, AsyncV4PagePaginationArray[OperationListResponse]]:
         """
         Retrieve information about all operations on a zone
 
@@ -364,35 +381,44 @@ class AsyncOperationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/operations",
-            page = AsyncV4PagePaginationArray[OperationListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "direction": direction,
-                "endpoint": endpoint,
-                "feature": feature,
-                "host": host,
-                "method": method,
-                "order": order,
-                "page": page,
-                "per_page": per_page,
-            }, operation_list_params.OperationListParams)),
+            page=AsyncV4PagePaginationArray[OperationListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "endpoint": endpoint,
+                        "feature": feature,
+                        "host": host,
+                        "method": method,
+                        "order": order,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    operation_list_params.OperationListParams,
+                ),
+            ),
             model=OperationListResponse,
         )
 
-    async def delete(self,
-    operation_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> OperationDeleteResponse:
+    async def delete(
+        self,
+        operation_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OperationDeleteResponse:
         """
         Delete an operation
 
@@ -410,30 +436,30 @@ class AsyncOperationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
-          raise ValueError(
-            f'Expected a non-empty value for `operation_id` but received {operation_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/api_gateway/operations/{operation_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=OperationDeleteResponse,
         )
 
-    async def get(self,
-    operation_id: str,
-    *,
-    zone_id: str,
-    feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> OperationGetResponse:
+    async def get(
+        self,
+        operation_id: str,
+        *,
+        zone_id: str,
+        feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OperationGetResponse:
         """
         Retrieve information about an operation
 
@@ -455,20 +481,22 @@ class AsyncOperationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
-          raise ValueError(
-            f'Expected a non-empty value for `operation_id` but received {operation_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
         return await self._get(
             f"/zones/{zone_id}/api_gateway/operations/{operation_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "feature": feature
-            }, operation_get_params.OperationGetParams), post_parser=ResultWrapper[OperationGetResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"feature": feature}, operation_get_params.OperationGetParams),
+                post_parser=ResultWrapper[OperationGetResponse]._unwrapper,
+            ),
             cast_to=cast(Type[OperationGetResponse], ResultWrapper[OperationGetResponse]),
         )
+
 
 class OperationsResourceWithRawResponse:
     def __init__(self, operations: OperationsResource) -> None:
@@ -491,6 +519,7 @@ class OperationsResourceWithRawResponse:
     def schema_validation(self) -> SchemaValidationResourceWithRawResponse:
         return SchemaValidationResourceWithRawResponse(self._operations.schema_validation)
 
+
 class AsyncOperationsResourceWithRawResponse:
     def __init__(self, operations: AsyncOperationsResource) -> None:
         self._operations = operations
@@ -512,6 +541,7 @@ class AsyncOperationsResourceWithRawResponse:
     def schema_validation(self) -> AsyncSchemaValidationResourceWithRawResponse:
         return AsyncSchemaValidationResourceWithRawResponse(self._operations.schema_validation)
 
+
 class OperationsResourceWithStreamingResponse:
     def __init__(self, operations: OperationsResource) -> None:
         self._operations = operations
@@ -532,6 +562,7 @@ class OperationsResourceWithStreamingResponse:
     @cached_property
     def schema_validation(self) -> SchemaValidationResourceWithStreamingResponse:
         return SchemaValidationResourceWithStreamingResponse(self._operations.schema_validation)
+
 
 class AsyncOperationsResourceWithStreamingResponse:
     def __init__(self, operations: AsyncOperationsResource) -> None:

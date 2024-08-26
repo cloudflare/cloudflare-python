@@ -2,16 +2,20 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, TypeAlias
+from typing import List, Union, Iterable
+from typing_extensions import Required, TypeAlias, TypedDict
 
-from typing import List, Iterable
+__all__ = [
+    "CachePurgeParams",
+    "CachePurgeFlexPurgeByTags",
+    "CachePurgeFlexPurgeByHostnames",
+    "CachePurgeFlexPurgeByPrefixes",
+    "CachePurgeEverything",
+    "CachePurgeSingleFile",
+    "CachePurgeSingleFileWithURLAndHeaders",
+    "CachePurgeSingleFileWithURLAndHeadersFile",
+]
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
-__all__ = ["CachePurgeParams", "CachePurgeFlexPurgeByTags", "CachePurgeFlexPurgeByHostnames", "CachePurgeFlexPurgeByPrefixes", "CachePurgeEverything", "CachePurgeSingleFile", "CachePurgeSingleFileWithURLAndHeaders", "CachePurgeSingleFileWithURLAndHeadersFile"]
 
 class CachePurgeFlexPurgeByTags(TypedDict, total=False):
     zone_id: Required[str]
@@ -22,6 +26,7 @@ class CachePurgeFlexPurgeByTags(TypedDict, total=False):
     [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/#purge-cache-by-cache-tags-enterprise-only).
     """
 
+
 class CachePurgeFlexPurgeByHostnames(TypedDict, total=False):
     zone_id: Required[str]
 
@@ -30,6 +35,7 @@ class CachePurgeFlexPurgeByHostnames(TypedDict, total=False):
     For more information purging by hostnames, please refer to
     [purge by hostname documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/).
     """
+
 
 class CachePurgeFlexPurgeByPrefixes(TypedDict, total=False):
     zone_id: Required[str]
@@ -40,6 +46,7 @@ class CachePurgeFlexPurgeByPrefixes(TypedDict, total=False):
     [purge by prefix documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/).
     """
 
+
 class CachePurgeEverything(TypedDict, total=False):
     zone_id: Required[str]
 
@@ -48,6 +55,7 @@ class CachePurgeEverything(TypedDict, total=False):
     For more information, please refer to
     [purge everything documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/).
     """
+
 
 class CachePurgeSingleFile(TypedDict, total=False):
     zone_id: Required[str]
@@ -58,6 +66,7 @@ class CachePurgeSingleFile(TypedDict, total=False):
     [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
     """
 
+
 class CachePurgeSingleFileWithURLAndHeaders(TypedDict, total=False):
     zone_id: Required[str]
 
@@ -67,9 +76,18 @@ class CachePurgeSingleFileWithURLAndHeaders(TypedDict, total=False):
     [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/).
     """
 
+
 class CachePurgeSingleFileWithURLAndHeadersFile(TypedDict, total=False):
     headers: object
 
     url: str
 
-CachePurgeParams: TypeAlias = Union[CachePurgeFlexPurgeByTags, CachePurgeFlexPurgeByHostnames, CachePurgeFlexPurgeByPrefixes, CachePurgeEverything, CachePurgeSingleFile, CachePurgeSingleFileWithURLAndHeaders]
+
+CachePurgeParams: TypeAlias = Union[
+    CachePurgeFlexPurgeByTags,
+    CachePurgeFlexPurgeByHostnames,
+    CachePurgeFlexPurgeByPrefixes,
+    CachePurgeEverything,
+    CachePurgeSingleFile,
+    CachePurgeSingleFileWithURLAndHeaders,
+]

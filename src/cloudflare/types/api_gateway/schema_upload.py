@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
+from typing import List, Optional
 
-from typing import Optional, List
-
-from .public_schema import PublicSchema
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
+from ..._models import BaseModel
+from .public_schema import PublicSchema
+
 __all__ = ["SchemaUpload", "UploadDetails", "UploadDetailsWarning"]
+
 
 class UploadDetailsWarning(BaseModel):
     code: int
@@ -27,6 +25,7 @@ class UploadDetailsWarning(BaseModel):
     message: Optional[str] = None
     """Diagnostic message that describes the event."""
 
+
 class UploadDetails(BaseModel):
     warnings: Optional[List[UploadDetailsWarning]] = None
     """Diagnostic warning events that occurred during processing.
@@ -34,7 +33,8 @@ class UploadDetails(BaseModel):
     These events are non-critical errors found within the schema.
     """
 
+
 class SchemaUpload(BaseModel):
-    schema_: PublicSchema = FieldInfo(alias = "schema")
+    schema_: PublicSchema = FieldInfo(alias="schema")
 
     upload_details: Optional[UploadDetails] = None

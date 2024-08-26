@@ -2,38 +2,68 @@
 
 from __future__ import annotations
 
-from .apps import AppsResource, AsyncAppsResource
-
+from .apps import (
+    AppsResource,
+    AsyncAppsResource,
+    AppsResourceWithRawResponse,
+    AsyncAppsResourceWithRawResponse,
+    AppsResourceWithStreamingResponse,
+    AsyncAppsResourceWithStreamingResponse,
+)
+from .sites import (
+    SitesResource,
+    AsyncSitesResource,
+    SitesResourceWithRawResponse,
+    AsyncSitesResourceWithRawResponse,
+    SitesResourceWithStreamingResponse,
+    AsyncSitesResourceWithStreamingResponse,
+)
+from .routes import (
+    RoutesResource,
+    AsyncRoutesResource,
+    RoutesResourceWithRawResponse,
+    AsyncRoutesResourceWithRawResponse,
+    RoutesResourceWithStreamingResponse,
+    AsyncRoutesResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
-
-from .cf_interconnects import CfInterconnectsResource, AsyncCfInterconnectsResource
-
-from .gre_tunnels import GRETunnelsResource, AsyncGRETunnelsResource
-
-from .ipsec_tunnels import IPSECTunnelsResource, AsyncIPSECTunnelsResource
-
-from .routes import RoutesResource, AsyncRoutesResource
-
-from .sites.sites import SitesResource, AsyncSitesResource
-
-from .connectors import ConnectorsResource, AsyncConnectorsResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from .connectors import (
+    ConnectorsResource,
+    AsyncConnectorsResource,
+    ConnectorsResourceWithRawResponse,
+    AsyncConnectorsResourceWithRawResponse,
+    ConnectorsResourceWithStreamingResponse,
+    AsyncConnectorsResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from .apps import AppsResource, AsyncAppsResource, AppsResourceWithRawResponse, AsyncAppsResourceWithRawResponse, AppsResourceWithStreamingResponse, AsyncAppsResourceWithStreamingResponse
-from .cf_interconnects import CfInterconnectsResource, AsyncCfInterconnectsResource, CfInterconnectsResourceWithRawResponse, AsyncCfInterconnectsResourceWithRawResponse, CfInterconnectsResourceWithStreamingResponse, AsyncCfInterconnectsResourceWithStreamingResponse
-from .gre_tunnels import GRETunnelsResource, AsyncGRETunnelsResource, GRETunnelsResourceWithRawResponse, AsyncGRETunnelsResourceWithRawResponse, GRETunnelsResourceWithStreamingResponse, AsyncGRETunnelsResourceWithStreamingResponse
-from .ipsec_tunnels import IPSECTunnelsResource, AsyncIPSECTunnelsResource, IPSECTunnelsResourceWithRawResponse, AsyncIPSECTunnelsResourceWithRawResponse, IPSECTunnelsResourceWithStreamingResponse, AsyncIPSECTunnelsResourceWithStreamingResponse
-from .routes import RoutesResource, AsyncRoutesResource, RoutesResourceWithRawResponse, AsyncRoutesResourceWithRawResponse, RoutesResourceWithStreamingResponse, AsyncRoutesResourceWithStreamingResponse
-from .sites import SitesResource, AsyncSitesResource, SitesResourceWithRawResponse, AsyncSitesResourceWithRawResponse, SitesResourceWithStreamingResponse, AsyncSitesResourceWithStreamingResponse
-from .connectors import ConnectorsResource, AsyncConnectorsResource, ConnectorsResourceWithRawResponse, AsyncConnectorsResourceWithRawResponse, ConnectorsResourceWithStreamingResponse, AsyncConnectorsResourceWithStreamingResponse
+from .gre_tunnels import (
+    GRETunnelsResource,
+    AsyncGRETunnelsResource,
+    GRETunnelsResourceWithRawResponse,
+    AsyncGRETunnelsResourceWithRawResponse,
+    GRETunnelsResourceWithStreamingResponse,
+    AsyncGRETunnelsResourceWithStreamingResponse,
+)
+from .sites.sites import SitesResource, AsyncSitesResource
+from .ipsec_tunnels import (
+    IPSECTunnelsResource,
+    AsyncIPSECTunnelsResource,
+    IPSECTunnelsResourceWithRawResponse,
+    AsyncIPSECTunnelsResourceWithRawResponse,
+    IPSECTunnelsResourceWithStreamingResponse,
+    AsyncIPSECTunnelsResourceWithStreamingResponse,
+)
+from .cf_interconnects import (
+    CfInterconnectsResource,
+    AsyncCfInterconnectsResource,
+    CfInterconnectsResourceWithRawResponse,
+    AsyncCfInterconnectsResourceWithRawResponse,
+    CfInterconnectsResourceWithStreamingResponse,
+    AsyncCfInterconnectsResourceWithStreamingResponse,
+)
 
 __all__ = ["MagicTransitResource", "AsyncMagicTransitResource"]
+
 
 class MagicTransitResource(SyncAPIResource):
     @cached_property
@@ -72,6 +102,7 @@ class MagicTransitResource(SyncAPIResource):
     def with_streaming_response(self) -> MagicTransitResourceWithStreamingResponse:
         return MagicTransitResourceWithStreamingResponse(self)
 
+
 class AsyncMagicTransitResource(AsyncAPIResource):
     @cached_property
     def apps(self) -> AsyncAppsResource:
@@ -109,6 +140,7 @@ class AsyncMagicTransitResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncMagicTransitResourceWithStreamingResponse:
         return AsyncMagicTransitResourceWithStreamingResponse(self)
 
+
 class MagicTransitResourceWithRawResponse:
     def __init__(self, magic_transit: MagicTransitResource) -> None:
         self._magic_transit = magic_transit
@@ -140,6 +172,7 @@ class MagicTransitResourceWithRawResponse:
     @cached_property
     def connectors(self) -> ConnectorsResourceWithRawResponse:
         return ConnectorsResourceWithRawResponse(self._magic_transit.connectors)
+
 
 class AsyncMagicTransitResourceWithRawResponse:
     def __init__(self, magic_transit: AsyncMagicTransitResource) -> None:
@@ -173,6 +206,7 @@ class AsyncMagicTransitResourceWithRawResponse:
     def connectors(self) -> AsyncConnectorsResourceWithRawResponse:
         return AsyncConnectorsResourceWithRawResponse(self._magic_transit.connectors)
 
+
 class MagicTransitResourceWithStreamingResponse:
     def __init__(self, magic_transit: MagicTransitResource) -> None:
         self._magic_transit = magic_transit
@@ -204,6 +238,7 @@ class MagicTransitResourceWithStreamingResponse:
     @cached_property
     def connectors(self) -> ConnectorsResourceWithStreamingResponse:
         return ConnectorsResourceWithStreamingResponse(self._magic_transit.connectors)
+
 
 class AsyncMagicTransitResourceWithStreamingResponse:
     def __init__(self, magic_transit: AsyncMagicTransitResource) -> None:

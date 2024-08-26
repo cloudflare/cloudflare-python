@@ -2,55 +2,35 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.zero_trust.gateway.gateway_rule import GatewayRule
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type, List
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from typing_extensions import Literal
-
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.zero_trust.gateway import rule_create_params, rule_update_params
+from ....types.zero_trust.gateway.gateway_rule import GatewayRule
 from ....types.zero_trust.gateway.gateway_filter import GatewayFilter
-
+from ....types.zero_trust.gateway.schedule_param import ScheduleParam
 from ....types.zero_trust.gateway.rule_setting_param import RuleSettingParam
 
-from ....types.zero_trust.gateway.schedule_param import ScheduleParam
-
-from ....pagination import SyncSinglePage, AsyncSinglePage
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.zero_trust.gateway import rule_create_params
-from ....types.zero_trust.gateway import rule_update_params
-from ....types.zero_trust.gateway import RuleSetting
-from ....types.zero_trust.gateway import Schedule
-from ....types.zero_trust.gateway import RuleSetting
-from ....types.zero_trust.gateway import Schedule
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["RulesResource", "AsyncRulesResource"]
+
 
 class RulesResource(SyncAPIResource):
     @cached_property
@@ -61,26 +41,44 @@ class RulesResource(SyncAPIResource):
     def with_streaming_response(self) -> RulesResourceWithStreamingResponse:
         return RulesResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    action: Literal["on", "off", "allow", "block", "scan", "noscan", "safesearch", "ytrestricted", "isolate", "noisolate", "override", "l4_override", "egress", "audit_ssh", "resolve"],
-    name: str,
-    description: str | NotGiven = NOT_GIVEN,
-    device_posture: str | NotGiven = NOT_GIVEN,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
-    identity: str | NotGiven = NOT_GIVEN,
-    precedence: int | NotGiven = NOT_GIVEN,
-    rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-    schedule: ScheduleParam | NotGiven = NOT_GIVEN,
-    traffic: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[GatewayRule]:
+    def create(
+        self,
+        *,
+        account_id: str,
+        action: Literal[
+            "on",
+            "off",
+            "allow",
+            "block",
+            "scan",
+            "noscan",
+            "safesearch",
+            "ytrestricted",
+            "isolate",
+            "noisolate",
+            "override",
+            "l4_override",
+            "egress",
+            "audit_ssh",
+            "resolve",
+        ],
+        name: str,
+        description: str | NotGiven = NOT_GIVEN,
+        device_posture: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
+        identity: str | NotGiven = NOT_GIVEN,
+        precedence: int | NotGiven = NOT_GIVEN,
+        rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
+        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
+        traffic: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[GatewayRule]:
         """
         Creates a new Zero Trust Gateway rule.
 
@@ -121,49 +119,74 @@ class RulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/gateway/rules",
-            body=maybe_transform({
-                "action": action,
-                "name": name,
-                "description": description,
-                "device_posture": device_posture,
-                "enabled": enabled,
-                "filters": filters,
-                "identity": identity,
-                "precedence": precedence,
-                "rule_settings": rule_settings,
-                "schedule": schedule,
-                "traffic": traffic,
-            }, rule_create_params.RuleCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[GatewayRule]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "action": action,
+                    "name": name,
+                    "description": description,
+                    "device_posture": device_posture,
+                    "enabled": enabled,
+                    "filters": filters,
+                    "identity": identity,
+                    "precedence": precedence,
+                    "rule_settings": rule_settings,
+                    "schedule": schedule,
+                    "traffic": traffic,
+                },
+                rule_create_params.RuleCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[GatewayRule]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[GatewayRule]], ResultWrapper[GatewayRule]),
         )
 
-    def update(self,
-    rule_id: str,
-    *,
-    account_id: str,
-    action: Literal["on", "off", "allow", "block", "scan", "noscan", "safesearch", "ytrestricted", "isolate", "noisolate", "override", "l4_override", "egress", "audit_ssh", "resolve"],
-    name: str,
-    description: str | NotGiven = NOT_GIVEN,
-    device_posture: str | NotGiven = NOT_GIVEN,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
-    identity: str | NotGiven = NOT_GIVEN,
-    precedence: int | NotGiven = NOT_GIVEN,
-    rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-    schedule: ScheduleParam | NotGiven = NOT_GIVEN,
-    traffic: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[GatewayRule]:
+    def update(
+        self,
+        rule_id: str,
+        *,
+        account_id: str,
+        action: Literal[
+            "on",
+            "off",
+            "allow",
+            "block",
+            "scan",
+            "noscan",
+            "safesearch",
+            "ytrestricted",
+            "isolate",
+            "noisolate",
+            "override",
+            "l4_override",
+            "egress",
+            "audit_ssh",
+            "resolve",
+        ],
+        name: str,
+        description: str | NotGiven = NOT_GIVEN,
+        device_posture: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
+        identity: str | NotGiven = NOT_GIVEN,
+        precedence: int | NotGiven = NOT_GIVEN,
+        rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
+        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
+        traffic: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[GatewayRule]:
         """
         Updates a configured Zero Trust Gateway rule.
 
@@ -206,41 +229,48 @@ class RulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
-          raise ValueError(
-            f'Expected a non-empty value for `rule_id` but received {rule_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._put(
             f"/accounts/{account_id}/gateway/rules/{rule_id}",
-            body=maybe_transform({
-                "action": action,
-                "name": name,
-                "description": description,
-                "device_posture": device_posture,
-                "enabled": enabled,
-                "filters": filters,
-                "identity": identity,
-                "precedence": precedence,
-                "rule_settings": rule_settings,
-                "schedule": schedule,
-                "traffic": traffic,
-            }, rule_update_params.RuleUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[GatewayRule]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "action": action,
+                    "name": name,
+                    "description": description,
+                    "device_posture": device_posture,
+                    "enabled": enabled,
+                    "filters": filters,
+                    "identity": identity,
+                    "precedence": precedence,
+                    "rule_settings": rule_settings,
+                    "schedule": schedule,
+                    "traffic": traffic,
+                },
+                rule_update_params.RuleUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[GatewayRule]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[GatewayRule]], ResultWrapper[GatewayRule]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[GatewayRule]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[GatewayRule]:
         """
         Fetches the Zero Trust Gateway rules for an account.
 
@@ -254,26 +284,28 @@ class RulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/rules",
-            page = SyncSinglePage[GatewayRule],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[GatewayRule],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=GatewayRule,
         )
 
-    def delete(self,
-    rule_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    def delete(
+        self,
+        rule_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Deletes a Zero Trust Gateway rule.
 
@@ -289,29 +321,33 @@ class RulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
-          raise ValueError(
-            f'Expected a non-empty value for `rule_id` but received {rule_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._delete(
             f"/accounts/{account_id}/gateway/rules/{rule_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    def get(self,
-    rule_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[GatewayRule]:
+    def get(
+        self,
+        rule_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[GatewayRule]:
         """
         Fetches a single Zero Trust Gateway rule.
 
@@ -327,18 +363,21 @@ class RulesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
-          raise ValueError(
-            f'Expected a non-empty value for `rule_id` but received {rule_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._get(
             f"/accounts/{account_id}/gateway/rules/{rule_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[GatewayRule]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[GatewayRule]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[GatewayRule]], ResultWrapper[GatewayRule]),
         )
+
 
 class AsyncRulesResource(AsyncAPIResource):
     @cached_property
@@ -349,26 +388,44 @@ class AsyncRulesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRulesResourceWithStreamingResponse:
         return AsyncRulesResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    action: Literal["on", "off", "allow", "block", "scan", "noscan", "safesearch", "ytrestricted", "isolate", "noisolate", "override", "l4_override", "egress", "audit_ssh", "resolve"],
-    name: str,
-    description: str | NotGiven = NOT_GIVEN,
-    device_posture: str | NotGiven = NOT_GIVEN,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
-    identity: str | NotGiven = NOT_GIVEN,
-    precedence: int | NotGiven = NOT_GIVEN,
-    rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-    schedule: ScheduleParam | NotGiven = NOT_GIVEN,
-    traffic: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[GatewayRule]:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        action: Literal[
+            "on",
+            "off",
+            "allow",
+            "block",
+            "scan",
+            "noscan",
+            "safesearch",
+            "ytrestricted",
+            "isolate",
+            "noisolate",
+            "override",
+            "l4_override",
+            "egress",
+            "audit_ssh",
+            "resolve",
+        ],
+        name: str,
+        description: str | NotGiven = NOT_GIVEN,
+        device_posture: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
+        identity: str | NotGiven = NOT_GIVEN,
+        precedence: int | NotGiven = NOT_GIVEN,
+        rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
+        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
+        traffic: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[GatewayRule]:
         """
         Creates a new Zero Trust Gateway rule.
 
@@ -409,49 +466,74 @@ class AsyncRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/gateway/rules",
-            body=await async_maybe_transform({
-                "action": action,
-                "name": name,
-                "description": description,
-                "device_posture": device_posture,
-                "enabled": enabled,
-                "filters": filters,
-                "identity": identity,
-                "precedence": precedence,
-                "rule_settings": rule_settings,
-                "schedule": schedule,
-                "traffic": traffic,
-            }, rule_create_params.RuleCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[GatewayRule]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "action": action,
+                    "name": name,
+                    "description": description,
+                    "device_posture": device_posture,
+                    "enabled": enabled,
+                    "filters": filters,
+                    "identity": identity,
+                    "precedence": precedence,
+                    "rule_settings": rule_settings,
+                    "schedule": schedule,
+                    "traffic": traffic,
+                },
+                rule_create_params.RuleCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[GatewayRule]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[GatewayRule]], ResultWrapper[GatewayRule]),
         )
 
-    async def update(self,
-    rule_id: str,
-    *,
-    account_id: str,
-    action: Literal["on", "off", "allow", "block", "scan", "noscan", "safesearch", "ytrestricted", "isolate", "noisolate", "override", "l4_override", "egress", "audit_ssh", "resolve"],
-    name: str,
-    description: str | NotGiven = NOT_GIVEN,
-    device_posture: str | NotGiven = NOT_GIVEN,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
-    identity: str | NotGiven = NOT_GIVEN,
-    precedence: int | NotGiven = NOT_GIVEN,
-    rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-    schedule: ScheduleParam | NotGiven = NOT_GIVEN,
-    traffic: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[GatewayRule]:
+    async def update(
+        self,
+        rule_id: str,
+        *,
+        account_id: str,
+        action: Literal[
+            "on",
+            "off",
+            "allow",
+            "block",
+            "scan",
+            "noscan",
+            "safesearch",
+            "ytrestricted",
+            "isolate",
+            "noisolate",
+            "override",
+            "l4_override",
+            "egress",
+            "audit_ssh",
+            "resolve",
+        ],
+        name: str,
+        description: str | NotGiven = NOT_GIVEN,
+        device_posture: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
+        identity: str | NotGiven = NOT_GIVEN,
+        precedence: int | NotGiven = NOT_GIVEN,
+        rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
+        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
+        traffic: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[GatewayRule]:
         """
         Updates a configured Zero Trust Gateway rule.
 
@@ -494,41 +576,48 @@ class AsyncRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
-          raise ValueError(
-            f'Expected a non-empty value for `rule_id` but received {rule_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._put(
             f"/accounts/{account_id}/gateway/rules/{rule_id}",
-            body=await async_maybe_transform({
-                "action": action,
-                "name": name,
-                "description": description,
-                "device_posture": device_posture,
-                "enabled": enabled,
-                "filters": filters,
-                "identity": identity,
-                "precedence": precedence,
-                "rule_settings": rule_settings,
-                "schedule": schedule,
-                "traffic": traffic,
-            }, rule_update_params.RuleUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[GatewayRule]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "action": action,
+                    "name": name,
+                    "description": description,
+                    "device_posture": device_posture,
+                    "enabled": enabled,
+                    "filters": filters,
+                    "identity": identity,
+                    "precedence": precedence,
+                    "rule_settings": rule_settings,
+                    "schedule": schedule,
+                    "traffic": traffic,
+                },
+                rule_update_params.RuleUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[GatewayRule]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[GatewayRule]], ResultWrapper[GatewayRule]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[GatewayRule, AsyncSinglePage[GatewayRule]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[GatewayRule, AsyncSinglePage[GatewayRule]]:
         """
         Fetches the Zero Trust Gateway rules for an account.
 
@@ -542,26 +631,28 @@ class AsyncRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/rules",
-            page = AsyncSinglePage[GatewayRule],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[GatewayRule],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=GatewayRule,
         )
 
-    async def delete(self,
-    rule_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    async def delete(
+        self,
+        rule_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Deletes a Zero Trust Gateway rule.
 
@@ -577,29 +668,33 @@ class AsyncRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
-          raise ValueError(
-            f'Expected a non-empty value for `rule_id` but received {rule_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/gateway/rules/{rule_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    async def get(self,
-    rule_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[GatewayRule]:
+    async def get(
+        self,
+        rule_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[GatewayRule]:
         """
         Fetches a single Zero Trust Gateway rule.
 
@@ -615,18 +710,21 @@ class AsyncRulesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
-          raise ValueError(
-            f'Expected a non-empty value for `rule_id` but received {rule_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._get(
             f"/accounts/{account_id}/gateway/rules/{rule_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[GatewayRule]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[GatewayRule]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[GatewayRule]], ResultWrapper[GatewayRule]),
         )
+
 
 class RulesResourceWithRawResponse:
     def __init__(self, rules: RulesResource) -> None:
@@ -648,6 +746,7 @@ class RulesResourceWithRawResponse:
             rules.get,
         )
 
+
 class AsyncRulesResourceWithRawResponse:
     def __init__(self, rules: AsyncRulesResource) -> None:
         self._rules = rules
@@ -668,6 +767,7 @@ class AsyncRulesResourceWithRawResponse:
             rules.get,
         )
 
+
 class RulesResourceWithStreamingResponse:
     def __init__(self, rules: RulesResource) -> None:
         self._rules = rules
@@ -687,6 +787,7 @@ class RulesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             rules.get,
         )
+
 
 class AsyncRulesResourceWithStreamingResponse:
     def __init__(self, rules: AsyncRulesResource) -> None:

@@ -2,14 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ....._types import FileTypes
-from ....._utils import PropertyInfo
+from typing_extensions import Required, TypedDict
 
 __all__ = ["PrefixEditParams", "OnDemand"]
+
 
 class PrefixEditParams(TypedDict, total=False):
     account_id: Required[str]
@@ -19,6 +15,7 @@ class PrefixEditParams(TypedDict, total=False):
     """Identifier"""
 
     on_demand: OnDemand
+
 
 class OnDemand(TypedDict, total=False):
     advertised: bool

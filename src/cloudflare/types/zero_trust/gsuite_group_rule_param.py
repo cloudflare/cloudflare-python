@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
+from typing_extensions import Required, TypedDict
 
 __all__ = ["GSuiteGroupRuleParam", "GSuite"]
+
 
 class GSuite(TypedDict, total=False):
     connection_id: Required[str]
@@ -12,6 +13,7 @@ class GSuite(TypedDict, total=False):
 
     email: Required[str]
     """The email of the Google Workspace group."""
+
 
 class GSuiteGroupRuleParam(TypedDict, total=False):
     gsuite: Required[GSuite]

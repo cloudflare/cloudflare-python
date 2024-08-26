@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated
+from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
 __all__ = ["GitHubOrganizationRuleParam", "GitHubOrganization"]
+
 
 class GitHubOrganization(TypedDict, total=False):
     connection_id: Required[str]
@@ -14,6 +15,7 @@ class GitHubOrganization(TypedDict, total=False):
 
     name: Required[str]
     """The name of the organization."""
+
 
 class GitHubOrganizationRuleParam(TypedDict, total=False):
     github_organization: Required[Annotated[GitHubOrganization, PropertyInfo(alias="github-organization")]]

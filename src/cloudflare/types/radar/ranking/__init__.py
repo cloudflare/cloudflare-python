@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .domain_get_response import DomainGetResponse as DomainGetResponse
 from .domain_get_params import DomainGetParams as DomainGetParams
+from .domain_get_response import DomainGetResponse as DomainGetResponse

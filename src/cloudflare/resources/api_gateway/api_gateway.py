@@ -2,35 +2,63 @@
 
 from __future__ import annotations
 
-from .configurations import ConfigurationsResource, AsyncConfigurationsResource
-
+from .schemas import (
+    SchemasResource,
+    AsyncSchemasResource,
+    SchemasResourceWithRawResponse,
+    AsyncSchemasResourceWithRawResponse,
+    SchemasResourceWithStreamingResponse,
+    AsyncSchemasResourceWithStreamingResponse,
+)
+from .settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
-
-from .discovery.discovery import DiscoveryResource, AsyncDiscoveryResource
-
-from .operations.operations import OperationsResource, AsyncOperationsResource
-
-from .schemas import SchemasResource, AsyncSchemasResource
-
+from .discovery import (
+    DiscoveryResource,
+    AsyncDiscoveryResource,
+    DiscoveryResourceWithRawResponse,
+    AsyncDiscoveryResourceWithRawResponse,
+    DiscoveryResourceWithStreamingResponse,
+    AsyncDiscoveryResourceWithStreamingResponse,
+)
+from .operations import (
+    OperationsResource,
+    AsyncOperationsResource,
+    OperationsResourceWithRawResponse,
+    AsyncOperationsResourceWithRawResponse,
+    OperationsResourceWithStreamingResponse,
+    AsyncOperationsResourceWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .user_schemas import (
+    UserSchemasResource,
+    AsyncUserSchemasResource,
+    UserSchemasResourceWithRawResponse,
+    AsyncUserSchemasResourceWithRawResponse,
+    UserSchemasResourceWithStreamingResponse,
+    AsyncUserSchemasResourceWithStreamingResponse,
+)
+from .configurations import (
+    ConfigurationsResource,
+    AsyncConfigurationsResource,
+    ConfigurationsResourceWithRawResponse,
+    AsyncConfigurationsResourceWithRawResponse,
+    ConfigurationsResourceWithStreamingResponse,
+    AsyncConfigurationsResourceWithStreamingResponse,
+)
 from .settings.settings import SettingsResource, AsyncSettingsResource
-
+from .discovery.discovery import DiscoveryResource, AsyncDiscoveryResource
+from .operations.operations import OperationsResource, AsyncOperationsResource
 from .user_schemas.user_schemas import UserSchemasResource, AsyncUserSchemasResource
 
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from .configurations import ConfigurationsResource, AsyncConfigurationsResource, ConfigurationsResourceWithRawResponse, AsyncConfigurationsResourceWithRawResponse, ConfigurationsResourceWithStreamingResponse, AsyncConfigurationsResourceWithStreamingResponse
-from .discovery import DiscoveryResource, AsyncDiscoveryResource, DiscoveryResourceWithRawResponse, AsyncDiscoveryResourceWithRawResponse, DiscoveryResourceWithStreamingResponse, AsyncDiscoveryResourceWithStreamingResponse
-from .operations import OperationsResource, AsyncOperationsResource, OperationsResourceWithRawResponse, AsyncOperationsResourceWithRawResponse, OperationsResourceWithStreamingResponse, AsyncOperationsResourceWithStreamingResponse
-from .schemas import SchemasResource, AsyncSchemasResource, SchemasResourceWithRawResponse, AsyncSchemasResourceWithRawResponse, SchemasResourceWithStreamingResponse, AsyncSchemasResourceWithStreamingResponse
-from .settings import SettingsResource, AsyncSettingsResource, SettingsResourceWithRawResponse, AsyncSettingsResourceWithRawResponse, SettingsResourceWithStreamingResponse, AsyncSettingsResourceWithStreamingResponse
-from .user_schemas import UserSchemasResource, AsyncUserSchemasResource, UserSchemasResourceWithRawResponse, AsyncUserSchemasResourceWithRawResponse, UserSchemasResourceWithStreamingResponse, AsyncUserSchemasResourceWithStreamingResponse
-
 __all__ = ["APIGatewayResource", "AsyncAPIGatewayResource"]
+
 
 class APIGatewayResource(SyncAPIResource):
     @cached_property
@@ -65,6 +93,7 @@ class APIGatewayResource(SyncAPIResource):
     def with_streaming_response(self) -> APIGatewayResourceWithStreamingResponse:
         return APIGatewayResourceWithStreamingResponse(self)
 
+
 class AsyncAPIGatewayResource(AsyncAPIResource):
     @cached_property
     def configurations(self) -> AsyncConfigurationsResource:
@@ -98,6 +127,7 @@ class AsyncAPIGatewayResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAPIGatewayResourceWithStreamingResponse:
         return AsyncAPIGatewayResourceWithStreamingResponse(self)
 
+
 class APIGatewayResourceWithRawResponse:
     def __init__(self, api_gateway: APIGatewayResource) -> None:
         self._api_gateway = api_gateway
@@ -125,6 +155,7 @@ class APIGatewayResourceWithRawResponse:
     @cached_property
     def user_schemas(self) -> UserSchemasResourceWithRawResponse:
         return UserSchemasResourceWithRawResponse(self._api_gateway.user_schemas)
+
 
 class AsyncAPIGatewayResourceWithRawResponse:
     def __init__(self, api_gateway: AsyncAPIGatewayResource) -> None:
@@ -154,6 +185,7 @@ class AsyncAPIGatewayResourceWithRawResponse:
     def user_schemas(self) -> AsyncUserSchemasResourceWithRawResponse:
         return AsyncUserSchemasResourceWithRawResponse(self._api_gateway.user_schemas)
 
+
 class APIGatewayResourceWithStreamingResponse:
     def __init__(self, api_gateway: APIGatewayResource) -> None:
         self._api_gateway = api_gateway
@@ -181,6 +213,7 @@ class APIGatewayResourceWithStreamingResponse:
     @cached_property
     def user_schemas(self) -> UserSchemasResourceWithStreamingResponse:
         return UserSchemasResourceWithStreamingResponse(self._api_gateway.user_schemas)
+
 
 class AsyncAPIGatewayResourceWithStreamingResponse:
     def __init__(self, api_gateway: AsyncAPIGatewayResource) -> None:

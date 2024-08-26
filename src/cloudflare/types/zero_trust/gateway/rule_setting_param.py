@@ -3,18 +3,29 @@
 from __future__ import annotations
 
 from typing import Dict, List, Iterable
-
-from typing_extensions import TypedDict, Literal
+from typing_extensions import Literal, TypedDict
 
 from .dns_resolver_settings_v4_param import DNSResolverSettingsV4Param
-
 from .dns_resolver_settings_v6_param import DNSResolverSettingsV6Param
 
-__all__ = ["RuleSettingParam", "AuditSSH", "BISOAdminControls", "CheckSession", "DNSResolvers", "Egress", "L4override", "NotificationSettings", "PayloadLog", "UntrustedCERT"]
+__all__ = [
+    "RuleSettingParam",
+    "AuditSSH",
+    "BISOAdminControls",
+    "CheckSession",
+    "DNSResolvers",
+    "Egress",
+    "L4override",
+    "NotificationSettings",
+    "PayloadLog",
+    "UntrustedCERT",
+]
+
 
 class AuditSSH(TypedDict, total=False):
     command_logging: bool
     """Enable to turn on SSH command logging."""
+
 
 class BISOAdminControls(TypedDict, total=False):
     dcp: bool
@@ -32,6 +43,7 @@ class BISOAdminControls(TypedDict, total=False):
     du: bool
     """Set to false to enable uploading."""
 
+
 class CheckSession(TypedDict, total=False):
     duration: str
     """Configure how fresh the session needs to be to be considered valid."""
@@ -39,10 +51,12 @@ class CheckSession(TypedDict, total=False):
     enforce: bool
     """Set to true to enable session enforcement."""
 
+
 class DNSResolvers(TypedDict, total=False):
     ipv4: Iterable[DNSResolverSettingsV4Param]
 
     ipv6: Iterable[DNSResolverSettingsV6Param]
+
 
 class Egress(TypedDict, total=False):
     ipv4: str
@@ -58,12 +72,14 @@ class Egress(TypedDict, total=False):
     ipv6: str
     """The IPv6 range to be used for egress."""
 
+
 class L4override(TypedDict, total=False):
     ip: str
     """IPv4 or IPv6 address."""
 
     port: int
     """A port number to use for TCP/UDP overrides."""
+
 
 class NotificationSettings(TypedDict, total=False):
     enabled: bool
@@ -78,9 +94,11 @@ class NotificationSettings(TypedDict, total=False):
     If not set, the notification will open a block page.
     """
 
+
 class PayloadLog(TypedDict, total=False):
     enabled: bool
     """Set to true to enable DLP payload logging for this rule."""
+
 
 class UntrustedCERT(TypedDict, total=False):
     action: Literal["pass_through", "block", "error"]
@@ -88,6 +106,7 @@ class UntrustedCERT(TypedDict, total=False):
 
     The default action is an error with HTTP code 526.
     """
+
 
 class RuleSettingParam(TypedDict, total=False):
     add_headers: Dict[str, str]

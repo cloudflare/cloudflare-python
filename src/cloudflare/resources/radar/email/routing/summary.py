@@ -2,63 +2,44 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
-
-from .....types.radar.email.routing.summary_arc_response import SummaryARCResponse
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
 from ....._base_client import make_request_options
-
-from typing import Type, List, Union
-
-from datetime import datetime
-
-from typing_extensions import Literal
-
+from .....types.radar.email.routing import (
+    summary_arc_params,
+    summary_spf_params,
+    summary_dkim_params,
+    summary_dmarc_params,
+    summary_encrypted_params,
+    summary_ip_version_params,
+)
+from .....types.radar.email.routing.summary_arc_response import SummaryARCResponse
+from .....types.radar.email.routing.summary_spf_response import SummarySPFResponse
 from .....types.radar.email.routing.summary_dkim_response import SummaryDKIMResponse
-
 from .....types.radar.email.routing.summary_dmarc_response import SummaryDMARCResponse
-
 from .....types.radar.email.routing.summary_encrypted_response import SummaryEncryptedResponse
-
 from .....types.radar.email.routing.summary_ip_version_response import SummaryIPVersionResponse
 
-from .....types.radar.email.routing.summary_spf_response import SummarySPFResponse
-
-from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.radar.email.routing import summary_arc_params
-from .....types.radar.email.routing import summary_dkim_params
-from .....types.radar.email.routing import summary_dmarc_params
-from .....types.radar.email.routing import summary_encrypted_params
-from .....types.radar.email.routing import summary_ip_version_params
-from .....types.radar.email.routing import summary_spf_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["SummaryResource", "AsyncSummaryResource"]
+
 
 class SummaryResource(SyncAPIResource):
     @cached_property
@@ -69,24 +50,26 @@ class SummaryResource(SyncAPIResource):
     def with_streaming_response(self) -> SummaryResourceWithStreamingResponse:
         return SummaryResourceWithStreamingResponse(self)
 
-    def arc(self,
-    *,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryARCResponse:
+    def arc(
+        self,
+        *,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryARCResponse:
         """
         Percentage distribution of emails classified per ARC validation.
 
@@ -123,39 +106,51 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/email/routing/summary/arc",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "dkim": dkim,
-                "dmarc": dmarc,
-                "encrypted": encrypted,
-                "format": format,
-                "ip_version": ip_version,
-                "name": name,
-                "spf": spf,
-            }, summary_arc_params.SummaryARCParams), post_parser=ResultWrapper[SummaryARCResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "encrypted": encrypted,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    summary_arc_params.SummaryARCParams,
+                ),
+                post_parser=ResultWrapper[SummaryARCResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryARCResponse], ResultWrapper[SummaryARCResponse]),
         )
 
-    def dkim(self,
-    *,
-    arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryDKIMResponse:
+    def dkim(
+        self,
+        *,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryDKIMResponse:
         """
         Percentage distribution of emails classified per DKIM validation.
 
@@ -192,39 +187,51 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/email/routing/summary/dkim",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "arc": arc,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "dmarc": dmarc,
-                "encrypted": encrypted,
-                "format": format,
-                "ip_version": ip_version,
-                "name": name,
-                "spf": spf,
-            }, summary_dkim_params.SummaryDKIMParams), post_parser=ResultWrapper[SummaryDKIMResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "arc": arc,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dmarc": dmarc,
+                        "encrypted": encrypted,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    summary_dkim_params.SummaryDKIMParams,
+                ),
+                post_parser=ResultWrapper[SummaryDKIMResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryDKIMResponse], ResultWrapper[SummaryDKIMResponse]),
         )
 
-    def dmarc(self,
-    *,
-    arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryDMARCResponse:
+    def dmarc(
+        self,
+        *,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryDMARCResponse:
         """
         Percentage distribution of emails classified per DMARC validation.
 
@@ -261,39 +268,51 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/email/routing/summary/dmarc",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "arc": arc,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "dkim": dkim,
-                "encrypted": encrypted,
-                "format": format,
-                "ip_version": ip_version,
-                "name": name,
-                "spf": spf,
-            }, summary_dmarc_params.SummaryDMARCParams), post_parser=ResultWrapper[SummaryDMARCResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "arc": arc,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "encrypted": encrypted,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    summary_dmarc_params.SummaryDMARCParams,
+                ),
+                post_parser=ResultWrapper[SummaryDMARCResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryDMARCResponse], ResultWrapper[SummaryDMARCResponse]),
         )
 
-    def encrypted(self,
-    *,
-    arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryEncryptedResponse:
+    def encrypted(
+        self,
+        *,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryEncryptedResponse:
         """
         Percentage distribution of emails by Encrypted
 
@@ -330,39 +349,51 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/email/routing/summary/encrypted",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "arc": arc,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "dkim": dkim,
-                "dmarc": dmarc,
-                "format": format,
-                "ip_version": ip_version,
-                "name": name,
-                "spf": spf,
-            }, summary_encrypted_params.SummaryEncryptedParams), post_parser=ResultWrapper[SummaryEncryptedResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "arc": arc,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    summary_encrypted_params.SummaryEncryptedParams,
+                ),
+                post_parser=ResultWrapper[SummaryEncryptedResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryEncryptedResponse], ResultWrapper[SummaryEncryptedResponse]),
         )
 
-    def ip_version(self,
-    *,
-    arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryIPVersionResponse:
+    def ip_version(
+        self,
+        *,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryIPVersionResponse:
         """
         Percentage distribution of emails by Ip Version.
 
@@ -399,39 +430,51 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/email/routing/summary/ip_version",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "arc": arc,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "dkim": dkim,
-                "dmarc": dmarc,
-                "encrypted": encrypted,
-                "format": format,
-                "name": name,
-                "spf": spf,
-            }, summary_ip_version_params.SummaryIPVersionParams), post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "arc": arc,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "encrypted": encrypted,
+                        "format": format,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    summary_ip_version_params.SummaryIPVersionParams,
+                ),
+                post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    def spf(self,
-    *,
-    arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummarySPFResponse:
+    def spf(
+        self,
+        *,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummarySPFResponse:
         """
         Percentage distribution of emails classified per SPF validation.
 
@@ -468,20 +511,31 @@ class SummaryResource(SyncAPIResource):
         """
         return self._get(
             "/radar/email/routing/summary/spf",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "arc": arc,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "dkim": dkim,
-                "dmarc": dmarc,
-                "encrypted": encrypted,
-                "format": format,
-                "ip_version": ip_version,
-                "name": name,
-            }, summary_spf_params.SummarySPFParams), post_parser=ResultWrapper[SummarySPFResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "arc": arc,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "encrypted": encrypted,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "name": name,
+                    },
+                    summary_spf_params.SummarySPFParams,
+                ),
+                post_parser=ResultWrapper[SummarySPFResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummarySPFResponse], ResultWrapper[SummarySPFResponse]),
         )
+
 
 class AsyncSummaryResource(AsyncAPIResource):
     @cached_property
@@ -492,24 +546,26 @@ class AsyncSummaryResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSummaryResourceWithStreamingResponse:
         return AsyncSummaryResourceWithStreamingResponse(self)
 
-    async def arc(self,
-    *,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryARCResponse:
+    async def arc(
+        self,
+        *,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryARCResponse:
         """
         Percentage distribution of emails classified per ARC validation.
 
@@ -546,39 +602,51 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/email/routing/summary/arc",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "dkim": dkim,
-                "dmarc": dmarc,
-                "encrypted": encrypted,
-                "format": format,
-                "ip_version": ip_version,
-                "name": name,
-                "spf": spf,
-            }, summary_arc_params.SummaryARCParams), post_parser=ResultWrapper[SummaryARCResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "encrypted": encrypted,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    summary_arc_params.SummaryARCParams,
+                ),
+                post_parser=ResultWrapper[SummaryARCResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryARCResponse], ResultWrapper[SummaryARCResponse]),
         )
 
-    async def dkim(self,
-    *,
-    arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryDKIMResponse:
+    async def dkim(
+        self,
+        *,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryDKIMResponse:
         """
         Percentage distribution of emails classified per DKIM validation.
 
@@ -615,39 +683,51 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/email/routing/summary/dkim",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "arc": arc,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "dmarc": dmarc,
-                "encrypted": encrypted,
-                "format": format,
-                "ip_version": ip_version,
-                "name": name,
-                "spf": spf,
-            }, summary_dkim_params.SummaryDKIMParams), post_parser=ResultWrapper[SummaryDKIMResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "arc": arc,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dmarc": dmarc,
+                        "encrypted": encrypted,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    summary_dkim_params.SummaryDKIMParams,
+                ),
+                post_parser=ResultWrapper[SummaryDKIMResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryDKIMResponse], ResultWrapper[SummaryDKIMResponse]),
         )
 
-    async def dmarc(self,
-    *,
-    arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryDMARCResponse:
+    async def dmarc(
+        self,
+        *,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryDMARCResponse:
         """
         Percentage distribution of emails classified per DMARC validation.
 
@@ -684,39 +764,51 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/email/routing/summary/dmarc",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "arc": arc,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "dkim": dkim,
-                "encrypted": encrypted,
-                "format": format,
-                "ip_version": ip_version,
-                "name": name,
-                "spf": spf,
-            }, summary_dmarc_params.SummaryDMARCParams), post_parser=ResultWrapper[SummaryDMARCResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "arc": arc,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "encrypted": encrypted,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    summary_dmarc_params.SummaryDMARCParams,
+                ),
+                post_parser=ResultWrapper[SummaryDMARCResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryDMARCResponse], ResultWrapper[SummaryDMARCResponse]),
         )
 
-    async def encrypted(self,
-    *,
-    arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryEncryptedResponse:
+    async def encrypted(
+        self,
+        *,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryEncryptedResponse:
         """
         Percentage distribution of emails by Encrypted
 
@@ -753,39 +845,51 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/email/routing/summary/encrypted",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "arc": arc,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "dkim": dkim,
-                "dmarc": dmarc,
-                "format": format,
-                "ip_version": ip_version,
-                "name": name,
-                "spf": spf,
-            }, summary_encrypted_params.SummaryEncryptedParams), post_parser=ResultWrapper[SummaryEncryptedResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "arc": arc,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    summary_encrypted_params.SummaryEncryptedParams,
+                ),
+                post_parser=ResultWrapper[SummaryEncryptedResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryEncryptedResponse], ResultWrapper[SummaryEncryptedResponse]),
         )
 
-    async def ip_version(self,
-    *,
-    arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummaryIPVersionResponse:
+    async def ip_version(
+        self,
+        *,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        spf: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryIPVersionResponse:
         """
         Percentage distribution of emails by Ip Version.
 
@@ -822,39 +926,51 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/email/routing/summary/ip_version",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "arc": arc,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "dkim": dkim,
-                "dmarc": dmarc,
-                "encrypted": encrypted,
-                "format": format,
-                "name": name,
-                "spf": spf,
-            }, summary_ip_version_params.SummaryIPVersionParams), post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "arc": arc,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "encrypted": encrypted,
+                        "format": format,
+                        "name": name,
+                        "spf": spf,
+                    },
+                    summary_ip_version_params.SummaryIPVersionParams,
+                ),
+                post_parser=ResultWrapper[SummaryIPVersionResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummaryIPVersionResponse], ResultWrapper[SummaryIPVersionResponse]),
         )
 
-    async def spf(self,
-    *,
-    arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
-    encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SummarySPFResponse:
+    async def spf(
+        self,
+        *,
+        arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
+        encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummarySPFResponse:
         """
         Percentage distribution of emails classified per SPF validation.
 
@@ -891,20 +1007,31 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/email/routing/summary/spf",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "arc": arc,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "dkim": dkim,
-                "dmarc": dmarc,
-                "encrypted": encrypted,
-                "format": format,
-                "ip_version": ip_version,
-                "name": name,
-            }, summary_spf_params.SummarySPFParams), post_parser=ResultWrapper[SummarySPFResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "arc": arc,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "dkim": dkim,
+                        "dmarc": dmarc,
+                        "encrypted": encrypted,
+                        "format": format,
+                        "ip_version": ip_version,
+                        "name": name,
+                    },
+                    summary_spf_params.SummarySPFParams,
+                ),
+                post_parser=ResultWrapper[SummarySPFResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SummarySPFResponse], ResultWrapper[SummarySPFResponse]),
         )
+
 
 class SummaryResourceWithRawResponse:
     def __init__(self, summary: SummaryResource) -> None:
@@ -929,6 +1056,7 @@ class SummaryResourceWithRawResponse:
             summary.spf,
         )
 
+
 class AsyncSummaryResourceWithRawResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
@@ -952,6 +1080,7 @@ class AsyncSummaryResourceWithRawResponse:
             summary.spf,
         )
 
+
 class SummaryResourceWithStreamingResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
@@ -974,6 +1103,7 @@ class SummaryResourceWithStreamingResponse:
         self.spf = to_streamed_response_wrapper(
             summary.spf,
         )
+
 
 class AsyncSummaryResourceWithStreamingResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:

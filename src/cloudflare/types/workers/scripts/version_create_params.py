@@ -2,20 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated, Literal
-
 from typing import List, Iterable
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ...._types import FileTypes
-
-from ...._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
 from ...._types import FileTypes
 from ...._utils import PropertyInfo
 
 __all__ = ["VersionCreateParams", "Metadata", "MetadataAnnotations"]
+
 
 class VersionCreateParams(TypedDict, total=False):
     account_id: Required[str]
@@ -31,12 +25,14 @@ class VersionCreateParams(TypedDict, total=False):
     metadata: Metadata
     """JSON encoded metadata about the uploaded parts and Worker configuration."""
 
+
 class MetadataAnnotations(TypedDict, total=False):
     workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
     """Human-readable message about the version."""
 
     workers_tag: Annotated[str, PropertyInfo(alias="workers/tag")]
     """User-provided identifier for the version."""
+
 
 class Metadata(TypedDict, total=False):
     annotations: MetadataAnnotations

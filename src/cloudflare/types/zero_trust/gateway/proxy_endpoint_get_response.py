@@ -1,12 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .proxy_endpoint import ProxyEndpoint
-
+from typing import List
 from typing_extensions import TypeAlias
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from .proxy_endpoint import ProxyEndpoint
 
 __all__ = ["ProxyEndpointGetResponse"]
 

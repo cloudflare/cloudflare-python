@@ -2,52 +2,46 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .history.history import HistoryResource, AsyncHistoryResource
-
+from .history import (
+    HistoryResource,
+    AsyncHistoryResource,
+    HistoryResourceWithRawResponse,
+    AsyncHistoryResourceWithRawResponse,
+    HistoryResourceWithStreamingResponse,
+    AsyncHistoryResourceWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from .history.history import HistoryResource, AsyncHistoryResource
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.pages.projects import (
+    deployment_list_params,
+    deployment_retry_params,
+    deployment_create_params,
+    deployment_rollback_params,
+)
 from .....types.pages.deployment import Deployment
 
-from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from ....._base_client import make_request_options, AsyncPaginator
-
-from typing import Type, Optional
-
-from .....pagination import SyncSinglePage, AsyncSinglePage
-
-from typing_extensions import Literal
-
-from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.pages.projects import deployment_create_params
-from .....types.pages.projects import deployment_list_params
-from .....types.pages.projects import deployment_retry_params
-from .....types.pages.projects import deployment_rollback_params
-from .history import HistoryResource, AsyncHistoryResource, HistoryResourceWithRawResponse, AsyncHistoryResourceWithRawResponse, HistoryResourceWithStreamingResponse, AsyncHistoryResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
+
 
 class DeploymentsResource(SyncAPIResource):
     @cached_property
@@ -62,17 +56,19 @@ class DeploymentsResource(SyncAPIResource):
     def with_streaming_response(self) -> DeploymentsResourceWithStreamingResponse:
         return DeploymentsResourceWithStreamingResponse(self)
 
-    def create(self,
-    project_name: str,
-    *,
-    account_id: str,
-    branch: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Deployment:
+    def create(
+        self,
+        project_name: str,
+        *,
+        account_id: str,
+        branch: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Deployment:
         """Start a new deployment from production.
 
         The repository and account must have
@@ -95,37 +91,39 @@ class DeploymentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
-          raise ValueError(
-            f'Expected a non-empty value for `project_name` but received {project_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            body=maybe_transform({
-                "branch": branch
-            }, deployment_create_params.DeploymentCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Deployment]._unwrapper),
+            body=maybe_transform({"branch": branch}, deployment_create_params.DeploymentCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
+            ),
             cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
-    def list(self,
-    project_name: str,
-    *,
-    account_id: str,
-    env: Literal["production", "preview"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[Deployment]:
+    def list(
+        self,
+        project_name: str,
+        *,
+        account_id: str,
+        env: Literal["production", "preview"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[Deployment]:
         """
         Fetch a list of project deployments.
 
@@ -145,33 +143,35 @@ class DeploymentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
-          raise ValueError(
-            f'Expected a non-empty value for `project_name` but received {project_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            page = SyncSinglePage[Deployment],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "env": env
-            }, deployment_list_params.DeploymentListParams)),
+            page=SyncSinglePage[Deployment],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"env": env}, deployment_list_params.DeploymentListParams),
+            ),
             model=Deployment,
         )
 
-    def delete(self,
-    deployment_id: str,
-    *,
-    account_id: str,
-    project_name: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    def delete(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        project_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Delete a deployment.
 
@@ -191,34 +191,36 @@ class DeploymentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
-          raise ValueError(
-            f'Expected a non-empty value for `project_name` but received {project_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         if not deployment_id:
-          raise ValueError(
-            f'Expected a non-empty value for `deployment_id` but received {deployment_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[object]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    def get(self,
-    deployment_id: str,
-    *,
-    account_id: str,
-    project_name: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Deployment:
+    def get(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        project_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Deployment:
         """
         Fetch information about a deployment.
 
@@ -238,35 +240,37 @@ class DeploymentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
-          raise ValueError(
-            f'Expected a non-empty value for `project_name` but received {project_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         if not deployment_id:
-          raise ValueError(
-            f'Expected a non-empty value for `deployment_id` but received {deployment_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return self._get(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Deployment]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
+            ),
             cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
-    def retry(self,
-    deployment_id: str,
-    *,
-    account_id: str,
-    project_name: str,
-    body: object,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Deployment:
+    def retry(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        project_name: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Deployment:
         """
         Retry a previous deployment.
 
@@ -286,36 +290,38 @@ class DeploymentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
-          raise ValueError(
-            f'Expected a non-empty value for `project_name` but received {project_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         if not deployment_id:
-          raise ValueError(
-            f'Expected a non-empty value for `deployment_id` but received {deployment_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry",
             body=maybe_transform(body, deployment_retry_params.DeploymentRetryParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Deployment]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
+            ),
             cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
-    def rollback(self,
-    deployment_id: str,
-    *,
-    account_id: str,
-    project_name: str,
-    body: object,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Deployment:
+    def rollback(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        project_name: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Deployment:
         """Rollback the production deployment to a previous deployment.
 
         You can only
@@ -337,23 +343,24 @@ class DeploymentsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
-          raise ValueError(
-            f'Expected a non-empty value for `project_name` but received {project_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         if not deployment_id:
-          raise ValueError(
-            f'Expected a non-empty value for `deployment_id` but received {deployment_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback",
             body=maybe_transform(body, deployment_rollback_params.DeploymentRollbackParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Deployment]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
+            ),
             cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
+
 
 class AsyncDeploymentsResource(AsyncAPIResource):
     @cached_property
@@ -368,17 +375,19 @@ class AsyncDeploymentsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDeploymentsResourceWithStreamingResponse:
         return AsyncDeploymentsResourceWithStreamingResponse(self)
 
-    async def create(self,
-    project_name: str,
-    *,
-    account_id: str,
-    branch: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Deployment:
+    async def create(
+        self,
+        project_name: str,
+        *,
+        account_id: str,
+        branch: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Deployment:
         """Start a new deployment from production.
 
         The repository and account must have
@@ -401,37 +410,39 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
-          raise ValueError(
-            f'Expected a non-empty value for `project_name` but received {project_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            body=await async_maybe_transform({
-                "branch": branch
-            }, deployment_create_params.DeploymentCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Deployment]._unwrapper),
+            body=await async_maybe_transform({"branch": branch}, deployment_create_params.DeploymentCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
+            ),
             cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
-    def list(self,
-    project_name: str,
-    *,
-    account_id: str,
-    env: Literal["production", "preview"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Deployment, AsyncSinglePage[Deployment]]:
+    def list(
+        self,
+        project_name: str,
+        *,
+        account_id: str,
+        env: Literal["production", "preview"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[Deployment, AsyncSinglePage[Deployment]]:
         """
         Fetch a list of project deployments.
 
@@ -451,33 +462,35 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
-          raise ValueError(
-            f'Expected a non-empty value for `project_name` but received {project_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments",
-            page = AsyncSinglePage[Deployment],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "env": env
-            }, deployment_list_params.DeploymentListParams)),
+            page=AsyncSinglePage[Deployment],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"env": env}, deployment_list_params.DeploymentListParams),
+            ),
             model=Deployment,
         )
 
-    async def delete(self,
-    deployment_id: str,
-    *,
-    account_id: str,
-    project_name: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    async def delete(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        project_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Delete a deployment.
 
@@ -497,34 +510,36 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
-          raise ValueError(
-            f'Expected a non-empty value for `project_name` but received {project_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         if not deployment_id:
-          raise ValueError(
-            f'Expected a non-empty value for `deployment_id` but received {deployment_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[object]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    async def get(self,
-    deployment_id: str,
-    *,
-    account_id: str,
-    project_name: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Deployment:
+    async def get(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        project_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Deployment:
         """
         Fetch information about a deployment.
 
@@ -544,35 +559,37 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
-          raise ValueError(
-            f'Expected a non-empty value for `project_name` but received {project_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         if not deployment_id:
-          raise ValueError(
-            f'Expected a non-empty value for `deployment_id` but received {deployment_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return await self._get(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Deployment]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
+            ),
             cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
-    async def retry(self,
-    deployment_id: str,
-    *,
-    account_id: str,
-    project_name: str,
-    body: object,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Deployment:
+    async def retry(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        project_name: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Deployment:
         """
         Retry a previous deployment.
 
@@ -592,36 +609,38 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
-          raise ValueError(
-            f'Expected a non-empty value for `project_name` but received {project_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         if not deployment_id:
-          raise ValueError(
-            f'Expected a non-empty value for `deployment_id` but received {deployment_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return await self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry",
             body=await async_maybe_transform(body, deployment_retry_params.DeploymentRetryParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Deployment]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
+            ),
             cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
 
-    async def rollback(self,
-    deployment_id: str,
-    *,
-    account_id: str,
-    project_name: str,
-    body: object,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Deployment:
+    async def rollback(
+        self,
+        deployment_id: str,
+        *,
+        account_id: str,
+        project_name: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Deployment:
         """Rollback the production deployment to a previous deployment.
 
         You can only
@@ -643,23 +662,24 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not project_name:
-          raise ValueError(
-            f'Expected a non-empty value for `project_name` but received {project_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         if not deployment_id:
-          raise ValueError(
-            f'Expected a non-empty value for `deployment_id` but received {deployment_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
         return await self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback",
             body=await async_maybe_transform(body, deployment_rollback_params.DeploymentRollbackParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Deployment]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Deployment]._unwrapper,
+            ),
             cast_to=cast(Type[Deployment], ResultWrapper[Deployment]),
         )
+
 
 class DeploymentsResourceWithRawResponse:
     def __init__(self, deployments: DeploymentsResource) -> None:
@@ -688,6 +708,7 @@ class DeploymentsResourceWithRawResponse:
     def history(self) -> HistoryResourceWithRawResponse:
         return HistoryResourceWithRawResponse(self._deployments.history)
 
+
 class AsyncDeploymentsResourceWithRawResponse:
     def __init__(self, deployments: AsyncDeploymentsResource) -> None:
         self._deployments = deployments
@@ -715,6 +736,7 @@ class AsyncDeploymentsResourceWithRawResponse:
     def history(self) -> AsyncHistoryResourceWithRawResponse:
         return AsyncHistoryResourceWithRawResponse(self._deployments.history)
 
+
 class DeploymentsResourceWithStreamingResponse:
     def __init__(self, deployments: DeploymentsResource) -> None:
         self._deployments = deployments
@@ -741,6 +763,7 @@ class DeploymentsResourceWithStreamingResponse:
     @cached_property
     def history(self) -> HistoryResourceWithStreamingResponse:
         return HistoryResourceWithStreamingResponse(self._deployments.history)
+
 
 class AsyncDeploymentsResourceWithStreamingResponse:
     def __init__(self, deployments: AsyncDeploymentsResource) -> None:

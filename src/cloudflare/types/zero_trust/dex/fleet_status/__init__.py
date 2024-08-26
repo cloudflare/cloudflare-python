@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .device_list_response import DeviceListResponse as DeviceListResponse
 from .device_list_params import DeviceListParams as DeviceListParams
+from .device_list_response import DeviceListResponse as DeviceListResponse

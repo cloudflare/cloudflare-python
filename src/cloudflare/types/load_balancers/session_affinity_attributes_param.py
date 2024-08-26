@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from typing import List
-
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["SessionAffinityAttributesParam"]
+
 
 class SessionAffinityAttributesParam(TypedDict, total=False):
     drain_duration: float

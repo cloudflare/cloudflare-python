@@ -2,16 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
-
 from typing import Iterable
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
+from typing_extensions import Required, TypedDict
 
 __all__ = ["RuleUpdateParams", "Rule"]
+
 
 class RuleUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
@@ -19,6 +14,7 @@ class RuleUpdateParams(TypedDict, total=False):
 
     rules: Iterable[Rule]
     """List of snippet rules"""
+
 
 class Rule(TypedDict, total=False):
     description: str

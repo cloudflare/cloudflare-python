@@ -2,16 +2,16 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, TypeAlias
+from typing import Union, Iterable
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from typing import Iterable, Union
+__all__ = [
+    "ConfigurationUpdateParams",
+    "AuthIDCharacteristic",
+    "AuthIDCharacteristicAPIShieldAuthIDCharacteristic",
+    "AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim",
+]
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
-__all__ = ["ConfigurationUpdateParams", "AuthIDCharacteristic", "AuthIDCharacteristicAPIShieldAuthIDCharacteristic", "AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim"]
 
 class ConfigurationUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
@@ -19,12 +19,14 @@ class ConfigurationUpdateParams(TypedDict, total=False):
 
     auth_id_characteristics: Required[Iterable[AuthIDCharacteristic]]
 
+
 class AuthIDCharacteristicAPIShieldAuthIDCharacteristic(TypedDict, total=False):
     name: Required[str]
     """The name of the characteristic field, i.e., the header or cookie name."""
 
     type: Required[Literal["header", "cookie"]]
     """The type of characteristic."""
+
 
 class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim(TypedDict, total=False):
     name: Required[str]
@@ -41,4 +43,7 @@ class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim(TypedDict, total
     type: Required[Literal["jwt"]]
     """The type of characteristic."""
 
-AuthIDCharacteristic: TypeAlias = Union[AuthIDCharacteristicAPIShieldAuthIDCharacteristic, AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim]
+
+AuthIDCharacteristic: TypeAlias = Union[
+    AuthIDCharacteristicAPIShieldAuthIDCharacteristic, AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim
+]

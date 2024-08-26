@@ -2,20 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated
-
 from typing import Union
-
 from datetime import date
+from typing_extensions import Required, Annotated, TypedDict
 
-from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
 from ..._utils import PropertyInfo
 
 __all__ = ["DNSListParams", "StartEndParams"]
+
 
 class DNSListParams(TypedDict, total=False):
     account_id: Required[str]
@@ -31,9 +25,10 @@ class DNSListParams(TypedDict, total=False):
 
     start_end_params: StartEndParams
 
+
 class StartEndParams(TypedDict, total=False):
-    end: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
+    end: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """Defaults to the current date."""
 
-    start: Annotated[Union[str, date], PropertyInfo(format = "iso8601")]
+    start: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """Defaults to 30 days before the end parameter value."""

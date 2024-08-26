@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
+from typing import List, Optional
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
 __all__ = ["Zone", "Account", "Meta", "Owner"]
+
 
 class Account(BaseModel):
     id: Optional[str] = None
@@ -18,6 +14,7 @@ class Account(BaseModel):
 
     name: Optional[str] = None
     """The name of the account"""
+
 
 class Meta(BaseModel):
     cdn_only: Optional[bool] = None
@@ -40,6 +37,7 @@ class Meta(BaseModel):
 
     step: Optional[int] = None
 
+
 class Owner(BaseModel):
     id: Optional[str] = None
     """Identifier"""
@@ -49,6 +47,7 @@ class Owner(BaseModel):
 
     type: Optional[str] = None
     """The type of owner"""
+
 
 class Zone(BaseModel):
     id: str

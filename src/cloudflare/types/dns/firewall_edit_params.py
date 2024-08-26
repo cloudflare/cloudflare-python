@@ -2,22 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
-
 from typing import List, Optional
+from typing_extensions import Required, TypedDict
 
 from .firewall_ips import FirewallIPs
-
 from .upstream_ips import UpstreamIPs
-
 from .attack_mitigation_param import AttackMitigationParam
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
 __all__ = ["FirewallEditParams"]
+
 
 class FirewallEditParams(TypedDict, total=False):
     account_id: Required[str]

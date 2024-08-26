@@ -1,18 +1,33 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
+from typing import List, Union, Optional
 from datetime import datetime
-
 from typing_extensions import Literal, TypeAlias
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
-__all__ = ["APIShield", "Features", "FeaturesAPIShieldOperationFeatureThresholds", "FeaturesAPIShieldOperationFeatureThresholdsThresholds", "FeaturesAPIShieldOperationFeatureParameterSchemas", "FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemas", "FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas", "FeaturesAPIShieldOperationFeatureAPIRouting", "FeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting", "FeaturesAPIShieldOperationFeatureConfidenceIntervals", "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervals", "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThreshold", "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals", "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90", "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95", "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99", "FeaturesAPIShieldOperationFeatureSchemaInfo", "FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo", "FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema"]
+__all__ = [
+    "APIShield",
+    "Features",
+    "FeaturesAPIShieldOperationFeatureThresholds",
+    "FeaturesAPIShieldOperationFeatureThresholdsThresholds",
+    "FeaturesAPIShieldOperationFeatureParameterSchemas",
+    "FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemas",
+    "FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas",
+    "FeaturesAPIShieldOperationFeatureAPIRouting",
+    "FeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervals",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervals",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThreshold",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99",
+    "FeaturesAPIShieldOperationFeatureSchemaInfo",
+    "FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo",
+    "FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema",
+]
+
 
 class FeaturesAPIShieldOperationFeatureThresholdsThresholds(BaseModel):
     auth_id_tokens: Optional[int] = None
@@ -41,8 +56,10 @@ class FeaturesAPIShieldOperationFeatureThresholdsThresholds(BaseModel):
     suggested_threshold: Optional[int] = None
     """The suggested threshold in requests done by the same auth_id or period_seconds."""
 
+
 class FeaturesAPIShieldOperationFeatureThresholds(BaseModel):
     thresholds: Optional[FeaturesAPIShieldOperationFeatureThresholdsThresholds] = None
+
 
 class FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas(BaseModel):
     parameters: Optional[List[object]] = None
@@ -54,14 +71,19 @@ class FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameter
     This field is required to yield a valid operation schema.
     """
 
+
 class FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemas(BaseModel):
     last_updated: Optional[datetime] = None
 
-    parameter_schemas: Optional[FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas] = None
+    parameter_schemas: Optional[FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas] = (
+        None
+    )
     """An operation schema object containing a response."""
+
 
 class FeaturesAPIShieldOperationFeatureParameterSchemas(BaseModel):
     parameter_schemas: FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemas
+
 
 class FeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting(BaseModel):
     last_updated: Optional[datetime] = None
@@ -69,54 +91,81 @@ class FeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting(BaseModel):
     route: Optional[str] = None
     """Target route."""
 
+
 class FeaturesAPIShieldOperationFeatureAPIRouting(BaseModel):
     api_routing: Optional[FeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting] = None
     """API Routing settings on endpoint."""
 
-class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90(BaseModel):
+
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90(
+    BaseModel
+):
     lower: Optional[float] = None
     """Lower bound for percentile estimate"""
 
     upper: Optional[float] = None
     """Upper bound for percentile estimate"""
 
-class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95(BaseModel):
+
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95(
+    BaseModel
+):
     lower: Optional[float] = None
     """Lower bound for percentile estimate"""
 
     upper: Optional[float] = None
     """Upper bound for percentile estimate"""
 
-class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99(BaseModel):
+
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99(
+    BaseModel
+):
     lower: Optional[float] = None
     """Lower bound for percentile estimate"""
 
     upper: Optional[float] = None
     """Upper bound for percentile estimate"""
 
-class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals(BaseModel):
-    p90: Optional[FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90] = None
+
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals(
+    BaseModel
+):
+    p90: Optional[
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90
+    ] = None
     """Upper and lower bound for percentile estimate"""
 
-    p95: Optional[FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95] = None
+    p95: Optional[
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95
+    ] = None
     """Upper and lower bound for percentile estimate"""
 
-    p99: Optional[FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99] = None
+    p99: Optional[
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99
+    ] = None
     """Upper and lower bound for percentile estimate"""
+
 
 class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThreshold(BaseModel):
-    confidence_intervals: Optional[FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals] = None
+    confidence_intervals: Optional[
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals
+    ] = None
 
     mean: Optional[float] = None
     """Suggested threshold."""
 
+
 class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervals(BaseModel):
     last_updated: Optional[datetime] = None
 
-    suggested_threshold: Optional[FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThreshold] = None
+    suggested_threshold: Optional[
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThreshold
+    ] = None
+
 
 class FeaturesAPIShieldOperationFeatureConfidenceIntervals(BaseModel):
     confidence_intervals: Optional[FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervals] = None
+
 
 class FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema(BaseModel):
     id: Optional[str] = None
@@ -130,6 +179,7 @@ class FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema(BaseMode
     name: Optional[str] = None
     """Schema file name."""
 
+
 class FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo(BaseModel):
     active_schema: Optional[FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema] = None
     """Schema active on endpoint."""
@@ -140,10 +190,19 @@ class FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo(BaseModel):
     mitigation_action: Optional[Literal["none", "log", "block"]] = None
     """Action taken on requests failing validation."""
 
+
 class FeaturesAPIShieldOperationFeatureSchemaInfo(BaseModel):
     schema_info: Optional[FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo] = None
 
-Features: TypeAlias = Union[FeaturesAPIShieldOperationFeatureThresholds, FeaturesAPIShieldOperationFeatureParameterSchemas, FeaturesAPIShieldOperationFeatureAPIRouting, FeaturesAPIShieldOperationFeatureConfidenceIntervals, FeaturesAPIShieldOperationFeatureSchemaInfo]
+
+Features: TypeAlias = Union[
+    FeaturesAPIShieldOperationFeatureThresholds,
+    FeaturesAPIShieldOperationFeatureParameterSchemas,
+    FeaturesAPIShieldOperationFeatureAPIRouting,
+    FeaturesAPIShieldOperationFeatureConfidenceIntervals,
+    FeaturesAPIShieldOperationFeatureSchemaInfo,
+]
+
 
 class APIShield(BaseModel):
     endpoint: str

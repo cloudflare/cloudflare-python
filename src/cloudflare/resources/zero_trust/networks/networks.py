@@ -2,23 +2,28 @@
 
 from __future__ import annotations
 
-from .routes.routes import RoutesResource, AsyncRoutesResource
-
+from .routes import (
+    RoutesResource,
+    AsyncRoutesResource,
+    RoutesResourceWithRawResponse,
+    AsyncRoutesResourceWithRawResponse,
+    RoutesResourceWithStreamingResponse,
+    AsyncRoutesResourceWithStreamingResponse,
+)
 from ...._compat import cached_property
-
-from .virtual_networks import VirtualNetworksResource, AsyncVirtualNetworksResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from .routes import RoutesResource, AsyncRoutesResource, RoutesResourceWithRawResponse, AsyncRoutesResourceWithRawResponse, RoutesResourceWithStreamingResponse, AsyncRoutesResourceWithStreamingResponse
-from .virtual_networks import VirtualNetworksResource, AsyncVirtualNetworksResource, VirtualNetworksResourceWithRawResponse, AsyncVirtualNetworksResourceWithRawResponse, VirtualNetworksResourceWithStreamingResponse, AsyncVirtualNetworksResourceWithStreamingResponse
+from .routes.routes import RoutesResource, AsyncRoutesResource
+from .virtual_networks import (
+    VirtualNetworksResource,
+    AsyncVirtualNetworksResource,
+    VirtualNetworksResourceWithRawResponse,
+    AsyncVirtualNetworksResourceWithRawResponse,
+    VirtualNetworksResourceWithStreamingResponse,
+    AsyncVirtualNetworksResourceWithStreamingResponse,
+)
 
 __all__ = ["NetworksResource", "AsyncNetworksResource"]
+
 
 class NetworksResource(SyncAPIResource):
     @cached_property
@@ -37,6 +42,7 @@ class NetworksResource(SyncAPIResource):
     def with_streaming_response(self) -> NetworksResourceWithStreamingResponse:
         return NetworksResourceWithStreamingResponse(self)
 
+
 class AsyncNetworksResource(AsyncAPIResource):
     @cached_property
     def routes(self) -> AsyncRoutesResource:
@@ -54,6 +60,7 @@ class AsyncNetworksResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncNetworksResourceWithStreamingResponse:
         return AsyncNetworksResourceWithStreamingResponse(self)
 
+
 class NetworksResourceWithRawResponse:
     def __init__(self, networks: NetworksResource) -> None:
         self._networks = networks
@@ -65,6 +72,7 @@ class NetworksResourceWithRawResponse:
     @cached_property
     def virtual_networks(self) -> VirtualNetworksResourceWithRawResponse:
         return VirtualNetworksResourceWithRawResponse(self._networks.virtual_networks)
+
 
 class AsyncNetworksResourceWithRawResponse:
     def __init__(self, networks: AsyncNetworksResource) -> None:
@@ -78,6 +86,7 @@ class AsyncNetworksResourceWithRawResponse:
     def virtual_networks(self) -> AsyncVirtualNetworksResourceWithRawResponse:
         return AsyncVirtualNetworksResourceWithRawResponse(self._networks.virtual_networks)
 
+
 class NetworksResourceWithStreamingResponse:
     def __init__(self, networks: NetworksResource) -> None:
         self._networks = networks
@@ -89,6 +98,7 @@ class NetworksResourceWithStreamingResponse:
     @cached_property
     def virtual_networks(self) -> VirtualNetworksResourceWithStreamingResponse:
         return VirtualNetworksResourceWithStreamingResponse(self._networks.virtual_networks)
+
 
 class AsyncNetworksResourceWithStreamingResponse:
     def __init__(self, networks: AsyncNetworksResource) -> None:

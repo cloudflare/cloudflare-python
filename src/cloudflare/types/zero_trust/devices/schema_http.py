@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List, Optional
+
 from ...._models import BaseModel
-
-from typing import Optional, List
-
 from .schema_data import SchemaData
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["SchemaHTTP", "TargetPolicy"]
+
 
 class TargetPolicy(BaseModel):
     id: Optional[str] = None
@@ -21,6 +17,7 @@ class TargetPolicy(BaseModel):
 
     name: Optional[str] = None
     """The name of the device settings profile"""
+
 
 class SchemaHTTP(BaseModel):
     data: SchemaData

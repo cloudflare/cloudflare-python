@@ -2,83 +2,52 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.radar.http.timeseries_group_bot_class_response import TimeseriesGroupBotClassResponse
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
 from ...._base_client import make_request_options
-
-from typing import Type, List, Union
-
-from typing_extensions import Literal
-
-from datetime import datetime
-
+from ....types.radar.http import (
+    timeseries_group_os_params,
+    timeseries_group_browser_params,
+    timeseries_group_bot_class_params,
+    timeseries_group_ip_version_params,
+    timeseries_group_device_type_params,
+    timeseries_group_tls_version_params,
+    timeseries_group_http_version_params,
+    timeseries_group_post_quantum_params,
+    timeseries_group_http_protocol_params,
+    timeseries_group_browser_family_params,
+)
+from ....types.radar.http.timeseries_group_os_response import TimeseriesGroupOSResponse
 from ....types.radar.http.timeseries_group_browser_response import TimeseriesGroupBrowserResponse
-
+from ....types.radar.http.timeseries_group_bot_class_response import TimeseriesGroupBotClassResponse
+from ....types.radar.http.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
+from ....types.radar.http.timeseries_group_device_type_response import TimeseriesGroupDeviceTypeResponse
+from ....types.radar.http.timeseries_group_tls_version_response import TimeseriesGroupTLSVersionResponse
+from ....types.radar.http.timeseries_group_http_version_response import TimeseriesGroupHTTPVersionResponse
+from ....types.radar.http.timeseries_group_post_quantum_response import TimeseriesGroupPostQuantumResponse
+from ....types.radar.http.timeseries_group_http_protocol_response import TimeseriesGroupHTTPProtocolResponse
 from ....types.radar.http.timeseries_group_browser_family_response import TimeseriesGroupBrowserFamilyResponse
 
-from ....types.radar.http.timeseries_group_device_type_response import TimeseriesGroupDeviceTypeResponse
-
-from ....types.radar.http.timeseries_group_http_protocol_response import TimeseriesGroupHTTPProtocolResponse
-
-from ....types.radar.http.timeseries_group_http_version_response import TimeseriesGroupHTTPVersionResponse
-
-from ....types.radar.http.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
-
-from ....types.radar.http.timeseries_group_os_response import TimeseriesGroupOSResponse
-
-from ....types.radar.http.timeseries_group_post_quantum_response import TimeseriesGroupPostQuantumResponse
-
-from ....types.radar.http.timeseries_group_tls_version_response import TimeseriesGroupTLSVersionResponse
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.radar.http import timeseries_group_bot_class_params
-from ....types.radar.http import timeseries_group_browser_params
-from ....types.radar.http import timeseries_group_browser_family_params
-from ....types.radar.http import timeseries_group_device_type_params
-from ....types.radar.http import timeseries_group_http_protocol_params
-from ....types.radar.http import timeseries_group_http_version_params
-from ....types.radar.http import timeseries_group_ip_version_params
-from ....types.radar.http import timeseries_group_os_params
-from ....types.radar.http import timeseries_group_post_quantum_params
-from ....types.radar.http import timeseries_group_tls_version_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["TimeseriesGroupsResource", "AsyncTimeseriesGroupsResource"]
+
 
 class TimeseriesGroupsResource(SyncAPIResource):
     @cached_property
@@ -89,29 +58,32 @@ class TimeseriesGroupsResource(SyncAPIResource):
     def with_streaming_response(self) -> TimeseriesGroupsResourceWithStreamingResponse:
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
-    def bot_class(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupBotClassResponse:
+    def bot_class(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupBotClassResponse:
         """
         Get a time series of the percentage distribution of traffic classified as
         automated or human. Visit
@@ -169,51 +141,64 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return self._get(
             "/radar/http/timeseries_groups/bot_class",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_bot_class_params.TimeseriesGroupBotClassParams), post_parser=ResultWrapper[TimeseriesGroupBotClassResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_bot_class_params.TimeseriesGroupBotClassParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupBotClassResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupBotClassResponse], ResultWrapper[TimeseriesGroupBotClassResponse]),
         )
 
-    def browser(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    limit_per_group: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupBrowserResponse:
+    def browser(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupBrowserResponse:
         """
         Get a time series of the percentage distribution of traffic of the top user
         agents.
@@ -275,52 +260,65 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return self._get(
             "/radar/http/timeseries_groups/browser",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "limit_per_group": limit_per_group,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_browser_params.TimeseriesGroupBrowserParams), post_parser=ResultWrapper[TimeseriesGroupBrowserResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_browser_params.TimeseriesGroupBrowserParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupBrowserResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupBrowserResponse], ResultWrapper[TimeseriesGroupBrowserResponse]),
         )
 
-    def browser_family(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupBrowserFamilyResponse:
+    def browser_family(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupBrowserFamilyResponse:
         """
         Get a time series of the percentage distribution of traffic of the top user
         agents aggregated in families.
@@ -379,50 +377,65 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return self._get(
             "/radar/http/timeseries_groups/browser_family",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_browser_family_params.TimeseriesGroupBrowserFamilyParams), post_parser=ResultWrapper[TimeseriesGroupBrowserFamilyResponse]._unwrapper),
-            cast_to=cast(Type[TimeseriesGroupBrowserFamilyResponse], ResultWrapper[TimeseriesGroupBrowserFamilyResponse]),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_browser_family_params.TimeseriesGroupBrowserFamilyParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupBrowserFamilyResponse]._unwrapper,
+            ),
+            cast_to=cast(
+                Type[TimeseriesGroupBrowserFamilyResponse], ResultWrapper[TimeseriesGroupBrowserFamilyResponse]
+            ),
         )
 
-    def device_type(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupDeviceTypeResponse:
+    def device_type(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupDeviceTypeResponse:
         """
         Get a time series of the percentage distribution of traffic per device type.
 
@@ -478,49 +491,62 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return self._get(
             "/radar/http/timeseries_groups/device_type",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_device_type_params.TimeseriesGroupDeviceTypeParams), post_parser=ResultWrapper[TimeseriesGroupDeviceTypeResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_device_type_params.TimeseriesGroupDeviceTypeParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupDeviceTypeResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupDeviceTypeResponse], ResultWrapper[TimeseriesGroupDeviceTypeResponse]),
         )
 
-    def http_protocol(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupHTTPProtocolResponse:
+    def http_protocol(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupHTTPProtocolResponse:
         """
         Get a time series of the percentage distribution of traffic per HTTP protocol.
 
@@ -576,49 +602,62 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return self._get(
             "/radar/http/timeseries_groups/http_protocol",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_http_protocol_params.TimeseriesGroupHTTPProtocolParams), post_parser=ResultWrapper[TimeseriesGroupHTTPProtocolResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_http_protocol_params.TimeseriesGroupHTTPProtocolParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupHTTPProtocolResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupHTTPProtocolResponse], ResultWrapper[TimeseriesGroupHTTPProtocolResponse]),
         )
 
-    def http_version(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupHTTPVersionResponse:
+    def http_version(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupHTTPVersionResponse:
         """
         Get a time series of the percentage distribution of traffic per HTTP protocol
         version.
@@ -675,49 +714,62 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return self._get(
             "/radar/http/timeseries_groups/http_version",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_http_version_params.TimeseriesGroupHTTPVersionParams), post_parser=ResultWrapper[TimeseriesGroupHTTPVersionResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_http_version_params.TimeseriesGroupHTTPVersionParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupHTTPVersionResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupHTTPVersionResponse], ResultWrapper[TimeseriesGroupHTTPVersionResponse]),
         )
 
-    def ip_version(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupIPVersionResponse:
+    def ip_version(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupIPVersionResponse:
         """
         Get a time series of the percentage distribution of traffic per IP protocol
         version.
@@ -774,49 +826,61 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return self._get(
             "/radar/http/timeseries_groups/ip_version",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_ip_version_params.TimeseriesGroupIPVersionParams), post_parser=ResultWrapper[TimeseriesGroupIPVersionResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_ip_version_params.TimeseriesGroupIPVersionParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupIPVersionResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
-    def os(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupOSResponse:
+    def os(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupOSResponse:
         """
         Get a time series of the percentage distribution of traffic of the top operating
         systems.
@@ -873,50 +937,63 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return self._get(
             "/radar/http/timeseries_groups/os",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "tls_version": tls_version,
-            }, timeseries_group_os_params.TimeseriesGroupOSParams), post_parser=ResultWrapper[TimeseriesGroupOSResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_os_params.TimeseriesGroupOSParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupOSResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupOSResponse], ResultWrapper[TimeseriesGroupOSResponse]),
         )
 
-    def post_quantum(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupPostQuantumResponse:
+    def post_quantum(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupPostQuantumResponse:
         """
         Get a time series of the percentage distribution of traffic per Post Quantum
         suport.
@@ -975,50 +1052,63 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return self._get(
             "/radar/http/timeseries_groups/post_quantum",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_post_quantum_params.TimeseriesGroupPostQuantumParams), post_parser=ResultWrapper[TimeseriesGroupPostQuantumResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_post_quantum_params.TimeseriesGroupPostQuantumParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupPostQuantumResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupPostQuantumResponse], ResultWrapper[TimeseriesGroupPostQuantumResponse]),
         )
 
-    def tls_version(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupTLSVersionResponse:
+    def tls_version(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupTLSVersionResponse:
         """
         Get a time series of the percentage distribution of traffic per TLS protocol
         version.
@@ -1075,25 +1165,36 @@ class TimeseriesGroupsResource(SyncAPIResource):
         """
         return self._get(
             "/radar/http/timeseries_groups/tls_version",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "os": os,
-            }, timeseries_group_tls_version_params.TimeseriesGroupTLSVersionParams), post_parser=ResultWrapper[TimeseriesGroupTLSVersionResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                    },
+                    timeseries_group_tls_version_params.TimeseriesGroupTLSVersionParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupTLSVersionResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupTLSVersionResponse], ResultWrapper[TimeseriesGroupTLSVersionResponse]),
         )
+
 
 class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     @cached_property
@@ -1104,29 +1205,32 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTimeseriesGroupsResourceWithStreamingResponse:
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
-    async def bot_class(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupBotClassResponse:
+    async def bot_class(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupBotClassResponse:
         """
         Get a time series of the percentage distribution of traffic classified as
         automated or human. Visit
@@ -1184,51 +1288,64 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/http/timeseries_groups/bot_class",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_bot_class_params.TimeseriesGroupBotClassParams), post_parser=ResultWrapper[TimeseriesGroupBotClassResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_bot_class_params.TimeseriesGroupBotClassParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupBotClassResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupBotClassResponse], ResultWrapper[TimeseriesGroupBotClassResponse]),
         )
 
-    async def browser(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    limit_per_group: int | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupBrowserResponse:
+    async def browser(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupBrowserResponse:
         """
         Get a time series of the percentage distribution of traffic of the top user
         agents.
@@ -1290,52 +1407,65 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/http/timeseries_groups/browser",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "limit_per_group": limit_per_group,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_browser_params.TimeseriesGroupBrowserParams), post_parser=ResultWrapper[TimeseriesGroupBrowserResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_browser_params.TimeseriesGroupBrowserParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupBrowserResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupBrowserResponse], ResultWrapper[TimeseriesGroupBrowserResponse]),
         )
 
-    async def browser_family(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupBrowserFamilyResponse:
+    async def browser_family(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupBrowserFamilyResponse:
         """
         Get a time series of the percentage distribution of traffic of the top user
         agents aggregated in families.
@@ -1394,50 +1524,65 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/http/timeseries_groups/browser_family",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_browser_family_params.TimeseriesGroupBrowserFamilyParams), post_parser=ResultWrapper[TimeseriesGroupBrowserFamilyResponse]._unwrapper),
-            cast_to=cast(Type[TimeseriesGroupBrowserFamilyResponse], ResultWrapper[TimeseriesGroupBrowserFamilyResponse]),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_browser_family_params.TimeseriesGroupBrowserFamilyParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupBrowserFamilyResponse]._unwrapper,
+            ),
+            cast_to=cast(
+                Type[TimeseriesGroupBrowserFamilyResponse], ResultWrapper[TimeseriesGroupBrowserFamilyResponse]
+            ),
         )
 
-    async def device_type(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupDeviceTypeResponse:
+    async def device_type(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupDeviceTypeResponse:
         """
         Get a time series of the percentage distribution of traffic per device type.
 
@@ -1493,49 +1638,62 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/http/timeseries_groups/device_type",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_device_type_params.TimeseriesGroupDeviceTypeParams), post_parser=ResultWrapper[TimeseriesGroupDeviceTypeResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_device_type_params.TimeseriesGroupDeviceTypeParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupDeviceTypeResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupDeviceTypeResponse], ResultWrapper[TimeseriesGroupDeviceTypeResponse]),
         )
 
-    async def http_protocol(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupHTTPProtocolResponse:
+    async def http_protocol(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupHTTPProtocolResponse:
         """
         Get a time series of the percentage distribution of traffic per HTTP protocol.
 
@@ -1591,49 +1749,62 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/http/timeseries_groups/http_protocol",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_http_protocol_params.TimeseriesGroupHTTPProtocolParams), post_parser=ResultWrapper[TimeseriesGroupHTTPProtocolResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_http_protocol_params.TimeseriesGroupHTTPProtocolParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupHTTPProtocolResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupHTTPProtocolResponse], ResultWrapper[TimeseriesGroupHTTPProtocolResponse]),
         )
 
-    async def http_version(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupHTTPVersionResponse:
+    async def http_version(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupHTTPVersionResponse:
         """
         Get a time series of the percentage distribution of traffic per HTTP protocol
         version.
@@ -1690,49 +1861,62 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/http/timeseries_groups/http_version",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_http_version_params.TimeseriesGroupHTTPVersionParams), post_parser=ResultWrapper[TimeseriesGroupHTTPVersionResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_http_version_params.TimeseriesGroupHTTPVersionParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupHTTPVersionResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupHTTPVersionResponse], ResultWrapper[TimeseriesGroupHTTPVersionResponse]),
         )
 
-    async def ip_version(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupIPVersionResponse:
+    async def ip_version(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupIPVersionResponse:
         """
         Get a time series of the percentage distribution of traffic per IP protocol
         version.
@@ -1789,49 +1973,61 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/http/timeseries_groups/ip_version",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_ip_version_params.TimeseriesGroupIPVersionParams), post_parser=ResultWrapper[TimeseriesGroupIPVersionResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_ip_version_params.TimeseriesGroupIPVersionParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupIPVersionResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupIPVersionResponse], ResultWrapper[TimeseriesGroupIPVersionResponse]),
         )
 
-    async def os(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupOSResponse:
+    async def os(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupOSResponse:
         """
         Get a time series of the percentage distribution of traffic of the top operating
         systems.
@@ -1888,50 +2084,63 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/http/timeseries_groups/os",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "tls_version": tls_version,
-            }, timeseries_group_os_params.TimeseriesGroupOSParams), post_parser=ResultWrapper[TimeseriesGroupOSResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_os_params.TimeseriesGroupOSParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupOSResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupOSResponse], ResultWrapper[TimeseriesGroupOSResponse]),
         )
 
-    async def post_quantum(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupPostQuantumResponse:
+    async def post_quantum(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupPostQuantumResponse:
         """
         Get a time series of the percentage distribution of traffic per Post Quantum
         suport.
@@ -1990,50 +2199,63 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/http/timeseries_groups/post_quantum",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "os": os,
-                "tls_version": tls_version,
-            }, timeseries_group_post_quantum_params.TimeseriesGroupPostQuantumParams), post_parser=ResultWrapper[TimeseriesGroupPostQuantumResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                        "tls_version": tls_version,
+                    },
+                    timeseries_group_post_quantum_params.TimeseriesGroupPostQuantumParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupPostQuantumResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupPostQuantumResponse], ResultWrapper[TimeseriesGroupPostQuantumResponse]),
         )
 
-    async def tls_version(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
-    http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-    ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TimeseriesGroupTLSVersionResponse:
+    async def tls_version(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TimeseriesGroupTLSVersionResponse:
         """
         Get a time series of the percentage distribution of traffic per TLS protocol
         version.
@@ -2090,25 +2312,36 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/http/timeseries_groups/tls_version",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "bot_class": bot_class,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "device_type": device_type,
-                "format": format,
-                "http_protocol": http_protocol,
-                "http_version": http_version,
-                "ip_version": ip_version,
-                "location": location,
-                "name": name,
-                "os": os,
-            }, timeseries_group_tls_version_params.TimeseriesGroupTLSVersionParams), post_parser=ResultWrapper[TimeseriesGroupTLSVersionResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "bot_class": bot_class,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "device_type": device_type,
+                        "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "location": location,
+                        "name": name,
+                        "os": os,
+                    },
+                    timeseries_group_tls_version_params.TimeseriesGroupTLSVersionParams,
+                ),
+                post_parser=ResultWrapper[TimeseriesGroupTLSVersionResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TimeseriesGroupTLSVersionResponse], ResultWrapper[TimeseriesGroupTLSVersionResponse]),
         )
+
 
 class TimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
@@ -2145,6 +2378,7 @@ class TimeseriesGroupsResourceWithRawResponse:
             timeseries_groups.tls_version,
         )
 
+
 class AsyncTimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
@@ -2180,6 +2414,7 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
             timeseries_groups.tls_version,
         )
 
+
 class TimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
@@ -2214,6 +2449,7 @@ class TimeseriesGroupsResourceWithStreamingResponse:
         self.tls_version = to_streamed_response_wrapper(
             timeseries_groups.tls_version,
         )
+
 
 class AsyncTimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:

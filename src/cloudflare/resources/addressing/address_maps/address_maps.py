@@ -2,58 +2,58 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Iterable, Optional, cast
+
 import httpx
 
-from .accounts import AccountsResource, AsyncAccountsResource
-
+from .ips import (
+    IPsResource,
+    AsyncIPsResource,
+    IPsResourceWithRawResponse,
+    AsyncIPsResourceWithRawResponse,
+    IPsResourceWithStreamingResponse,
+    AsyncIPsResourceWithStreamingResponse,
+)
+from .zones import (
+    ZonesResource,
+    AsyncZonesResource,
+    ZonesResourceWithRawResponse,
+    AsyncZonesResourceWithRawResponse,
+    ZonesResourceWithStreamingResponse,
+    AsyncZonesResourceWithStreamingResponse,
+)
+from .accounts import (
+    AccountsResource,
+    AsyncAccountsResource,
+    AccountsResourceWithRawResponse,
+    AsyncAccountsResourceWithRawResponse,
+    AccountsResourceWithStreamingResponse,
+    AsyncAccountsResourceWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from .ips import IPsResource, AsyncIPsResource
-
-from .zones import ZonesResource, AsyncZonesResource
-
-from ....types.addressing.address_map_create_response import AddressMapCreateResponse
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type, List, Iterable
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from ....types.addressing.address_map import AddressMap
-
 from ....pagination import SyncSinglePage, AsyncSinglePage
-
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.addressing import address_map_edit_params, address_map_create_params
+from ....types.addressing.address_map import AddressMap
+from ....types.addressing.address_map_get_response import AddressMapGetResponse
+from ....types.addressing.address_map_create_response import AddressMapCreateResponse
 from ....types.addressing.address_map_delete_response import AddressMapDeleteResponse
 
-from ....types.addressing.address_map_get_response import AddressMapGetResponse
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-from ....types.addressing import address_map_create_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.addressing import address_map_create_params
-from ....types.addressing import address_map_edit_params
-from .accounts import AccountsResource, AsyncAccountsResource, AccountsResourceWithRawResponse, AsyncAccountsResourceWithRawResponse, AccountsResourceWithStreamingResponse, AsyncAccountsResourceWithStreamingResponse
-from .ips import IPsResource, AsyncIPsResource, IPsResourceWithRawResponse, AsyncIPsResourceWithRawResponse, IPsResourceWithStreamingResponse, AsyncIPsResourceWithStreamingResponse
-from .zones import ZonesResource, AsyncZonesResource, ZonesResourceWithRawResponse, AsyncZonesResourceWithRawResponse, ZonesResourceWithStreamingResponse, AsyncZonesResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["AddressMapsResource", "AsyncAddressMapsResource"]
+
 
 class AddressMapsResource(SyncAPIResource):
     @cached_property
@@ -76,19 +76,21 @@ class AddressMapsResource(SyncAPIResource):
     def with_streaming_response(self) -> AddressMapsResourceWithStreamingResponse:
         return AddressMapsResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    description: Optional[str] | NotGiven = NOT_GIVEN,
-    enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-    ips: List[str] | NotGiven = NOT_GIVEN,
-    memberships: Iterable[address_map_create_params.Membership] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AddressMapCreateResponse]:
+    def create(
+        self,
+        *,
+        account_id: str,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        ips: List[str] | NotGiven = NOT_GIVEN,
+        memberships: Iterable[address_map_create_params.Membership] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[AddressMapCreateResponse]:
         """
         Create a new address map under the account.
 
@@ -113,30 +115,39 @@ class AddressMapsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/addressing/address_maps",
-            body=maybe_transform({
-                "description": description,
-                "enabled": enabled,
-                "ips": ips,
-                "memberships": memberships,
-            }, address_map_create_params.AddressMapCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[AddressMapCreateResponse]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "enabled": enabled,
+                    "ips": ips,
+                    "memberships": memberships,
+                },
+                address_map_create_params.AddressMapCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AddressMapCreateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[AddressMapCreateResponse]], ResultWrapper[AddressMapCreateResponse]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[AddressMap]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[AddressMap]:
         """
         List all address maps owned by the account.
 
@@ -152,26 +163,28 @@ class AddressMapsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/addressing/address_maps",
-            page = SyncSinglePage[AddressMap],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[AddressMap],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=AddressMap,
         )
 
-    def delete(self,
-    address_map_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AddressMapDeleteResponse:
+    def delete(
+        self,
+        address_map_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AddressMapDeleteResponse:
         """Delete a particular address map owned by the account.
 
         An Address Map must be
@@ -191,32 +204,32 @@ class AddressMapsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
-          raise ValueError(
-            f'Expected a non-empty value for `address_map_id` but received {address_map_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AddressMapDeleteResponse,
         )
 
-    def edit(self,
-    address_map_id: str,
-    *,
-    account_id: str,
-    default_sni: Optional[str] | NotGiven = NOT_GIVEN,
-    description: Optional[str] | NotGiven = NOT_GIVEN,
-    enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AddressMap]:
+    def edit(
+        self,
+        address_map_id: str,
+        *,
+        account_id: str,
+        default_sni: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[AddressMap]:
         """
         Modify properties of an address map owned by the account.
 
@@ -246,34 +259,41 @@ class AddressMapsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
-          raise ValueError(
-            f'Expected a non-empty value for `address_map_id` but received {address_map_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return self._patch(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
-            body=maybe_transform({
-                "default_sni": default_sni,
-                "description": description,
-                "enabled": enabled,
-            }, address_map_edit_params.AddressMapEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[AddressMap]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "default_sni": default_sni,
+                    "description": description,
+                    "enabled": enabled,
+                },
+                address_map_edit_params.AddressMapEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AddressMap]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[AddressMap]], ResultWrapper[AddressMap]),
         )
 
-    def get(self,
-    address_map_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AddressMapGetResponse]:
+    def get(
+        self,
+        address_map_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[AddressMapGetResponse]:
         """
         Show a particular address map owned by the account.
 
@@ -291,18 +311,21 @@ class AddressMapsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
-          raise ValueError(
-            f'Expected a non-empty value for `address_map_id` but received {address_map_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return self._get(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[AddressMapGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AddressMapGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[AddressMapGetResponse]], ResultWrapper[AddressMapGetResponse]),
         )
+
 
 class AsyncAddressMapsResource(AsyncAPIResource):
     @cached_property
@@ -325,19 +348,21 @@ class AsyncAddressMapsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAddressMapsResourceWithStreamingResponse:
         return AsyncAddressMapsResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    description: Optional[str] | NotGiven = NOT_GIVEN,
-    enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-    ips: List[str] | NotGiven = NOT_GIVEN,
-    memberships: Iterable[address_map_create_params.Membership] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AddressMapCreateResponse]:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        ips: List[str] | NotGiven = NOT_GIVEN,
+        memberships: Iterable[address_map_create_params.Membership] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[AddressMapCreateResponse]:
         """
         Create a new address map under the account.
 
@@ -362,30 +387,39 @@ class AsyncAddressMapsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/addressing/address_maps",
-            body=await async_maybe_transform({
-                "description": description,
-                "enabled": enabled,
-                "ips": ips,
-                "memberships": memberships,
-            }, address_map_create_params.AddressMapCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[AddressMapCreateResponse]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "description": description,
+                    "enabled": enabled,
+                    "ips": ips,
+                    "memberships": memberships,
+                },
+                address_map_create_params.AddressMapCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AddressMapCreateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[AddressMapCreateResponse]], ResultWrapper[AddressMapCreateResponse]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[AddressMap, AsyncSinglePage[AddressMap]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[AddressMap, AsyncSinglePage[AddressMap]]:
         """
         List all address maps owned by the account.
 
@@ -401,26 +435,28 @@ class AsyncAddressMapsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/addressing/address_maps",
-            page = AsyncSinglePage[AddressMap],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[AddressMap],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=AddressMap,
         )
 
-    async def delete(self,
-    address_map_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AddressMapDeleteResponse:
+    async def delete(
+        self,
+        address_map_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AddressMapDeleteResponse:
         """Delete a particular address map owned by the account.
 
         An Address Map must be
@@ -440,32 +476,32 @@ class AsyncAddressMapsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
-          raise ValueError(
-            f'Expected a non-empty value for `address_map_id` but received {address_map_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=AddressMapDeleteResponse,
         )
 
-    async def edit(self,
-    address_map_id: str,
-    *,
-    account_id: str,
-    default_sni: Optional[str] | NotGiven = NOT_GIVEN,
-    description: Optional[str] | NotGiven = NOT_GIVEN,
-    enabled: Optional[bool] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AddressMap]:
+    async def edit(
+        self,
+        address_map_id: str,
+        *,
+        account_id: str,
+        default_sni: Optional[str] | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[AddressMap]:
         """
         Modify properties of an address map owned by the account.
 
@@ -495,34 +531,41 @@ class AsyncAddressMapsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
-          raise ValueError(
-            f'Expected a non-empty value for `address_map_id` but received {address_map_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
-            body=await async_maybe_transform({
-                "default_sni": default_sni,
-                "description": description,
-                "enabled": enabled,
-            }, address_map_edit_params.AddressMapEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[AddressMap]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "default_sni": default_sni,
+                    "description": description,
+                    "enabled": enabled,
+                },
+                address_map_edit_params.AddressMapEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AddressMap]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[AddressMap]], ResultWrapper[AddressMap]),
         )
 
-    async def get(self,
-    address_map_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[AddressMapGetResponse]:
+    async def get(
+        self,
+        address_map_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[AddressMapGetResponse]:
         """
         Show a particular address map owned by the account.
 
@@ -540,18 +583,21 @@ class AsyncAddressMapsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not address_map_id:
-          raise ValueError(
-            f'Expected a non-empty value for `address_map_id` but received {address_map_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return await self._get(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[AddressMapGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AddressMapGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[AddressMapGetResponse]], ResultWrapper[AddressMapGetResponse]),
         )
+
 
 class AddressMapsResourceWithRawResponse:
     def __init__(self, address_maps: AddressMapsResource) -> None:
@@ -585,6 +631,7 @@ class AddressMapsResourceWithRawResponse:
     def zones(self) -> ZonesResourceWithRawResponse:
         return ZonesResourceWithRawResponse(self._address_maps.zones)
 
+
 class AsyncAddressMapsResourceWithRawResponse:
     def __init__(self, address_maps: AsyncAddressMapsResource) -> None:
         self._address_maps = address_maps
@@ -617,6 +664,7 @@ class AsyncAddressMapsResourceWithRawResponse:
     def zones(self) -> AsyncZonesResourceWithRawResponse:
         return AsyncZonesResourceWithRawResponse(self._address_maps.zones)
 
+
 class AddressMapsResourceWithStreamingResponse:
     def __init__(self, address_maps: AddressMapsResource) -> None:
         self._address_maps = address_maps
@@ -648,6 +696,7 @@ class AddressMapsResourceWithStreamingResponse:
     @cached_property
     def zones(self) -> ZonesResourceWithStreamingResponse:
         return ZonesResourceWithStreamingResponse(self._address_maps.zones)
+
 
 class AsyncAddressMapsResourceWithStreamingResponse:
     def __init__(self, address_maps: AsyncAddressMapsResource) -> None:
