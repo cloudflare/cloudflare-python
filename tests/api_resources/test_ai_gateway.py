@@ -181,6 +181,7 @@ class TestAIGateway:
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             id="my-gateway",
             order_by="order_by",
+            order_by_direction="ASC",
             page=1,
             per_page=5,
         )
@@ -474,6 +475,7 @@ class TestAsyncAIGateway:
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             id="my-gateway",
             order_by="order_by",
+            order_by_direction="ASC",
             page=1,
             per_page=5,
         )
