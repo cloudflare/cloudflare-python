@@ -4631,6 +4631,23 @@ Methods:
 - <code title="patch /accounts/{account_id}/devices/policy/{policy_id}">client.zero_trust.devices.policies.<a href="./src/cloudflare/resources/zero_trust/devices/policies/policies.py">edit</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policy_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/settings_policy.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/policy/{policy_id}">client.zero_trust.devices.policies.<a href="./src/cloudflare/resources/zero_trust/devices/policies/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/settings_policy.py">Optional</a></code>
 
+#### Certificates
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.devices.policies import (
+    DevicePolicyCertificates,
+    CertificateUpdateResponse,
+    CertificateGetResponse,
+)
+```
+
+Methods:
+
+- <code title="patch /zones/{zone_tag}/devices/policy/certificates">client.zero_trust.devices.policies.certificates.<a href="./src/cloudflare/resources/zero_trust/devices/policies/certificates.py">update</a>(zone_tag, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/certificate_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/certificate_update_response.py">CertificateUpdateResponse</a></code>
+- <code title="get /zones/{zone_tag}/devices/policy/certificates">client.zero_trust.devices.policies.certificates.<a href="./src/cloudflare/resources/zero_trust/devices/policies/certificates.py">get</a>(zone_tag) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/certificate_get_response.py">CertificateGetResponse</a></code>
+
 #### DefaultPolicy
 
 Types:

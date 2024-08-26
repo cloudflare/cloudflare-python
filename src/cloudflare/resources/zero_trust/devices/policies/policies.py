@@ -28,6 +28,14 @@ from ....._utils import (
     async_maybe_transform,
 )
 from ....._compat import cached_property
+from .certificates import (
+    CertificatesResource,
+    AsyncCertificatesResource,
+    CertificatesResourceWithRawResponse,
+    AsyncCertificatesResourceWithRawResponse,
+    CertificatesResourceWithStreamingResponse,
+    AsyncCertificatesResourceWithStreamingResponse,
+)
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
     to_raw_response_wrapper,
@@ -62,6 +70,10 @@ __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
 
 class PoliciesResource(SyncAPIResource):
+    @cached_property
+    def certificates(self) -> CertificatesResource:
+        return CertificatesResource(self._client)
+
     @cached_property
     def default_policy(self) -> DefaultPolicyResource:
         return DefaultPolicyResource(self._client)
@@ -441,6 +453,10 @@ class PoliciesResource(SyncAPIResource):
 
 
 class AsyncPoliciesResource(AsyncAPIResource):
+    @cached_property
+    def certificates(self) -> AsyncCertificatesResource:
+        return AsyncCertificatesResource(self._client)
+
     @cached_property
     def default_policy(self) -> AsyncDefaultPolicyResource:
         return AsyncDefaultPolicyResource(self._client)
@@ -840,6 +856,10 @@ class PoliciesResourceWithRawResponse:
         )
 
     @cached_property
+    def certificates(self) -> CertificatesResourceWithRawResponse:
+        return CertificatesResourceWithRawResponse(self._policies.certificates)
+
+    @cached_property
     def default_policy(self) -> DefaultPolicyResourceWithRawResponse:
         return DefaultPolicyResourceWithRawResponse(self._policies.default_policy)
 
@@ -875,6 +895,10 @@ class AsyncPoliciesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             policies.get,
         )
+
+    @cached_property
+    def certificates(self) -> AsyncCertificatesResourceWithRawResponse:
+        return AsyncCertificatesResourceWithRawResponse(self._policies.certificates)
 
     @cached_property
     def default_policy(self) -> AsyncDefaultPolicyResourceWithRawResponse:
@@ -914,6 +938,10 @@ class PoliciesResourceWithStreamingResponse:
         )
 
     @cached_property
+    def certificates(self) -> CertificatesResourceWithStreamingResponse:
+        return CertificatesResourceWithStreamingResponse(self._policies.certificates)
+
+    @cached_property
     def default_policy(self) -> DefaultPolicyResourceWithStreamingResponse:
         return DefaultPolicyResourceWithStreamingResponse(self._policies.default_policy)
 
@@ -949,6 +977,10 @@ class AsyncPoliciesResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             policies.get,
         )
+
+    @cached_property
+    def certificates(self) -> AsyncCertificatesResourceWithStreamingResponse:
+        return AsyncCertificatesResourceWithStreamingResponse(self._policies.certificates)
 
     @cached_property
     def default_policy(self) -> AsyncDefaultPolicyResourceWithStreamingResponse:
