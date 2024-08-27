@@ -4447,8 +4447,8 @@ Types:
 from cloudflare.types.r2.domains import (
     CustomCreateResponse,
     CustomUpdateResponse,
+    CustomListResponse,
     CustomDeleteResponse,
-    CustomGetResponse,
 )
 ```
 
@@ -4456,21 +4456,21 @@ Methods:
 
 - <code title="post /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom">client.r2.domains.custom.<a href="./src/cloudflare/resources/r2/domains/custom.py">create</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/domains/custom_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/domains/custom_create_response.py">CustomCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}">client.r2.domains.custom.<a href="./src/cloudflare/resources/r2/domains/custom.py">update</a>(domain_name, \*, account_id, bucket_name, \*\*<a href="src/cloudflare/types/r2/domains/custom_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/domains/custom_update_response.py">CustomUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom">client.r2.domains.custom.<a href="./src/cloudflare/resources/r2/domains/custom.py">list</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/domains/custom_list_response.py">CustomListResponse</a></code>
 - <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}">client.r2.domains.custom.<a href="./src/cloudflare/resources/r2/domains/custom.py">delete</a>(domain_name, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/domains/custom_delete_response.py">CustomDeleteResponse</a></code>
-- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom">client.r2.domains.custom.<a href="./src/cloudflare/resources/r2/domains/custom.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/domains/custom_get_response.py">CustomGetResponse</a></code>
 
 ### Managed
 
 Types:
 
 ```python
-from cloudflare.types.r2.domains import ManagedUpdateResponse, ManagedGetResponse
+from cloudflare.types.r2.domains import ManagedUpdateResponse, ManagedListResponse
 ```
 
 Methods:
 
 - <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed">client.r2.domains.managed.<a href="./src/cloudflare/resources/r2/domains/managed.py">update</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/domains/managed_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/domains/managed_update_response.py">ManagedUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed">client.r2.domains.managed.<a href="./src/cloudflare/resources/r2/domains/managed.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/domains/managed_get_response.py">ManagedGetResponse</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed">client.r2.domains.managed.<a href="./src/cloudflare/resources/r2/domains/managed.py">list</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/domains/managed_list_response.py">ManagedListResponse</a></code>
 
 # WARPConnector
 
