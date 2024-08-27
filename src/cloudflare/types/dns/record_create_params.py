@@ -29,6 +29,7 @@ __all__ = [
     "NAPTRRecord",
     "NAPTRRecordData",
     "NSRecord",
+    "DNSRecordsOpenpgpkeyRecord",
     "PTRRecord",
     "SMIMEARecord",
     "SMIMEARecordData",
@@ -588,6 +589,39 @@ class NSRecord(TypedDict, total=False):
     """
 
 
+class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
+    content: Required[str]
+    """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
+
+    name: Required[str]
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    type: Required[Literal["OPENPGPKEY"]]
+    """Record type."""
+
+    id: str
+    """Identifier"""
+
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
+
 class PTRRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -972,6 +1006,7 @@ RecordCreateParams: TypeAlias = Union[
     MXRecord,
     NAPTRRecord,
     NSRecord,
+    DNSRecordsOpenpgpkeyRecord,
     PTRRecord,
     SMIMEARecord,
     SRVRecord,
