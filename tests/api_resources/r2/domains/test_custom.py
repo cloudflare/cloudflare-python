@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.r2.domains import (
-    CustomGetResponse,
+    CustomListResponse,
     CustomCreateResponse,
     CustomDeleteResponse,
     CustomUpdateResponse,
@@ -169,6 +169,54 @@ class TestCustom:
             )
 
     @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        custom = client.r2.domains.custom.list(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(CustomListResponse, custom, path=["response"])
+
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.r2.domains.custom.with_raw_response.list(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        custom = response.parse()
+        assert_matches_type(CustomListResponse, custom, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.r2.domains.custom.with_streaming_response.list(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            custom = response.parse()
+            assert_matches_type(CustomListResponse, custom, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.r2.domains.custom.with_raw_response.list(
+                bucket_name="example-bucket",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            client.r2.domains.custom.with_raw_response.list(
+                bucket_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         custom = client.r2.domains.custom.delete(
             domain_name="example-domain/custom-domain.com",
@@ -226,54 +274,6 @@ class TestCustom:
                 domain_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="example-bucket",
-            )
-
-    @parametrize
-    def test_method_get(self, client: Cloudflare) -> None:
-        custom = client.r2.domains.custom.get(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(CustomGetResponse, custom, path=["response"])
-
-    @parametrize
-    def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.r2.domains.custom.with_raw_response.get(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        custom = response.parse()
-        assert_matches_type(CustomGetResponse, custom, path=["response"])
-
-    @parametrize
-    def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.r2.domains.custom.with_streaming_response.get(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            custom = response.parse()
-            assert_matches_type(CustomGetResponse, custom, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.r2.domains.custom.with_raw_response.get(
-                bucket_name="example-bucket",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
-            client.r2.domains.custom.with_raw_response.get(
-                bucket_name="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -427,6 +427,54 @@ class TestAsyncCustom:
             )
 
     @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        custom = await async_client.r2.domains.custom.list(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(CustomListResponse, custom, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.r2.domains.custom.with_raw_response.list(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        custom = await response.parse()
+        assert_matches_type(CustomListResponse, custom, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.r2.domains.custom.with_streaming_response.list(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            custom = await response.parse()
+            assert_matches_type(CustomListResponse, custom, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.r2.domains.custom.with_raw_response.list(
+                bucket_name="example-bucket",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            await async_client.r2.domains.custom.with_raw_response.list(
+                bucket_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.r2.domains.custom.delete(
             domain_name="example-domain/custom-domain.com",
@@ -484,52 +532,4 @@ class TestAsyncCustom:
                 domain_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="example-bucket",
-            )
-
-    @parametrize
-    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        custom = await async_client.r2.domains.custom.get(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(CustomGetResponse, custom, path=["response"])
-
-    @parametrize
-    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.r2.domains.custom.with_raw_response.get(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        custom = await response.parse()
-        assert_matches_type(CustomGetResponse, custom, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.r2.domains.custom.with_streaming_response.get(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            custom = await response.parse()
-            assert_matches_type(CustomGetResponse, custom, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.r2.domains.custom.with_raw_response.get(
-                bucket_name="example-bucket",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
-            await async_client.r2.domains.custom.with_raw_response.get(
-                bucket_name="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

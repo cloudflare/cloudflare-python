@@ -22,7 +22,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.r2.domains import managed_update_params
-from ....types.r2.domains.managed_get_response import ManagedGetResponse
+from ....types.r2.domains.managed_list_response import ManagedListResponse
 from ....types.r2.domains.managed_update_response import ManagedUpdateResponse
 
 __all__ = ["ManagedResource", "AsyncManagedResource"]
@@ -85,7 +85,7 @@ class ManagedResource(SyncAPIResource):
             cast_to=cast(Type[ManagedUpdateResponse], ResultWrapper[ManagedUpdateResponse]),
         )
 
-    def get(
+    def list(
         self,
         bucket_name: str,
         *,
@@ -96,7 +96,7 @@ class ManagedResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ManagedGetResponse:
+    ) -> ManagedListResponse:
         """
         Gets state of public access over the bucket's R2-managed (r2.dev) domain.
 
@@ -124,9 +124,9 @@ class ManagedResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ManagedGetResponse]._unwrapper,
+                post_parser=ResultWrapper[ManagedListResponse]._unwrapper,
             ),
-            cast_to=cast(Type[ManagedGetResponse], ResultWrapper[ManagedGetResponse]),
+            cast_to=cast(Type[ManagedListResponse], ResultWrapper[ManagedListResponse]),
         )
 
 
@@ -187,7 +187,7 @@ class AsyncManagedResource(AsyncAPIResource):
             cast_to=cast(Type[ManagedUpdateResponse], ResultWrapper[ManagedUpdateResponse]),
         )
 
-    async def get(
+    async def list(
         self,
         bucket_name: str,
         *,
@@ -198,7 +198,7 @@ class AsyncManagedResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ManagedGetResponse:
+    ) -> ManagedListResponse:
         """
         Gets state of public access over the bucket's R2-managed (r2.dev) domain.
 
@@ -226,9 +226,9 @@ class AsyncManagedResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ManagedGetResponse]._unwrapper,
+                post_parser=ResultWrapper[ManagedListResponse]._unwrapper,
             ),
-            cast_to=cast(Type[ManagedGetResponse], ResultWrapper[ManagedGetResponse]),
+            cast_to=cast(Type[ManagedListResponse], ResultWrapper[ManagedListResponse]),
         )
 
 
@@ -239,8 +239,8 @@ class ManagedResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             managed.update,
         )
-        self.get = to_raw_response_wrapper(
-            managed.get,
+        self.list = to_raw_response_wrapper(
+            managed.list,
         )
 
 
@@ -251,8 +251,8 @@ class AsyncManagedResourceWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             managed.update,
         )
-        self.get = async_to_raw_response_wrapper(
-            managed.get,
+        self.list = async_to_raw_response_wrapper(
+            managed.list,
         )
 
 
@@ -263,8 +263,8 @@ class ManagedResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             managed.update,
         )
-        self.get = to_streamed_response_wrapper(
-            managed.get,
+        self.list = to_streamed_response_wrapper(
+            managed.list,
         )
 
 
@@ -275,6 +275,6 @@ class AsyncManagedResourceWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             managed.update,
         )
-        self.get = async_to_streamed_response_wrapper(
-            managed.get,
+        self.list = async_to_streamed_response_wrapper(
+            managed.list,
         )
