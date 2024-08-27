@@ -60,21 +60,21 @@ class Meta(BaseModel):
 class Summary0(BaseModel):
     _0m: str = FieldInfo(alias="<=0m")
 
-    _15m: str = FieldInfo(alias="<=15m")
+    less_than_or_equal_to_fifteen_minutes: str = FieldInfo(alias="<=15m")
 
-    _1d: str = FieldInfo(alias="<=1d")
+    less_than_or_equal_to_one_day: str = FieldInfo(alias="<=1d")
 
-    _1h: str = FieldInfo(alias="<=1h")
+    less_than_or_equal_to_one_hour: str = FieldInfo(alias="<=1h")
 
-    _1m: str = FieldInfo(alias="<=1m")
+    less_than_or_equal_to_one_minute: str = FieldInfo(alias="<=1m")
 
-    _1w: str = FieldInfo(alias="<=1w")
+    less_than_or_equal_to_one_week: str = FieldInfo(alias="<=1w")
 
-    _1y: str = FieldInfo(alias="<=1y")
+    less_than_or_equal_to_one_year: str = FieldInfo(alias="<=1y")
 
-    _5m: str = FieldInfo(alias="<=5m")
+    less_than_or_equal_to_five_minutes: str = FieldInfo(alias="<=5m")
 
-    _1y: str = FieldInfo(alias=">1y")
+    greater_than_one_year: str = FieldInfo(alias=">1y")
 
 
 class SummaryResponseTTLResponse(BaseModel):
