@@ -18,8 +18,17 @@ from .buckets import (
     BucketsResourceWithStreamingResponse,
     AsyncBucketsResourceWithStreamingResponse,
 )
+from .domains import (
+    DomainsResource,
+    AsyncDomainsResource,
+    DomainsResourceWithRawResponse,
+    AsyncDomainsResourceWithRawResponse,
+    DomainsResourceWithStreamingResponse,
+    AsyncDomainsResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .domains.domains import DomainsResource, AsyncDomainsResource
 from .temporary_credentials import (
     TemporaryCredentialsResource,
     AsyncTemporaryCredentialsResource,
@@ -46,6 +55,10 @@ class R2Resource(SyncAPIResource):
         return TemporaryCredentialsResource(self._client)
 
     @cached_property
+    def domains(self) -> DomainsResource:
+        return DomainsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> R2ResourceWithRawResponse:
         return R2ResourceWithRawResponse(self)
 
@@ -66,6 +79,10 @@ class AsyncR2Resource(AsyncAPIResource):
     @cached_property
     def temporary_credentials(self) -> AsyncTemporaryCredentialsResource:
         return AsyncTemporaryCredentialsResource(self._client)
+
+    @cached_property
+    def domains(self) -> AsyncDomainsResource:
+        return AsyncDomainsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncR2ResourceWithRawResponse:
@@ -92,6 +109,10 @@ class R2ResourceWithRawResponse:
     def temporary_credentials(self) -> TemporaryCredentialsResourceWithRawResponse:
         return TemporaryCredentialsResourceWithRawResponse(self._r2.temporary_credentials)
 
+    @cached_property
+    def domains(self) -> DomainsResourceWithRawResponse:
+        return DomainsResourceWithRawResponse(self._r2.domains)
+
 
 class AsyncR2ResourceWithRawResponse:
     def __init__(self, r2: AsyncR2Resource) -> None:
@@ -108,6 +129,10 @@ class AsyncR2ResourceWithRawResponse:
     @cached_property
     def temporary_credentials(self) -> AsyncTemporaryCredentialsResourceWithRawResponse:
         return AsyncTemporaryCredentialsResourceWithRawResponse(self._r2.temporary_credentials)
+
+    @cached_property
+    def domains(self) -> AsyncDomainsResourceWithRawResponse:
+        return AsyncDomainsResourceWithRawResponse(self._r2.domains)
 
 
 class R2ResourceWithStreamingResponse:
@@ -126,6 +151,10 @@ class R2ResourceWithStreamingResponse:
     def temporary_credentials(self) -> TemporaryCredentialsResourceWithStreamingResponse:
         return TemporaryCredentialsResourceWithStreamingResponse(self._r2.temporary_credentials)
 
+    @cached_property
+    def domains(self) -> DomainsResourceWithStreamingResponse:
+        return DomainsResourceWithStreamingResponse(self._r2.domains)
+
 
 class AsyncR2ResourceWithStreamingResponse:
     def __init__(self, r2: AsyncR2Resource) -> None:
@@ -142,3 +171,7 @@ class AsyncR2ResourceWithStreamingResponse:
     @cached_property
     def temporary_credentials(self) -> AsyncTemporaryCredentialsResourceWithStreamingResponse:
         return AsyncTemporaryCredentialsResourceWithStreamingResponse(self._r2.temporary_credentials)
+
+    @cached_property
+    def domains(self) -> AsyncDomainsResourceWithStreamingResponse:
+        return AsyncDomainsResourceWithStreamingResponse(self._r2.domains)
