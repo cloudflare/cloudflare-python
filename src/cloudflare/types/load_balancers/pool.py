@@ -77,6 +77,9 @@ class Pool(BaseModel):
     Only alphanumeric characters, hyphens, and underscores are allowed.
     """
 
+    networks: Optional[List[str]] = None
+    """List of networks where Load Balancer or Pool is enabled."""
+
     notification_email: Optional[str] = None
     """This field is now deprecated.
 
