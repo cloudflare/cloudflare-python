@@ -70,6 +70,9 @@ class LoadBalancer(BaseModel):
     Balancer will take precedence and the DNS record will not be used.
     """
 
+    networks: Optional[List[str]] = None
+    """List of networks where Load Balancer or Pool is enabled."""
+
     pop_pools: Optional[Dict[str, List[str]]] = None
     """
     (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
