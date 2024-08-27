@@ -10,7 +10,7 @@ __all__ = ["TimeseriesGroupResponseTTLResponse", "Serie0"]
 
 
 class Serie0(BaseModel):
-    _0m: List[str] = FieldInfo(alias="<=0m")
+    less_than_or_equal_to_zero_minute: List[str] = FieldInfo(alias="<=0m")
 
     less_than_or_equal_to_fifteen_minutes: List[str] = FieldInfo(alias="<=15m")
 
