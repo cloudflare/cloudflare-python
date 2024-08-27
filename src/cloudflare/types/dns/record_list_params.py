@@ -80,6 +80,7 @@ class RecordListParams(TypedDict, total=False):
         "MX",
         "NAPTR",
         "NS",
+        "OPENPGPKEY",
         "PTR",
         "SMIMEA",
         "SRV",
