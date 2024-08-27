@@ -22,7 +22,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.r2.domains import custom_create_params, custom_update_params
-from ....types.r2.domains.custom_get_response import CustomGetResponse
+from ....types.r2.domains.custom_list_response import CustomListResponse
 from ....types.r2.domains.custom_create_response import CustomCreateResponse
 from ....types.r2.domains.custom_delete_response import CustomDeleteResponse
 from ....types.r2.domains.custom_update_response import CustomUpdateResponse
@@ -163,6 +163,50 @@ class CustomResource(SyncAPIResource):
             cast_to=cast(Type[CustomUpdateResponse], ResultWrapper[CustomUpdateResponse]),
         )
 
+    def list(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> CustomListResponse:
+        """
+        Gets a list of all custom domains registered with an existing R2 bucket.
+
+        Args:
+          account_id: Account ID
+
+          bucket_name: Name of the bucket
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not bucket_name:
+            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
+        return self._get(
+            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[CustomListResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[CustomListResponse], ResultWrapper[CustomListResponse]),
+        )
+
     def delete(
         self,
         domain_name: str,
@@ -210,50 +254,6 @@ class CustomResource(SyncAPIResource):
                 post_parser=ResultWrapper[CustomDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[CustomDeleteResponse], ResultWrapper[CustomDeleteResponse]),
-        )
-
-    def get(
-        self,
-        bucket_name: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomGetResponse:
-        """
-        Gets a list of all custom domains registered with an existing R2 bucket.
-
-        Args:
-          account_id: Account ID
-
-          bucket_name: Name of the bucket
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        return self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CustomGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[CustomGetResponse], ResultWrapper[CustomGetResponse]),
         )
 
 
@@ -390,6 +390,50 @@ class AsyncCustomResource(AsyncAPIResource):
             cast_to=cast(Type[CustomUpdateResponse], ResultWrapper[CustomUpdateResponse]),
         )
 
+    async def list(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> CustomListResponse:
+        """
+        Gets a list of all custom domains registered with an existing R2 bucket.
+
+        Args:
+          account_id: Account ID
+
+          bucket_name: Name of the bucket
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not bucket_name:
+            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
+        return await self._get(
+            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[CustomListResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[CustomListResponse], ResultWrapper[CustomListResponse]),
+        )
+
     async def delete(
         self,
         domain_name: str,
@@ -439,50 +483,6 @@ class AsyncCustomResource(AsyncAPIResource):
             cast_to=cast(Type[CustomDeleteResponse], ResultWrapper[CustomDeleteResponse]),
         )
 
-    async def get(
-        self,
-        bucket_name: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomGetResponse:
-        """
-        Gets a list of all custom domains registered with an existing R2 bucket.
-
-        Args:
-          account_id: Account ID
-
-          bucket_name: Name of the bucket
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not bucket_name:
-            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        return await self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[CustomGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[CustomGetResponse], ResultWrapper[CustomGetResponse]),
-        )
-
 
 class CustomResourceWithRawResponse:
     def __init__(self, custom: CustomResource) -> None:
@@ -494,11 +494,11 @@ class CustomResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             custom.update,
         )
+        self.list = to_raw_response_wrapper(
+            custom.list,
+        )
         self.delete = to_raw_response_wrapper(
             custom.delete,
-        )
-        self.get = to_raw_response_wrapper(
-            custom.get,
         )
 
 
@@ -512,11 +512,11 @@ class AsyncCustomResourceWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             custom.update,
         )
+        self.list = async_to_raw_response_wrapper(
+            custom.list,
+        )
         self.delete = async_to_raw_response_wrapper(
             custom.delete,
-        )
-        self.get = async_to_raw_response_wrapper(
-            custom.get,
         )
 
 
@@ -530,11 +530,11 @@ class CustomResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             custom.update,
         )
+        self.list = to_streamed_response_wrapper(
+            custom.list,
+        )
         self.delete = to_streamed_response_wrapper(
             custom.delete,
-        )
-        self.get = to_streamed_response_wrapper(
-            custom.get,
         )
 
 
@@ -548,9 +548,9 @@ class AsyncCustomResourceWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             custom.update,
         )
+        self.list = async_to_streamed_response_wrapper(
+            custom.list,
+        )
         self.delete = async_to_streamed_response_wrapper(
             custom.delete,
-        )
-        self.get = async_to_streamed_response_wrapper(
-            custom.get,
         )
