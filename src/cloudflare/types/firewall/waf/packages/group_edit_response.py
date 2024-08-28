@@ -5,4 +5,4 @@ from typing_extensions import TypeAlias
 
 __all__ = ["GroupEditResponse"]
 
-GroupEditResponse: TypeAlias = Union[Optional[str], Optional[object]]
+GroupEditResponse: TypeAlias = Union[Optional[str], object]
