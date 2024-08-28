@@ -1005,7 +1005,6 @@ from cloudflare.types.dns import (
     NSRecord,
     PTRRecord,
     Record,
-    RecordMetadata,
     RecordProcessTiming,
     RecordTags,
     SMIMEARecord,
