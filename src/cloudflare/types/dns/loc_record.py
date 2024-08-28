@@ -7,9 +7,8 @@ from typing_extensions import Literal
 from .ttl import TTL
 from ..._models import BaseModel
 from .record_tags import RecordTags
-from .record_metadata import RecordMetadata
 
-__all__ = ["LOCRecord", "Data"]
+__all__ = ["LOCRecord", "Data", "Meta"]
 
 
 class Data(BaseModel):
@@ -50,6 +49,17 @@ class Data(BaseModel):
     """Size of location in meters."""
 
 
+class Meta(BaseModel):
+    auto_added: Optional[bool] = None
+    """
+    Will exist if Cloudflare automatically added this DNS record during initial
+    setup.
+    """
+
+    source: Optional[str] = None
+    """Where the record originated from."""
+
+
 class LOCRecord(BaseModel):
     data: Data
     """Components of a LOC record."""
@@ -78,7 +88,7 @@ class LOCRecord(BaseModel):
     created_on: Optional[datetime] = None
     """When the record was created."""
 
-    meta: Optional[RecordMetadata] = None
+    meta: Optional[Meta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None

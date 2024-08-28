@@ -28,9 +28,19 @@ from .naptr_record import NAPTRRecord
 from .sshfp_record import SSHFPRecord
 from .dnskey_record import DNSKEYRecord
 from .smimea_record import SMIMEARecord
-from .record_metadata import RecordMetadata
 
-__all__ = ["Record", "Openpgpkey"]
+__all__ = ["Record", "Openpgpkey", "OpenpgpkeyMeta"]
+
+
+class OpenpgpkeyMeta(BaseModel):
+    auto_added: Optional[bool] = None
+    """
+    Will exist if Cloudflare automatically added this DNS record during initial
+    setup.
+    """
+
+    source: Optional[str] = None
+    """Where the record originated from."""
 
 
 class Openpgpkey(BaseModel):
@@ -58,7 +68,7 @@ class Openpgpkey(BaseModel):
     created_on: Optional[datetime] = None
     """When the record was created."""
 
-    meta: Optional[RecordMetadata] = None
+    meta: Optional[OpenpgpkeyMeta] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
