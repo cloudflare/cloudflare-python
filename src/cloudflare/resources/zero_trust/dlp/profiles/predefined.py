@@ -2,11 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Any, Iterable, Optional, cast
 
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -18,6 +22,8 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
 from .....types.zero_trust.dlp.profile import Profile
+from .....types.zero_trust.dlp.profiles import predefined_update_params
+from .....types.zero_trust.dlp.context_awareness_param import ContextAwarenessParam
 
 __all__ = ["PredefinedResource", "AsyncPredefinedResource"]
 
@@ -36,6 +42,10 @@ class PredefinedResource(SyncAPIResource):
         profile_id: str,
         *,
         account_id: str,
+        entries: Iterable[predefined_update_params.Entry],
+        allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
+        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
+        ocr_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -48,6 +58,9 @@ class PredefinedResource(SyncAPIResource):
         Only supports enabling/disabling entries.
 
         Args:
+          context_awareness: Scan the context of predefined entries to only return matches surrounded by
+              keywords.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -64,6 +77,15 @@ class PredefinedResource(SyncAPIResource):
             Optional[Profile],
             self._put(
                 f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
+                body=maybe_transform(
+                    {
+                        "entries": entries,
+                        "allowed_match_count": allowed_match_count,
+                        "context_awareness": context_awareness,
+                        "ocr_enabled": ocr_enabled,
+                    },
+                    predefined_update_params.PredefinedUpdateParams,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -137,6 +159,10 @@ class AsyncPredefinedResource(AsyncAPIResource):
         profile_id: str,
         *,
         account_id: str,
+        entries: Iterable[predefined_update_params.Entry],
+        allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
+        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
+        ocr_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -149,6 +175,9 @@ class AsyncPredefinedResource(AsyncAPIResource):
         Only supports enabling/disabling entries.
 
         Args:
+          context_awareness: Scan the context of predefined entries to only return matches surrounded by
+              keywords.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -165,6 +194,15 @@ class AsyncPredefinedResource(AsyncAPIResource):
             Optional[Profile],
             await self._put(
                 f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
+                body=await async_maybe_transform(
+                    {
+                        "entries": entries,
+                        "allowed_match_count": allowed_match_count,
+                        "context_awareness": context_awareness,
+                        "ocr_enabled": ocr_enabled,
+                    },
+                    predefined_update_params.PredefinedUpdateParams,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
