@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import List, Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .automatic_platform_optimization_param import AutomaticPlatformOptimizationParam
@@ -34,11 +34,7 @@ __all__ = [
     "IPV6",
     "ZonesMaxUpload",
     "MinTLSVersion",
-    "Minify",
-    "MinifyValue",
     "Mirage",
-    "MobileRedirect",
-    "MobileRedirectValue",
     "NEL",
     "NELValue",
     "OpportunisticEncryption",
@@ -404,28 +400,6 @@ class MinTLSVersion(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class Minify(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier"""
-
-    id: Required[Literal["minify"]]
-    """Zone setting identifier."""
-
-    value: Required[MinifyValue]
-    """Current value of the zone setting."""
-
-
-class MinifyValue(TypedDict, total=False):
-    css: Literal["on", "off"]
-    """Automatically minify all CSS files for your website."""
-
-    html: Literal["on", "off"]
-    """Automatically minify all HTML files for your website."""
-
-    js: Literal["on", "off"]
-    """Automatically minify all JavaScript files for your website."""
-
-
 class Mirage(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -435,38 +409,6 @@ class Mirage(TypedDict, total=False):
 
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
-
-
-class MobileRedirect(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier"""
-
-    id: Required[Literal["mobile_redirect"]]
-    """Identifier of the zone setting."""
-
-    value: Required[MobileRedirectValue]
-    """Current value of the zone setting."""
-
-
-class MobileRedirectValue(TypedDict, total=False):
-    mobile_subdomain: Optional[str]
-    """
-    Which subdomain prefix you wish to redirect visitors on mobile devices to
-    (subdomain must already exist).
-    """
-
-    status: Literal["on", "off"]
-    """
-    Deprecated: Use Single Redirects instead
-    https://developers.cloudflare.com/rules/url-forwarding/single-redirects/examples/#perform-mobile-redirects.
-    Whether or not mobile redirect is enabled.
-    """
-
-    strip_uri: bool
-    """
-    Whether to drop the current page path and redirect to the mobile subdomain URL
-    root, or keep the path and redirect to the same page on the mobile subdomain.
-    """
 
 
 class NEL(TypedDict, total=False):
@@ -818,9 +760,7 @@ SettingEditParams: TypeAlias = Union[
     IPV6,
     ZonesMaxUpload,
     MinTLSVersion,
-    Minify,
     Mirage,
-    MobileRedirect,
     NEL,
     OpportunisticEncryption,
     OpportunisticOnion,
