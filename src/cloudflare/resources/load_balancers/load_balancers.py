@@ -125,6 +125,7 @@ class LoadBalancersResource(SyncAPIResource):
         country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
+        networks: List[str] | NotGiven = NOT_GIVEN,
         pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
@@ -171,6 +172,8 @@ class LoadBalancersResource(SyncAPIResource):
 
           location_strategy: Controls location-based steering for non-proxied requests. See `steering_policy`
               to learn how steering is affected.
+
+          networks: List of networks where Load Balancer or Pool is enabled.
 
           pop_pools: (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -279,6 +282,7 @@ class LoadBalancersResource(SyncAPIResource):
                     "country_pools": country_pools,
                     "description": description,
                     "location_strategy": location_strategy,
+                    "networks": networks,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
@@ -315,6 +319,7 @@ class LoadBalancersResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
+        networks: List[str] | NotGiven = NOT_GIVEN,
         pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
@@ -363,6 +368,8 @@ class LoadBalancersResource(SyncAPIResource):
 
           location_strategy: Controls location-based steering for non-proxied requests. See `steering_policy`
               to learn how steering is affected.
+
+          networks: List of networks where Load Balancer or Pool is enabled.
 
           pop_pools: (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -474,6 +481,7 @@ class LoadBalancersResource(SyncAPIResource):
                     "description": description,
                     "enabled": enabled,
                     "location_strategy": location_strategy,
+                    "networks": networks,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
@@ -847,6 +855,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
+        networks: List[str] | NotGiven = NOT_GIVEN,
         pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
@@ -893,6 +902,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           location_strategy: Controls location-based steering for non-proxied requests. See `steering_policy`
               to learn how steering is affected.
+
+          networks: List of networks where Load Balancer or Pool is enabled.
 
           pop_pools: (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -1001,6 +1012,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
                     "country_pools": country_pools,
                     "description": description,
                     "location_strategy": location_strategy,
+                    "networks": networks,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
@@ -1037,6 +1049,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
+        networks: List[str] | NotGiven = NOT_GIVEN,
         pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
@@ -1085,6 +1098,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
           location_strategy: Controls location-based steering for non-proxied requests. See `steering_policy`
               to learn how steering is affected.
+
+          networks: List of networks where Load Balancer or Pool is enabled.
 
           pop_pools: (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -1196,6 +1211,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
                     "description": description,
                     "enabled": enabled,
                     "location_strategy": location_strategy,
+                    "networks": networks,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
