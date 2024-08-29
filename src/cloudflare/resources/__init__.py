@@ -456,14 +456,6 @@ from .healthchecks import (
     HealthchecksResourceWithStreamingResponse,
     AsyncHealthchecksResourceWithStreamingResponse,
 )
-from .email_routing import (
-    EmailRoutingResource,
-    AsyncEmailRoutingResource,
-    EmailRoutingResourceWithRawResponse,
-    AsyncEmailRoutingResourceWithRawResponse,
-    EmailRoutingResourceWithStreamingResponse,
-    AsyncEmailRoutingResourceWithStreamingResponse,
-)
 from .magic_transit import (
     MagicTransitResource,
     AsyncMagicTransitResource,
@@ -830,12 +822,6 @@ __all__ = [
     "AsyncEmailSecurityResourceWithRawResponse",
     "EmailSecurityResourceWithStreamingResponse",
     "AsyncEmailSecurityResourceWithStreamingResponse",
-    "EmailRoutingResource",
-    "AsyncEmailRoutingResource",
-    "EmailRoutingResourceWithRawResponse",
-    "AsyncEmailRoutingResourceWithRawResponse",
-    "EmailRoutingResourceWithStreamingResponse",
-    "AsyncEmailRoutingResourceWithStreamingResponse",
     "FiltersResource",
     "AsyncFiltersResource",
     "FiltersResourceWithRawResponse",

@@ -69,7 +69,6 @@ class Cloudflare(SyncAPIClient):
     dns: resources.DNSResource
     dnssec: resources.DNSSECResource
     email_security: resources.EmailSecurityResource
-    email_routing: resources.EmailRoutingResource
     filters: resources.FiltersResource
     firewall: resources.FirewallResource
     healthchecks: resources.HealthchecksResource
@@ -231,7 +230,6 @@ class Cloudflare(SyncAPIClient):
         self.dns = resources.DNSResource(self)
         self.dnssec = resources.DNSSECResource(self)
         self.email_security = resources.EmailSecurityResource(self)
-        self.email_routing = resources.EmailRoutingResource(self)
         self.filters = resources.FiltersResource(self)
         self.firewall = resources.FirewallResource(self)
         self.healthchecks = resources.HealthchecksResource(self)
@@ -496,7 +494,6 @@ class AsyncCloudflare(AsyncAPIClient):
     dns: resources.AsyncDNSResource
     dnssec: resources.AsyncDNSSECResource
     email_security: resources.AsyncEmailSecurityResource
-    email_routing: resources.AsyncEmailRoutingResource
     filters: resources.AsyncFiltersResource
     firewall: resources.AsyncFirewallResource
     healthchecks: resources.AsyncHealthchecksResource
@@ -658,7 +655,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.dns = resources.AsyncDNSResource(self)
         self.dnssec = resources.AsyncDNSSECResource(self)
         self.email_security = resources.AsyncEmailSecurityResource(self)
-        self.email_routing = resources.AsyncEmailRoutingResource(self)
         self.filters = resources.AsyncFiltersResource(self)
         self.firewall = resources.AsyncFirewallResource(self)
         self.healthchecks = resources.AsyncHealthchecksResource(self)
@@ -928,7 +924,6 @@ class CloudflareWithRawResponse:
         self.dns = resources.DNSResourceWithRawResponse(client.dns)
         self.dnssec = resources.DNSSECResourceWithRawResponse(client.dnssec)
         self.email_security = resources.EmailSecurityResourceWithRawResponse(client.email_security)
-        self.email_routing = resources.EmailRoutingResourceWithRawResponse(client.email_routing)
         self.filters = resources.FiltersResourceWithRawResponse(client.filters)
         self.firewall = resources.FirewallResourceWithRawResponse(client.firewall)
         self.healthchecks = resources.HealthchecksResourceWithRawResponse(client.healthchecks)
@@ -1029,7 +1024,6 @@ class AsyncCloudflareWithRawResponse:
         self.dns = resources.AsyncDNSResourceWithRawResponse(client.dns)
         self.dnssec = resources.AsyncDNSSECResourceWithRawResponse(client.dnssec)
         self.email_security = resources.AsyncEmailSecurityResourceWithRawResponse(client.email_security)
-        self.email_routing = resources.AsyncEmailRoutingResourceWithRawResponse(client.email_routing)
         self.filters = resources.AsyncFiltersResourceWithRawResponse(client.filters)
         self.firewall = resources.AsyncFirewallResourceWithRawResponse(client.firewall)
         self.healthchecks = resources.AsyncHealthchecksResourceWithRawResponse(client.healthchecks)
@@ -1134,7 +1128,6 @@ class CloudflareWithStreamedResponse:
         self.dns = resources.DNSResourceWithStreamingResponse(client.dns)
         self.dnssec = resources.DNSSECResourceWithStreamingResponse(client.dnssec)
         self.email_security = resources.EmailSecurityResourceWithStreamingResponse(client.email_security)
-        self.email_routing = resources.EmailRoutingResourceWithStreamingResponse(client.email_routing)
         self.filters = resources.FiltersResourceWithStreamingResponse(client.filters)
         self.firewall = resources.FirewallResourceWithStreamingResponse(client.firewall)
         self.healthchecks = resources.HealthchecksResourceWithStreamingResponse(client.healthchecks)
@@ -1245,7 +1238,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.dns = resources.AsyncDNSResourceWithStreamingResponse(client.dns)
         self.dnssec = resources.AsyncDNSSECResourceWithStreamingResponse(client.dnssec)
         self.email_security = resources.AsyncEmailSecurityResourceWithStreamingResponse(client.email_security)
-        self.email_routing = resources.AsyncEmailRoutingResourceWithStreamingResponse(client.email_routing)
         self.filters = resources.AsyncFiltersResourceWithStreamingResponse(client.filters)
         self.firewall = resources.AsyncFirewallResourceWithStreamingResponse(client.firewall)
         self.healthchecks = resources.AsyncHealthchecksResourceWithStreamingResponse(client.healthchecks)
