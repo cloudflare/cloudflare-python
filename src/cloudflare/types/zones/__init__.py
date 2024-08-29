@@ -12,7 +12,6 @@ from .zone import Zone as Zone
 from .http2 import HTTP2 as HTTP2
 from .http3 import HTTP3 as HTTP3
 from .brotli import Brotli as Brotli
-from .minify import Minify as Minify
 from .mirage import Mirage as Mirage
 from .polish import Polish as Polish
 from .ciphers import Ciphers as Ciphers
@@ -32,7 +31,6 @@ from .image_resizing import ImageResizing as ImageResizing
 from .ip_geolocation import IPGeolocation as IPGeolocation
 from .security_level import SecurityLevel as SecurityLevel
 from .min_tls_version import MinTLSVersion as MinTLSVersion
-from .mobile_redirect import MobileRedirect as MobileRedirect
 from .ssl_recommender import SSLRecommender as SSLRecommender
 from .tls_client_auth import TLSClientAuth as TLSClientAuth
 from .always_use_https import AlwaysUseHTTPS as AlwaysUseHTTPS
