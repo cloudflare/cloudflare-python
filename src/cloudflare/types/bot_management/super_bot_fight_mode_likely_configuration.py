@@ -9,6 +9,9 @@ __all__ = ["SuperBotFightModeLikelyConfiguration"]
 
 
 class SuperBotFightModeLikelyConfiguration(BaseModel):
+    ai_bots_protection: Optional[Literal["block", "disabled"]] = None
+    """Enable rule to block AI Scrapers and Crawlers."""
+
     enable_js: Optional[bool] = None
     """Use lightweight, invisible JavaScript detections to improve Bot Management.
 
