@@ -22,14 +22,14 @@ class TestAuditLogs:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         audit_log = client.audit_logs.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31b8372d0c353",
         )
         assert_matches_type(SyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         audit_log = client.audit_logs.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31b8372d0c353",
             id="f174be97-19b1-40d6-954d-70cd5fbd52db",
             action={"type": "add"},
             actor={
@@ -50,7 +50,7 @@ class TestAuditLogs:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.audit_logs.with_raw_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31b8372d0c353",
         )
 
         assert response.is_closed is True
@@ -61,7 +61,7 @@ class TestAuditLogs:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.audit_logs.with_streaming_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31b8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -85,14 +85,14 @@ class TestAsyncAuditLogs:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         audit_log = await async_client.audit_logs.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31b8372d0c353",
         )
         assert_matches_type(AsyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         audit_log = await async_client.audit_logs.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31b8372d0c353",
             id="f174be97-19b1-40d6-954d-70cd5fbd52db",
             action={"type": "add"},
             actor={
@@ -113,7 +113,7 @@ class TestAsyncAuditLogs:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.audit_logs.with_raw_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31b8372d0c353",
         )
 
         assert response.is_closed is True
@@ -124,7 +124,7 @@ class TestAsyncAuditLogs:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.audit_logs.with_streaming_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31b8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
