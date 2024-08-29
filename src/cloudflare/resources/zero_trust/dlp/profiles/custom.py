@@ -2,11 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Any, Type, Iterable, Optional, cast
 
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -18,6 +22,8 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
 from .....types.zero_trust.dlp.profile import Profile
+from .....types.zero_trust.dlp.profiles import custom_create_params, custom_update_params
+from .....types.zero_trust.dlp.context_awareness_param import ContextAwarenessParam
 from .....types.zero_trust.dlp.profiles.custom_create_response import CustomCreateResponse
 
 __all__ = ["CustomResource", "AsyncCustomResource"]
@@ -36,6 +42,7 @@ class CustomResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        profiles: Iterable[custom_create_params.Profile],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,6 +66,7 @@ class CustomResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/dlp/profiles/custom",
+            body=maybe_transform({"profiles": profiles}, custom_create_params.CustomCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -74,6 +82,13 @@ class CustomResource(SyncAPIResource):
         profile_id: str,
         *,
         account_id: str,
+        entries: Iterable[custom_update_params.Entry],
+        name: str,
+        allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
+        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        ocr_enabled: bool | NotGiven = NOT_GIVEN,
+        shared_entries: Iterable[custom_update_params.SharedEntry] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -85,6 +100,15 @@ class CustomResource(SyncAPIResource):
         Updates a DLP custom profile.
 
         Args:
+          entries: Custom entries from this profile
+
+          context_awareness: Scan the context of predefined entries to only return matches surrounded by
+              keywords.
+
+          description: The description of the profile
+
+          shared_entries: Other entries, e.g. predefined or integration.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -101,6 +125,18 @@ class CustomResource(SyncAPIResource):
             Optional[Profile],
             self._put(
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                body=maybe_transform(
+                    {
+                        "entries": entries,
+                        "name": name,
+                        "allowed_match_count": allowed_match_count,
+                        "context_awareness": context_awareness,
+                        "description": description,
+                        "ocr_enabled": ocr_enabled,
+                        "shared_entries": shared_entries,
+                    },
+                    custom_update_params.CustomUpdateParams,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -213,6 +249,7 @@ class AsyncCustomResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        profiles: Iterable[custom_create_params.Profile],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -236,6 +273,7 @@ class AsyncCustomResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/dlp/profiles/custom",
+            body=await async_maybe_transform({"profiles": profiles}, custom_create_params.CustomCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -251,6 +289,13 @@ class AsyncCustomResource(AsyncAPIResource):
         profile_id: str,
         *,
         account_id: str,
+        entries: Iterable[custom_update_params.Entry],
+        name: str,
+        allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
+        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        ocr_enabled: bool | NotGiven = NOT_GIVEN,
+        shared_entries: Iterable[custom_update_params.SharedEntry] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,6 +307,15 @@ class AsyncCustomResource(AsyncAPIResource):
         Updates a DLP custom profile.
 
         Args:
+          entries: Custom entries from this profile
+
+          context_awareness: Scan the context of predefined entries to only return matches surrounded by
+              keywords.
+
+          description: The description of the profile
+
+          shared_entries: Other entries, e.g. predefined or integration.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -278,6 +332,18 @@ class AsyncCustomResource(AsyncAPIResource):
             Optional[Profile],
             await self._put(
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
+                body=await async_maybe_transform(
+                    {
+                        "entries": entries,
+                        "name": name,
+                        "allowed_match_count": allowed_match_count,
+                        "context_awareness": context_awareness,
+                        "description": description,
+                        "ocr_enabled": ocr_enabled,
+                        "shared_entries": shared_entries,
+                    },
+                    custom_update_params.CustomUpdateParams,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
