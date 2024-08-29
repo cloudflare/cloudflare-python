@@ -67,6 +67,9 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
     See `steering_policy` to learn how steering is affected.
     """
 
+    networks: List[str]
+    """List of networks where Load Balancer or Pool is enabled."""
+
     pop_pools: Dict[str, List[str]]
     """
     (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs

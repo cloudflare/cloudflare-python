@@ -45,10 +45,8 @@ class CustomResource(SyncAPIResource):
         *,
         account_id: str,
         domain: str,
-        zone_name: str,
-        zone_tag: str,
+        zone_id: str,
         enabled: bool | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,15 +64,10 @@ class CustomResource(SyncAPIResource):
 
           domain: Name of the custom domain to be added
 
-          zone_name: Zone name of the custom domain. Note that `zoneName` must be a suffix of
-              `domain`.
-
-          zone_tag: Zone tag of the custom domain
+          zone_id: Zone ID of the custom domain
 
           enabled: Whether to enable public bucket access at the custom domain. If undefined, the
               domain will be enabled.
-
-          zone_id: Zone ID of the custom domain
 
           extra_headers: Send extra headers
 
@@ -93,10 +86,8 @@ class CustomResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "domain": domain,
-                    "zone_name": zone_name,
-                    "zone_tag": zone_tag,
-                    "enabled": enabled,
                     "zone_id": zone_id,
+                    "enabled": enabled,
                 },
                 custom_create_params.CustomCreateParams,
             ),
@@ -272,10 +263,8 @@ class AsyncCustomResource(AsyncAPIResource):
         *,
         account_id: str,
         domain: str,
-        zone_name: str,
-        zone_tag: str,
+        zone_id: str,
         enabled: bool | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -293,15 +282,10 @@ class AsyncCustomResource(AsyncAPIResource):
 
           domain: Name of the custom domain to be added
 
-          zone_name: Zone name of the custom domain. Note that `zoneName` must be a suffix of
-              `domain`.
-
-          zone_tag: Zone tag of the custom domain
+          zone_id: Zone ID of the custom domain
 
           enabled: Whether to enable public bucket access at the custom domain. If undefined, the
               domain will be enabled.
-
-          zone_id: Zone ID of the custom domain
 
           extra_headers: Send extra headers
 
@@ -320,10 +304,8 @@ class AsyncCustomResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "domain": domain,
-                    "zone_name": zone_name,
-                    "zone_tag": zone_tag,
-                    "enabled": enabled,
                     "zone_id": zone_id,
+                    "enabled": enabled,
                 },
                 custom_create_params.CustomCreateParams,
             ),

@@ -28,8 +28,7 @@ class TestCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
-            zone_name="example-domain.com",
-            zone_tag="36ca64a6d92827b8a6b90be344bb1bfd",
+            zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
         )
         assert_matches_type(CustomCreateResponse, custom, path=["response"])
 
@@ -39,10 +38,8 @@ class TestCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
-            zone_name="example-domain.com",
-            zone_tag="36ca64a6d92827b8a6b90be344bb1bfd",
+            zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             enabled=True,
-            zone_id="zoneId",
         )
         assert_matches_type(CustomCreateResponse, custom, path=["response"])
 
@@ -52,8 +49,7 @@ class TestCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
-            zone_name="example-domain.com",
-            zone_tag="36ca64a6d92827b8a6b90be344bb1bfd",
+            zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
         )
 
         assert response.is_closed is True
@@ -67,8 +63,7 @@ class TestCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
-            zone_name="example-domain.com",
-            zone_tag="36ca64a6d92827b8a6b90be344bb1bfd",
+            zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -85,8 +80,7 @@ class TestCustom:
                 bucket_name="example-bucket",
                 account_id="",
                 domain="prefix.example-domain.com",
-                zone_name="example-domain.com",
-                zone_tag="36ca64a6d92827b8a6b90be344bb1bfd",
+                zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -94,8 +88,7 @@ class TestCustom:
                 bucket_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="prefix.example-domain.com",
-                zone_name="example-domain.com",
-                zone_tag="36ca64a6d92827b8a6b90be344bb1bfd",
+                zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             )
 
     @parametrize
@@ -286,8 +279,7 @@ class TestAsyncCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
-            zone_name="example-domain.com",
-            zone_tag="36ca64a6d92827b8a6b90be344bb1bfd",
+            zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
         )
         assert_matches_type(CustomCreateResponse, custom, path=["response"])
 
@@ -297,10 +289,8 @@ class TestAsyncCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
-            zone_name="example-domain.com",
-            zone_tag="36ca64a6d92827b8a6b90be344bb1bfd",
+            zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             enabled=True,
-            zone_id="zoneId",
         )
         assert_matches_type(CustomCreateResponse, custom, path=["response"])
 
@@ -310,8 +300,7 @@ class TestAsyncCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
-            zone_name="example-domain.com",
-            zone_tag="36ca64a6d92827b8a6b90be344bb1bfd",
+            zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
         )
 
         assert response.is_closed is True
@@ -325,8 +314,7 @@ class TestAsyncCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
-            zone_name="example-domain.com",
-            zone_tag="36ca64a6d92827b8a6b90be344bb1bfd",
+            zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -343,8 +331,7 @@ class TestAsyncCustom:
                 bucket_name="example-bucket",
                 account_id="",
                 domain="prefix.example-domain.com",
-                zone_name="example-domain.com",
-                zone_tag="36ca64a6d92827b8a6b90be344bb1bfd",
+                zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
@@ -352,8 +339,7 @@ class TestAsyncCustom:
                 bucket_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="prefix.example-domain.com",
-                zone_name="example-domain.com",
-                zone_tag="36ca64a6d92827b8a6b90be344bb1bfd",
+                zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             )
 
     @parametrize
