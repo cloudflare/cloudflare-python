@@ -13,7 +13,6 @@ from .ranking_top_response import RankingTopResponse as RankingTopResponse
 from .search_global_params import SearchGlobalParams as SearchGlobalParams
 from .bgp_timeseries_params import BGPTimeseriesParams as BGPTimeseriesParams
 from .dataset_list_response import DatasetListResponse as DatasetListResponse
-from .dns_timeseries_params import DNSTimeseriesParams as DNSTimeseriesParams
 from .annotation_list_params import AnnotationListParams as AnnotationListParams
 from .http_timeseries_params import HTTPTimeseriesParams as HTTPTimeseriesParams
 from .netflow_summary_params import NetflowSummaryParams as NetflowSummaryParams
@@ -21,7 +20,6 @@ from .search_global_response import SearchGlobalResponse as SearchGlobalResponse
 from .as112_timeseries_params import AS112TimeseriesParams as AS112TimeseriesParams
 from .bgp_timeseries_response import BGPTimeseriesResponse as BGPTimeseriesResponse
 from .dataset_download_params import DatasetDownloadParams as DatasetDownloadParams
-from .dns_timeseries_response import DNSTimeseriesResponse as DNSTimeseriesResponse
 from .annotation_list_response import AnnotationListResponse as AnnotationListResponse
 from .http_timeseries_response import HTTPTimeseriesResponse as HTTPTimeseriesResponse
 from .netflow_summary_response import NetflowSummaryResponse as NetflowSummaryResponse
