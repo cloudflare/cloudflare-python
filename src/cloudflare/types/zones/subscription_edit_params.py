@@ -5,9 +5,9 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, TypedDict
 
-from .rate_plan_param import RatePlanParam
-from .subscription_zone_param import SubscriptionZoneParam
-from .subscription_component_param import SubscriptionComponentParam
+from ..user.rate_plan_param import RatePlanParam
+from ..user.subscription_zone_param import SubscriptionZoneParam
+from ..user.subscription_component_param import SubscriptionComponentParam
 
 __all__ = ["SubscriptionEditParams", "App"]
 
