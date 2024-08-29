@@ -4,4 +4,4 @@ from typing_extensions import Literal, TypeAlias
 
 __all__ = ["SessionAffinity"]
 
-SessionAffinity: TypeAlias = Literal["none", "cookie", "ip_cookie", "header", '""']
+SessionAffinity: TypeAlias = Literal["none", "cookie", "ip_cookie", "header", ""]
