@@ -81,6 +81,7 @@ class Cloudflare(SyncAPIClient):
     rate_limits: resources.RateLimitsResource
     secondary_dns: resources.SecondaryDNSResource
     waiting_rooms: resources.WaitingRoomsResource
+    web3: resources.Web3Resource
     workers: resources.WorkersResource
     kv: resources.KVResource
     durable_objects: resources.DurableObjectsResource
@@ -242,6 +243,7 @@ class Cloudflare(SyncAPIClient):
         self.rate_limits = resources.RateLimitsResource(self)
         self.secondary_dns = resources.SecondaryDNSResource(self)
         self.waiting_rooms = resources.WaitingRoomsResource(self)
+        self.web3 = resources.Web3Resource(self)
         self.workers = resources.WorkersResource(self)
         self.kv = resources.KVResource(self)
         self.durable_objects = resources.DurableObjectsResource(self)
@@ -506,6 +508,7 @@ class AsyncCloudflare(AsyncAPIClient):
     rate_limits: resources.AsyncRateLimitsResource
     secondary_dns: resources.AsyncSecondaryDNSResource
     waiting_rooms: resources.AsyncWaitingRoomsResource
+    web3: resources.AsyncWeb3Resource
     workers: resources.AsyncWorkersResource
     kv: resources.AsyncKVResource
     durable_objects: resources.AsyncDurableObjectsResource
@@ -667,6 +670,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.rate_limits = resources.AsyncRateLimitsResource(self)
         self.secondary_dns = resources.AsyncSecondaryDNSResource(self)
         self.waiting_rooms = resources.AsyncWaitingRoomsResource(self)
+        self.web3 = resources.AsyncWeb3Resource(self)
         self.workers = resources.AsyncWorkersResource(self)
         self.kv = resources.AsyncKVResource(self)
         self.durable_objects = resources.AsyncDurableObjectsResource(self)
@@ -938,6 +942,7 @@ class CloudflareWithRawResponse:
         self.rate_limits = resources.RateLimitsResourceWithRawResponse(client.rate_limits)
         self.secondary_dns = resources.SecondaryDNSResourceWithRawResponse(client.secondary_dns)
         self.waiting_rooms = resources.WaitingRoomsResourceWithRawResponse(client.waiting_rooms)
+        self.web3 = resources.Web3ResourceWithRawResponse(client.web3)
         self.workers = resources.WorkersResourceWithRawResponse(client.workers)
         self.kv = resources.KVResourceWithRawResponse(client.kv)
         self.durable_objects = resources.DurableObjectsResourceWithRawResponse(client.durable_objects)
@@ -1040,6 +1045,7 @@ class AsyncCloudflareWithRawResponse:
         self.rate_limits = resources.AsyncRateLimitsResourceWithRawResponse(client.rate_limits)
         self.secondary_dns = resources.AsyncSecondaryDNSResourceWithRawResponse(client.secondary_dns)
         self.waiting_rooms = resources.AsyncWaitingRoomsResourceWithRawResponse(client.waiting_rooms)
+        self.web3 = resources.AsyncWeb3ResourceWithRawResponse(client.web3)
         self.workers = resources.AsyncWorkersResourceWithRawResponse(client.workers)
         self.kv = resources.AsyncKVResourceWithRawResponse(client.kv)
         self.durable_objects = resources.AsyncDurableObjectsResourceWithRawResponse(client.durable_objects)
@@ -1144,6 +1150,7 @@ class CloudflareWithStreamedResponse:
         self.rate_limits = resources.RateLimitsResourceWithStreamingResponse(client.rate_limits)
         self.secondary_dns = resources.SecondaryDNSResourceWithStreamingResponse(client.secondary_dns)
         self.waiting_rooms = resources.WaitingRoomsResourceWithStreamingResponse(client.waiting_rooms)
+        self.web3 = resources.Web3ResourceWithStreamingResponse(client.web3)
         self.workers = resources.WorkersResourceWithStreamingResponse(client.workers)
         self.kv = resources.KVResourceWithStreamingResponse(client.kv)
         self.durable_objects = resources.DurableObjectsResourceWithStreamingResponse(client.durable_objects)
@@ -1254,6 +1261,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.rate_limits = resources.AsyncRateLimitsResourceWithStreamingResponse(client.rate_limits)
         self.secondary_dns = resources.AsyncSecondaryDNSResourceWithStreamingResponse(client.secondary_dns)
         self.waiting_rooms = resources.AsyncWaitingRoomsResourceWithStreamingResponse(client.waiting_rooms)
+        self.web3 = resources.AsyncWeb3ResourceWithStreamingResponse(client.web3)
         self.workers = resources.AsyncWorkersResourceWithStreamingResponse(client.workers)
         self.kv = resources.AsyncKVResourceWithStreamingResponse(client.kv)
         self.durable_objects = resources.AsyncDurableObjectsResourceWithStreamingResponse(client.durable_objects)
