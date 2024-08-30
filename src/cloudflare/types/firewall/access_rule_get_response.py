@@ -5,4 +5,4 @@ from typing_extensions import TypeAlias
 
 __all__ = ["AccessRuleGetResponse"]
 
-AccessRuleGetResponse: TypeAlias = Union[Optional[str], Optional[object]]
+AccessRuleGetResponse: TypeAlias = Union[Optional[str], object]
