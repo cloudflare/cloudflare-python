@@ -60,6 +60,9 @@ class ARecord(TypedDict, total=False):
     type: Required[Literal["A"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -96,6 +99,9 @@ class AAAARecord(TypedDict, total=False):
     type: Required[Literal["AAAA"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -131,6 +137,9 @@ class CAARecord(TypedDict, total=False):
 
     type: Required[Literal["CAA"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -172,6 +181,9 @@ class CERTRecord(TypedDict, total=False):
 
     type: Required[Literal["CERT"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -217,6 +229,9 @@ class CNAMERecord(TypedDict, total=False):
     type: Required[Literal["CNAME"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -252,6 +267,9 @@ class DNSKEYRecord(TypedDict, total=False):
 
     type: Required[Literal["DNSKEY"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -297,6 +315,9 @@ class DSRecord(TypedDict, total=False):
     type: Required[Literal["DS"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -341,6 +362,9 @@ class HTTPSRecord(TypedDict, total=False):
     type: Required[Literal["HTTPS"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -381,6 +405,9 @@ class LOCRecord(TypedDict, total=False):
 
     type: Required[Literal["LOC"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -456,6 +483,9 @@ class MXRecord(TypedDict, total=False):
     type: Required[Literal["MX"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -485,6 +515,9 @@ class NAPTRRecord(TypedDict, total=False):
 
     type: Required[Literal["NAPTR"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -536,6 +569,9 @@ class NSRecord(TypedDict, total=False):
     type: Required[Literal["NS"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -565,6 +601,9 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
 
     type: Required[Literal["OPENPGPKEY"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -596,6 +635,9 @@ class PTRRecord(TypedDict, total=False):
     type: Required[Literal["PTR"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -625,6 +667,9 @@ class SMIMEARecord(TypedDict, total=False):
 
     type: Required[Literal["SMIMEA"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -673,6 +718,9 @@ class SRVRecord(TypedDict, total=False):
 
     type: Required[Literal["SRV"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -743,6 +791,9 @@ class SSHFPRecord(TypedDict, total=False):
     type: Required[Literal["SSHFP"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -784,6 +835,9 @@ class SVCBRecord(TypedDict, total=False):
     type: Required[Literal["SVCB"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -824,6 +878,9 @@ class TLSARecord(TypedDict, total=False):
 
     type: Required[Literal["TLSA"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -869,6 +926,9 @@ class TXTRecord(TypedDict, total=False):
     type: Required[Literal["TXT"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -904,6 +964,9 @@ class URIRecord(TypedDict, total=False):
 
     type: Required[Literal["URI"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
