@@ -274,7 +274,6 @@ class ZonesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        plan: zone_edit_params.Plan | NotGiven = NOT_GIVEN,
         type: Literal["full", "partial", "secondary"] | NotGiven = NOT_GIVEN,
         vanity_name_servers: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -290,10 +289,6 @@ class ZonesResource(SyncAPIResource):
 
         Args:
           zone_id: Identifier
-
-          plan: (Deprecated) Please use the `/zones/{zone_id}/subscription` API to update a
-              zone's plan. Changing this value will create/cancel associated subscriptions. To
-              view available plans for this zone, see Zone Plans.
 
           type: A full zone implies that DNS is hosted with Cloudflare. A partial zone is
               typically a partner-hosted zone or a CNAME setup. This parameter is only
@@ -317,7 +312,6 @@ class ZonesResource(SyncAPIResource):
             f"/zones/{zone_id}",
             body=maybe_transform(
                 {
-                    "plan": plan,
                     "type": type,
                     "vanity_name_servers": vanity_name_servers,
                 },
@@ -576,7 +570,6 @@ class AsyncZonesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        plan: zone_edit_params.Plan | NotGiven = NOT_GIVEN,
         type: Literal["full", "partial", "secondary"] | NotGiven = NOT_GIVEN,
         vanity_name_servers: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -592,10 +585,6 @@ class AsyncZonesResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier
-
-          plan: (Deprecated) Please use the `/zones/{zone_id}/subscription` API to update a
-              zone's plan. Changing this value will create/cancel associated subscriptions. To
-              view available plans for this zone, see Zone Plans.
 
           type: A full zone implies that DNS is hosted with Cloudflare. A partial zone is
               typically a partner-hosted zone or a CNAME setup. This parameter is only
@@ -619,7 +608,6 @@ class AsyncZonesResource(AsyncAPIResource):
             f"/zones/{zone_id}",
             body=await async_maybe_transform(
                 {
-                    "plan": plan,
                     "type": type,
                     "vanity_name_servers": vanity_name_servers,
                 },

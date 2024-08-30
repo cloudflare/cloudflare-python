@@ -7,8 +7,9 @@ from typing_extensions import Literal
 from .ttl import TTL
 from ..._models import BaseModel
 from .record_tags import RecordTags
+from .record_metadata import RecordMetadata
 
-__all__ = ["SSHFPRecord", "Data", "Meta"]
+__all__ = ["SSHFPRecord", "Data"]
 
 
 class Data(BaseModel):
@@ -20,17 +21,6 @@ class Data(BaseModel):
 
     type: Optional[float] = None
     """type."""
-
-
-class Meta(BaseModel):
-    auto_added: Optional[bool] = None
-    """
-    Will exist if Cloudflare automatically added this DNS record during initial
-    setup.
-    """
-
-    source: Optional[str] = None
-    """Where the record originated from."""
 
 
 class SSHFPRecord(BaseModel):
@@ -61,7 +51,7 @@ class SSHFPRecord(BaseModel):
     created_on: Optional[datetime] = None
     """When the record was created."""
 
-    meta: Optional[Meta] = None
+    meta: Optional[RecordMetadata] = None
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: Optional[datetime] = None
