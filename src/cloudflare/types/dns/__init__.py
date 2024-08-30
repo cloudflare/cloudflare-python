@@ -31,6 +31,7 @@ from .sshfp_record import SSHFPRecord as SSHFPRecord
 from .upstream_ips import UpstreamIPs as UpstreamIPs
 from .dnskey_record import DNSKEYRecord as DNSKEYRecord
 from .smimea_record import SMIMEARecord as SMIMEARecord
+from .record_metadata import RecordMetadata as RecordMetadata
 from .nameserver_param import NameserverParam as NameserverParam
 from .attack_mitigation import AttackMitigation as AttackMitigation
 from .dns_setting_param import DNSSettingParam as DNSSettingParam

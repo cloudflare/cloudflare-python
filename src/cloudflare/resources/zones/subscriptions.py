@@ -22,13 +22,12 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ...types.zones import subscription_edit_params, subscription_create_params
+from ...types.zones import subscription_create_params
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.user.subscription import Subscription
 from ...types.user.rate_plan_param import RatePlanParam
 from ...types.user.subscription_zone_param import SubscriptionZoneParam
 from ...types.zones.subscription_get_response import SubscriptionGetResponse
-from ...types.zones.subscription_edit_response import SubscriptionEditResponse
 from ...types.user.subscription_component_param import SubscriptionComponentParam
 from ...types.zones.subscription_create_response import SubscriptionCreateResponse
 
@@ -145,73 +144,6 @@ class SubscriptionsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             model=Subscription,
-        )
-
-    def edit(
-        self,
-        identifier: str,
-        *,
-        app: subscription_edit_params.App | NotGiven = NOT_GIVEN,
-        component_values: Iterable[SubscriptionComponentParam] | NotGiven = NOT_GIVEN,
-        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: RatePlanParam | NotGiven = NOT_GIVEN,
-        zone: SubscriptionZoneParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionEditResponse:
-        """
-        Updates zone subscriptions, either plan or add-ons.
-
-        Args:
-          identifier: Subscription identifier tag.
-
-          component_values: The list of add-ons subscribed to.
-
-          frequency: How often the subscription is renewed automatically.
-
-          rate_plan: The rate plan applied to the subscription.
-
-          zone: A simple zone object. May have null properties if not a zone subscription.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return cast(
-            SubscriptionEditResponse,
-            self._put(
-                f"/zones/{identifier}/subscription",
-                body=maybe_transform(
-                    {
-                        "app": app,
-                        "component_values": component_values,
-                        "frequency": frequency,
-                        "rate_plan": rate_plan,
-                        "zone": zone,
-                    },
-                    subscription_edit_params.SubscriptionEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SubscriptionEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SubscriptionEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
         )
 
     def get(
@@ -371,73 +303,6 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             model=Subscription,
         )
 
-    async def edit(
-        self,
-        identifier: str,
-        *,
-        app: subscription_edit_params.App | NotGiven = NOT_GIVEN,
-        component_values: Iterable[SubscriptionComponentParam] | NotGiven = NOT_GIVEN,
-        frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: RatePlanParam | NotGiven = NOT_GIVEN,
-        zone: SubscriptionZoneParam | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SubscriptionEditResponse:
-        """
-        Updates zone subscriptions, either plan or add-ons.
-
-        Args:
-          identifier: Subscription identifier tag.
-
-          component_values: The list of add-ons subscribed to.
-
-          frequency: How often the subscription is renewed automatically.
-
-          rate_plan: The rate plan applied to the subscription.
-
-          zone: A simple zone object. May have null properties if not a zone subscription.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return cast(
-            SubscriptionEditResponse,
-            await self._put(
-                f"/zones/{identifier}/subscription",
-                body=await async_maybe_transform(
-                    {
-                        "app": app,
-                        "component_values": component_values,
-                        "frequency": frequency,
-                        "rate_plan": rate_plan,
-                        "zone": zone,
-                    },
-                    subscription_edit_params.SubscriptionEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SubscriptionEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SubscriptionEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
     async def get(
         self,
         identifier: str,
@@ -493,9 +358,6 @@ class SubscriptionsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             subscriptions.list,
         )
-        self.edit = to_raw_response_wrapper(
-            subscriptions.edit,
-        )
         self.get = to_raw_response_wrapper(
             subscriptions.get,
         )
@@ -510,9 +372,6 @@ class AsyncSubscriptionsResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             subscriptions.list,
-        )
-        self.edit = async_to_raw_response_wrapper(
-            subscriptions.edit,
         )
         self.get = async_to_raw_response_wrapper(
             subscriptions.get,
@@ -529,9 +388,6 @@ class SubscriptionsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             subscriptions.list,
         )
-        self.edit = to_streamed_response_wrapper(
-            subscriptions.edit,
-        )
         self.get = to_streamed_response_wrapper(
             subscriptions.get,
         )
@@ -546,9 +402,6 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             subscriptions.list,
-        )
-        self.edit = async_to_streamed_response_wrapper(
-            subscriptions.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             subscriptions.get,
