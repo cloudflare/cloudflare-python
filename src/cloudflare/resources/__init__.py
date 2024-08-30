@@ -96,14 +96,6 @@ from .user import (
     UserResourceWithStreamingResponse,
     AsyncUserResourceWithStreamingResponse,
 )
-from .web3 import (
-    Web3Resource,
-    AsyncWeb3Resource,
-    Web3ResourceWithRawResponse,
-    AsyncWeb3ResourceWithRawResponse,
-    Web3ResourceWithStreamingResponse,
-    AsyncWeb3ResourceWithStreamingResponse,
-)
 from .cache import (
     CacheResource,
     AsyncCacheResource,
@@ -902,12 +894,6 @@ __all__ = [
     "AsyncWaitingRoomsResourceWithRawResponse",
     "WaitingRoomsResourceWithStreamingResponse",
     "AsyncWaitingRoomsResourceWithStreamingResponse",
-    "Web3Resource",
-    "AsyncWeb3Resource",
-    "Web3ResourceWithRawResponse",
-    "AsyncWeb3ResourceWithRawResponse",
-    "Web3ResourceWithStreamingResponse",
-    "AsyncWeb3ResourceWithStreamingResponse",
     "WorkersResource",
     "AsyncWorkersResource",
     "WorkersResourceWithRawResponse",
