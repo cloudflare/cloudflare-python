@@ -9,9 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.user import Subscription
-from cloudflare.types.zones import SubscriptionGetResponse, SubscriptionCreateResponse
+from cloudflare.types.zones import (
+    SubscriptionGetResponse,
+    SubscriptionCreateResponse,
+    SubscriptionUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -97,41 +99,80 @@ class TestSubscriptions:
             )
 
     @parametrize
-    def test_method_list(self, client: Cloudflare) -> None:
-        subscription = client.zones.subscriptions.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+    def test_method_update(self, client: Cloudflare) -> None:
+        subscription = client.zones.subscriptions.update(
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
-        assert_matches_type(SyncSinglePage[Subscription], subscription, path=["response"])
+        assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
     @parametrize
-    def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.zones.subscriptions.with_raw_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        subscription = client.zones.subscriptions.update(
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
+            app={"install_id": "install_id"},
+            component_values=[
+                {
+                    "default": 5,
+                    "name": "page_rules",
+                    "price": 5,
+                    "value": 20,
+                },
+                {
+                    "default": 5,
+                    "name": "page_rules",
+                    "price": 5,
+                    "value": 20,
+                },
+                {
+                    "default": 5,
+                    "name": "page_rules",
+                    "price": 5,
+                    "value": 20,
+                },
+            ],
+            frequency="weekly",
+            rate_plan={
+                "id": "free",
+                "currency": "USD",
+                "externally_managed": False,
+                "is_contract": False,
+                "public_name": "Business Plan",
+                "scope": "zone",
+                "sets": ["string", "string", "string"],
+            },
+            zone={},
+        )
+        assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Cloudflare) -> None:
+        response = client.zones.subscriptions.with_raw_response.update(
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = response.parse()
-        assert_matches_type(SyncSinglePage[Subscription], subscription, path=["response"])
+        assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
     @parametrize
-    def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.zones.subscriptions.with_streaming_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+    def test_streaming_response_update(self, client: Cloudflare) -> None:
+        with client.zones.subscriptions.with_streaming_response.update(
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = response.parse()
-            assert_matches_type(SyncSinglePage[Subscription], subscription, path=["response"])
+            assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_list(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zones.subscriptions.with_raw_response.list(
-                account_id="",
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            client.zones.subscriptions.with_raw_response.update(
+                identifier="",
             )
 
     @parametrize
@@ -254,41 +295,80 @@ class TestAsyncSubscriptions:
             )
 
     @parametrize
-    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        subscription = await async_client.zones.subscriptions.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
+        subscription = await async_client.zones.subscriptions.update(
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
-        assert_matches_type(AsyncSinglePage[Subscription], subscription, path=["response"])
+        assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zones.subscriptions.with_raw_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        subscription = await async_client.zones.subscriptions.update(
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
+            app={"install_id": "install_id"},
+            component_values=[
+                {
+                    "default": 5,
+                    "name": "page_rules",
+                    "price": 5,
+                    "value": 20,
+                },
+                {
+                    "default": 5,
+                    "name": "page_rules",
+                    "price": 5,
+                    "value": 20,
+                },
+                {
+                    "default": 5,
+                    "name": "page_rules",
+                    "price": 5,
+                    "value": 20,
+                },
+            ],
+            frequency="weekly",
+            rate_plan={
+                "id": "free",
+                "currency": "USD",
+                "externally_managed": False,
+                "is_contract": False,
+                "public_name": "Business Plan",
+                "scope": "zone",
+                "sets": ["string", "string", "string"],
+            },
+            zone={},
+        )
+        assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zones.subscriptions.with_raw_response.update(
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = await response.parse()
-        assert_matches_type(AsyncSinglePage[Subscription], subscription, path=["response"])
+        assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zones.subscriptions.with_streaming_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zones.subscriptions.with_streaming_response.update(
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = await response.parse()
-            assert_matches_type(AsyncSinglePage[Subscription], subscription, path=["response"])
+            assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zones.subscriptions.with_raw_response.list(
-                account_id="",
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+            await async_client.zones.subscriptions.with_raw_response.update(
+                identifier="",
             )
 
     @parametrize
