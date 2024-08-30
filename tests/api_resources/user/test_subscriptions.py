@@ -32,27 +32,6 @@ class TestSubscriptions:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         subscription = client.user.subscriptions.update(
             identifier="506e3185e9c882d175a2d0cb0093d9f2",
-            app={"install_id": "install_id"},
-            component_values=[
-                {
-                    "default": 5,
-                    "name": "page_rules",
-                    "price": 5,
-                    "value": 20,
-                },
-                {
-                    "default": 5,
-                    "name": "page_rules",
-                    "price": 5,
-                    "value": 20,
-                },
-                {
-                    "default": 5,
-                    "name": "page_rules",
-                    "price": 5,
-                    "value": 20,
-                },
-            ],
             frequency="weekly",
             rate_plan={
                 "id": "free",
@@ -63,7 +42,6 @@ class TestSubscriptions:
                 "scope": "zone",
                 "sets": ["string", "string", "string"],
             },
-            zone={},
         )
         assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
@@ -176,27 +154,6 @@ class TestAsyncSubscriptions:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.user.subscriptions.update(
             identifier="506e3185e9c882d175a2d0cb0093d9f2",
-            app={"install_id": "install_id"},
-            component_values=[
-                {
-                    "default": 5,
-                    "name": "page_rules",
-                    "price": 5,
-                    "value": 20,
-                },
-                {
-                    "default": 5,
-                    "name": "page_rules",
-                    "price": 5,
-                    "value": 20,
-                },
-                {
-                    "default": 5,
-                    "name": "page_rules",
-                    "price": 5,
-                    "value": 20,
-                },
-            ],
             frequency="weekly",
             rate_plan={
                 "id": "free",
@@ -207,7 +164,6 @@ class TestAsyncSubscriptions:
                 "scope": "zone",
                 "sets": ["string", "string", "string"],
             },
-            zone={},
         )
         assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 

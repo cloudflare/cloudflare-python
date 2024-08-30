@@ -1,30 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 from .rate_plan import RatePlan
-from .subscription_zone import SubscriptionZone
-from .subscription_component import SubscriptionComponent
 
-__all__ = ["Subscription", "App"]
-
-
-class App(BaseModel):
-    install_id: Optional[str] = None
-    """app install id."""
+__all__ = ["Subscription"]
 
 
 class Subscription(BaseModel):
     id: Optional[str] = None
     """Subscription identifier tag."""
-
-    app: Optional[App] = None
-
-    component_values: Optional[List[SubscriptionComponent]] = None
-    """The list of add-ons subscribed to."""
 
     currency: Optional[str] = None
     """The monetary unit in which pricing information is displayed."""
@@ -49,6 +37,3 @@ class Subscription(BaseModel):
 
     state: Optional[Literal["Trial", "Provisioned", "Paid", "AwaitingPayment", "Cancelled", "Failed", "Expired"]] = None
     """The state that the subscription is in."""
-
-    zone: Optional[SubscriptionZone] = None
-    """A simple zone object. May have null properties if not a zone subscription."""
