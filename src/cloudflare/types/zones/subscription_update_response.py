@@ -3,6 +3,6 @@
 from typing import Union, Optional
 from typing_extensions import TypeAlias
 
-__all__ = ["SubscriptionEditResponse"]
+__all__ = ["SubscriptionUpdateResponse"]
 
-SubscriptionEditResponse: TypeAlias = Union[Optional[str], object]
+SubscriptionUpdateResponse: TypeAlias = Union[Optional[str], object]
