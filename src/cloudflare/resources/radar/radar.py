@@ -111,6 +111,14 @@ from .netflows import (
 )
 from ..._compat import cached_property
 from .http.http import HTTPResource, AsyncHTTPResource
+from .robots_txt import (
+    RobotsTXTResource,
+    AsyncRobotsTXTResource,
+    RobotsTXTResourceWithRawResponse,
+    AsyncRobotsTXTResourceWithRawResponse,
+    RobotsTXTResourceWithStreamingResponse,
+    AsyncRobotsTXTResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .annotations import (
     AnnotationsResource,
@@ -151,6 +159,7 @@ from .tcp_resets_timeouts import (
     TCPResetsTimeoutsResourceWithStreamingResponse,
     AsyncTCPResetsTimeoutsResourceWithStreamingResponse,
 )
+from .robots_txt.robots_txt import RobotsTXTResource, AsyncRobotsTXTResource
 from .annotations.annotations import AnnotationsResource, AsyncAnnotationsResource
 from .verified_bots.verified_bots import VerifiedBotsResource, AsyncVerifiedBotsResource
 from .traffic_anomalies.traffic_anomalies import TrafficAnomaliesResource, AsyncTrafficAnomaliesResource
@@ -226,6 +235,10 @@ class RadarResource(SyncAPIResource):
     @cached_property
     def tcp_resets_timeouts(self) -> TCPResetsTimeoutsResource:
         return TCPResetsTimeoutsResource(self._client)
+
+    @cached_property
+    def robots_txt(self) -> RobotsTXTResource:
+        return RobotsTXTResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> RadarResourceWithRawResponse:
@@ -304,6 +317,10 @@ class AsyncRadarResource(AsyncAPIResource):
     @cached_property
     def tcp_resets_timeouts(self) -> AsyncTCPResetsTimeoutsResource:
         return AsyncTCPResetsTimeoutsResource(self._client)
+
+    @cached_property
+    def robots_txt(self) -> AsyncRobotsTXTResource:
+        return AsyncRobotsTXTResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncRadarResourceWithRawResponse:
@@ -386,6 +403,10 @@ class RadarResourceWithRawResponse:
     def tcp_resets_timeouts(self) -> TCPResetsTimeoutsResourceWithRawResponse:
         return TCPResetsTimeoutsResourceWithRawResponse(self._radar.tcp_resets_timeouts)
 
+    @cached_property
+    def robots_txt(self) -> RobotsTXTResourceWithRawResponse:
+        return RobotsTXTResourceWithRawResponse(self._radar.robots_txt)
+
 
 class AsyncRadarResourceWithRawResponse:
     def __init__(self, radar: AsyncRadarResource) -> None:
@@ -458,6 +479,10 @@ class AsyncRadarResourceWithRawResponse:
     @cached_property
     def tcp_resets_timeouts(self) -> AsyncTCPResetsTimeoutsResourceWithRawResponse:
         return AsyncTCPResetsTimeoutsResourceWithRawResponse(self._radar.tcp_resets_timeouts)
+
+    @cached_property
+    def robots_txt(self) -> AsyncRobotsTXTResourceWithRawResponse:
+        return AsyncRobotsTXTResourceWithRawResponse(self._radar.robots_txt)
 
 
 class RadarResourceWithStreamingResponse:
@@ -532,6 +557,10 @@ class RadarResourceWithStreamingResponse:
     def tcp_resets_timeouts(self) -> TCPResetsTimeoutsResourceWithStreamingResponse:
         return TCPResetsTimeoutsResourceWithStreamingResponse(self._radar.tcp_resets_timeouts)
 
+    @cached_property
+    def robots_txt(self) -> RobotsTXTResourceWithStreamingResponse:
+        return RobotsTXTResourceWithStreamingResponse(self._radar.robots_txt)
+
 
 class AsyncRadarResourceWithStreamingResponse:
     def __init__(self, radar: AsyncRadarResource) -> None:
@@ -604,3 +633,7 @@ class AsyncRadarResourceWithStreamingResponse:
     @cached_property
     def tcp_resets_timeouts(self) -> AsyncTCPResetsTimeoutsResourceWithStreamingResponse:
         return AsyncTCPResetsTimeoutsResourceWithStreamingResponse(self._radar.tcp_resets_timeouts)
+
+    @cached_property
+    def robots_txt(self) -> AsyncRobotsTXTResourceWithStreamingResponse:
+        return AsyncRobotsTXTResourceWithStreamingResponse(self._radar.robots_txt)
