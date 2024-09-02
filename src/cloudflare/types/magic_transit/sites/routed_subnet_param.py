@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
-
 from .nat_param import NatParam
+
+from typing_extensions import TypedDict, Required
 
 __all__ = ["RoutedSubnetParam"]
 

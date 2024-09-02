@@ -2,14 +2,19 @@
 
 from __future__ import annotations
 
-from .jobs import (
-    JobsResource,
-    AsyncJobsResource,
-    JobsResourceWithRawResponse,
-    AsyncJobsResourceWithRawResponse,
-    JobsResourceWithStreamingResponse,
-    AsyncJobsResourceWithStreamingResponse,
-)
+from .fields import FieldsResource, AsyncFieldsResource
+
+from ...._compat import cached_property
+
+from .jobs import JobsResource, AsyncJobsResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
 from .fields import (
     FieldsResource,
     AsyncFieldsResource,
@@ -18,8 +23,14 @@ from .fields import (
     FieldsResourceWithStreamingResponse,
     AsyncFieldsResourceWithStreamingResponse,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
+from .jobs import (
+    JobsResource,
+    AsyncJobsResource,
+    JobsResourceWithRawResponse,
+    AsyncJobsResourceWithRawResponse,
+    JobsResourceWithStreamingResponse,
+    AsyncJobsResourceWithStreamingResponse,
+)
 
 __all__ = ["DatasetsResource", "AsyncDatasetsResource"]
 

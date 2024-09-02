@@ -1,36 +1,32 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .rules import (
-    RulesResource,
-    AsyncRulesResource,
-    RulesResourceWithRawResponse,
-    AsyncRulesResourceWithRawResponse,
-    RulesResourceWithStreamingResponse,
-    AsyncRulesResourceWithStreamingResponse,
-)
+from .phases import PhasesResource, AsyncPhasesResource
 from .phases import (
-    PhasesResource,
-    AsyncPhasesResource,
     PhasesResourceWithRawResponse,
     AsyncPhasesResourceWithRawResponse,
     PhasesResourceWithStreamingResponse,
     AsyncPhasesResourceWithStreamingResponse,
 )
-from .rulesets import (
-    RulesetsResource,
-    AsyncRulesetsResource,
-    RulesetsResourceWithRawResponse,
-    AsyncRulesetsResourceWithRawResponse,
-    RulesetsResourceWithStreamingResponse,
-    AsyncRulesetsResourceWithStreamingResponse,
+from .rules import RulesResource, AsyncRulesResource
+from .rules import (
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
 )
+from .versions import VersionsResource, AsyncVersionsResource
 from .versions import (
-    VersionsResource,
-    AsyncVersionsResource,
     VersionsResourceWithRawResponse,
     AsyncVersionsResourceWithRawResponse,
     VersionsResourceWithStreamingResponse,
     AsyncVersionsResourceWithStreamingResponse,
+)
+from .rulesets import RulesetsResource, AsyncRulesetsResource
+from .rulesets import (
+    RulesetsResourceWithRawResponse,
+    AsyncRulesetsResourceWithRawResponse,
+    RulesetsResourceWithStreamingResponse,
+    AsyncRulesetsResourceWithStreamingResponse,
 )
 
 __all__ = [

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, TypedDict, Required, Annotated
 
 from ...._utils import PropertyInfo
 

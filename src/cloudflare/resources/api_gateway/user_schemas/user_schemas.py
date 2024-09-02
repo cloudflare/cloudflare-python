@@ -2,19 +2,50 @@
 
 from __future__ import annotations
 
-from typing import Type, Mapping, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
-from ...._utils import (
-    extract_files,
-    maybe_transform,
-    deepcopy_minimal,
-    async_maybe_transform,
-)
+from .operations import OperationsResource, AsyncOperationsResource
+
 from ...._compat import cached_property
+
+from ....types.api_gateway.schema_upload import SchemaUpload
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from typing import Type
+
+from ...._types import FileTypes
+
+from typing_extensions import Literal
+
+from ....types.api_gateway.public_schema import PublicSchema
+
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from ....types.api_gateway.user_schema_delete_response import UserSchemaDeleteResponse
+
+from ...._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.api_gateway import user_schema_create_params
+from ....types.api_gateway import user_schema_list_params
+from ....types.api_gateway import user_schema_edit_params
+from ....types.api_gateway import user_schema_get_params
 from .operations import (
     OperationsResource,
     AsyncOperationsResource,
@@ -23,25 +54,12 @@ from .operations import (
     OperationsResourceWithStreamingResponse,
     AsyncOperationsResourceWithStreamingResponse,
 )
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.api_gateway import (
-    user_schema_get_params,
-    user_schema_edit_params,
-    user_schema_list_params,
-    user_schema_create_params,
-)
-from ....types.api_gateway.public_schema import PublicSchema
-from ....types.api_gateway.schema_upload import SchemaUpload
-from ....types.api_gateway.user_schema_delete_response import UserSchemaDeleteResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["UserSchemasResource", "AsyncUserSchemasResource"]
 

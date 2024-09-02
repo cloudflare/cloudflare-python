@@ -1,18 +1,32 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from ...._models import BaseModel
+
 from typing import Optional
 
-from ...._models import BaseModel
-from .tls_settings import TLSSettings
-from .fips_settings import FipsSettings
-from .protocol_detection import ProtocolDetection
-from .anti_virus_settings import AntiVirusSettings
-from .block_page_settings import BlockPageSettings
 from .activity_log_settings import ActivityLogSettings
+
+from .anti_virus_settings import AntiVirusSettings
+
+from .block_page_settings import BlockPageSettings
+
 from .body_scanning_settings import BodyScanningSettings
-from .extended_email_matching import ExtendedEmailMatching
+
 from .browser_isolation_settings import BrowserIsolationSettings
+
 from .custom_certificate_settings import CustomCertificateSettings
+
+from .extended_email_matching import ExtendedEmailMatching
+
+from .fips_settings import FipsSettings
+
+from .protocol_detection import ProtocolDetection
+
+from .tls_settings import TLSSettings
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = ["GatewayConfigurationSettings", "Certificate"]
 

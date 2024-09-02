@@ -1,28 +1,25 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .waf import (
-    WAFResource,
-    AsyncWAFResource,
-    WAFResourceWithRawResponse,
-    AsyncWAFResourceWithRawResponse,
-    WAFResourceWithStreamingResponse,
-    AsyncWAFResourceWithStreamingResponse,
+from .overrides import OverridesResource, AsyncOverridesResource
+from .overrides import (
+    OverridesResourceWithRawResponse,
+    AsyncOverridesResourceWithRawResponse,
+    OverridesResourceWithStreamingResponse,
+    AsyncOverridesResourceWithStreamingResponse,
 )
+from .packages import PackagesResource, AsyncPackagesResource
 from .packages import (
-    PackagesResource,
-    AsyncPackagesResource,
     PackagesResourceWithRawResponse,
     AsyncPackagesResourceWithRawResponse,
     PackagesResourceWithStreamingResponse,
     AsyncPackagesResourceWithStreamingResponse,
 )
-from .overrides import (
-    OverridesResource,
-    AsyncOverridesResource,
-    OverridesResourceWithRawResponse,
-    AsyncOverridesResourceWithRawResponse,
-    OverridesResourceWithStreamingResponse,
-    AsyncOverridesResourceWithStreamingResponse,
+from .waf import WAFResource, AsyncWAFResource
+from .waf import (
+    WAFResourceWithRawResponse,
+    AsyncWAFResourceWithRawResponse,
+    WAFResourceWithStreamingResponse,
+    AsyncWAFResourceWithStreamingResponse,
 )
 
 __all__ = [

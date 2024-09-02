@@ -2,25 +2,41 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .associations import AssociationsResource, AsyncAssociationsResource
+
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
+
+from ...types.mtls_certificates.mtls_certificate_create_response import MTLSCertificateCreateResponse
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from ...types.mtls_certificates.mtls_certificate import MTLSCertificate
+
+from ...pagination import SyncSinglePage, AsyncSinglePage
+
 from ..._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.mtls_certificates import mtls_certificate_create_params
 from .associations import (
     AssociationsResource,
     AsyncAssociationsResource,
@@ -29,10 +45,12 @@ from .associations import (
     AssociationsResourceWithStreamingResponse,
     AsyncAssociationsResourceWithStreamingResponse,
 )
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.mtls_certificates import mtls_certificate_create_params
-from ...types.mtls_certificates.mtls_certificate import MTLSCertificate
-from ...types.mtls_certificates.mtls_certificate_create_response import MTLSCertificateCreateResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["MTLSCertificatesResource", "AsyncMTLSCertificatesResource"]
 

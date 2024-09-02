@@ -2,15 +2,19 @@
 
 from __future__ import annotations
 
-from .cmb import (
-    CmbResource,
-    AsyncCmbResource,
-    CmbResourceWithRawResponse,
-    AsyncCmbResourceWithRawResponse,
-    CmbResourceWithStreamingResponse,
-    AsyncCmbResourceWithStreamingResponse,
-)
+from .retention import RetentionResource, AsyncRetentionResource
+
+from ...._compat import cached_property
+
 from .cmb.cmb import CmbResource, AsyncCmbResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
 from .retention import (
     RetentionResource,
     AsyncRetentionResource,
@@ -19,8 +23,14 @@ from .retention import (
     RetentionResourceWithStreamingResponse,
     AsyncRetentionResourceWithStreamingResponse,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
+from .cmb import (
+    CmbResource,
+    AsyncCmbResource,
+    CmbResourceWithRawResponse,
+    AsyncCmbResourceWithRawResponse,
+    CmbResourceWithStreamingResponse,
+    AsyncCmbResourceWithStreamingResponse,
+)
 
 __all__ = ["ControlResource", "AsyncControlResource"]
 

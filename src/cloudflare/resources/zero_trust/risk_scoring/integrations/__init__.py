@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .references import ReferencesResource, AsyncReferencesResource
 from .references import (
-    ReferencesResource,
-    AsyncReferencesResource,
     ReferencesResourceWithRawResponse,
     AsyncReferencesResourceWithRawResponse,
     ReferencesResourceWithStreamingResponse,
     AsyncReferencesResourceWithStreamingResponse,
 )
+from .integrations import IntegrationsResource, AsyncIntegrationsResource
 from .integrations import (
-    IntegrationsResource,
-    AsyncIntegrationsResource,
     IntegrationsResourceWithRawResponse,
     AsyncIntegrationsResourceWithRawResponse,
     IntegrationsResourceWithStreamingResponse,

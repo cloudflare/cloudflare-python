@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
-from typing_extensions import Literal, Annotated, TypedDict
+from typing import Optional, List
+
+from typing_extensions import Literal, TypedDict, Annotated
 
 from ..._utils import PropertyInfo
 

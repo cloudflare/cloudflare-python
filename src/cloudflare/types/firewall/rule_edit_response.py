@@ -1,9 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from .firewall_rule import FirewallRule
+
 from typing_extensions import TypeAlias
 
-from .firewall_rule import FirewallRule
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = ["RuleEditResponse"]
 

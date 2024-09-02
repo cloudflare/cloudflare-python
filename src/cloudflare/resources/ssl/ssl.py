@@ -2,6 +2,25 @@
 
 from __future__ import annotations
 
+from .analyze import AnalyzeResource, AsyncAnalyzeResource
+
+from ..._compat import cached_property
+
+from .certificate_packs.certificate_packs import CertificatePacksResource, AsyncCertificatePacksResource
+
+from .recommendations import RecommendationsResource, AsyncRecommendationsResource
+
+from .universal.universal import UniversalResource, AsyncUniversalResource
+
+from .verification import VerificationResource, AsyncVerificationResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
 from .analyze import (
     AnalyzeResource,
     AsyncAnalyzeResource,
@@ -9,32 +28,6 @@ from .analyze import (
     AsyncAnalyzeResourceWithRawResponse,
     AnalyzeResourceWithStreamingResponse,
     AsyncAnalyzeResourceWithStreamingResponse,
-)
-from ..._compat import cached_property
-from .universal import (
-    UniversalResource,
-    AsyncUniversalResource,
-    UniversalResourceWithRawResponse,
-    AsyncUniversalResourceWithRawResponse,
-    UniversalResourceWithStreamingResponse,
-    AsyncUniversalResourceWithStreamingResponse,
-)
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .verification import (
-    VerificationResource,
-    AsyncVerificationResource,
-    VerificationResourceWithRawResponse,
-    AsyncVerificationResourceWithRawResponse,
-    VerificationResourceWithStreamingResponse,
-    AsyncVerificationResourceWithStreamingResponse,
-)
-from .recommendations import (
-    RecommendationsResource,
-    AsyncRecommendationsResource,
-    RecommendationsResourceWithRawResponse,
-    AsyncRecommendationsResourceWithRawResponse,
-    RecommendationsResourceWithStreamingResponse,
-    AsyncRecommendationsResourceWithStreamingResponse,
 )
 from .certificate_packs import (
     CertificatePacksResource,
@@ -44,8 +37,30 @@ from .certificate_packs import (
     CertificatePacksResourceWithStreamingResponse,
     AsyncCertificatePacksResourceWithStreamingResponse,
 )
-from .universal.universal import UniversalResource, AsyncUniversalResource
-from .certificate_packs.certificate_packs import CertificatePacksResource, AsyncCertificatePacksResource
+from .recommendations import (
+    RecommendationsResource,
+    AsyncRecommendationsResource,
+    RecommendationsResourceWithRawResponse,
+    AsyncRecommendationsResourceWithRawResponse,
+    RecommendationsResourceWithStreamingResponse,
+    AsyncRecommendationsResourceWithStreamingResponse,
+)
+from .universal import (
+    UniversalResource,
+    AsyncUniversalResource,
+    UniversalResourceWithRawResponse,
+    AsyncUniversalResourceWithRawResponse,
+    UniversalResourceWithStreamingResponse,
+    AsyncUniversalResourceWithStreamingResponse,
+)
+from .verification import (
+    VerificationResource,
+    AsyncVerificationResource,
+    VerificationResourceWithRawResponse,
+    AsyncVerificationResourceWithRawResponse,
+    VerificationResourceWithStreamingResponse,
+    AsyncVerificationResourceWithStreamingResponse,
+)
 
 __all__ = ["SSLResource", "AsyncSSLResource"]
 

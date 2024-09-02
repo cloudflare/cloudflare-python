@@ -2,10 +2,60 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, Optional, cast
-
 import httpx
 
+from .accounts import AccountsResource, AsyncAccountsResource
+
+from ...._compat import cached_property
+
+from .ips import IPsResource, AsyncIPsResource
+
+from .zones import ZonesResource, AsyncZonesResource
+
+from ....types.addressing.address_map_create_response import AddressMapCreateResponse
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type, List, Iterable
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from ....types.addressing.address_map import AddressMap
+
+from ....pagination import SyncSinglePage, AsyncSinglePage
+
+from ....types.addressing.address_map_delete_response import AddressMapDeleteResponse
+
+from ....types.addressing.address_map_get_response import AddressMapGetResponse
+
+from ...._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+from ....types.addressing import address_map_create_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.addressing import address_map_create_params
+from ....types.addressing import address_map_edit_params
+from .accounts import (
+    AccountsResource,
+    AsyncAccountsResource,
+    AccountsResourceWithRawResponse,
+    AsyncAccountsResourceWithRawResponse,
+    AccountsResourceWithStreamingResponse,
+    AsyncAccountsResourceWithStreamingResponse,
+)
 from .ips import (
     IPsResource,
     AsyncIPsResource,
@@ -22,35 +72,12 @@ from .zones import (
     ZonesResourceWithStreamingResponse,
     AsyncZonesResourceWithStreamingResponse,
 )
-from .accounts import (
-    AccountsResource,
-    AsyncAccountsResource,
-    AccountsResourceWithRawResponse,
-    AsyncAccountsResourceWithRawResponse,
-    AccountsResourceWithStreamingResponse,
-    AsyncAccountsResourceWithStreamingResponse,
-)
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.addressing import address_map_edit_params, address_map_create_params
-from ....types.addressing.address_map import AddressMap
-from ....types.addressing.address_map_get_response import AddressMapGetResponse
-from ....types.addressing.address_map_create_response import AddressMapCreateResponse
-from ....types.addressing.address_map_delete_response import AddressMapDeleteResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["AddressMapsResource", "AsyncAddressMapsResource"]
 

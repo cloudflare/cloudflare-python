@@ -2,38 +2,76 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .logs import LogsResource, AsyncLogsResource
+
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
+
+from ...types.ai_gateway.ai_gateway_create_response import AIGatewayCreateResponse
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from typing import Type, Optional
+
+from typing_extensions import Literal
+
+from ...types.ai_gateway.ai_gateway_update_response import AIGatewayUpdateResponse
+
+from ...types.ai_gateway.ai_gateway_list_response import AIGatewayListResponse
+
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from ...types.ai_gateway.ai_gateway_delete_response import AIGatewayDeleteResponse
+
+from ...types.ai_gateway.ai_gateway_get_response import AIGatewayGetResponse
+
 from ..._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.ai_gateway import ai_gateway_list_params, ai_gateway_create_params, ai_gateway_update_params
-from ...types.ai_gateway.ai_gateway_get_response import AIGatewayGetResponse
-from ...types.ai_gateway.ai_gateway_list_response import AIGatewayListResponse
-from ...types.ai_gateway.ai_gateway_create_response import AIGatewayCreateResponse
-from ...types.ai_gateway.ai_gateway_delete_response import AIGatewayDeleteResponse
-from ...types.ai_gateway.ai_gateway_update_response import AIGatewayUpdateResponse
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.ai_gateway import ai_gateway_create_params
+from ...types.ai_gateway import ai_gateway_update_params
+from ...types.ai_gateway import ai_gateway_list_params
+from .logs import (
+    LogsResource,
+    AsyncLogsResource,
+    LogsResourceWithRawResponse,
+    AsyncLogsResourceWithRawResponse,
+    LogsResourceWithStreamingResponse,
+    AsyncLogsResourceWithStreamingResponse,
+)
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["AIGatewayResource", "AsyncAIGatewayResource"]
 
 
 class AIGatewayResource(SyncAPIResource):
+    @cached_property
+    def logs(self) -> LogsResource:
+        return LogsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AIGatewayResourceWithRawResponse:
         return AIGatewayResourceWithRawResponse(self)
@@ -301,6 +339,10 @@ class AIGatewayResource(SyncAPIResource):
 
 
 class AsyncAIGatewayResource(AsyncAPIResource):
+    @cached_property
+    def logs(self) -> AsyncLogsResource:
+        return AsyncLogsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncAIGatewayResourceWithRawResponse:
         return AsyncAIGatewayResourceWithRawResponse(self)
@@ -587,6 +629,10 @@ class AIGatewayResourceWithRawResponse:
             ai_gateway.get,
         )
 
+    @cached_property
+    def logs(self) -> LogsResourceWithRawResponse:
+        return LogsResourceWithRawResponse(self._ai_gateway.logs)
+
 
 class AsyncAIGatewayResourceWithRawResponse:
     def __init__(self, ai_gateway: AsyncAIGatewayResource) -> None:
@@ -607,6 +653,10 @@ class AsyncAIGatewayResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             ai_gateway.get,
         )
+
+    @cached_property
+    def logs(self) -> AsyncLogsResourceWithRawResponse:
+        return AsyncLogsResourceWithRawResponse(self._ai_gateway.logs)
 
 
 class AIGatewayResourceWithStreamingResponse:
@@ -629,6 +679,10 @@ class AIGatewayResourceWithStreamingResponse:
             ai_gateway.get,
         )
 
+    @cached_property
+    def logs(self) -> LogsResourceWithStreamingResponse:
+        return LogsResourceWithStreamingResponse(self._ai_gateway.logs)
+
 
 class AsyncAIGatewayResourceWithStreamingResponse:
     def __init__(self, ai_gateway: AsyncAIGatewayResource) -> None:
@@ -649,3 +703,7 @@ class AsyncAIGatewayResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             ai_gateway.get,
         )
+
+    @cached_property
+    def logs(self) -> AsyncLogsResourceWithStreamingResponse:
+        return AsyncLogsResourceWithStreamingResponse(self._ai_gateway.logs)

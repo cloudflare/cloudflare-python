@@ -2,32 +2,63 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
+
+from ...types.firewall.access_rule_create_response import AccessRuleCreateResponse
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from ...types.firewall.access_rule_delete_response import AccessRuleDeleteResponse
+
+from typing import Optional, Type
+
+from ...types.firewall.access_rule_edit_response import AccessRuleEditResponse
+
+from ...types.firewall.access_rule_get_response import AccessRuleGetResponse
+
 from ..._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.firewall import access_rule_edit_params, access_rule_list_params, access_rule_create_params
-from ...types.firewall.access_rule_get_response import AccessRuleGetResponse
-from ...types.firewall.access_rule_edit_response import AccessRuleEditResponse
-from ...types.firewall.access_rule_create_response import AccessRuleCreateResponse
-from ...types.firewall.access_rule_delete_response import AccessRuleDeleteResponse
+
+from ...types.firewall import access_rule_create_params, access_rule_list_params, access_rule_edit_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.firewall import access_rule_create_params
+from ...types.firewall import access_rule_list_params
+from ...types.firewall import access_rule_edit_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["AccessRulesResource", "AsyncAccessRulesResource"]
 

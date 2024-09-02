@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import TypedDict
 
 from .ip_network_param import IPNetworkParam
+
+from typing_extensions import TypedDict
 
 __all__ = ["DOHEndpointParam"]
 

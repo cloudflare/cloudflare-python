@@ -2,17 +2,47 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .catch_alls import CatchAllsResource, AsyncCatchAllsResource
+
 from ...._compat import cached_property
+
+from ....types.email_routing.email_routing_rule import EmailRoutingRule
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type, Iterable
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from ....types.email_routing.action_param import ActionParam
+
+from ....types.email_routing.matcher_param import MatcherParam
+
+from typing_extensions import Literal
+
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from ...._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.email_routing import rule_create_params
+from ....types.email_routing import rule_update_params
+from ....types.email_routing import rule_list_params
 from .catch_alls import (
     CatchAllsResource,
     AsyncCatchAllsResource,
@@ -21,20 +51,14 @@ from .catch_alls import (
     CatchAllsResourceWithStreamingResponse,
     AsyncCatchAllsResourceWithStreamingResponse,
 )
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.email_routing import rule_list_params, rule_create_params, rule_update_params
-from ....types.email_routing.action_param import ActionParam
-from ....types.email_routing.matcher_param import MatcherParam
-from ....types.email_routing.email_routing_rule import EmailRoutingRule
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 

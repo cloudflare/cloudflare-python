@@ -2,11 +2,18 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.stream import EmbedGetResponse
+
 from typing import Any, cast
 
+import os
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 

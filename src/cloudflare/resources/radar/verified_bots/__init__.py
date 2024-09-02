@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .top import TopResource, AsyncTopResource
 from .top import (
-    TopResource,
-    AsyncTopResource,
     TopResourceWithRawResponse,
     AsyncTopResourceWithRawResponse,
     TopResourceWithStreamingResponse,
     AsyncTopResourceWithStreamingResponse,
 )
+from .verified_bots import VerifiedBotsResource, AsyncVerifiedBotsResource
 from .verified_bots import (
-    VerifiedBotsResource,
-    AsyncVerifiedBotsResource,
     VerifiedBotsResourceWithRawResponse,
     AsyncVerifiedBotsResourceWithRawResponse,
     VerifiedBotsResourceWithStreamingResponse,

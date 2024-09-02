@@ -2,14 +2,19 @@
 
 from __future__ import annotations
 
-from .packages import (
-    PackagesResource,
-    AsyncPackagesResource,
-    PackagesResourceWithRawResponse,
-    AsyncPackagesResourceWithRawResponse,
-    PackagesResourceWithStreamingResponse,
-    AsyncPackagesResourceWithStreamingResponse,
-)
+from .overrides import OverridesResource, AsyncOverridesResource
+
+from ...._compat import cached_property
+
+from .packages.packages import PackagesResource, AsyncPackagesResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
 from .overrides import (
     OverridesResource,
     AsyncOverridesResource,
@@ -18,9 +23,14 @@ from .overrides import (
     OverridesResourceWithStreamingResponse,
     AsyncOverridesResourceWithStreamingResponse,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from .packages.packages import PackagesResource, AsyncPackagesResource
+from .packages import (
+    PackagesResource,
+    AsyncPackagesResource,
+    PackagesResourceWithRawResponse,
+    AsyncPackagesResourceWithRawResponse,
+    PackagesResourceWithStreamingResponse,
+    AsyncPackagesResourceWithStreamingResponse,
+)
 
 __all__ = ["WAFResource", "AsyncWAFResource"]
 

@@ -2,23 +2,65 @@
 
 from __future__ import annotations
 
-from typing import List, Type as TypingType, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from .holds import (
-    HoldsResource,
-    AsyncHoldsResource,
-    HoldsResourceWithRawResponse,
-    AsyncHoldsResourceWithRawResponse,
-    HoldsResourceWithStreamingResponse,
-    AsyncHoldsResourceWithStreamingResponse,
+from .activation_check import ActivationCheckResource, AsyncActivationCheckResource
+
+from ..._compat import cached_property
+
+from .settings import SettingsResource, AsyncSettingsResource
+
+from .custom_nameservers import CustomNameserversResource, AsyncCustomNameserversResource
+
+from .holds import HoldsResource, AsyncHoldsResource
+
+from .subscriptions import SubscriptionsResource, AsyncSubscriptionsResource
+
+from ...types.zones.zone import Zone
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type as TypingType, List
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from ...types.zones.type import Type as ZonesType
+
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from typing_extensions import Literal
+
+from ...types.zones.zone_delete_response import ZoneDeleteResponse
+
+from ..._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
+
+from ...types.zones import zone_create_params, zone_list_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.zones import zone_create_params
+from ...types.zones import zone_list_params
+from ...types.zones import zone_edit_params
+from ...types.zones import Type
+from .activation_check import (
+    ActivationCheckResource,
+    AsyncActivationCheckResource,
+    ActivationCheckResourceWithRawResponse,
+    AsyncActivationCheckResourceWithRawResponse,
+    ActivationCheckResourceWithStreamingResponse,
+    AsyncActivationCheckResourceWithStreamingResponse,
 )
 from .settings import (
     SettingsResource,
@@ -28,36 +70,6 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...types.zones import zone_edit_params, zone_list_params, zone_create_params
-from .subscriptions import (
-    SubscriptionsResource,
-    AsyncSubscriptionsResource,
-    SubscriptionsResourceWithRawResponse,
-    AsyncSubscriptionsResourceWithRawResponse,
-    SubscriptionsResourceWithStreamingResponse,
-    AsyncSubscriptionsResourceWithStreamingResponse,
-)
-from ..._base_client import AsyncPaginator, make_request_options
-from .activation_check import (
-    ActivationCheckResource,
-    AsyncActivationCheckResource,
-    ActivationCheckResourceWithRawResponse,
-    AsyncActivationCheckResourceWithRawResponse,
-    ActivationCheckResourceWithStreamingResponse,
-    AsyncActivationCheckResourceWithStreamingResponse,
-)
-from ...types.zones.type import Type as ZonesType
-from ...types.zones.zone import Zone
 from .custom_nameservers import (
     CustomNameserversResource,
     AsyncCustomNameserversResource,
@@ -66,7 +78,30 @@ from .custom_nameservers import (
     CustomNameserversResourceWithStreamingResponse,
     AsyncCustomNameserversResourceWithStreamingResponse,
 )
-from ...types.zones.zone_delete_response import ZoneDeleteResponse
+from .holds import (
+    HoldsResource,
+    AsyncHoldsResource,
+    HoldsResourceWithRawResponse,
+    AsyncHoldsResourceWithRawResponse,
+    HoldsResourceWithStreamingResponse,
+    AsyncHoldsResourceWithStreamingResponse,
+)
+from .subscriptions import (
+    SubscriptionsResource,
+    AsyncSubscriptionsResource,
+    SubscriptionsResourceWithRawResponse,
+    AsyncSubscriptionsResourceWithRawResponse,
+    SubscriptionsResourceWithStreamingResponse,
+    AsyncSubscriptionsResourceWithStreamingResponse,
+)
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["ZonesResource", "AsyncZonesResource"]
 

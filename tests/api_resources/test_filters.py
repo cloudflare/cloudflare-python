@@ -2,18 +2,25 @@
 
 from __future__ import annotations
 
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from typing import Optional, Any, cast
+
+from cloudflare.types.filters import FilterCreateResponse, FirewallFilter
+
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
 import os
-from typing import Any, Optional, cast
-
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.filters import (
-    FirewallFilter,
-    FilterCreateResponse,
-)
+from cloudflare.types.filters import filter_create_params
+from cloudflare.types.filters import filter_update_params
+from cloudflare.types.filters import filter_list_params
 
 # pyright: reportDeprecated=false
 

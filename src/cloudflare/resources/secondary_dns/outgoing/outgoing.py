@@ -2,10 +2,53 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
-
 import httpx
 
+from .status import StatusResource, AsyncStatusResource
+
+from ...._compat import cached_property
+
+from ....types.secondary_dns.outgoing_create_response import OutgoingCreateResponse
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type, List
+
+from ...._base_client import make_request_options
+
+from ....types.secondary_dns.outgoing_update_response import OutgoingUpdateResponse
+
+from ....types.secondary_dns.outgoing_delete_response import OutgoingDeleteResponse
+
+from ....types.secondary_dns.disable_transfer import DisableTransfer
+
+from ....types.secondary_dns.enable_transfer import EnableTransfer
+
+from ....types.secondary_dns.outgoing_force_notify_response import OutgoingForceNotifyResponse
+
+from ....types.secondary_dns.outgoing_get_response import OutgoingGetResponse
+
+from ...._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.secondary_dns import outgoing_create_params
+from ....types.secondary_dns import outgoing_update_params
+from ....types.secondary_dns import outgoing_disable_params
+from ....types.secondary_dns import outgoing_enable_params
+from ....types.secondary_dns import outgoing_force_notify_params
 from .status import (
     StatusResource,
     AsyncStatusResource,
@@ -14,35 +57,20 @@ from .status import (
     StatusResourceWithStreamingResponse,
     AsyncStatusResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.secondary_dns import (
-    outgoing_create_params,
-    outgoing_enable_params,
-    outgoing_update_params,
-    outgoing_disable_params,
-    outgoing_force_notify_params,
-)
-from ....types.secondary_dns.enable_transfer import EnableTransfer
-from ....types.secondary_dns.disable_transfer import DisableTransfer
-from ....types.secondary_dns.outgoing_get_response import OutgoingGetResponse
-from ....types.secondary_dns.outgoing_create_response import OutgoingCreateResponse
-from ....types.secondary_dns.outgoing_delete_response import OutgoingDeleteResponse
-from ....types.secondary_dns.outgoing_update_response import OutgoingUpdateResponse
-from ....types.secondary_dns.outgoing_force_notify_response import OutgoingForceNotifyResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["OutgoingResource", "AsyncOutgoingResource"]
 

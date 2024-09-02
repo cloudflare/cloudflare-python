@@ -1,20 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .billing import (
-    BillingResource,
-    AsyncBillingResource,
-    BillingResourceWithRawResponse,
-    AsyncBillingResourceWithRawResponse,
-    BillingResourceWithStreamingResponse,
-    AsyncBillingResourceWithStreamingResponse,
-)
+from .profiles import ProfilesResource, AsyncProfilesResource
 from .profiles import (
-    ProfilesResource,
-    AsyncProfilesResource,
     ProfilesResourceWithRawResponse,
     AsyncProfilesResourceWithRawResponse,
     ProfilesResourceWithStreamingResponse,
     AsyncProfilesResourceWithStreamingResponse,
+)
+from .billing import BillingResource, AsyncBillingResource
+from .billing import (
+    BillingResourceWithRawResponse,
+    AsyncBillingResourceWithRawResponse,
+    BillingResourceWithStreamingResponse,
+    AsyncBillingResourceWithStreamingResponse,
 )
 
 __all__ = [

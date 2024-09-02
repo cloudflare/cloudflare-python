@@ -2,10 +2,39 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
-
 import httpx
 
+from .full import FullResource, AsyncFullResource
+
+from ...._compat import cached_property
+
+from ....types.magic_network_monitoring.configuration import Configuration
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from ...._base_client import make_request_options
+
+from typing import Type
+
+from ...._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.magic_network_monitoring import config_create_params
+from ....types.magic_network_monitoring import config_update_params
+from ....types.magic_network_monitoring import config_edit_params
 from .full import (
     FullResource,
     AsyncFullResource,
@@ -14,23 +43,16 @@ from .full import (
     FullResourceWithStreamingResponse,
     AsyncFullResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.magic_network_monitoring import config_edit_params, config_create_params, config_update_params
-from ....types.magic_network_monitoring.configuration import Configuration
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["ConfigsResource", "AsyncConfigsResource"]
 

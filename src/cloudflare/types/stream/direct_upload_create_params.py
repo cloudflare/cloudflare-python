@@ -2,12 +2,20 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import TypedDict, Required, Annotated
 
 from ..._utils import PropertyInfo
+
+from typing import List, Union
+
 from .allowed_origins import AllowedOrigins
+
+from datetime import datetime
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
 __all__ = ["DirectUploadCreateParams", "Watermark"]
 

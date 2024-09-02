@@ -1,11 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from ..._models import BaseModel
+
+from typing import Optional, List
+
+from ..shared.permission_grant import PermissionGrant
+
 from typing_extensions import Literal
 
-from ..._models import BaseModel
 from ..accounts.account import Account
-from ..shared.permission_grant import PermissionGrant
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = [
     "MembershipUpdateResponse",

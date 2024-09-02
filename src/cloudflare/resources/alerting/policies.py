@@ -2,34 +2,60 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
+
+from ...types.alerting.policy_create_response import PolicyCreateResponse
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from ...types.alerting.mechanism_param import MechanismParam
+
+from ...types.alerting.policy_filter_param import PolicyFilterParam
+
+from ...types.alerting.policy_update_response import PolicyUpdateResponse
+
+from ...types.alerting.policy import Policy
+
+from ...pagination import SyncSinglePage, AsyncSinglePage
+
+from ...types.alerting.policy_delete_response import PolicyDeleteResponse
+
 from ..._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.alerting import policy_create_params, policy_update_params
-from ...types.alerting.policy import Policy
-from ...types.alerting.mechanism_param import MechanismParam
-from ...types.alerting.policy_filter_param import PolicyFilterParam
-from ...types.alerting.policy_create_response import PolicyCreateResponse
-from ...types.alerting.policy_delete_response import PolicyDeleteResponse
-from ...types.alerting.policy_update_response import PolicyUpdateResponse
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.alerting import policy_create_params
+from ...types.alerting import policy_update_params
+from ...types.alerting import Mechanism
+from ...types.alerting import PolicyFilter
+from ...types.alerting import PolicyFilter
+from ...types.alerting import Mechanism
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 

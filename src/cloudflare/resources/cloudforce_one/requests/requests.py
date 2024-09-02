@@ -2,12 +2,57 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, Optional, cast
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
+from .message import MessageResource, AsyncMessageResource
+
+from ...._compat import cached_property
+
+from .priority import PriorityResource, AsyncPriorityResource
+
+from ....types.cloudforce_one.item import Item
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type, Union
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from ....types.cloudforce_one.list_item import ListItem
+
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from datetime import datetime
+
+from ....types.cloudforce_one.request_delete_response import RequestDeleteResponse
+
+from ....types.cloudforce_one.request_constants import RequestConstants
+
+from ....types.cloudforce_one.quota import Quota
+
+from ....types.cloudforce_one.request_types import RequestTypes
+
+from ...._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.cloudforce_one import request_create_params
+from ....types.cloudforce_one import request_update_params
+from ....types.cloudforce_one import request_list_params
 from .message import (
     MessageResource,
     AsyncMessageResource,
@@ -24,29 +69,18 @@ from .priority import (
     PriorityResourceWithStreamingResponse,
     AsyncPriorityResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.cloudforce_one import request_list_params, request_create_params, request_update_params
-from ....types.cloudforce_one.item import Item
-from ....types.cloudforce_one.quota import Quota
-from ....types.cloudforce_one.list_item import ListItem
-from ....types.cloudforce_one.request_types import RequestTypes
-from ....types.cloudforce_one.request_constants import RequestConstants
-from ....types.cloudforce_one.request_delete_response import RequestDeleteResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["RequestsResource", "AsyncRequestsResource"]
 

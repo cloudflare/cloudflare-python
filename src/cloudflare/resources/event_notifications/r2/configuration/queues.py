@@ -2,28 +2,45 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, cast
-
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
+
+from .....types.event_notifications.r2.configuration.queue_update_response import QueueUpdateResponse
+
+from ....._wrappers import ResultWrapper
+
+from ....._utils import maybe_transform, async_maybe_transform
+
+from ....._base_client import make_request_options
+
+from typing import Type, Iterable
+
+from .....types.event_notifications.r2.configuration.queue_delete_response import QueueDeleteResponse
+
 from ....._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
+
 from .....types.event_notifications.r2.configuration import queue_update_params
-from .....types.event_notifications.r2.configuration.queue_delete_response import QueueDeleteResponse
-from .....types.event_notifications.r2.configuration.queue_update_response import QueueUpdateResponse
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.event_notifications.r2.configuration import queue_update_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["QueuesResource", "AsyncQueuesResource"]
 
@@ -56,11 +73,11 @@ class QueuesResource(SyncAPIResource):
         production.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          bucket_name: Identifier
+          bucket_name: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           rules: Array of rules to drive notifications
 
@@ -110,11 +127,11 @@ class QueuesResource(SyncAPIResource):
         further notifications will be produced for the queue once complete.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          bucket_name: Identifier
+          bucket_name: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -176,11 +193,11 @@ class AsyncQueuesResource(AsyncAPIResource):
         production.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          bucket_name: Identifier
+          bucket_name: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           rules: Array of rules to drive notifications
 
@@ -230,11 +247,11 @@ class AsyncQueuesResource(AsyncAPIResource):
         further notifications will be produced for the queue once complete.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          bucket_name: Identifier
+          bucket_name: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 

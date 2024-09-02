@@ -2,18 +2,43 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.load_balancers import LoadBalancer, LoadBalancerDeleteResponse
+
 from typing import Any, cast
 
-import pytest
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.load_balancers import (
-    LoadBalancer,
-    LoadBalancerDeleteResponse,
-)
+from cloudflare.types.load_balancers import load_balancer_create_params
+from cloudflare.types.load_balancers import load_balancer_update_params
+from cloudflare.types.load_balancers import load_balancer_edit_params
+from cloudflare.types.load_balancers import AdaptiveRouting
+from cloudflare.types.load_balancers import LocationStrategy
+from cloudflare.types.load_balancers import RandomSteering
+from cloudflare.types.load_balancers import SessionAffinity
+from cloudflare.types.load_balancers import SessionAffinityAttributes
+from cloudflare.types.load_balancers import SteeringPolicy
+from cloudflare.types.load_balancers import AdaptiveRouting
+from cloudflare.types.load_balancers import LocationStrategy
+from cloudflare.types.load_balancers import RandomSteering
+from cloudflare.types.load_balancers import SessionAffinity
+from cloudflare.types.load_balancers import SessionAffinityAttributes
+from cloudflare.types.load_balancers import SteeringPolicy
+from cloudflare.types.load_balancers import AdaptiveRouting
+from cloudflare.types.load_balancers import LocationStrategy
+from cloudflare.types.load_balancers import RandomSteering
+from cloudflare.types.load_balancers import SessionAffinity
+from cloudflare.types.load_balancers import SessionAffinityAttributes
+from cloudflare.types.load_balancers import SteeringPolicy
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

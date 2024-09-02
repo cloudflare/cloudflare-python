@@ -1,14 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from ..._models import BaseModel
+
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
 
 from .dns import DNS
+
+from typing_extensions import Literal, TypeAlias
+
+from typing import Optional, List
+
 from .edge_ips import EdgeIPs
-from ..._models import BaseModel
+
 from .origin_dns import OriginDNS
+
 from .origin_port import OriginPort
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = ["AppCreateResponse", "SpectrumConfigAppConfig", "SpectrumConfigPaygoAppConfig"]
 

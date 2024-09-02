@@ -4,14 +4,49 @@ from __future__ import annotations
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .active_sessions import ActiveSessionsResource, AsyncActiveSessionsResource
+
 from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
+
+from .last_seen_identity import LastSeenIdentityResource, AsyncLastSeenIdentityResource
+
+from .failed_logins import FailedLoginsResource, AsyncFailedLoginsResource
+
+from .....types.zero_trust.access.access_user import AccessUser
+
+from .....pagination import SyncSinglePage, AsyncSinglePage
+
+from ....._base_client import make_request_options, AsyncPaginator
+
 from ....._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .active_sessions import (
+    ActiveSessionsResource,
+    AsyncActiveSessionsResource,
+    ActiveSessionsResourceWithRawResponse,
+    AsyncActiveSessionsResourceWithRawResponse,
+    ActiveSessionsResourceWithStreamingResponse,
+    AsyncActiveSessionsResourceWithStreamingResponse,
+)
+from .last_seen_identity import (
+    LastSeenIdentityResource,
+    AsyncLastSeenIdentityResource,
+    LastSeenIdentityResourceWithRawResponse,
+    AsyncLastSeenIdentityResourceWithRawResponse,
+    LastSeenIdentityResourceWithStreamingResponse,
+    AsyncLastSeenIdentityResourceWithStreamingResponse,
 )
 from .failed_logins import (
     FailedLoginsResource,
@@ -21,25 +56,6 @@ from .failed_logins import (
     FailedLoginsResourceWithStreamingResponse,
     AsyncFailedLoginsResourceWithStreamingResponse,
 )
-from .....pagination import SyncSinglePage, AsyncSinglePage
-from .active_sessions import (
-    ActiveSessionsResource,
-    AsyncActiveSessionsResource,
-    ActiveSessionsResourceWithRawResponse,
-    AsyncActiveSessionsResourceWithRawResponse,
-    ActiveSessionsResourceWithStreamingResponse,
-    AsyncActiveSessionsResourceWithStreamingResponse,
-)
-from ....._base_client import AsyncPaginator, make_request_options
-from .last_seen_identity import (
-    LastSeenIdentityResource,
-    AsyncLastSeenIdentityResource,
-    LastSeenIdentityResourceWithRawResponse,
-    AsyncLastSeenIdentityResourceWithRawResponse,
-    LastSeenIdentityResourceWithStreamingResponse,
-    AsyncLastSeenIdentityResourceWithStreamingResponse,
-)
-from .....types.zero_trust.access.access_user import AccessUser
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
