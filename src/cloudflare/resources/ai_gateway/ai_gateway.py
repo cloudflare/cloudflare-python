@@ -7,14 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from .logs import (
-    LogsResource,
-    AsyncLogsResource,
-    LogsResourceWithRawResponse,
-    AsyncLogsResourceWithRawResponse,
-    LogsResourceWithStreamingResponse,
-    AsyncLogsResourceWithStreamingResponse,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -42,10 +34,6 @@ __all__ = ["AIGatewayResource", "AsyncAIGatewayResource"]
 
 
 class AIGatewayResource(SyncAPIResource):
-    @cached_property
-    def logs(self) -> LogsResource:
-        return LogsResource(self._client)
-
     @cached_property
     def with_raw_response(self) -> AIGatewayResourceWithRawResponse:
         return AIGatewayResourceWithRawResponse(self)
@@ -313,10 +301,6 @@ class AIGatewayResource(SyncAPIResource):
 
 
 class AsyncAIGatewayResource(AsyncAPIResource):
-    @cached_property
-    def logs(self) -> AsyncLogsResource:
-        return AsyncLogsResource(self._client)
-
     @cached_property
     def with_raw_response(self) -> AsyncAIGatewayResourceWithRawResponse:
         return AsyncAIGatewayResourceWithRawResponse(self)
@@ -603,10 +587,6 @@ class AIGatewayResourceWithRawResponse:
             ai_gateway.get,
         )
 
-    @cached_property
-    def logs(self) -> LogsResourceWithRawResponse:
-        return LogsResourceWithRawResponse(self._ai_gateway.logs)
-
 
 class AsyncAIGatewayResourceWithRawResponse:
     def __init__(self, ai_gateway: AsyncAIGatewayResource) -> None:
@@ -627,10 +607,6 @@ class AsyncAIGatewayResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             ai_gateway.get,
         )
-
-    @cached_property
-    def logs(self) -> AsyncLogsResourceWithRawResponse:
-        return AsyncLogsResourceWithRawResponse(self._ai_gateway.logs)
 
 
 class AIGatewayResourceWithStreamingResponse:
@@ -653,10 +629,6 @@ class AIGatewayResourceWithStreamingResponse:
             ai_gateway.get,
         )
 
-    @cached_property
-    def logs(self) -> LogsResourceWithStreamingResponse:
-        return LogsResourceWithStreamingResponse(self._ai_gateway.logs)
-
 
 class AsyncAIGatewayResourceWithStreamingResponse:
     def __init__(self, ai_gateway: AsyncAIGatewayResource) -> None:
@@ -677,7 +649,3 @@ class AsyncAIGatewayResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             ai_gateway.get,
         )
-
-    @cached_property
-    def logs(self) -> AsyncLogsResourceWithStreamingResponse:
-        return AsyncLogsResourceWithStreamingResponse(self._ai_gateway.logs)
