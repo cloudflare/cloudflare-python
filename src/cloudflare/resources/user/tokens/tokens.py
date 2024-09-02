@@ -2,37 +2,61 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, Iterable, Optional, cast
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from .value import (
-    ValueResource,
-    AsyncValueResource,
-    ValueResourceWithRawResponse,
-    AsyncValueResourceWithRawResponse,
-    ValueResourceWithStreamingResponse,
-    AsyncValueResourceWithStreamingResponse,
-)
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .permission_groups import PermissionGroupsResource, AsyncPermissionGroupsResource
+
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
+
+from .value import ValueResource, AsyncValueResource
+
+from ....types.user.token_create_response import TokenCreateResponse
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type, Iterable, Union
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from ....types.user.policy_param import PolicyParam
+
+from datetime import datetime
+
+from ....types.user.token_update_response import TokenUpdateResponse
+
+from typing_extensions import Literal
+
+from ....types.user.token_list_response import TokenListResponse
+
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from ....types.user.token_delete_response import TokenDeleteResponse
+
+from ....types.user.token_get_response import TokenGetResponse
+
+from ....types.user.token_verify_response import TokenVerifyResponse
+
 from ...._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ....types.user import token_list_params, token_create_params, token_update_params
-from ...._base_client import AsyncPaginator, make_request_options
+
+from ....types.user import token_create_params, token_update_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.user import token_create_params
+from ....types.user import token_update_params
+from ....types.user import token_list_params
 from .permission_groups import (
     PermissionGroupsResource,
     AsyncPermissionGroupsResource,
@@ -41,13 +65,24 @@ from .permission_groups import (
     PermissionGroupsResourceWithStreamingResponse,
     AsyncPermissionGroupsResourceWithStreamingResponse,
 )
-from ....types.user.policy_param import PolicyParam
-from ....types.user.token_get_response import TokenGetResponse
-from ....types.user.token_list_response import TokenListResponse
-from ....types.user.token_create_response import TokenCreateResponse
-from ....types.user.token_delete_response import TokenDeleteResponse
-from ....types.user.token_update_response import TokenUpdateResponse
-from ....types.user.token_verify_response import TokenVerifyResponse
+from .value import (
+    ValueResource,
+    AsyncValueResource,
+    ValueResourceWithRawResponse,
+    AsyncValueResourceWithRawResponse,
+    ValueResourceWithStreamingResponse,
+    AsyncValueResourceWithStreamingResponse,
+)
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["TokensResource", "AsyncTokensResource"]
 

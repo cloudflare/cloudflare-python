@@ -1,20 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .leaks import (
-    LeaksResource,
-    AsyncLeaksResource,
-    LeaksResourceWithRawResponse,
-    AsyncLeaksResourceWithRawResponse,
-    LeaksResourceWithStreamingResponse,
-    AsyncLeaksResourceWithStreamingResponse,
-)
+from .events import EventsResource, AsyncEventsResource
 from .events import (
-    EventsResource,
-    AsyncEventsResource,
     EventsResourceWithRawResponse,
     AsyncEventsResourceWithRawResponse,
     EventsResourceWithStreamingResponse,
     AsyncEventsResourceWithStreamingResponse,
+)
+from .leaks import LeaksResource, AsyncLeaksResource
+from .leaks import (
+    LeaksResourceWithRawResponse,
+    AsyncLeaksResourceWithRawResponse,
+    LeaksResourceWithStreamingResponse,
+    AsyncLeaksResourceWithStreamingResponse,
 )
 
 __all__ = [

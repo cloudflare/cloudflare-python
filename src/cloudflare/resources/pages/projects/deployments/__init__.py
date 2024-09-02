@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .history import HistoryResource, AsyncHistoryResource
 from .history import (
-    HistoryResource,
-    AsyncHistoryResource,
     HistoryResourceWithRawResponse,
     AsyncHistoryResourceWithRawResponse,
     HistoryResourceWithStreamingResponse,
     AsyncHistoryResourceWithStreamingResponse,
 )
+from .deployments import DeploymentsResource, AsyncDeploymentsResource
 from .deployments import (
-    DeploymentsResource,
-    AsyncDeploymentsResource,
     DeploymentsResourceWithRawResponse,
     AsyncDeploymentsResourceWithRawResponse,
     DeploymentsResourceWithStreamingResponse,

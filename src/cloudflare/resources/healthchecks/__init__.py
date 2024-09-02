@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .previews import PreviewsResource, AsyncPreviewsResource
 from .previews import (
-    PreviewsResource,
-    AsyncPreviewsResource,
     PreviewsResourceWithRawResponse,
     AsyncPreviewsResourceWithRawResponse,
     PreviewsResourceWithStreamingResponse,
     AsyncPreviewsResourceWithStreamingResponse,
 )
+from .healthchecks import HealthchecksResource, AsyncHealthchecksResource
 from .healthchecks import (
-    HealthchecksResource,
-    AsyncHealthchecksResource,
     HealthchecksResourceWithRawResponse,
     AsyncHealthchecksResourceWithRawResponse,
     HealthchecksResourceWithStreamingResponse,

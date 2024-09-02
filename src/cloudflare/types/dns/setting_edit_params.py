@@ -6,6 +6,11 @@ from typing_extensions import TypedDict
 
 from .dns_setting_param import DNSSettingParam
 
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
+
 __all__ = ["SettingEditParams"]
 
 

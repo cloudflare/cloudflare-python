@@ -2,38 +2,61 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, Optional, cast, overload
-from typing_extensions import Literal
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    required_args,
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
+
+from typing_extensions import Literal
+
+from typing import Optional, Iterable, Type
+
+from ....types.email_security.settings.block_sender_create_response import BlockSenderCreateResponse
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from ....types.email_security.settings.block_sender_list_response import BlockSenderListResponse
+
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from ....types.email_security.settings.block_sender_delete_response import BlockSenderDeleteResponse
+
+from ....types.email_security.settings.block_sender_edit_response import BlockSenderEditResponse
+
+from ....types.email_security.settings.block_sender_get_response import BlockSenderGetResponse
+
 from ...._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.email_security.settings import (
-    block_sender_edit_params,
-    block_sender_list_params,
-    block_sender_create_params,
-)
-from ....types.email_security.settings.block_sender_get_response import BlockSenderGetResponse
-from ....types.email_security.settings.block_sender_edit_response import BlockSenderEditResponse
-from ....types.email_security.settings.block_sender_list_response import BlockSenderListResponse
-from ....types.email_security.settings.block_sender_create_response import BlockSenderCreateResponse
-from ....types.email_security.settings.block_sender_delete_response import BlockSenderDeleteResponse
+
+from ....types.email_security.settings import block_sender_create_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.email_security.settings import block_sender_create_params
+from ....types.email_security.settings import block_sender_list_params
+from ....types.email_security.settings import block_sender_edit_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["BlockSendersResource", "AsyncBlockSendersResource"]
 

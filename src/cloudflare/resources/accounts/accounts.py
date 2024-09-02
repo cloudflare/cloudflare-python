@@ -2,19 +2,49 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from .roles import (
-    RolesResource,
-    AsyncRolesResource,
-    RolesResourceWithRawResponse,
-    AsyncRolesResourceWithRawResponse,
-    RolesResourceWithStreamingResponse,
-    AsyncRolesResourceWithStreamingResponse,
+from .members import MembersResource, AsyncMembersResource
+
+from ..._compat import cached_property
+
+from .roles import RolesResource, AsyncRolesResource
+
+from ...types.accounts.account import Account
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from ...types.accounts.account_delete_response import AccountDeleteResponse
+
+from ..._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
 )
+
+from ...types.accounts import account_create_params, account_update_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.accounts import account_create_params
+from ...types.accounts import account_update_params
+from ...types.accounts import account_list_params
 from .members import (
     MembersResource,
     AsyncMembersResource,
@@ -23,25 +53,22 @@ from .members import (
     MembersResourceWithStreamingResponse,
     AsyncMembersResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
+from .roles import (
+    RolesResource,
+    AsyncRolesResource,
+    RolesResourceWithRawResponse,
+    AsyncRolesResourceWithRawResponse,
+    RolesResourceWithStreamingResponse,
+    AsyncRolesResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.accounts import account_list_params, account_create_params, account_update_params
-from ...types.accounts.account import Account
-from ...types.accounts.account_delete_response import AccountDeleteResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["AccountsResource", "AsyncAccountsResource"]
 

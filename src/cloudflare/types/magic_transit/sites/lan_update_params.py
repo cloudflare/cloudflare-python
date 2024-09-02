@@ -2,12 +2,20 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict, Required
 
 from .nat_param import NatParam
+
+from typing import Iterable
+
 from .routed_subnet_param import RoutedSubnetParam
+
 from .lan_static_addressing_param import LANStaticAddressingParam
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ...._types import FileTypes
+from ...._utils import PropertyInfo
 
 __all__ = ["LANUpdateParams"]
 

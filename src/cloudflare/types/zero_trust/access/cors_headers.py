@@ -1,11 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-
 from ...._models import BaseModel
+
+from typing import Optional, List
+
 from .allowed_headers import AllowedHeaders
+
 from .allowed_methods import AllowedMethods
+
 from .allowed_origins import AllowedOrigins
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = ["CORSHeaders"]
 

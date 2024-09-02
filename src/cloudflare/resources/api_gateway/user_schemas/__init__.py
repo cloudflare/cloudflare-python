@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .operations import OperationsResource, AsyncOperationsResource
 from .operations import (
-    OperationsResource,
-    AsyncOperationsResource,
     OperationsResourceWithRawResponse,
     AsyncOperationsResourceWithRawResponse,
     OperationsResourceWithStreamingResponse,
     AsyncOperationsResourceWithStreamingResponse,
 )
+from .user_schemas import UserSchemasResource, AsyncUserSchemasResource
 from .user_schemas import (
-    UserSchemasResource,
-    AsyncUserSchemasResource,
     UserSchemasResourceWithRawResponse,
     AsyncUserSchemasResourceWithRawResponse,
     UserSchemasResourceWithStreamingResponse,

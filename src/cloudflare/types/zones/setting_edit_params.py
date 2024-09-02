@@ -2,10 +2,16 @@
 
 from __future__ import annotations
 
-from typing import List, Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import TypedDict, Required, Literal, TypeAlias
+
+from typing import List
 
 from .automatic_platform_optimization_param import AutomaticPlatformOptimizationParam
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
 __all__ = [
     "SettingEditParams",

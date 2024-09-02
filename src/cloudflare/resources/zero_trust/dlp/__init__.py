@@ -1,52 +1,46 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .dlp import (
-    DLPResource,
-    AsyncDLPResource,
-    DLPResourceWithRawResponse,
-    AsyncDLPResourceWithRawResponse,
-    DLPResourceWithStreamingResponse,
-    AsyncDLPResourceWithStreamingResponse,
-)
-from .limits import (
-    LimitsResource,
-    AsyncLimitsResource,
-    LimitsResourceWithRawResponse,
-    AsyncLimitsResourceWithRawResponse,
-    LimitsResourceWithStreamingResponse,
-    AsyncLimitsResourceWithStreamingResponse,
-)
+from .datasets import DatasetsResource, AsyncDatasetsResource
 from .datasets import (
-    DatasetsResource,
-    AsyncDatasetsResource,
     DatasetsResourceWithRawResponse,
     AsyncDatasetsResourceWithRawResponse,
     DatasetsResourceWithStreamingResponse,
     AsyncDatasetsResourceWithStreamingResponse,
 )
+from .patterns import PatternsResource, AsyncPatternsResource
 from .patterns import (
-    PatternsResource,
-    AsyncPatternsResource,
     PatternsResourceWithRawResponse,
     AsyncPatternsResourceWithRawResponse,
     PatternsResourceWithStreamingResponse,
     AsyncPatternsResourceWithStreamingResponse,
 )
+from .payload_logs import PayloadLogsResource, AsyncPayloadLogsResource
+from .payload_logs import (
+    PayloadLogsResourceWithRawResponse,
+    AsyncPayloadLogsResourceWithRawResponse,
+    PayloadLogsResourceWithStreamingResponse,
+    AsyncPayloadLogsResourceWithStreamingResponse,
+)
+from .profiles import ProfilesResource, AsyncProfilesResource
 from .profiles import (
-    ProfilesResource,
-    AsyncProfilesResource,
     ProfilesResourceWithRawResponse,
     AsyncProfilesResourceWithRawResponse,
     ProfilesResourceWithStreamingResponse,
     AsyncProfilesResourceWithStreamingResponse,
 )
-from .payload_logs import (
-    PayloadLogsResource,
-    AsyncPayloadLogsResource,
-    PayloadLogsResourceWithRawResponse,
-    AsyncPayloadLogsResourceWithRawResponse,
-    PayloadLogsResourceWithStreamingResponse,
-    AsyncPayloadLogsResourceWithStreamingResponse,
+from .limits import LimitsResource, AsyncLimitsResource
+from .limits import (
+    LimitsResourceWithRawResponse,
+    AsyncLimitsResourceWithRawResponse,
+    LimitsResourceWithStreamingResponse,
+    AsyncLimitsResourceWithStreamingResponse,
+)
+from .dlp import DLPResource, AsyncDLPResource
+from .dlp import (
+    DLPResourceWithRawResponse,
+    AsyncDLPResourceWithRawResponse,
+    DLPResourceWithStreamingResponse,
+    AsyncDLPResourceWithStreamingResponse,
 )
 
 __all__ = [

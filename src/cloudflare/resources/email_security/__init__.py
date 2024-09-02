@@ -1,32 +1,28 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
-from .phishguard import (
-    PhishguardResource,
-    AsyncPhishguardResource,
-    PhishguardResourceWithRawResponse,
-    AsyncPhishguardResourceWithRawResponse,
-    PhishguardResourceWithStreamingResponse,
-    AsyncPhishguardResourceWithStreamingResponse,
-)
+from .investigate import InvestigateResource, AsyncInvestigateResource
 from .investigate import (
-    InvestigateResource,
-    AsyncInvestigateResource,
     InvestigateResourceWithRawResponse,
     AsyncInvestigateResourceWithRawResponse,
     InvestigateResourceWithStreamingResponse,
     AsyncInvestigateResourceWithStreamingResponse,
 )
+from .phishguard import PhishguardResource, AsyncPhishguardResource
+from .phishguard import (
+    PhishguardResourceWithRawResponse,
+    AsyncPhishguardResourceWithRawResponse,
+    PhishguardResourceWithStreamingResponse,
+    AsyncPhishguardResourceWithStreamingResponse,
+)
+from .settings import SettingsResource, AsyncSettingsResource
+from .settings import (
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
+from .email_security import EmailSecurityResource, AsyncEmailSecurityResource
 from .email_security import (
-    EmailSecurityResource,
-    AsyncEmailSecurityResource,
     EmailSecurityResourceWithRawResponse,
     AsyncEmailSecurityResourceWithRawResponse,
     EmailSecurityResourceWithStreamingResponse,

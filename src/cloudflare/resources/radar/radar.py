@@ -2,6 +2,51 @@
 
 from __future__ import annotations
 
+from .ai.ai import AIResource, AsyncAIResource
+
+from ..._compat import cached_property
+
+from .annotations.annotations import AnnotationsResource, AsyncAnnotationsResource
+
+from .bgp.bgp import BGPResource, AsyncBGPResource
+
+from .datasets import DatasetsResource, AsyncDatasetsResource
+
+from .dns.dns import DNSResource, AsyncDNSResource
+
+from .netflows.netflows import NetflowsResource, AsyncNetflowsResource
+
+from .search import SearchResource, AsyncSearchResource
+
+from .verified_bots.verified_bots import VerifiedBotsResource, AsyncVerifiedBotsResource
+
+from .as112.as112 import AS112Resource, AsyncAS112Resource
+
+from .email.email import EmailResource, AsyncEmailResource
+
+from .attacks.attacks import AttacksResource, AsyncAttacksResource
+
+from .entities.entities import EntitiesResource, AsyncEntitiesResource
+
+from .http.http import HTTPResource, AsyncHTTPResource
+
+from .quality.quality import QualityResource, AsyncQualityResource
+
+from .ranking.ranking import RankingResource, AsyncRankingResource
+
+from .traffic_anomalies.traffic_anomalies import TrafficAnomaliesResource, AsyncTrafficAnomaliesResource
+
+from .tcp_resets_timeouts import TCPResetsTimeoutsResource, AsyncTCPResetsTimeoutsResource
+
+from .robots_txt.robots_txt import RobotsTXTResource, AsyncRobotsTXTResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
 from .ai import (
     AIResource,
     AsyncAIResource,
@@ -9,6 +54,14 @@ from .ai import (
     AsyncAIResourceWithRawResponse,
     AIResourceWithStreamingResponse,
     AsyncAIResourceWithStreamingResponse,
+)
+from .annotations import (
+    AnnotationsResource,
+    AsyncAnnotationsResource,
+    AnnotationsResourceWithRawResponse,
+    AsyncAnnotationsResourceWithRawResponse,
+    AnnotationsResourceWithStreamingResponse,
+    AsyncAnnotationsResourceWithStreamingResponse,
 )
 from .bgp import (
     BGPResource,
@@ -18,6 +71,14 @@ from .bgp import (
     BGPResourceWithStreamingResponse,
     AsyncBGPResourceWithStreamingResponse,
 )
+from .datasets import (
+    DatasetsResource,
+    AsyncDatasetsResource,
+    DatasetsResourceWithRawResponse,
+    AsyncDatasetsResourceWithRawResponse,
+    DatasetsResourceWithStreamingResponse,
+    AsyncDatasetsResourceWithStreamingResponse,
+)
 from .dns import (
     DNSResource,
     AsyncDNSResource,
@@ -26,15 +87,30 @@ from .dns import (
     DNSResourceWithStreamingResponse,
     AsyncDNSResourceWithStreamingResponse,
 )
-from .http import (
-    HTTPResource,
-    AsyncHTTPResource,
-    HTTPResourceWithRawResponse,
-    AsyncHTTPResourceWithRawResponse,
-    HTTPResourceWithStreamingResponse,
-    AsyncHTTPResourceWithStreamingResponse,
+from .netflows import (
+    NetflowsResource,
+    AsyncNetflowsResource,
+    NetflowsResourceWithRawResponse,
+    AsyncNetflowsResourceWithRawResponse,
+    NetflowsResourceWithStreamingResponse,
+    AsyncNetflowsResourceWithStreamingResponse,
 )
-from .ai.ai import AIResource, AsyncAIResource
+from .search import (
+    SearchResource,
+    AsyncSearchResource,
+    SearchResourceWithRawResponse,
+    AsyncSearchResourceWithRawResponse,
+    SearchResourceWithStreamingResponse,
+    AsyncSearchResourceWithStreamingResponse,
+)
+from .verified_bots import (
+    VerifiedBotsResource,
+    AsyncVerifiedBotsResource,
+    VerifiedBotsResourceWithRawResponse,
+    AsyncVerifiedBotsResourceWithRawResponse,
+    VerifiedBotsResourceWithStreamingResponse,
+    AsyncVerifiedBotsResourceWithStreamingResponse,
+)
 from .as112 import (
     AS112Resource,
     AsyncAS112Resource,
@@ -51,14 +127,6 @@ from .email import (
     EmailResourceWithStreamingResponse,
     AsyncEmailResourceWithStreamingResponse,
 )
-from .search import (
-    SearchResource,
-    AsyncSearchResource,
-    SearchResourceWithRawResponse,
-    AsyncSearchResourceWithRawResponse,
-    SearchResourceWithStreamingResponse,
-    AsyncSearchResourceWithStreamingResponse,
-)
 from .attacks import (
     AttacksResource,
     AsyncAttacksResource,
@@ -67,8 +135,22 @@ from .attacks import (
     AttacksResourceWithStreamingResponse,
     AsyncAttacksResourceWithStreamingResponse,
 )
-from .bgp.bgp import BGPResource, AsyncBGPResource
-from .dns.dns import DNSResource, AsyncDNSResource
+from .entities import (
+    EntitiesResource,
+    AsyncEntitiesResource,
+    EntitiesResourceWithRawResponse,
+    AsyncEntitiesResourceWithRawResponse,
+    EntitiesResourceWithStreamingResponse,
+    AsyncEntitiesResourceWithStreamingResponse,
+)
+from .http import (
+    HTTPResource,
+    AsyncHTTPResource,
+    HTTPResourceWithRawResponse,
+    AsyncHTTPResourceWithRawResponse,
+    HTTPResourceWithStreamingResponse,
+    AsyncHTTPResourceWithStreamingResponse,
+)
 from .quality import (
     QualityResource,
     AsyncQualityResource,
@@ -85,64 +167,6 @@ from .ranking import (
     RankingResourceWithStreamingResponse,
     AsyncRankingResourceWithStreamingResponse,
 )
-from .datasets import (
-    DatasetsResource,
-    AsyncDatasetsResource,
-    DatasetsResourceWithRawResponse,
-    AsyncDatasetsResourceWithRawResponse,
-    DatasetsResourceWithStreamingResponse,
-    AsyncDatasetsResourceWithStreamingResponse,
-)
-from .entities import (
-    EntitiesResource,
-    AsyncEntitiesResource,
-    EntitiesResourceWithRawResponse,
-    AsyncEntitiesResourceWithRawResponse,
-    EntitiesResourceWithStreamingResponse,
-    AsyncEntitiesResourceWithStreamingResponse,
-)
-from .netflows import (
-    NetflowsResource,
-    AsyncNetflowsResource,
-    NetflowsResourceWithRawResponse,
-    AsyncNetflowsResourceWithRawResponse,
-    NetflowsResourceWithStreamingResponse,
-    AsyncNetflowsResourceWithStreamingResponse,
-)
-from ..._compat import cached_property
-from .http.http import HTTPResource, AsyncHTTPResource
-from .robots_txt import (
-    RobotsTXTResource,
-    AsyncRobotsTXTResource,
-    RobotsTXTResourceWithRawResponse,
-    AsyncRobotsTXTResourceWithRawResponse,
-    RobotsTXTResourceWithStreamingResponse,
-    AsyncRobotsTXTResourceWithStreamingResponse,
-)
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .annotations import (
-    AnnotationsResource,
-    AsyncAnnotationsResource,
-    AnnotationsResourceWithRawResponse,
-    AsyncAnnotationsResourceWithRawResponse,
-    AnnotationsResourceWithStreamingResponse,
-    AsyncAnnotationsResourceWithStreamingResponse,
-)
-from .as112.as112 import AS112Resource, AsyncAS112Resource
-from .email.email import EmailResource, AsyncEmailResource
-from .verified_bots import (
-    VerifiedBotsResource,
-    AsyncVerifiedBotsResource,
-    VerifiedBotsResourceWithRawResponse,
-    AsyncVerifiedBotsResourceWithRawResponse,
-    VerifiedBotsResourceWithStreamingResponse,
-    AsyncVerifiedBotsResourceWithStreamingResponse,
-)
-from .attacks.attacks import AttacksResource, AsyncAttacksResource
-from .quality.quality import QualityResource, AsyncQualityResource
-from .ranking.ranking import RankingResource, AsyncRankingResource
-from .entities.entities import EntitiesResource, AsyncEntitiesResource
-from .netflows.netflows import NetflowsResource, AsyncNetflowsResource
 from .traffic_anomalies import (
     TrafficAnomaliesResource,
     AsyncTrafficAnomaliesResource,
@@ -159,10 +183,14 @@ from .tcp_resets_timeouts import (
     TCPResetsTimeoutsResourceWithStreamingResponse,
     AsyncTCPResetsTimeoutsResourceWithStreamingResponse,
 )
-from .robots_txt.robots_txt import RobotsTXTResource, AsyncRobotsTXTResource
-from .annotations.annotations import AnnotationsResource, AsyncAnnotationsResource
-from .verified_bots.verified_bots import VerifiedBotsResource, AsyncVerifiedBotsResource
-from .traffic_anomalies.traffic_anomalies import TrafficAnomaliesResource, AsyncTrafficAnomaliesResource
+from .robots_txt import (
+    RobotsTXTResource,
+    AsyncRobotsTXTResource,
+    RobotsTXTResourceWithRawResponse,
+    AsyncRobotsTXTResourceWithRawResponse,
+    RobotsTXTResourceWithStreamingResponse,
+    AsyncRobotsTXTResourceWithStreamingResponse,
+)
 
 __all__ = ["RadarResource", "AsyncRadarResource"]
 

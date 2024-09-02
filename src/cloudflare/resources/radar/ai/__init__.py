@@ -1,20 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .ai import (
-    AIResource,
-    AsyncAIResource,
-    AIResourceWithRawResponse,
-    AsyncAIResourceWithRawResponse,
-    AIResourceWithStreamingResponse,
-    AsyncAIResourceWithStreamingResponse,
-)
+from .gateway import GatewayResource, AsyncGatewayResource
 from .gateway import (
-    GatewayResource,
-    AsyncGatewayResource,
     GatewayResourceWithRawResponse,
     AsyncGatewayResourceWithRawResponse,
     GatewayResourceWithStreamingResponse,
     AsyncGatewayResourceWithStreamingResponse,
+)
+from .ai import AIResource, AsyncAIResource
+from .ai import (
+    AIResourceWithRawResponse,
+    AsyncAIResourceWithRawResponse,
+    AIResourceWithStreamingResponse,
+    AsyncAIResourceWithStreamingResponse,
 )
 
 __all__ = [

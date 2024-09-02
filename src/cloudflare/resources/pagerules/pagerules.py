@@ -3,16 +3,57 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Any, Type, Iterable, Optional, cast
-from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
+from .settings import SettingsResource, AsyncSettingsResource
+
+from ..._compat import cached_property
+
+from ...types.pagerules.pagerule_create_response import PageruleCreateResponse
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from ..._base_client import make_request_options
+
+from typing import Iterable, Type, Optional
+
+from ...types.pagerules.route_param import RouteParam
+
+from ...types.pagerules.target_param import TargetParam
+
+from typing_extensions import Literal
+
+from ...types.pagerules.pagerule_update_response import PageruleUpdateResponse
+
+from ...types.pagerules.pagerule_list_response import PageruleListResponse
+
+from ...types.pagerules.pagerule_delete_response import PageruleDeleteResponse
+
+from ...types.pagerules.pagerule_edit_response import PageruleEditResponse
+
+from ...types.pagerules.pagerule_get_response import PageruleGetResponse
+
+from ..._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
 )
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.pagerules import pagerule_create_params
+from ...types.pagerules import pagerule_update_params
+from ...types.pagerules import pagerule_list_params
+from ...types.pagerules import pagerule_edit_params
 from .settings import (
     SettingsResource,
     AsyncSettingsResource,
@@ -21,30 +62,26 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
-from ...types.pagerules import (
-    pagerule_edit_params,
-    pagerule_list_params,
-    pagerule_create_params,
-    pagerule_update_params,
-)
-from ...types.pagerules.route_param import RouteParam
-from ...types.pagerules.target_param import TargetParam
-from ...types.pagerules.pagerule_get_response import PageruleGetResponse
-from ...types.pagerules.pagerule_edit_response import PageruleEditResponse
-from ...types.pagerules.pagerule_list_response import PageruleListResponse
-from ...types.pagerules.pagerule_create_response import PageruleCreateResponse
-from ...types.pagerules.pagerule_delete_response import PageruleDeleteResponse
-from ...types.pagerules.pagerule_update_response import PageruleUpdateResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["PagerulesResource", "AsyncPagerulesResource"]
 

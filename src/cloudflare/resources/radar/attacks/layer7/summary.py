@@ -2,41 +2,66 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
+
+from .....types.radar.attacks.layer7.summary_get_response import SummaryGetResponse
+
+from ....._wrappers import ResultWrapper
+
+from ....._utils import maybe_transform, async_maybe_transform
+
+from ....._base_client import make_request_options
+
+from typing import Type, List, Union
+
+from datetime import datetime
+
+from typing_extensions import Literal
+
+from .....types.radar.attacks.layer7.summary_http_method_response import SummaryHTTPMethodResponse
+
+from .....types.radar.attacks.layer7.summary_http_version_response import SummaryHTTPVersionResponse
+
+from .....types.radar.attacks.layer7.summary_ip_version_response import SummaryIPVersionResponse
+
+from .....types.radar.attacks.layer7.summary_managed_rules_response import SummaryManagedRulesResponse
+
+from .....types.radar.attacks.layer7.summary_mitigation_product_response import SummaryMitigationProductResponse
+
 from ....._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
-from .....types.radar.attacks.layer7 import (
-    summary_get_params,
-    summary_ip_version_params,
-    summary_http_method_params,
-    summary_http_version_params,
-    summary_managed_rules_params,
-    summary_mitigation_product_params,
-)
-from .....types.radar.attacks.layer7.summary_get_response import SummaryGetResponse
-from .....types.radar.attacks.layer7.summary_ip_version_response import SummaryIPVersionResponse
-from .....types.radar.attacks.layer7.summary_http_method_response import SummaryHTTPMethodResponse
-from .....types.radar.attacks.layer7.summary_http_version_response import SummaryHTTPVersionResponse
-from .....types.radar.attacks.layer7.summary_managed_rules_response import SummaryManagedRulesResponse
-from .....types.radar.attacks.layer7.summary_mitigation_product_response import SummaryMitigationProductResponse
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.radar.attacks.layer7 import summary_get_params
+from .....types.radar.attacks.layer7 import summary_http_method_params
+from .....types.radar.attacks.layer7 import summary_http_version_params
+from .....types.radar.attacks.layer7 import summary_ip_version_params
+from .....types.radar.attacks.layer7 import summary_managed_rules_params
+from .....types.radar.attacks.layer7 import summary_mitigation_product_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["SummaryResource", "AsyncSummaryResource"]
 

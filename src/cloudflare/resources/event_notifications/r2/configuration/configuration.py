@@ -2,10 +2,34 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
-
 import httpx
 
+from .queues import QueuesResource, AsyncQueuesResource
+
+from ....._compat import cached_property
+
+from .....types.event_notifications.r2.configuration_get_response import ConfigurationGetResponse
+
+from ....._wrappers import ResultWrapper
+
+from ....._base_client import make_request_options
+
+from typing import Type
+
+from ....._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
 from .queues import (
     QueuesResource,
     AsyncQueuesResource,
@@ -14,18 +38,8 @@ from .queues import (
     QueuesResourceWithStreamingResponse,
     AsyncQueuesResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
-from .....types.event_notifications.r2.configuration_get_response import ConfigurationGetResponse
+from typing import cast
+from typing import cast
 
 __all__ = ["ConfigurationResource", "AsyncConfigurationResource"]
 
@@ -60,9 +74,9 @@ class ConfigurationResource(SyncAPIResource):
         produced.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          bucket_name: Identifier
+          bucket_name: Identifier.
 
           extra_headers: Send extra headers
 
@@ -119,9 +133,9 @@ class AsyncConfigurationResource(AsyncAPIResource):
         produced.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          bucket_name: Identifier
+          bucket_name: Identifier.
 
           extra_headers: Send extra headers
 

@@ -2,42 +2,70 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast, overload
-from typing_extensions import Literal
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    required_args,
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ...types.d1 import (
-    database_raw_params,
-    database_list_params,
-    database_query_params,
-    database_create_params,
-    database_export_params,
-    database_import_params,
-)
-from ..._resource import SyncAPIResource, AsyncAPIResource
+
+from ...types.d1.d1 import D1
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from typing import Type, Optional, List
+
+from typing_extensions import Literal
+
+from ...types.d1.database_list_response import DatabaseListResponse
+
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from ...types.d1.database_export_response import DatabaseExportResponse
+
+from ...types.d1.database_import_response import DatabaseImportResponse
+
+from ...types.d1.database_query_response import DatabaseQueryResponse
+
+from ...types.d1.database_raw_response import DatabaseRawResponse
+
 from ..._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...types.d1.d1 import D1
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.d1.database_raw_response import DatabaseRawResponse
-from ...types.d1.database_list_response import DatabaseListResponse
-from ...types.d1.database_query_response import DatabaseQueryResponse
-from ...types.d1.database_export_response import DatabaseExportResponse
-from ...types.d1.database_import_response import DatabaseImportResponse
+
+from ...types.d1 import database_export_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.d1 import database_create_params
+from ...types.d1 import database_list_params
+from ...types.d1 import database_export_params
+from ...types.d1 import database_import_params
+from ...types.d1 import database_query_params
+from ...types.d1 import database_raw_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["DatabaseResource", "AsyncDatabaseResource"]
 

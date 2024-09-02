@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .vtt import VttResource, AsyncVttResource
 from .vtt import (
-    VttResource,
-    AsyncVttResource,
     VttResourceWithRawResponse,
     AsyncVttResourceWithRawResponse,
     VttResourceWithStreamingResponse,
     AsyncVttResourceWithStreamingResponse,
 )
+from .language import LanguageResource, AsyncLanguageResource
 from .language import (
-    LanguageResource,
-    AsyncLanguageResource,
     LanguageResourceWithRawResponse,
     AsyncLanguageResourceWithRawResponse,
     LanguageResourceWithStreamingResponse,

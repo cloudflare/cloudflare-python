@@ -1,11 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union
+from ....._models import BaseModel
+
+from typing import List
+
+from .allowed_modes_anomaly import AllowedModesAnomaly
+
+from .waf_rule_group import WAFRuleGroup
+
 from typing_extensions import Literal, TypeAlias
 
-from ....._models import BaseModel
-from .waf_rule_group import WAFRuleGroup
-from .allowed_modes_anomaly import AllowedModesAnomaly
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = [
     "RuleEditResponse",

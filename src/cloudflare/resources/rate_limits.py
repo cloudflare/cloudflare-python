@@ -3,32 +3,64 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Any, Type, cast
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
+
+from ..types.rate_limits.rate_limit_create_response import RateLimitCreateResponse
+
+from .._wrappers import ResultWrapper
+
+from .._utils import maybe_transform, async_maybe_transform
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from ..types.rate_limits.rate_limit import RateLimit
+
+from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from ..types.rate_limits.rate_limit_delete_response import RateLimitDeleteResponse
+
+from typing import Type
+
+from ..types.rate_limits.rate_limit_edit_response import RateLimitEditResponse
+
+from ..types.rate_limits.rate_limit_get_response import RateLimitGetResponse
+
 from .._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._wrappers import ResultWrapper
-from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.rate_limits import rate_limit_edit_params, rate_limit_list_params, rate_limit_create_params
-from ..types.rate_limits.rate_limit import RateLimit
-from ..types.rate_limits.rate_limit_get_response import RateLimitGetResponse
-from ..types.rate_limits.rate_limit_edit_response import RateLimitEditResponse
-from ..types.rate_limits.rate_limit_create_response import RateLimitCreateResponse
-from ..types.rate_limits.rate_limit_delete_response import RateLimitDeleteResponse
+
+from ..types.rate_limits import rate_limit_create_params, rate_limit_edit_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from .._resource import SyncAPIResource, AsyncAPIResource
+from ..types import shared_params
+from ..types.rate_limits import rate_limit_create_params
+from ..types.rate_limits import rate_limit_list_params
+from ..types.rate_limits import rate_limit_edit_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["RateLimitsResource", "AsyncRateLimitsResource"]
 

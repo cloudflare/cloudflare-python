@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
-
 from .dhcp_relay_param import DHCPRelayParam
+
 from .dhcp_server_param import DHCPServerParam
+
+from typing_extensions import TypedDict, Required
 
 __all__ = ["LANStaticAddressingParam"]
 

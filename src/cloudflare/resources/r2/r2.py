@@ -2,14 +2,23 @@
 
 from __future__ import annotations
 
-from .sippy import (
-    SippyResource,
-    AsyncSippyResource,
-    SippyResourceWithRawResponse,
-    AsyncSippyResourceWithRawResponse,
-    SippyResourceWithStreamingResponse,
-    AsyncSippyResourceWithStreamingResponse,
-)
+from .buckets import BucketsResource, AsyncBucketsResource
+
+from ..._compat import cached_property
+
+from .sippy import SippyResource, AsyncSippyResource
+
+from .temporary_credentials import TemporaryCredentialsResource, AsyncTemporaryCredentialsResource
+
+from .domains.domains import DomainsResource, AsyncDomainsResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
 from .buckets import (
     BucketsResource,
     AsyncBucketsResource,
@@ -18,17 +27,14 @@ from .buckets import (
     BucketsResourceWithStreamingResponse,
     AsyncBucketsResourceWithStreamingResponse,
 )
-from .domains import (
-    DomainsResource,
-    AsyncDomainsResource,
-    DomainsResourceWithRawResponse,
-    AsyncDomainsResourceWithRawResponse,
-    DomainsResourceWithStreamingResponse,
-    AsyncDomainsResourceWithStreamingResponse,
+from .sippy import (
+    SippyResource,
+    AsyncSippyResource,
+    SippyResourceWithRawResponse,
+    AsyncSippyResourceWithRawResponse,
+    SippyResourceWithStreamingResponse,
+    AsyncSippyResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .domains.domains import DomainsResource, AsyncDomainsResource
 from .temporary_credentials import (
     TemporaryCredentialsResource,
     AsyncTemporaryCredentialsResource,
@@ -36,6 +42,14 @@ from .temporary_credentials import (
     AsyncTemporaryCredentialsResourceWithRawResponse,
     TemporaryCredentialsResourceWithStreamingResponse,
     AsyncTemporaryCredentialsResourceWithStreamingResponse,
+)
+from .domains import (
+    DomainsResource,
+    AsyncDomainsResource,
+    DomainsResourceWithRawResponse,
+    AsyncDomainsResourceWithRawResponse,
+    DomainsResourceWithStreamingResponse,
+    AsyncDomainsResourceWithStreamingResponse,
 )
 
 __all__ = ["R2Resource", "AsyncR2Resource"]

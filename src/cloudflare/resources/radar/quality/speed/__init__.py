@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .top import TopResource, AsyncTopResource
 from .top import (
-    TopResource,
-    AsyncTopResource,
     TopResourceWithRawResponse,
     AsyncTopResourceWithRawResponse,
     TopResourceWithStreamingResponse,
     AsyncTopResourceWithStreamingResponse,
 )
+from .speed import SpeedResource, AsyncSpeedResource
 from .speed import (
-    SpeedResource,
-    AsyncSpeedResource,
     SpeedResourceWithRawResponse,
     AsyncSpeedResourceWithRawResponse,
     SpeedResourceWithStreamingResponse,

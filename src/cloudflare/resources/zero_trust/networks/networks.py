@@ -2,6 +2,19 @@
 
 from __future__ import annotations
 
+from .routes.routes import RoutesResource, AsyncRoutesResource
+
+from ...._compat import cached_property
+
+from .virtual_networks import VirtualNetworksResource, AsyncVirtualNetworksResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
 from .routes import (
     RoutesResource,
     AsyncRoutesResource,
@@ -10,9 +23,6 @@ from .routes import (
     RoutesResourceWithStreamingResponse,
     AsyncRoutesResourceWithStreamingResponse,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from .routes.routes import RoutesResource, AsyncRoutesResource
 from .virtual_networks import (
     VirtualNetworksResource,
     AsyncVirtualNetworksResource,

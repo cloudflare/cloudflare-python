@@ -1,11 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from ..shared.cloudflare_tunnel import CloudflareTunnel
 
 from ..._models import BaseModel
-from ..shared.cloudflare_tunnel import CloudflareTunnel
+
+from typing import Optional, List
+
+from datetime import datetime
+
+from typing_extensions import Literal, TypeAlias
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = ["TunnelGetResponse", "TunnelWARPConnectorTunnel", "TunnelWARPConnectorTunnelConnection"]
 

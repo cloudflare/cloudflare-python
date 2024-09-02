@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict, Required
 
 from .logging_param import LoggingParam
+
+from typing import Iterable, List, Dict
 
 __all__ = [
     "SetCacheSettingsRuleParam",

@@ -2,26 +2,30 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.url_scanner import ScanCreateResponse, ScanGetResponse, ScanHarResponse
+
 from typing import Any, cast
 
-import httpx
-import pytest
-from respx import MockRouter
-
-from cloudflare import Cloudflare, AsyncCloudflare
-from tests.utils import assert_matches_type
 from cloudflare._response import (
     BinaryAPIResponse,
-    AsyncBinaryAPIResponse,
     StreamedBinaryAPIResponse,
+    AsyncBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
-from cloudflare.types.url_scanner import (
-    ScanGetResponse,
-    ScanHarResponse,
-    ScanCreateResponse,
-)
+
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
+from cloudflare import Cloudflare, AsyncCloudflare
+from tests.utils import assert_matches_type
+from cloudflare.types.url_scanner import scan_create_params
+from cloudflare.types.url_scanner import scan_get_params
+from cloudflare.types.url_scanner import scan_screenshot_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -2,31 +2,50 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
+
+from ...types.magic_transit.connector_update_response import ConnectorUpdateResponse
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from typing import Type
+
+from ...types.magic_transit.connector_list_response import ConnectorListResponse
+
+from ...pagination import SyncSinglePage, AsyncSinglePage
+
+from ...types.magic_transit.connector_edit_response import ConnectorEditResponse
+
+from ...types.magic_transit.connector_get_response import ConnectorGetResponse
+
 from ..._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.magic_transit import connector_edit_params, connector_update_params
-from ...types.magic_transit.connector_get_response import ConnectorGetResponse
-from ...types.magic_transit.connector_edit_response import ConnectorEditResponse
-from ...types.magic_transit.connector_list_response import ConnectorListResponse
-from ...types.magic_transit.connector_update_response import ConnectorUpdateResponse
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.magic_transit import connector_update_params
+from ...types.magic_transit import connector_edit_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["ConnectorsResource", "AsyncConnectorsResource"]
 

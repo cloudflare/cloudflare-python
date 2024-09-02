@@ -1,13 +1,22 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from ..filters.firewall_filter import FirewallFilter
+
+from .deleted_filter import DeletedFilter
+
 from typing_extensions import TypeAlias
 
-from .product import Product
 from ..._models import BaseModel
-from .deleted_filter import DeletedFilter
+
+from typing import Optional, List
+
 from ..rate_limits.action import Action
-from ..filters.firewall_filter import FirewallFilter
+
+from .product import Product
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = ["FirewallRule", "Filter"]
 

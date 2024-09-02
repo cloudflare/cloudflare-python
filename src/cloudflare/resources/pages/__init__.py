@@ -1,20 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .pages import (
-    PagesResource,
-    AsyncPagesResource,
-    PagesResourceWithRawResponse,
-    AsyncPagesResourceWithRawResponse,
-    PagesResourceWithStreamingResponse,
-    AsyncPagesResourceWithStreamingResponse,
-)
+from .projects import ProjectsResource, AsyncProjectsResource
 from .projects import (
-    ProjectsResource,
-    AsyncProjectsResource,
     ProjectsResourceWithRawResponse,
     AsyncProjectsResourceWithRawResponse,
     ProjectsResourceWithStreamingResponse,
     AsyncProjectsResourceWithStreamingResponse,
+)
+from .pages import PagesResource, AsyncPagesResource
+from .pages import (
+    PagesResourceWithRawResponse,
+    AsyncPagesResourceWithRawResponse,
+    PagesResourceWithStreamingResponse,
+    AsyncPagesResourceWithStreamingResponse,
 )
 
 __all__ = [

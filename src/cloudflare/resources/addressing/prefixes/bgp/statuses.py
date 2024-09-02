@@ -2,28 +2,41 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
+
+from .....types.addressing.prefixes.bgp.status_edit_response import StatusEditResponse
+
+from ....._wrappers import ResultWrapper
+
+from ....._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ....._base_client import make_request_options
+
+from .....types.addressing.prefixes.bgp.status_get_response import StatusGetResponse
+
 from ....._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
 from .....types.addressing.prefixes.bgp import status_edit_params
-from .....types.addressing.prefixes.bgp.status_get_response import StatusGetResponse
-from .....types.addressing.prefixes.bgp.status_edit_response import StatusEditResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["StatusesResource", "AsyncStatusesResource"]
 

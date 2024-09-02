@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
-from typing_extensions import Required, TypedDict
+from typing import Iterable, List
 
 from .subnet import Subnet
+
+from typing_extensions import TypedDict, Required
 
 __all__ = ["ACLConfigurationParam"]
 

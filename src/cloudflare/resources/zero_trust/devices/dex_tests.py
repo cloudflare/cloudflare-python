@@ -2,30 +2,54 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
+
+from ....types.zero_trust.devices.schema_http import SchemaHTTP
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type, Iterable
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from ....types.zero_trust.devices.schema_data_param import SchemaDataParam
+
+from ....pagination import SyncSinglePage, AsyncSinglePage
+
+from ....types.zero_trust.devices.dex_test_delete_response import DEXTestDeleteResponse
+
 from ...._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
+
 from ....types.zero_trust.devices import dex_test_create_params, dex_test_update_params
-from ....types.zero_trust.devices.schema_http import SchemaHTTP
-from ....types.zero_trust.devices.schema_data_param import SchemaDataParam
-from ....types.zero_trust.devices.dex_test_delete_response import DEXTestDeleteResponse
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.zero_trust.devices import dex_test_create_params
+from ....types.zero_trust.devices import dex_test_update_params
+from ....types.zero_trust.devices import SchemaData
+from ....types.zero_trust.devices import SchemaData
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["DEXTestsResource", "AsyncDEXTestsResource"]
 

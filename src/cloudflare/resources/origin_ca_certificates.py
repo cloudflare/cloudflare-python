@@ -2,32 +2,52 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
-
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
+
+from ..types.origin_ca_certificates.origin_ca_certificate import OriginCACertificate
+
+from .._wrappers import ResultWrapper
+
+from .._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type, List
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from ..types.shared.certificate_request_type import CertificateRequestType
+
+from ..types.ssl.request_validity import RequestValidity
+
+from ..pagination import SyncSinglePage, AsyncSinglePage
+
+from ..types.origin_ca_certificates.origin_ca_certificate_delete_response import OriginCACertificateDeleteResponse
+
 from .._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._wrappers import ResultWrapper
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from .._resource import SyncAPIResource, AsyncAPIResource
+from ..types import shared_params
+from ..types.origin_ca_certificates import origin_ca_certificate_create_params
+from ..types.origin_ca_certificates import origin_ca_certificate_list_params
+from ..types import shared
 from ..types.ssl import RequestValidity
-from ..pagination import SyncSinglePage, AsyncSinglePage
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.ssl.request_validity import RequestValidity
-from ..types.origin_ca_certificates import origin_ca_certificate_list_params, origin_ca_certificate_create_params
-from ..types.shared.certificate_request_type import CertificateRequestType
-from ..types.origin_ca_certificates.origin_ca_certificate import OriginCACertificate
-from ..types.origin_ca_certificates.origin_ca_certificate_delete_response import OriginCACertificateDeleteResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["OriginCACertificatesResource", "AsyncOriginCACertificatesResource"]
 

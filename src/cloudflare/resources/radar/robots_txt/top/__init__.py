@@ -1,20 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .top import (
-    TopResource,
-    AsyncTopResource,
-    TopResourceWithRawResponse,
-    AsyncTopResourceWithRawResponse,
-    TopResourceWithStreamingResponse,
-    AsyncTopResourceWithStreamingResponse,
-)
+from .directive import DirectiveResource, AsyncDirectiveResource
 from .directive import (
-    DirectiveResource,
-    AsyncDirectiveResource,
     DirectiveResourceWithRawResponse,
     AsyncDirectiveResourceWithRawResponse,
     DirectiveResourceWithStreamingResponse,
     AsyncDirectiveResourceWithStreamingResponse,
+)
+from .top import TopResource, AsyncTopResource
+from .top import (
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
 )
 
 __all__ = [

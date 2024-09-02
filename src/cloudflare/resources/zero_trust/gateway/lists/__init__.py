@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .items import ItemsResource, AsyncItemsResource
 from .items import (
-    ItemsResource,
-    AsyncItemsResource,
     ItemsResourceWithRawResponse,
     AsyncItemsResourceWithRawResponse,
     ItemsResourceWithStreamingResponse,
     AsyncItemsResourceWithStreamingResponse,
 )
+from .lists import ListsResource, AsyncListsResource
 from .lists import (
-    ListsResource,
-    AsyncListsResource,
     ListsResourceWithRawResponse,
     AsyncListsResourceWithRawResponse,
     ListsResourceWithStreamingResponse,

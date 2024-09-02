@@ -1,10 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union
-from typing_extensions import Literal, TypeAlias
+from ..api_shield import APIShield
 
 from ...._models import BaseModel
-from ..api_shield import APIShield
+
+from typing_extensions import Literal, TypeAlias
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = ["OperationListResponse", "APIShieldBasicOperation"]
 

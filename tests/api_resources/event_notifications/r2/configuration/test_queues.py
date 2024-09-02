@@ -2,17 +2,21 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.event_notifications.r2.configuration import QueueUpdateResponse, QueueDeleteResponse
+
 from typing import Any, cast
 
+import os
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.event_notifications.r2.configuration import (
-    QueueDeleteResponse,
-    QueueUpdateResponse,
-)
+from cloudflare.types.event_notifications.r2.configuration import queue_update_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

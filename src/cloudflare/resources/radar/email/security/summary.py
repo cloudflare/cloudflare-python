@@ -2,47 +2,81 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
+
+from .....types.radar.email.security.summary_arc_response import SummaryARCResponse
+
+from ....._wrappers import ResultWrapper
+
+from ....._utils import maybe_transform, async_maybe_transform
+
+from ....._base_client import make_request_options
+
+from typing import Type, List, Union
+
+from datetime import datetime
+
+from typing_extensions import Literal
+
+from .....types.radar.email.security.summary_dkim_response import SummaryDKIMResponse
+
+from .....types.radar.email.security.summary_dmarc_response import SummaryDMARCResponse
+
+from .....types.radar.email.security.summary_malicious_response import SummaryMaliciousResponse
+
+from .....types.radar.email.security.summary_spam_response import SummarySpamResponse
+
+from .....types.radar.email.security.summary_spf_response import SummarySPFResponse
+
+from .....types.radar.email.security.summary_spoof_response import SummarySpoofResponse
+
+from .....types.radar.email.security.summary_threat_category_response import SummaryThreatCategoryResponse
+
+from .....types.radar.email.security.summary_tls_version_response import SummaryTLSVersionResponse
+
 from ....._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
-from .....types.radar.email.security import (
-    summary_arc_params,
-    summary_spf_params,
-    summary_dkim_params,
-    summary_spam_params,
-    summary_dmarc_params,
-    summary_spoof_params,
-    summary_malicious_params,
-    summary_tls_version_params,
-    summary_threat_category_params,
-)
-from .....types.radar.email.security.summary_arc_response import SummaryARCResponse
-from .....types.radar.email.security.summary_spf_response import SummarySPFResponse
-from .....types.radar.email.security.summary_dkim_response import SummaryDKIMResponse
-from .....types.radar.email.security.summary_spam_response import SummarySpamResponse
-from .....types.radar.email.security.summary_dmarc_response import SummaryDMARCResponse
-from .....types.radar.email.security.summary_spoof_response import SummarySpoofResponse
-from .....types.radar.email.security.summary_malicious_response import SummaryMaliciousResponse
-from .....types.radar.email.security.summary_tls_version_response import SummaryTLSVersionResponse
-from .....types.radar.email.security.summary_threat_category_response import SummaryThreatCategoryResponse
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.radar.email.security import summary_arc_params
+from .....types.radar.email.security import summary_dkim_params
+from .....types.radar.email.security import summary_dmarc_params
+from .....types.radar.email.security import summary_malicious_params
+from .....types.radar.email.security import summary_spam_params
+from .....types.radar.email.security import summary_spf_params
+from .....types.radar.email.security import summary_spoof_params
+from .....types.radar.email.security import summary_threat_category_params
+from .....types.radar.email.security import summary_tls_version_params
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["SummaryResource", "AsyncSummaryResource"]
 

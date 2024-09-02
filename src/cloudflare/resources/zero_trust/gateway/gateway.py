@@ -2,52 +2,62 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from .lists import (
-    ListsResource,
-    AsyncListsResource,
-    ListsResourceWithRawResponse,
-    AsyncListsResourceWithRawResponse,
-    ListsResourceWithStreamingResponse,
-    AsyncListsResourceWithStreamingResponse,
-)
-from .rules import (
-    RulesResource,
-    AsyncRulesResource,
-    RulesResourceWithRawResponse,
-    AsyncRulesResourceWithRawResponse,
-    RulesResourceWithStreamingResponse,
-    AsyncRulesResourceWithStreamingResponse,
-)
-from .logging import (
-    LoggingResource,
-    AsyncLoggingResource,
-    LoggingResourceWithRawResponse,
-    AsyncLoggingResourceWithRawResponse,
-    LoggingResourceWithStreamingResponse,
-    AsyncLoggingResourceWithStreamingResponse,
-)
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .app_types import (
-    AppTypesResource,
-    AsyncAppTypesResource,
-    AppTypesResourceWithRawResponse,
-    AsyncAppTypesResourceWithRawResponse,
-    AppTypesResourceWithStreamingResponse,
-    AsyncAppTypesResourceWithStreamingResponse,
-)
-from .locations import (
-    LocationsResource,
-    AsyncLocationsResource,
-    LocationsResourceWithRawResponse,
-    AsyncLocationsResourceWithRawResponse,
-    LocationsResourceWithStreamingResponse,
-    AsyncLocationsResourceWithStreamingResponse,
-)
+from .audit_ssh_settings import AuditSSHSettingsResource, AsyncAuditSSHSettingsResource
+
 from ...._compat import cached_property
+
+from .categories import CategoriesResource, AsyncCategoriesResource
+
+from .app_types import AppTypesResource, AsyncAppTypesResource
+
+from .configurations.configurations import ConfigurationsResource, AsyncConfigurationsResource
+
+from .lists.lists import ListsResource, AsyncListsResource
+
+from .locations import LocationsResource, AsyncLocationsResource
+
+from .logging import LoggingResource, AsyncLoggingResource
+
+from .proxy_endpoints import ProxyEndpointsResource, AsyncProxyEndpointsResource
+
+from .rules import RulesResource, AsyncRulesResource
+
+from .certificates import CertificatesResource, AsyncCertificatesResource
+
+from ....types.zero_trust.gateway_create_response import GatewayCreateResponse
+
+from ...._wrappers import ResultWrapper
+
+from typing import Optional, Type
+
+from ...._base_client import make_request_options
+
+from ....types.zero_trust.gateway_list_response import GatewayListResponse
+
+from ...._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from .audit_ssh_settings import (
+    AuditSSHSettingsResource,
+    AsyncAuditSSHSettingsResource,
+    AuditSSHSettingsResourceWithRawResponse,
+    AsyncAuditSSHSettingsResourceWithRawResponse,
+    AuditSSHSettingsResourceWithStreamingResponse,
+    AsyncAuditSSHSettingsResourceWithStreamingResponse,
+)
 from .categories import (
     CategoriesResource,
     AsyncCategoriesResource,
@@ -56,22 +66,13 @@ from .categories import (
     CategoriesResourceWithStreamingResponse,
     AsyncCategoriesResourceWithStreamingResponse,
 )
-from .lists.lists import ListsResource, AsyncListsResource
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from .certificates import (
-    CertificatesResource,
-    AsyncCertificatesResource,
-    CertificatesResourceWithRawResponse,
-    AsyncCertificatesResourceWithRawResponse,
-    CertificatesResourceWithStreamingResponse,
-    AsyncCertificatesResourceWithStreamingResponse,
+from .app_types import (
+    AppTypesResource,
+    AsyncAppTypesResource,
+    AppTypesResourceWithRawResponse,
+    AsyncAppTypesResourceWithRawResponse,
+    AppTypesResourceWithStreamingResponse,
+    AsyncAppTypesResourceWithStreamingResponse,
 )
 from .configurations import (
     ConfigurationsResource,
@@ -81,7 +82,30 @@ from .configurations import (
     ConfigurationsResourceWithStreamingResponse,
     AsyncConfigurationsResourceWithStreamingResponse,
 )
-from ...._base_client import make_request_options
+from .lists import (
+    ListsResource,
+    AsyncListsResource,
+    ListsResourceWithRawResponse,
+    AsyncListsResourceWithRawResponse,
+    ListsResourceWithStreamingResponse,
+    AsyncListsResourceWithStreamingResponse,
+)
+from .locations import (
+    LocationsResource,
+    AsyncLocationsResource,
+    LocationsResourceWithRawResponse,
+    AsyncLocationsResourceWithRawResponse,
+    LocationsResourceWithStreamingResponse,
+    AsyncLocationsResourceWithStreamingResponse,
+)
+from .logging import (
+    LoggingResource,
+    AsyncLoggingResource,
+    LoggingResourceWithRawResponse,
+    AsyncLoggingResourceWithRawResponse,
+    LoggingResourceWithStreamingResponse,
+    AsyncLoggingResourceWithStreamingResponse,
+)
 from .proxy_endpoints import (
     ProxyEndpointsResource,
     AsyncProxyEndpointsResource,
@@ -90,17 +114,26 @@ from .proxy_endpoints import (
     ProxyEndpointsResourceWithStreamingResponse,
     AsyncProxyEndpointsResourceWithStreamingResponse,
 )
-from .audit_ssh_settings import (
-    AuditSSHSettingsResource,
-    AsyncAuditSSHSettingsResource,
-    AuditSSHSettingsResourceWithRawResponse,
-    AsyncAuditSSHSettingsResourceWithRawResponse,
-    AuditSSHSettingsResourceWithStreamingResponse,
-    AsyncAuditSSHSettingsResourceWithStreamingResponse,
+from .rules import (
+    RulesResource,
+    AsyncRulesResource,
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
 )
-from .configurations.configurations import ConfigurationsResource, AsyncConfigurationsResource
-from ....types.zero_trust.gateway_list_response import GatewayListResponse
-from ....types.zero_trust.gateway_create_response import GatewayCreateResponse
+from .certificates import (
+    CertificatesResource,
+    AsyncCertificatesResource,
+    CertificatesResourceWithRawResponse,
+    AsyncCertificatesResourceWithRawResponse,
+    CertificatesResourceWithStreamingResponse,
+    AsyncCertificatesResourceWithStreamingResponse,
+)
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["GatewayResource", "AsyncGatewayResource"]
 

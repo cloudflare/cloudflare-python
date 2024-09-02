@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 from typing import Dict, List, Iterable
-from typing_extensions import Literal, TypedDict
+
+from typing_extensions import TypedDict, Literal
 
 from .dns_resolver_settings_v4_param import DNSResolverSettingsV4Param
+
 from .dns_resolver_settings_v6_param import DNSResolverSettingsV6Param
 
 __all__ = [

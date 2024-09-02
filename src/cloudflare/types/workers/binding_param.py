@@ -2,16 +2,23 @@
 
 from __future__ import annotations
 
-from typing import Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, TypedDict, Required, TypeAlias
+
+from .kv_namespace_binding_param import KVNamespaceBindingParam
+
+from .service_binding_param import ServiceBindingParam
+
+from .durable_object_binding_param import DurableObjectBindingParam
+
+from .r2_binding_param import R2BindingParam
 
 from .d1_binding_param import D1BindingParam
-from .r2_binding_param import R2BindingParam
-from .service_binding_param import ServiceBindingParam
-from .mtls_cert_binding_param import MTLSCERTBindingParam
-from .kv_namespace_binding_param import KVNamespaceBindingParam
-from .durable_object_binding_param import DurableObjectBindingParam
+
 from .dispatch_namespace_binding_param import DispatchNamespaceBindingParam
+
+from .mtls_cert_binding_param import MTLSCERTBindingParam
+
+from typing import Union
 
 __all__ = ["BindingParam", "WorkersQueueBinding"]
 

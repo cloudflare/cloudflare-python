@@ -1,60 +1,53 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .schemas import (
-    SchemasResource,
-    AsyncSchemasResource,
-    SchemasResourceWithRawResponse,
-    AsyncSchemasResourceWithRawResponse,
-    SchemasResourceWithStreamingResponse,
-    AsyncSchemasResourceWithStreamingResponse,
+from .configurations import ConfigurationsResource, AsyncConfigurationsResource
+from .configurations import (
+    ConfigurationsResourceWithRawResponse,
+    AsyncConfigurationsResourceWithRawResponse,
+    ConfigurationsResourceWithStreamingResponse,
+    AsyncConfigurationsResourceWithStreamingResponse,
 )
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
+from .discovery import DiscoveryResource, AsyncDiscoveryResource
 from .discovery import (
-    DiscoveryResource,
-    AsyncDiscoveryResource,
     DiscoveryResourceWithRawResponse,
     AsyncDiscoveryResourceWithRawResponse,
     DiscoveryResourceWithStreamingResponse,
     AsyncDiscoveryResourceWithStreamingResponse,
 )
+from .operations import OperationsResource, AsyncOperationsResource
 from .operations import (
-    OperationsResource,
-    AsyncOperationsResource,
     OperationsResourceWithRawResponse,
     AsyncOperationsResourceWithRawResponse,
     OperationsResourceWithStreamingResponse,
     AsyncOperationsResourceWithStreamingResponse,
 )
-from .api_gateway import (
-    APIGatewayResource,
-    AsyncAPIGatewayResource,
-    APIGatewayResourceWithRawResponse,
-    AsyncAPIGatewayResourceWithRawResponse,
-    APIGatewayResourceWithStreamingResponse,
-    AsyncAPIGatewayResourceWithStreamingResponse,
+from .schemas import SchemasResource, AsyncSchemasResource
+from .schemas import (
+    SchemasResourceWithRawResponse,
+    AsyncSchemasResourceWithRawResponse,
+    SchemasResourceWithStreamingResponse,
+    AsyncSchemasResourceWithStreamingResponse,
 )
+from .settings import SettingsResource, AsyncSettingsResource
+from .settings import (
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
+from .user_schemas import UserSchemasResource, AsyncUserSchemasResource
 from .user_schemas import (
-    UserSchemasResource,
-    AsyncUserSchemasResource,
     UserSchemasResourceWithRawResponse,
     AsyncUserSchemasResourceWithRawResponse,
     UserSchemasResourceWithStreamingResponse,
     AsyncUserSchemasResourceWithStreamingResponse,
 )
-from .configurations import (
-    ConfigurationsResource,
-    AsyncConfigurationsResource,
-    ConfigurationsResourceWithRawResponse,
-    AsyncConfigurationsResourceWithRawResponse,
-    ConfigurationsResourceWithStreamingResponse,
-    AsyncConfigurationsResourceWithStreamingResponse,
+from .api_gateway import APIGatewayResource, AsyncAPIGatewayResource
+from .api_gateway import (
+    APIGatewayResourceWithRawResponse,
+    AsyncAPIGatewayResourceWithRawResponse,
+    APIGatewayResourceWithStreamingResponse,
+    AsyncAPIGatewayResourceWithStreamingResponse,
 )
 
 __all__ = [

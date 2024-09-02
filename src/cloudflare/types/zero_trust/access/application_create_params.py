@@ -2,22 +2,40 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import TypedDict, Required, TypeAlias
+
+from typing import List, Iterable, Union
+
+from .allowed_idps import AllowedIdPs
+
+from .cors_headers_param import CORSHeadersParam
+
+from .self_hosted_domains import SelfHostedDomains
 
 from .decision import Decision
-from .allowed_idps import AllowedIdPs
-from .application_type import ApplicationType
+
 from ..access_rule_param import AccessRuleParam
-from .cors_headers_param import CORSHeadersParam
-from .oidc_saas_app_param import OIDCSaaSAppParam
-from .saml_saas_app_param import SAMLSaaSAppParam
-from .self_hosted_domains import SelfHostedDomains
-from .scim_config_mapping_param import SCIMConfigMappingParam
+
 from .applications.approval_group_param import ApprovalGroupParam
-from .scim_config_authentication_oauth2_param import SCIMConfigAuthenticationOauth2Param
+
+from .scim_config_mapping_param import SCIMConfigMappingParam
+
 from .scim_config_authentication_http_basic_param import SCIMConfigAuthenticationHTTPBasicParam
+
 from .scim_config_authentication_oauth_bearer_token_param import SCIMConfigAuthenticationOAuthBearerTokenParam
+
+from .scim_config_authentication_oauth2_param import SCIMConfigAuthenticationOauth2Param
+
+from .saml_saas_app_param import SAMLSaaSAppParam
+
+from .oidc_saas_app_param import OIDCSaaSAppParam
+
+from .application_type import ApplicationType
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ...._types import FileTypes
+from ...._utils import PropertyInfo
 
 __all__ = [
     "ApplicationCreateParams",
