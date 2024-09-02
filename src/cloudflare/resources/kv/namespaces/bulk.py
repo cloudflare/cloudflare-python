@@ -22,6 +22,8 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.kv.namespaces import bulk_update_params
+from ....types.kv.namespaces.bulk_delete_response import BulkDeleteResponse
+from ....types.kv.namespaces.bulk_update_response import BulkUpdateResponse
 
 __all__ = ["BulkResource", "AsyncBulkResource"]
 
@@ -47,7 +49,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[BulkUpdateResponse]:
         """Write multiple keys and values at once.
 
         Body should be an array of up to 10,000
@@ -82,9 +84,9 @@ class BulkResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[BulkUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[BulkUpdateResponse]], ResultWrapper[BulkUpdateResponse]),
         )
 
     def delete(
@@ -98,7 +100,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[BulkDeleteResponse]:
         """Remove multiple KV pairs from the namespace.
 
         Body should be an array of up to
@@ -128,9 +130,9 @@ class BulkResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[BulkDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[BulkDeleteResponse]], ResultWrapper[BulkDeleteResponse]),
         )
 
 
@@ -155,7 +157,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[BulkUpdateResponse]:
         """Write multiple keys and values at once.
 
         Body should be an array of up to 10,000
@@ -190,9 +192,9 @@ class AsyncBulkResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[BulkUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[BulkUpdateResponse]], ResultWrapper[BulkUpdateResponse]),
         )
 
     async def delete(
@@ -206,7 +208,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[BulkDeleteResponse]:
         """Remove multiple KV pairs from the namespace.
 
         Body should be an array of up to
@@ -236,9 +238,9 @@ class AsyncBulkResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[BulkDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[BulkDeleteResponse]], ResultWrapper[BulkDeleteResponse]),
         )
 
 
