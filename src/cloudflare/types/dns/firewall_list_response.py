@@ -1,25 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
-
 from typing import List, Optional
-from typing_extensions import Required, TypedDict
+from datetime import datetime
 
+from ..._models import BaseModel
+from .firewall_ips import FirewallIPs
 from .upstream_ips import UpstreamIPs
-from .attack_mitigation_param import AttackMitigationParam
+from .attack_mitigation import AttackMitigation
 
-__all__ = ["FirewallEditParams"]
+__all__ = ["FirewallListResponse"]
 
 
-class FirewallEditParams(TypedDict, total=False):
-    account_id: Required[str]
+class FirewallListResponse(BaseModel):
+    id: str
     """Identifier"""
-
-    attack_mitigation: Optional[AttackMitigationParam]
-    """Attack mitigation settings."""
 
     deprecate_any_requests: bool
     """Deprecate the response to ANY requests."""
+
+    dns_firewall_ips: List[FirewallIPs]
 
     ecs_fallback: bool
     """Forward client IP (resolver) subnet if no EDNS Client Subnet is sent."""
@@ -40,17 +39,20 @@ class FirewallEditParams(TypedDict, total=False):
     defined here for caching purposes.
     """
 
+    modified_on: datetime
+    """Last modification of DNS Firewall cluster."""
+
     name: str
     """DNS Firewall Cluster Name."""
 
-    negative_cache_ttl: Optional[float]
+    negative_cache_ttl: Optional[float] = None
     """Negative DNS cache TTL.
 
     This setting controls how long DNS Firewall should cache negative responses
     (e.g., NXDOMAIN) from the upstream servers.
     """
 
-    ratelimit: Optional[float]
+    ratelimit: Optional[float] = None
     """
     Ratelimit in queries per second per datacenter (applies to DNS queries sent to
     the upstream nameservers configured on the cluster).
@@ -63,3 +65,6 @@ class FirewallEditParams(TypedDict, total=False):
     """
 
     upstream_ips: List[UpstreamIPs]
+
+    attack_mitigation: Optional[AttackMitigation] = None
+    """Attack mitigation settings."""
