@@ -3,15 +3,15 @@
 from typing import List, Optional
 from datetime import datetime
 
-from ...._models import BaseModel
-from ..firewall_ips import FirewallIPs
-from ..upstream_ips import UpstreamIPs
-from ..attack_mitigation import AttackMitigation
+from ..._models import BaseModel
+from .firewall_ips import FirewallIPs
+from .upstream_ips import UpstreamIPs
+from .attack_mitigation import AttackMitigation
 
-__all__ = ["Firewall"]
+__all__ = ["FirewallGetResponse"]
 
 
-class Firewall(BaseModel):
+class FirewallGetResponse(BaseModel):
     id: str
     """Identifier"""
 
@@ -45,11 +45,6 @@ class Firewall(BaseModel):
     name: str
     """DNS Firewall Cluster Name."""
 
-    upstream_ips: List[UpstreamIPs]
-
-    attack_mitigation: Optional[AttackMitigation] = None
-    """Attack mitigation settings."""
-
     negative_cache_ttl: Optional[float] = None
     """Negative DNS cache TTL.
 
@@ -63,8 +58,13 @@ class Firewall(BaseModel):
     the upstream nameservers configured on the cluster).
     """
 
-    retries: Optional[float] = None
+    retries: float
     """
     Number of retries for fetching DNS responses from upstream nameservers (not
     counting the initial attempt).
     """
+
+    upstream_ips: List[UpstreamIPs]
+
+    attack_mitigation: Optional[AttackMitigation] = None
+    """Attack mitigation settings."""
