@@ -1,28 +1,25 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .custom import CustomResource, AsyncCustomResource
 from .custom import (
-    CustomResource,
-    AsyncCustomResource,
     CustomResourceWithRawResponse,
     AsyncCustomResourceWithRawResponse,
     CustomResourceWithStreamingResponse,
     AsyncCustomResourceWithStreamingResponse,
 )
-from .domains import (
-    DomainsResource,
-    AsyncDomainsResource,
-    DomainsResourceWithRawResponse,
-    AsyncDomainsResourceWithRawResponse,
-    DomainsResourceWithStreamingResponse,
-    AsyncDomainsResourceWithStreamingResponse,
-)
+from .managed import ManagedResource, AsyncManagedResource
 from .managed import (
-    ManagedResource,
-    AsyncManagedResource,
     ManagedResourceWithRawResponse,
     AsyncManagedResourceWithRawResponse,
     ManagedResourceWithStreamingResponse,
     AsyncManagedResourceWithStreamingResponse,
+)
+from .domains import DomainsResource, AsyncDomainsResource
+from .domains import (
+    DomainsResourceWithRawResponse,
+    AsyncDomainsResourceWithRawResponse,
+    DomainsResourceWithStreamingResponse,
+    AsyncDomainsResourceWithStreamingResponse,
 )
 
 __all__ = [

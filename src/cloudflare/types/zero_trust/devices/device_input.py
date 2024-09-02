@@ -1,23 +1,42 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from .file_input import FileInput
+
+from .unique_client_id_input import UniqueClientIDInput
+
+from .domain_joined_input import DomainJoinedInput
+
+from .os_version_input import OSVersionInput
+
+from .firewall_input import FirewallInput
+
+from .sentinelone_input import SentineloneInput
+
+from .disk_encryption_input import DiskEncryptionInput
+
+from .client_certificate_input import ClientCertificateInput
+
+from .workspace_one_input import WorkspaceOneInput
+
+from .crowdstrike_input import CrowdstrikeInput
+
+from .intune_input import IntuneInput
+
+from .kolide_input import KolideInput
+
+from .tanium_input import TaniumInput
+
+from .sentinelone_s2s_input import SentineloneS2sInput
 
 from ...._models import BaseModel
-from .file_input import FileInput
-from .intune_input import IntuneInput
-from .kolide_input import KolideInput
-from .tanium_input import TaniumInput
-from .firewall_input import FirewallInput
-from .os_version_input import OSVersionInput
-from .crowdstrike_input import CrowdstrikeInput
-from .sentinelone_input import SentineloneInput
-from .domain_joined_input import DomainJoinedInput
-from .workspace_one_input import WorkspaceOneInput
-from .disk_encryption_input import DiskEncryptionInput
-from .sentinelone_s2s_input import SentineloneS2sInput
-from .unique_client_id_input import UniqueClientIDInput
-from .client_certificate_input import ClientCertificateInput
+
+from typing_extensions import Literal, TypeAlias
+
+from typing import Optional, List
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = [
     "DeviceInput",

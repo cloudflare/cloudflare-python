@@ -1,21 +1,38 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
-from datetime import datetime
+from .scim_config_authentication_http_basic import SCIMConfigAuthenticationHTTPBasic
+
+from .scim_config_authentication_oauth_bearer_token import SCIMConfigAuthenticationOAuthBearerToken
+
+from .scim_config_authentication_oauth2 import SCIMConfigAuthenticationOauth2
+
 from typing_extensions import TypeAlias
 
 from ...._models import BaseModel
-from .allowed_idps import AllowedIdPs
-from .cors_headers import CORSHeaders
-from .oidc_saas_app import OIDCSaaSApp
-from .saml_saas_app import SAMLSaaSApp
-from .application_type import ApplicationType
-from .application_policy import ApplicationPolicy
+
+from typing import Optional, List
+
 from .scim_config_mapping import SCIMConfigMapping
+
+from .allowed_idps import AllowedIdPs
+
+from .cors_headers import CORSHeaders
+
+from datetime import datetime
+
+from .application_policy import ApplicationPolicy
+
 from .self_hosted_domains import SelfHostedDomains
-from .scim_config_authentication_oauth2 import SCIMConfigAuthenticationOauth2
-from .scim_config_authentication_http_basic import SCIMConfigAuthenticationHTTPBasic
-from .scim_config_authentication_oauth_bearer_token import SCIMConfigAuthenticationOAuthBearerToken
+
+from .saml_saas_app import SAMLSaaSApp
+
+from .oidc_saas_app import OIDCSaaSApp
+
+from .application_type import ApplicationType
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = [
     "ApplicationGetResponse",

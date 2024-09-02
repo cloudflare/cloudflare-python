@@ -2,20 +2,55 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from .os import (
-    OSResource,
-    AsyncOSResource,
-    OSResourceWithRawResponse,
-    AsyncOSResourceWithRawResponse,
-    OSResourceWithStreamingResponse,
-    AsyncOSResourceWithStreamingResponse,
+from .bot_class import BotClassResource, AsyncBotClassResource
+
+from ....._compat import cached_property
+
+from .device_type import DeviceTypeResource, AsyncDeviceTypeResource
+
+from .http_protocol import HTTPProtocolResource, AsyncHTTPProtocolResource
+
+from .http_method import HTTPMethodResource, AsyncHTTPMethodResource
+
+from .ip_version import IPVersionResource, AsyncIPVersionResource
+
+from .os import OSResource, AsyncOSResource
+
+from .tls_version import TLSVersionResource, AsyncTLSVersionResource
+
+from .browser_family import BrowserFamilyResource, AsyncBrowserFamilyResource
+
+from .....types.radar.http.location_get_response import LocationGetResponse
+
+from ....._wrappers import ResultWrapper
+
+from ....._utils import maybe_transform, async_maybe_transform
+
+from ....._base_client import make_request_options
+
+from typing import Type, List, Union
+
+from typing_extensions import Literal
+
+from datetime import datetime
+
+from ....._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
 )
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.radar.http import location_get_params
 from .bot_class import (
     BotClassResource,
     AsyncBotClassResource,
@@ -24,20 +59,6 @@ from .bot_class import (
     BotClassResourceWithStreamingResponse,
     AsyncBotClassResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from .ip_version import (
-    IPVersionResource,
-    AsyncIPVersionResource,
-    IPVersionResourceWithRawResponse,
-    AsyncIPVersionResourceWithRawResponse,
-    IPVersionResourceWithStreamingResponse,
-    AsyncIPVersionResourceWithStreamingResponse,
-)
-from ....._compat import cached_property
 from .device_type import (
     DeviceTypeResource,
     AsyncDeviceTypeResource,
@@ -45,6 +66,14 @@ from .device_type import (
     AsyncDeviceTypeResourceWithRawResponse,
     DeviceTypeResourceWithStreamingResponse,
     AsyncDeviceTypeResourceWithStreamingResponse,
+)
+from .http_protocol import (
+    HTTPProtocolResource,
+    AsyncHTTPProtocolResource,
+    HTTPProtocolResourceWithRawResponse,
+    AsyncHTTPProtocolResourceWithRawResponse,
+    HTTPProtocolResourceWithStreamingResponse,
+    AsyncHTTPProtocolResourceWithStreamingResponse,
 )
 from .http_method import (
     HTTPMethodResource,
@@ -54,6 +83,22 @@ from .http_method import (
     HTTPMethodResourceWithStreamingResponse,
     AsyncHTTPMethodResourceWithStreamingResponse,
 )
+from .ip_version import (
+    IPVersionResource,
+    AsyncIPVersionResource,
+    IPVersionResourceWithRawResponse,
+    AsyncIPVersionResourceWithRawResponse,
+    IPVersionResourceWithStreamingResponse,
+    AsyncIPVersionResourceWithStreamingResponse,
+)
+from .os import (
+    OSResource,
+    AsyncOSResource,
+    OSResourceWithRawResponse,
+    AsyncOSResourceWithRawResponse,
+    OSResourceWithStreamingResponse,
+    AsyncOSResourceWithStreamingResponse,
+)
 from .tls_version import (
     TLSVersionResource,
     AsyncTLSVersionResource,
@@ -61,22 +106,6 @@ from .tls_version import (
     AsyncTLSVersionResourceWithRawResponse,
     TLSVersionResourceWithStreamingResponse,
     AsyncTLSVersionResourceWithStreamingResponse,
-)
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ....._wrappers import ResultWrapper
-from .http_protocol import (
-    HTTPProtocolResource,
-    AsyncHTTPProtocolResource,
-    HTTPProtocolResourceWithRawResponse,
-    AsyncHTTPProtocolResourceWithRawResponse,
-    HTTPProtocolResourceWithStreamingResponse,
-    AsyncHTTPProtocolResourceWithStreamingResponse,
 )
 from .browser_family import (
     BrowserFamilyResource,
@@ -86,9 +115,8 @@ from .browser_family import (
     BrowserFamilyResourceWithStreamingResponse,
     AsyncBrowserFamilyResourceWithStreamingResponse,
 )
-from ....._base_client import make_request_options
-from .....types.radar.http import location_get_params
-from .....types.radar.http.location_get_response import LocationGetResponse
+from typing import cast
+from typing import cast
 
 __all__ = ["LocationsResource", "AsyncLocationsResource"]
 

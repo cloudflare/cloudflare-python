@@ -2,18 +2,31 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.magic_transit.sites import LANCreateResponse, LAN
+
 from typing import Any, cast
 
-import pytest
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.magic_transit.sites import (
-    LAN,
-    LANCreateResponse,
-)
+from cloudflare.types.magic_transit.sites import lan_create_params
+from cloudflare.types.magic_transit.sites import lan_update_params
+from cloudflare.types.magic_transit.sites import lan_edit_params
+from cloudflare.types.magic_transit.sites import Nat
+from cloudflare.types.magic_transit.sites import LANStaticAddressing
+from cloudflare.types.magic_transit.sites import Nat
+from cloudflare.types.magic_transit.sites import LANStaticAddressing
+from cloudflare.types.magic_transit.sites import Nat
+from cloudflare.types.magic_transit.sites import LANStaticAddressing
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

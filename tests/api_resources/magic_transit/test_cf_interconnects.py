@@ -2,18 +2,25 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.magic_transit import (
+    CfInterconnectUpdateResponse,
+    CfInterconnectListResponse,
+    CfInterconnectGetResponse,
+)
+
 from typing import Any, cast
 
+import os
 import pytest
-
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magic_transit import (
-    CfInterconnectGetResponse,
-    CfInterconnectListResponse,
-    CfInterconnectUpdateResponse,
-)
+from cloudflare.types.magic_transit import cf_interconnect_update_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

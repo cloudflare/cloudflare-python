@@ -2,10 +2,37 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
+from .bulks import BulksResource, AsyncBulksResource
+
+from ...._compat import cached_property
+
+from ....types.intel.domain import Domain
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ...._base_client import make_request_options
+
+from ...._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.intel import domain_get_params
 from .bulks import (
     BulksResource,
     AsyncBulksResource,
@@ -14,23 +41,8 @@ from .bulks import (
     BulksResourceWithStreamingResponse,
     AsyncBulksResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....types.intel import domain_get_params
-from ...._base_client import make_request_options
-from ....types.intel.domain import Domain
+from typing import cast
+from typing import cast
 
 __all__ = ["DomainsResource", "AsyncDomainsResource"]
 

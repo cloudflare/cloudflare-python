@@ -2,21 +2,31 @@
 
 from __future__ import annotations
 
-import os
+from cloudflare import Cloudflare, AsyncCloudflare
+
+from cloudflare.types.firewall import (
+    UARuleCreateResponse,
+    UARuleUpdateResponse,
+    UARuleListResponse,
+    UARuleDeleteResponse,
+    UARuleGetResponse,
+)
+
 from typing import Any, cast
 
-import pytest
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
+import os
+import pytest
+import httpx
+from typing_extensions import get_args
+from typing import Optional
+from respx import MockRouter
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.firewall import (
-    UARuleGetResponse,
-    UARuleListResponse,
-    UARuleCreateResponse,
-    UARuleDeleteResponse,
-    UARuleUpdateResponse,
-)
+from cloudflare.types.firewall import ua_rule_create_params
+from cloudflare.types.firewall import ua_rule_update_params
+from cloudflare.types.firewall import ua_rule_list_params
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -2,38 +2,130 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast, overload
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    required_args,
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
+
+from ...types.zero_trust.identity_provider_type import IdentityProviderType
+
+from ...types.zero_trust.identity_provider_scim_config_param import IdentityProviderSCIMConfigParam
+
+from typing import Optional, Type
+
+from ...types.zero_trust.identity_provider import IdentityProvider
+
+from ...types.zero_trust.generic_oauth_config_param import GenericOAuthConfigParam
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from ...types.zero_trust.identity_provider_list_response import IdentityProviderListResponse
+
+from ...pagination import SyncSinglePage, AsyncSinglePage
+
+from ...types.zero_trust.identity_provider_delete_response import IdentityProviderDeleteResponse
+
 from ..._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.zero_trust import (
-    IdentityProviderType,
-    identity_provider_create_params,
-    identity_provider_update_params,
-)
-from ...types.zero_trust.identity_provider import IdentityProvider
-from ...types.zero_trust.identity_provider_type import IdentityProviderType
-from ...types.zero_trust.generic_oauth_config_param import GenericOAuthConfigParam
-from ...types.zero_trust.identity_provider_list_response import IdentityProviderListResponse
-from ...types.zero_trust.identity_provider_delete_response import IdentityProviderDeleteResponse
-from ...types.zero_trust.identity_provider_scim_config_param import IdentityProviderSCIMConfigParam
+
+from ...types.zero_trust import identity_provider_create_params, identity_provider_update_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.zero_trust import identity_provider_create_params
+from ...types.zero_trust import identity_provider_update_params
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import GenericOAuthConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from ...types.zero_trust import IdentityProviderType
+from ...types.zero_trust import IdentityProviderSCIMConfig
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["IdentityProvidersResource", "AsyncIdentityProvidersResource"]
 

@@ -3,17 +3,17 @@
 from __future__ import annotations
 
 from .create_index import CreateIndex as CreateIndex
-from .index_query_params import IndexQueryParams as IndexQueryParams
-from .index_create_params import IndexCreateParams as IndexCreateParams
-from .index_info_response import IndexInfoResponse as IndexInfoResponse
-from .index_insert_params import IndexInsertParams as IndexInsertParams
-from .index_upsert_params import IndexUpsertParams as IndexUpsertParams
-from .index_query_response import IndexQueryResponse as IndexQueryResponse
-from .index_delete_response import IndexDeleteResponse as IndexDeleteResponse
-from .index_insert_response import IndexInsertResponse as IndexInsertResponse
-from .index_upsert_response import IndexUpsertResponse as IndexUpsertResponse
-from .index_get_by_ids_params import IndexGetByIDsParams as IndexGetByIDsParams
-from .index_delete_by_ids_params import IndexDeleteByIDsParams as IndexDeleteByIDsParams
-from .index_delete_by_ids_response import IndexDeleteByIDsResponse as IndexDeleteByIDsResponse
 from .index_dimension_configuration import IndexDimensionConfiguration as IndexDimensionConfiguration
 from .index_dimension_configuration_param import IndexDimensionConfigurationParam as IndexDimensionConfigurationParam
+from .index_delete_response import IndexDeleteResponse as IndexDeleteResponse
+from .index_delete_by_ids_response import IndexDeleteByIDsResponse as IndexDeleteByIDsResponse
+from .index_info_response import IndexInfoResponse as IndexInfoResponse
+from .index_insert_response import IndexInsertResponse as IndexInsertResponse
+from .index_query_response import IndexQueryResponse as IndexQueryResponse
+from .index_upsert_response import IndexUpsertResponse as IndexUpsertResponse
+from .index_create_params import IndexCreateParams as IndexCreateParams
+from .index_delete_by_ids_params import IndexDeleteByIDsParams as IndexDeleteByIDsParams
+from .index_get_by_ids_params import IndexGetByIDsParams as IndexGetByIDsParams
+from .index_insert_params import IndexInsertParams as IndexInsertParams
+from .index_query_params import IndexQueryParams as IndexQueryParams
+from .index_upsert_params import IndexUpsertParams as IndexUpsertParams

@@ -2,11 +2,18 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import TypedDict, Required, Annotated
 
 from ..._utils import PropertyInfo
+
+from typing import List
+
 from .allowed_origins import AllowedOrigins
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
 __all__ = ["ClipCreateParams", "Watermark"]
 

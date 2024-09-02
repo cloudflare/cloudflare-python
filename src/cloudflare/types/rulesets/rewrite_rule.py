@@ -1,12 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Union, Optional
-from datetime import datetime
+from ..._models import BaseModel
+
 from typing_extensions import Literal, TypeAlias
 
-from .logging import Logging
-from ..._models import BaseModel
+from typing import Optional, Dict, List
+
 from .rewrite_uri_part import RewriteURIPart
+
+from datetime import datetime
+
+from .logging import Logging
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = [
     "RewriteRule",

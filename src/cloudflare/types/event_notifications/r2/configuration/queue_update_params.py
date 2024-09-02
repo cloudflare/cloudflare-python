@@ -2,18 +2,24 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import TypedDict, Required, Literal
+
+from typing import Iterable, List
+
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from ....._types import FileTypes
+from ....._utils import PropertyInfo
 
 __all__ = ["QueueUpdateParams", "Rule"]
 
 
 class QueueUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     bucket_name: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     rules: Iterable[Rule]
     """Array of rules to drive notifications"""

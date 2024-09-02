@@ -1,13 +1,22 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
+from ...._models import BaseModel
+
+from typing import Optional, List
+
 from typing_extensions import Literal
 
-from .schedule import Schedule
-from ...._models import BaseModel
-from .rule_setting import RuleSetting
+from datetime import datetime
+
 from .gateway_filter import GatewayFilter
+
+from .rule_setting import RuleSetting
+
+from .schedule import Schedule
+
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = ["GatewayRule"]
 

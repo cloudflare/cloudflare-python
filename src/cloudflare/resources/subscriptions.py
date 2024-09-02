@@ -2,34 +2,66 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
-from typing_extensions import Literal
-
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
+
+from ..types.subscriptions.subscription_create_response import SubscriptionCreateResponse
+
+from .._wrappers import ResultWrapper
+
+from .._utils import maybe_transform, async_maybe_transform
+
+from .._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from ..types.user.rate_plan_param import RatePlanParam
+
+from ..types.subscriptions.subscription_update_response import SubscriptionUpdateResponse
+
+from ..types.user.subscription import Subscription
+
+from ..pagination import SyncSinglePage, AsyncSinglePage
+
+from ..types.subscriptions.subscription_delete_response import SubscriptionDeleteResponse
+
+from typing import Type
+
+from ..types.subscriptions.subscription_get_response import SubscriptionGetResponse
+
 from .._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._wrappers import ResultWrapper
-from ..pagination import SyncSinglePage, AsyncSinglePage
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.subscriptions import subscription_create_params, subscription_update_params
-from ..types.user.subscription import Subscription
-from ..types.user.rate_plan_param import RatePlanParam
-from ..types.subscriptions.subscription_get_response import SubscriptionGetResponse
-from ..types.subscriptions.subscription_create_response import SubscriptionCreateResponse
-from ..types.subscriptions.subscription_delete_response import SubscriptionDeleteResponse
-from ..types.subscriptions.subscription_update_response import SubscriptionUpdateResponse
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from .._resource import SyncAPIResource, AsyncAPIResource
+from ..types import shared_params
+from ..types.subscriptions import subscription_create_params
+from ..types.subscriptions import subscription_update_params
+from ..types.user import RatePlan
+from ..types.user import RatePlan
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["SubscriptionsResource", "AsyncSubscriptionsResource"]
 

@@ -2,10 +2,65 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, Optional, cast
-
 import httpx
 
+from .health import HealthResource, AsyncHealthResource
+
+from ...._compat import cached_property
+
+from .references import ReferencesResource, AsyncReferencesResource
+
+from ....types.load_balancers.pool import Pool
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from typing import Type, Iterable, Optional, List
+
+from ....types.load_balancers.origin_param import OriginParam
+
+from ....types.load_balancers.load_shedding_param import LoadSheddingParam
+
+from ....types.load_balancers.notification_filter_param import NotificationFilterParam
+
+from ....types.load_balancers.origin_steering_param import OriginSteeringParam
+
+from ....types.load_balancers.check_region import CheckRegion
+
+from ....pagination import SyncSinglePage, AsyncSinglePage
+
+from ....types.load_balancers.pool_delete_response import PoolDeleteResponse
+
+from ...._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.load_balancers import pool_create_params
+from ....types.load_balancers import pool_update_params
+from ....types.load_balancers import pool_list_params
+from ....types.load_balancers import pool_edit_params
+from ....types.load_balancers import LoadShedding
+from ....types.load_balancers import NotificationFilter
+from ....types.load_balancers import OriginSteering
+from ....types.load_balancers import LoadShedding
+from ....types.load_balancers import NotificationFilter
+from ....types.load_balancers import OriginSteering
+from ....types.load_balancers import LoadShedding
+from ....types.load_balancers import NotificationFilter
+from ....types.load_balancers import OriginSteering
 from .health import (
     HealthResource,
     AsyncHealthResource,
@@ -14,12 +69,6 @@ from .health import (
     HealthResourceWithStreamingResponse,
     AsyncHealthResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from ...._compat import cached_property
 from .references import (
     ReferencesResource,
     AsyncReferencesResource,
@@ -28,29 +77,16 @@ from .references import (
     ReferencesResourceWithStreamingResponse,
     AsyncReferencesResourceWithStreamingResponse,
 )
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.load_balancers import (
-    pool_edit_params,
-    pool_list_params,
-    pool_create_params,
-    pool_update_params,
-)
-from ....types.load_balancers.pool import Pool
-from ....types.load_balancers.check_region import CheckRegion
-from ....types.load_balancers.origin_param import OriginParam
-from ....types.load_balancers.load_shedding_param import LoadSheddingParam
-from ....types.load_balancers.pool_delete_response import PoolDeleteResponse
-from ....types.load_balancers.origin_steering_param import OriginSteeringParam
-from ....types.load_balancers.notification_filter_param import NotificationFilterParam
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["PoolsResource", "AsyncPoolsResource"]
 

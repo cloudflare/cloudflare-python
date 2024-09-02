@@ -2,6 +2,10 @@
 
 from typing_extensions import Literal, TypeAlias
 
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
+
 __all__ = ["ValidationMethod"]
 
 ValidationMethod: TypeAlias = Literal["http", "cname", "txt"]

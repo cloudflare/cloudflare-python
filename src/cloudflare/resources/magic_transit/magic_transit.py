@@ -2,6 +2,29 @@
 
 from __future__ import annotations
 
+from .apps import AppsResource, AsyncAppsResource
+
+from ..._compat import cached_property
+
+from .cf_interconnects import CfInterconnectsResource, AsyncCfInterconnectsResource
+
+from .gre_tunnels import GRETunnelsResource, AsyncGRETunnelsResource
+
+from .ipsec_tunnels import IPSECTunnelsResource, AsyncIPSECTunnelsResource
+
+from .routes import RoutesResource, AsyncRoutesResource
+
+from .sites.sites import SitesResource, AsyncSitesResource
+
+from .connectors import ConnectorsResource, AsyncConnectorsResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
 from .apps import (
     AppsResource,
     AsyncAppsResource,
@@ -10,13 +33,29 @@ from .apps import (
     AppsResourceWithStreamingResponse,
     AsyncAppsResourceWithStreamingResponse,
 )
-from .sites import (
-    SitesResource,
-    AsyncSitesResource,
-    SitesResourceWithRawResponse,
-    AsyncSitesResourceWithRawResponse,
-    SitesResourceWithStreamingResponse,
-    AsyncSitesResourceWithStreamingResponse,
+from .cf_interconnects import (
+    CfInterconnectsResource,
+    AsyncCfInterconnectsResource,
+    CfInterconnectsResourceWithRawResponse,
+    AsyncCfInterconnectsResourceWithRawResponse,
+    CfInterconnectsResourceWithStreamingResponse,
+    AsyncCfInterconnectsResourceWithStreamingResponse,
+)
+from .gre_tunnels import (
+    GRETunnelsResource,
+    AsyncGRETunnelsResource,
+    GRETunnelsResourceWithRawResponse,
+    AsyncGRETunnelsResourceWithRawResponse,
+    GRETunnelsResourceWithStreamingResponse,
+    AsyncGRETunnelsResourceWithStreamingResponse,
+)
+from .ipsec_tunnels import (
+    IPSECTunnelsResource,
+    AsyncIPSECTunnelsResource,
+    IPSECTunnelsResourceWithRawResponse,
+    AsyncIPSECTunnelsResourceWithRawResponse,
+    IPSECTunnelsResourceWithStreamingResponse,
+    AsyncIPSECTunnelsResourceWithStreamingResponse,
 )
 from .routes import (
     RoutesResource,
@@ -26,7 +65,14 @@ from .routes import (
     RoutesResourceWithStreamingResponse,
     AsyncRoutesResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
+from .sites import (
+    SitesResource,
+    AsyncSitesResource,
+    SitesResourceWithRawResponse,
+    AsyncSitesResourceWithRawResponse,
+    SitesResourceWithStreamingResponse,
+    AsyncSitesResourceWithStreamingResponse,
+)
 from .connectors import (
     ConnectorsResource,
     AsyncConnectorsResource,
@@ -34,32 +80,6 @@ from .connectors import (
     AsyncConnectorsResourceWithRawResponse,
     ConnectorsResourceWithStreamingResponse,
     AsyncConnectorsResourceWithStreamingResponse,
-)
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .gre_tunnels import (
-    GRETunnelsResource,
-    AsyncGRETunnelsResource,
-    GRETunnelsResourceWithRawResponse,
-    AsyncGRETunnelsResourceWithRawResponse,
-    GRETunnelsResourceWithStreamingResponse,
-    AsyncGRETunnelsResourceWithStreamingResponse,
-)
-from .sites.sites import SitesResource, AsyncSitesResource
-from .ipsec_tunnels import (
-    IPSECTunnelsResource,
-    AsyncIPSECTunnelsResource,
-    IPSECTunnelsResourceWithRawResponse,
-    AsyncIPSECTunnelsResourceWithRawResponse,
-    IPSECTunnelsResourceWithStreamingResponse,
-    AsyncIPSECTunnelsResourceWithStreamingResponse,
-)
-from .cf_interconnects import (
-    CfInterconnectsResource,
-    AsyncCfInterconnectsResource,
-    CfInterconnectsResourceWithRawResponse,
-    AsyncCfInterconnectsResourceWithRawResponse,
-    CfInterconnectsResourceWithStreamingResponse,
-    AsyncCfInterconnectsResourceWithStreamingResponse,
 )
 
 __all__ = ["MagicTransitResource", "AsyncMagicTransitResource"]

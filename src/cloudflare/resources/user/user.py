@@ -2,17 +2,52 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
-from .tokens import (
-    TokensResource,
-    AsyncTokensResource,
-    TokensResourceWithRawResponse,
-    AsyncTokensResourceWithRawResponse,
-    TokensResourceWithStreamingResponse,
-    AsyncTokensResourceWithStreamingResponse,
+from .audit_logs import AuditLogsResource, AsyncAuditLogsResource
+
+from ..._compat import cached_property
+
+from .billing.billing import BillingResource, AsyncBillingResource
+
+from .invites import InvitesResource, AsyncInvitesResource
+
+from .organizations import OrganizationsResource, AsyncOrganizationsResource
+
+from .subscriptions import SubscriptionsResource, AsyncSubscriptionsResource
+
+from .tokens.tokens import TokensResource, AsyncTokensResource
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ..._base_client import make_request_options
+
+from ..._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.user import user_edit_params
+from .audit_logs import (
+    AuditLogsResource,
+    AsyncAuditLogsResource,
+    AuditLogsResourceWithRawResponse,
+    AsyncAuditLogsResourceWithRawResponse,
+    AuditLogsResourceWithStreamingResponse,
+    AsyncAuditLogsResourceWithStreamingResponse,
 )
 from .billing import (
     BillingResource,
@@ -30,29 +65,6 @@ from .invites import (
     InvitesResourceWithStreamingResponse,
     AsyncInvitesResourceWithStreamingResponse,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from ..._compat import cached_property
-from .audit_logs import (
-    AuditLogsResource,
-    AsyncAuditLogsResource,
-    AuditLogsResourceWithRawResponse,
-    AsyncAuditLogsResourceWithRawResponse,
-    AuditLogsResourceWithStreamingResponse,
-    AsyncAuditLogsResourceWithStreamingResponse,
-)
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ...types.user import user_edit_params
 from .organizations import (
     OrganizationsResource,
     AsyncOrganizationsResource,
@@ -69,9 +81,18 @@ from .subscriptions import (
     SubscriptionsResourceWithStreamingResponse,
     AsyncSubscriptionsResourceWithStreamingResponse,
 )
-from .tokens.tokens import TokensResource, AsyncTokensResource
-from ..._base_client import make_request_options
-from .billing.billing import BillingResource, AsyncBillingResource
+from .tokens import (
+    TokensResource,
+    AsyncTokensResource,
+    TokensResourceWithRawResponse,
+    AsyncTokensResourceWithRawResponse,
+    TokensResourceWithStreamingResponse,
+    AsyncTokensResourceWithStreamingResponse,
+)
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["UserResource", "AsyncUserResource"]
 

@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import TypedDict
 
 from .filter_options_param import FilterOptionsParam
+
+from typing_extensions import TypedDict
 
 __all__ = ["NotificationFilterParam"]
 

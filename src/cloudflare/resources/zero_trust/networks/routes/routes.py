@@ -2,11 +2,47 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
-from datetime import datetime
-
 import httpx
 
+from .ips import IPsResource, AsyncIPsResource
+
+from ....._compat import cached_property
+
+from .networks import NetworksResource, AsyncNetworksResource
+
+from .....types.zero_trust.networks.route import Route
+
+from ....._wrappers import ResultWrapper
+
+from ....._utils import maybe_transform, async_maybe_transform
+
+from ....._base_client import make_request_options, AsyncPaginator
+
+from typing import Type, Union
+
+from .....types.zero_trust.networks.teamnet import Teamnet
+
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from datetime import datetime
+
+from ....._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.zero_trust.networks import route_create_params
+from .....types.zero_trust.networks import route_list_params
+from .....types.zero_trust.networks import route_edit_params
 from .ips import (
     IPsResource,
     AsyncIPsResource,
@@ -23,25 +59,14 @@ from .networks import (
     NetworksResourceWithStreamingResponse,
     AsyncNetworksResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ....._wrappers import ResultWrapper
-from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.networks import route_edit_params, route_list_params, route_create_params
-from .....types.zero_trust.networks.route import Route
-from .....types.zero_trust.networks.teamnet import Teamnet
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["RoutesResource", "AsyncRoutesResource"]
 

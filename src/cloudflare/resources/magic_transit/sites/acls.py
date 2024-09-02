@@ -2,30 +2,59 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
+
+from ....types.magic_transit.sites.acl import ACL
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from typing import Type, List
+
+from ....types.magic_transit.sites.acl_configuration_param import ACLConfigurationParam
+
+from ....types.magic_transit.sites.allowed_protocol import AllowedProtocol
+
+from ....pagination import SyncSinglePage, AsyncSinglePage
+
 from ...._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.magic_transit.sites import acl_edit_params, acl_create_params, acl_update_params
-from ....types.magic_transit.sites.acl import ACL
-from ....types.magic_transit.sites.allowed_protocol import AllowedProtocol
-from ....types.magic_transit.sites.acl_configuration_param import ACLConfigurationParam
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.magic_transit.sites import acl_create_params
+from ....types.magic_transit.sites import acl_update_params
+from ....types.magic_transit.sites import acl_edit_params
+from ....types.magic_transit.sites import ACLConfiguration
+from ....types.magic_transit.sites import ACLConfiguration
+from ....types.magic_transit.sites import ACLConfiguration
+from ....types.magic_transit.sites import ACLConfiguration
+from ....types.magic_transit.sites import ACLConfiguration
+from ....types.magic_transit.sites import ACLConfiguration
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["ACLsResource", "AsyncACLsResource"]
 

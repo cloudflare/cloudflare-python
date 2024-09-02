@@ -1,11 +1,13 @@
 from __future__ import annotations
 
-import os
 import asyncio
 import logging
-from typing import TYPE_CHECKING, Iterator, AsyncIterator
+from typing import Iterator
 
 import pytest
+
+import os
+from typing import TYPE_CHECKING, AsyncIterator
 
 from cloudflare import Cloudflare, AsyncCloudflare
 

@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import TypedDict
 
 from .ipv6_network_param import IPV6NetworkParam
+
+from typing_extensions import TypedDict
 
 __all__ = ["IPV6EndpointParam"]
 

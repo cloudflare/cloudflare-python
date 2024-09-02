@@ -2,26 +2,62 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Iterable, Optional, cast
-from typing_extensions import Literal
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .metadata_index import MetadataIndexResource, AsyncMetadataIndexResource
+
 from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
+
+from ....types.vectorize.create_index import CreateIndex
+
+from ...._wrappers import ResultWrapper
+
+from ...._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type, List, Iterable
+
+from ...._base_client import make_request_options, AsyncPaginator
+
+from ....pagination import SyncSinglePage, AsyncSinglePage
+
+from ....types.vectorize.index_delete_response import IndexDeleteResponse
+
+from ....types.vectorize.index_delete_by_ids_response import IndexDeleteByIDsResponse
+
+from ....types.vectorize.index_info_response import IndexInfoResponse
+
+from ....types.vectorize.index_insert_response import IndexInsertResponse
+
+from ...._types import FileTypes
+
+from typing_extensions import Literal
+
+from ....types.vectorize.index_query_response import IndexQueryResponse
+
+from ....types.vectorize.index_upsert_response import IndexUpsertResponse
+
 from ...._response import (
     to_raw_response_wrapper,
-    to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
+
+from ....types.vectorize import index_create_params
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
+from ....types.vectorize import index_create_params
+from ....types.vectorize import index_delete_by_ids_params
+from ....types.vectorize import index_get_by_ids_params
+from ....types.vectorize import index_insert_params
+from ....types.vectorize import index_query_params
+from ....types.vectorize import index_upsert_params
 from .metadata_index import (
     MetadataIndexResource,
     AsyncMetadataIndexResource,
@@ -30,22 +66,26 @@ from .metadata_index import (
     MetadataIndexResourceWithStreamingResponse,
     AsyncMetadataIndexResourceWithStreamingResponse,
 )
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.vectorize import (
-    index_query_params,
-    index_create_params,
-    index_insert_params,
-    index_upsert_params,
-    index_get_by_ids_params,
-    index_delete_by_ids_params,
-)
-from ....types.vectorize.create_index import CreateIndex
-from ....types.vectorize.index_info_response import IndexInfoResponse
-from ....types.vectorize.index_query_response import IndexQueryResponse
-from ....types.vectorize.index_delete_response import IndexDeleteResponse
-from ....types.vectorize.index_insert_response import IndexInsertResponse
-from ....types.vectorize.index_upsert_response import IndexUpsertResponse
-from ....types.vectorize.index_delete_by_ids_response import IndexDeleteByIDsResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["IndexesResource", "AsyncIndexesResource"]
 

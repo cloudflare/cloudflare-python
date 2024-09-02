@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal, TypedDict, TypeAlias
+
 from typing import List, Union
-from typing_extensions import Literal, TypeAlias, TypedDict
 
 __all__ = ["EdgeIPsParam", "UnionMember0", "UnionMember1"]
 

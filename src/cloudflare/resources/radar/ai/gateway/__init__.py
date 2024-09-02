@@ -1,28 +1,25 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .gateway import (
-    GatewayResource,
-    AsyncGatewayResource,
-    GatewayResourceWithRawResponse,
-    AsyncGatewayResourceWithRawResponse,
-    GatewayResourceWithStreamingResponse,
-    AsyncGatewayResourceWithStreamingResponse,
-)
+from .summary import SummaryResource, AsyncSummaryResource
 from .summary import (
-    SummaryResource,
-    AsyncSummaryResource,
     SummaryResourceWithRawResponse,
     AsyncSummaryResourceWithRawResponse,
     SummaryResourceWithStreamingResponse,
     AsyncSummaryResourceWithStreamingResponse,
 )
+from .timeseries_groups import TimeseriesGroupsResource, AsyncTimeseriesGroupsResource
 from .timeseries_groups import (
-    TimeseriesGroupsResource,
-    AsyncTimeseriesGroupsResource,
     TimeseriesGroupsResourceWithRawResponse,
     AsyncTimeseriesGroupsResourceWithRawResponse,
     TimeseriesGroupsResourceWithStreamingResponse,
     AsyncTimeseriesGroupsResourceWithStreamingResponse,
+)
+from .gateway import GatewayResource, AsyncGatewayResource
+from .gateway import (
+    GatewayResourceWithRawResponse,
+    AsyncGatewayResourceWithRawResponse,
+    GatewayResourceWithStreamingResponse,
+    AsyncGatewayResourceWithStreamingResponse,
 )
 
 __all__ = [

@@ -2,14 +2,55 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
-
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
+from .consumers import ConsumersResource, AsyncConsumersResource
+
+from ..._compat import cached_property
+
+from .messages import MessagesResource, AsyncMessagesResource
+
+from ...types.queues.queue_created import QueueCreated
+
+from ..._wrappers import ResultWrapper
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing import Optional, Type
+
+from ..._base_client import make_request_options, AsyncPaginator
+
+from ...types.queues.queue_updated import QueueUpdated
+
+from ...types.queues.queue import Queue
+
+from ...pagination import SyncSinglePage, AsyncSinglePage
+
+from ...types.queues.queue_delete_response import QueueDeleteResponse
+
+from ..._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types.queues import queue_create_params
+from ...types.queues import queue_update_params
+from .consumers import (
+    ConsumersResource,
+    AsyncConsumersResource,
+    ConsumersResourceWithRawResponse,
+    AsyncConsumersResourceWithRawResponse,
+    ConsumersResourceWithStreamingResponse,
+    AsyncConsumersResourceWithStreamingResponse,
 )
 from .messages import (
     MessagesResource,
@@ -19,30 +60,16 @@ from .messages import (
     MessagesResourceWithStreamingResponse,
     AsyncMessagesResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from .consumers import (
-    ConsumersResource,
-    AsyncConsumersResource,
-    ConsumersResourceWithRawResponse,
-    AsyncConsumersResourceWithRawResponse,
-    ConsumersResourceWithStreamingResponse,
-    AsyncConsumersResourceWithStreamingResponse,
-)
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.queues import queue_create_params, queue_update_params
-from ...types.queues.queue import Queue
-from ...types.queues.queue_created import QueueCreated
-from ...types.queues.queue_updated import QueueUpdated
-from ...types.queues.queue_delete_response import QueueDeleteResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["QueuesResource", "AsyncQueuesResource"]
 
@@ -80,7 +107,7 @@ class QueuesResource(SyncAPIResource):
         Creates a new queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -122,9 +149,9 @@ class QueuesResource(SyncAPIResource):
         Updates a queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -166,7 +193,7 @@ class QueuesResource(SyncAPIResource):
         Returns the queues owned by an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -203,9 +230,9 @@ class QueuesResource(SyncAPIResource):
         Deletes a queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -252,9 +279,9 @@ class QueuesResource(SyncAPIResource):
         Get information about a specific queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -314,7 +341,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         Creates a new queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -356,9 +383,9 @@ class AsyncQueuesResource(AsyncAPIResource):
         Updates a queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -400,7 +427,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         Returns the queues owned by an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -437,9 +464,9 @@ class AsyncQueuesResource(AsyncAPIResource):
         Deletes a queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -486,9 +513,9 @@ class AsyncQueuesResource(AsyncAPIResource):
         Get information about a specific queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 

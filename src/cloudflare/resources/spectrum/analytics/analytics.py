@@ -2,15 +2,19 @@
 
 from __future__ import annotations
 
-from .events import (
-    EventsResource,
-    AsyncEventsResource,
-    EventsResourceWithRawResponse,
-    AsyncEventsResourceWithRawResponse,
-    EventsResourceWithStreamingResponse,
-    AsyncEventsResourceWithStreamingResponse,
-)
+from .aggregates.aggregates import AggregatesResource, AsyncAggregatesResource
+
 from ...._compat import cached_property
+
+from .events.events import EventsResource, AsyncEventsResource
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ....types import shared_params
 from .aggregates import (
     AggregatesResource,
     AsyncAggregatesResource,
@@ -19,9 +23,14 @@ from .aggregates import (
     AggregatesResourceWithStreamingResponse,
     AsyncAggregatesResourceWithStreamingResponse,
 )
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from .events.events import EventsResource, AsyncEventsResource
-from .aggregates.aggregates import AggregatesResource, AsyncAggregatesResource
+from .events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
+)
 
 __all__ = ["AnalyticsResource", "AsyncAnalyticsResource"]
 

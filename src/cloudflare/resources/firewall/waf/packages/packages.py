@@ -2,19 +2,41 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
-from typing_extensions import Literal
-
 import httpx
 
-from .rules import (
-    RulesResource,
-    AsyncRulesResource,
-    RulesResourceWithRawResponse,
-    AsyncRulesResourceWithRawResponse,
-    RulesResourceWithStreamingResponse,
-    AsyncRulesResourceWithStreamingResponse,
+from .groups import GroupsResource, AsyncGroupsResource
+
+from ....._compat import cached_property
+
+from .rules import RulesResource, AsyncRulesResource
+
+from .....types.firewall.waf.package_list_response import PackageListResponse
+
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+
+from ....._utils import maybe_transform
+
+from ....._base_client import make_request_options, AsyncPaginator
+
+from typing_extensions import Literal
+
+from .....types.firewall.waf.package_get_response import PackageGetResponse
+
+from ....._response import (
+    to_raw_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_streamed_response_wrapper,
 )
+
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .....types import shared_params
+from .....types.firewall.waf import package_list_params
 from .groups import (
     GroupsResource,
     AsyncGroupsResource,
@@ -23,21 +45,20 @@ from .groups import (
     GroupsResourceWithStreamingResponse,
     AsyncGroupsResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import maybe_transform
-from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
+from .rules import (
+    RulesResource,
+    AsyncRulesResource,
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
 )
-from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ....._base_client import AsyncPaginator, make_request_options
-from .....types.firewall.waf import package_list_params
-from .....types.firewall.waf.package_get_response import PackageGetResponse
-from .....types.firewall.waf.package_list_response import PackageListResponse
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
+from typing import cast
 
 __all__ = ["PackagesResource", "AsyncPackagesResource"]
 

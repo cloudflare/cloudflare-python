@@ -2,5 +2,5 @@
 
 from __future__ import annotations
 
-from .tld_get_params import TldGetParams as TldGetParams
 from .tld_get_response import TldGetResponse as TldGetResponse
+from .tld_get_params import TldGetParams as TldGetParams

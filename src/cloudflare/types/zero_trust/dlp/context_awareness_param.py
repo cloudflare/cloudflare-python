@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
-
 from .skip_configuration_param import SkipConfigurationParam
+
+from typing_extensions import TypedDict, Required
 
 __all__ = ["ContextAwarenessParam"]
 

@@ -1,9 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from ...._models import BaseModel
+
+from typing import List, Optional, Dict
+
 from typing_extensions import Literal, TypeAlias
 
-from ...._models import BaseModel
+from typing import Optional, Union, List, Dict, Any
+from typing_extensions import Literal
+from pydantic import Field as FieldInfo
 
 __all__ = [
     "ConfigurationGetResponse",

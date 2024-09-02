@@ -1,28 +1,25 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .queues import (
-    QueuesResource,
-    AsyncQueuesResource,
-    QueuesResourceWithRawResponse,
-    AsyncQueuesResourceWithRawResponse,
-    QueuesResourceWithStreamingResponse,
-    AsyncQueuesResourceWithStreamingResponse,
+from .consumers import ConsumersResource, AsyncConsumersResource
+from .consumers import (
+    ConsumersResourceWithRawResponse,
+    AsyncConsumersResourceWithRawResponse,
+    ConsumersResourceWithStreamingResponse,
+    AsyncConsumersResourceWithStreamingResponse,
 )
+from .messages import MessagesResource, AsyncMessagesResource
 from .messages import (
-    MessagesResource,
-    AsyncMessagesResource,
     MessagesResourceWithRawResponse,
     AsyncMessagesResourceWithRawResponse,
     MessagesResourceWithStreamingResponse,
     AsyncMessagesResourceWithStreamingResponse,
 )
-from .consumers import (
-    ConsumersResource,
-    AsyncConsumersResource,
-    ConsumersResourceWithRawResponse,
-    AsyncConsumersResourceWithRawResponse,
-    ConsumersResourceWithStreamingResponse,
-    AsyncConsumersResourceWithStreamingResponse,
+from .queues import QueuesResource, AsyncQueuesResource
+from .queues import (
+    QueuesResourceWithRawResponse,
+    AsyncQueuesResourceWithRawResponse,
+    QueuesResourceWithStreamingResponse,
+    AsyncQueuesResourceWithStreamingResponse,
 )
 
 __all__ = [

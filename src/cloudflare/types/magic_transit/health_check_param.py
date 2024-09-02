@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing_extensions import Literal, TypedDict
 
 from .health_check_rate import HealthCheckRate
+
 from .health_check_type import HealthCheckType
 
 __all__ = ["HealthCheckParam"]
