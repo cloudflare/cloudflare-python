@@ -56,6 +56,8 @@ class Meta(BaseModel):
 
 
 class Top0(BaseModel):
+    date: str
+
     fully: int
 
     partially: int
