@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -48,7 +48,7 @@ class VariantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CacheVariant:
+    ) -> Optional[CacheVariant]:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -76,9 +76,9 @@ class VariantsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CacheVariant]._unwrapper,
+                post_parser=ResultWrapper[Optional[CacheVariant]]._unwrapper,
             ),
-            cast_to=cast(Type[CacheVariant], ResultWrapper[CacheVariant]),
+            cast_to=cast(Type[Optional[CacheVariant]], ResultWrapper[CacheVariant]),
         )
 
     def edit(
@@ -92,7 +92,7 @@ class VariantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantEditResponse:
+    ) -> Optional[VariantEditResponse]:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -123,9 +123,9 @@ class VariantsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VariantEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[VariantEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VariantEditResponse], ResultWrapper[VariantEditResponse]),
+            cast_to=cast(Type[Optional[VariantEditResponse]], ResultWrapper[VariantEditResponse]),
         )
 
     def get(
@@ -138,7 +138,7 @@ class VariantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantGetResponse:
+    ) -> Optional[VariantGetResponse]:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -166,9 +166,9 @@ class VariantsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VariantGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[VariantGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VariantGetResponse], ResultWrapper[VariantGetResponse]),
+            cast_to=cast(Type[Optional[VariantGetResponse]], ResultWrapper[VariantGetResponse]),
         )
 
 
@@ -191,7 +191,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CacheVariant:
+    ) -> Optional[CacheVariant]:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -219,9 +219,9 @@ class AsyncVariantsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CacheVariant]._unwrapper,
+                post_parser=ResultWrapper[Optional[CacheVariant]]._unwrapper,
             ),
-            cast_to=cast(Type[CacheVariant], ResultWrapper[CacheVariant]),
+            cast_to=cast(Type[Optional[CacheVariant]], ResultWrapper[CacheVariant]),
         )
 
     async def edit(
@@ -235,7 +235,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantEditResponse:
+    ) -> Optional[VariantEditResponse]:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -266,9 +266,9 @@ class AsyncVariantsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VariantEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[VariantEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VariantEditResponse], ResultWrapper[VariantEditResponse]),
+            cast_to=cast(Type[Optional[VariantEditResponse]], ResultWrapper[VariantEditResponse]),
         )
 
     async def get(
@@ -281,7 +281,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantGetResponse:
+    ) -> Optional[VariantGetResponse]:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -309,9 +309,9 @@ class AsyncVariantsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VariantGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[VariantGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VariantGetResponse], ResultWrapper[VariantGetResponse]),
+            cast_to=cast(Type[Optional[VariantGetResponse]], ResultWrapper[VariantGetResponse]),
         )
 
 
