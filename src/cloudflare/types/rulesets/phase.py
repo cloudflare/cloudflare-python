@@ -32,4 +32,5 @@ Phase: TypeAlias = Literal[
     "magic_transit",
     "magic_transit_ids_managed",
     "magic_transit_managed",
+    "magic_transit_ratelimit",
 ]
