@@ -23,7 +23,7 @@ class LogListParams(TypedDict, total=False):
 
     cached: bool
 
-    direction: Literal["asc", "desc", "ASC", "DESC"]
+    direction: Literal["asc", "desc"]
 
     end_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
