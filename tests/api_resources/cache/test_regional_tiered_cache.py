@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from cloudflare import Cloudflare, AsyncCloudflare
 
-from cloudflare.types.cache import RegionalTieredCacheEditResponse, RegionalTieredCacheGetResponse
+from typing import Optional, Any, cast
 
-from typing import Any, cast
+from cloudflare.types.cache import RegionalTieredCacheEditResponse, RegionalTieredCacheGetResponse
 
 import os
 import pytest
@@ -30,7 +30,7 @@ class TestRegionalTieredCache:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(RegionalTieredCacheEditResponse, regional_tiered_cache, path=["response"])
+        assert_matches_type(Optional[RegionalTieredCacheEditResponse], regional_tiered_cache, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -42,7 +42,7 @@ class TestRegionalTieredCache:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         regional_tiered_cache = response.parse()
-        assert_matches_type(RegionalTieredCacheEditResponse, regional_tiered_cache, path=["response"])
+        assert_matches_type(Optional[RegionalTieredCacheEditResponse], regional_tiered_cache, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -54,7 +54,7 @@ class TestRegionalTieredCache:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             regional_tiered_cache = response.parse()
-            assert_matches_type(RegionalTieredCacheEditResponse, regional_tiered_cache, path=["response"])
+            assert_matches_type(Optional[RegionalTieredCacheEditResponse], regional_tiered_cache, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -71,7 +71,7 @@ class TestRegionalTieredCache:
         regional_tiered_cache = client.cache.regional_tiered_cache.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(RegionalTieredCacheGetResponse, regional_tiered_cache, path=["response"])
+        assert_matches_type(Optional[RegionalTieredCacheGetResponse], regional_tiered_cache, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -82,7 +82,7 @@ class TestRegionalTieredCache:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         regional_tiered_cache = response.parse()
-        assert_matches_type(RegionalTieredCacheGetResponse, regional_tiered_cache, path=["response"])
+        assert_matches_type(Optional[RegionalTieredCacheGetResponse], regional_tiered_cache, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -93,7 +93,7 @@ class TestRegionalTieredCache:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             regional_tiered_cache = response.parse()
-            assert_matches_type(RegionalTieredCacheGetResponse, regional_tiered_cache, path=["response"])
+            assert_matches_type(Optional[RegionalTieredCacheGetResponse], regional_tiered_cache, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -114,7 +114,7 @@ class TestAsyncRegionalTieredCache:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(RegionalTieredCacheEditResponse, regional_tiered_cache, path=["response"])
+        assert_matches_type(Optional[RegionalTieredCacheEditResponse], regional_tiered_cache, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -126,7 +126,7 @@ class TestAsyncRegionalTieredCache:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         regional_tiered_cache = await response.parse()
-        assert_matches_type(RegionalTieredCacheEditResponse, regional_tiered_cache, path=["response"])
+        assert_matches_type(Optional[RegionalTieredCacheEditResponse], regional_tiered_cache, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -138,7 +138,7 @@ class TestAsyncRegionalTieredCache:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             regional_tiered_cache = await response.parse()
-            assert_matches_type(RegionalTieredCacheEditResponse, regional_tiered_cache, path=["response"])
+            assert_matches_type(Optional[RegionalTieredCacheEditResponse], regional_tiered_cache, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -155,7 +155,7 @@ class TestAsyncRegionalTieredCache:
         regional_tiered_cache = await async_client.cache.regional_tiered_cache.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(RegionalTieredCacheGetResponse, regional_tiered_cache, path=["response"])
+        assert_matches_type(Optional[RegionalTieredCacheGetResponse], regional_tiered_cache, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -166,7 +166,7 @@ class TestAsyncRegionalTieredCache:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         regional_tiered_cache = await response.parse()
-        assert_matches_type(RegionalTieredCacheGetResponse, regional_tiered_cache, path=["response"])
+        assert_matches_type(Optional[RegionalTieredCacheGetResponse], regional_tiered_cache, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -177,7 +177,7 @@ class TestAsyncRegionalTieredCache:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             regional_tiered_cache = await response.parse()
-            assert_matches_type(RegionalTieredCacheGetResponse, regional_tiered_cache, path=["response"])
+            assert_matches_type(Optional[RegionalTieredCacheGetResponse], regional_tiered_cache, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

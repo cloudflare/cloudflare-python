@@ -20,7 +20,7 @@ class FirewallAPIResponseSingle(BaseModel):
 
     messages: List[ResponseInfo]
 
-    result: Union[Optional[str], Optional[object]]
+    result: Union[Optional[str], object]
 
     success: Literal[True]
     """Whether the API call was successful"""
