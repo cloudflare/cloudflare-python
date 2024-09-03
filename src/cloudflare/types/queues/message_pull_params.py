@@ -14,7 +14,7 @@ __all__ = ["MessagePullParams"]
 
 class MessagePullParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """Identifier"""
 
     batch_size: float
     """The maximum number of messages to include in a batch."""

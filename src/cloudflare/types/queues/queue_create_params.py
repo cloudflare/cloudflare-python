@@ -14,6 +14,6 @@ __all__ = ["QueueCreateParams"]
 
 class QueueCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """Identifier"""
 
     queue_name: Required[str]
