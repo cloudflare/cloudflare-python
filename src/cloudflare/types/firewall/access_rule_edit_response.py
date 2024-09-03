@@ -10,4 +10,4 @@ from pydantic import Field as FieldInfo
 
 __all__ = ["AccessRuleEditResponse"]
 
-AccessRuleEditResponse: TypeAlias = Union[Optional[str], Optional[object]]
+AccessRuleEditResponse: TypeAlias = Union[Optional[str], object]

@@ -6,7 +6,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 
 from cloudflare.types.pages import Deployment
 
-from typing import Any, cast, Optional
+from typing import Any, cast
 
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 
