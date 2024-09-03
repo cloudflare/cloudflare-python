@@ -4,13 +4,13 @@ from __future__ import annotations
 
 from cloudflare import Cloudflare, AsyncCloudflare
 
+from typing import Optional, Any, cast
+
 from cloudflare.types.cache import (
     SmartTieredCacheDeleteResponse,
     SmartTieredCacheEditResponse,
     SmartTieredCacheGetResponse,
 )
-
-from typing import Any, cast
 
 import os
 import pytest
@@ -33,7 +33,7 @@ class TestSmartTieredCache:
         smart_tiered_cache = client.cache.smart_tiered_cache.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SmartTieredCacheDeleteResponse, smart_tiered_cache, path=["response"])
+        assert_matches_type(Optional[SmartTieredCacheDeleteResponse], smart_tiered_cache, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -44,7 +44,7 @@ class TestSmartTieredCache:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         smart_tiered_cache = response.parse()
-        assert_matches_type(SmartTieredCacheDeleteResponse, smart_tiered_cache, path=["response"])
+        assert_matches_type(Optional[SmartTieredCacheDeleteResponse], smart_tiered_cache, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -55,7 +55,7 @@ class TestSmartTieredCache:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             smart_tiered_cache = response.parse()
-            assert_matches_type(SmartTieredCacheDeleteResponse, smart_tiered_cache, path=["response"])
+            assert_matches_type(Optional[SmartTieredCacheDeleteResponse], smart_tiered_cache, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -72,7 +72,7 @@ class TestSmartTieredCache:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(SmartTieredCacheEditResponse, smart_tiered_cache, path=["response"])
+        assert_matches_type(Optional[SmartTieredCacheEditResponse], smart_tiered_cache, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -84,7 +84,7 @@ class TestSmartTieredCache:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         smart_tiered_cache = response.parse()
-        assert_matches_type(SmartTieredCacheEditResponse, smart_tiered_cache, path=["response"])
+        assert_matches_type(Optional[SmartTieredCacheEditResponse], smart_tiered_cache, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -96,7 +96,7 @@ class TestSmartTieredCache:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             smart_tiered_cache = response.parse()
-            assert_matches_type(SmartTieredCacheEditResponse, smart_tiered_cache, path=["response"])
+            assert_matches_type(Optional[SmartTieredCacheEditResponse], smart_tiered_cache, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -113,7 +113,7 @@ class TestSmartTieredCache:
         smart_tiered_cache = client.cache.smart_tiered_cache.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SmartTieredCacheGetResponse, smart_tiered_cache, path=["response"])
+        assert_matches_type(Optional[SmartTieredCacheGetResponse], smart_tiered_cache, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -124,7 +124,7 @@ class TestSmartTieredCache:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         smart_tiered_cache = response.parse()
-        assert_matches_type(SmartTieredCacheGetResponse, smart_tiered_cache, path=["response"])
+        assert_matches_type(Optional[SmartTieredCacheGetResponse], smart_tiered_cache, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -135,7 +135,7 @@ class TestSmartTieredCache:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             smart_tiered_cache = response.parse()
-            assert_matches_type(SmartTieredCacheGetResponse, smart_tiered_cache, path=["response"])
+            assert_matches_type(Optional[SmartTieredCacheGetResponse], smart_tiered_cache, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -155,7 +155,7 @@ class TestAsyncSmartTieredCache:
         smart_tiered_cache = await async_client.cache.smart_tiered_cache.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SmartTieredCacheDeleteResponse, smart_tiered_cache, path=["response"])
+        assert_matches_type(Optional[SmartTieredCacheDeleteResponse], smart_tiered_cache, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -166,7 +166,7 @@ class TestAsyncSmartTieredCache:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         smart_tiered_cache = await response.parse()
-        assert_matches_type(SmartTieredCacheDeleteResponse, smart_tiered_cache, path=["response"])
+        assert_matches_type(Optional[SmartTieredCacheDeleteResponse], smart_tiered_cache, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -177,7 +177,7 @@ class TestAsyncSmartTieredCache:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             smart_tiered_cache = await response.parse()
-            assert_matches_type(SmartTieredCacheDeleteResponse, smart_tiered_cache, path=["response"])
+            assert_matches_type(Optional[SmartTieredCacheDeleteResponse], smart_tiered_cache, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -194,7 +194,7 @@ class TestAsyncSmartTieredCache:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(SmartTieredCacheEditResponse, smart_tiered_cache, path=["response"])
+        assert_matches_type(Optional[SmartTieredCacheEditResponse], smart_tiered_cache, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -206,7 +206,7 @@ class TestAsyncSmartTieredCache:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         smart_tiered_cache = await response.parse()
-        assert_matches_type(SmartTieredCacheEditResponse, smart_tiered_cache, path=["response"])
+        assert_matches_type(Optional[SmartTieredCacheEditResponse], smart_tiered_cache, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -218,7 +218,7 @@ class TestAsyncSmartTieredCache:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             smart_tiered_cache = await response.parse()
-            assert_matches_type(SmartTieredCacheEditResponse, smart_tiered_cache, path=["response"])
+            assert_matches_type(Optional[SmartTieredCacheEditResponse], smart_tiered_cache, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -235,7 +235,7 @@ class TestAsyncSmartTieredCache:
         smart_tiered_cache = await async_client.cache.smart_tiered_cache.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SmartTieredCacheGetResponse, smart_tiered_cache, path=["response"])
+        assert_matches_type(Optional[SmartTieredCacheGetResponse], smart_tiered_cache, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -246,7 +246,7 @@ class TestAsyncSmartTieredCache:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         smart_tiered_cache = await response.parse()
-        assert_matches_type(SmartTieredCacheGetResponse, smart_tiered_cache, path=["response"])
+        assert_matches_type(Optional[SmartTieredCacheGetResponse], smart_tiered_cache, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -257,7 +257,7 @@ class TestAsyncSmartTieredCache:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             smart_tiered_cache = await response.parse()
-            assert_matches_type(SmartTieredCacheGetResponse, smart_tiered_cache, path=["response"])
+            assert_matches_type(Optional[SmartTieredCacheGetResponse], smart_tiered_cache, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
