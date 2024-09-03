@@ -8,6 +8,6 @@ from typing import Optional, Union, List, Dict, Any
 from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
-__all__ = ["GroupGetResponse"]
+__all__ = ["OriginPostQuantumEncryptionUpdateResponse"]
 
-GroupGetResponse: TypeAlias = Union[Optional[str], Optional[object]]
+OriginPostQuantumEncryptionUpdateResponse: TypeAlias = Union[Optional[str], Optional[object]]
