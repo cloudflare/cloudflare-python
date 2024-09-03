@@ -6,6 +6,8 @@ from cloudflare import Cloudflare, AsyncCloudflare
 
 from typing import Optional, Any, cast
 
+from cloudflare.types.kv.namespaces import ValueUpdateResponse, ValueDeleteResponse
+
 from cloudflare._response import (
     BinaryAPIResponse,
     StreamedBinaryAPIResponse,
@@ -39,7 +41,7 @@ class TestValues:
             metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
         )
-        assert_matches_type(object, value, path=["response"])
+        assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -55,7 +57,7 @@ class TestValues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         value = response.parse()
-        assert_matches_type(object, value, path=["response"])
+        assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -71,7 +73,7 @@ class TestValues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             value = response.parse()
-            assert_matches_type(object, value, path=["response"])
+            assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -112,7 +114,7 @@ class TestValues:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         )
-        assert_matches_type(object, value, path=["response"])
+        assert_matches_type(Optional[ValueDeleteResponse], value, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -125,7 +127,7 @@ class TestValues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         value = response.parse()
-        assert_matches_type(object, value, path=["response"])
+        assert_matches_type(Optional[ValueDeleteResponse], value, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -138,7 +140,7 @@ class TestValues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             value = response.parse()
-            assert_matches_type(object, value, path=["response"])
+            assert_matches_type(Optional[ValueDeleteResponse], value, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -261,7 +263,7 @@ class TestAsyncValues:
             metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
         )
-        assert_matches_type(object, value, path=["response"])
+        assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -277,7 +279,7 @@ class TestAsyncValues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         value = await response.parse()
-        assert_matches_type(object, value, path=["response"])
+        assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -293,7 +295,7 @@ class TestAsyncValues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             value = await response.parse()
-            assert_matches_type(object, value, path=["response"])
+            assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -334,7 +336,7 @@ class TestAsyncValues:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         )
-        assert_matches_type(object, value, path=["response"])
+        assert_matches_type(Optional[ValueDeleteResponse], value, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -347,7 +349,7 @@ class TestAsyncValues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         value = await response.parse()
-        assert_matches_type(object, value, path=["response"])
+        assert_matches_type(Optional[ValueDeleteResponse], value, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -360,7 +362,7 @@ class TestAsyncValues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             value = await response.parse()
-            assert_matches_type(object, value, path=["response"])
+            assert_matches_type(Optional[ValueDeleteResponse], value, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -10,4 +10,4 @@ from pydantic import Field as FieldInfo
 
 __all__ = ["GroupEditResponse"]
 
-GroupEditResponse: TypeAlias = Union[Optional[str], object]
+GroupEditResponse: TypeAlias = Union[Optional[str], Optional[object]]

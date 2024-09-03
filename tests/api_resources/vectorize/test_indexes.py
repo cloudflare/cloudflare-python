@@ -154,7 +154,7 @@ class TestIndexes:
             index_name="example-index",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[IndexDeleteResponse], index, path=["response"])
+        assert_matches_type(IndexDeleteResponse, index, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -166,7 +166,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(Optional[IndexDeleteResponse], index, path=["response"])
+        assert_matches_type(IndexDeleteResponse, index, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -178,7 +178,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(Optional[IndexDeleteResponse], index, path=["response"])
+            assert_matches_type(IndexDeleteResponse, index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -730,7 +730,7 @@ class TestAsyncIndexes:
             index_name="example-index",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[IndexDeleteResponse], index, path=["response"])
+        assert_matches_type(IndexDeleteResponse, index, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -742,7 +742,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(Optional[IndexDeleteResponse], index, path=["response"])
+        assert_matches_type(IndexDeleteResponse, index, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -754,7 +754,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(Optional[IndexDeleteResponse], index, path=["response"])
+            assert_matches_type(IndexDeleteResponse, index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
