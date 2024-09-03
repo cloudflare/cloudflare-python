@@ -10,4 +10,4 @@ from pydantic import Field as FieldInfo
 
 __all__ = ["SubscriptionGetResponse"]
 
-SubscriptionGetResponse: TypeAlias = Union[Optional[str], Optional[object]]
+SubscriptionGetResponse: TypeAlias = Union[Optional[str], object]

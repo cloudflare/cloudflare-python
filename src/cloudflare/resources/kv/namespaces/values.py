@@ -6,8 +6,6 @@ import httpx
 
 from ...._compat import cached_property
 
-from ....types.kv.namespaces.value_update_response import ValueUpdateResponse
-
 from ...._wrappers import ResultWrapper
 
 from ...._utils import maybe_transform, async_maybe_transform
@@ -15,8 +13,6 @@ from ...._utils import maybe_transform, async_maybe_transform
 from typing import Optional, Type
 
 from ...._base_client import make_request_options
-
-from ....types.kv.namespaces.value_delete_response import ValueDeleteResponse
 
 from ...._response import (
     BinaryAPIResponse,
@@ -72,7 +68,7 @@ class ValuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ValueUpdateResponse]:
+    ) -> object:
         """Write a value identified by a key.
 
         Use URL-encoding to use special characters
@@ -126,9 +122,9 @@ class ValuesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ValueUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ValueUpdateResponse]], ResultWrapper[ValueUpdateResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def delete(
@@ -143,7 +139,7 @@ class ValuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ValueDeleteResponse]:
+    ) -> object:
         """Remove a KV pair from the namespace.
 
         Use URL-encoding to use special characters
@@ -178,9 +174,9 @@ class ValuesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ValueDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ValueDeleteResponse]], ResultWrapper[ValueDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -259,7 +255,7 @@ class AsyncValuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ValueUpdateResponse]:
+    ) -> object:
         """Write a value identified by a key.
 
         Use URL-encoding to use special characters
@@ -313,9 +309,9 @@ class AsyncValuesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ValueUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ValueUpdateResponse]], ResultWrapper[ValueUpdateResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def delete(
@@ -330,7 +326,7 @@ class AsyncValuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ValueDeleteResponse]:
+    ) -> object:
         """Remove a KV pair from the namespace.
 
         Use URL-encoding to use special characters
@@ -365,9 +361,9 @@ class AsyncValuesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ValueDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ValueDeleteResponse]], ResultWrapper[ValueDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(
