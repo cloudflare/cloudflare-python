@@ -10,4 +10,4 @@ from pydantic import Field as FieldInfo
 
 __all__ = ["UARuleUpdateResponse"]
 
-UARuleUpdateResponse: TypeAlias = Union[Optional[str], Optional[object]]
+UARuleUpdateResponse: TypeAlias = Union[Optional[str], object]
