@@ -10,4 +10,4 @@ from pydantic import Field as FieldInfo
 
 __all__ = ["RateLimitGetResponse"]
 
-RateLimitGetResponse: TypeAlias = Union[Optional[str], object]
+RateLimitGetResponse: TypeAlias = Union[Optional[str], Optional[object]]

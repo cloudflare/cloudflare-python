@@ -4,7 +4,12 @@ from __future__ import annotations
 
 from cloudflare import Cloudflare, AsyncCloudflare
 
-from typing import Optional, Any, cast
+from cloudflare.types.origin_post_quantum_encryption import (
+    OriginPostQuantumEncryptionUpdateResponse,
+    OriginPostQuantumEncryptionGetResponse,
+)
+
+from typing import Any, cast
 
 import os
 import pytest
@@ -29,7 +34,9 @@ class TestOriginPostQuantumEncryption:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="preferred",
         )
-        assert_matches_type(object, origin_post_quantum_encryption, path=["response"])
+        assert_matches_type(
+            OriginPostQuantumEncryptionUpdateResponse, origin_post_quantum_encryption, path=["response"]
+        )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -42,7 +49,9 @@ class TestOriginPostQuantumEncryption:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_post_quantum_encryption = response.parse()
-        assert_matches_type(object, origin_post_quantum_encryption, path=["response"])
+        assert_matches_type(
+            OriginPostQuantumEncryptionUpdateResponse, origin_post_quantum_encryption, path=["response"]
+        )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -55,7 +64,9 @@ class TestOriginPostQuantumEncryption:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_post_quantum_encryption = response.parse()
-            assert_matches_type(object, origin_post_quantum_encryption, path=["response"])
+            assert_matches_type(
+                OriginPostQuantumEncryptionUpdateResponse, origin_post_quantum_encryption, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -74,7 +85,7 @@ class TestOriginPostQuantumEncryption:
         origin_post_quantum_encryption = client.origin_post_quantum_encryption.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, origin_post_quantum_encryption, path=["response"])
+        assert_matches_type(OriginPostQuantumEncryptionGetResponse, origin_post_quantum_encryption, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -86,7 +97,7 @@ class TestOriginPostQuantumEncryption:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_post_quantum_encryption = response.parse()
-        assert_matches_type(object, origin_post_quantum_encryption, path=["response"])
+        assert_matches_type(OriginPostQuantumEncryptionGetResponse, origin_post_quantum_encryption, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -98,7 +109,9 @@ class TestOriginPostQuantumEncryption:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_post_quantum_encryption = response.parse()
-            assert_matches_type(object, origin_post_quantum_encryption, path=["response"])
+            assert_matches_type(
+                OriginPostQuantumEncryptionGetResponse, origin_post_quantum_encryption, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -121,7 +134,9 @@ class TestAsyncOriginPostQuantumEncryption:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="preferred",
         )
-        assert_matches_type(object, origin_post_quantum_encryption, path=["response"])
+        assert_matches_type(
+            OriginPostQuantumEncryptionUpdateResponse, origin_post_quantum_encryption, path=["response"]
+        )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -134,7 +149,9 @@ class TestAsyncOriginPostQuantumEncryption:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_post_quantum_encryption = await response.parse()
-        assert_matches_type(object, origin_post_quantum_encryption, path=["response"])
+        assert_matches_type(
+            OriginPostQuantumEncryptionUpdateResponse, origin_post_quantum_encryption, path=["response"]
+        )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -147,7 +164,9 @@ class TestAsyncOriginPostQuantumEncryption:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_post_quantum_encryption = await response.parse()
-            assert_matches_type(object, origin_post_quantum_encryption, path=["response"])
+            assert_matches_type(
+                OriginPostQuantumEncryptionUpdateResponse, origin_post_quantum_encryption, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -166,7 +185,7 @@ class TestAsyncOriginPostQuantumEncryption:
         origin_post_quantum_encryption = await async_client.origin_post_quantum_encryption.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, origin_post_quantum_encryption, path=["response"])
+        assert_matches_type(OriginPostQuantumEncryptionGetResponse, origin_post_quantum_encryption, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -178,7 +197,7 @@ class TestAsyncOriginPostQuantumEncryption:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_post_quantum_encryption = await response.parse()
-        assert_matches_type(object, origin_post_quantum_encryption, path=["response"])
+        assert_matches_type(OriginPostQuantumEncryptionGetResponse, origin_post_quantum_encryption, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -190,7 +209,9 @@ class TestAsyncOriginPostQuantumEncryption:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_post_quantum_encryption = await response.parse()
-            assert_matches_type(object, origin_post_quantum_encryption, path=["response"])
+            assert_matches_type(
+                OriginPostQuantumEncryptionGetResponse, origin_post_quantum_encryption, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
