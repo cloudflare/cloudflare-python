@@ -45,7 +45,7 @@ class LogListParams(TypedDict, total=False):
 
     order_by: Literal["created_at", "provider", "model", "model_type", "success", "cached"]
 
-    order_by_direction: Literal["asc", "desc", "ASC", "DESC"]
+    order_by_direction: Literal["asc", "desc"]
 
     page: int
 
