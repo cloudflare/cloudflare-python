@@ -27,6 +27,3 @@ class CustomPageUpdateParams(TypedDict, total=False):
 
     app_count: int
     """Number of apps the custom page is assigned to."""
-
-    uid: str
-    """UUID"""
