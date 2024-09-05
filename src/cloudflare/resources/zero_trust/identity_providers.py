@@ -148,7 +148,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -174,8 +173,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -199,7 +196,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -225,8 +221,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -250,7 +244,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -276,8 +269,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -301,7 +292,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -327,8 +317,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -352,7 +340,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -378,8 +365,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -403,7 +388,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -429,8 +413,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -454,7 +436,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -480,8 +461,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -505,7 +484,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -531,8 +509,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -556,7 +532,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -582,8 +557,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -607,7 +580,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -633,8 +605,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -658,7 +628,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -684,8 +653,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -709,7 +676,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -735,8 +701,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -760,7 +724,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -786,8 +749,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -811,7 +772,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -837,8 +797,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -872,7 +830,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -902,7 +859,6 @@ class IdentityProvidersResource(SyncAPIResource):
                         "config": config,
                         "name": name,
                         "type": type,
-                        "id": id,
                         "scim_config": scim_config,
                     },
                     identity_provider_create_params.IdentityProviderCreateParams,
@@ -930,7 +886,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -958,8 +913,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -984,7 +937,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1012,8 +964,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1038,7 +988,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1066,8 +1015,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1092,7 +1039,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1120,8 +1066,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1146,7 +1090,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1174,8 +1117,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1200,7 +1141,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1228,8 +1168,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1254,7 +1192,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1282,8 +1219,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1308,7 +1243,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1336,8 +1270,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1362,7 +1294,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1390,8 +1321,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1416,7 +1345,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1444,8 +1372,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1470,7 +1396,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1498,8 +1423,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1524,7 +1447,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1552,8 +1474,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1578,7 +1498,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1606,8 +1525,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1632,7 +1549,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1660,8 +1576,6 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1696,7 +1610,6 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1730,7 +1643,6 @@ class IdentityProvidersResource(SyncAPIResource):
                         "config": config,
                         "name": name,
                         "type": type,
-                        "id": id,
                         "scim_config": scim_config,
                     },
                     identity_provider_update_params.IdentityProviderUpdateParams,
@@ -1941,7 +1853,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1967,8 +1878,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -1992,7 +1901,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2018,8 +1926,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2043,7 +1949,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2069,8 +1974,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2094,7 +1997,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2120,8 +2022,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2145,7 +2045,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2171,8 +2070,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2196,7 +2093,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2222,8 +2118,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2247,7 +2141,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2273,8 +2166,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2298,7 +2189,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2324,8 +2214,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2349,7 +2237,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2375,8 +2262,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2400,7 +2285,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2426,8 +2310,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2451,7 +2333,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2477,8 +2358,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2502,7 +2381,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2528,8 +2406,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2553,7 +2429,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2579,8 +2454,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2604,7 +2477,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2630,8 +2502,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2665,7 +2535,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2695,7 +2564,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
                         "config": config,
                         "name": name,
                         "type": type,
-                        "id": id,
                         "scim_config": scim_config,
                     },
                     identity_provider_create_params.IdentityProviderCreateParams,
@@ -2723,7 +2591,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2751,8 +2618,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2777,7 +2642,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2805,8 +2669,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2831,7 +2693,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2859,8 +2720,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2885,7 +2744,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2913,8 +2771,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2939,7 +2795,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2967,8 +2822,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -2993,7 +2846,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3021,8 +2873,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3047,7 +2897,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3075,8 +2924,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3101,7 +2948,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3129,8 +2975,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3155,7 +2999,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3183,8 +3026,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3209,7 +3050,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3237,8 +3077,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3263,7 +3101,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3291,8 +3128,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3317,7 +3152,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3345,8 +3179,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3371,7 +3203,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3399,8 +3230,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3425,7 +3254,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3453,8 +3281,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          id: UUID
 
           scim_config: The configuration settings for enabling a System for Cross-Domain Identity
               Management (SCIM) with the identity provider.
@@ -3489,7 +3315,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        id: str | NotGiven = NOT_GIVEN,
         scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3523,7 +3348,6 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
                         "config": config,
                         "name": name,
                         "type": type,
-                        "id": id,
                         "scim_config": scim_config,
                     },
                     identity_provider_update_params.IdentityProviderUpdateParams,

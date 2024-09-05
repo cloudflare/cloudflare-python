@@ -45,7 +45,6 @@ class TestCustomPages:
             name="name",
             type="identity_denied",
             app_count=0,
-            uid="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
 
@@ -109,7 +108,6 @@ class TestCustomPages:
             name="name",
             type="identity_denied",
             app_count=0,
-            uid="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
 
@@ -321,7 +319,6 @@ class TestAsyncCustomPages:
             name="name",
             type="identity_denied",
             app_count=0,
-            uid="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
 
@@ -385,7 +382,6 @@ class TestAsyncCustomPages:
             name="name",
             type="identity_denied",
             app_count=0,
-            uid="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
 
