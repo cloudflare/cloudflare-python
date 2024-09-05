@@ -69,7 +69,6 @@ class CustomPagesResource(SyncAPIResource):
         name: str,
         type: Literal["identity_denied", "forbidden"],
         app_count: int | NotGiven = NOT_GIVEN,
-        uid: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -91,8 +90,6 @@ class CustomPagesResource(SyncAPIResource):
 
           app_count: Number of apps the custom page is assigned to.
 
-          uid: UUID
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -111,7 +108,6 @@ class CustomPagesResource(SyncAPIResource):
                     "name": name,
                     "type": type,
                     "app_count": app_count,
-                    "uid": uid,
                 },
                 custom_page_create_params.CustomPageCreateParams,
             ),
@@ -134,7 +130,6 @@ class CustomPagesResource(SyncAPIResource):
         name: str,
         type: Literal["identity_denied", "forbidden"],
         app_count: int | NotGiven = NOT_GIVEN,
-        uid: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -158,8 +153,6 @@ class CustomPagesResource(SyncAPIResource):
 
           app_count: Number of apps the custom page is assigned to.
 
-          uid: UUID
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -180,7 +173,6 @@ class CustomPagesResource(SyncAPIResource):
                     "name": name,
                     "type": type,
                     "app_count": app_count,
-                    "uid": uid,
                 },
                 custom_page_update_params.CustomPageUpdateParams,
             ),
@@ -336,7 +328,6 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         name: str,
         type: Literal["identity_denied", "forbidden"],
         app_count: int | NotGiven = NOT_GIVEN,
-        uid: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -358,8 +349,6 @@ class AsyncCustomPagesResource(AsyncAPIResource):
 
           app_count: Number of apps the custom page is assigned to.
 
-          uid: UUID
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -378,7 +367,6 @@ class AsyncCustomPagesResource(AsyncAPIResource):
                     "name": name,
                     "type": type,
                     "app_count": app_count,
-                    "uid": uid,
                 },
                 custom_page_create_params.CustomPageCreateParams,
             ),
@@ -401,7 +389,6 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         name: str,
         type: Literal["identity_denied", "forbidden"],
         app_count: int | NotGiven = NOT_GIVEN,
-        uid: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -425,8 +412,6 @@ class AsyncCustomPagesResource(AsyncAPIResource):
 
           app_count: Number of apps the custom page is assigned to.
 
-          uid: UUID
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -447,7 +432,6 @@ class AsyncCustomPagesResource(AsyncAPIResource):
                     "name": name,
                     "type": type,
                     "app_count": app_count,
-                    "uid": uid,
                 },
                 custom_page_update_params.CustomPageUpdateParams,
             ),

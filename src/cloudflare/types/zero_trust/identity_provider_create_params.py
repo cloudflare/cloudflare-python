@@ -70,9 +70,6 @@ class AzureAD(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    id: str
-    """UUID"""
-
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -140,9 +137,6 @@ class AccessCentrify(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    id: str
-    """UUID"""
-
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -194,9 +188,6 @@ class AccessFacebook(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    id: str
-    """UUID"""
-
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -228,9 +219,6 @@ class AccessGitHub(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    id: str
-    """UUID"""
-
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -261,9 +249,6 @@ class AccessGoogle(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
-    id: str
-    """UUID"""
 
     scim_config: IdentityProviderSCIMConfigParam
     """
@@ -309,9 +294,6 @@ class AccessGoogleApps(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
-    id: str
-    """UUID"""
 
     scim_config: IdentityProviderSCIMConfigParam
     """
@@ -361,9 +343,6 @@ class AccessLinkedin(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    id: str
-    """UUID"""
-
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -394,9 +373,6 @@ class AccessOIDC(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
-    id: str
-    """UUID"""
 
     scim_config: IdentityProviderSCIMConfigParam
     """
@@ -455,9 +431,6 @@ class AccessOkta(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    id: str
-    """UUID"""
-
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -509,9 +482,6 @@ class AccessOnelogin(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    id: str
-    """UUID"""
-
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -560,9 +530,6 @@ class AccessPingone(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    id: str
-    """UUID"""
-
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -610,9 +577,6 @@ class AccessSAML(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
-    id: str
-    """UUID"""
 
     scim_config: IdentityProviderSCIMConfigParam
     """
@@ -685,9 +649,6 @@ class AccessYandex(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    id: str
-    """UUID"""
-
     scim_config: IdentityProviderSCIMConfigParam
     """
     The configuration settings for enabling a System for Cross-Domain Identity
@@ -718,9 +679,6 @@ class AccessOnetimepin(TypedDict, total=False):
 
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
-    id: str
-    """UUID"""
 
     scim_config: IdentityProviderSCIMConfigParam
     """
