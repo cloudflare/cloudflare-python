@@ -2,51 +2,6 @@
 
 from __future__ import annotations
 
-from .force_axfr import ForceAXFRResource, AsyncForceAXFRResource
-
-from ..._compat import cached_property
-
-from .incoming import IncomingResource, AsyncIncomingResource
-
-from .outgoing.outgoing import OutgoingResource, AsyncOutgoingResource
-
-from .acls import ACLsResource, AsyncACLsResource
-
-from .peers import PeersResource, AsyncPeersResource
-
-from .tsigs import TSIGsResource, AsyncTSIGsResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from .force_axfr import (
-    ForceAXFRResource,
-    AsyncForceAXFRResource,
-    ForceAXFRResourceWithRawResponse,
-    AsyncForceAXFRResourceWithRawResponse,
-    ForceAXFRResourceWithStreamingResponse,
-    AsyncForceAXFRResourceWithStreamingResponse,
-)
-from .incoming import (
-    IncomingResource,
-    AsyncIncomingResource,
-    IncomingResourceWithRawResponse,
-    AsyncIncomingResourceWithRawResponse,
-    IncomingResourceWithStreamingResponse,
-    AsyncIncomingResourceWithStreamingResponse,
-)
-from .outgoing import (
-    OutgoingResource,
-    AsyncOutgoingResource,
-    OutgoingResourceWithRawResponse,
-    AsyncOutgoingResourceWithRawResponse,
-    OutgoingResourceWithStreamingResponse,
-    AsyncOutgoingResourceWithStreamingResponse,
-)
 from .acls import (
     ACLsResource,
     AsyncACLsResource,
@@ -71,6 +26,33 @@ from .tsigs import (
     TSIGsResourceWithStreamingResponse,
     AsyncTSIGsResourceWithStreamingResponse,
 )
+from .incoming import (
+    IncomingResource,
+    AsyncIncomingResource,
+    IncomingResourceWithRawResponse,
+    AsyncIncomingResourceWithRawResponse,
+    IncomingResourceWithStreamingResponse,
+    AsyncIncomingResourceWithStreamingResponse,
+)
+from .outgoing import (
+    OutgoingResource,
+    AsyncOutgoingResource,
+    OutgoingResourceWithRawResponse,
+    AsyncOutgoingResourceWithRawResponse,
+    OutgoingResourceWithStreamingResponse,
+    AsyncOutgoingResourceWithStreamingResponse,
+)
+from ..._compat import cached_property
+from .force_axfr import (
+    ForceAXFRResource,
+    AsyncForceAXFRResource,
+    ForceAXFRResourceWithRawResponse,
+    AsyncForceAXFRResourceWithRawResponse,
+    ForceAXFRResourceWithStreamingResponse,
+    AsyncForceAXFRResourceWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .outgoing.outgoing import OutgoingResource, AsyncOutgoingResource
 
 __all__ = ["SecondaryDNSResource", "AsyncSecondaryDNSResource"]
 

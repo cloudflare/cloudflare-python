@@ -2,14 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, TypeAlias
-
-from typing import Optional, Iterable
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ...._types import FileTypes
-from ...._utils import PropertyInfo
+from typing import Union, Iterable, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = ["AllowPatternCreateParams", "EmailSecurityCreateAllowPattern", "Variant1", "Variant1Body"]
 

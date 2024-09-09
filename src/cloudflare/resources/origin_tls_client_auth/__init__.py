@@ -1,21 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .hostnames import HostnamesResource, AsyncHostnamesResource
-from .hostnames import (
-    HostnamesResourceWithRawResponse,
-    AsyncHostnamesResourceWithRawResponse,
-    HostnamesResourceWithStreamingResponse,
-    AsyncHostnamesResourceWithStreamingResponse,
-)
-from .settings import SettingsResource, AsyncSettingsResource
 from .settings import (
+    SettingsResource,
+    AsyncSettingsResource,
     SettingsResourceWithRawResponse,
     AsyncSettingsResourceWithRawResponse,
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from .origin_tls_client_auth import OriginTLSClientAuthResource, AsyncOriginTLSClientAuthResource
+from .hostnames import (
+    HostnamesResource,
+    AsyncHostnamesResource,
+    HostnamesResourceWithRawResponse,
+    AsyncHostnamesResourceWithRawResponse,
+    HostnamesResourceWithStreamingResponse,
+    AsyncHostnamesResourceWithStreamingResponse,
+)
 from .origin_tls_client_auth import (
+    OriginTLSClientAuthResource,
+    AsyncOriginTLSClientAuthResource,
     OriginTLSClientAuthResourceWithRawResponse,
     AsyncOriginTLSClientAuthResourceWithRawResponse,
     OriginTLSClientAuthResourceWithStreamingResponse,

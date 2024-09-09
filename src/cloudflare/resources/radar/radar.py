@@ -2,51 +2,6 @@
 
 from __future__ import annotations
 
-from .ai.ai import AIResource, AsyncAIResource
-
-from ..._compat import cached_property
-
-from .annotations.annotations import AnnotationsResource, AsyncAnnotationsResource
-
-from .bgp.bgp import BGPResource, AsyncBGPResource
-
-from .datasets import DatasetsResource, AsyncDatasetsResource
-
-from .dns.dns import DNSResource, AsyncDNSResource
-
-from .netflows.netflows import NetflowsResource, AsyncNetflowsResource
-
-from .search import SearchResource, AsyncSearchResource
-
-from .verified_bots.verified_bots import VerifiedBotsResource, AsyncVerifiedBotsResource
-
-from .as112.as112 import AS112Resource, AsyncAS112Resource
-
-from .email.email import EmailResource, AsyncEmailResource
-
-from .attacks.attacks import AttacksResource, AsyncAttacksResource
-
-from .entities.entities import EntitiesResource, AsyncEntitiesResource
-
-from .http.http import HTTPResource, AsyncHTTPResource
-
-from .quality.quality import QualityResource, AsyncQualityResource
-
-from .ranking.ranking import RankingResource, AsyncRankingResource
-
-from .traffic_anomalies.traffic_anomalies import TrafficAnomaliesResource, AsyncTrafficAnomaliesResource
-
-from .tcp_resets_timeouts import TCPResetsTimeoutsResource, AsyncTCPResetsTimeoutsResource
-
-from .robots_txt.robots_txt import RobotsTXTResource, AsyncRobotsTXTResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
 from .ai import (
     AIResource,
     AsyncAIResource,
@@ -54,14 +9,6 @@ from .ai import (
     AsyncAIResourceWithRawResponse,
     AIResourceWithStreamingResponse,
     AsyncAIResourceWithStreamingResponse,
-)
-from .annotations import (
-    AnnotationsResource,
-    AsyncAnnotationsResource,
-    AnnotationsResourceWithRawResponse,
-    AsyncAnnotationsResourceWithRawResponse,
-    AnnotationsResourceWithStreamingResponse,
-    AsyncAnnotationsResourceWithStreamingResponse,
 )
 from .bgp import (
     BGPResource,
@@ -71,14 +18,6 @@ from .bgp import (
     BGPResourceWithStreamingResponse,
     AsyncBGPResourceWithStreamingResponse,
 )
-from .datasets import (
-    DatasetsResource,
-    AsyncDatasetsResource,
-    DatasetsResourceWithRawResponse,
-    AsyncDatasetsResourceWithRawResponse,
-    DatasetsResourceWithStreamingResponse,
-    AsyncDatasetsResourceWithStreamingResponse,
-)
 from .dns import (
     DNSResource,
     AsyncDNSResource,
@@ -87,30 +26,15 @@ from .dns import (
     DNSResourceWithStreamingResponse,
     AsyncDNSResourceWithStreamingResponse,
 )
-from .netflows import (
-    NetflowsResource,
-    AsyncNetflowsResource,
-    NetflowsResourceWithRawResponse,
-    AsyncNetflowsResourceWithRawResponse,
-    NetflowsResourceWithStreamingResponse,
-    AsyncNetflowsResourceWithStreamingResponse,
+from .http import (
+    HTTPResource,
+    AsyncHTTPResource,
+    HTTPResourceWithRawResponse,
+    AsyncHTTPResourceWithRawResponse,
+    HTTPResourceWithStreamingResponse,
+    AsyncHTTPResourceWithStreamingResponse,
 )
-from .search import (
-    SearchResource,
-    AsyncSearchResource,
-    SearchResourceWithRawResponse,
-    AsyncSearchResourceWithRawResponse,
-    SearchResourceWithStreamingResponse,
-    AsyncSearchResourceWithStreamingResponse,
-)
-from .verified_bots import (
-    VerifiedBotsResource,
-    AsyncVerifiedBotsResource,
-    VerifiedBotsResourceWithRawResponse,
-    AsyncVerifiedBotsResourceWithRawResponse,
-    VerifiedBotsResourceWithStreamingResponse,
-    AsyncVerifiedBotsResourceWithStreamingResponse,
-)
+from .ai.ai import AIResource, AsyncAIResource
 from .as112 import (
     AS112Resource,
     AsyncAS112Resource,
@@ -127,6 +51,14 @@ from .email import (
     EmailResourceWithStreamingResponse,
     AsyncEmailResourceWithStreamingResponse,
 )
+from .search import (
+    SearchResource,
+    AsyncSearchResource,
+    SearchResourceWithRawResponse,
+    AsyncSearchResourceWithRawResponse,
+    SearchResourceWithStreamingResponse,
+    AsyncSearchResourceWithStreamingResponse,
+)
 from .attacks import (
     AttacksResource,
     AsyncAttacksResource,
@@ -135,22 +67,8 @@ from .attacks import (
     AttacksResourceWithStreamingResponse,
     AsyncAttacksResourceWithStreamingResponse,
 )
-from .entities import (
-    EntitiesResource,
-    AsyncEntitiesResource,
-    EntitiesResourceWithRawResponse,
-    AsyncEntitiesResourceWithRawResponse,
-    EntitiesResourceWithStreamingResponse,
-    AsyncEntitiesResourceWithStreamingResponse,
-)
-from .http import (
-    HTTPResource,
-    AsyncHTTPResource,
-    HTTPResourceWithRawResponse,
-    AsyncHTTPResourceWithRawResponse,
-    HTTPResourceWithStreamingResponse,
-    AsyncHTTPResourceWithStreamingResponse,
-)
+from .bgp.bgp import BGPResource, AsyncBGPResource
+from .dns.dns import DNSResource, AsyncDNSResource
 from .quality import (
     QualityResource,
     AsyncQualityResource,
@@ -167,6 +85,56 @@ from .ranking import (
     RankingResourceWithStreamingResponse,
     AsyncRankingResourceWithStreamingResponse,
 )
+from .datasets import (
+    DatasetsResource,
+    AsyncDatasetsResource,
+    DatasetsResourceWithRawResponse,
+    AsyncDatasetsResourceWithRawResponse,
+    DatasetsResourceWithStreamingResponse,
+    AsyncDatasetsResourceWithStreamingResponse,
+)
+from .entities import (
+    EntitiesResource,
+    AsyncEntitiesResource,
+    EntitiesResourceWithRawResponse,
+    AsyncEntitiesResourceWithRawResponse,
+    EntitiesResourceWithStreamingResponse,
+    AsyncEntitiesResourceWithStreamingResponse,
+)
+from .netflows import (
+    NetflowsResource,
+    AsyncNetflowsResource,
+    NetflowsResourceWithRawResponse,
+    AsyncNetflowsResourceWithRawResponse,
+    NetflowsResourceWithStreamingResponse,
+    AsyncNetflowsResourceWithStreamingResponse,
+)
+from ..._compat import cached_property
+from .http.http import HTTPResource, AsyncHTTPResource
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .annotations import (
+    AnnotationsResource,
+    AsyncAnnotationsResource,
+    AnnotationsResourceWithRawResponse,
+    AsyncAnnotationsResourceWithRawResponse,
+    AnnotationsResourceWithStreamingResponse,
+    AsyncAnnotationsResourceWithStreamingResponse,
+)
+from .as112.as112 import AS112Resource, AsyncAS112Resource
+from .email.email import EmailResource, AsyncEmailResource
+from .verified_bots import (
+    VerifiedBotsResource,
+    AsyncVerifiedBotsResource,
+    VerifiedBotsResourceWithRawResponse,
+    AsyncVerifiedBotsResourceWithRawResponse,
+    VerifiedBotsResourceWithStreamingResponse,
+    AsyncVerifiedBotsResourceWithStreamingResponse,
+)
+from .attacks.attacks import AttacksResource, AsyncAttacksResource
+from .quality.quality import QualityResource, AsyncQualityResource
+from .ranking.ranking import RankingResource, AsyncRankingResource
+from .entities.entities import EntitiesResource, AsyncEntitiesResource
+from .netflows.netflows import NetflowsResource, AsyncNetflowsResource
 from .traffic_anomalies import (
     TrafficAnomaliesResource,
     AsyncTrafficAnomaliesResource,
@@ -183,14 +151,9 @@ from .tcp_resets_timeouts import (
     TCPResetsTimeoutsResourceWithStreamingResponse,
     AsyncTCPResetsTimeoutsResourceWithStreamingResponse,
 )
-from .robots_txt import (
-    RobotsTXTResource,
-    AsyncRobotsTXTResource,
-    RobotsTXTResourceWithRawResponse,
-    AsyncRobotsTXTResourceWithRawResponse,
-    RobotsTXTResourceWithStreamingResponse,
-    AsyncRobotsTXTResourceWithStreamingResponse,
-)
+from .annotations.annotations import AnnotationsResource, AsyncAnnotationsResource
+from .verified_bots.verified_bots import VerifiedBotsResource, AsyncVerifiedBotsResource
+from .traffic_anomalies.traffic_anomalies import TrafficAnomaliesResource, AsyncTrafficAnomaliesResource
 
 __all__ = ["RadarResource", "AsyncRadarResource"]
 
@@ -263,10 +226,6 @@ class RadarResource(SyncAPIResource):
     @cached_property
     def tcp_resets_timeouts(self) -> TCPResetsTimeoutsResource:
         return TCPResetsTimeoutsResource(self._client)
-
-    @cached_property
-    def robots_txt(self) -> RobotsTXTResource:
-        return RobotsTXTResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> RadarResourceWithRawResponse:
@@ -345,10 +304,6 @@ class AsyncRadarResource(AsyncAPIResource):
     @cached_property
     def tcp_resets_timeouts(self) -> AsyncTCPResetsTimeoutsResource:
         return AsyncTCPResetsTimeoutsResource(self._client)
-
-    @cached_property
-    def robots_txt(self) -> AsyncRobotsTXTResource:
-        return AsyncRobotsTXTResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncRadarResourceWithRawResponse:
@@ -431,10 +386,6 @@ class RadarResourceWithRawResponse:
     def tcp_resets_timeouts(self) -> TCPResetsTimeoutsResourceWithRawResponse:
         return TCPResetsTimeoutsResourceWithRawResponse(self._radar.tcp_resets_timeouts)
 
-    @cached_property
-    def robots_txt(self) -> RobotsTXTResourceWithRawResponse:
-        return RobotsTXTResourceWithRawResponse(self._radar.robots_txt)
-
 
 class AsyncRadarResourceWithRawResponse:
     def __init__(self, radar: AsyncRadarResource) -> None:
@@ -507,10 +458,6 @@ class AsyncRadarResourceWithRawResponse:
     @cached_property
     def tcp_resets_timeouts(self) -> AsyncTCPResetsTimeoutsResourceWithRawResponse:
         return AsyncTCPResetsTimeoutsResourceWithRawResponse(self._radar.tcp_resets_timeouts)
-
-    @cached_property
-    def robots_txt(self) -> AsyncRobotsTXTResourceWithRawResponse:
-        return AsyncRobotsTXTResourceWithRawResponse(self._radar.robots_txt)
 
 
 class RadarResourceWithStreamingResponse:
@@ -585,10 +532,6 @@ class RadarResourceWithStreamingResponse:
     def tcp_resets_timeouts(self) -> TCPResetsTimeoutsResourceWithStreamingResponse:
         return TCPResetsTimeoutsResourceWithStreamingResponse(self._radar.tcp_resets_timeouts)
 
-    @cached_property
-    def robots_txt(self) -> RobotsTXTResourceWithStreamingResponse:
-        return RobotsTXTResourceWithStreamingResponse(self._radar.robots_txt)
-
 
 class AsyncRadarResourceWithStreamingResponse:
     def __init__(self, radar: AsyncRadarResource) -> None:
@@ -661,7 +604,3 @@ class AsyncRadarResourceWithStreamingResponse:
     @cached_property
     def tcp_resets_timeouts(self) -> AsyncTCPResetsTimeoutsResourceWithStreamingResponse:
         return AsyncTCPResetsTimeoutsResourceWithStreamingResponse(self._radar.tcp_resets_timeouts)
-
-    @cached_property
-    def robots_txt(self) -> AsyncRobotsTXTResourceWithStreamingResponse:
-        return AsyncRobotsTXTResourceWithStreamingResponse(self._radar.robots_txt)

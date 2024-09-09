@@ -1,16 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
 from typing import Optional
-
-from .index_dimension_configuration import IndexDimensionConfiguration
-
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
+from .index_dimension_configuration import IndexDimensionConfiguration
 
 __all__ = ["CreateIndex"]
 

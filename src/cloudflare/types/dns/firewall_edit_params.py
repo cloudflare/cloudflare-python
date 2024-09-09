@@ -2,18 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
-
-from typing import Optional, List
-
-from .attack_mitigation_param import AttackMitigationParam
+from typing import List, Optional
+from typing_extensions import Required, TypedDict
 
 from .upstream_ips import UpstreamIPs
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
+from .attack_mitigation_param import AttackMitigationParam
 
 __all__ = ["FirewallEditParams"]
 

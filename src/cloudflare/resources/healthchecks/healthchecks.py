@@ -2,56 +2,15 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Optional, cast
+
 import httpx
 
-from .previews import PreviewsResource, AsyncPreviewsResource
-
-from ..._compat import cached_property
-
-from ...types.healthchecks.healthcheck import Healthcheck
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options, AsyncPaginator
-
-from typing import Type, Optional, List
-
-from ...types.healthchecks.check_region import CheckRegion
-
-from ...types.healthchecks.http_configuration_param import HTTPConfigurationParam
-
-from ...types.healthchecks.tcp_configuration_param import TCPConfigurationParam
-
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
-from ...types.healthchecks.healthcheck_delete_response import HealthcheckDeleteResponse
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.healthchecks import healthcheck_create_params
-from ...types.healthchecks import healthcheck_update_params
-from ...types.healthchecks import healthcheck_list_params
-from ...types.healthchecks import healthcheck_edit_params
-from ...types.healthchecks import HTTPConfiguration
-from ...types.healthchecks import TCPConfiguration
-from ...types.healthchecks import HTTPConfiguration
-from ...types.healthchecks import TCPConfiguration
-from ...types.healthchecks import HTTPConfiguration
-from ...types.healthchecks import TCPConfiguration
 from .previews import (
     PreviewsResource,
     AsyncPreviewsResource,
@@ -60,16 +19,28 @@ from .previews import (
     PreviewsResourceWithStreamingResponse,
     AsyncPreviewsResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.healthchecks import (
+    healthcheck_edit_params,
+    healthcheck_list_params,
+    healthcheck_create_params,
+    healthcheck_update_params,
+)
+from ...types.healthchecks.healthcheck import Healthcheck
+from ...types.healthchecks.check_region import CheckRegion
+from ...types.healthchecks.tcp_configuration_param import TCPConfigurationParam
+from ...types.healthchecks.http_configuration_param import HTTPConfigurationParam
+from ...types.healthchecks.healthcheck_delete_response import HealthcheckDeleteResponse
 
 __all__ = ["HealthchecksResource", "AsyncHealthchecksResource"]
 

@@ -2,50 +2,17 @@
 
 from __future__ import annotations
 
+from typing import Type, Iterable, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .integrations import IntegrationsResource, AsyncIntegrationsResource
-
-from ....._compat import cached_property
-
-from .....types.zero_trust.devices.device_posture_rule import DevicePostureRule
-
-from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type, Iterable
-
-from ....._base_client import make_request_options, AsyncPaginator
-
-from typing_extensions import Literal
-
-from .....types.zero_trust.devices.device_input_param import DeviceInputParam
-
-from .....types.zero_trust.devices.device_match_param import DeviceMatchParam
-
-from .....pagination import SyncSinglePage, AsyncSinglePage
-
-from .....types.zero_trust.devices.posture_delete_response import PostureDeleteResponse
-
-from ....._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.zero_trust.devices import posture_create_params
-from .....types.zero_trust.devices import posture_update_params
-from .....types.zero_trust.devices import DeviceInput
-from .....types.zero_trust.devices import DeviceInput
+from ....._compat import cached_property
 from .integrations import (
     IntegrationsResource,
     AsyncIntegrationsResource,
@@ -54,14 +21,21 @@ from .integrations import (
     IntegrationsResourceWithStreamingResponse,
     AsyncIntegrationsResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.zero_trust.devices import posture_create_params, posture_update_params
+from .....types.zero_trust.devices.device_input_param import DeviceInputParam
+from .....types.zero_trust.devices.device_match_param import DeviceMatchParam
+from .....types.zero_trust.devices.device_posture_rule import DevicePostureRule
+from .....types.zero_trust.devices.posture_delete_response import PostureDeleteResponse
 
 __all__ = ["PostureResource", "AsyncPostureResource"]
 

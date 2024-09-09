@@ -2,78 +2,47 @@
 
 from __future__ import annotations
 
-import httpx
-
-from ....._compat import cached_property
-
-from .....types.radar.attacks.layer7.timeseries_group_get_response import TimeseriesGroupGetResponse
-
-from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from ....._base_client import make_request_options
-
-from typing import Type, List, Union
-
+from typing import List, Type, Union, cast
+from datetime import datetime
 from typing_extensions import Literal
 
-from datetime import datetime
+import httpx
 
-from .....types.radar.attacks.layer7.timeseries_group_http_method_response import TimeseriesGroupHTTPMethodResponse
-
-from .....types.radar.attacks.layer7.timeseries_group_http_version_response import TimeseriesGroupHTTPVersionResponse
-
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....._wrappers import ResultWrapper
+from ....._base_client import make_request_options
+from .....types.radar.attacks.layer7 import (
+    timeseries_group_get_params,
+    timeseries_group_industry_params,
+    timeseries_group_vertical_params,
+    timeseries_group_ip_version_params,
+    timeseries_group_http_method_params,
+    timeseries_group_http_version_params,
+    timeseries_group_managed_rules_params,
+    timeseries_group_mitigation_product_params,
+)
+from .....types.radar.attacks.layer7.timeseries_group_get_response import TimeseriesGroupGetResponse
 from .....types.radar.attacks.layer7.timeseries_group_industry_response import TimeseriesGroupIndustryResponse
-
+from .....types.radar.attacks.layer7.timeseries_group_vertical_response import TimeseriesGroupVerticalResponse
 from .....types.radar.attacks.layer7.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
-
+from .....types.radar.attacks.layer7.timeseries_group_http_method_response import TimeseriesGroupHTTPMethodResponse
+from .....types.radar.attacks.layer7.timeseries_group_http_version_response import TimeseriesGroupHTTPVersionResponse
 from .....types.radar.attacks.layer7.timeseries_group_managed_rules_response import TimeseriesGroupManagedRulesResponse
-
 from .....types.radar.attacks.layer7.timeseries_group_mitigation_product_response import (
     TimeseriesGroupMitigationProductResponse,
 )
-
-from .....types.radar.attacks.layer7.timeseries_group_vertical_response import TimeseriesGroupVerticalResponse
-
-from ....._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.radar.attacks.layer7 import timeseries_group_get_params
-from .....types.radar.attacks.layer7 import timeseries_group_http_method_params
-from .....types.radar.attacks.layer7 import timeseries_group_http_version_params
-from .....types.radar.attacks.layer7 import timeseries_group_industry_params
-from .....types.radar.attacks.layer7 import timeseries_group_ip_version_params
-from .....types.radar.attacks.layer7 import timeseries_group_managed_rules_params
-from .....types.radar.attacks.layer7 import timeseries_group_mitigation_product_params
-from .....types.radar.attacks.layer7 import timeseries_group_vertical_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
 
 __all__ = ["TimeseriesGroupsResource", "AsyncTimeseriesGroupsResource"]
 

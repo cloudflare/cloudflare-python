@@ -2,29 +2,18 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from typing import Optional, Any, cast
-
-from cloudflare.types.custom_certificates import CustomCertificate, CustomCertificateDeleteResponse
-
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.custom_certificates import custom_certificate_create_params
-from cloudflare.types.custom_certificates import custom_certificate_list_params
-from cloudflare.types.custom_certificates import custom_certificate_edit_params
-from cloudflare.types.custom_hostnames import BundleMethod
-from cloudflare.types.custom_certificates import GeoRestrictions
-from cloudflare.types.custom_hostnames import BundleMethod
-from cloudflare.types.custom_certificates import GeoRestrictions
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.types.custom_certificates import (
+    CustomCertificate,
+    CustomCertificateDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

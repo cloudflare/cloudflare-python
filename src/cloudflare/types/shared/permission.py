@@ -2,13 +2,6 @@
 
 from typing_extensions import TypeAlias
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-
-from pydantic import Field as FieldInfo
-
-from ..._models import BaseModel
-
 __all__ = ["Permission"]
 
 Permission: TypeAlias = str

@@ -2,32 +2,21 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from cloudflare.types.magic_transit import (
-    IPSECTunnelCreateResponse,
-    IPSECTunnelUpdateResponse,
-    IPSECTunnelListResponse,
-    IPSECTunnelDeleteResponse,
-    IPSECTunnelGetResponse,
-    IPSECTunnelPSKGenerateResponse,
-)
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magic_transit import ipsec_tunnel_create_params
-from cloudflare.types.magic_transit import ipsec_tunnel_update_params
-from cloudflare.types.magic_transit import ipsec_tunnel_psk_generate_params
-from cloudflare.types.magic_transit import HealthCheck
-from cloudflare.types.magic_transit import HealthCheck
+from cloudflare.types.magic_transit import (
+    IPSECTunnelGetResponse,
+    IPSECTunnelListResponse,
+    IPSECTunnelCreateResponse,
+    IPSECTunnelDeleteResponse,
+    IPSECTunnelUpdateResponse,
+    IPSECTunnelPSKGenerateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

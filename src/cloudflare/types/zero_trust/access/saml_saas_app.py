@@ -1,22 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
 from typing import Optional
-
-from .saas_app_name_format import SaaSAppNameFormat
-
-from .saas_app_source import SaaSAppSource
-
-from typing_extensions import Literal
-
 from datetime import datetime
-
-from .saas_app_name_id_format import SaaSAppNameIDFormat
-
-from typing import Optional, Union, List, Dict, Any
 from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+
+from ...._models import BaseModel
+from .saas_app_source import SaaSAppSource
+from .saas_app_name_format import SaaSAppNameFormat
+from .saas_app_name_id_format import SaaSAppNameIDFormat
 
 __all__ = ["SAMLSaaSApp", "CustomAttributes"]
 

@@ -2,47 +2,12 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
-from .locations import LocationsResource, AsyncLocationsResource
-
-from ......_compat import cached_property
-
-from ......types.radar.attacks.layer3.top_attacks_response import TopAttacksResponse
-
-from ......_wrappers import ResultWrapper
-
-from ......_utils import maybe_transform, async_maybe_transform
-
-from ......_base_client import make_request_options
-
-from typing import Type, List, Union
-
-from datetime import datetime
-
-from typing_extensions import Literal
-
-from ......types.radar.attacks.layer3.top_industry_response import TopIndustryResponse
-
-from ......types.radar.attacks.layer3.top_vertical_response import TopVerticalResponse
-
-from ......_response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ......_utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ......_types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ......_resource import SyncAPIResource, AsyncAPIResource
-from ......types import shared_params
-from ......types.radar.attacks.layer3 import top_attacks_params
-from ......types.radar.attacks.layer3 import top_industry_params
-from ......types.radar.attacks.layer3 import top_vertical_params
 from .locations import (
     LocationsResource,
     AsyncLocationsResource,
@@ -51,12 +16,25 @@ from .locations import (
     LocationsResourceWithStreamingResponse,
     AsyncLocationsResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ......_utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ......_compat import cached_property
+from ......_resource import SyncAPIResource, AsyncAPIResource
+from ......_response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ......_wrappers import ResultWrapper
+from ......_base_client import make_request_options
+from ......types.radar.attacks.layer3 import top_attacks_params, top_industry_params, top_vertical_params
+from ......types.radar.attacks.layer3.top_attacks_response import TopAttacksResponse
+from ......types.radar.attacks.layer3.top_industry_response import TopIndustryResponse
+from ......types.radar.attacks.layer3.top_vertical_response import TopVerticalResponse
 
 __all__ = ["TopResource", "AsyncTopResource"]
 

@@ -1,25 +1,28 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .bulk_operations import BulkOperationsResource, AsyncBulkOperationsResource
-from .bulk_operations import (
-    BulkOperationsResourceWithRawResponse,
-    AsyncBulkOperationsResourceWithRawResponse,
-    BulkOperationsResourceWithStreamingResponse,
-    AsyncBulkOperationsResourceWithStreamingResponse,
-)
-from .items import ItemsResource, AsyncItemsResource
 from .items import (
+    ItemsResource,
+    AsyncItemsResource,
     ItemsResourceWithRawResponse,
     AsyncItemsResourceWithRawResponse,
     ItemsResourceWithStreamingResponse,
     AsyncItemsResourceWithStreamingResponse,
 )
-from .lists import ListsResource, AsyncListsResource
 from .lists import (
+    ListsResource,
+    AsyncListsResource,
     ListsResourceWithRawResponse,
     AsyncListsResourceWithRawResponse,
     ListsResourceWithStreamingResponse,
     AsyncListsResourceWithStreamingResponse,
+)
+from .bulk_operations import (
+    BulkOperationsResource,
+    AsyncBulkOperationsResource,
+    BulkOperationsResourceWithRawResponse,
+    AsyncBulkOperationsResourceWithRawResponse,
+    BulkOperationsResourceWithStreamingResponse,
+    AsyncBulkOperationsResourceWithStreamingResponse,
 )
 
 __all__ = [

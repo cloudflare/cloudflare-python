@@ -2,31 +2,6 @@
 
 from __future__ import annotations
 
-from .buckets import BucketsResource, AsyncBucketsResource
-
-from ..._compat import cached_property
-
-from .sippy import SippyResource, AsyncSippyResource
-
-from .temporary_credentials import TemporaryCredentialsResource, AsyncTemporaryCredentialsResource
-
-from .domains.domains import DomainsResource, AsyncDomainsResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from .buckets import (
-    BucketsResource,
-    AsyncBucketsResource,
-    BucketsResourceWithRawResponse,
-    AsyncBucketsResourceWithRawResponse,
-    BucketsResourceWithStreamingResponse,
-    AsyncBucketsResourceWithStreamingResponse,
-)
 from .sippy import (
     SippyResource,
     AsyncSippyResource,
@@ -35,13 +10,13 @@ from .sippy import (
     SippyResourceWithStreamingResponse,
     AsyncSippyResourceWithStreamingResponse,
 )
-from .temporary_credentials import (
-    TemporaryCredentialsResource,
-    AsyncTemporaryCredentialsResource,
-    TemporaryCredentialsResourceWithRawResponse,
-    AsyncTemporaryCredentialsResourceWithRawResponse,
-    TemporaryCredentialsResourceWithStreamingResponse,
-    AsyncTemporaryCredentialsResourceWithStreamingResponse,
+from .buckets import (
+    BucketsResource,
+    AsyncBucketsResource,
+    BucketsResourceWithRawResponse,
+    AsyncBucketsResourceWithRawResponse,
+    BucketsResourceWithStreamingResponse,
+    AsyncBucketsResourceWithStreamingResponse,
 )
 from .domains import (
     DomainsResource,
@@ -50,6 +25,17 @@ from .domains import (
     AsyncDomainsResourceWithRawResponse,
     DomainsResourceWithStreamingResponse,
     AsyncDomainsResourceWithStreamingResponse,
+)
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .domains.domains import DomainsResource, AsyncDomainsResource
+from .temporary_credentials import (
+    TemporaryCredentialsResource,
+    AsyncTemporaryCredentialsResource,
+    TemporaryCredentialsResourceWithRawResponse,
+    AsyncTemporaryCredentialsResourceWithRawResponse,
+    TemporaryCredentialsResourceWithStreamingResponse,
+    AsyncTemporaryCredentialsResourceWithStreamingResponse,
 )
 
 __all__ = ["R2Resource", "AsyncR2Resource"]

@@ -2,43 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .scripts.scripts import ScriptsResource, AsyncScriptsResource
-
-from ....._compat import cached_property
-
-from .....types.workers_for_platforms.dispatch.namespace_create_response import NamespaceCreateResponse
-
-from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ....._base_client import make_request_options, AsyncPaginator
-
-from .....types.workers_for_platforms.dispatch.namespace_list_response import NamespaceListResponse
-
-from .....pagination import SyncSinglePage, AsyncSinglePage
-
-from .....types.workers_for_platforms.dispatch.namespace_get_response import NamespaceGetResponse
-
-from ....._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.workers_for_platforms.dispatch import namespace_create_params
 from .scripts import (
     ScriptsResource,
     AsyncScriptsResource,
@@ -47,12 +14,27 @@ from .scripts import (
     ScriptsResourceWithStreamingResponse,
     AsyncScriptsResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from .scripts.scripts import ScriptsResource, AsyncScriptsResource
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.workers_for_platforms.dispatch import namespace_create_params
+from .....types.workers_for_platforms.dispatch.namespace_get_response import NamespaceGetResponse
+from .....types.workers_for_platforms.dispatch.namespace_list_response import NamespaceListResponse
+from .....types.workers_for_platforms.dispatch.namespace_create_response import NamespaceCreateResponse
 
 __all__ = ["NamespacesResource", "AsyncNamespacesResource"]
 

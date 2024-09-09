@@ -18,7 +18,7 @@ from typing import (
     cast,
     overload,
 )
-from typing_extensions import Awaitable, ParamSpec, TypeGuard, override, get_origin
+from typing_extensions import Awaitable, ParamSpec, override, get_origin
 
 import anyio
 import httpx
@@ -26,7 +26,6 @@ import pydantic
 
 from ._types import NoneType
 from ._utils import is_given, extract_type_arg, is_annotated_type, extract_type_var_from_base
-from ._streaming import extract_stream_chunk_type
 from ._models import BaseModel, is_basemodel
 from ._constants import RAW_RESPONSE_HEADER, OVERRIDE_CAST_TO_HEADER
 from ._streaming import Stream, AsyncStream, is_stream_class_type, extract_stream_chunk_type

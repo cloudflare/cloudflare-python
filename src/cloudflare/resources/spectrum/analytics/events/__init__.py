@@ -1,25 +1,28 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .bytimes import BytimesResource, AsyncBytimesResource
+from .events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
+)
 from .bytimes import (
+    BytimesResource,
+    AsyncBytimesResource,
     BytimesResourceWithRawResponse,
     AsyncBytimesResourceWithRawResponse,
     BytimesResourceWithStreamingResponse,
     AsyncBytimesResourceWithStreamingResponse,
 )
-from .summaries import SummariesResource, AsyncSummariesResource
 from .summaries import (
+    SummariesResource,
+    AsyncSummariesResource,
     SummariesResourceWithRawResponse,
     AsyncSummariesResourceWithRawResponse,
     SummariesResourceWithStreamingResponse,
     AsyncSummariesResourceWithStreamingResponse,
-)
-from .events import EventsResource, AsyncEventsResource
-from .events import (
-    EventsResourceWithRawResponse,
-    AsyncEventsResourceWithRawResponse,
-    EventsResourceWithStreamingResponse,
-    AsyncEventsResourceWithStreamingResponse,
 )
 
 __all__ = [

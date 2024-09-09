@@ -2,14 +2,10 @@
 
 from __future__ import annotations
 
-from ..._models import BaseModel
-
 from typing import Optional
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 from ..._compat import PYDANTIC_V2
+from ..._models import BaseModel
 
 __all__ = ["TraceCreateResponse"]
 

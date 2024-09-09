@@ -2,133 +2,24 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from cloudflare.types.radar.attacks.layer3 import (
-    TimeseriesGroupBitrateResponse,
-    TimeseriesGroupDurationResponse,
-    TimeseriesGroupGetResponse,
-    TimeseriesGroupIndustryResponse,
-    TimeseriesGroupIPVersionResponse,
-    TimeseriesGroupProtocolResponse,
-    TimeseriesGroupVectorResponse,
-    TimeseriesGroupVerticalResponse,
-)
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.radar.attacks.layer3 import timeseries_group_bitrate_params
-from cloudflare.types.radar.attacks.layer3 import timeseries_group_duration_params
-from cloudflare.types.radar.attacks.layer3 import timeseries_group_get_params
-from cloudflare.types.radar.attacks.layer3 import timeseries_group_industry_params
-from cloudflare.types.radar.attacks.layer3 import timeseries_group_ip_version_params
-from cloudflare.types.radar.attacks.layer3 import timeseries_group_protocol_params
-from cloudflare.types.radar.attacks.layer3 import timeseries_group_vector_params
-from cloudflare.types.radar.attacks.layer3 import timeseries_group_vertical_params
 from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
+from cloudflare.types.radar.attacks.layer3 import (
+    TimeseriesGroupGetResponse,
+    TimeseriesGroupVectorResponse,
+    TimeseriesGroupBitrateResponse,
+    TimeseriesGroupDurationResponse,
+    TimeseriesGroupIndustryResponse,
+    TimeseriesGroupProtocolResponse,
+    TimeseriesGroupVerticalResponse,
+    TimeseriesGroupIPVersionResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

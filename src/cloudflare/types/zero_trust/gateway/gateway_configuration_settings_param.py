@@ -2,27 +2,18 @@
 
 from __future__ import annotations
 
-from .activity_log_settings_param import ActivityLogSettingsParam
-
-from .anti_virus_settings_param import AntiVirusSettingsParam
-
-from .block_page_settings_param import BlockPageSettingsParam
-
-from .body_scanning_settings_param import BodyScanningSettingsParam
-
-from .browser_isolation_settings_param import BrowserIsolationSettingsParam
-
-from .custom_certificate_settings_param import CustomCertificateSettingsParam
-
-from .extended_email_matching_param import ExtendedEmailMatchingParam
-
-from .fips_settings_param import FipsSettingsParam
-
-from .protocol_detection_param import ProtocolDetectionParam
+from typing_extensions import Required, TypedDict
 
 from .tls_settings_param import TLSSettingsParam
-
-from typing_extensions import TypedDict, Required
+from .fips_settings_param import FipsSettingsParam
+from .protocol_detection_param import ProtocolDetectionParam
+from .anti_virus_settings_param import AntiVirusSettingsParam
+from .block_page_settings_param import BlockPageSettingsParam
+from .activity_log_settings_param import ActivityLogSettingsParam
+from .body_scanning_settings_param import BodyScanningSettingsParam
+from .extended_email_matching_param import ExtendedEmailMatchingParam
+from .browser_isolation_settings_param import BrowserIsolationSettingsParam
+from .custom_certificate_settings_param import CustomCertificateSettingsParam
 
 __all__ = ["GatewayConfigurationSettingsParam", "Certificate"]
 

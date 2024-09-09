@@ -2,32 +2,13 @@
 
 from __future__ import annotations
 
-from .lockdowns import LockdownsResource, AsyncLockdownsResource
-
-from ..._compat import cached_property
-
-from .rules import RulesResource, AsyncRulesResource
-
-from .access_rules import AccessRulesResource, AsyncAccessRulesResource
-
-from .ua_rules import UARulesResource, AsyncUARulesResource
-
-from .waf.waf import WAFResource, AsyncWAFResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from .lockdowns import (
-    LockdownsResource,
-    AsyncLockdownsResource,
-    LockdownsResourceWithRawResponse,
-    AsyncLockdownsResourceWithRawResponse,
-    LockdownsResourceWithStreamingResponse,
-    AsyncLockdownsResourceWithStreamingResponse,
+from .waf import (
+    WAFResource,
+    AsyncWAFResource,
+    WAFResourceWithRawResponse,
+    AsyncWAFResourceWithRawResponse,
+    WAFResourceWithStreamingResponse,
+    AsyncWAFResourceWithStreamingResponse,
 )
 from .rules import (
     RulesResource,
@@ -37,14 +18,7 @@ from .rules import (
     RulesResourceWithStreamingResponse,
     AsyncRulesResourceWithStreamingResponse,
 )
-from .access_rules import (
-    AccessRulesResource,
-    AsyncAccessRulesResource,
-    AccessRulesResourceWithRawResponse,
-    AsyncAccessRulesResourceWithRawResponse,
-    AccessRulesResourceWithStreamingResponse,
-    AsyncAccessRulesResourceWithStreamingResponse,
-)
+from .waf.waf import WAFResource, AsyncWAFResource
 from .ua_rules import (
     UARulesResource,
     AsyncUARulesResource,
@@ -53,13 +27,23 @@ from .ua_rules import (
     UARulesResourceWithStreamingResponse,
     AsyncUARulesResourceWithStreamingResponse,
 )
-from .waf import (
-    WAFResource,
-    AsyncWAFResource,
-    WAFResourceWithRawResponse,
-    AsyncWAFResourceWithRawResponse,
-    WAFResourceWithStreamingResponse,
-    AsyncWAFResourceWithStreamingResponse,
+from ..._compat import cached_property
+from .lockdowns import (
+    LockdownsResource,
+    AsyncLockdownsResource,
+    LockdownsResourceWithRawResponse,
+    AsyncLockdownsResourceWithRawResponse,
+    LockdownsResourceWithStreamingResponse,
+    AsyncLockdownsResourceWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .access_rules import (
+    AccessRulesResource,
+    AsyncAccessRulesResource,
+    AccessRulesResourceWithRawResponse,
+    AsyncAccessRulesResourceWithRawResponse,
+    AccessRulesResourceWithStreamingResponse,
+    AsyncAccessRulesResourceWithStreamingResponse,
 )
 
 __all__ = ["FirewallResource", "AsyncFirewallResource"]

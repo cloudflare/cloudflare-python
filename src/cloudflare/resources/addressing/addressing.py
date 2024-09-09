@@ -2,32 +2,13 @@
 
 from __future__ import annotations
 
-from .regional_hostnames.regional_hostnames import RegionalHostnamesResource, AsyncRegionalHostnamesResource
-
-from ..._compat import cached_property
-
-from .services import ServicesResource, AsyncServicesResource
-
-from .address_maps.address_maps import AddressMapsResource, AsyncAddressMapsResource
-
-from .loa_documents.loa_documents import LOADocumentsResource, AsyncLOADocumentsResource
-
-from .prefixes.prefixes import PrefixesResource, AsyncPrefixesResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from .regional_hostnames import (
-    RegionalHostnamesResource,
-    AsyncRegionalHostnamesResource,
-    RegionalHostnamesResourceWithRawResponse,
-    AsyncRegionalHostnamesResourceWithRawResponse,
-    RegionalHostnamesResourceWithStreamingResponse,
-    AsyncRegionalHostnamesResourceWithStreamingResponse,
+from .prefixes import (
+    PrefixesResource,
+    AsyncPrefixesResource,
+    PrefixesResourceWithRawResponse,
+    AsyncPrefixesResourceWithRawResponse,
+    PrefixesResourceWithStreamingResponse,
+    AsyncPrefixesResourceWithStreamingResponse,
 )
 from .services import (
     ServicesResource,
@@ -37,6 +18,8 @@ from .services import (
     ServicesResourceWithStreamingResponse,
     AsyncServicesResourceWithStreamingResponse,
 )
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from .address_maps import (
     AddressMapsResource,
     AsyncAddressMapsResource,
@@ -53,14 +36,18 @@ from .loa_documents import (
     LOADocumentsResourceWithStreamingResponse,
     AsyncLOADocumentsResourceWithStreamingResponse,
 )
-from .prefixes import (
-    PrefixesResource,
-    AsyncPrefixesResource,
-    PrefixesResourceWithRawResponse,
-    AsyncPrefixesResourceWithRawResponse,
-    PrefixesResourceWithStreamingResponse,
-    AsyncPrefixesResourceWithStreamingResponse,
+from .prefixes.prefixes import PrefixesResource, AsyncPrefixesResource
+from .regional_hostnames import (
+    RegionalHostnamesResource,
+    AsyncRegionalHostnamesResource,
+    RegionalHostnamesResourceWithRawResponse,
+    AsyncRegionalHostnamesResourceWithRawResponse,
+    RegionalHostnamesResourceWithStreamingResponse,
+    AsyncRegionalHostnamesResourceWithStreamingResponse,
 )
+from .address_maps.address_maps import AddressMapsResource, AsyncAddressMapsResource
+from .loa_documents.loa_documents import LOADocumentsResource, AsyncLOADocumentsResource
+from .regional_hostnames.regional_hostnames import RegionalHostnamesResource, AsyncRegionalHostnamesResource
 
 __all__ = ["AddressingResource", "AsyncAddressingResource"]
 

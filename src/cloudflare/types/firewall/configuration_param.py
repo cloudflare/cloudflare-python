@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from .lockdown_ip_configuration_param import LockdownIPConfigurationParam
-
-from .lockdown_cidr_configuration_param import LockdownCIDRConfigurationParam
-
+from typing import Union
 from typing_extensions import TypeAlias
 
-from typing import Union
+from .lockdown_ip_configuration_param import LockdownIPConfigurationParam
+from .lockdown_cidr_configuration_param import LockdownCIDRConfigurationParam
 
 __all__ = ["ConfigurationParam"]
 

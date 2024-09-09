@@ -2,31 +2,21 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from cloudflare.types.rate_limits import (
-    RateLimitCreateResponse,
-    RateLimit,
-    RateLimitDeleteResponse,
-    RateLimitEditResponse,
-    RateLimitGetResponse,
-)
-
+import os
 from typing import Any, cast
 
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.rate_limits import rate_limit_create_params
-from cloudflare.types.rate_limits import rate_limit_list_params
-from cloudflare.types.rate_limits import rate_limit_edit_params
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.types.rate_limits import (
+    RateLimit,
+    RateLimitGetResponse,
+    RateLimitEditResponse,
+    RateLimitCreateResponse,
+    RateLimitDeleteResponse,
+)
 
 # pyright: reportDeprecated=false
 

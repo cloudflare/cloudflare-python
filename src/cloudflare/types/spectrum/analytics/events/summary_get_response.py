@@ -1,18 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ....._models import BaseModel
-
-from typing import Optional, List, Union, Dict
+from typing import Dict, List, Union, Optional
+from datetime import datetime
+from typing_extensions import Literal
 
 from ..dimension import Dimension
-
-from typing_extensions import Literal
-
-from datetime import datetime
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ....._models import BaseModel
 
 __all__ = ["SummaryGetResponse", "Data", "Query"]
 

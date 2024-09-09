@@ -2,23 +2,6 @@
 
 from __future__ import annotations
 
-from .records import RecordsResource, AsyncRecordsResource
-
-from ..._compat import cached_property
-
-from .settings import SettingsResource, AsyncSettingsResource
-
-from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
-
-from .firewall.firewall import FirewallResource, AsyncFirewallResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
 from .records import (
     RecordsResource,
     AsyncRecordsResource,
@@ -26,22 +9,6 @@ from .records import (
     AsyncRecordsResourceWithRawResponse,
     RecordsResourceWithStreamingResponse,
     AsyncRecordsResourceWithStreamingResponse,
-)
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
-from .analytics import (
-    AnalyticsResource,
-    AsyncAnalyticsResource,
-    AnalyticsResourceWithRawResponse,
-    AsyncAnalyticsResourceWithRawResponse,
-    AnalyticsResourceWithStreamingResponse,
-    AsyncAnalyticsResourceWithStreamingResponse,
 )
 from .firewall import (
     FirewallResource,
@@ -51,6 +18,26 @@ from .firewall import (
     FirewallResourceWithStreamingResponse,
     AsyncFirewallResourceWithStreamingResponse,
 )
+from .settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
+from ..._compat import cached_property
+from .analytics import (
+    AnalyticsResource,
+    AsyncAnalyticsResource,
+    AnalyticsResourceWithRawResponse,
+    AsyncAnalyticsResourceWithRawResponse,
+    AnalyticsResourceWithStreamingResponse,
+    AsyncAnalyticsResourceWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .firewall.firewall import FirewallResource, AsyncFirewallResource
+from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
 
 __all__ = ["DNSResource", "AsyncDNSResource"]
 

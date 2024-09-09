@@ -2,44 +2,28 @@
 
 from __future__ import annotations
 
+from typing import Type, Iterable, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
-from ...types.queues.message_ack_response import MessageAckResponse
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type, Iterable
-
-from ..._base_client import make_request_options
-
-from ...types.queues.message_pull_response import MessagePullResponse
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-from ...types.queues import message_ack_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.queues import message_ack_params
-from ...types.queues import message_pull_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._wrappers import ResultWrapper
+from ..._base_client import make_request_options
+from ...types.queues import message_ack_params, message_pull_params
+from ...types.queues.message_ack_response import MessageAckResponse
+from ...types.queues.message_pull_response import MessagePullResponse
 
 __all__ = ["MessagesResource", "AsyncMessagesResource"]
 

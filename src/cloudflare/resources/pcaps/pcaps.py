@@ -2,56 +2,16 @@
 
 from __future__ import annotations
 
+from typing import Any, cast, overload
+from typing_extensions import Literal
+
 import httpx
 
-from .ownership import OwnershipResource, AsyncOwnershipResource
-
-from ..._compat import cached_property
-
-from .download import DownloadResource, AsyncDownloadResource
-
-from typing_extensions import Literal
-
-from ...types.pcaps.pcap_filter_param import PCAPFilterParam
-
-from ...types.pcaps.pcap_create_response import PCAPCreateResponse
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options, AsyncPaginator
-
-from ...types.pcaps.pcap_list_response import PCAPListResponse
-
-from ...pagination import SyncSinglePage, AsyncSinglePage
-
-from ...types.pcaps.pcap_get_response import PCAPGetResponse
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.pcaps import pcap_create_params
-from ...types.pcaps import PCAPFilter
-from ...types.pcaps import PCAPFilter
-from .ownership import (
-    OwnershipResource,
-    AsyncOwnershipResource,
-    OwnershipResourceWithRawResponse,
-    AsyncOwnershipResourceWithRawResponse,
-    OwnershipResourceWithStreamingResponse,
-    AsyncOwnershipResourceWithStreamingResponse,
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    required_args,
+    maybe_transform,
+    async_maybe_transform,
 )
 from .download import (
     DownloadResource,
@@ -61,16 +21,30 @@ from .download import (
     DownloadResourceWithStreamingResponse,
     AsyncDownloadResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._compat import cached_property
+from .ownership import (
+    OwnershipResource,
+    AsyncOwnershipResource,
+    OwnershipResourceWithRawResponse,
+    AsyncOwnershipResourceWithRawResponse,
+    OwnershipResourceWithStreamingResponse,
+    AsyncOwnershipResourceWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ...types.pcaps import pcap_create_params
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.pcaps.pcap_filter_param import PCAPFilterParam
+from ...types.pcaps.pcap_get_response import PCAPGetResponse
+from ...types.pcaps.pcap_list_response import PCAPListResponse
+from ...types.pcaps.pcap_create_response import PCAPCreateResponse
 
 __all__ = ["PCAPsResource", "AsyncPCAPsResource"]
 

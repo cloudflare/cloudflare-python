@@ -4,11 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-from .saas_app_name_id_format import SaaSAppNameIDFormat
-
 from .saas_app_name_format import SaaSAppNameFormat
-
 from .saas_app_source_param import SaaSAppSourceParam
+from .saas_app_name_id_format import SaaSAppNameIDFormat
 
 __all__ = ["SAMLSaaSAppParam", "CustomAttributes"]
 

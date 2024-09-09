@@ -2,60 +2,17 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .policies import PoliciesResource, AsyncPoliciesResource
-
-from ..._compat import cached_property
-
-from .connections import ConnectionsResource, AsyncConnectionsResource
-
-from .scripts import ScriptsResource, AsyncScriptsResource
-
-from .cookies import CookiesResource, AsyncCookiesResource
-
-from ...types.page_shield.page_shield_update_response import PageShieldUpdateResponse
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ..._base_client import make_request_options
-
-from ...types.page_shield.setting import Setting
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.page_shield import page_shield_update_params
-from .policies import (
-    PoliciesResource,
-    AsyncPoliciesResource,
-    PoliciesResourceWithRawResponse,
-    AsyncPoliciesResourceWithRawResponse,
-    PoliciesResourceWithStreamingResponse,
-    AsyncPoliciesResourceWithStreamingResponse,
-)
-from .connections import (
-    ConnectionsResource,
-    AsyncConnectionsResource,
-    ConnectionsResourceWithRawResponse,
-    AsyncConnectionsResourceWithRawResponse,
-    ConnectionsResourceWithStreamingResponse,
-    AsyncConnectionsResourceWithStreamingResponse,
+from .cookies import (
+    CookiesResource,
+    AsyncCookiesResource,
+    CookiesResourceWithRawResponse,
+    AsyncCookiesResourceWithRawResponse,
+    CookiesResourceWithStreamingResponse,
+    AsyncCookiesResourceWithStreamingResponse,
 )
 from .scripts import (
     ScriptsResource,
@@ -65,18 +22,40 @@ from .scripts import (
     ScriptsResourceWithStreamingResponse,
     AsyncScriptsResourceWithStreamingResponse,
 )
-from .cookies import (
-    CookiesResource,
-    AsyncCookiesResource,
-    CookiesResourceWithRawResponse,
-    AsyncCookiesResourceWithRawResponse,
-    CookiesResourceWithStreamingResponse,
-    AsyncCookiesResourceWithStreamingResponse,
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .policies import (
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
+)
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from .connections import (
+    ConnectionsResource,
+    AsyncConnectionsResource,
+    ConnectionsResourceWithRawResponse,
+    AsyncConnectionsResourceWithRawResponse,
+    ConnectionsResourceWithStreamingResponse,
+    AsyncConnectionsResourceWithStreamingResponse,
+)
+from ..._base_client import make_request_options
+from ...types.page_shield import page_shield_update_params
+from ...types.page_shield.setting import Setting
+from ...types.page_shield.page_shield_update_response import PageShieldUpdateResponse
 
 __all__ = ["PageShieldResource", "AsyncPageShieldResource"]
 

@@ -2,50 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.r2.domains.custom_create_response import CustomCreateResponse
-
-from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from ...._base_client import make_request_options
-
-from typing import Type
-
-from ....types.r2.domains.custom_update_response import CustomUpdateResponse
-
-from ....types.r2.domains.custom_list_response import CustomListResponse
-
-from ....types.r2.domains.custom_delete_response import CustomDeleteResponse
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.r2.domains import custom_create_params
-from ....types.r2.domains import custom_update_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._wrappers import ResultWrapper
+from ...._base_client import make_request_options
+from ....types.r2.domains import custom_create_params, custom_update_params
+from ....types.r2.domains.custom_list_response import CustomListResponse
+from ....types.r2.domains.custom_create_response import CustomCreateResponse
+from ....types.r2.domains.custom_delete_response import CustomDeleteResponse
+from ....types.r2.domains.custom_update_response import CustomUpdateResponse
 
 __all__ = ["CustomResource", "AsyncCustomResource"]
 

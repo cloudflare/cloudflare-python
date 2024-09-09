@@ -2,77 +2,6 @@
 
 from __future__ import annotations
 
-from .applications.applications import ApplicationsResource, AsyncApplicationsResource
-
-from ...._compat import cached_property
-
-from .certificates.certificates import CertificatesResource, AsyncCertificatesResource
-
-from .groups import GroupsResource, AsyncGroupsResource
-
-from .service_tokens import ServiceTokensResource, AsyncServiceTokensResource
-
-from .bookmarks import BookmarksResource, AsyncBookmarksResource
-
-from .keys import KeysResource, AsyncKeysResource
-
-from .logs.logs import LogsResource, AsyncLogsResource
-
-from .users.users import UsersResource, AsyncUsersResource
-
-from .custom_pages import CustomPagesResource, AsyncCustomPagesResource
-
-from .tags import TagsResource, AsyncTagsResource
-
-from .policies import PoliciesResource, AsyncPoliciesResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from .applications import (
-    ApplicationsResource,
-    AsyncApplicationsResource,
-    ApplicationsResourceWithRawResponse,
-    AsyncApplicationsResourceWithRawResponse,
-    ApplicationsResourceWithStreamingResponse,
-    AsyncApplicationsResourceWithStreamingResponse,
-)
-from .certificates import (
-    CertificatesResource,
-    AsyncCertificatesResource,
-    CertificatesResourceWithRawResponse,
-    AsyncCertificatesResourceWithRawResponse,
-    CertificatesResourceWithStreamingResponse,
-    AsyncCertificatesResourceWithStreamingResponse,
-)
-from .groups import (
-    GroupsResource,
-    AsyncGroupsResource,
-    GroupsResourceWithRawResponse,
-    AsyncGroupsResourceWithRawResponse,
-    GroupsResourceWithStreamingResponse,
-    AsyncGroupsResourceWithStreamingResponse,
-)
-from .service_tokens import (
-    ServiceTokensResource,
-    AsyncServiceTokensResource,
-    ServiceTokensResourceWithRawResponse,
-    AsyncServiceTokensResourceWithRawResponse,
-    ServiceTokensResourceWithStreamingResponse,
-    AsyncServiceTokensResourceWithStreamingResponse,
-)
-from .bookmarks import (
-    BookmarksResource,
-    AsyncBookmarksResource,
-    BookmarksResourceWithRawResponse,
-    AsyncBookmarksResourceWithRawResponse,
-    BookmarksResourceWithStreamingResponse,
-    AsyncBookmarksResourceWithStreamingResponse,
-)
 from .keys import (
     KeysResource,
     AsyncKeysResource,
@@ -89,6 +18,14 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
+from .tags import (
+    TagsResource,
+    AsyncTagsResource,
+    TagsResourceWithRawResponse,
+    AsyncTagsResourceWithRawResponse,
+    TagsResourceWithStreamingResponse,
+    AsyncTagsResourceWithStreamingResponse,
+)
 from .users import (
     UsersResource,
     AsyncUsersResource,
@@ -97,21 +34,13 @@ from .users import (
     UsersResourceWithStreamingResponse,
     AsyncUsersResourceWithStreamingResponse,
 )
-from .custom_pages import (
-    CustomPagesResource,
-    AsyncCustomPagesResource,
-    CustomPagesResourceWithRawResponse,
-    AsyncCustomPagesResourceWithRawResponse,
-    CustomPagesResourceWithStreamingResponse,
-    AsyncCustomPagesResourceWithStreamingResponse,
-)
-from .tags import (
-    TagsResource,
-    AsyncTagsResource,
-    TagsResourceWithRawResponse,
-    AsyncTagsResourceWithRawResponse,
-    TagsResourceWithStreamingResponse,
-    AsyncTagsResourceWithStreamingResponse,
+from .groups import (
+    GroupsResource,
+    AsyncGroupsResource,
+    GroupsResourceWithRawResponse,
+    AsyncGroupsResourceWithRawResponse,
+    GroupsResourceWithStreamingResponse,
+    AsyncGroupsResourceWithStreamingResponse,
 )
 from .policies import (
     PoliciesResource,
@@ -121,6 +50,52 @@ from .policies import (
     PoliciesResourceWithStreamingResponse,
     AsyncPoliciesResourceWithStreamingResponse,
 )
+from .bookmarks import (
+    BookmarksResource,
+    AsyncBookmarksResource,
+    BookmarksResourceWithRawResponse,
+    AsyncBookmarksResourceWithRawResponse,
+    BookmarksResourceWithStreamingResponse,
+    AsyncBookmarksResourceWithStreamingResponse,
+)
+from .logs.logs import LogsResource, AsyncLogsResource
+from ...._compat import cached_property
+from .users.users import UsersResource, AsyncUsersResource
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .applications import (
+    ApplicationsResource,
+    AsyncApplicationsResource,
+    ApplicationsResourceWithRawResponse,
+    AsyncApplicationsResourceWithRawResponse,
+    ApplicationsResourceWithStreamingResponse,
+    AsyncApplicationsResourceWithStreamingResponse,
+)
+from .certificates import (
+    CertificatesResource,
+    AsyncCertificatesResource,
+    CertificatesResourceWithRawResponse,
+    AsyncCertificatesResourceWithRawResponse,
+    CertificatesResourceWithStreamingResponse,
+    AsyncCertificatesResourceWithStreamingResponse,
+)
+from .custom_pages import (
+    CustomPagesResource,
+    AsyncCustomPagesResource,
+    CustomPagesResourceWithRawResponse,
+    AsyncCustomPagesResourceWithRawResponse,
+    CustomPagesResourceWithStreamingResponse,
+    AsyncCustomPagesResourceWithStreamingResponse,
+)
+from .service_tokens import (
+    ServiceTokensResource,
+    AsyncServiceTokensResource,
+    ServiceTokensResourceWithRawResponse,
+    AsyncServiceTokensResourceWithRawResponse,
+    ServiceTokensResourceWithStreamingResponse,
+    AsyncServiceTokensResourceWithStreamingResponse,
+)
+from .applications.applications import ApplicationsResource, AsyncApplicationsResource
+from .certificates.certificates import CertificatesResource, AsyncCertificatesResource
 
 __all__ = ["AccessResource", "AsyncAccessResource"]
 

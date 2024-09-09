@@ -2,24 +2,19 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from typing import Optional, Any, cast
-
-from cloudflare.types.zero_trust.access import CustomPageWithoutHTML, CustomPageDeleteResponse, CustomPage
-
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.access import custom_page_create_params
-from cloudflare.types.zero_trust.access import custom_page_update_params
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.zero_trust.access import (
+    CustomPage,
+    CustomPageWithoutHTML,
+    CustomPageDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

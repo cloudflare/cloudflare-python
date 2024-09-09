@@ -2,83 +2,37 @@
 
 from __future__ import annotations
 
+from typing import Any, List, Type, Optional, cast, overload
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    required_args,
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
-from ...types.spectrum.dns_param import DNSParam
-
-from typing_extensions import Literal
-
-from ...types.spectrum.edge_ips_param import EdgeIPsParam
-
-from typing import List, Optional, Type
-
-from ...types.spectrum.origin_dns_param import OriginDNSParam
-
-from ...types.spectrum.origin_port_param import OriginPortParam
-
-from ...types.spectrum.app_create_response import AppCreateResponse
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options
-
-from ...types.spectrum.app_update_response import AppUpdateResponse
-
-from ...types.spectrum.app_list_response import AppListResponse
-
-from ...types.spectrum.app_delete_response import AppDeleteResponse
-
-from ...types.spectrum.app_get_response import AppGetResponse
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.spectrum import app_create_params
-from ...types.spectrum import app_update_params
-from ...types.spectrum import app_list_params
-from ...types.spectrum import DNS
-from ...types.spectrum import EdgeIPs
-from ...types.spectrum import OriginDNS
-from ...types.spectrum import OriginPort
-from ...types.spectrum import DNS
-from ...types.spectrum import DNS
-from ...types.spectrum import EdgeIPs
-from ...types.spectrum import OriginDNS
-from ...types.spectrum import OriginPort
-from ...types.spectrum import DNS
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._wrappers import ResultWrapper
+from ..._base_client import make_request_options
+from ...types.spectrum import app_list_params, app_create_params, app_update_params
+from ...types.spectrum.dns_param import DNSParam
+from ...types.spectrum.edge_ips_param import EdgeIPsParam
+from ...types.spectrum.app_get_response import AppGetResponse
+from ...types.spectrum.origin_dns_param import OriginDNSParam
+from ...types.spectrum.app_list_response import AppListResponse
+from ...types.spectrum.origin_port_param import OriginPortParam
+from ...types.spectrum.app_create_response import AppCreateResponse
+from ...types.spectrum.app_delete_response import AppDeleteResponse
+from ...types.spectrum.app_update_response import AppUpdateResponse
 
 __all__ = ["AppsResource", "AsyncAppsResource"]
 

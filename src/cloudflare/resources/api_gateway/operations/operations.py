@@ -2,51 +2,27 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Iterable, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .schema_validation import SchemaValidationResource, AsyncSchemaValidationResource
-
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.api_gateway.operation_create_response import OperationCreateResponse
-
-from ...._wrappers import ResultWrapper
-
-from typing import Iterable, Type, List
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from ....types.api_gateway.operation_list_response import OperationListResponse
-
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
-from typing_extensions import Literal
-
-from ....types.api_gateway.operation_delete_response import OperationDeleteResponse
-
-from ....types.api_gateway.operation_get_response import OperationGetResponse
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-from ....types.api_gateway import operation_create_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.api_gateway import operation_create_params
-from ....types.api_gateway import operation_list_params
-from ....types.api_gateway import operation_get_params
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...._base_client import AsyncPaginator, make_request_options
 from .schema_validation import (
     SchemaValidationResource,
     AsyncSchemaValidationResource,
@@ -55,10 +31,11 @@ from .schema_validation import (
     SchemaValidationResourceWithStreamingResponse,
     AsyncSchemaValidationResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ....types.api_gateway import operation_get_params, operation_list_params, operation_create_params
+from ....types.api_gateway.operation_get_response import OperationGetResponse
+from ....types.api_gateway.operation_list_response import OperationListResponse
+from ....types.api_gateway.operation_create_response import OperationCreateResponse
+from ....types.api_gateway.operation_delete_response import OperationDeleteResponse
 
 __all__ = ["OperationsResource", "AsyncOperationsResource"]
 

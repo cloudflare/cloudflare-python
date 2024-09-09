@@ -1,22 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .azure_ad import AzureAD
-
-from ..._models import BaseModel
-
-from typing import Optional, List
-
-from .identity_provider_type import IdentityProviderType
-
-from .identity_provider_scim_config import IdentityProviderSCIMConfig
-
-from .generic_oauth_config import GenericOAuthConfig
-
+from typing import List, Union, Optional
 from typing_extensions import TypeAlias
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from .azure_ad import AzureAD
+from ..._models import BaseModel
+from .generic_oauth_config import GenericOAuthConfig
+from .identity_provider_type import IdentityProviderType
+from .identity_provider_scim_config import IdentityProviderSCIMConfig
 
 __all__ = [
     "IdentityProvider",
