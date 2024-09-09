@@ -50,6 +50,7 @@ class TestSettings:
                 "migrations": {
                     "deleted_classes": ["string", "string", "string"],
                     "new_classes": ["string", "string", "string"],
+                    "new_sqlite_classes": ["string", "string", "string"],
                     "new_tag": "v2",
                     "old_tag": "v1",
                     "renamed_classes": [
@@ -256,6 +257,7 @@ class TestAsyncSettings:
                 "migrations": {
                     "deleted_classes": ["string", "string", "string"],
                     "new_classes": ["string", "string", "string"],
+                    "new_sqlite_classes": ["string", "string", "string"],
                     "new_tag": "v2",
                     "old_tag": "v1",
                     "renamed_classes": [
