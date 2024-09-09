@@ -16,7 +16,7 @@ class LogListParams(TypedDict, total=False):
 
     cached: bool
 
-    direction: Literal["asc", "desc"]
+    direction: Literal["asc", "desc", "ASC", "DESC"]
 
     end_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
@@ -38,7 +38,7 @@ class LogListParams(TypedDict, total=False):
 
     order_by: Literal["created_at", "provider", "model", "model_type", "success", "cached"]
 
-    order_by_direction: Literal["asc", "desc"]
+    order_by_direction: Literal["asc", "desc", "ASC", "DESC"]
 
     page: int
 
