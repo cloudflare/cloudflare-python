@@ -154,7 +154,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IntegrationDeleteResponse:
+    ) -> Optional[IntegrationDeleteResponse]:
         """
         Delete a configured device posture integration.
 
@@ -174,7 +174,7 @@ class IntegrationsResource(SyncAPIResource):
         if not integration_id:
             raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
         return cast(
-            IntegrationDeleteResponse,
+            Optional[IntegrationDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
                 options=make_request_options(
@@ -182,7 +182,7 @@ class IntegrationsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[IntegrationDeleteResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[IntegrationDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IntegrationDeleteResponse]
@@ -422,7 +422,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IntegrationDeleteResponse:
+    ) -> Optional[IntegrationDeleteResponse]:
         """
         Delete a configured device posture integration.
 
@@ -442,7 +442,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         if not integration_id:
             raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
         return cast(
-            IntegrationDeleteResponse,
+            Optional[IntegrationDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
                 options=make_request_options(
@@ -450,7 +450,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[IntegrationDeleteResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[IntegrationDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IntegrationDeleteResponse]
