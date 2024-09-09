@@ -8,11 +8,11 @@ __all__ = ["GSuiteGroupRule", "GSuite"]
 
 
 class GSuite(BaseModel):
-    connection_id: str
-    """The ID of your Google Workspace identity provider."""
-
     email: str
     """The email of the Google Workspace group."""
+
+    identity_provider_id: str
+    """The ID of your Google Workspace identity provider."""
 
 
 class GSuiteGroupRule(BaseModel):

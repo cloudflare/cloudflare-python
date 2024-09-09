@@ -7,15 +7,7 @@ from .ttl import TTL
 from ..._models import BaseModel
 from .record_tags import RecordTags
 
-__all__ = ["RecordGetResponse", "Meta"]
-
-
-class Meta(BaseModel):
-    auto_added: Optional[bool] = None
-    """
-    Will exist if Cloudflare automatically added this DNS record during initial
-    setup.
-    """
+__all__ = ["RecordGetResponse"]
 
 
 class RecordGetResponse(BaseModel):
@@ -28,13 +20,10 @@ class RecordGetResponse(BaseModel):
     This field has no effect on DNS responses.
     """
 
-    comment_modified_on: datetime
-    """When the record comment was last modified."""
-
     created_on: datetime
     """When the record was created."""
 
-    meta: Meta
+    meta: object
     """Extra Cloudflare-specific information about the record."""
 
     modified_on: datetime
@@ -52,11 +41,11 @@ class RecordGetResponse(BaseModel):
     Cloudflare.
     """
 
+    settings: object
+    """Settings for the DNS record."""
+
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    tags_modified_on: datetime
-    """When the record tags were last modified."""
 
     ttl: TTL
     """Time To Live (TTL) of the DNS record in seconds.
@@ -64,3 +53,9 @@ class RecordGetResponse(BaseModel):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
