@@ -14,6 +14,9 @@ class SAML(BaseModel):
     attribute_value: str
     """The SAML attribute value to look for."""
 
+    identity_provider_id: str
+    """The ID of your SAML identity provider."""
+
 
 class SAMLGroupRule(BaseModel):
     saml: SAML

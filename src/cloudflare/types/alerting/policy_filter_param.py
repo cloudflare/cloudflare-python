@@ -80,6 +80,9 @@ class PolicyFilterParam(TypedDict, total=False):
     pool_id: List[str]
     """Usage depends on specific alert type"""
 
+    pop_name: List[str]
+    """Usage depends on specific alert type"""
+
     product: List[str]
     """Used for configuring billing_usage_alert"""
 
