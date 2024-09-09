@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .settings import SettingsResource, AsyncSettingsResource
 from .settings import (
+    SettingsResource,
+    AsyncSettingsResource,
     SettingsResourceWithRawResponse,
     AsyncSettingsResourceWithRawResponse,
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from .universal import UniversalResource, AsyncUniversalResource
 from .universal import (
+    UniversalResource,
+    AsyncUniversalResource,
     UniversalResourceWithRawResponse,
     AsyncUniversalResourceWithRawResponse,
     UniversalResourceWithStreamingResponse,

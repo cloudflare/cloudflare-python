@@ -2,19 +2,14 @@
 
 from __future__ import annotations
 
-import httpx
-
-from typing import List, Any
-
-from .types.shared.error_data import ErrorData
-
-from ._utils import is_dict
-
-from ._models import construct_type
-
+from typing import Any, List, cast
 from typing_extensions import Literal
 
-from typing import cast
+import httpx
+
+from ._utils import is_dict
+from ._models import construct_type
+from .types.shared.error_data import ErrorData
 
 __all__ = [
     "BadRequestError",

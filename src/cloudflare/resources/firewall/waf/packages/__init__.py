@@ -1,21 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .groups import GroupsResource, AsyncGroupsResource
-from .groups import (
-    GroupsResourceWithRawResponse,
-    AsyncGroupsResourceWithRawResponse,
-    GroupsResourceWithStreamingResponse,
-    AsyncGroupsResourceWithStreamingResponse,
-)
-from .rules import RulesResource, AsyncRulesResource
 from .rules import (
+    RulesResource,
+    AsyncRulesResource,
     RulesResourceWithRawResponse,
     AsyncRulesResourceWithRawResponse,
     RulesResourceWithStreamingResponse,
     AsyncRulesResourceWithStreamingResponse,
 )
-from .packages import PackagesResource, AsyncPackagesResource
+from .groups import (
+    GroupsResource,
+    AsyncGroupsResource,
+    GroupsResourceWithRawResponse,
+    AsyncGroupsResourceWithRawResponse,
+    GroupsResourceWithStreamingResponse,
+    AsyncGroupsResourceWithStreamingResponse,
+)
 from .packages import (
+    PackagesResource,
+    AsyncPackagesResource,
     PackagesResourceWithRawResponse,
     AsyncPackagesResourceWithRawResponse,
     PackagesResourceWithStreamingResponse,

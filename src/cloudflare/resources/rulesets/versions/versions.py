@@ -2,38 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
-from .by_tag import ByTagResource, AsyncByTagResource
-
-from ...._compat import cached_property
-
-from ....types.rulesets.version_list_response import VersionListResponse
-
-from ....pagination import SyncSinglePage, AsyncSinglePage
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from ....types.rulesets.version_get_response import VersionGetResponse
-
-from ...._wrappers import ResultWrapper
-
-from typing import Type
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
 from .by_tag import (
     ByTagResource,
     AsyncByTagResource,
@@ -42,8 +14,20 @@ from .by_tag import (
     ByTagResourceWithStreamingResponse,
     AsyncByTagResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
+from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.rulesets.version_get_response import VersionGetResponse
+from ....types.rulesets.version_list_response import VersionListResponse
 
 __all__ = ["VersionsResource", "AsyncVersionsResource"]
 

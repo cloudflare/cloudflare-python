@@ -2,58 +2,32 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.zero_trust.gateway.gateway_rule import GatewayRule
-
-from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type, List
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from typing_extensions import Literal
-
-from ....types.zero_trust.gateway.gateway_filter import GatewayFilter
-
-from ....types.zero_trust.gateway.rule_setting_param import RuleSettingParam
-
-from ....types.zero_trust.gateway.schedule_param import ScheduleParam
-
-from ....pagination import SyncSinglePage, AsyncSinglePage
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.zero_trust.gateway import rule_create_params
-from ....types.zero_trust.gateway import rule_update_params
-from ....types.zero_trust.gateway import RuleSetting
-from ....types.zero_trust.gateway import Schedule
-from ....types.zero_trust.gateway import RuleSetting
-from ....types.zero_trust.gateway import Schedule
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.zero_trust.gateway import rule_create_params, rule_update_params
+from ....types.zero_trust.gateway.gateway_rule import GatewayRule
+from ....types.zero_trust.gateway.gateway_filter import GatewayFilter
+from ....types.zero_trust.gateway.schedule_param import ScheduleParam
+from ....types.zero_trust.gateway.rule_setting_param import RuleSettingParam
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 

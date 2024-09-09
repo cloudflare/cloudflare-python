@@ -2,26 +2,21 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from typing import Optional, Any, cast
-
-from cloudflare._response import (
-    BinaryAPIResponse,
-    StreamedBinaryAPIResponse,
-    AsyncBinaryAPIResponse,
-    AsyncStreamedBinaryAPIResponse,
-)
-
 import os
-import pytest
+from typing import Any, cast
+
 import httpx
-from typing_extensions import get_args
-from typing import Optional
+import pytest
 from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.kv.namespaces import value_update_params
+from cloudflare._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -2,50 +2,31 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.hostnames.settings.setting import Setting
-
-from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ...._base_client import make_request_options
-
-from typing_extensions import Literal
-
-from ....types.hostnames.settings.setting_value_param import SettingValueParam
-
-from ....types.hostnames.settings.tls_delete_response import TLSDeleteResponse
-
-from ....types.hostnames.settings.tls_get_response import TLSGetResponse
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
+from ...._wrappers import ResultWrapper
+from ...._base_client import make_request_options
 from ....types.hostnames.settings import tls_update_params
-from ....types.hostnames.settings import SettingValue
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ....types.hostnames.settings.setting import Setting
+from ....types.hostnames.settings.tls_get_response import TLSGetResponse
+from ....types.hostnames.settings.setting_value_param import SettingValueParam
+from ....types.hostnames.settings.tls_delete_response import TLSDeleteResponse
 
 __all__ = ["TLSResource", "AsyncTLSResource"]
 

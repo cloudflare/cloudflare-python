@@ -2,43 +2,29 @@
 
 from __future__ import annotations
 
-import httpx
-
-from ..._compat import cached_property
-
-from ...types.botnet_feed.asn_day_report_response import ASNDayReportResponse
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type, Union
-
-from ..._base_client import make_request_options
-
+from typing import Type, Union, Optional, cast
 from datetime import datetime
 
-from ...types.botnet_feed.asn_full_report_response import ASNFullReportResponse
+import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
+from ..._wrappers import ResultWrapper
+from ..._base_client import make_request_options
 from ...types.botnet_feed import asn_day_report_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...types.botnet_feed.asn_day_report_response import ASNDayReportResponse
+from ...types.botnet_feed.asn_full_report_response import ASNFullReportResponse
 
 __all__ = ["ASNResource", "AsyncASNResource"]
 

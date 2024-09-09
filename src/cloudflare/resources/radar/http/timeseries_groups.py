@@ -2,86 +2,49 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.radar.http.timeseries_group_bot_class_response import TimeseriesGroupBotClassResponse
-
-from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from ...._base_client import make_request_options
-
-from typing import Type, List, Union
-
-from typing_extensions import Literal
-
-from datetime import datetime
-
-from ....types.radar.http.timeseries_group_browser_response import TimeseriesGroupBrowserResponse
-
-from ....types.radar.http.timeseries_group_browser_family_response import TimeseriesGroupBrowserFamilyResponse
-
-from ....types.radar.http.timeseries_group_device_type_response import TimeseriesGroupDeviceTypeResponse
-
-from ....types.radar.http.timeseries_group_http_protocol_response import TimeseriesGroupHTTPProtocolResponse
-
-from ....types.radar.http.timeseries_group_http_version_response import TimeseriesGroupHTTPVersionResponse
-
-from ....types.radar.http.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
-
-from ....types.radar.http.timeseries_group_os_response import TimeseriesGroupOSResponse
-
-from ....types.radar.http.timeseries_group_post_quantum_response import TimeseriesGroupPostQuantumResponse
-
-from ....types.radar.http.timeseries_group_tls_version_response import TimeseriesGroupTLSVersionResponse
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.radar.http import timeseries_group_bot_class_params
-from ....types.radar.http import timeseries_group_browser_params
-from ....types.radar.http import timeseries_group_browser_family_params
-from ....types.radar.http import timeseries_group_device_type_params
-from ....types.radar.http import timeseries_group_http_protocol_params
-from ....types.radar.http import timeseries_group_http_version_params
-from ....types.radar.http import timeseries_group_ip_version_params
-from ....types.radar.http import timeseries_group_os_params
-from ....types.radar.http import timeseries_group_post_quantum_params
-from ....types.radar.http import timeseries_group_tls_version_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._wrappers import ResultWrapper
+from ...._base_client import make_request_options
+from ....types.radar.http import (
+    timeseries_group_os_params,
+    timeseries_group_browser_params,
+    timeseries_group_bot_class_params,
+    timeseries_group_ip_version_params,
+    timeseries_group_device_type_params,
+    timeseries_group_tls_version_params,
+    timeseries_group_http_version_params,
+    timeseries_group_post_quantum_params,
+    timeseries_group_http_protocol_params,
+    timeseries_group_browser_family_params,
+)
+from ....types.radar.http.timeseries_group_os_response import TimeseriesGroupOSResponse
+from ....types.radar.http.timeseries_group_browser_response import TimeseriesGroupBrowserResponse
+from ....types.radar.http.timeseries_group_bot_class_response import TimeseriesGroupBotClassResponse
+from ....types.radar.http.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
+from ....types.radar.http.timeseries_group_device_type_response import TimeseriesGroupDeviceTypeResponse
+from ....types.radar.http.timeseries_group_tls_version_response import TimeseriesGroupTLSVersionResponse
+from ....types.radar.http.timeseries_group_http_version_response import TimeseriesGroupHTTPVersionResponse
+from ....types.radar.http.timeseries_group_post_quantum_response import TimeseriesGroupPostQuantumResponse
+from ....types.radar.http.timeseries_group_http_protocol_response import TimeseriesGroupHTTPProtocolResponse
+from ....types.radar.http.timeseries_group_browser_family_response import TimeseriesGroupBrowserFamilyResponse
 
 __all__ = ["TimeseriesGroupsResource", "AsyncTimeseriesGroupsResource"]
 

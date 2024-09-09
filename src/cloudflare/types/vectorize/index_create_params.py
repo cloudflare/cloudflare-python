@@ -2,16 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, TypeAlias
+from typing import Union
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .index_dimension_configuration_param import IndexDimensionConfigurationParam
-
-from typing import Union
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
 
 __all__ = ["IndexCreateParams", "Config", "ConfigVectorizeIndexPresetConfiguration"]
 

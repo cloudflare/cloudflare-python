@@ -2,21 +2,14 @@
 
 from __future__ import annotations
 
-from .schedule import ScheduleResource, AsyncScheduleResource
-
-from ..._compat import cached_property
-
-from .availabilities import AvailabilitiesResource, AsyncAvailabilitiesResource
-
-from .pages.pages import PagesResource, AsyncPagesResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
+from .pages import (
+    PagesResource,
+    AsyncPagesResource,
+    PagesResourceWithRawResponse,
+    AsyncPagesResourceWithRawResponse,
+    PagesResourceWithStreamingResponse,
+    AsyncPagesResourceWithStreamingResponse,
+)
 from .schedule import (
     ScheduleResource,
     AsyncScheduleResource,
@@ -25,6 +18,9 @@ from .schedule import (
     ScheduleResourceWithStreamingResponse,
     AsyncScheduleResourceWithStreamingResponse,
 )
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .pages.pages import PagesResource, AsyncPagesResource
 from .availabilities import (
     AvailabilitiesResource,
     AsyncAvailabilitiesResource,
@@ -32,14 +28,6 @@ from .availabilities import (
     AsyncAvailabilitiesResourceWithRawResponse,
     AvailabilitiesResourceWithStreamingResponse,
     AsyncAvailabilitiesResourceWithStreamingResponse,
-)
-from .pages import (
-    PagesResource,
-    AsyncPagesResource,
-    PagesResourceWithRawResponse,
-    AsyncPagesResourceWithRawResponse,
-    PagesResourceWithStreamingResponse,
-    AsyncPagesResourceWithStreamingResponse,
 )
 
 __all__ = ["SpeedResource", "AsyncSpeedResource"]

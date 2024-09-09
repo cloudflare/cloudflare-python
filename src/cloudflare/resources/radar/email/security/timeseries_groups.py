@@ -2,83 +2,49 @@
 
 from __future__ import annotations
 
-import httpx
-
-from ....._compat import cached_property
-
-from .....types.radar.email.security.timeseries_group_arc_response import TimeseriesGroupARCResponse
-
-from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from ....._base_client import make_request_options
-
-from typing import Type, List, Union
-
+from typing import List, Type, Union, cast
+from datetime import datetime
 from typing_extensions import Literal
 
-from datetime import datetime
+import httpx
 
-from .....types.radar.email.security.timeseries_group_dkim_response import TimeseriesGroupDKIMResponse
-
-from .....types.radar.email.security.timeseries_group_dmarc_response import TimeseriesGroupDMARCResponse
-
-from .....types.radar.email.security.timeseries_group_malicious_response import TimeseriesGroupMaliciousResponse
-
-from .....types.radar.email.security.timeseries_group_spam_response import TimeseriesGroupSpamResponse
-
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....._wrappers import ResultWrapper
+from ....._base_client import make_request_options
+from .....types.radar.email.security import (
+    timeseries_group_arc_params,
+    timeseries_group_spf_params,
+    timeseries_group_dkim_params,
+    timeseries_group_spam_params,
+    timeseries_group_dmarc_params,
+    timeseries_group_spoof_params,
+    timeseries_group_malicious_params,
+    timeseries_group_tls_version_params,
+    timeseries_group_threat_category_params,
+)
+from .....types.radar.email.security.timeseries_group_arc_response import TimeseriesGroupARCResponse
 from .....types.radar.email.security.timeseries_group_spf_response import TimeseriesGroupSPFResponse
-
+from .....types.radar.email.security.timeseries_group_dkim_response import TimeseriesGroupDKIMResponse
+from .....types.radar.email.security.timeseries_group_spam_response import TimeseriesGroupSpamResponse
+from .....types.radar.email.security.timeseries_group_dmarc_response import TimeseriesGroupDMARCResponse
 from .....types.radar.email.security.timeseries_group_spoof_response import TimeseriesGroupSpoofResponse
-
+from .....types.radar.email.security.timeseries_group_malicious_response import TimeseriesGroupMaliciousResponse
+from .....types.radar.email.security.timeseries_group_tls_version_response import TimeseriesGroupTLSVersionResponse
 from .....types.radar.email.security.timeseries_group_threat_category_response import (
     TimeseriesGroupThreatCategoryResponse,
 )
-
-from .....types.radar.email.security.timeseries_group_tls_version_response import TimeseriesGroupTLSVersionResponse
-
-from ....._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.radar.email.security import timeseries_group_arc_params
-from .....types.radar.email.security import timeseries_group_dkim_params
-from .....types.radar.email.security import timeseries_group_dmarc_params
-from .....types.radar.email.security import timeseries_group_malicious_params
-from .....types.radar.email.security import timeseries_group_spam_params
-from .....types.radar.email.security import timeseries_group_spf_params
-from .....types.radar.email.security import timeseries_group_spoof_params
-from .....types.radar.email.security import timeseries_group_threat_category_params
-from .....types.radar.email.security import timeseries_group_tls_version_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
 
 __all__ = ["TimeseriesGroupsResource", "AsyncTimeseriesGroupsResource"]
 

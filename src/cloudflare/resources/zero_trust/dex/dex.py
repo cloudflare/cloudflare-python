@@ -2,30 +2,6 @@
 
 from __future__ import annotations
 
-from .colos import ColosResource, AsyncColosResource
-
-from ...._compat import cached_property
-
-from .fleet_status.fleet_status import FleetStatusResource, AsyncFleetStatusResource
-
-from .http_tests.http_tests import HTTPTestsResource, AsyncHTTPTestsResource
-
-from .tests.tests import TestsResource, AsyncTestsResource
-
-from .traceroute_test_results.traceroute_test_results import (
-    TracerouteTestResultsResource,
-    AsyncTracerouteTestResultsResource,
-)
-
-from .traceroute_tests import TracerouteTestsResource, AsyncTracerouteTestsResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
 from .colos import (
     ColosResource,
     AsyncColosResource,
@@ -33,22 +9,6 @@ from .colos import (
     AsyncColosResourceWithRawResponse,
     ColosResourceWithStreamingResponse,
     AsyncColosResourceWithStreamingResponse,
-)
-from .fleet_status import (
-    FleetStatusResource,
-    AsyncFleetStatusResource,
-    FleetStatusResourceWithRawResponse,
-    AsyncFleetStatusResourceWithRawResponse,
-    FleetStatusResourceWithStreamingResponse,
-    AsyncFleetStatusResourceWithStreamingResponse,
-)
-from .http_tests import (
-    HTTPTestsResource,
-    AsyncHTTPTestsResource,
-    HTTPTestsResourceWithRawResponse,
-    AsyncHTTPTestsResourceWithRawResponse,
-    HTTPTestsResourceWithStreamingResponse,
-    AsyncHTTPTestsResourceWithStreamingResponse,
 )
 from .tests import (
     TestsResource,
@@ -58,13 +18,24 @@ from .tests import (
     TestsResourceWithStreamingResponse,
     AsyncTestsResourceWithStreamingResponse,
 )
-from .traceroute_test_results import (
-    TracerouteTestResultsResource,
-    AsyncTracerouteTestResultsResource,
-    TracerouteTestResultsResourceWithRawResponse,
-    AsyncTracerouteTestResultsResourceWithRawResponse,
-    TracerouteTestResultsResourceWithStreamingResponse,
-    AsyncTracerouteTestResultsResourceWithStreamingResponse,
+from ...._compat import cached_property
+from .http_tests import (
+    HTTPTestsResource,
+    AsyncHTTPTestsResource,
+    HTTPTestsResourceWithRawResponse,
+    AsyncHTTPTestsResourceWithRawResponse,
+    HTTPTestsResourceWithStreamingResponse,
+    AsyncHTTPTestsResourceWithStreamingResponse,
+)
+from .tests.tests import TestsResource, AsyncTestsResource
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .fleet_status import (
+    FleetStatusResource,
+    AsyncFleetStatusResource,
+    FleetStatusResourceWithRawResponse,
+    AsyncFleetStatusResourceWithRawResponse,
+    FleetStatusResourceWithStreamingResponse,
+    AsyncFleetStatusResourceWithStreamingResponse,
 )
 from .traceroute_tests import (
     TracerouteTestsResource,
@@ -73,6 +44,20 @@ from .traceroute_tests import (
     AsyncTracerouteTestsResourceWithRawResponse,
     TracerouteTestsResourceWithStreamingResponse,
     AsyncTracerouteTestsResourceWithStreamingResponse,
+)
+from .http_tests.http_tests import HTTPTestsResource, AsyncHTTPTestsResource
+from .traceroute_test_results import (
+    TracerouteTestResultsResource,
+    AsyncTracerouteTestResultsResource,
+    TracerouteTestResultsResourceWithRawResponse,
+    AsyncTracerouteTestResultsResourceWithRawResponse,
+    TracerouteTestResultsResourceWithStreamingResponse,
+    AsyncTracerouteTestResultsResourceWithStreamingResponse,
+)
+from .fleet_status.fleet_status import FleetStatusResource, AsyncFleetStatusResource
+from .traceroute_test_results.traceroute_test_results import (
+    TracerouteTestResultsResource,
+    AsyncTracerouteTestResultsResource,
 )
 
 __all__ = ["DEXResource", "AsyncDEXResource"]

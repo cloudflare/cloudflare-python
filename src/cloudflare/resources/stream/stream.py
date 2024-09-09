@@ -2,84 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Type, Union, Optional, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
-from .audio_tracks import AudioTracksResource, AsyncAudioTracksResource
-
-from ..._compat import cached_property
-
-from .videos import VideosResource, AsyncVideosResource
-
-from .clip import ClipResource, AsyncClipResource
-
-from .copy import CopyResource, AsyncCopyResource
-
-from .direct_upload import DirectUploadResource, AsyncDirectUploadResource
-
-from .keys import KeysResource, AsyncKeysResource
-
-from .live_inputs.live_inputs import LiveInputsResource, AsyncLiveInputsResource
-
-from .watermarks import WatermarksResource, AsyncWatermarksResource
-
-from .webhooks import WebhooksResource, AsyncWebhooksResource
-
-from .captions.captions import CaptionsResource, AsyncCaptionsResource
-
-from .downloads import DownloadsResource, AsyncDownloadsResource
-
-from .embed import EmbedResource, AsyncEmbedResource
-
-from .token import TokenResource, AsyncTokenResource
-
-from ..._utils import is_given, strip_not_given, maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options, AsyncPaginator
-
-from typing_extensions import Literal
-
-from ...types.stream.video import Video
-
-from ...pagination import SyncSinglePage, AsyncSinglePage
-
-from typing import Union, Optional, Type
-
-from datetime import datetime
-
-from ..._wrappers import ResultWrapper
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.stream import stream_create_params
-from ...types.stream import stream_list_params
-from .audio_tracks import (
-    AudioTracksResource,
-    AsyncAudioTracksResource,
-    AudioTracksResourceWithRawResponse,
-    AsyncAudioTracksResourceWithRawResponse,
-    AudioTracksResourceWithStreamingResponse,
-    AsyncAudioTracksResourceWithStreamingResponse,
-)
-from .videos import (
-    VideosResource,
-    AsyncVideosResource,
-    VideosResourceWithRawResponse,
-    AsyncVideosResourceWithRawResponse,
-    VideosResourceWithStreamingResponse,
-    AsyncVideosResourceWithStreamingResponse,
-)
 from .clip import (
     ClipResource,
     AsyncClipResource,
@@ -96,14 +24,6 @@ from .copy import (
     CopyResourceWithStreamingResponse,
     AsyncCopyResourceWithStreamingResponse,
 )
-from .direct_upload import (
-    DirectUploadResource,
-    AsyncDirectUploadResource,
-    DirectUploadResourceWithRawResponse,
-    AsyncDirectUploadResourceWithRawResponse,
-    DirectUploadResourceWithStreamingResponse,
-    AsyncDirectUploadResourceWithStreamingResponse,
-)
 from .keys import (
     KeysResource,
     AsyncKeysResource,
@@ -111,46 +31,6 @@ from .keys import (
     AsyncKeysResourceWithRawResponse,
     KeysResourceWithStreamingResponse,
     AsyncKeysResourceWithStreamingResponse,
-)
-from .live_inputs import (
-    LiveInputsResource,
-    AsyncLiveInputsResource,
-    LiveInputsResourceWithRawResponse,
-    AsyncLiveInputsResourceWithRawResponse,
-    LiveInputsResourceWithStreamingResponse,
-    AsyncLiveInputsResourceWithStreamingResponse,
-)
-from .watermarks import (
-    WatermarksResource,
-    AsyncWatermarksResource,
-    WatermarksResourceWithRawResponse,
-    AsyncWatermarksResourceWithRawResponse,
-    WatermarksResourceWithStreamingResponse,
-    AsyncWatermarksResourceWithStreamingResponse,
-)
-from .webhooks import (
-    WebhooksResource,
-    AsyncWebhooksResource,
-    WebhooksResourceWithRawResponse,
-    AsyncWebhooksResourceWithRawResponse,
-    WebhooksResourceWithStreamingResponse,
-    AsyncWebhooksResourceWithStreamingResponse,
-)
-from .captions import (
-    CaptionsResource,
-    AsyncCaptionsResource,
-    CaptionsResourceWithRawResponse,
-    AsyncCaptionsResourceWithRawResponse,
-    CaptionsResourceWithStreamingResponse,
-    AsyncCaptionsResourceWithStreamingResponse,
-)
-from .downloads import (
-    DownloadsResource,
-    AsyncDownloadsResource,
-    DownloadsResourceWithRawResponse,
-    AsyncDownloadsResourceWithRawResponse,
-    DownloadsResourceWithStreamingResponse,
-    AsyncDownloadsResourceWithStreamingResponse,
 )
 from .embed import (
     EmbedResource,
@@ -168,8 +48,91 @@ from .token import (
     TokenResourceWithStreamingResponse,
     AsyncTokenResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
+from .videos import (
+    VideosResource,
+    AsyncVideosResource,
+    VideosResourceWithRawResponse,
+    AsyncVideosResourceWithRawResponse,
+    VideosResourceWithStreamingResponse,
+    AsyncVideosResourceWithStreamingResponse,
+)
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._utils import (
+    maybe_transform,
+    strip_not_given,
+    async_maybe_transform,
+)
+from .captions import (
+    CaptionsResource,
+    AsyncCaptionsResource,
+    CaptionsResourceWithRawResponse,
+    AsyncCaptionsResourceWithRawResponse,
+    CaptionsResourceWithStreamingResponse,
+    AsyncCaptionsResourceWithStreamingResponse,
+)
+from .webhooks import (
+    WebhooksResource,
+    AsyncWebhooksResource,
+    WebhooksResourceWithRawResponse,
+    AsyncWebhooksResourceWithRawResponse,
+    WebhooksResourceWithStreamingResponse,
+    AsyncWebhooksResourceWithStreamingResponse,
+)
+from ..._compat import cached_property
+from .downloads import (
+    DownloadsResource,
+    AsyncDownloadsResource,
+    DownloadsResourceWithRawResponse,
+    AsyncDownloadsResourceWithRawResponse,
+    DownloadsResourceWithStreamingResponse,
+    AsyncDownloadsResourceWithStreamingResponse,
+)
+from .watermarks import (
+    WatermarksResource,
+    AsyncWatermarksResource,
+    WatermarksResourceWithRawResponse,
+    AsyncWatermarksResourceWithRawResponse,
+    WatermarksResourceWithStreamingResponse,
+    AsyncWatermarksResourceWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from .live_inputs import (
+    LiveInputsResource,
+    AsyncLiveInputsResource,
+    LiveInputsResourceWithRawResponse,
+    AsyncLiveInputsResourceWithRawResponse,
+    LiveInputsResourceWithStreamingResponse,
+    AsyncLiveInputsResourceWithStreamingResponse,
+)
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from .audio_tracks import (
+    AudioTracksResource,
+    AsyncAudioTracksResource,
+    AudioTracksResourceWithRawResponse,
+    AsyncAudioTracksResourceWithRawResponse,
+    AudioTracksResourceWithStreamingResponse,
+    AsyncAudioTracksResourceWithStreamingResponse,
+)
+from .direct_upload import (
+    DirectUploadResource,
+    AsyncDirectUploadResource,
+    DirectUploadResourceWithRawResponse,
+    AsyncDirectUploadResourceWithRawResponse,
+    DirectUploadResourceWithStreamingResponse,
+    AsyncDirectUploadResourceWithStreamingResponse,
+)
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.stream import stream_list_params, stream_create_params
+from .captions.captions import CaptionsResource, AsyncCaptionsResource
+from ...types.stream.video import Video
+from .live_inputs.live_inputs import LiveInputsResource, AsyncLiveInputsResource
 
 __all__ = ["StreamResource", "AsyncStreamResource"]
 

@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict, Required, TypeAlias
+from typing import Dict, Union
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .logging_param import LoggingParam
-
-from typing import Dict, Union
-
 from .rewrite_uri_part_param import RewriteURIPartParam
 
 __all__ = [

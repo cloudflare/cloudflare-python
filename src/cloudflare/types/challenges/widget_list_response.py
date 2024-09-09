@@ -1,18 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing_extensions import Literal
-
-from datetime import datetime
-
 from typing import List
-
-from .widget_domain import WidgetDomain
-
-from typing import Optional, Union, List, Dict, Any
+from datetime import datetime
 from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+
+from ..._models import BaseModel
+from .widget_domain import WidgetDomain
 
 __all__ = ["WidgetListResponse"]
 

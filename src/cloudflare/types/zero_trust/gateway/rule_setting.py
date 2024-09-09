@@ -1,18 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Dict, List, Optional
+from typing_extensions import Literal
+
 from ...._models import BaseModel
-
-from typing import Optional, List, Dict
-
 from .dns_resolver_settings_v4 import DNSResolverSettingsV4
-
 from .dns_resolver_settings_v6 import DNSResolverSettingsV6
-
-from typing_extensions import Literal
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 
 __all__ = [
     "RuleSetting",

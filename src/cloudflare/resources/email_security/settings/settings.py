@@ -2,41 +2,6 @@
 
 from __future__ import annotations
 
-from .allow_patterns import AllowPatternsResource, AsyncAllowPatternsResource
-
-from ...._compat import cached_property
-
-from .block_senders import BlockSendersResource, AsyncBlockSendersResource
-
-from .domains import DomainsResource, AsyncDomainsResource
-
-from .impersonation_registry import ImpersonationRegistryResource, AsyncImpersonationRegistryResource
-
-from .trusted_domains import TrustedDomainsResource, AsyncTrustedDomainsResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from .allow_patterns import (
-    AllowPatternsResource,
-    AsyncAllowPatternsResource,
-    AllowPatternsResourceWithRawResponse,
-    AsyncAllowPatternsResourceWithRawResponse,
-    AllowPatternsResourceWithStreamingResponse,
-    AsyncAllowPatternsResourceWithStreamingResponse,
-)
-from .block_senders import (
-    BlockSendersResource,
-    AsyncBlockSendersResource,
-    BlockSendersResourceWithRawResponse,
-    AsyncBlockSendersResourceWithRawResponse,
-    BlockSendersResourceWithStreamingResponse,
-    AsyncBlockSendersResourceWithStreamingResponse,
-)
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -45,13 +10,23 @@ from .domains import (
     DomainsResourceWithStreamingResponse,
     AsyncDomainsResourceWithStreamingResponse,
 )
-from .impersonation_registry import (
-    ImpersonationRegistryResource,
-    AsyncImpersonationRegistryResource,
-    ImpersonationRegistryResourceWithRawResponse,
-    AsyncImpersonationRegistryResourceWithRawResponse,
-    ImpersonationRegistryResourceWithStreamingResponse,
-    AsyncImpersonationRegistryResourceWithStreamingResponse,
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .block_senders import (
+    BlockSendersResource,
+    AsyncBlockSendersResource,
+    BlockSendersResourceWithRawResponse,
+    AsyncBlockSendersResourceWithRawResponse,
+    BlockSendersResourceWithStreamingResponse,
+    AsyncBlockSendersResourceWithStreamingResponse,
+)
+from .allow_patterns import (
+    AllowPatternsResource,
+    AsyncAllowPatternsResource,
+    AllowPatternsResourceWithRawResponse,
+    AsyncAllowPatternsResourceWithRawResponse,
+    AllowPatternsResourceWithStreamingResponse,
+    AsyncAllowPatternsResourceWithStreamingResponse,
 )
 from .trusted_domains import (
     TrustedDomainsResource,
@@ -60,6 +35,14 @@ from .trusted_domains import (
     AsyncTrustedDomainsResourceWithRawResponse,
     TrustedDomainsResourceWithStreamingResponse,
     AsyncTrustedDomainsResourceWithStreamingResponse,
+)
+from .impersonation_registry import (
+    ImpersonationRegistryResource,
+    AsyncImpersonationRegistryResource,
+    ImpersonationRegistryResourceWithRawResponse,
+    AsyncImpersonationRegistryResourceWithRawResponse,
+    ImpersonationRegistryResourceWithStreamingResponse,
+    AsyncImpersonationRegistryResourceWithStreamingResponse,
 )
 
 __all__ = ["SettingsResource", "AsyncSettingsResource"]

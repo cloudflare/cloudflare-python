@@ -2,60 +2,15 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Iterable, Optional, cast, overload
+
 import httpx
 
-from .cache_reserve import CacheReserveResource, AsyncCacheReserveResource
-
-from ..._compat import cached_property
-
-from .smart_tiered_cache import SmartTieredCacheResource, AsyncSmartTieredCacheResource
-
-from .variants import VariantsResource, AsyncVariantsResource
-
-from .regional_tiered_cache import RegionalTieredCacheResource, AsyncRegionalTieredCacheResource
-
-from typing import List, Optional, Iterable, Type
-
-from ...types.cache.cache_purge_response import CachePurgeResponse
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-from ...types.cache import cache_purge_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.cache import cache_purge_params
-from .cache_reserve import (
-    CacheReserveResource,
-    AsyncCacheReserveResource,
-    CacheReserveResourceWithRawResponse,
-    AsyncCacheReserveResourceWithRawResponse,
-    CacheReserveResourceWithStreamingResponse,
-    AsyncCacheReserveResourceWithStreamingResponse,
-)
-from .smart_tiered_cache import (
-    SmartTieredCacheResource,
-    AsyncSmartTieredCacheResource,
-    SmartTieredCacheResourceWithRawResponse,
-    AsyncSmartTieredCacheResourceWithRawResponse,
-    SmartTieredCacheResourceWithStreamingResponse,
-    AsyncSmartTieredCacheResourceWithStreamingResponse,
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    required_args,
+    maybe_transform,
+    async_maybe_transform,
 )
 from .variants import (
     VariantsResource,
@@ -65,6 +20,33 @@ from .variants import (
     VariantsResourceWithStreamingResponse,
     AsyncVariantsResourceWithStreamingResponse,
 )
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ...types.cache import cache_purge_params
+from .cache_reserve import (
+    CacheReserveResource,
+    AsyncCacheReserveResource,
+    CacheReserveResourceWithRawResponse,
+    AsyncCacheReserveResourceWithRawResponse,
+    CacheReserveResourceWithStreamingResponse,
+    AsyncCacheReserveResourceWithStreamingResponse,
+)
+from ..._base_client import make_request_options
+from .smart_tiered_cache import (
+    SmartTieredCacheResource,
+    AsyncSmartTieredCacheResource,
+    SmartTieredCacheResourceWithRawResponse,
+    AsyncSmartTieredCacheResourceWithRawResponse,
+    SmartTieredCacheResourceWithStreamingResponse,
+    AsyncSmartTieredCacheResourceWithStreamingResponse,
+)
 from .regional_tiered_cache import (
     RegionalTieredCacheResource,
     AsyncRegionalTieredCacheResource,
@@ -73,8 +55,7 @@ from .regional_tiered_cache import (
     RegionalTieredCacheResourceWithStreamingResponse,
     AsyncRegionalTieredCacheResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
+from ...types.cache.cache_purge_response import CachePurgeResponse
 
 __all__ = ["CacheResource", "AsyncCacheResource"]
 

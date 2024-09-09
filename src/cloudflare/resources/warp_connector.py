@@ -2,75 +2,35 @@
 
 from __future__ import annotations
 
+from typing import Any, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
-
-from ..types.warp_connector.warp_connector_create_response import WARPConnectorCreateResponse
-
-from .._wrappers import ResultWrapper
-
-from .._utils import maybe_transform, async_maybe_transform
-
-from .._base_client import make_request_options, AsyncPaginator
-
-from ..types.warp_connector.warp_connector_list_response import WARPConnectorListResponse
-
-from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
-from typing import Union
-
-from datetime import datetime
-
-from typing_extensions import Literal
-
-from ..types.warp_connector.warp_connector_delete_response import WARPConnectorDeleteResponse
-
-from ..types.warp_connector.warp_connector_edit_response import WARPConnectorEditResponse
-
-from ..types.warp_connector.warp_connector_get_response import WARPConnectorGetResponse
-
-from ..types.warp_connector.warp_connector_token_response import WARPConnectorTokenResponse
-
+from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from .._resource import SyncAPIResource, AsyncAPIResource
-from ..types import shared_params
-from ..types.warp_connector import warp_connector_create_params
-from ..types.warp_connector import warp_connector_list_params
-from ..types.warp_connector import warp_connector_edit_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .._wrappers import ResultWrapper
+from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.warp_connector import warp_connector_edit_params, warp_connector_list_params, warp_connector_create_params
+from ..types.warp_connector.warp_connector_get_response import WARPConnectorGetResponse
+from ..types.warp_connector.warp_connector_edit_response import WARPConnectorEditResponse
+from ..types.warp_connector.warp_connector_list_response import WARPConnectorListResponse
+from ..types.warp_connector.warp_connector_token_response import WARPConnectorTokenResponse
+from ..types.warp_connector.warp_connector_create_response import WARPConnectorCreateResponse
+from ..types.warp_connector.warp_connector_delete_response import WARPConnectorDeleteResponse
 
 __all__ = ["WARPConnectorResource", "AsyncWARPConnectorResource"]
 

@@ -2,18 +2,11 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import TypedDict
 
-from typing import List
-
-from ..shared.certificate_request_type import CertificateRequestType
-
 from ..ssl.request_validity import RequestValidity
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
+from ..shared.certificate_request_type import CertificateRequestType
 
 __all__ = ["OriginCACertificateCreateParams"]
 

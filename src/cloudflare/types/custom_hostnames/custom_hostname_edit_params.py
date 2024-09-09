@@ -2,22 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
-
-from .bundle_method import BundleMethod
-
-from ..shared.certificate_ca import CertificateCA
+from typing import List
+from typing_extensions import Literal, Required, TypedDict
 
 from .dcv_method import DCVMethod
-
+from .bundle_method import BundleMethod
+from ..shared.certificate_ca import CertificateCA
 from .domain_validation_type import DomainValidationType
-
-from typing import List
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
 
 __all__ = ["CustomHostnameEditParams", "CustomMetadata", "SSL", "SSLSettings"]
 

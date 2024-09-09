@@ -1,22 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
+from typing import List, Union, Optional
 from datetime import datetime
-
-from .profiles.pattern import Pattern
-
-from typing_extensions import Literal, TypeAlias, Annotated
-
-from typing import Optional, List
+from typing_extensions import Literal, Annotated, TypeAlias
 
 from ...._utils import PropertyInfo
-
+from ...._models import BaseModel
+from .profiles.pattern import Pattern
 from .context_awareness import ContextAwareness
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 
 __all__ = [
     "Profile",

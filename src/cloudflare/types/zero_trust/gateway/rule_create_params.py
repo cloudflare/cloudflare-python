@@ -2,20 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
-
 from typing import List
+from typing_extensions import Literal, Required, TypedDict
 
 from .gateway_filter import GatewayFilter
-
-from .rule_setting_param import RuleSettingParam
-
 from .schedule_param import ScheduleParam
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ...._types import FileTypes
-from ...._utils import PropertyInfo
+from .rule_setting_param import RuleSettingParam
 
 __all__ = ["RuleCreateParams"]
 

@@ -1,13 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import TYPE_CHECKING, List
+
 from ....._models import BaseModel
-
-from typing import List
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-from typing import TYPE_CHECKING
 
 __all__ = ["TimeseriesGroupVectorResponse", "Serie0"]
 

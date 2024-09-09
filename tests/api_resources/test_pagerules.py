@@ -2,31 +2,21 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from cloudflare.types.pagerules import (
-    PageruleCreateResponse,
-    PageruleUpdateResponse,
-    PageruleListResponse,
-    PageruleDeleteResponse,
-    PageruleEditResponse,
-    PageruleGetResponse,
-)
-
-from typing import Any, cast, Optional
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.pagerules import pagerule_create_params
-from cloudflare.types.pagerules import pagerule_update_params
-from cloudflare.types.pagerules import pagerule_list_params
-from cloudflare.types.pagerules import pagerule_edit_params
+from cloudflare.types.pagerules import (
+    PageruleGetResponse,
+    PageruleEditResponse,
+    PageruleListResponse,
+    PageruleCreateResponse,
+    PageruleDeleteResponse,
+    PageruleUpdateResponse,
+)
 
 # pyright: reportDeprecated=false
 

@@ -1,28 +1,32 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .eligible import EligibleResource, AsyncEligibleResource
 from .eligible import (
+    EligibleResource,
+    AsyncEligibleResource,
     EligibleResourceWithRawResponse,
     AsyncEligibleResourceWithRawResponse,
     EligibleResourceWithStreamingResponse,
     AsyncEligibleResourceWithStreamingResponse,
 )
-from .pagerduty import PagerdutyResource, AsyncPagerdutyResource
-from .pagerduty import (
-    PagerdutyResourceWithRawResponse,
-    AsyncPagerdutyResourceWithRawResponse,
-    PagerdutyResourceWithStreamingResponse,
-    AsyncPagerdutyResourceWithStreamingResponse,
-)
-from .webhooks import WebhooksResource, AsyncWebhooksResource
 from .webhooks import (
+    WebhooksResource,
+    AsyncWebhooksResource,
     WebhooksResourceWithRawResponse,
     AsyncWebhooksResourceWithRawResponse,
     WebhooksResourceWithStreamingResponse,
     AsyncWebhooksResourceWithStreamingResponse,
 )
-from .destinations import DestinationsResource, AsyncDestinationsResource
+from .pagerduty import (
+    PagerdutyResource,
+    AsyncPagerdutyResource,
+    PagerdutyResourceWithRawResponse,
+    AsyncPagerdutyResourceWithRawResponse,
+    PagerdutyResourceWithStreamingResponse,
+    AsyncPagerdutyResourceWithStreamingResponse,
+)
 from .destinations import (
+    DestinationsResource,
+    AsyncDestinationsResource,
     DestinationsResourceWithRawResponse,
     AsyncDestinationsResourceWithRawResponse,
     DestinationsResourceWithStreamingResponse,

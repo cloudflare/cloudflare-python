@@ -2,66 +2,41 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
-
-from .....types.radar.email.routing.timeseries_group_arc_response import TimeseriesGroupARCResponse
-
-from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from ....._base_client import make_request_options
-
-from typing import Type, List, Union
-
-from typing_extensions import Literal
-
-from datetime import datetime
-
-from .....types.radar.email.routing.timeseries_group_dkim_response import TimeseriesGroupDKIMResponse
-
-from .....types.radar.email.routing.timeseries_group_dmarc_response import TimeseriesGroupDMARCResponse
-
-from .....types.radar.email.routing.timeseries_group_encrypted_response import TimeseriesGroupEncryptedResponse
-
-from .....types.radar.email.routing.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
-
-from .....types.radar.email.routing.timeseries_group_spf_response import TimeseriesGroupSPFResponse
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.radar.email.routing import timeseries_group_arc_params
-from .....types.radar.email.routing import timeseries_group_dkim_params
-from .....types.radar.email.routing import timeseries_group_dmarc_params
-from .....types.radar.email.routing import timeseries_group_encrypted_params
-from .....types.radar.email.routing import timeseries_group_ip_version_params
-from .....types.radar.email.routing import timeseries_group_spf_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ....._wrappers import ResultWrapper
+from ....._base_client import make_request_options
+from .....types.radar.email.routing import (
+    timeseries_group_arc_params,
+    timeseries_group_spf_params,
+    timeseries_group_dkim_params,
+    timeseries_group_dmarc_params,
+    timeseries_group_encrypted_params,
+    timeseries_group_ip_version_params,
+)
+from .....types.radar.email.routing.timeseries_group_arc_response import TimeseriesGroupARCResponse
+from .....types.radar.email.routing.timeseries_group_spf_response import TimeseriesGroupSPFResponse
+from .....types.radar.email.routing.timeseries_group_dkim_response import TimeseriesGroupDKIMResponse
+from .....types.radar.email.routing.timeseries_group_dmarc_response import TimeseriesGroupDMARCResponse
+from .....types.radar.email.routing.timeseries_group_encrypted_response import TimeseriesGroupEncryptedResponse
+from .....types.radar.email.routing.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
 
 __all__ = ["TimeseriesGroupsResource", "AsyncTimeseriesGroupsResource"]
 

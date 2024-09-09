@@ -2,35 +2,22 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from cloudflare.types.d1 import (
-    D1,
-    DatabaseListResponse,
-    DatabaseExportResponse,
-    DatabaseImportResponse,
-    DatabaseQueryResponse,
-    DatabaseRawResponse,
-)
-
-from typing import Any, cast, Optional
-
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
 import os
+from typing import Any, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.d1 import database_create_params
-from cloudflare.types.d1 import database_list_params
-from cloudflare.types.d1 import database_export_params
-from cloudflare.types.d1 import database_import_params
-from cloudflare.types.d1 import database_query_params
-from cloudflare.types.d1 import database_raw_params
+from cloudflare.types.d1 import (
+    D1,
+    DatabaseRawResponse,
+    DatabaseListResponse,
+    DatabaseQueryResponse,
+    DatabaseExportResponse,
+    DatabaseImportResponse,
+)
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

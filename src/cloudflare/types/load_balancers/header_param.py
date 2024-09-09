@@ -3,11 +3,9 @@
 from __future__ import annotations
 
 from typing import List
+from typing_extensions import Annotated, TypedDict
 
 from .host import Host
-
-from typing_extensions import TypedDict, Annotated
-
 from ..._utils import PropertyInfo
 
 __all__ = ["HeaderParam"]

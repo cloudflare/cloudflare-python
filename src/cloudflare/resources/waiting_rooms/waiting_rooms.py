@@ -2,61 +2,11 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Iterable, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .page import PageResource, AsyncPageResource
-
-from ..._compat import cached_property
-
-from .events.events import EventsResource, AsyncEventsResource
-
-from .rules import RulesResource, AsyncRulesResource
-
-from .statuses import StatusesResource, AsyncStatusesResource
-
-from .settings import SettingsResource, AsyncSettingsResource
-
-from ...types.waiting_rooms.waiting_room import WaitingRoom
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options, AsyncPaginator
-
-from typing import Type, Iterable, List
-
-from ...types.waiting_rooms.additional_routes_param import AdditionalRoutesParam
-
-from ...types.waiting_rooms.cookie_attributes_param import CookieAttributesParam
-
-from typing_extensions import Literal
-
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
-from ...types.waiting_rooms.waiting_room_delete_response import WaitingRoomDeleteResponse
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.waiting_rooms import waiting_room_create_params
-from ...types.waiting_rooms import waiting_room_update_params
-from ...types.waiting_rooms import waiting_room_list_params
-from ...types.waiting_rooms import waiting_room_edit_params
-from ...types.waiting_rooms import CookieAttributes
-from ...types.waiting_rooms import CookieAttributes
-from ...types.waiting_rooms import CookieAttributes
 from .page import (
     PageResource,
     AsyncPageResource,
@@ -64,14 +14,6 @@ from .page import (
     AsyncPageResourceWithRawResponse,
     PageResourceWithStreamingResponse,
     AsyncPageResourceWithStreamingResponse,
-)
-from .events import (
-    EventsResource,
-    AsyncEventsResource,
-    EventsResourceWithRawResponse,
-    AsyncEventsResourceWithRawResponse,
-    EventsResourceWithStreamingResponse,
-    AsyncEventsResourceWithStreamingResponse,
 )
 from .rules import (
     RulesResource,
@@ -81,13 +23,18 @@ from .rules import (
     RulesResourceWithStreamingResponse,
     AsyncRulesResourceWithStreamingResponse,
 )
-from .statuses import (
-    StatusesResource,
-    AsyncStatusesResource,
-    StatusesResourceWithRawResponse,
-    AsyncStatusesResourceWithRawResponse,
-    StatusesResourceWithStreamingResponse,
-    AsyncStatusesResourceWithStreamingResponse,
+from .events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
+)
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
 )
 from .settings import (
     SettingsResource,
@@ -97,16 +44,36 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .statuses import (
+    StatusesResource,
+    AsyncStatusesResource,
+    StatusesResourceWithRawResponse,
+    AsyncStatusesResourceWithRawResponse,
+    StatusesResourceWithStreamingResponse,
+    AsyncStatusesResourceWithStreamingResponse,
+)
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from .events.events import EventsResource, AsyncEventsResource
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.waiting_rooms import (
+    waiting_room_edit_params,
+    waiting_room_list_params,
+    waiting_room_create_params,
+    waiting_room_update_params,
+)
+from ...types.waiting_rooms.waiting_room import WaitingRoom
+from ...types.waiting_rooms.additional_routes_param import AdditionalRoutesParam
+from ...types.waiting_rooms.cookie_attributes_param import CookieAttributesParam
+from ...types.waiting_rooms.waiting_room_delete_response import WaitingRoomDeleteResponse
 
 __all__ = ["WaitingRoomsResource", "AsyncWaitingRoomsResource"]
 
