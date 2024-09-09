@@ -2,57 +2,38 @@
 
 from __future__ import annotations
 
-import httpx
-
-from ..._compat import cached_property
-
-from ...types.url_scanner.scan_create_response import ScanCreateResponse
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options
-
-from typing import Type, Dict, List
-
+from typing import Dict, List, Type, cast
 from typing_extensions import Literal
 
-from ...types.url_scanner.scan_get_response import ScanGetResponse
+import httpx
 
-from ...types.url_scanner.scan_har_response import ScanHarResponse
-
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     BinaryAPIResponse,
     AsyncBinaryAPIResponse,
-    to_raw_response_wrapper,
-    to_custom_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_custom_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    to_custom_streamed_response_wrapper,
     StreamedBinaryAPIResponse,
-    async_to_streamed_response_wrapper,
-    async_to_custom_streamed_response_wrapper,
     AsyncStreamedBinaryAPIResponse,
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_custom_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.url_scanner import scan_create_params
-from ...types.url_scanner import scan_get_params
-from ...types.url_scanner import scan_screenshot_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._wrappers import ResultWrapper
+from ..._base_client import make_request_options
+from ...types.url_scanner import scan_get_params, scan_create_params, scan_screenshot_params
+from ...types.url_scanner.scan_get_response import ScanGetResponse
+from ...types.url_scanner.scan_har_response import ScanHarResponse
+from ...types.url_scanner.scan_create_response import ScanCreateResponse
 
 __all__ = ["ScansResource", "AsyncScansResource"]
 

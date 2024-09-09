@@ -1,18 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List, Dict
-
-from typing_extensions import Literal
-
+from typing import Dict, List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .stage import Stage
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
 __all__ = [
     "Deployment",

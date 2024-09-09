@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .currents import CurrentsResource, AsyncCurrentsResource
 from .currents import (
+    CurrentsResource,
+    AsyncCurrentsResource,
     CurrentsResourceWithRawResponse,
     AsyncCurrentsResourceWithRawResponse,
     CurrentsResourceWithStreamingResponse,
     AsyncCurrentsResourceWithStreamingResponse,
 )
-from .aggregates import AggregatesResource, AsyncAggregatesResource
 from .aggregates import (
+    AggregatesResource,
+    AsyncAggregatesResource,
     AggregatesResourceWithRawResponse,
     AsyncAggregatesResourceWithRawResponse,
     AggregatesResourceWithStreamingResponse,

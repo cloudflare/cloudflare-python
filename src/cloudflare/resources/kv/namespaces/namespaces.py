@@ -2,49 +2,11 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .bulk import BulkResource, AsyncBulkResource
-
-from ...._compat import cached_property
-
-from .keys import KeysResource, AsyncKeysResource
-
-from .metadata import MetadataResource, AsyncMetadataResource
-
-from .values import ValuesResource, AsyncValuesResource
-
-from ....types.kv.namespace import Namespace
-
-from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
-from typing_extensions import Literal
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.kv import namespace_create_params
-from ....types.kv import namespace_update_params
-from ....types.kv import namespace_list_params
 from .bulk import (
     BulkResource,
     AsyncBulkResource,
@@ -61,14 +23,6 @@ from .keys import (
     KeysResourceWithStreamingResponse,
     AsyncKeysResourceWithStreamingResponse,
 )
-from .metadata import (
-    MetadataResource,
-    AsyncMetadataResource,
-    MetadataResourceWithRawResponse,
-    AsyncMetadataResourceWithRawResponse,
-    MetadataResourceWithStreamingResponse,
-    AsyncMetadataResourceWithStreamingResponse,
-)
 from .values import (
     ValuesResource,
     AsyncValuesResource,
@@ -77,14 +31,32 @@ from .values import (
     ValuesResourceWithStreamingResponse,
     AsyncValuesResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .metadata import (
+    MetadataResource,
+    AsyncMetadataResource,
+    MetadataResourceWithRawResponse,
+    AsyncMetadataResourceWithRawResponse,
+    MetadataResourceWithStreamingResponse,
+    AsyncMetadataResourceWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ...._compat import cached_property
+from ....types.kv import namespace_list_params, namespace_create_params, namespace_update_params
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.kv.namespace import Namespace
 
 __all__ = ["NamespacesResource", "AsyncNamespacesResource"]
 

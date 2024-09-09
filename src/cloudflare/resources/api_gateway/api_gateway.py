@@ -2,51 +2,6 @@
 
 from __future__ import annotations
 
-from .configurations import ConfigurationsResource, AsyncConfigurationsResource
-
-from ..._compat import cached_property
-
-from .discovery.discovery import DiscoveryResource, AsyncDiscoveryResource
-
-from .operations.operations import OperationsResource, AsyncOperationsResource
-
-from .schemas import SchemasResource, AsyncSchemasResource
-
-from .settings.settings import SettingsResource, AsyncSettingsResource
-
-from .user_schemas.user_schemas import UserSchemasResource, AsyncUserSchemasResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from .configurations import (
-    ConfigurationsResource,
-    AsyncConfigurationsResource,
-    ConfigurationsResourceWithRawResponse,
-    AsyncConfigurationsResourceWithRawResponse,
-    ConfigurationsResourceWithStreamingResponse,
-    AsyncConfigurationsResourceWithStreamingResponse,
-)
-from .discovery import (
-    DiscoveryResource,
-    AsyncDiscoveryResource,
-    DiscoveryResourceWithRawResponse,
-    AsyncDiscoveryResourceWithRawResponse,
-    DiscoveryResourceWithStreamingResponse,
-    AsyncDiscoveryResourceWithStreamingResponse,
-)
-from .operations import (
-    OperationsResource,
-    AsyncOperationsResource,
-    OperationsResourceWithRawResponse,
-    AsyncOperationsResourceWithRawResponse,
-    OperationsResourceWithStreamingResponse,
-    AsyncOperationsResourceWithStreamingResponse,
-)
 from .schemas import (
     SchemasResource,
     AsyncSchemasResource,
@@ -63,6 +18,24 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
+from ..._compat import cached_property
+from .discovery import (
+    DiscoveryResource,
+    AsyncDiscoveryResource,
+    DiscoveryResourceWithRawResponse,
+    AsyncDiscoveryResourceWithRawResponse,
+    DiscoveryResourceWithStreamingResponse,
+    AsyncDiscoveryResourceWithStreamingResponse,
+)
+from .operations import (
+    OperationsResource,
+    AsyncOperationsResource,
+    OperationsResourceWithRawResponse,
+    AsyncOperationsResourceWithRawResponse,
+    OperationsResourceWithStreamingResponse,
+    AsyncOperationsResourceWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from .user_schemas import (
     UserSchemasResource,
     AsyncUserSchemasResource,
@@ -71,6 +44,18 @@ from .user_schemas import (
     UserSchemasResourceWithStreamingResponse,
     AsyncUserSchemasResourceWithStreamingResponse,
 )
+from .configurations import (
+    ConfigurationsResource,
+    AsyncConfigurationsResource,
+    ConfigurationsResourceWithRawResponse,
+    AsyncConfigurationsResourceWithRawResponse,
+    ConfigurationsResourceWithStreamingResponse,
+    AsyncConfigurationsResourceWithStreamingResponse,
+)
+from .settings.settings import SettingsResource, AsyncSettingsResource
+from .discovery.discovery import DiscoveryResource, AsyncDiscoveryResource
+from .operations.operations import OperationsResource, AsyncOperationsResource
+from .user_schemas.user_schemas import UserSchemasResource, AsyncUserSchemasResource
 
 __all__ = ["APIGatewayResource", "AsyncAPIGatewayResource"]
 

@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Dict, List
 from typing_extensions import Literal, TypedDict
-
-from typing import List, Dict
 
 __all__ = ["OIDCSaaSAppParam", "CustomClaims", "CustomClaimsSource", "HybridAndImplicitOptions", "RefreshTokenOptions"]
 

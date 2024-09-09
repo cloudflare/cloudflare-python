@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Optional, Dict
-
-from typing_extensions import Literal, TypedDict, TypeAlias
+from typing import Dict, Optional
+from typing_extensions import Literal, TypeAlias, TypedDict
 
 __all__ = ["SettingsMultipleRequestParam", "SettingsMultipleRequestParamItem"]
 

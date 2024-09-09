@@ -2,27 +2,18 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from cloudflare.types.firewall.waf import Override, OverrideDeleteResponse
-
-from typing import Any, cast, Optional
-
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.firewall.waf import override_create_params
-from cloudflare.types.firewall.waf import override_update_params
-from cloudflare.types.firewall.waf import override_list_params
-from cloudflare.types.firewall.waf import RewriteAction
-from cloudflare.types.firewall.waf import WAFRule
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.types.firewall.waf import (
+    Override,
+    OverrideDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

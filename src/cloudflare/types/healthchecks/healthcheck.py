@@ -1,22 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
-from .check_region import CheckRegion
-
+from typing import List, Optional
 from datetime import datetime
-
-from .http_configuration import HTTPConfiguration
-
 from typing_extensions import Literal
 
+from ..._models import BaseModel
+from .check_region import CheckRegion
 from .tcp_configuration import TCPConfiguration
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from .http_configuration import HTTPConfiguration
 
 __all__ = ["Healthcheck"]
 

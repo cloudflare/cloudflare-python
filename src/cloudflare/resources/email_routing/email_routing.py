@@ -2,42 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .dns import DNSResource, AsyncDNSResource
-
-from ..._compat import cached_property
-
-from .rules.rules import RulesResource, AsyncRulesResource
-
-from .addresses import AddressesResource, AsyncAddressesResource
-
-from ...types.email_routing.settings import Settings
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ..._base_client import make_request_options
-
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.email_routing import email_routing_disable_params
-from ...types.email_routing import email_routing_enable_params
 from .dns import (
     DNSResource,
     AsyncDNSResource,
@@ -54,6 +22,12 @@ from .rules import (
     RulesResourceWithStreamingResponse,
     AsyncRulesResourceWithStreamingResponse,
 )
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ..._compat import cached_property
 from .addresses import (
     AddressesResource,
     AsyncAddressesResource,
@@ -62,12 +36,18 @@ from .addresses import (
     AddressesResourceWithStreamingResponse,
     AsyncAddressesResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from .rules.rules import RulesResource, AsyncRulesResource
+from ..._base_client import make_request_options
+from ...types.email_routing import email_routing_enable_params, email_routing_disable_params
+from ...types.email_routing.settings import Settings
 
 __all__ = ["EmailRoutingResource", "AsyncEmailRoutingResource"]
 

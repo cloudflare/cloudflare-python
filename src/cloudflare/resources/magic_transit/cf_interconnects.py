@@ -2,47 +2,29 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
-from ...types.magic_transit.cf_interconnect_update_response import CfInterconnectUpdateResponse
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options
-
-from typing import Type
-
-from ...types.magic_transit.cf_interconnect_list_response import CfInterconnectListResponse
-
-from ...types.magic_transit.cf_interconnect_get_response import CfInterconnectGetResponse
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
+from ..._wrappers import ResultWrapper
+from ..._base_client import make_request_options
 from ...types.magic_transit import cf_interconnect_update_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.magic_transit import cf_interconnect_update_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...types.magic_transit.cf_interconnect_get_response import CfInterconnectGetResponse
+from ...types.magic_transit.cf_interconnect_list_response import CfInterconnectListResponse
+from ...types.magic_transit.cf_interconnect_update_response import CfInterconnectUpdateResponse
 
 __all__ = ["CfInterconnectsResource", "AsyncCfInterconnectsResource"]
 

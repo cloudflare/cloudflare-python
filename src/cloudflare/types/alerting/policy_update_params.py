@@ -2,16 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
-
-from .policy_filter_param import PolicyFilterParam
+from typing_extensions import Literal, Required, TypedDict
 
 from .mechanism_param import MechanismParam
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
+from .policy_filter_param import PolicyFilterParam
 
 __all__ = ["PolicyUpdateParams"]
 

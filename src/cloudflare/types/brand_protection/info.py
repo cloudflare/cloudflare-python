@@ -1,18 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
+from typing import List, Optional
 
-from typing import Optional, List
-
-from .url_info_model_results import URLInfoModelResults
-
-from .rule_match import RuleMatch
-
-from .scan_status import ScanStatus
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
+
+from ..._models import BaseModel
+from .rule_match import RuleMatch
+from .scan_status import ScanStatus
+from .url_info_model_results import URLInfoModelResults
 
 __all__ = ["Info", "Categorization"]
 

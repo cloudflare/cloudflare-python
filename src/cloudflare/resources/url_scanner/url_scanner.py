@@ -2,39 +2,11 @@
 
 from __future__ import annotations
 
-import httpx
-
-from .scans import ScansResource, AsyncScansResource
-
-from ..._compat import cached_property
-
-from ...types.url_scanner.url_scanner_scan_response import URLScannerScanResponse
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options
-
-from typing import Type, Union
-
+from typing import Type, Union, cast
 from datetime import datetime
 
-from ..._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
+import httpx
 
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.url_scanner import url_scanner_scan_params
 from .scans import (
     ScansResource,
     AsyncScansResource,
@@ -43,8 +15,23 @@ from .scans import (
     ScansResourceWithStreamingResponse,
     AsyncScansResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ..._base_client import make_request_options
+from ...types.url_scanner import url_scanner_scan_params
+from ...types.url_scanner.url_scanner_scan_response import URLScannerScanResponse
 
 __all__ = ["URLScannerResource", "AsyncURLScannerResource"]
 

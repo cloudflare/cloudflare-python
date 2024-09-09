@@ -2,72 +2,10 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Optional, cast, overload
+
 import httpx
 
-from .schedules import SchedulesResource, AsyncSchedulesResource
-
-from ...._compat import cached_property
-
-from .tail import TailResource, AsyncTailResource
-
-from .content import ContentResource, AsyncContentResource
-
-from .settings import SettingsResource, AsyncSettingsResource
-
-from .deployments import DeploymentsResource, AsyncDeploymentsResource
-
-from .versions import VersionsResource, AsyncVersionsResource
-
-from typing import List, Optional, Type
-
-from ...._types import FileTypes
-
-from ....types.workers.script_update_response import ScriptUpdateResponse
-
-from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from ....types.workers.script import Script
-
-from ....pagination import SyncSinglePage, AsyncSinglePage
-
-from ...._response import (
-    BinaryAPIResponse,
-    AsyncBinaryAPIResponse,
-    to_raw_response_wrapper,
-    to_custom_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_custom_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    to_custom_streamed_response_wrapper,
-    StreamedBinaryAPIResponse,
-    async_to_streamed_response_wrapper,
-    async_to_custom_streamed_response_wrapper,
-    AsyncStreamedBinaryAPIResponse,
-)
-
-from ....types.workers import script_update_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.workers import script_update_params
-from ....types.workers import script_delete_params
-from .schedules import (
-    SchedulesResource,
-    AsyncSchedulesResource,
-    SchedulesResourceWithRawResponse,
-    AsyncSchedulesResourceWithRawResponse,
-    SchedulesResourceWithStreamingResponse,
-    AsyncSchedulesResourceWithStreamingResponse,
-)
 from .tail import (
     TailResource,
     AsyncTailResource,
@@ -92,14 +30,6 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from .deployments import (
-    DeploymentsResource,
-    AsyncDeploymentsResource,
-    DeploymentsResourceWithRawResponse,
-    AsyncDeploymentsResourceWithRawResponse,
-    DeploymentsResourceWithStreamingResponse,
-    AsyncDeploymentsResourceWithStreamingResponse,
-)
 from .versions import (
     VersionsResource,
     AsyncVersionsResource,
@@ -108,8 +38,50 @@ from .versions import (
     VersionsResourceWithStreamingResponse,
     AsyncVersionsResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
+from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
+from ...._utils import (
+    required_args,
+    maybe_transform,
+    async_maybe_transform,
+)
+from .schedules import (
+    SchedulesResource,
+    AsyncSchedulesResource,
+    SchedulesResourceWithRawResponse,
+    AsyncSchedulesResourceWithRawResponse,
+    SchedulesResourceWithStreamingResponse,
+    AsyncSchedulesResourceWithStreamingResponse,
+)
+from ...._compat import cached_property
+from .deployments import (
+    DeploymentsResource,
+    AsyncDeploymentsResource,
+    DeploymentsResourceWithRawResponse,
+    AsyncDeploymentsResourceWithRawResponse,
+    DeploymentsResourceWithStreamingResponse,
+    AsyncDeploymentsResourceWithStreamingResponse,
+)
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    to_custom_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.workers import script_delete_params, script_update_params
+from ....types.workers.script import Script
+from ....types.workers.script_update_response import ScriptUpdateResponse
 
 __all__ = ["ScriptsResource", "AsyncScriptsResource"]
 

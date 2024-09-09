@@ -1,18 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .percentiles import PercentilesResource, AsyncPercentilesResource
-from .percentiles import (
-    PercentilesResourceWithRawResponse,
-    AsyncPercentilesResourceWithRawResponse,
-    PercentilesResourceWithStreamingResponse,
-    AsyncPercentilesResourceWithStreamingResponse,
-)
-from .http_tests import HTTPTestsResource, AsyncHTTPTestsResource
 from .http_tests import (
+    HTTPTestsResource,
+    AsyncHTTPTestsResource,
     HTTPTestsResourceWithRawResponse,
     AsyncHTTPTestsResourceWithRawResponse,
     HTTPTestsResourceWithStreamingResponse,
     AsyncHTTPTestsResourceWithStreamingResponse,
+)
+from .percentiles import (
+    PercentilesResource,
+    AsyncPercentilesResource,
+    PercentilesResourceWithRawResponse,
+    AsyncPercentilesResourceWithRawResponse,
+    PercentilesResourceWithStreamingResponse,
+    AsyncPercentilesResourceWithStreamingResponse,
 )
 
 __all__ = [

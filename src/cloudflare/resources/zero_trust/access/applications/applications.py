@@ -2,89 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Any, List, Type, Iterable, Optional, cast, overload
+
 import httpx
 
-from .cas import CAsResource, AsyncCAsResource
-
-from ....._compat import cached_property
-
-from .user_policy_checks import UserPolicyChecksResource, AsyncUserPolicyChecksResource
-
-from .policies import PoliciesResource, AsyncPoliciesResource
-
-from .policy_tests.policy_tests import PolicyTestsResource, AsyncPolicyTestsResource
-
-from typing import List, Optional, Iterable, Type
-
-from .....types.zero_trust.access.allowed_idps import AllowedIdPs
-
-from .....types.zero_trust.access.cors_headers_param import CORSHeadersParam
-
-from .....types.zero_trust.access.self_hosted_domains import SelfHostedDomains
-
-from .....types.zero_trust.access.application_create_response import ApplicationCreateResponse
-
-from .....types.zero_trust.access.application_type import ApplicationType
-
-from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from ....._base_client import make_request_options, AsyncPaginator
-
-from .....types.zero_trust.access.app_id import AppID
-
-from .....types.zero_trust.access.application_update_response import ApplicationUpdateResponse
-
-from .....types.zero_trust.access.application_list_response import ApplicationListResponse
-
-from .....pagination import SyncSinglePage, AsyncSinglePage
-
-from .....types.zero_trust.access.application_delete_response import ApplicationDeleteResponse
-
-from .....types.zero_trust.access.application_get_response import ApplicationGetResponse
-
-from ....._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-from .....types.zero_trust.access import application_create_params, application_update_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.zero_trust.access import application_create_params
-from .....types.zero_trust.access import application_update_params
-from .....types.zero_trust.access import CORSHeaders
-from .....types.zero_trust.access import CORSHeaders
-from .....types.zero_trust.access import CORSHeaders
-from .....types.zero_trust.access import ApplicationType
-from .....types.zero_trust.access import ApplicationType
-from .....types.zero_trust.access import ApplicationType
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import CORSHeaders
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import CORSHeaders
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import CORSHeaders
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import ApplicationType
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import ApplicationType
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import ApplicationType
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import AppID
 from .cas import (
     CAsResource,
     AsyncCAsResource,
@@ -92,14 +13,6 @@ from .cas import (
     AsyncCAsResourceWithRawResponse,
     CAsResourceWithStreamingResponse,
     AsyncCAsResourceWithStreamingResponse,
-)
-from .user_policy_checks import (
-    UserPolicyChecksResource,
-    AsyncUserPolicyChecksResource,
-    UserPolicyChecksResourceWithRawResponse,
-    AsyncUserPolicyChecksResourceWithRawResponse,
-    UserPolicyChecksResourceWithStreamingResponse,
-    AsyncUserPolicyChecksResourceWithStreamingResponse,
 )
 from .policies import (
     PoliciesResource,
@@ -109,6 +22,12 @@ from .policies import (
     PoliciesResourceWithStreamingResponse,
     AsyncPoliciesResourceWithStreamingResponse,
 )
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ....._compat import cached_property
 from .policy_tests import (
     PolicyTestsResource,
     AsyncPolicyTestsResource,
@@ -117,24 +36,41 @@ from .policy_tests import (
     PolicyTestsResourceWithStreamingResponse,
     AsyncPolicyTestsResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from ....._base_client import AsyncPaginator, make_request_options
+from .user_policy_checks import (
+    UserPolicyChecksResource,
+    AsyncUserPolicyChecksResource,
+    UserPolicyChecksResourceWithRawResponse,
+    AsyncUserPolicyChecksResourceWithRawResponse,
+    UserPolicyChecksResourceWithStreamingResponse,
+    AsyncUserPolicyChecksResourceWithStreamingResponse,
+)
+from .policy_tests.policy_tests import PolicyTestsResource, AsyncPolicyTestsResource
+from .....types.zero_trust.access import (
+    AppID,
+    ApplicationType,
+    application_create_params,
+    application_update_params,
+)
+from .....types.zero_trust.access.app_id import AppID
+from .....types.zero_trust.access.allowed_idps import AllowedIdPs
+from .....types.zero_trust.access.application_type import ApplicationType
+from .....types.zero_trust.access.cors_headers_param import CORSHeadersParam
+from .....types.zero_trust.access.self_hosted_domains import SelfHostedDomains
+from .....types.zero_trust.access.application_get_response import ApplicationGetResponse
+from .....types.zero_trust.access.application_list_response import ApplicationListResponse
+from .....types.zero_trust.access.application_create_response import ApplicationCreateResponse
+from .....types.zero_trust.access.application_delete_response import ApplicationDeleteResponse
+from .....types.zero_trust.access.application_update_response import ApplicationUpdateResponse
 
 __all__ = ["ApplicationsResource", "AsyncApplicationsResource"]
 

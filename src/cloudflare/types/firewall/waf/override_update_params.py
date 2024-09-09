@@ -2,22 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Annotated, Required
-
-from ...._utils import PropertyInfo
-
-from .rewrite_action_param import RewriteActionParam
-
-from .waf_rule_param import WAFRuleParam
-
 from typing import List
+from typing_extensions import Required, Annotated, TypedDict
 
-from .override_url import OverrideURL
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ...._types import FileTypes
 from ...._utils import PropertyInfo
+from .override_url import OverrideURL
+from .waf_rule_param import WAFRuleParam
+from .rewrite_action_param import RewriteActionParam
 
 __all__ = ["OverrideUpdateParams"]
 

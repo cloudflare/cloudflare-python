@@ -2,20 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, TypeAlias
-
-from .logging_param import LoggingParam
-
-from typing import Iterable, Union, Dict, List
-
-from .rewrite_uri_part_param import RewriteURIPartParam
+from typing import Dict, List, Union, Iterable
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .phase import Phase
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
+from .logging_param import LoggingParam
+from .rewrite_uri_part_param import RewriteURIPartParam
 
 __all__ = [
     "RuleEditParams",

@@ -2,20 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, Annotated
-
 from typing import List, Union
-
-from ..dimension import Dimension
-
 from datetime import datetime
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ....._types import FileTypes
-from ....._utils import PropertyInfo
+from ..dimension import Dimension
 
 __all__ = ["BytimeGetParams"]
 

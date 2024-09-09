@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
+from typing import Dict, List
 from typing_extensions import Literal, TypedDict
 
-from .logging_param import LoggingParam
-
-from typing import List, Dict
-
 from .phase import Phase
+from .logging_param import LoggingParam
 
 __all__ = ["SkipRuleParam", "ActionParameters"]
 

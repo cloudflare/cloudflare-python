@@ -2,27 +2,6 @@
 
 from __future__ import annotations
 
-from .issue_types import IssueTypesResource, AsyncIssueTypesResource
-
-from ...._compat import cached_property
-
-from .issues import IssuesResource, AsyncIssuesResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from .issue_types import (
-    IssueTypesResource,
-    AsyncIssueTypesResource,
-    IssueTypesResourceWithRawResponse,
-    AsyncIssueTypesResourceWithRawResponse,
-    IssueTypesResourceWithStreamingResponse,
-    AsyncIssueTypesResourceWithStreamingResponse,
-)
 from .issues import (
     IssuesResource,
     AsyncIssuesResource,
@@ -31,6 +10,16 @@ from .issues import (
     IssuesResourceWithStreamingResponse,
     AsyncIssuesResourceWithStreamingResponse,
 )
+from ...._compat import cached_property
+from .issue_types import (
+    IssueTypesResource,
+    AsyncIssueTypesResource,
+    IssueTypesResourceWithRawResponse,
+    AsyncIssueTypesResourceWithRawResponse,
+    IssueTypesResourceWithStreamingResponse,
+    AsyncIssueTypesResourceWithStreamingResponse,
+)
+from ...._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["AttackSurfaceReportResource", "AsyncAttackSurfaceReportResource"]
 

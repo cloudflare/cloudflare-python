@@ -2,53 +2,21 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from typing import Optional, Any, cast
-
-from cloudflare.types.zero_trust.access import (
-    ApplicationCreateResponse,
-    ApplicationUpdateResponse,
-    ApplicationListResponse,
-    ApplicationDeleteResponse,
-    ApplicationGetResponse,
-)
-
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.access import application_create_params
-from cloudflare.types.zero_trust.access import application_update_params
-from cloudflare.types.zero_trust.access import CORSHeaders
-from cloudflare.types.zero_trust.access import CORSHeaders
-from cloudflare.types.zero_trust.access import CORSHeaders
-from cloudflare.types.zero_trust.access import ApplicationType
-from cloudflare.types.zero_trust.access import ApplicationType
-from cloudflare.types.zero_trust.access import ApplicationType
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import CORSHeaders
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import CORSHeaders
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import CORSHeaders
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import ApplicationType
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import ApplicationType
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import ApplicationType
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import AppID
-from cloudflare.types.zero_trust.access import AppID
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.zero_trust.access import (
+    ApplicationGetResponse,
+    ApplicationListResponse,
+    ApplicationCreateResponse,
+    ApplicationDeleteResponse,
+    ApplicationUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

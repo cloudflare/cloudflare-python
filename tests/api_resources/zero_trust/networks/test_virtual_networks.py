@@ -2,25 +2,17 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from cloudflare.types.zero_trust.networks import VirtualNetwork
-
+import os
 from typing import Any, cast
 
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.networks import virtual_network_create_params
-from cloudflare.types.zero_trust.networks import virtual_network_list_params
-from cloudflare.types.zero_trust.networks import virtual_network_edit_params
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.zero_trust.networks import (
+    VirtualNetwork,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

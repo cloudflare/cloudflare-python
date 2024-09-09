@@ -2,18 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, TypeAlias, Literal
-
-from typing import Iterable, Optional, List, Union
-
-from ..context_awareness_param import ContextAwarenessParam
+from typing import List, Union, Iterable, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .pattern_param import PatternParam
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ....._types import FileTypes
-from ....._utils import PropertyInfo
+from ..context_awareness_param import ContextAwarenessParam
 
 __all__ = [
     "CustomCreateParams",

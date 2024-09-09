@@ -2,51 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
-from .acls import ACLsResource, AsyncACLsResource
-
-from ...._compat import cached_property
-
-from .lans import LANsResource, AsyncLANsResource
-
-from .wans import WANsResource, AsyncWANsResource
-
-from ....types.magic_transit.site import Site
-
-from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from typing import Type
-
-from ....types.magic_transit.site_location_param import SiteLocationParam
-
-from ....pagination import SyncSinglePage, AsyncSinglePage
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.magic_transit import site_create_params
-from ....types.magic_transit import site_update_params
-from ....types.magic_transit import site_list_params
-from ....types.magic_transit import site_edit_params
-from ....types.magic_transit import SiteLocation
-from ....types.magic_transit import SiteLocation
-from ....types.magic_transit import SiteLocation
 from .acls import (
     ACLsResource,
     AsyncACLsResource,
@@ -71,16 +30,30 @@ from .wans import (
     WANsResourceWithStreamingResponse,
     AsyncWANsResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.magic_transit import (
+    site_edit_params,
+    site_list_params,
+    site_create_params,
+    site_update_params,
+)
+from ....types.magic_transit.site import Site
+from ....types.magic_transit.site_location_param import SiteLocationParam
 
 __all__ = ["SitesResource", "AsyncSitesResource"]
 

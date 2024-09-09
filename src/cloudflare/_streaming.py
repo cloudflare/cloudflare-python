@@ -9,9 +9,7 @@ from typing_extensions import Self, Protocol, TypeGuard, override, get_origin, r
 
 import httpx
 
-from ._utils import is_mapping, is_dict, extract_type_var_from_base
-from ._exceptions import APIError
-from ._response import APIResponse, AsyncAPIResponse
+from ._utils import extract_type_var_from_base
 
 if TYPE_CHECKING:
     from ._client import Cloudflare, AsyncCloudflare

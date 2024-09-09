@@ -2,52 +2,18 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Optional, cast, overload
+
 import httpx
 
-from .content import ContentResource, AsyncContentResource
-
-from ......_compat import cached_property
-
-from .settings import SettingsResource, AsyncSettingsResource
-
-from .bindings import BindingsResource, AsyncBindingsResource
-
-from .secrets import SecretsResource, AsyncSecretsResource
-
-from .tags import TagsResource, AsyncTagsResource
-
-from typing import List, Optional, Type
-
-from ......_types import FileTypes
-
-from ......types.workers_for_platforms.dispatch.namespaces.script_update_response import ScriptUpdateResponse
-
-from ......_wrappers import ResultWrapper
-
-from ......_utils import maybe_transform, async_maybe_transform
-
-from ......_base_client import make_request_options
-
-from ......types.workers_for_platforms.dispatch.namespaces.script import Script
-
-from ......_response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
+from .tags import (
+    TagsResource,
+    AsyncTagsResource,
+    TagsResourceWithRawResponse,
+    AsyncTagsResourceWithRawResponse,
+    TagsResourceWithStreamingResponse,
+    AsyncTagsResourceWithStreamingResponse,
 )
-
-from ......types.workers_for_platforms.dispatch.namespaces import script_update_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ......_utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ......_types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ......_resource import SyncAPIResource, AsyncAPIResource
-from ......types import shared_params
-from ......types.workers_for_platforms.dispatch.namespaces import script_update_params
-from ......types.workers_for_platforms.dispatch.namespaces import script_delete_params
 from .content import (
     ContentResource,
     AsyncContentResource,
@@ -55,22 +21,6 @@ from .content import (
     AsyncContentResourceWithRawResponse,
     ContentResourceWithStreamingResponse,
     AsyncContentResourceWithStreamingResponse,
-)
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
-from .bindings import (
-    BindingsResource,
-    AsyncBindingsResource,
-    BindingsResourceWithRawResponse,
-    AsyncBindingsResourceWithRawResponse,
-    BindingsResourceWithStreamingResponse,
-    AsyncBindingsResourceWithStreamingResponse,
 )
 from .secrets import (
     SecretsResource,
@@ -80,18 +30,41 @@ from .secrets import (
     SecretsResourceWithStreamingResponse,
     AsyncSecretsResourceWithStreamingResponse,
 )
-from .tags import (
-    TagsResource,
-    AsyncTagsResource,
-    TagsResourceWithRawResponse,
-    AsyncTagsResourceWithRawResponse,
-    TagsResourceWithStreamingResponse,
-    AsyncTagsResourceWithStreamingResponse,
+from .bindings import (
+    BindingsResource,
+    AsyncBindingsResource,
+    BindingsResourceWithRawResponse,
+    AsyncBindingsResourceWithRawResponse,
+    BindingsResourceWithStreamingResponse,
+    AsyncBindingsResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from .settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
+from ......_types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
+from ......_utils import (
+    required_args,
+    maybe_transform,
+    async_maybe_transform,
+)
+from ......_compat import cached_property
+from ......_resource import SyncAPIResource, AsyncAPIResource
+from ......_response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ......_wrappers import ResultWrapper
+from ......_base_client import make_request_options
+from ......types.workers_for_platforms.dispatch.namespaces import script_delete_params, script_update_params
+from ......types.workers_for_platforms.dispatch.namespaces.script import Script
+from ......types.workers_for_platforms.dispatch.namespaces.script_update_response import ScriptUpdateResponse
 
 __all__ = ["ScriptsResource", "AsyncScriptsResource"]
 

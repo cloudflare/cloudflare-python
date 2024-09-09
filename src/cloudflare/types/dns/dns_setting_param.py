@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from .nameserver_param import NameserverParam
+from typing_extensions import Literal, Required, TypedDict
 
-from typing_extensions import Literal, TypedDict, Required
+from .nameserver_param import NameserverParam
 
 __all__ = ["DNSSettingParam", "SOA"]
 

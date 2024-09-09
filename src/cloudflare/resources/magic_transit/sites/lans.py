@@ -2,63 +2,36 @@
 
 from __future__ import annotations
 
+from typing import Type, Iterable, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.magic_transit.sites.lan_create_response import LANCreateResponse
-
-from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from typing import Type, Iterable
-
-from ....types.magic_transit.sites.nat_param import NatParam
-
-from ....types.magic_transit.sites.routed_subnet_param import RoutedSubnetParam
-
-from ....types.magic_transit.sites.lan_static_addressing_param import LANStaticAddressingParam
-
-from ....types.magic_transit.sites.lan import LAN
-
-from ....pagination import SyncSinglePage, AsyncSinglePage
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.magic_transit.sites import lan_create_params
-from ....types.magic_transit.sites import lan_update_params
-from ....types.magic_transit.sites import lan_edit_params
-from ....types.magic_transit.sites import Nat
-from ....types.magic_transit.sites import LANStaticAddressing
-from ....types.magic_transit.sites import Nat
-from ....types.magic_transit.sites import LANStaticAddressing
-from ....types.magic_transit.sites import Nat
-from ....types.magic_transit.sites import LANStaticAddressing
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.magic_transit.sites import (
+    lan_edit_params,
+    lan_create_params,
+    lan_update_params,
+)
+from ....types.magic_transit.sites.lan import LAN
+from ....types.magic_transit.sites.nat_param import NatParam
+from ....types.magic_transit.sites.lan_create_response import LANCreateResponse
+from ....types.magic_transit.sites.routed_subnet_param import RoutedSubnetParam
+from ....types.magic_transit.sites.lan_static_addressing_param import LANStaticAddressingParam
 
 __all__ = ["LANsResource", "AsyncLANsResource"]
 

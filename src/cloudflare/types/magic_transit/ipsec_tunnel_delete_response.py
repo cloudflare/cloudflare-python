@@ -1,20 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
 from typing import Optional
-
-from .health_check_rate import HealthCheckRate
-
-from .health_check_type import HealthCheckType
-
 from datetime import datetime
 
+from ..._models import BaseModel
 from .psk_metadata import PSKMetadata
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from .health_check_rate import HealthCheckRate
+from .health_check_type import HealthCheckType
 
 __all__ = ["IPSECTunnelDeleteResponse", "DeletedIPSECTunnel", "DeletedIPSECTunnelTunnelHealthCheck"]
 

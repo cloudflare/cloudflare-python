@@ -2,68 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .certificates import CertificatesResource, AsyncCertificatesResource
-
-from ....._compat import cached_property
-
-from .default_policy import DefaultPolicyResource, AsyncDefaultPolicyResource
-
-from .excludes import ExcludesResource, AsyncExcludesResource
-
-from .fallback_domains import FallbackDomainsResource, AsyncFallbackDomainsResource
-
-from .includes import IncludesResource, AsyncIncludesResource
-
-from .....types.zero_trust.devices.settings_policy import SettingsPolicy
-
-from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ....._base_client import make_request_options, AsyncPaginator
-
-from .....pagination import SyncSinglePage, AsyncSinglePage
-
-from .....types.zero_trust.devices.policy_delete_response import PolicyDeleteResponse
-
-from ....._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-
-from .....types.zero_trust.devices import policy_create_params, policy_edit_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.zero_trust.devices import policy_create_params
-from .....types.zero_trust.devices import policy_edit_params
-from .certificates import (
-    CertificatesResource,
-    AsyncCertificatesResource,
-    CertificatesResourceWithRawResponse,
-    AsyncCertificatesResourceWithRawResponse,
-    CertificatesResourceWithStreamingResponse,
-    AsyncCertificatesResourceWithStreamingResponse,
-)
-from .default_policy import (
-    DefaultPolicyResource,
-    AsyncDefaultPolicyResource,
-    DefaultPolicyResourceWithRawResponse,
-    AsyncDefaultPolicyResourceWithRawResponse,
-    DefaultPolicyResourceWithStreamingResponse,
-    AsyncDefaultPolicyResourceWithStreamingResponse,
-)
 from .excludes import (
     ExcludesResource,
     AsyncExcludesResource,
@@ -71,14 +13,6 @@ from .excludes import (
     AsyncExcludesResourceWithRawResponse,
     ExcludesResourceWithStreamingResponse,
     AsyncExcludesResourceWithStreamingResponse,
-)
-from .fallback_domains import (
-    FallbackDomainsResource,
-    AsyncFallbackDomainsResource,
-    FallbackDomainsResourceWithRawResponse,
-    AsyncFallbackDomainsResourceWithRawResponse,
-    FallbackDomainsResourceWithStreamingResponse,
-    AsyncFallbackDomainsResourceWithStreamingResponse,
 )
 from .includes import (
     IncludesResource,
@@ -88,14 +22,49 @@ from .includes import (
     IncludesResourceWithStreamingResponse,
     AsyncIncludesResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ....._compat import cached_property
+from .certificates import (
+    CertificatesResource,
+    AsyncCertificatesResource,
+    CertificatesResourceWithRawResponse,
+    AsyncCertificatesResourceWithRawResponse,
+    CertificatesResourceWithStreamingResponse,
+    AsyncCertificatesResourceWithStreamingResponse,
+)
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from .default_policy import (
+    DefaultPolicyResource,
+    AsyncDefaultPolicyResource,
+    DefaultPolicyResourceWithRawResponse,
+    AsyncDefaultPolicyResourceWithRawResponse,
+    DefaultPolicyResourceWithStreamingResponse,
+    AsyncDefaultPolicyResourceWithStreamingResponse,
+)
+from ....._base_client import AsyncPaginator, make_request_options
+from .fallback_domains import (
+    FallbackDomainsResource,
+    AsyncFallbackDomainsResource,
+    FallbackDomainsResourceWithRawResponse,
+    AsyncFallbackDomainsResourceWithRawResponse,
+    FallbackDomainsResourceWithStreamingResponse,
+    AsyncFallbackDomainsResourceWithStreamingResponse,
+)
+from .....types.zero_trust.devices import policy_edit_params, policy_create_params
+from .....types.zero_trust.devices.settings_policy import SettingsPolicy
+from .....types.zero_trust.devices.policy_delete_response import PolicyDeleteResponse
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 

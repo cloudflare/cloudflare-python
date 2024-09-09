@@ -2,25 +2,14 @@
 
 from __future__ import annotations
 
-from .datasets.datasets import DatasetsResource, AsyncDatasetsResource
-
-from ...._compat import cached_property
-
-from .patterns import PatternsResource, AsyncPatternsResource
-
-from .payload_logs import PayloadLogsResource, AsyncPayloadLogsResource
-
-from .profiles.profiles import ProfilesResource, AsyncProfilesResource
-
-from .limits import LimitsResource, AsyncLimitsResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
+from .limits import (
+    LimitsResource,
+    AsyncLimitsResource,
+    LimitsResourceWithRawResponse,
+    AsyncLimitsResourceWithRawResponse,
+    LimitsResourceWithStreamingResponse,
+    AsyncLimitsResourceWithStreamingResponse,
+)
 from .datasets import (
     DatasetsResource,
     AsyncDatasetsResource,
@@ -37,14 +26,6 @@ from .patterns import (
     PatternsResourceWithStreamingResponse,
     AsyncPatternsResourceWithStreamingResponse,
 )
-from .payload_logs import (
-    PayloadLogsResource,
-    AsyncPayloadLogsResource,
-    PayloadLogsResourceWithRawResponse,
-    AsyncPayloadLogsResourceWithRawResponse,
-    PayloadLogsResourceWithStreamingResponse,
-    AsyncPayloadLogsResourceWithStreamingResponse,
-)
 from .profiles import (
     ProfilesResource,
     AsyncProfilesResource,
@@ -53,14 +34,18 @@ from .profiles import (
     ProfilesResourceWithStreamingResponse,
     AsyncProfilesResourceWithStreamingResponse,
 )
-from .limits import (
-    LimitsResource,
-    AsyncLimitsResource,
-    LimitsResourceWithRawResponse,
-    AsyncLimitsResourceWithRawResponse,
-    LimitsResourceWithStreamingResponse,
-    AsyncLimitsResourceWithStreamingResponse,
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .payload_logs import (
+    PayloadLogsResource,
+    AsyncPayloadLogsResource,
+    PayloadLogsResourceWithRawResponse,
+    AsyncPayloadLogsResourceWithRawResponse,
+    PayloadLogsResourceWithStreamingResponse,
+    AsyncPayloadLogsResourceWithStreamingResponse,
 )
+from .datasets.datasets import DatasetsResource, AsyncDatasetsResource
+from .profiles.profiles import ProfilesResource, AsyncProfilesResource
 
 __all__ = ["DLPResource", "AsyncDLPResource"]
 

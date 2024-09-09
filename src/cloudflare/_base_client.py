@@ -87,7 +87,6 @@ from ._exceptions import (
     APIConnectionError,
     APIResponseValidationError,
 )
-from ._legacy_response import LegacyAPIResponse
 
 log: logging.Logger = logging.getLogger(__name__)
 

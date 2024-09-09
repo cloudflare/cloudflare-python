@@ -2,35 +2,18 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from cloudflare.types.load_balancers import Pool, PoolDeleteResponse
-
+import os
 from typing import Any, cast
 
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.load_balancers import pool_create_params
-from cloudflare.types.load_balancers import pool_update_params
-from cloudflare.types.load_balancers import pool_list_params
-from cloudflare.types.load_balancers import pool_edit_params
-from cloudflare.types.load_balancers import LoadShedding
-from cloudflare.types.load_balancers import NotificationFilter
-from cloudflare.types.load_balancers import OriginSteering
-from cloudflare.types.load_balancers import LoadShedding
-from cloudflare.types.load_balancers import NotificationFilter
-from cloudflare.types.load_balancers import OriginSteering
-from cloudflare.types.load_balancers import LoadShedding
-from cloudflare.types.load_balancers import NotificationFilter
-from cloudflare.types.load_balancers import OriginSteering
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.load_balancers import (
+    Pool,
+    PoolDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

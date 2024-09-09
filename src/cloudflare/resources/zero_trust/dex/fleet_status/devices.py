@@ -2,35 +2,24 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
-from ....._compat import cached_property
-
-from .....types.zero_trust.dex.fleet_status.device_list_response import DeviceListResponse
-
-from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import maybe_transform
-
-from ....._base_client import make_request_options, AsyncPaginator
-
-from typing_extensions import Literal
-
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
     to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
     to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.dex.fleet_status import device_list_params
+from .....types.zero_trust.dex.fleet_status.device_list_response import DeviceListResponse
 
 __all__ = ["DevicesResource", "AsyncDevicesResource"]
 

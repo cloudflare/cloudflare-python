@@ -1,7 +1,24 @@
 # Shared Types
 
 ```python
-from cloudflare.types import ASN, AuditLog, CertificateCA, CertificateRequestType, CloudflareTunnel, ErrorData, Identifier, LoadBalancerPreview, Member, PaginationInfo, Permission, PermissionGrant, ResponseInfo, Result, Role, SortDirection
+from cloudflare.types import (
+    ASN,
+    AuditLog,
+    CertificateCA,
+    CertificateRequestType,
+    CloudflareTunnel,
+    ErrorData,
+    Identifier,
+    LoadBalancerPreview,
+    Member,
+    PaginationInfo,
+    Permission,
+    PermissionGrant,
+    ResponseInfo,
+    Result,
+    Role,
+    SortDirection,
+)
 ```
 
 # Accounts
@@ -25,7 +42,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.accounts import Status, UserWithInviteCode, MemberCreateResponse, MemberUpdateResponse, MemberListResponse, MemberDeleteResponse, MemberGetResponse
+from cloudflare.types.accounts import (
+    Status,
+    UserWithInviteCode,
+    MemberCreateResponse,
+    MemberUpdateResponse,
+    MemberListResponse,
+    MemberDeleteResponse,
+    MemberGetResponse,
+)
 ```
 
 Methods:
@@ -54,7 +79,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.origin_ca_certificates import OriginCACertificate, OriginCACertificateDeleteResponse
+from cloudflare.types.origin_ca_certificates import (
+    OriginCACertificate,
+    OriginCACertificateDeleteResponse,
+)
 ```
 
 Methods:
@@ -81,7 +109,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.memberships import Membership, MembershipUpdateResponse, MembershipDeleteResponse, MembershipGetResponse
+from cloudflare.types.memberships import (
+    Membership,
+    MembershipUpdateResponse,
+    MembershipDeleteResponse,
+    MembershipGetResponse,
+)
 ```
 
 Methods:
@@ -169,7 +202,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.user import RatePlan, Subscription, SubscriptionComponent, SubscriptionZone, SubscriptionUpdateResponse, SubscriptionDeleteResponse, SubscriptionGetResponse
+from cloudflare.types.user import (
+    RatePlan,
+    Subscription,
+    SubscriptionComponent,
+    SubscriptionZone,
+    SubscriptionUpdateResponse,
+    SubscriptionDeleteResponse,
+    SubscriptionGetResponse,
+)
 ```
 
 Methods:
@@ -183,7 +224,17 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.user import CIDRList, Policy, Token, TokenCreateResponse, TokenUpdateResponse, TokenListResponse, TokenDeleteResponse, TokenGetResponse, TokenVerifyResponse
+from cloudflare.types.user import (
+    CIDRList,
+    Policy,
+    Token,
+    TokenCreateResponse,
+    TokenUpdateResponse,
+    TokenListResponse,
+    TokenDeleteResponse,
+    TokenGetResponse,
+    TokenVerifyResponse,
+)
 ```
 
 Methods:
@@ -252,7 +303,59 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zones import AdvancedDDoS, AlwaysOnline, AlwaysUseHTTPS, AutomaticHTTPSRewrites, AutomaticPlatformOptimization, Brotli, BrowserCacheTTL, BrowserCheck, CacheLevel, ChallengeTTL, Ciphers, DevelopmentMode, EarlyHints, EmailObfuscation, FontSettings, H2Prioritization, HotlinkProtection, HTTP2, HTTP3, ImageResizing, IPGeolocation, IPV6, MinTLSVersion, Mirage, NEL, OpportunisticEncryption, OpportunisticOnion, OrangeToOrange, OriginErrorPagePassThru, OriginMaxHTTPVersion, Polish, PrefetchPreload, ProxyReadTimeout, PseudoIPV4, ResponseBuffering, RocketLoader, SecurityHeaders, SecurityLevel, ServerSideExcludes, SortQueryStringForCache, SSL, SSLRecommender, TLS1_3, TLSClientAuth, TrueClientIPHeader, WAF, WebP, Websocket, ZeroRTT, SettingEditResponse, SettingGetResponse
+from cloudflare.types.zones import (
+    AdvancedDDoS,
+    AlwaysOnline,
+    AlwaysUseHTTPS,
+    AutomaticHTTPSRewrites,
+    AutomaticPlatformOptimization,
+    Brotli,
+    BrowserCacheTTL,
+    BrowserCheck,
+    CacheLevel,
+    ChallengeTTL,
+    Ciphers,
+    DevelopmentMode,
+    EarlyHints,
+    EmailObfuscation,
+    FontSettings,
+    H2Prioritization,
+    HotlinkProtection,
+    HTTP2,
+    HTTP3,
+    ImageResizing,
+    IPGeolocation,
+    IPV6,
+    MinTLSVersion,
+    Mirage,
+    NEL,
+    OpportunisticEncryption,
+    OpportunisticOnion,
+    OrangeToOrange,
+    OriginErrorPagePassThru,
+    OriginMaxHTTPVersion,
+    Polish,
+    PrefetchPreload,
+    ProxyReadTimeout,
+    PseudoIPV4,
+    ResponseBuffering,
+    RocketLoader,
+    SecurityHeaders,
+    SecurityLevel,
+    ServerSideExcludes,
+    SortQueryStringForCache,
+    SSL,
+    SSLRecommender,
+    TLS1_3,
+    TLSClientAuth,
+    TrueClientIPHeader,
+    WAF,
+    WebP,
+    Websocket,
+    ZeroRTT,
+    SettingEditResponse,
+    SettingGetResponse,
+)
 ```
 
 Methods:
@@ -292,7 +395,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zones import SubscriptionCreateResponse, SubscriptionUpdateResponse, SubscriptionGetResponse
+from cloudflare.types.zones import (
+    SubscriptionCreateResponse,
+    SubscriptionUpdateResponse,
+    SubscriptionGetResponse,
+)
 ```
 
 Methods:
@@ -306,7 +413,26 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.load_balancers import AdaptiveRouting, CheckRegion, DefaultPools, FilterOptions, Header, Host, LoadBalancer, LoadShedding, LocationStrategy, NotificationFilter, Origin, OriginSteering, RandomSteering, Rules, SessionAffinity, SessionAffinityAttributes, SteeringPolicy, LoadBalancerDeleteResponse
+from cloudflare.types.load_balancers import (
+    AdaptiveRouting,
+    CheckRegion,
+    DefaultPools,
+    FilterOptions,
+    Header,
+    Host,
+    LoadBalancer,
+    LoadShedding,
+    LocationStrategy,
+    NotificationFilter,
+    Origin,
+    OriginSteering,
+    RandomSteering,
+    Rules,
+    SessionAffinity,
+    SessionAffinityAttributes,
+    SteeringPolicy,
+    LoadBalancerDeleteResponse,
+)
 ```
 
 Methods:
@@ -455,7 +581,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.cache import CacheReserve, CacheReserveClear, State, CacheReserveClearResponse, CacheReserveEditResponse, CacheReserveGetResponse, CacheReserveStatusResponse
+from cloudflare.types.cache import (
+    CacheReserve,
+    CacheReserveClear,
+    State,
+    CacheReserveClearResponse,
+    CacheReserveEditResponse,
+    CacheReserveGetResponse,
+    CacheReserveStatusResponse,
+)
 ```
 
 Methods:
@@ -470,7 +604,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.cache import SmartTieredCacheDeleteResponse, SmartTieredCacheEditResponse, SmartTieredCacheGetResponse
+from cloudflare.types.cache import (
+    SmartTieredCacheDeleteResponse,
+    SmartTieredCacheEditResponse,
+    SmartTieredCacheGetResponse,
+)
 ```
 
 Methods:
@@ -484,7 +622,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.cache import CacheVariant, CacheVariantIdentifier, VariantEditResponse, VariantGetResponse
+from cloudflare.types.cache import (
+    CacheVariant,
+    CacheVariantIdentifier,
+    VariantEditResponse,
+    VariantGetResponse,
+)
 ```
 
 Methods:
@@ -498,7 +641,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.cache import RegionalTieredCache, RegionalTieredCacheEditResponse, RegionalTieredCacheGetResponse
+from cloudflare.types.cache import (
+    RegionalTieredCache,
+    RegionalTieredCacheEditResponse,
+    RegionalTieredCacheGetResponse,
+)
 ```
 
 Methods:
@@ -525,7 +672,16 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.ssl import Host, RequestValidity, Status, ValidationMethod, CertificatePackListResponse, CertificatePackDeleteResponse, CertificatePackEditResponse, CertificatePackGetResponse
+from cloudflare.types.ssl import (
+    Host,
+    RequestValidity,
+    Status,
+    ValidationMethod,
+    CertificatePackListResponse,
+    CertificatePackDeleteResponse,
+    CertificatePackEditResponse,
+    CertificatePackGetResponse,
+)
 ```
 
 Methods:
@@ -604,7 +760,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.subscriptions import SubscriptionCreateResponse, SubscriptionUpdateResponse, SubscriptionDeleteResponse, SubscriptionGetResponse
+from cloudflare.types.subscriptions import (
+    SubscriptionCreateResponse,
+    SubscriptionUpdateResponse,
+    SubscriptionDeleteResponse,
+    SubscriptionGetResponse,
+)
 ```
 
 Methods:
@@ -690,7 +851,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.certificate_authorities import HostnameAssociation, TLSHostnameAssociation, HostnameAssociationUpdateResponse, HostnameAssociationGetResponse
+from cloudflare.types.certificate_authorities import (
+    HostnameAssociation,
+    TLSHostnameAssociation,
+    HostnameAssociationUpdateResponse,
+    HostnameAssociationGetResponse,
+)
 ```
 
 Methods:
@@ -719,7 +885,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.custom_certificates import CustomCertificate, GeoRestrictions, Status, CustomCertificateDeleteResponse
+from cloudflare.types.custom_certificates import (
+    CustomCertificate,
+    GeoRestrictions,
+    Status,
+    CustomCertificateDeleteResponse,
+)
 ```
 
 Methods:
@@ -747,7 +918,17 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.custom_hostnames import BundleMethod, CustomHostname, DCVMethod, DomainValidationType, CustomHostnameCreateResponse, CustomHostnameListResponse, CustomHostnameDeleteResponse, CustomHostnameEditResponse, CustomHostnameGetResponse
+from cloudflare.types.custom_hostnames import (
+    BundleMethod,
+    CustomHostname,
+    DCVMethod,
+    DomainValidationType,
+    CustomHostnameCreateResponse,
+    CustomHostnameListResponse,
+    CustomHostnameDeleteResponse,
+    CustomHostnameEditResponse,
+    CustomHostnameGetResponse,
+)
 ```
 
 Methods:
@@ -763,7 +944,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.custom_hostnames import FallbackOriginUpdateResponse, FallbackOriginDeleteResponse, FallbackOriginGetResponse
+from cloudflare.types.custom_hostnames import (
+    FallbackOriginUpdateResponse,
+    FallbackOriginDeleteResponse,
+    FallbackOriginGetResponse,
+)
 ```
 
 Methods:
@@ -777,7 +962,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.custom_nameservers import CustomNameserver, CustomNameserverDeleteResponse, CustomNameserverAvailabiltyResponse, CustomNameserverGetResponse
+from cloudflare.types.custom_nameservers import (
+    CustomNameserver,
+    CustomNameserverDeleteResponse,
+    CustomNameserverAvailabiltyResponse,
+    CustomNameserverGetResponse,
+)
 ```
 
 Methods:
@@ -800,7 +990,41 @@ from cloudflare.types.dns import DNSAnalyticsNominalMetric, DNSAnalyticsQuery
 Types:
 
 ```python
-from cloudflare.types.dns import ARecord, AAAARecord, CAARecord, CERTRecord, CNAMERecord, DNSKEYRecord, DSRecord, HTTPSRecord, LOCRecord, MXRecord, NAPTRRecord, NSRecord, PTRRecord, Record, RecordProcessTiming, RecordTags, SMIMEARecord, SRVRecord, SSHFPRecord, SVCBRecord, TLSARecord, TTL, TXTRecord, URIRecord, RecordCreateResponse, RecordUpdateResponse, RecordListResponse, RecordDeleteResponse, RecordEditResponse, RecordExportResponse, RecordGetResponse, RecordImportResponse, RecordScanResponse
+from cloudflare.types.dns import (
+    ARecord,
+    AAAARecord,
+    CAARecord,
+    CERTRecord,
+    CNAMERecord,
+    DNSKEYRecord,
+    DSRecord,
+    HTTPSRecord,
+    LOCRecord,
+    MXRecord,
+    NAPTRRecord,
+    NSRecord,
+    PTRRecord,
+    Record,
+    RecordProcessTiming,
+    RecordTags,
+    SMIMEARecord,
+    SRVRecord,
+    SSHFPRecord,
+    SVCBRecord,
+    TLSARecord,
+    TTL,
+    TXTRecord,
+    URIRecord,
+    RecordCreateResponse,
+    RecordUpdateResponse,
+    RecordListResponse,
+    RecordDeleteResponse,
+    RecordEditResponse,
+    RecordExportResponse,
+    RecordGetResponse,
+    RecordImportResponse,
+    RecordScanResponse,
+)
 ```
 
 Methods:
@@ -859,7 +1083,16 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.dns import AttackMitigation, FirewallIPs, UpstreamIPs, FirewallCreateResponse, FirewallListResponse, FirewallDeleteResponse, FirewallEditResponse, FirewallGetResponse
+from cloudflare.types.dns import (
+    AttackMitigation,
+    FirewallIPs,
+    UpstreamIPs,
+    FirewallCreateResponse,
+    FirewallListResponse,
+    FirewallDeleteResponse,
+    FirewallEditResponse,
+    FirewallGetResponse,
+)
 ```
 
 Methods:
@@ -911,7 +1144,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.email_security import InvestigateListResponse, InvestigateDetectionsResponse, InvestigateGetResponse, InvestigatePreviewResponse, InvestigateRawResponse, InvestigateTraceResponse
+from cloudflare.types.email_security import (
+    InvestigateListResponse,
+    InvestigateDetectionsResponse,
+    InvestigateGetResponse,
+    InvestigatePreviewResponse,
+    InvestigateRawResponse,
+    InvestigateTraceResponse,
+)
 ```
 
 Methods:
@@ -942,7 +1182,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.email_security.settings import AllowPatternCreateResponse, AllowPatternListResponse, AllowPatternDeleteResponse, AllowPatternEditResponse, AllowPatternGetResponse
+from cloudflare.types.email_security.settings import (
+    AllowPatternCreateResponse,
+    AllowPatternListResponse,
+    AllowPatternDeleteResponse,
+    AllowPatternEditResponse,
+    AllowPatternGetResponse,
+)
 ```
 
 Methods:
@@ -958,7 +1204,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.email_security.settings import BlockSenderCreateResponse, BlockSenderListResponse, BlockSenderDeleteResponse, BlockSenderEditResponse, BlockSenderGetResponse
+from cloudflare.types.email_security.settings import (
+    BlockSenderCreateResponse,
+    BlockSenderListResponse,
+    BlockSenderDeleteResponse,
+    BlockSenderEditResponse,
+    BlockSenderGetResponse,
+)
 ```
 
 Methods:
@@ -974,7 +1226,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.email_security.settings import DomainListResponse, DomainDeleteResponse, DomainEditResponse
+from cloudflare.types.email_security.settings import (
+    DomainListResponse,
+    DomainDeleteResponse,
+    DomainEditResponse,
+)
 ```
 
 Methods:
@@ -988,7 +1244,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.email_security.settings import ImpersonationRegistryCreateResponse, ImpersonationRegistryListResponse, ImpersonationRegistryDeleteResponse, ImpersonationRegistryEditResponse, ImpersonationRegistryGetResponse
+from cloudflare.types.email_security.settings import (
+    ImpersonationRegistryCreateResponse,
+    ImpersonationRegistryListResponse,
+    ImpersonationRegistryDeleteResponse,
+    ImpersonationRegistryEditResponse,
+    ImpersonationRegistryGetResponse,
+)
 ```
 
 Methods:
@@ -1004,7 +1266,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.email_security.settings import TrustedDomainCreateResponse, TrustedDomainListResponse, TrustedDomainDeleteResponse, TrustedDomainEditResponse, TrustedDomainGetResponse
+from cloudflare.types.email_security.settings import (
+    TrustedDomainCreateResponse,
+    TrustedDomainListResponse,
+    TrustedDomainDeleteResponse,
+    TrustedDomainEditResponse,
+    TrustedDomainGetResponse,
+)
 ```
 
 Methods:
@@ -1065,7 +1333,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.email_routing.rules import CatchAllAction, CatchAllMatcher, CatchAllUpdateResponse, CatchAllGetResponse
+from cloudflare.types.email_routing.rules import (
+    CatchAllAction,
+    CatchAllMatcher,
+    CatchAllUpdateResponse,
+    CatchAllGetResponse,
+)
 ```
 
 Methods:
@@ -1111,7 +1384,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.firewall import Configuration, Lockdown, LockdownCIDRConfiguration, LockdownIPConfiguration, LockdownURL, LockdownDeleteResponse
+from cloudflare.types.firewall import (
+    Configuration,
+    Lockdown,
+    LockdownCIDRConfiguration,
+    LockdownIPConfiguration,
+    LockdownURL,
+    LockdownDeleteResponse,
+)
 ```
 
 Methods:
@@ -1127,7 +1407,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.firewall import FirewallRule, Product, DeletedFilter, RuleCreateResponse, RuleEditResponse
+from cloudflare.types.firewall import (
+    FirewallRule,
+    Product,
+    DeletedFilter,
+    RuleCreateResponse,
+    RuleEditResponse,
+)
 ```
 
 Methods:
@@ -1144,7 +1430,18 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.firewall import AccessRuleCIDRConfiguration, AccessRuleIPConfiguration, ASNConfiguration, CountryConfiguration, IPV6Configuration, AccessRuleCreateResponse, AccessRuleListResponse, AccessRuleDeleteResponse, AccessRuleEditResponse, AccessRuleGetResponse
+from cloudflare.types.firewall import (
+    AccessRuleCIDRConfiguration,
+    AccessRuleIPConfiguration,
+    ASNConfiguration,
+    CountryConfiguration,
+    IPV6Configuration,
+    AccessRuleCreateResponse,
+    AccessRuleListResponse,
+    AccessRuleDeleteResponse,
+    AccessRuleEditResponse,
+    AccessRuleGetResponse,
+)
 ```
 
 Methods:
@@ -1160,7 +1457,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.firewall import UARuleCreateResponse, UARuleUpdateResponse, UARuleListResponse, UARuleDeleteResponse, UARuleGetResponse
+from cloudflare.types.firewall import (
+    UARuleCreateResponse,
+    UARuleUpdateResponse,
+    UARuleListResponse,
+    UARuleDeleteResponse,
+    UARuleGetResponse,
+)
 ```
 
 Methods:
@@ -1178,7 +1481,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.firewall.waf import Override, OverrideURL, RewriteAction, WAFRule, OverrideDeleteResponse
+from cloudflare.types.firewall.waf import (
+    Override,
+    OverrideURL,
+    RewriteAction,
+    WAFRule,
+    OverrideDeleteResponse,
+)
 ```
 
 Methods:
@@ -1221,7 +1530,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.firewall.waf.packages import AllowedModesAnomaly, WAFRuleGroup, RuleListResponse, RuleEditResponse, RuleGetResponse
+from cloudflare.types.firewall.waf.packages import (
+    AllowedModesAnomaly,
+    WAFRuleGroup,
+    RuleListResponse,
+    RuleEditResponse,
+    RuleGetResponse,
+)
 ```
 
 Methods:
@@ -1235,7 +1550,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.healthchecks import CheckRegion, Healthcheck, HTTPConfiguration, QueryHealthcheck, TCPConfiguration, HealthcheckDeleteResponse
+from cloudflare.types.healthchecks import (
+    CheckRegion,
+    Healthcheck,
+    HTTPConfiguration,
+    QueryHealthcheck,
+    TCPConfiguration,
+    HealthcheckDeleteResponse,
+)
 ```
 
 Methods:
@@ -1266,7 +1588,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.keyless_certificates import KeylessCertificate, Tunnel, KeylessCertificateDeleteResponse
+from cloudflare.types.keyless_certificates import (
+    KeylessCertificate,
+    Tunnel,
+    KeylessCertificateDeleteResponse,
+)
 ```
 
 Methods:
@@ -1462,7 +1788,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.origin_tls_client_auth.hostnames import Certificate, CertificateCreateResponse, CertificateDeleteResponse, CertificateGetResponse
+from cloudflare.types.origin_tls_client_auth.hostnames import (
+    Certificate,
+    CertificateCreateResponse,
+    CertificateDeleteResponse,
+    CertificateGetResponse,
+)
 ```
 
 Methods:
@@ -1490,7 +1821,17 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.pagerules import PageRule, Route, Target, PageruleCreateResponse, PageruleUpdateResponse, PageruleListResponse, PageruleDeleteResponse, PageruleEditResponse, PageruleGetResponse
+from cloudflare.types.pagerules import (
+    PageRule,
+    Route,
+    Target,
+    PageruleCreateResponse,
+    PageruleUpdateResponse,
+    PageruleListResponse,
+    PageruleDeleteResponse,
+    PageruleEditResponse,
+    PageruleGetResponse,
+)
 ```
 
 Methods:
@@ -1519,7 +1860,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.rate_limits import Action, Methods, RateLimit, RateLimitCreateResponse, RateLimitDeleteResponse, RateLimitEditResponse, RateLimitGetResponse
+from cloudflare.types.rate_limits import (
+    Action,
+    Methods,
+    RateLimit,
+    RateLimitCreateResponse,
+    RateLimitDeleteResponse,
+    RateLimitEditResponse,
+    RateLimitGetResponse,
+)
 ```
 
 Methods:
@@ -1549,7 +1898,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.secondary_dns import Incoming, IncomingCreateResponse, IncomingUpdateResponse, IncomingDeleteResponse, IncomingGetResponse
+from cloudflare.types.secondary_dns import (
+    Incoming,
+    IncomingCreateResponse,
+    IncomingUpdateResponse,
+    IncomingDeleteResponse,
+    IncomingGetResponse,
+)
 ```
 
 Methods:
@@ -1564,7 +1919,17 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.secondary_dns import DisableTransfer, EnableTransfer, Outgoing, OutgoingStatus, OutgoingCreateResponse, OutgoingUpdateResponse, OutgoingDeleteResponse, OutgoingForceNotifyResponse, OutgoingGetResponse
+from cloudflare.types.secondary_dns import (
+    DisableTransfer,
+    EnableTransfer,
+    Outgoing,
+    OutgoingStatus,
+    OutgoingCreateResponse,
+    OutgoingUpdateResponse,
+    OutgoingDeleteResponse,
+    OutgoingForceNotifyResponse,
+    OutgoingGetResponse,
+)
 ```
 
 Methods:
@@ -1636,7 +2001,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.waiting_rooms import AdditionalRoutes, CookieAttributes, Query, WaitingRoom, WaitingRoomDeleteResponse
+from cloudflare.types.waiting_rooms import (
+    AdditionalRoutes,
+    CookieAttributes,
+    Query,
+    WaitingRoom,
+    WaitingRoomDeleteResponse,
+)
 ```
 
 Methods:
@@ -1694,7 +2065,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.waiting_rooms import WaitingRoomRule, RuleCreateResponse, RuleUpdateResponse, RuleDeleteResponse, RuleEditResponse, RuleGetResponse
+from cloudflare.types.waiting_rooms import (
+    WaitingRoomRule,
+    RuleCreateResponse,
+    RuleUpdateResponse,
+    RuleDeleteResponse,
+    RuleEditResponse,
+    RuleGetResponse,
+)
 ```
 
 Methods:
@@ -1722,7 +2100,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.waiting_rooms import Setting, SettingUpdateResponse, SettingEditResponse, SettingGetResponse
+from cloudflare.types.waiting_rooms import (
+    Setting,
+    SettingUpdateResponse,
+    SettingEditResponse,
+    SettingGetResponse,
+)
 ```
 
 Methods:
@@ -1769,7 +2152,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.web3.hostnames.ipfs_universal_paths.content_lists import EntryCreateResponse, EntryUpdateResponse, EntryListResponse, EntryDeleteResponse, EntryGetResponse
+from cloudflare.types.web3.hostnames.ipfs_universal_paths.content_lists import (
+    EntryCreateResponse,
+    EntryUpdateResponse,
+    EntryListResponse,
+    EntryDeleteResponse,
+    EntryGetResponse,
+)
 ```
 
 Methods:
@@ -1785,7 +2174,21 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.workers import Binding, D1Binding, DispatchNamespaceBinding, DurableObjectBinding, KVNamespaceBinding, MigrationStep, MTLSCERTBinding, PlacementConfiguration, R2Binding, ServiceBinding, SingleStepMigration, SteppedMigration, WorkerMetadata
+from cloudflare.types.workers import (
+    Binding,
+    D1Binding,
+    DispatchNamespaceBinding,
+    DurableObjectBinding,
+    KVNamespaceBinding,
+    MigrationStep,
+    MTLSCERTBinding,
+    PlacementConfiguration,
+    R2Binding,
+    ServiceBinding,
+    SingleStepMigration,
+    SteppedMigration,
+    WorkerMetadata,
+)
 ```
 
 ## AI
@@ -1847,7 +2250,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.workers.scripts import ConsumerScript, TailCreateResponse, TailDeleteResponse, TailGetResponse
+from cloudflare.types.workers.scripts import (
+    ConsumerScript,
+    TailCreateResponse,
+    TailDeleteResponse,
+    TailGetResponse,
+)
 ```
 
 Methods:
@@ -1875,7 +2283,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.workers.scripts import Deployment, DeploymentCreateResponse, DeploymentGetResponse
+from cloudflare.types.workers.scripts import (
+    Deployment,
+    DeploymentCreateResponse,
+    DeploymentGetResponse,
+)
 ```
 
 Methods:
@@ -1888,7 +2300,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.workers.scripts import VersionCreateResponse, VersionListResponse, VersionGetResponse
+from cloudflare.types.workers.scripts import (
+    VersionCreateResponse,
+    VersionListResponse,
+    VersionGetResponse,
+)
 ```
 
 Methods:
@@ -2054,7 +2470,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.queues import Consumer, ConsumerCreateResponse, ConsumerUpdateResponse, ConsumerDeleteResponse, ConsumerGetResponse
+from cloudflare.types.queues import (
+    Consumer,
+    ConsumerCreateResponse,
+    ConsumerUpdateResponse,
+    ConsumerDeleteResponse,
+    ConsumerGetResponse,
+)
 ```
 
 Methods:
@@ -2122,7 +2544,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.api_gateway import APIShield, OperationCreateResponse, OperationListResponse, OperationDeleteResponse, OperationGetResponse
+from cloudflare.types.api_gateway import (
+    APIShield,
+    OperationCreateResponse,
+    OperationListResponse,
+    OperationDeleteResponse,
+    OperationGetResponse,
+)
 ```
 
 Methods:
@@ -2137,7 +2565,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.api_gateway.operations import SettingsMultipleRequest, SchemaValidationUpdateResponse, SchemaValidationGetResponse
+from cloudflare.types.api_gateway.operations import (
+    SettingsMultipleRequest,
+    SchemaValidationUpdateResponse,
+    SchemaValidationGetResponse,
+)
 ```
 
 Methods:
@@ -2179,7 +2611,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.api_gateway import Message, PublicSchema, SchemaUpload, UserSchemaDeleteResponse
+from cloudflare.types.api_gateway import (
+    Message,
+    PublicSchema,
+    SchemaUpload,
+    UserSchemaDeleteResponse,
+)
 ```
 
 Methods:
@@ -2207,7 +2644,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.managed_headers import RequestModel, ManagedHeaderListResponse, ManagedHeaderEditResponse
+from cloudflare.types.managed_headers import (
+    RequestModel,
+    ManagedHeaderListResponse,
+    ManagedHeaderEditResponse,
+)
 ```
 
 Methods:
@@ -2233,7 +2674,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.page_shield import Policy, PolicyCreateResponse, PolicyUpdateResponse, PolicyListResponse, PolicyGetResponse
+from cloudflare.types.page_shield import (
+    Policy,
+    PolicyCreateResponse,
+    PolicyUpdateResponse,
+    PolicyListResponse,
+    PolicyGetResponse,
+)
 ```
 
 Methods:
@@ -2288,7 +2735,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.rulesets import Kind, Phase, Ruleset, RulesetCreateResponse, RulesetUpdateResponse, RulesetListResponse, RulesetGetResponse
+from cloudflare.types.rulesets import (
+    Kind,
+    Phase,
+    Ruleset,
+    RulesetCreateResponse,
+    RulesetUpdateResponse,
+    RulesetListResponse,
+    RulesetGetResponse,
+)
 ```
 
 Methods:
@@ -2330,7 +2785,30 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.rulesets import BlockRule, CompressResponseRule, DDoSDynamicRule, ExecuteRule, ForceConnectionCloseRule, LogCustomFieldRule, LogRule, Logging, ManagedChallengeRule, RedirectRule, RewriteRule, RewriteURIPart, RouteRule, RulesetRule, ScoreRule, ServeErrorRule, SetCacheSettingsRule, SetConfigRule, SkipRule, RuleCreateResponse, RuleDeleteResponse, RuleEditResponse
+from cloudflare.types.rulesets import (
+    BlockRule,
+    CompressResponseRule,
+    DDoSDynamicRule,
+    ExecuteRule,
+    ForceConnectionCloseRule,
+    LogCustomFieldRule,
+    LogRule,
+    Logging,
+    ManagedChallengeRule,
+    RedirectRule,
+    RewriteRule,
+    RewriteURIPart,
+    RouteRule,
+    RulesetRule,
+    ScoreRule,
+    ServeErrorRule,
+    SetCacheSettingsRule,
+    SetConfigRule,
+    SkipRule,
+    RuleCreateResponse,
+    RuleDeleteResponse,
+    RuleEditResponse,
+)
 ```
 
 Methods:
@@ -2370,7 +2848,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.url_normalization import URLNormalizationUpdateResponse, URLNormalizationGetResponse
+from cloudflare.types.url_normalization import (
+    URLNormalizationUpdateResponse,
+    URLNormalizationGetResponse,
+)
 ```
 
 Methods:
@@ -2439,7 +2920,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.spectrum import AppCreateResponse, AppUpdateResponse, AppListResponse, AppDeleteResponse, AppGetResponse
+from cloudflare.types.spectrum import (
+    AppCreateResponse,
+    AppUpdateResponse,
+    AppListResponse,
+    AppDeleteResponse,
+    AppGetResponse,
+)
 ```
 
 Methods:
@@ -2457,7 +2944,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.addressing import RegionalHostnameCreateResponse, RegionalHostnameListResponse, RegionalHostnameDeleteResponse, RegionalHostnameEditResponse, RegionalHostnameGetResponse
+from cloudflare.types.addressing import (
+    RegionalHostnameCreateResponse,
+    RegionalHostnameListResponse,
+    RegionalHostnameDeleteResponse,
+    RegionalHostnameEditResponse,
+    RegionalHostnameGetResponse,
+)
 ```
 
 Methods:
@@ -2497,7 +2990,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.addressing import AddressMap, Kind, AddressMapCreateResponse, AddressMapDeleteResponse, AddressMapGetResponse
+from cloudflare.types.addressing import (
+    AddressMap,
+    Kind,
+    AddressMapCreateResponse,
+    AddressMapDeleteResponse,
+    AddressMapGetResponse,
+)
 ```
 
 Methods:
@@ -2664,7 +3163,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.brand_protection import Info, RuleMatch, ScanStatus, Submit, URLInfoModelResults
+from cloudflare.types.brand_protection import (
+    Info,
+    RuleMatch,
+    ScanStatus,
+    Submit,
+    URLInfoModelResults,
+)
 ```
 
 Methods:
@@ -2735,7 +3240,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.images.v1 import Variant, VariantCreateResponse, VariantDeleteResponse, VariantEditResponse, VariantGetResponse
+from cloudflare.types.images.v1 import (
+    Variant,
+    VariantCreateResponse,
+    VariantDeleteResponse,
+    VariantEditResponse,
+    VariantGetResponse,
+)
 ```
 
 Methods:
@@ -2897,7 +3408,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.intel import IndicatorFeedCreateResponse, IndicatorFeedUpdateResponse, IndicatorFeedListResponse, IndicatorFeedDataResponse, IndicatorFeedGetResponse
+from cloudflare.types.intel import (
+    IndicatorFeedCreateResponse,
+    IndicatorFeedUpdateResponse,
+    IndicatorFeedListResponse,
+    IndicatorFeedDataResponse,
+    IndicatorFeedGetResponse,
+)
 ```
 
 Methods:
@@ -2925,7 +3442,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.intel.indicator_feeds import PermissionCreateResponse, PermissionListResponse, PermissionDeleteResponse
+from cloudflare.types.intel.indicator_feeds import (
+    PermissionCreateResponse,
+    PermissionListResponse,
+    PermissionDeleteResponse,
+)
 ```
 
 Methods:
@@ -2977,7 +3498,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.intel.attack_surface_report import IssueType, SeverityQueryParam, IssueListResponse, IssueClassResponse, IssueDismissResponse, IssueSeverityResponse, IssueTypeResponse
+from cloudflare.types.intel.attack_surface_report import (
+    IssueType,
+    SeverityQueryParam,
+    IssueListResponse,
+    IssueClassResponse,
+    IssueDismissResponse,
+    IssueSeverityResponse,
+    IssueTypeResponse,
+)
 ```
 
 Methods:
@@ -3001,7 +3530,12 @@ from cloudflare.types.magic_transit import HealthCheck, HealthCheckRate, HealthC
 Types:
 
 ```python
-from cloudflare.types.magic_transit import AppCreateResponse, AppUpdateResponse, AppListResponse, AppDeleteResponse
+from cloudflare.types.magic_transit import (
+    AppCreateResponse,
+    AppUpdateResponse,
+    AppListResponse,
+    AppDeleteResponse,
+)
 ```
 
 Methods:
@@ -3016,7 +3550,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.magic_transit import CfInterconnectUpdateResponse, CfInterconnectListResponse, CfInterconnectGetResponse
+from cloudflare.types.magic_transit import (
+    CfInterconnectUpdateResponse,
+    CfInterconnectListResponse,
+    CfInterconnectGetResponse,
+)
 ```
 
 Methods:
@@ -3030,7 +3568,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.magic_transit import GRETunnelCreateResponse, GRETunnelUpdateResponse, GRETunnelListResponse, GRETunnelDeleteResponse, GRETunnelGetResponse
+from cloudflare.types.magic_transit import (
+    GRETunnelCreateResponse,
+    GRETunnelUpdateResponse,
+    GRETunnelListResponse,
+    GRETunnelDeleteResponse,
+    GRETunnelGetResponse,
+)
 ```
 
 Methods:
@@ -3046,7 +3590,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.magic_transit import PSKMetadata, IPSECTunnelCreateResponse, IPSECTunnelUpdateResponse, IPSECTunnelListResponse, IPSECTunnelDeleteResponse, IPSECTunnelGetResponse, IPSECTunnelPSKGenerateResponse
+from cloudflare.types.magic_transit import (
+    PSKMetadata,
+    IPSECTunnelCreateResponse,
+    IPSECTunnelUpdateResponse,
+    IPSECTunnelListResponse,
+    IPSECTunnelDeleteResponse,
+    IPSECTunnelGetResponse,
+    IPSECTunnelPSKGenerateResponse,
+)
 ```
 
 Methods:
@@ -3063,7 +3615,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.magic_transit import Scope, RouteCreateResponse, RouteUpdateResponse, RouteListResponse, RouteDeleteResponse, RouteEmptyResponse, RouteGetResponse
+from cloudflare.types.magic_transit import (
+    Scope,
+    RouteCreateResponse,
+    RouteUpdateResponse,
+    RouteListResponse,
+    RouteDeleteResponse,
+    RouteEmptyResponse,
+    RouteGetResponse,
+)
 ```
 
 Methods:
@@ -3114,7 +3674,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.magic_transit.sites import DHCPRelay, DHCPServer, LAN, LANStaticAddressing, Nat, RoutedSubnet, LANCreateResponse
+from cloudflare.types.magic_transit.sites import (
+    DHCPRelay,
+    DHCPServer,
+    LAN,
+    LANStaticAddressing,
+    Nat,
+    RoutedSubnet,
+    LANCreateResponse,
+)
 ```
 
 Methods:
@@ -3148,7 +3716,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.magic_transit import ConnectorUpdateResponse, ConnectorListResponse, ConnectorEditResponse, ConnectorGetResponse
+from cloudflare.types.magic_transit import (
+    ConnectorUpdateResponse,
+    ConnectorListResponse,
+    ConnectorEditResponse,
+    ConnectorGetResponse,
+)
 ```
 
 Methods:
@@ -3245,7 +3818,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.pages import Deployment, Project, Stage, ProjectDeleteResponse, ProjectPurgeBuildCacheResponse
+from cloudflare.types.pages import (
+    Deployment,
+    Project,
+    Stage,
+    ProjectDeleteResponse,
+    ProjectPurgeBuildCacheResponse,
+)
 ```
 
 Methods:
@@ -3293,7 +3872,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.pages.projects import DomainCreateResponse, DomainListResponse, DomainDeleteResponse, DomainEditResponse, DomainGetResponse
+from cloudflare.types.pages.projects import (
+    DomainCreateResponse,
+    DomainListResponse,
+    DomainDeleteResponse,
+    DomainEditResponse,
+    DomainGetResponse,
+)
 ```
 
 Methods:
@@ -3309,7 +3894,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.pcaps import PCAP, PCAPFilter, PCAPCreateResponse, PCAPListResponse, PCAPGetResponse
+from cloudflare.types.pcaps import (
+    PCAP,
+    PCAPFilter,
+    PCAPCreateResponse,
+    PCAPListResponse,
+    PCAPGetResponse,
+)
 ```
 
 Methods:
@@ -3346,7 +3937,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.registrar import Domain, DomainUpdateResponse, DomainListResponse, DomainGetResponse
+from cloudflare.types.registrar import (
+    Domain,
+    DomainUpdateResponse,
+    DomainListResponse,
+    DomainGetResponse,
+)
 ```
 
 Methods:
@@ -3404,7 +4000,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.rules.lists import ListCursor, ListItem, ItemCreateResponse, ItemUpdateResponse, ItemListResponse, ItemDeleteResponse, ItemGetResponse
+from cloudflare.types.rules.lists import (
+    ListCursor,
+    ListItem,
+    ItemCreateResponse,
+    ItemUpdateResponse,
+    ItemListResponse,
+    ItemDeleteResponse,
+    ItemGetResponse,
+)
 ```
 
 Methods:
@@ -3620,7 +4224,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.stream import DownloadCreateResponse, DownloadDeleteResponse, DownloadGetResponse
+from cloudflare.types.stream import (
+    DownloadCreateResponse,
+    DownloadDeleteResponse,
+    DownloadGetResponse,
+)
 ```
 
 Methods:
@@ -3686,7 +4294,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.alerting.destinations import Pagerduty, PagerdutyCreateResponse, PagerdutyDeleteResponse, PagerdutyGetResponse, PagerdutyLinkResponse
+from cloudflare.types.alerting.destinations import (
+    Pagerduty,
+    PagerdutyCreateResponse,
+    PagerdutyDeleteResponse,
+    PagerdutyGetResponse,
+    PagerdutyLinkResponse,
+)
 ```
 
 Methods:
@@ -3701,7 +4315,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.alerting.destinations import Webhooks, WebhookCreateResponse, WebhookUpdateResponse, WebhookDeleteResponse
+from cloudflare.types.alerting.destinations import (
+    Webhooks,
+    WebhookCreateResponse,
+    WebhookUpdateResponse,
+    WebhookDeleteResponse,
+)
 ```
 
 Methods:
@@ -3729,7 +4348,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.alerting import Mechanism, Policy, PolicyFilter, PolicyCreateResponse, PolicyUpdateResponse, PolicyDeleteResponse
+from cloudflare.types.alerting import (
+    Mechanism,
+    Policy,
+    PolicyFilter,
+    PolicyCreateResponse,
+    PolicyUpdateResponse,
+    PolicyDeleteResponse,
+)
 ```
 
 Methods:
@@ -3753,7 +4379,15 @@ from cloudflare.types.d1 import D1
 Types:
 
 ```python
-from cloudflare.types.d1 import QueryResult, DatabaseListResponse, DatabaseDeleteResponse, DatabaseExportResponse, DatabaseImportResponse, DatabaseQueryResponse, DatabaseRawResponse
+from cloudflare.types.d1 import (
+    QueryResult,
+    DatabaseListResponse,
+    DatabaseDeleteResponse,
+    DatabaseExportResponse,
+    DatabaseImportResponse,
+    DatabaseQueryResponse,
+    DatabaseRawResponse,
+)
 ```
 
 Methods:
@@ -3817,7 +4451,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.r2.domains import CustomCreateResponse, CustomUpdateResponse, CustomListResponse, CustomDeleteResponse
+from cloudflare.types.r2.domains import (
+    CustomCreateResponse,
+    CustomUpdateResponse,
+    CustomListResponse,
+    CustomDeleteResponse,
+)
 ```
 
 Methods:
@@ -3845,7 +4484,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.warp_connector import WARPConnectorCreateResponse, WARPConnectorListResponse, WARPConnectorDeleteResponse, WARPConnectorEditResponse, WARPConnectorGetResponse, WARPConnectorTokenResponse
+from cloudflare.types.warp_connector import (
+    WARPConnectorCreateResponse,
+    WARPConnectorListResponse,
+    WARPConnectorDeleteResponse,
+    WARPConnectorEditResponse,
+    WARPConnectorGetResponse,
+    WARPConnectorTokenResponse,
+)
 ```
 
 Methods:
@@ -3866,7 +4512,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.workers_for_platforms.dispatch import NamespaceCreateResponse, NamespaceListResponse, NamespaceDeleteResponse, NamespaceGetResponse
+from cloudflare.types.workers_for_platforms.dispatch import (
+    NamespaceCreateResponse,
+    NamespaceListResponse,
+    NamespaceDeleteResponse,
+    NamespaceGetResponse,
+)
 ```
 
 Methods:
@@ -3902,7 +4553,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import SettingEditResponse, SettingGetResponse
+from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
+    SettingEditResponse,
+    SettingGetResponse,
+)
 ```
 
 Methods:
@@ -3927,7 +4581,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import SecretUpdateResponse, SecretListResponse, SecretGetResponse
+from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
+    SecretUpdateResponse,
+    SecretListResponse,
+    SecretGetResponse,
+)
 ```
 
 Methods:
@@ -3941,7 +4599,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import TagUpdateResponse, TagListResponse, TagDeleteResponse
+from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
+    TagUpdateResponse,
+    TagListResponse,
+    TagDeleteResponse,
+)
 ```
 
 Methods:
@@ -3970,7 +4632,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices import DEXTest, SchemaData, SchemaHTTP, DEXTestDeleteResponse
+from cloudflare.types.zero_trust.devices import (
+    DEXTest,
+    SchemaData,
+    SchemaHTTP,
+    DEXTestDeleteResponse,
+)
 ```
 
 Methods:
@@ -4018,7 +4685,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices.policies import DevicePolicyCertificates, CertificateUpdateResponse, CertificateGetResponse
+from cloudflare.types.zero_trust.devices.policies import (
+    DevicePolicyCertificates,
+    CertificateUpdateResponse,
+    CertificateGetResponse,
+)
 ```
 
 Methods:
@@ -4043,7 +4714,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices.policies import SplitTunnelExclude, ExcludeUpdateResponse, ExcludeGetResponse
+from cloudflare.types.zero_trust.devices.policies import (
+    SplitTunnelExclude,
+    ExcludeUpdateResponse,
+    ExcludeGetResponse,
+)
 ```
 
 Methods:
@@ -4057,7 +4732,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices.policies import FallbackDomain, FallbackDomainPolicy, FallbackDomainUpdateResponse, FallbackDomainGetResponse
+from cloudflare.types.zero_trust.devices.policies import (
+    FallbackDomain,
+    FallbackDomainPolicy,
+    FallbackDomainUpdateResponse,
+    FallbackDomainGetResponse,
+)
 ```
 
 Methods:
@@ -4071,7 +4751,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices.policies import SplitTunnelInclude, IncludeUpdateResponse, IncludeGetResponse
+from cloudflare.types.zero_trust.devices.policies import (
+    SplitTunnelInclude,
+    IncludeUpdateResponse,
+    IncludeGetResponse,
+)
 ```
 
 Methods:
@@ -4085,7 +4769,27 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices import CarbonblackInput, ClientCertificateInput, CrowdstrikeInput, DeviceInput, DeviceMatch, DevicePostureRule, DiskEncryptionInput, DomainJoinedInput, FileInput, FirewallInput, IntuneInput, KolideInput, OSVersionInput, SentineloneInput, SentineloneS2sInput, TaniumInput, UniqueClientIDInput, WorkspaceOneInput, PostureDeleteResponse
+from cloudflare.types.zero_trust.devices import (
+    CarbonblackInput,
+    ClientCertificateInput,
+    CrowdstrikeInput,
+    DeviceInput,
+    DeviceMatch,
+    DevicePostureRule,
+    DiskEncryptionInput,
+    DomainJoinedInput,
+    FileInput,
+    FirewallInput,
+    IntuneInput,
+    KolideInput,
+    OSVersionInput,
+    SentineloneInput,
+    SentineloneS2sInput,
+    TaniumInput,
+    UniqueClientIDInput,
+    WorkspaceOneInput,
+    PostureDeleteResponse,
+)
 ```
 
 Methods:
@@ -4167,7 +4871,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import AzureAD, GenericOAuthConfig, IdentityProvider, IdentityProviderSCIMConfig, IdentityProviderType, IdentityProviderListResponse, IdentityProviderDeleteResponse
+from cloudflare.types.zero_trust import (
+    AzureAD,
+    GenericOAuthConfig,
+    IdentityProvider,
+    IdentityProviderSCIMConfig,
+    IdentityProviderType,
+    IdentityProviderListResponse,
+    IdentityProviderDeleteResponse,
+)
 ```
 
 Methods:
@@ -4210,7 +4922,28 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import AccessDevicePostureRule, AccessRule, AnyValidServiceTokenRule, AuthenticationMethodRule, AzureGroupRule, CertificateRule, CountryRule, DomainRule, EmailListRule, EmailRule, EveryoneRule, ExternalEvaluationRule, GitHubOrganizationRule, GroupRule, GSuiteGroupRule, IPListRule, IPRule, OktaGroupRule, SAMLGroupRule, ServiceTokenRule
+from cloudflare.types.zero_trust import (
+    AccessDevicePostureRule,
+    AccessRule,
+    AnyValidServiceTokenRule,
+    AuthenticationMethodRule,
+    AzureGroupRule,
+    CertificateRule,
+    CountryRule,
+    DomainRule,
+    EmailListRule,
+    EmailRule,
+    EveryoneRule,
+    ExternalEvaluationRule,
+    GitHubOrganizationRule,
+    GroupRule,
+    GSuiteGroupRule,
+    IPListRule,
+    IPRule,
+    OktaGroupRule,
+    SAMLGroupRule,
+    ServiceTokenRule,
+)
 ```
 
 ### Applications
@@ -4218,7 +4951,35 @@ from cloudflare.types.zero_trust import AccessDevicePostureRule, AccessRule, Any
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access import AllowedHeaders, AllowedIdPs, AllowedMethods, AllowedOrigins, AppID, Application, ApplicationPolicy, ApplicationSCIMConfig, ApplicationType, CORSHeaders, Decision, OIDCSaaSApp, SaaSAppNameFormat, SaaSAppNameIDFormat, SaaSAppSource, SAMLSaaSApp, SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2, SCIMConfigMapping, SelfHostedDomains, ApplicationCreateResponse, ApplicationUpdateResponse, ApplicationListResponse, ApplicationDeleteResponse, ApplicationGetResponse, ApplicationRevokeTokensResponse
+from cloudflare.types.zero_trust.access import (
+    AllowedHeaders,
+    AllowedIdPs,
+    AllowedMethods,
+    AllowedOrigins,
+    AppID,
+    Application,
+    ApplicationPolicy,
+    ApplicationSCIMConfig,
+    ApplicationType,
+    CORSHeaders,
+    Decision,
+    OIDCSaaSApp,
+    SaaSAppNameFormat,
+    SaaSAppNameIDFormat,
+    SaaSAppSource,
+    SAMLSaaSApp,
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    SCIMConfigMapping,
+    SelfHostedDomains,
+    ApplicationCreateResponse,
+    ApplicationUpdateResponse,
+    ApplicationListResponse,
+    ApplicationDeleteResponse,
+    ApplicationGetResponse,
+    ApplicationRevokeTokensResponse,
+)
 ```
 
 Methods:
@@ -4235,7 +4996,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access.applications import CA, CACreateResponse, CADeleteResponse, CAGetResponse
+from cloudflare.types.zero_trust.access.applications import (
+    CA,
+    CACreateResponse,
+    CADeleteResponse,
+    CAGetResponse,
+)
 ```
 
 Methods:
@@ -4250,7 +5016,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access.applications import UserPolicyCheckGeo, UserPolicyCheckListResponse
+from cloudflare.types.zero_trust.access.applications import (
+    UserPolicyCheckGeo,
+    UserPolicyCheckListResponse,
+)
 ```
 
 Methods:
@@ -4262,7 +5031,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access.applications import ApprovalGroup, Policy, PolicyDeleteResponse
+from cloudflare.types.zero_trust.access.applications import (
+    ApprovalGroup,
+    Policy,
+    PolicyDeleteResponse,
+)
 ```
 
 Methods:
@@ -4278,7 +5051,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access.applications import PolicyTestCreateResponse, PolicyTestGetResponse
+from cloudflare.types.zero_trust.access.applications import (
+    PolicyTestCreateResponse,
+    PolicyTestGetResponse,
+)
 ```
 
 Methods:
@@ -4303,7 +5079,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access import AssociatedHostnames, Certificate, CertificateDeleteResponse
+from cloudflare.types.zero_trust.access import (
+    AssociatedHostnames,
+    Certificate,
+    CertificateDeleteResponse,
+)
 ```
 
 Methods:
@@ -4319,7 +5099,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access.certificates import CertificateSettings, SettingUpdateResponse, SettingGetResponse
+from cloudflare.types.zero_trust.access.certificates import (
+    CertificateSettings,
+    SettingUpdateResponse,
+    SettingGetResponse,
+)
 ```
 
 Methods:
@@ -4348,7 +5132,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access import ServiceToken, ServiceTokenCreateResponse, ServiceTokenRotateResponse
+from cloudflare.types.zero_trust.access import (
+    ServiceToken,
+    ServiceTokenCreateResponse,
+    ServiceTokenRotateResponse,
+)
 ```
 
 Methods:
@@ -4422,7 +5210,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access.users import ActiveSessionListResponse, ActiveSessionGetResponse
+from cloudflare.types.zero_trust.access.users import (
+    ActiveSessionListResponse,
+    ActiveSessionGetResponse,
+)
 ```
 
 Methods:
@@ -4459,7 +5250,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access import CustomPage, CustomPageWithoutHTML, CustomPageDeleteResponse
+from cloudflare.types.zero_trust.access import (
+    CustomPage,
+    CustomPageWithoutHTML,
+    CustomPageDeleteResponse,
+)
 ```
 
 Methods:
@@ -4491,7 +5286,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access import PolicyCreateResponse, PolicyUpdateResponse, PolicyListResponse, PolicyDeleteResponse, PolicyGetResponse
+from cloudflare.types.zero_trust.access import (
+    PolicyCreateResponse,
+    PolicyUpdateResponse,
+    PolicyListResponse,
+    PolicyDeleteResponse,
+    PolicyGetResponse,
+)
 ```
 
 Methods:
@@ -4507,7 +5308,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import DeviceExperienceMonitor, NetworkPath, NetworkPathResponse, Percentiles
+from cloudflare.types.zero_trust import (
+    DeviceExperienceMonitor,
+    NetworkPath,
+    NetworkPathResponse,
+    Percentiles,
+)
 ```
 
 ### Colos
@@ -4628,7 +5434,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import Connection, TunnelCreateResponse, TunnelListResponse, TunnelDeleteResponse, TunnelEditResponse, TunnelGetResponse
+from cloudflare.types.zero_trust import (
+    Connection,
+    TunnelCreateResponse,
+    TunnelListResponse,
+    TunnelDeleteResponse,
+    TunnelEditResponse,
+    TunnelGetResponse,
+)
 ```
 
 Methods:
@@ -4644,7 +5457,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.tunnels import ConfigurationUpdateResponse, ConfigurationGetResponse
+from cloudflare.types.zero_trust.tunnels import (
+    ConfigurationUpdateResponse,
+    ConfigurationGetResponse,
+)
 ```
 
 Methods:
@@ -4657,7 +5473,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.tunnels import Client, ConnectionDeleteResponse, ConnectionGetResponse
+from cloudflare.types.zero_trust.tunnels import (
+    Client,
+    ConnectionDeleteResponse,
+    ConnectionGetResponse,
+)
 ```
 
 Methods:
@@ -4700,7 +5520,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import ConnectivitySettingEditResponse, ConnectivitySettingGetResponse
+from cloudflare.types.zero_trust import (
+    ConnectivitySettingEditResponse,
+    ConnectivitySettingGetResponse,
+)
 ```
 
 Methods:
@@ -4806,7 +5629,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.dlp.profiles import CustomProfile, Pattern, CustomCreateResponse, CustomDeleteResponse
+from cloudflare.types.zero_trust.dlp.profiles import (
+    CustomProfile,
+    Pattern,
+    CustomCreateResponse,
+    CustomDeleteResponse,
+)
 ```
 
 Methods:
@@ -4896,7 +5724,23 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.gateway import ActivityLogSettings, AntiVirusSettings, BlockPageSettings, BodyScanningSettings, BrowserIsolationSettings, CustomCertificateSettings, ExtendedEmailMatching, FipsSettings, GatewayConfigurationSettings, NotificationSettings, ProtocolDetection, TLSSettings, ConfigurationUpdateResponse, ConfigurationEditResponse, ConfigurationGetResponse
+from cloudflare.types.zero_trust.gateway import (
+    ActivityLogSettings,
+    AntiVirusSettings,
+    BlockPageSettings,
+    BodyScanningSettings,
+    BrowserIsolationSettings,
+    CustomCertificateSettings,
+    ExtendedEmailMatching,
+    FipsSettings,
+    GatewayConfigurationSettings,
+    NotificationSettings,
+    ProtocolDetection,
+    TLSSettings,
+    ConfigurationUpdateResponse,
+    ConfigurationEditResponse,
+    ConfigurationGetResponse,
+)
 ```
 
 Methods:
@@ -4916,7 +5760,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.gateway import GatewayItem, GatewayList, ListCreateResponse, ListDeleteResponse
+from cloudflare.types.zero_trust.gateway import (
+    GatewayItem,
+    GatewayList,
+    ListCreateResponse,
+    ListDeleteResponse,
+)
 ```
 
 Methods:
@@ -4945,7 +5794,17 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.gateway import DOHEndpoint, DOTEndpoint, Endpoint, IPNetwork, IPV4Endpoint, IPV6Endpoint, IPV6Network, Location, LocationDeleteResponse
+from cloudflare.types.zero_trust.gateway import (
+    DOHEndpoint,
+    DOTEndpoint,
+    Endpoint,
+    IPNetwork,
+    IPV4Endpoint,
+    IPV6Endpoint,
+    IPV6Network,
+    Location,
+    LocationDeleteResponse,
+)
 ```
 
 Methods:
@@ -4974,7 +5833,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.gateway import GatewayIPs, ProxyEndpoint, ProxyEndpointDeleteResponse, ProxyEndpointGetResponse
+from cloudflare.types.zero_trust.gateway import (
+    GatewayIPs,
+    ProxyEndpoint,
+    ProxyEndpointDeleteResponse,
+    ProxyEndpointGetResponse,
+)
 ```
 
 Methods:
@@ -4990,7 +5854,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.gateway import DNSResolverSettingsV4, DNSResolverSettingsV6, GatewayFilter, GatewayRule, RuleSetting, Schedule, RuleDeleteResponse
+from cloudflare.types.zero_trust.gateway import (
+    DNSResolverSettingsV4,
+    DNSResolverSettingsV6,
+    GatewayFilter,
+    GatewayRule,
+    RuleSetting,
+    Schedule,
+    RuleDeleteResponse,
+)
 ```
 
 Methods:
@@ -5006,7 +5878,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.gateway import CertificateCreateResponse, CertificateListResponse, CertificateDeleteResponse, CertificateActivateResponse, CertificateDeactivateResponse, CertificateGetResponse
+from cloudflare.types.zero_trust.gateway import (
+    CertificateCreateResponse,
+    CertificateListResponse,
+    CertificateDeleteResponse,
+    CertificateActivateResponse,
+    CertificateDeactivateResponse,
+    CertificateGetResponse,
+)
 ```
 
 Methods:
@@ -5109,7 +5988,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.risk_scoring import IntegrationCreateResponse, IntegrationUpdateResponse, IntegrationListResponse, IntegrationDeleteResponse, IntegrationGetResponse
+from cloudflare.types.zero_trust.risk_scoring import (
+    IntegrationCreateResponse,
+    IntegrationUpdateResponse,
+    IntegrationListResponse,
+    IntegrationDeleteResponse,
+    IntegrationGetResponse,
+)
 ```
 
 Methods:
@@ -5216,7 +6101,21 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.vectorize import CreateIndex, IndexDeleteVectorsByID, IndexDimensionConfiguration, IndexInsert, IndexQuery, IndexUpsert, IndexDeleteResponse, IndexDeleteByIDsResponse, IndexGetByIDsResponse, IndexInfoResponse, IndexInsertResponse, IndexQueryResponse, IndexUpsertResponse
+from cloudflare.types.vectorize import (
+    CreateIndex,
+    IndexDeleteVectorsByID,
+    IndexDimensionConfiguration,
+    IndexInsert,
+    IndexQuery,
+    IndexUpsert,
+    IndexDeleteResponse,
+    IndexDeleteByIDsResponse,
+    IndexGetByIDsResponse,
+    IndexInfoResponse,
+    IndexInsertResponse,
+    IndexQueryResponse,
+    IndexUpsertResponse,
+)
 ```
 
 Methods:
@@ -5237,7 +6136,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.vectorize.indexes import MetadataIndexCreateResponse, MetadataIndexListResponse, MetadataIndexDeleteResponse
+from cloudflare.types.vectorize.indexes import (
+    MetadataIndexCreateResponse,
+    MetadataIndexListResponse,
+    MetadataIndexDeleteResponse,
+)
 ```
 
 Methods:
@@ -5263,7 +6166,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.url_scanner import URLScannerDomain, URLScannerTask, ScanCreateResponse, ScanGetResponse, ScanHarResponse
+from cloudflare.types.url_scanner import (
+    URLScannerDomain,
+    URLScannerTask,
+    ScanCreateResponse,
+    ScanGetResponse,
+    ScanHarResponse,
+)
 ```
 
 Methods:
@@ -5284,7 +6193,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.ai.gateway import SummaryModelResponse, SummaryProviderResponse, SummaryTaskResponse
+from cloudflare.types.radar.ai.gateway import (
+    SummaryModelResponse,
+    SummaryProviderResponse,
+    SummaryTaskResponse,
+)
 ```
 
 Methods:
@@ -5298,7 +6211,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.ai.gateway import TimeseriesGroupModelResponse, TimeseriesGroupProviderResponse, TimeseriesGroupTaskResponse
+from cloudflare.types.radar.ai.gateway import (
+    TimeseriesGroupModelResponse,
+    TimeseriesGroupProviderResponse,
+    TimeseriesGroupTaskResponse,
+)
 ```
 
 Methods:
@@ -5402,7 +6319,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.bgp import RouteAsesResponse, RouteMoasResponse, RoutePfx2asResponse, RouteStatsResponse
+from cloudflare.types.radar.bgp import (
+    RouteAsesResponse,
+    RouteMoasResponse,
+    RoutePfx2asResponse,
+    RouteStatsResponse,
+)
 ```
 
 Methods:
@@ -5523,7 +6445,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.as112 import SummaryDNSSECResponse, SummaryEdnsResponse, SummaryIPVersionResponse, SummaryProtocolResponse, SummaryQueryTypeResponse, SummaryResponseCodesResponse
+from cloudflare.types.radar.as112 import (
+    SummaryDNSSECResponse,
+    SummaryEdnsResponse,
+    SummaryIPVersionResponse,
+    SummaryProtocolResponse,
+    SummaryQueryTypeResponse,
+    SummaryResponseCodesResponse,
+)
 ```
 
 Methods:
@@ -5540,7 +6469,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.as112 import TimeseriesGroupDNSSECResponse, TimeseriesGroupEdnsResponse, TimeseriesGroupIPVersionResponse, TimeseriesGroupProtocolResponse, TimeseriesGroupQueryTypeResponse, TimeseriesGroupResponseCodesResponse
+from cloudflare.types.radar.as112 import (
+    TimeseriesGroupDNSSECResponse,
+    TimeseriesGroupEdnsResponse,
+    TimeseriesGroupIPVersionResponse,
+    TimeseriesGroupProtocolResponse,
+    TimeseriesGroupQueryTypeResponse,
+    TimeseriesGroupResponseCodesResponse,
+)
 ```
 
 Methods:
@@ -5557,7 +6493,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.as112 import TopDNSSECResponse, TopEdnsResponse, TopIPVersionResponse, TopLocationsResponse
+from cloudflare.types.radar.as112 import (
+    TopDNSSECResponse,
+    TopEdnsResponse,
+    TopIPVersionResponse,
+    TopLocationsResponse,
+)
 ```
 
 Methods:
@@ -5582,7 +6523,14 @@ from cloudflare.types.radar import RadarEmailSeries, RadarEmailSummary
 Types:
 
 ```python
-from cloudflare.types.radar.email.routing import SummaryARCResponse, SummaryDKIMResponse, SummaryDMARCResponse, SummaryEncryptedResponse, SummaryIPVersionResponse, SummarySPFResponse
+from cloudflare.types.radar.email.routing import (
+    SummaryARCResponse,
+    SummaryDKIMResponse,
+    SummaryDMARCResponse,
+    SummaryEncryptedResponse,
+    SummaryIPVersionResponse,
+    SummarySPFResponse,
+)
 ```
 
 Methods:
@@ -5599,7 +6547,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.email.routing import TimeseriesGroupARCResponse, TimeseriesGroupDKIMResponse, TimeseriesGroupDMARCResponse, TimeseriesGroupEncryptedResponse, TimeseriesGroupIPVersionResponse, TimeseriesGroupSPFResponse
+from cloudflare.types.radar.email.routing import (
+    TimeseriesGroupARCResponse,
+    TimeseriesGroupDKIMResponse,
+    TimeseriesGroupDMARCResponse,
+    TimeseriesGroupEncryptedResponse,
+    TimeseriesGroupIPVersionResponse,
+    TimeseriesGroupSPFResponse,
+)
 ```
 
 Methods:
@@ -5668,7 +6623,17 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.email.security import SummaryARCResponse, SummaryDKIMResponse, SummaryDMARCResponse, SummaryMaliciousResponse, SummarySpamResponse, SummarySPFResponse, SummarySpoofResponse, SummaryThreatCategoryResponse, SummaryTLSVersionResponse
+from cloudflare.types.radar.email.security import (
+    SummaryARCResponse,
+    SummaryDKIMResponse,
+    SummaryDMARCResponse,
+    SummaryMaliciousResponse,
+    SummarySpamResponse,
+    SummarySPFResponse,
+    SummarySpoofResponse,
+    SummaryThreatCategoryResponse,
+    SummaryTLSVersionResponse,
+)
 ```
 
 Methods:
@@ -5688,7 +6653,17 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.email.security import TimeseriesGroupARCResponse, TimeseriesGroupDKIMResponse, TimeseriesGroupDMARCResponse, TimeseriesGroupMaliciousResponse, TimeseriesGroupSpamResponse, TimeseriesGroupSPFResponse, TimeseriesGroupSpoofResponse, TimeseriesGroupThreatCategoryResponse, TimeseriesGroupTLSVersionResponse
+from cloudflare.types.radar.email.security import (
+    TimeseriesGroupARCResponse,
+    TimeseriesGroupDKIMResponse,
+    TimeseriesGroupDMARCResponse,
+    TimeseriesGroupMaliciousResponse,
+    TimeseriesGroupSpamResponse,
+    TimeseriesGroupSPFResponse,
+    TimeseriesGroupSpoofResponse,
+    TimeseriesGroupThreatCategoryResponse,
+    TimeseriesGroupTLSVersionResponse,
+)
 ```
 
 Methods:
@@ -5722,7 +6697,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.attacks.layer3 import SummaryBitrateResponse, SummaryDurationResponse, SummaryGetResponse, SummaryIPVersionResponse, SummaryProtocolResponse, SummaryVectorResponse
+from cloudflare.types.radar.attacks.layer3 import (
+    SummaryBitrateResponse,
+    SummaryDurationResponse,
+    SummaryGetResponse,
+    SummaryIPVersionResponse,
+    SummaryProtocolResponse,
+    SummaryVectorResponse,
+)
 ```
 
 Methods:
@@ -5739,7 +6721,16 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.attacks.layer3 import TimeseriesGroupBitrateResponse, TimeseriesGroupDurationResponse, TimeseriesGroupGetResponse, TimeseriesGroupIndustryResponse, TimeseriesGroupIPVersionResponse, TimeseriesGroupProtocolResponse, TimeseriesGroupVectorResponse, TimeseriesGroupVerticalResponse
+from cloudflare.types.radar.attacks.layer3 import (
+    TimeseriesGroupBitrateResponse,
+    TimeseriesGroupDurationResponse,
+    TimeseriesGroupGetResponse,
+    TimeseriesGroupIndustryResponse,
+    TimeseriesGroupIPVersionResponse,
+    TimeseriesGroupProtocolResponse,
+    TimeseriesGroupVectorResponse,
+    TimeseriesGroupVerticalResponse,
+)
 ```
 
 Methods:
@@ -5758,7 +6749,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.attacks.layer3 import TopAttacksResponse, TopIndustryResponse, TopVerticalResponse
+from cloudflare.types.radar.attacks.layer3 import (
+    TopAttacksResponse,
+    TopIndustryResponse,
+    TopVerticalResponse,
+)
 ```
 
 Methods:
@@ -5797,7 +6792,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.attacks.layer7 import SummaryGetResponse, SummaryHTTPMethodResponse, SummaryHTTPVersionResponse, SummaryIPVersionResponse, SummaryManagedRulesResponse, SummaryMitigationProductResponse
+from cloudflare.types.radar.attacks.layer7 import (
+    SummaryGetResponse,
+    SummaryHTTPMethodResponse,
+    SummaryHTTPVersionResponse,
+    SummaryIPVersionResponse,
+    SummaryManagedRulesResponse,
+    SummaryMitigationProductResponse,
+)
 ```
 
 Methods:
@@ -5814,7 +6816,16 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.attacks.layer7 import TimeseriesGroupGetResponse, TimeseriesGroupHTTPMethodResponse, TimeseriesGroupHTTPVersionResponse, TimeseriesGroupIndustryResponse, TimeseriesGroupIPVersionResponse, TimeseriesGroupManagedRulesResponse, TimeseriesGroupMitigationProductResponse, TimeseriesGroupVerticalResponse
+from cloudflare.types.radar.attacks.layer7 import (
+    TimeseriesGroupGetResponse,
+    TimeseriesGroupHTTPMethodResponse,
+    TimeseriesGroupHTTPVersionResponse,
+    TimeseriesGroupIndustryResponse,
+    TimeseriesGroupIPVersionResponse,
+    TimeseriesGroupManagedRulesResponse,
+    TimeseriesGroupMitigationProductResponse,
+    TimeseriesGroupVerticalResponse,
+)
 ```
 
 Methods:
@@ -5833,7 +6844,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.attacks.layer7 import TopAttacksResponse, TopIndustryResponse, TopVerticalResponse
+from cloudflare.types.radar.attacks.layer7 import (
+    TopAttacksResponse,
+    TopIndustryResponse,
+    TopVerticalResponse,
+)
 ```
 
 Methods:
@@ -5884,7 +6899,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.entities import ASNListResponse, ASNGetResponse, ASNIPResponse, ASNRelResponse
+from cloudflare.types.radar.entities import (
+    ASNListResponse,
+    ASNGetResponse,
+    ASNIPResponse,
+    ASNRelResponse,
+)
 ```
 
 Methods:
@@ -6140,7 +7160,16 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.http import SummaryBotClassResponse, SummaryDeviceTypeResponse, SummaryHTTPProtocolResponse, SummaryHTTPVersionResponse, SummaryIPVersionResponse, SummaryOSResponse, SummaryPostQuantumResponse, SummaryTLSVersionResponse
+from cloudflare.types.radar.http import (
+    SummaryBotClassResponse,
+    SummaryDeviceTypeResponse,
+    SummaryHTTPProtocolResponse,
+    SummaryHTTPVersionResponse,
+    SummaryIPVersionResponse,
+    SummaryOSResponse,
+    SummaryPostQuantumResponse,
+    SummaryTLSVersionResponse,
+)
 ```
 
 Methods:
@@ -6159,7 +7188,18 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.http import TimeseriesGroupBotClassResponse, TimeseriesGroupBrowserResponse, TimeseriesGroupBrowserFamilyResponse, TimeseriesGroupDeviceTypeResponse, TimeseriesGroupHTTPProtocolResponse, TimeseriesGroupHTTPVersionResponse, TimeseriesGroupIPVersionResponse, TimeseriesGroupOSResponse, TimeseriesGroupPostQuantumResponse, TimeseriesGroupTLSVersionResponse
+from cloudflare.types.radar.http import (
+    TimeseriesGroupBotClassResponse,
+    TimeseriesGroupBrowserResponse,
+    TimeseriesGroupBrowserFamilyResponse,
+    TimeseriesGroupDeviceTypeResponse,
+    TimeseriesGroupHTTPProtocolResponse,
+    TimeseriesGroupHTTPVersionResponse,
+    TimeseriesGroupIPVersionResponse,
+    TimeseriesGroupOSResponse,
+    TimeseriesGroupPostQuantumResponse,
+    TimeseriesGroupTLSVersionResponse,
+)
 ```
 
 Methods:
@@ -6283,7 +7323,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar import TCPResetsTimeoutSummaryResponse, TCPResetsTimeoutTimeseriesGroupsResponse
+from cloudflare.types.radar import (
+    TCPResetsTimeoutSummaryResponse,
+    TCPResetsTimeoutTimeseriesGroupsResponse,
+)
 ```
 
 Methods:
@@ -6291,38 +7334,19 @@ Methods:
 - <code title="get /radar/tcp_resets_timeouts/summary">client.radar.tcp_resets_timeouts.<a href="./src/cloudflare/resources/radar/tcp_resets_timeouts.py">summary</a>(\*\*<a href="src/cloudflare/types/radar/tcp_resets_timeout_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/tcp_resets_timeout_summary_response.py">TCPResetsTimeoutSummaryResponse</a></code>
 - <code title="get /radar/tcp_resets_timeouts/timeseries_groups">client.radar.tcp_resets_timeouts.<a href="./src/cloudflare/resources/radar/tcp_resets_timeouts.py">timeseries_groups</a>(\*\*<a href="src/cloudflare/types/radar/tcp_resets_timeout_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/tcp_resets_timeout_timeseries_groups_response.py">TCPResetsTimeoutTimeseriesGroupsResponse</a></code>
 
-## RobotsTXT
-
-Types:
-
-```python
-from cloudflare.types.radar import RobotsTXTDomainsResponse
-```
-
-Methods:
-
-- <code title="get /radar/robots_txt/domains">client.radar.robots_txt.<a href="./src/cloudflare/resources/radar/robots_txt/robots_txt.py">domains</a>(\*\*<a href="src/cloudflare/types/radar/robots_txt_domains_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/robots_txt_domains_response.py">RobotsTXTDomainsResponse</a></code>
-
-### Top
-
-#### Directive
-
-Types:
-
-```python
-from cloudflare.types.radar.robots_txt.top import DirectiveGetResponse
-```
-
-Methods:
-
-- <code title="get /radar/robots_txt/top/{directive}">client.radar.robots_txt.top.directive.<a href="./src/cloudflare/resources/radar/robots_txt/top/directive.py">get</a>(directive, \*\*<a href="src/cloudflare/types/radar/robots_txt/top/directive_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/robots_txt/top/directive_get_response.py">DirectiveGetResponse</a></code>
-
 # BotManagement
 
 Types:
 
 ```python
-from cloudflare.types.bot_management import BotFightModeConfiguration, SubscriptionConfiguration, SuperBotFightModeDefinitelyConfiguration, SuperBotFightModeLikelyConfiguration, BotManagementUpdateResponse, BotManagementGetResponse
+from cloudflare.types.bot_management import (
+    BotFightModeConfiguration,
+    SubscriptionConfiguration,
+    SuperBotFightModeDefinitelyConfiguration,
+    SuperBotFightModeLikelyConfiguration,
+    BotManagementUpdateResponse,
+    BotManagementGetResponse,
+)
 ```
 
 Methods:
@@ -6335,7 +7359,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.origin_post_quantum_encryption import OriginPostQuantumEncryptionUpdateResponse, OriginPostQuantumEncryptionGetResponse
+from cloudflare.types.origin_post_quantum_encryption import (
+    OriginPostQuantumEncryptionUpdateResponse,
+    OriginPostQuantumEncryptionGetResponse,
+)
 ```
 
 Methods:
@@ -6426,7 +7453,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.hostnames.settings import Setting, SettingValue, TLSDeleteResponse, TLSGetResponse
+from cloudflare.types.hostnames.settings import (
+    Setting,
+    SettingValue,
+    TLSDeleteResponse,
+    TLSGetResponse,
+)
 ```
 
 Methods:
@@ -6492,7 +7524,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.calls.turn import KeyCreateResponse, KeyUpdateResponse, KeyListResponse, KeyDeleteResponse, KeyGetResponse
+from cloudflare.types.calls.turn import (
+    KeyCreateResponse,
+    KeyUpdateResponse,
+    KeyListResponse,
+    KeyDeleteResponse,
+    KeyGetResponse,
+)
 ```
 
 Methods:
@@ -6510,7 +7548,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.cloudforce_one import Item, ListItem, Quota, RequestConstants, RequestTypes, RequestDeleteResponse
+from cloudflare.types.cloudforce_one import (
+    Item,
+    ListItem,
+    Quota,
+    RequestConstants,
+    RequestTypes,
+    RequestDeleteResponse,
+)
 ```
 
 Methods:
@@ -6529,7 +7574,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.cloudforce_one.requests import Message, MessageDeleteResponse, MessageGetResponse
+from cloudflare.types.cloudforce_one.requests import (
+    Message,
+    MessageDeleteResponse,
+    MessageGetResponse,
+)
 ```
 
 Methods:
@@ -6544,7 +7593,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.cloudforce_one.requests import Label, Priority, PriorityEdit, PriorityDeleteResponse
+from cloudflare.types.cloudforce_one.requests import (
+    Label,
+    Priority,
+    PriorityEdit,
+    PriorityDeleteResponse,
+)
 ```
 
 Methods:
@@ -6576,7 +7630,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.event_notifications.r2.configuration import QueueUpdateResponse, QueueDeleteResponse
+from cloudflare.types.event_notifications.r2.configuration import (
+    QueueUpdateResponse,
+    QueueDeleteResponse,
+)
 ```
 
 Methods:
@@ -6589,7 +7646,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.ai_gateway import AIGatewayCreateResponse, AIGatewayUpdateResponse, AIGatewayListResponse, AIGatewayDeleteResponse, AIGatewayGetResponse
+from cloudflare.types.ai_gateway import (
+    AIGatewayCreateResponse,
+    AIGatewayUpdateResponse,
+    AIGatewayListResponse,
+    AIGatewayDeleteResponse,
+    AIGatewayGetResponse,
+)
 ```
 
 Methods:
@@ -6632,7 +7695,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.iam import ResourceGroupCreateResponse, ResourceGroupUpdateResponse, ResourceGroupListResponse, ResourceGroupDeleteResponse, ResourceGroupGetResponse
+from cloudflare.types.iam import (
+    ResourceGroupCreateResponse,
+    ResourceGroupUpdateResponse,
+    ResourceGroupListResponse,
+    ResourceGroupDeleteResponse,
+    ResourceGroupGetResponse,
+)
 ```
 
 Methods:

@@ -2,59 +2,25 @@
 
 from __future__ import annotations
 
+from typing import Any, Optional, cast
+
 import httpx
 
-from .dex_tests import DEXTestsResource, AsyncDEXTestsResource
-
-from ...._compat import cached_property
-
-from .networks import NetworksResource, AsyncNetworksResource
-
-from .policies.policies import PoliciesResource, AsyncPoliciesResource
-
-from .posture.posture import PostureResource, AsyncPostureResource
-
-from .revoke import RevokeResource, AsyncRevokeResource
-
-from .settings import SettingsResource, AsyncSettingsResource
-
-from .unrevoke import UnrevokeResource, AsyncUnrevokeResource
-
-from .override_codes import OverrideCodesResource, AsyncOverrideCodesResource
-
-from ....types.zero_trust.device import Device
-
-from ....pagination import SyncSinglePage, AsyncSinglePage
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from ....types.zero_trust.device_get_response import DeviceGetResponse
-
-from ...._wrappers import ResultWrapper
-
-from typing import Optional
-
-from ...._response import (
-    to_raw_response_wrapper,
-    async_to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_streamed_response_wrapper,
+from .revoke import (
+    RevokeResource,
+    AsyncRevokeResource,
+    RevokeResourceWithRawResponse,
+    AsyncRevokeResourceWithRawResponse,
+    RevokeResourceWithStreamingResponse,
+    AsyncRevokeResourceWithStreamingResponse,
 )
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from .dex_tests import (
-    DEXTestsResource,
-    AsyncDEXTestsResource,
-    DEXTestsResourceWithRawResponse,
-    AsyncDEXTestsResourceWithRawResponse,
-    DEXTestsResourceWithStreamingResponse,
-    AsyncDEXTestsResourceWithStreamingResponse,
+from .posture import (
+    PostureResource,
+    AsyncPostureResource,
+    PostureResourceWithRawResponse,
+    AsyncPostureResourceWithRawResponse,
+    PostureResourceWithStreamingResponse,
+    AsyncPostureResourceWithStreamingResponse,
 )
 from .networks import (
     NetworksResource,
@@ -72,22 +38,6 @@ from .policies import (
     PoliciesResourceWithStreamingResponse,
     AsyncPoliciesResourceWithStreamingResponse,
 )
-from .posture import (
-    PostureResource,
-    AsyncPostureResource,
-    PostureResourceWithRawResponse,
-    AsyncPostureResourceWithRawResponse,
-    PostureResourceWithStreamingResponse,
-    AsyncPostureResourceWithStreamingResponse,
-)
-from .revoke import (
-    RevokeResource,
-    AsyncRevokeResource,
-    RevokeResourceWithRawResponse,
-    AsyncRevokeResourceWithRawResponse,
-    RevokeResourceWithStreamingResponse,
-    AsyncRevokeResourceWithStreamingResponse,
-)
 from .settings import (
     SettingsResource,
     AsyncSettingsResource,
@@ -104,6 +54,25 @@ from .unrevoke import (
     UnrevokeResourceWithStreamingResponse,
     AsyncUnrevokeResourceWithStreamingResponse,
 )
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .dex_tests import (
+    DEXTestsResource,
+    AsyncDEXTestsResource,
+    DEXTestsResourceWithRawResponse,
+    AsyncDEXTestsResourceWithRawResponse,
+    DEXTestsResourceWithStreamingResponse,
+    AsyncDEXTestsResourceWithStreamingResponse,
+)
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from .override_codes import (
     OverrideCodesResource,
     AsyncOverrideCodesResource,
@@ -112,10 +81,11 @@ from .override_codes import (
     OverrideCodesResourceWithStreamingResponse,
     AsyncOverrideCodesResourceWithStreamingResponse,
 )
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
+from ...._base_client import AsyncPaginator, make_request_options
+from .posture.posture import PostureResource, AsyncPostureResource
+from .policies.policies import PoliciesResource, AsyncPoliciesResource
+from ....types.zero_trust.device import Device
+from ....types.zero_trust.device_get_response import DeviceGetResponse
 
 __all__ = ["DevicesResource", "AsyncDevicesResource"]
 

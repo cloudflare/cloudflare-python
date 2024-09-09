@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict, TypeAlias
+from typing import Union
+from typing_extensions import Literal, TypeAlias, TypedDict
 
 from .logging_param import LoggingParam
-
-from typing import Union
 
 __all__ = [
     "RedirectRuleParam",

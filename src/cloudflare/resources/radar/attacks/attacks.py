@@ -2,19 +2,6 @@
 
 from __future__ import annotations
 
-from .layer3.layer3 import Layer3Resource, AsyncLayer3Resource
-
-from ...._compat import cached_property
-
-from .layer7.layer7 import Layer7Resource, AsyncLayer7Resource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
 from .layer3 import (
     Layer3Resource,
     AsyncLayer3Resource,
@@ -31,6 +18,10 @@ from .layer7 import (
     Layer7ResourceWithStreamingResponse,
     AsyncLayer7ResourceWithStreamingResponse,
 )
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .layer3.layer3 import Layer3Resource, AsyncLayer3Resource
+from .layer7.layer7 import Layer7Resource, AsyncLayer7Resource
 
 __all__ = ["AttacksResource", "AsyncAttacksResource"]
 

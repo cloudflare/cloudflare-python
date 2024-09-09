@@ -2,19 +2,6 @@
 
 from __future__ import annotations
 
-from .routing.routing import RoutingResource, AsyncRoutingResource
-
-from ...._compat import cached_property
-
-from .security.security import SecurityResource, AsyncSecurityResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
 from .routing import (
     RoutingResource,
     AsyncRoutingResource,
@@ -31,6 +18,10 @@ from .security import (
     SecurityResourceWithStreamingResponse,
     AsyncSecurityResourceWithStreamingResponse,
 )
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .routing.routing import RoutingResource, AsyncRoutingResource
+from .security.security import SecurityResource, AsyncSecurityResource
 
 __all__ = ["EmailResource", "AsyncEmailResource"]
 

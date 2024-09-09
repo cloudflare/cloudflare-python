@@ -2,16 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
-
-from typing import Iterable, List
+from typing import List, Iterable
+from typing_extensions import Literal, Required, TypedDict
 
 from .methods import Methods
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
 
 __all__ = ["RateLimitCreateParams", "Action", "ActionResponse", "Match", "MatchHeader", "MatchRequest", "MatchResponse"]
 

@@ -1,14 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .events import EventsResource, AsyncEventsResource
 from .events import (
+    EventsResource,
+    AsyncEventsResource,
     EventsResourceWithRawResponse,
     AsyncEventsResourceWithRawResponse,
     EventsResourceWithStreamingResponse,
     AsyncEventsResourceWithStreamingResponse,
 )
-from .hijacks import HijacksResource, AsyncHijacksResource
 from .hijacks import (
+    HijacksResource,
+    AsyncHijacksResource,
     HijacksResourceWithRawResponse,
     AsyncHijacksResourceWithRawResponse,
     HijacksResourceWithStreamingResponse,

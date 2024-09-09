@@ -1,20 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
-from typing import Optional, List
-
-from .issue_type import IssueType
-
-from typing_extensions import Literal
-
+from typing import List, Optional
 from datetime import datetime
-
-from ...shared.response_info import ResponseInfo
-
-from typing import Optional, Union, List, Dict, Any
 from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+
+from ...._models import BaseModel
+from .issue_type import IssueType
+from ...shared.response_info import ResponseInfo
 
 __all__ = ["IssueListResponse", "Result", "ResultIssue"]
 

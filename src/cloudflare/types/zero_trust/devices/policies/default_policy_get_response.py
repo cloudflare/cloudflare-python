@@ -1,18 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List, Optional
+
 from ....._models import BaseModel
-
-from typing import Optional, List
-
-from .split_tunnel_exclude import SplitTunnelExclude
-
 from .fallback_domain import FallbackDomain
-
+from .split_tunnel_exclude import SplitTunnelExclude
 from .split_tunnel_include import SplitTunnelInclude
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 
 __all__ = ["DefaultPolicyGetResponse", "ServiceModeV2"]
 
