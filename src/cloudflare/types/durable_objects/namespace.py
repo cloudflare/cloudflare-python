@@ -17,3 +17,5 @@ class Namespace(BaseModel):
     name: Optional[str] = None
 
     script: Optional[str] = None
+
+    use_sqlite: Optional[bool] = None
