@@ -25,10 +25,21 @@ __all__ = ["LastSeenIdentityResource", "AsyncLastSeenIdentityResource"]
 class LastSeenIdentityResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LastSeenIdentityResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return LastSeenIdentityResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> LastSeenIdentityResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return LastSeenIdentityResourceWithStreamingResponse(self)
 
     def get(
@@ -79,10 +90,21 @@ class LastSeenIdentityResource(SyncAPIResource):
 class AsyncLastSeenIdentityResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncLastSeenIdentityResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLastSeenIdentityResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLastSeenIdentityResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncLastSeenIdentityResourceWithStreamingResponse(self)
 
     async def get(

@@ -30,10 +30,21 @@ __all__ = ["SeatsResource", "AsyncSeatsResource"]
 class SeatsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SeatsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SeatsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SeatsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SeatsResourceWithStreamingResponse(self)
 
     def edit(
@@ -82,10 +93,21 @@ class SeatsResource(SyncAPIResource):
 class AsyncSeatsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSeatsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSeatsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSeatsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSeatsResourceWithStreamingResponse(self)
 
     async def edit(

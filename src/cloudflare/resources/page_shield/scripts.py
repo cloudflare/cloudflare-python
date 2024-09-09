@@ -30,10 +30,21 @@ __all__ = ["ScriptsResource", "AsyncScriptsResource"]
 class ScriptsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ScriptsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ScriptsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ScriptsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ScriptsResourceWithStreamingResponse(self)
 
     def list(
@@ -205,10 +216,21 @@ class ScriptsResource(SyncAPIResource):
 class AsyncScriptsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncScriptsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncScriptsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncScriptsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncScriptsResourceWithStreamingResponse(self)
 
     def list(

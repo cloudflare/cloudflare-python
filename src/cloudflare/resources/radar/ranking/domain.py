@@ -31,10 +31,21 @@ __all__ = ["DomainResource", "AsyncDomainResource"]
 class DomainResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DomainResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DomainResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DomainResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DomainResourceWithStreamingResponse(self)
 
     def get(
@@ -107,10 +118,21 @@ class DomainResource(SyncAPIResource):
 class AsyncDomainResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDomainResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDomainResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDomainResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDomainResourceWithStreamingResponse(self)
 
     async def get(

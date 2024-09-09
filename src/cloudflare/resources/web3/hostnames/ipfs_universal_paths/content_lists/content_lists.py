@@ -43,10 +43,21 @@ class ContentListsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> ContentListsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ContentListsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ContentListsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ContentListsResourceWithStreamingResponse(self)
 
     def update(
@@ -158,10 +169,21 @@ class AsyncContentListsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncContentListsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncContentListsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncContentListsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncContentListsResourceWithStreamingResponse(self)
 
     async def update(

@@ -34,10 +34,21 @@ __all__ = ["SecretsResource", "AsyncSecretsResource"]
 class SecretsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SecretsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SecretsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SecretsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SecretsResourceWithStreamingResponse(self)
 
     def update(
@@ -211,10 +222,21 @@ class SecretsResource(SyncAPIResource):
 class AsyncSecretsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSecretsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSecretsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSecretsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSecretsResourceWithStreamingResponse(self)
 
     async def update(

@@ -35,10 +35,21 @@ __all__ = ["GRETunnelsResource", "AsyncGRETunnelsResource"]
 class GRETunnelsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> GRETunnelsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return GRETunnelsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> GRETunnelsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return GRETunnelsResourceWithStreamingResponse(self)
 
     def create(
@@ -302,10 +313,21 @@ class GRETunnelsResource(SyncAPIResource):
 class AsyncGRETunnelsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncGRETunnelsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncGRETunnelsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncGRETunnelsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncGRETunnelsResourceWithStreamingResponse(self)
 
     async def create(

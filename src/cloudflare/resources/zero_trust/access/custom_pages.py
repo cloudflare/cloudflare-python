@@ -34,10 +34,21 @@ __all__ = ["CustomPagesResource", "AsyncCustomPagesResource"]
 class CustomPagesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CustomPagesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return CustomPagesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> CustomPagesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return CustomPagesResourceWithStreamingResponse(self)
 
     def create(
@@ -293,10 +304,21 @@ class CustomPagesResource(SyncAPIResource):
 class AsyncCustomPagesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCustomPagesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncCustomPagesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncCustomPagesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncCustomPagesResourceWithStreamingResponse(self)
 
     async def create(

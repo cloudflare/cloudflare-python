@@ -29,10 +29,21 @@ __all__ = ["SchemaResource", "AsyncSchemaResource"]
 class SchemaResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SchemaResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SchemaResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SchemaResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SchemaResourceWithStreamingResponse(self)
 
     def get(
@@ -80,10 +91,21 @@ class SchemaResource(SyncAPIResource):
 class AsyncSchemaResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSchemaResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSchemaResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSchemaResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSchemaResourceWithStreamingResponse(self)
 
     async def get(

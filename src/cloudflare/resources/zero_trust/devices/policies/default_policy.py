@@ -25,10 +25,21 @@ __all__ = ["DefaultPolicyResource", "AsyncDefaultPolicyResource"]
 class DefaultPolicyResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DefaultPolicyResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DefaultPolicyResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DefaultPolicyResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DefaultPolicyResourceWithStreamingResponse(self)
 
     def get(
@@ -72,10 +83,21 @@ class DefaultPolicyResource(SyncAPIResource):
 class AsyncDefaultPolicyResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDefaultPolicyResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDefaultPolicyResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDefaultPolicyResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDefaultPolicyResourceWithStreamingResponse(self)
 
     async def get(

@@ -80,10 +80,21 @@ class NamespacesResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> NamespacesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return NamespacesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> NamespacesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return NamespacesResourceWithStreamingResponse(self)
 
     def create(
@@ -348,10 +359,21 @@ class AsyncNamespacesResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncNamespacesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncNamespacesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncNamespacesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncNamespacesResourceWithStreamingResponse(self)
 
     async def create(

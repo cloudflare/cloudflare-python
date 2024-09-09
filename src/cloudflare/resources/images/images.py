@@ -37,10 +37,21 @@ class ImagesResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> ImagesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ImagesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ImagesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ImagesResourceWithStreamingResponse(self)
 
 
@@ -55,10 +66,21 @@ class AsyncImagesResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncImagesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncImagesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncImagesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncImagesResourceWithStreamingResponse(self)
 
 

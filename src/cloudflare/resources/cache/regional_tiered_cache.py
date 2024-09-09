@@ -32,10 +32,21 @@ __all__ = ["RegionalTieredCacheResource", "AsyncRegionalTieredCacheResource"]
 class RegionalTieredCacheResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RegionalTieredCacheResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return RegionalTieredCacheResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> RegionalTieredCacheResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return RegionalTieredCacheResourceWithStreamingResponse(self)
 
     def edit(
@@ -130,10 +141,21 @@ class RegionalTieredCacheResource(SyncAPIResource):
 class AsyncRegionalTieredCacheResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRegionalTieredCacheResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncRegionalTieredCacheResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncRegionalTieredCacheResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncRegionalTieredCacheResourceWithStreamingResponse(self)
 
     async def edit(

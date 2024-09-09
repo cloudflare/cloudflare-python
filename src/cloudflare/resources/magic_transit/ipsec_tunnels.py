@@ -40,10 +40,21 @@ __all__ = ["IPSECTunnelsResource", "AsyncIPSECTunnelsResource"]
 class IPSECTunnelsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IPSECTunnelsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return IPSECTunnelsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> IPSECTunnelsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return IPSECTunnelsResourceWithStreamingResponse(self)
 
     def create(
@@ -396,10 +407,21 @@ class IPSECTunnelsResource(SyncAPIResource):
 class AsyncIPSECTunnelsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIPSECTunnelsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncIPSECTunnelsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncIPSECTunnelsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncIPSECTunnelsResourceWithStreamingResponse(self)
 
     async def create(

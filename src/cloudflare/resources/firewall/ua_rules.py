@@ -36,10 +36,21 @@ __all__ = ["UARulesResource", "AsyncUARulesResource"]
 class UARulesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> UARulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return UARulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> UARulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return UARulesResourceWithStreamingResponse(self)
 
     def create(
@@ -325,10 +336,21 @@ class UARulesResource(SyncAPIResource):
 class AsyncUARulesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncUARulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncUARulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncUARulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncUARulesResourceWithStreamingResponse(self)
 
     async def create(

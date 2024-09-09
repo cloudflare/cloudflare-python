@@ -87,10 +87,21 @@ class APIGatewayResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> APIGatewayResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return APIGatewayResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> APIGatewayResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return APIGatewayResourceWithStreamingResponse(self)
 
 
@@ -121,10 +132,21 @@ class AsyncAPIGatewayResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncAPIGatewayResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAPIGatewayResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAPIGatewayResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAPIGatewayResourceWithStreamingResponse(self)
 
 

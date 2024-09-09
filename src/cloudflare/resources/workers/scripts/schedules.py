@@ -31,10 +31,21 @@ __all__ = ["SchedulesResource", "AsyncSchedulesResource"]
 class SchedulesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SchedulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SchedulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SchedulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SchedulesResourceWithStreamingResponse(self)
 
     def update(
@@ -131,10 +142,21 @@ class SchedulesResource(SyncAPIResource):
 class AsyncSchedulesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSchedulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSchedulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSchedulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSchedulesResourceWithStreamingResponse(self)
 
     async def update(
