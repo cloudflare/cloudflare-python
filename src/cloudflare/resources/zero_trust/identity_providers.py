@@ -41,10 +41,21 @@ __all__ = ["IdentityProvidersResource", "AsyncIdentityProvidersResource"]
 class IdentityProvidersResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IdentityProvidersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return IdentityProvidersResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> IdentityProvidersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return IdentityProvidersResourceWithStreamingResponse(self)
 
     @overload
@@ -1746,10 +1757,21 @@ class IdentityProvidersResource(SyncAPIResource):
 class AsyncIdentityProvidersResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIdentityProvidersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncIdentityProvidersResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncIdentityProvidersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncIdentityProvidersResourceWithStreamingResponse(self)
 
     @overload

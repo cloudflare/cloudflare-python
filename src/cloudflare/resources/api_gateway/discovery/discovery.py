@@ -37,10 +37,21 @@ class DiscoveryResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> DiscoveryResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DiscoveryResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DiscoveryResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DiscoveryResourceWithStreamingResponse(self)
 
     def get(
@@ -91,10 +102,21 @@ class AsyncDiscoveryResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncDiscoveryResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDiscoveryResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDiscoveryResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDiscoveryResourceWithStreamingResponse(self)
 
     async def get(

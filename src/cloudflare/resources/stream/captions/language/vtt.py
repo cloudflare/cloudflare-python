@@ -21,10 +21,21 @@ __all__ = ["VttResource", "AsyncVttResource"]
 class VttResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> VttResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return VttResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> VttResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return VttResourceWithStreamingResponse(self)
 
     def get(
@@ -77,10 +88,21 @@ class VttResource(SyncAPIResource):
 class AsyncVttResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncVttResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncVttResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncVttResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncVttResourceWithStreamingResponse(self)
 
     async def get(

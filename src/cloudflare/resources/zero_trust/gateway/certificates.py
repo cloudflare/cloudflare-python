@@ -40,10 +40,21 @@ __all__ = ["CertificatesResource", "AsyncCertificatesResource"]
 class CertificatesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CertificatesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return CertificatesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> CertificatesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return CertificatesResourceWithStreamingResponse(self)
 
     def create(
@@ -302,10 +313,21 @@ class CertificatesResource(SyncAPIResource):
 class AsyncCertificatesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCertificatesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncCertificatesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncCertificatesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncCertificatesResourceWithStreamingResponse(self)
 
     async def create(

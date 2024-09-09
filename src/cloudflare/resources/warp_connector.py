@@ -38,10 +38,21 @@ __all__ = ["WARPConnectorResource", "AsyncWARPConnectorResource"]
 class WARPConnectorResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> WARPConnectorResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return WARPConnectorResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> WARPConnectorResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return WARPConnectorResourceWithStreamingResponse(self)
 
     def create(
@@ -394,10 +405,21 @@ class WARPConnectorResource(SyncAPIResource):
 class AsyncWARPConnectorResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncWARPConnectorResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncWARPConnectorResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncWARPConnectorResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncWARPConnectorResourceWithStreamingResponse(self)
 
     async def create(

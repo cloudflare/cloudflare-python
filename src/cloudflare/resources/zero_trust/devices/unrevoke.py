@@ -29,10 +29,21 @@ __all__ = ["UnrevokeResource", "AsyncUnrevokeResource"]
 class UnrevokeResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> UnrevokeResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return UnrevokeResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> UnrevokeResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return UnrevokeResourceWithStreamingResponse(self)
 
     def create(
@@ -85,10 +96,21 @@ class UnrevokeResource(SyncAPIResource):
 class AsyncUnrevokeResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncUnrevokeResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncUnrevokeResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncUnrevokeResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncUnrevokeResourceWithStreamingResponse(self)
 
     async def create(

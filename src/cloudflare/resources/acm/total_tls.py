@@ -32,10 +32,21 @@ __all__ = ["TotalTLSResource", "AsyncTotalTLSResource"]
 class TotalTLSResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TotalTLSResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TotalTLSResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TotalTLSResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TotalTLSResourceWithStreamingResponse(self)
 
     def create(
@@ -134,10 +145,21 @@ class TotalTLSResource(SyncAPIResource):
 class AsyncTotalTLSResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTotalTLSResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTotalTLSResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTotalTLSResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTotalTLSResourceWithStreamingResponse(self)
 
     async def create(

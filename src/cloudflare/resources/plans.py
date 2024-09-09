@@ -26,10 +26,21 @@ __all__ = ["PlansResource", "AsyncPlansResource"]
 class PlansResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PlansResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PlansResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PlansResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PlansResourceWithStreamingResponse(self)
 
     def list(
@@ -116,10 +127,21 @@ class PlansResource(SyncAPIResource):
 class AsyncPlansResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPlansResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPlansResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPlansResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPlansResourceWithStreamingResponse(self)
 
     def list(

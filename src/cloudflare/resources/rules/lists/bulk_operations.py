@@ -25,10 +25,21 @@ __all__ = ["BulkOperationsResource", "AsyncBulkOperationsResource"]
 class BulkOperationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BulkOperationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return BulkOperationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> BulkOperationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return BulkOperationsResourceWithStreamingResponse(self)
 
     def get(
@@ -83,10 +94,21 @@ class BulkOperationsResource(SyncAPIResource):
 class AsyncBulkOperationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBulkOperationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncBulkOperationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncBulkOperationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncBulkOperationsResourceWithStreamingResponse(self)
 
     async def get(

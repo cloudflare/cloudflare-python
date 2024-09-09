@@ -38,10 +38,21 @@ class CaptionsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> CaptionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return CaptionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> CaptionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return CaptionsResourceWithStreamingResponse(self)
 
     def get(
@@ -96,10 +107,21 @@ class AsyncCaptionsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncCaptionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncCaptionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncCaptionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncCaptionsResourceWithStreamingResponse(self)
 
     async def get(

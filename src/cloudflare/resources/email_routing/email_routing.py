@@ -67,10 +67,21 @@ class EmailRoutingResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> EmailRoutingResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return EmailRoutingResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> EmailRoutingResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return EmailRoutingResourceWithStreamingResponse(self)
 
     def disable(
@@ -213,10 +224,21 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncEmailRoutingResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncEmailRoutingResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncEmailRoutingResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncEmailRoutingResourceWithStreamingResponse(self)
 
     async def disable(

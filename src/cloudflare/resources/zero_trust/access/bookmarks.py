@@ -32,10 +32,21 @@ __all__ = ["BookmarksResource", "AsyncBookmarksResource"]
 class BookmarksResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BookmarksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return BookmarksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> BookmarksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return BookmarksResourceWithStreamingResponse(self)
 
     def create(
@@ -248,10 +259,21 @@ class BookmarksResource(SyncAPIResource):
 class AsyncBookmarksResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBookmarksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncBookmarksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncBookmarksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncBookmarksResourceWithStreamingResponse(self)
 
     async def create(

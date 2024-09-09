@@ -45,10 +45,21 @@ class NetflowsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> NetflowsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return NetflowsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> NetflowsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return NetflowsResourceWithStreamingResponse(self)
 
     def summary(
@@ -235,10 +246,21 @@ class AsyncNetflowsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncNetflowsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncNetflowsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncNetflowsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncNetflowsResourceWithStreamingResponse(self)
 
     async def summary(

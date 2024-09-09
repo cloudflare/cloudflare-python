@@ -33,10 +33,21 @@ __all__ = ["BotManagementResource", "AsyncBotManagementResource"]
 class BotManagementResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BotManagementResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return BotManagementResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> BotManagementResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return BotManagementResourceWithStreamingResponse(self)
 
     @overload
@@ -362,10 +373,21 @@ class BotManagementResource(SyncAPIResource):
 class AsyncBotManagementResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBotManagementResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncBotManagementResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncBotManagementResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncBotManagementResourceWithStreamingResponse(self)
 
     @overload

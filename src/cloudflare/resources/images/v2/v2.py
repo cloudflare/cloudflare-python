@@ -43,10 +43,21 @@ class V2Resource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> V2ResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return V2ResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> V2ResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return V2ResourceWithStreamingResponse(self)
 
     def list(
@@ -116,10 +127,21 @@ class AsyncV2Resource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncV2ResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncV2ResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncV2ResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncV2ResourceWithStreamingResponse(self)
 
     async def list(

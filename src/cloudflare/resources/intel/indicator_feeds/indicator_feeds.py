@@ -70,10 +70,21 @@ class IndicatorFeedsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> IndicatorFeedsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return IndicatorFeedsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> IndicatorFeedsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return IndicatorFeedsResourceWithStreamingResponse(self)
 
     def create(
@@ -328,10 +339,21 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncIndicatorFeedsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncIndicatorFeedsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncIndicatorFeedsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncIndicatorFeedsResourceWithStreamingResponse(self)
 
     async def create(

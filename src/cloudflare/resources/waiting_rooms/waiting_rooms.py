@@ -101,10 +101,21 @@ class WaitingRoomsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> WaitingRoomsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return WaitingRoomsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> WaitingRoomsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return WaitingRoomsResourceWithStreamingResponse(self)
 
     def create(
@@ -1350,10 +1361,21 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncWaitingRoomsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncWaitingRoomsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncWaitingRoomsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncWaitingRoomsResourceWithStreamingResponse(self)
 
     async def create(

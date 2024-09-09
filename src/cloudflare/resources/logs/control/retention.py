@@ -31,10 +31,21 @@ __all__ = ["RetentionResource", "AsyncRetentionResource"]
 class RetentionResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RetentionResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return RetentionResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> RetentionResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return RetentionResourceWithStreamingResponse(self)
 
     def create(
@@ -123,10 +134,21 @@ class RetentionResource(SyncAPIResource):
 class AsyncRetentionResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRetentionResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncRetentionResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncRetentionResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncRetentionResourceWithStreamingResponse(self)
 
     async def create(

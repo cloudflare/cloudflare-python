@@ -32,10 +32,21 @@ __all__ = ["SpamResource", "AsyncSpamResource"]
 class SpamResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SpamResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SpamResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SpamResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SpamResourceWithStreamingResponse(self)
 
     def get(
@@ -136,10 +147,21 @@ class SpamResource(SyncAPIResource):
 class AsyncSpamResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSpamResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSpamResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSpamResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSpamResourceWithStreamingResponse(self)
 
     async def get(

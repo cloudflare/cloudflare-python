@@ -30,10 +30,21 @@ __all__ = ["PatternsResource", "AsyncPatternsResource"]
 class PatternsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PatternsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PatternsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PatternsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PatternsResourceWithStreamingResponse(self)
 
     def validate(
@@ -83,10 +94,21 @@ class PatternsResource(SyncAPIResource):
 class AsyncPatternsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPatternsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPatternsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPatternsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPatternsResourceWithStreamingResponse(self)
 
     async def validate(
