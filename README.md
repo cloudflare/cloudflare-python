@@ -388,6 +388,17 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 > In addition to the above, changes to type names, structure or methods _may_ occur as we stabilise the automated codegen pipeline. This will be removed in the future once we are further along and the service owner OpenAPI schemas have reached a higher maturity level where changes are not as constant.
 > If this isn't suitable for your project, we recommend pinning to a known version or using the previous major version.
 
+### Determining the installed version
+
+If you've upgraded to the latest version but aren't seeing any new features you were expecting then your python environment is likely still using an older version.
+
+You can determine the version that is being used at runtime with:
+
+```py
+import cloudflare
+print(cloudflare.__version__)
+```
+
 ## Requirements
 
 Python 3.7 or higher.
