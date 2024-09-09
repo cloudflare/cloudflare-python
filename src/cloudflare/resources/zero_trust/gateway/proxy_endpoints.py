@@ -32,10 +32,21 @@ __all__ = ["ProxyEndpointsResource", "AsyncProxyEndpointsResource"]
 class ProxyEndpointsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ProxyEndpointsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ProxyEndpointsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ProxyEndpointsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ProxyEndpointsResourceWithStreamingResponse(self)
 
     def create(
@@ -262,10 +273,21 @@ class ProxyEndpointsResource(SyncAPIResource):
 class AsyncProxyEndpointsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncProxyEndpointsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncProxyEndpointsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncProxyEndpointsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncProxyEndpointsResourceWithStreamingResponse(self)
 
     async def create(

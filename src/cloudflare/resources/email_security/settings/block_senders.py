@@ -41,10 +41,21 @@ __all__ = ["BlockSendersResource", "AsyncBlockSendersResource"]
 class BlockSendersResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BlockSendersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return BlockSendersResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> BlockSendersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return BlockSendersResourceWithStreamingResponse(self)
 
     @overload
@@ -359,10 +370,21 @@ class BlockSendersResource(SyncAPIResource):
 class AsyncBlockSendersResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBlockSendersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncBlockSendersResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncBlockSendersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncBlockSendersResourceWithStreamingResponse(self)
 
     @overload

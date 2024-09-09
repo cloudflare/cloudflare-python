@@ -32,10 +32,21 @@ __all__ = ["HealthResource", "AsyncHealthResource"]
 class HealthResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> HealthResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return HealthResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> HealthResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return HealthResourceWithStreamingResponse(self)
 
     def create(
@@ -214,10 +225,21 @@ class HealthResource(SyncAPIResource):
 class AsyncHealthResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncHealthResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncHealthResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncHealthResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncHealthResourceWithStreamingResponse(self)
 
     async def create(

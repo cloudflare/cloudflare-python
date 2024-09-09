@@ -32,10 +32,21 @@ __all__ = ["DeviceTypeResource", "AsyncDeviceTypeResource"]
 class DeviceTypeResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DeviceTypeResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DeviceTypeResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DeviceTypeResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DeviceTypeResourceWithStreamingResponse(self)
 
     def get(
@@ -161,10 +172,21 @@ class DeviceTypeResource(SyncAPIResource):
 class AsyncDeviceTypeResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDeviceTypeResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDeviceTypeResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDeviceTypeResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDeviceTypeResourceWithStreamingResponse(self)
 
     async def get(

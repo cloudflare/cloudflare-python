@@ -31,10 +31,21 @@ __all__ = ["BrandProtectionResource", "AsyncBrandProtectionResource"]
 class BrandProtectionResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BrandProtectionResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return BrandProtectionResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> BrandProtectionResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return BrandProtectionResourceWithStreamingResponse(self)
 
     def submit(
@@ -136,10 +147,21 @@ class BrandProtectionResource(SyncAPIResource):
 class AsyncBrandProtectionResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBrandProtectionResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncBrandProtectionResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncBrandProtectionResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncBrandProtectionResourceWithStreamingResponse(self)
 
     async def submit(

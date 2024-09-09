@@ -31,10 +31,21 @@ __all__ = ["PredefinedResource", "AsyncPredefinedResource"]
 class PredefinedResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PredefinedResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PredefinedResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PredefinedResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PredefinedResourceWithStreamingResponse(self)
 
     def update(
@@ -148,10 +159,21 @@ class PredefinedResource(SyncAPIResource):
 class AsyncPredefinedResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPredefinedResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPredefinedResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPredefinedResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPredefinedResourceWithStreamingResponse(self)
 
     async def update(

@@ -32,10 +32,21 @@ __all__ = ["FallbackOriginResource", "AsyncFallbackOriginResource"]
 class FallbackOriginResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> FallbackOriginResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return FallbackOriginResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> FallbackOriginResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return FallbackOriginResourceWithStreamingResponse(self)
 
     def update(
@@ -163,10 +174,21 @@ class FallbackOriginResource(SyncAPIResource):
 class AsyncFallbackOriginResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncFallbackOriginResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncFallbackOriginResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncFallbackOriginResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncFallbackOriginResourceWithStreamingResponse(self)
 
     async def update(

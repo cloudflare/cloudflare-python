@@ -30,10 +30,21 @@ __all__ = ["CookiesResource", "AsyncCookiesResource"]
 class CookiesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CookiesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return CookiesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> CookiesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return CookiesResourceWithStreamingResponse(self)
 
     def list(
@@ -197,10 +208,21 @@ class CookiesResource(SyncAPIResource):
 class AsyncCookiesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCookiesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncCookiesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncCookiesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncCookiesResourceWithStreamingResponse(self)
 
     def list(

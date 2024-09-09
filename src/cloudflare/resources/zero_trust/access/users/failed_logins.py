@@ -23,10 +23,21 @@ __all__ = ["FailedLoginsResource", "AsyncFailedLoginsResource"]
 class FailedLoginsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> FailedLoginsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return FailedLoginsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> FailedLoginsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return FailedLoginsResourceWithStreamingResponse(self)
 
     def list(
@@ -74,10 +85,21 @@ class FailedLoginsResource(SyncAPIResource):
 class AsyncFailedLoginsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncFailedLoginsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncFailedLoginsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncFailedLoginsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncFailedLoginsResourceWithStreamingResponse(self)
 
     def list(

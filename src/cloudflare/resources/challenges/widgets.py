@@ -39,10 +39,21 @@ __all__ = ["WidgetsResource", "AsyncWidgetsResource"]
 class WidgetsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> WidgetsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return WidgetsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> WidgetsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return WidgetsResourceWithStreamingResponse(self)
 
     def create(
@@ -423,10 +434,21 @@ class WidgetsResource(SyncAPIResource):
 class AsyncWidgetsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncWidgetsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncWidgetsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncWidgetsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncWidgetsResourceWithStreamingResponse(self)
 
     async def create(

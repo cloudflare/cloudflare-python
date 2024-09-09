@@ -72,10 +72,21 @@ class LogpushResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> LogpushResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return LogpushResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> LogpushResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return LogpushResourceWithStreamingResponse(self)
 
 
@@ -102,10 +113,21 @@ class AsyncLogpushResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncLogpushResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLogpushResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLogpushResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncLogpushResourceWithStreamingResponse(self)
 
 

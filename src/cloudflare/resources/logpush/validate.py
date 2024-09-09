@@ -31,10 +31,21 @@ __all__ = ["ValidateResource", "AsyncValidateResource"]
 class ValidateResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ValidateResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ValidateResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ValidateResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ValidateResourceWithStreamingResponse(self)
 
     def destination(
@@ -161,10 +172,21 @@ class ValidateResource(SyncAPIResource):
 class AsyncValidateResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncValidateResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncValidateResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncValidateResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncValidateResourceWithStreamingResponse(self)
 
     async def destination(

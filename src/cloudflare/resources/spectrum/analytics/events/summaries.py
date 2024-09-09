@@ -33,10 +33,21 @@ __all__ = ["SummariesResource", "AsyncSummariesResource"]
 class SummariesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SummariesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SummariesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SummariesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SummariesResourceWithStreamingResponse(self)
 
     def get(
@@ -152,10 +163,21 @@ class SummariesResource(SyncAPIResource):
 class AsyncSummariesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSummariesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSummariesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSummariesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSummariesResourceWithStreamingResponse(self)
 
     async def get(

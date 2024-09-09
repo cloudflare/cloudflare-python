@@ -163,10 +163,21 @@ class ZeroTrustResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> ZeroTrustResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ZeroTrustResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ZeroTrustResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ZeroTrustResourceWithStreamingResponse(self)
 
 
@@ -221,10 +232,21 @@ class AsyncZeroTrustResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncZeroTrustResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncZeroTrustResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncZeroTrustResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncZeroTrustResourceWithStreamingResponse(self)
 
 

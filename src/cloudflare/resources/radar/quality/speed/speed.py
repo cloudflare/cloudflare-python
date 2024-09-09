@@ -45,10 +45,21 @@ class SpeedResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> SpeedResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SpeedResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SpeedResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SpeedResourceWithStreamingResponse(self)
 
     def histogram(
@@ -207,10 +218,21 @@ class AsyncSpeedResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncSpeedResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSpeedResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSpeedResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSpeedResourceWithStreamingResponse(self)
 
     async def histogram(

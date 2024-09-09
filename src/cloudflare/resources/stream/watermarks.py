@@ -32,10 +32,21 @@ __all__ = ["WatermarksResource", "AsyncWatermarksResource"]
 class WatermarksResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> WatermarksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return WatermarksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> WatermarksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return WatermarksResourceWithStreamingResponse(self)
 
     def create(
@@ -248,10 +259,21 @@ class WatermarksResource(SyncAPIResource):
 class AsyncWatermarksResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncWatermarksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncWatermarksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncWatermarksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncWatermarksResourceWithStreamingResponse(self)
 
     async def create(

@@ -31,10 +31,21 @@ __all__ = ["OwnershipResource", "AsyncOwnershipResource"]
 class OwnershipResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> OwnershipResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return OwnershipResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> OwnershipResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return OwnershipResourceWithStreamingResponse(self)
 
     def create(
@@ -216,10 +227,21 @@ class OwnershipResource(SyncAPIResource):
 class AsyncOwnershipResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncOwnershipResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncOwnershipResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncOwnershipResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncOwnershipResourceWithStreamingResponse(self)
 
     async def create(

@@ -33,10 +33,21 @@ __all__ = ["FallbackDomainsResource", "AsyncFallbackDomainsResource"]
 class FallbackDomainsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> FallbackDomainsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return FallbackDomainsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> FallbackDomainsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return FallbackDomainsResourceWithStreamingResponse(self)
 
     def update(
@@ -170,10 +181,21 @@ class FallbackDomainsResource(SyncAPIResource):
 class AsyncFallbackDomainsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncFallbackDomainsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncFallbackDomainsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncFallbackDomainsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncFallbackDomainsResourceWithStreamingResponse(self)
 
     async def update(

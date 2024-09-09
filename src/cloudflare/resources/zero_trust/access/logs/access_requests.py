@@ -32,10 +32,21 @@ __all__ = ["AccessRequestsResource", "AsyncAccessRequestsResource"]
 class AccessRequestsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AccessRequestsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AccessRequestsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AccessRequestsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AccessRequestsResourceWithStreamingResponse(self)
 
     def list(
@@ -102,10 +113,21 @@ class AccessRequestsResource(SyncAPIResource):
 class AsyncAccessRequestsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAccessRequestsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAccessRequestsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAccessRequestsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAccessRequestsResourceWithStreamingResponse(self)
 
     async def list(

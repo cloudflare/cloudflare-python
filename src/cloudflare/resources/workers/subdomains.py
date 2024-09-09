@@ -31,10 +31,21 @@ __all__ = ["SubdomainsResource", "AsyncSubdomainsResource"]
 class SubdomainsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SubdomainsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SubdomainsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SubdomainsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SubdomainsResourceWithStreamingResponse(self)
 
     def update(
@@ -121,10 +132,21 @@ class SubdomainsResource(SyncAPIResource):
 class AsyncSubdomainsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSubdomainsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSubdomainsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSubdomainsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSubdomainsResourceWithStreamingResponse(self)
 
     async def update(
