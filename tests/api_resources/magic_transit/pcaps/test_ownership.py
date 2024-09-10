@@ -9,7 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.pcaps import Ownership, OwnershipGetResponse
+from cloudflare.types.magic_transit.pcaps import (
+    Ownership,
+    OwnershipGetResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +22,7 @@ class TestOwnership:
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
-        ownership = client.pcaps.ownership.create(
+        ownership = client.magic_transit.pcaps.ownership.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
         )
@@ -27,7 +30,7 @@ class TestOwnership:
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.pcaps.ownership.with_raw_response.create(
+        response = client.magic_transit.pcaps.ownership.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
         )
@@ -39,7 +42,7 @@ class TestOwnership:
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
-        with client.pcaps.ownership.with_streaming_response.create(
+        with client.magic_transit.pcaps.ownership.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
         ) as response:
@@ -54,14 +57,14 @@ class TestOwnership:
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.pcaps.ownership.with_raw_response.create(
+            client.magic_transit.pcaps.ownership.with_raw_response.create(
                 account_id="",
                 destination_conf="s3://pcaps-bucket?region=us-east-1",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
-        ownership = client.pcaps.ownership.delete(
+        ownership = client.magic_transit.pcaps.ownership.delete(
             ownership_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -69,7 +72,7 @@ class TestOwnership:
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.pcaps.ownership.with_raw_response.delete(
+        response = client.magic_transit.pcaps.ownership.with_raw_response.delete(
             ownership_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -81,7 +84,7 @@ class TestOwnership:
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.pcaps.ownership.with_streaming_response.delete(
+        with client.magic_transit.pcaps.ownership.with_streaming_response.delete(
             ownership_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -96,27 +99,27 @@ class TestOwnership:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.pcaps.ownership.with_raw_response.delete(
+            client.magic_transit.pcaps.ownership.with_raw_response.delete(
                 ownership_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ownership_id` but received ''"):
-            client.pcaps.ownership.with_raw_response.delete(
+            client.magic_transit.pcaps.ownership.with_raw_response.delete(
                 ownership_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        ownership = client.pcaps.ownership.get(
+        ownership = client.magic_transit.pcaps.ownership.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[OwnershipGetResponse], ownership, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.pcaps.ownership.with_raw_response.get(
+        response = client.magic_transit.pcaps.ownership.with_raw_response.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -127,7 +130,7 @@ class TestOwnership:
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.pcaps.ownership.with_streaming_response.get(
+        with client.magic_transit.pcaps.ownership.with_streaming_response.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -141,13 +144,13 @@ class TestOwnership:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.pcaps.ownership.with_raw_response.get(
+            client.magic_transit.pcaps.ownership.with_raw_response.get(
                 account_id="",
             )
 
     @parametrize
     def test_method_validate(self, client: Cloudflare) -> None:
-        ownership = client.pcaps.ownership.validate(
+        ownership = client.magic_transit.pcaps.ownership.validate(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             ownership_challenge="ownership-challenge-9883874ecac311ec8475433579a6bf5f.txt",
@@ -156,7 +159,7 @@ class TestOwnership:
 
     @parametrize
     def test_raw_response_validate(self, client: Cloudflare) -> None:
-        response = client.pcaps.ownership.with_raw_response.validate(
+        response = client.magic_transit.pcaps.ownership.with_raw_response.validate(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             ownership_challenge="ownership-challenge-9883874ecac311ec8475433579a6bf5f.txt",
@@ -169,7 +172,7 @@ class TestOwnership:
 
     @parametrize
     def test_streaming_response_validate(self, client: Cloudflare) -> None:
-        with client.pcaps.ownership.with_streaming_response.validate(
+        with client.magic_transit.pcaps.ownership.with_streaming_response.validate(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             ownership_challenge="ownership-challenge-9883874ecac311ec8475433579a6bf5f.txt",
@@ -185,7 +188,7 @@ class TestOwnership:
     @parametrize
     def test_path_params_validate(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.pcaps.ownership.with_raw_response.validate(
+            client.magic_transit.pcaps.ownership.with_raw_response.validate(
                 account_id="",
                 destination_conf="s3://pcaps-bucket?region=us-east-1",
                 ownership_challenge="ownership-challenge-9883874ecac311ec8475433579a6bf5f.txt",
@@ -197,7 +200,7 @@ class TestAsyncOwnership:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        ownership = await async_client.pcaps.ownership.create(
+        ownership = await async_client.magic_transit.pcaps.ownership.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
         )
@@ -205,7 +208,7 @@ class TestAsyncOwnership:
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.pcaps.ownership.with_raw_response.create(
+        response = await async_client.magic_transit.pcaps.ownership.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
         )
@@ -217,7 +220,7 @@ class TestAsyncOwnership:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.pcaps.ownership.with_streaming_response.create(
+        async with async_client.magic_transit.pcaps.ownership.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
         ) as response:
@@ -232,14 +235,14 @@ class TestAsyncOwnership:
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.pcaps.ownership.with_raw_response.create(
+            await async_client.magic_transit.pcaps.ownership.with_raw_response.create(
                 account_id="",
                 destination_conf="s3://pcaps-bucket?region=us-east-1",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        ownership = await async_client.pcaps.ownership.delete(
+        ownership = await async_client.magic_transit.pcaps.ownership.delete(
             ownership_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -247,7 +250,7 @@ class TestAsyncOwnership:
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.pcaps.ownership.with_raw_response.delete(
+        response = await async_client.magic_transit.pcaps.ownership.with_raw_response.delete(
             ownership_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -259,7 +262,7 @@ class TestAsyncOwnership:
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.pcaps.ownership.with_streaming_response.delete(
+        async with async_client.magic_transit.pcaps.ownership.with_streaming_response.delete(
             ownership_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -274,27 +277,27 @@ class TestAsyncOwnership:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.pcaps.ownership.with_raw_response.delete(
+            await async_client.magic_transit.pcaps.ownership.with_raw_response.delete(
                 ownership_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ownership_id` but received ''"):
-            await async_client.pcaps.ownership.with_raw_response.delete(
+            await async_client.magic_transit.pcaps.ownership.with_raw_response.delete(
                 ownership_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        ownership = await async_client.pcaps.ownership.get(
+        ownership = await async_client.magic_transit.pcaps.ownership.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[OwnershipGetResponse], ownership, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.pcaps.ownership.with_raw_response.get(
+        response = await async_client.magic_transit.pcaps.ownership.with_raw_response.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -305,7 +308,7 @@ class TestAsyncOwnership:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.pcaps.ownership.with_streaming_response.get(
+        async with async_client.magic_transit.pcaps.ownership.with_streaming_response.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -319,13 +322,13 @@ class TestAsyncOwnership:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.pcaps.ownership.with_raw_response.get(
+            await async_client.magic_transit.pcaps.ownership.with_raw_response.get(
                 account_id="",
             )
 
     @parametrize
     async def test_method_validate(self, async_client: AsyncCloudflare) -> None:
-        ownership = await async_client.pcaps.ownership.validate(
+        ownership = await async_client.magic_transit.pcaps.ownership.validate(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             ownership_challenge="ownership-challenge-9883874ecac311ec8475433579a6bf5f.txt",
@@ -334,7 +337,7 @@ class TestAsyncOwnership:
 
     @parametrize
     async def test_raw_response_validate(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.pcaps.ownership.with_raw_response.validate(
+        response = await async_client.magic_transit.pcaps.ownership.with_raw_response.validate(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             ownership_challenge="ownership-challenge-9883874ecac311ec8475433579a6bf5f.txt",
@@ -347,7 +350,7 @@ class TestAsyncOwnership:
 
     @parametrize
     async def test_streaming_response_validate(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.pcaps.ownership.with_streaming_response.validate(
+        async with async_client.magic_transit.pcaps.ownership.with_streaming_response.validate(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             ownership_challenge="ownership-challenge-9883874ecac311ec8475433579a6bf5f.txt",
@@ -363,7 +366,7 @@ class TestAsyncOwnership:
     @parametrize
     async def test_path_params_validate(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.pcaps.ownership.with_raw_response.validate(
+            await async_client.magic_transit.pcaps.ownership.with_raw_response.validate(
                 account_id="",
                 destination_conf="s3://pcaps-bucket?region=us-east-1",
                 ownership_challenge="ownership-challenge-9883874ecac311ec8475433579a6bf5f.txt",

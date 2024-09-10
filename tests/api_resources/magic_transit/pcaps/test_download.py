@@ -29,7 +29,7 @@ class TestDownload:
         respx_mock.get(
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/pcaps/023e105f4ecef8ad9ca31a8372d0c353/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
-        download = client.pcaps.download.get(
+        download = client.magic_transit.pcaps.download.get(
             pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -45,7 +45,7 @@ class TestDownload:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/pcaps/023e105f4ecef8ad9ca31a8372d0c353/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
-        download = client.pcaps.download.with_raw_response.get(
+        download = client.magic_transit.pcaps.download.with_raw_response.get(
             pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -61,7 +61,7 @@ class TestDownload:
         respx_mock.get(
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/pcaps/023e105f4ecef8ad9ca31a8372d0c353/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
-        with client.pcaps.download.with_streaming_response.get(
+        with client.magic_transit.pcaps.download.with_streaming_response.get(
             pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as download:
@@ -78,13 +78,13 @@ class TestDownload:
     @pytest.mark.respx(base_url=base_url)
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.pcaps.download.with_raw_response.get(
+            client.magic_transit.pcaps.download.with_raw_response.get(
                 pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pcap_id` but received ''"):
-            client.pcaps.download.with_raw_response.get(
+            client.magic_transit.pcaps.download.with_raw_response.get(
                 pcap_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -99,7 +99,7 @@ class TestAsyncDownload:
         respx_mock.get(
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/pcaps/023e105f4ecef8ad9ca31a8372d0c353/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
-        download = await async_client.pcaps.download.get(
+        download = await async_client.magic_transit.pcaps.download.get(
             pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -115,7 +115,7 @@ class TestAsyncDownload:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/pcaps/023e105f4ecef8ad9ca31a8372d0c353/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
-        download = await async_client.pcaps.download.with_raw_response.get(
+        download = await async_client.magic_transit.pcaps.download.with_raw_response.get(
             pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -131,7 +131,7 @@ class TestAsyncDownload:
         respx_mock.get(
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/pcaps/023e105f4ecef8ad9ca31a8372d0c353/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
-        async with async_client.pcaps.download.with_streaming_response.get(
+        async with async_client.magic_transit.pcaps.download.with_streaming_response.get(
             pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as download:
@@ -148,13 +148,13 @@ class TestAsyncDownload:
     @pytest.mark.respx(base_url=base_url)
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.pcaps.download.with_raw_response.get(
+            await async_client.magic_transit.pcaps.download.with_raw_response.get(
                 pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pcap_id` but received ''"):
-            await async_client.pcaps.download.with_raw_response.get(
+            await async_client.magic_transit.pcaps.download.with_raw_response.get(
                 pcap_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
