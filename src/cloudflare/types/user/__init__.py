@@ -5,10 +5,8 @@ from __future__ import annotations
 from .invite import Invite as Invite
 from .policy import Policy as Policy
 from .cidr_list import CIDRList as CIDRList
-from .rate_plan import RatePlan as RatePlan
 from .organization import Organization as Organization
 from .policy_param import PolicyParam as PolicyParam
-from .rate_plan_param import RatePlanParam as RatePlanParam
 from .user_edit_params import UserEditParams as UserEditParams
 from .token_list_params import TokenListParams as TokenListParams
 from .invite_edit_params import InviteEditParams as InviteEditParams
