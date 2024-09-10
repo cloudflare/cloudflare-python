@@ -58,8 +58,6 @@ class Cloudflare(SyncAPIClient):
     ssl: resources.SSLResource
     acm: resources.ACMResource
     argo: resources.ArgoResource
-    plans: resources.PlansResource
-    rate_plans: resources.RatePlansResource
     certificate_authorities: resources.CertificateAuthoritiesResource
     client_certificates: resources.ClientCertificatesResource
     custom_certificates: resources.CustomCertificatesResource
@@ -218,8 +216,6 @@ class Cloudflare(SyncAPIClient):
         self.ssl = resources.SSLResource(self)
         self.acm = resources.ACMResource(self)
         self.argo = resources.ArgoResource(self)
-        self.plans = resources.PlansResource(self)
-        self.rate_plans = resources.RatePlansResource(self)
         self.certificate_authorities = resources.CertificateAuthoritiesResource(self)
         self.client_certificates = resources.ClientCertificatesResource(self)
         self.custom_certificates = resources.CustomCertificatesResource(self)
@@ -481,8 +477,6 @@ class AsyncCloudflare(AsyncAPIClient):
     ssl: resources.AsyncSSLResource
     acm: resources.AsyncACMResource
     argo: resources.AsyncArgoResource
-    plans: resources.AsyncPlansResource
-    rate_plans: resources.AsyncRatePlansResource
     certificate_authorities: resources.AsyncCertificateAuthoritiesResource
     client_certificates: resources.AsyncClientCertificatesResource
     custom_certificates: resources.AsyncCustomCertificatesResource
@@ -641,8 +635,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.ssl = resources.AsyncSSLResource(self)
         self.acm = resources.AsyncACMResource(self)
         self.argo = resources.AsyncArgoResource(self)
-        self.plans = resources.AsyncPlansResource(self)
-        self.rate_plans = resources.AsyncRatePlansResource(self)
         self.certificate_authorities = resources.AsyncCertificateAuthoritiesResource(self)
         self.client_certificates = resources.AsyncClientCertificatesResource(self)
         self.custom_certificates = resources.AsyncCustomCertificatesResource(self)
@@ -907,8 +899,6 @@ class CloudflareWithRawResponse:
         self.ssl = resources.SSLResourceWithRawResponse(client.ssl)
         self.acm = resources.ACMResourceWithRawResponse(client.acm)
         self.argo = resources.ArgoResourceWithRawResponse(client.argo)
-        self.plans = resources.PlansResourceWithRawResponse(client.plans)
-        self.rate_plans = resources.RatePlansResourceWithRawResponse(client.rate_plans)
         self.certificate_authorities = resources.CertificateAuthoritiesResourceWithRawResponse(
             client.certificate_authorities
         )
@@ -1006,8 +996,6 @@ class AsyncCloudflareWithRawResponse:
         self.ssl = resources.AsyncSSLResourceWithRawResponse(client.ssl)
         self.acm = resources.AsyncACMResourceWithRawResponse(client.acm)
         self.argo = resources.AsyncArgoResourceWithRawResponse(client.argo)
-        self.plans = resources.AsyncPlansResourceWithRawResponse(client.plans)
-        self.rate_plans = resources.AsyncRatePlansResourceWithRawResponse(client.rate_plans)
         self.certificate_authorities = resources.AsyncCertificateAuthoritiesResourceWithRawResponse(
             client.certificate_authorities
         )
@@ -1109,8 +1097,6 @@ class CloudflareWithStreamedResponse:
         self.ssl = resources.SSLResourceWithStreamingResponse(client.ssl)
         self.acm = resources.ACMResourceWithStreamingResponse(client.acm)
         self.argo = resources.ArgoResourceWithStreamingResponse(client.argo)
-        self.plans = resources.PlansResourceWithStreamingResponse(client.plans)
-        self.rate_plans = resources.RatePlansResourceWithStreamingResponse(client.rate_plans)
         self.certificate_authorities = resources.CertificateAuthoritiesResourceWithStreamingResponse(
             client.certificate_authorities
         )
@@ -1212,8 +1198,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.ssl = resources.AsyncSSLResourceWithStreamingResponse(client.ssl)
         self.acm = resources.AsyncACMResourceWithStreamingResponse(client.acm)
         self.argo = resources.AsyncArgoResourceWithStreamingResponse(client.argo)
-        self.plans = resources.AsyncPlansResourceWithStreamingResponse(client.plans)
-        self.rate_plans = resources.AsyncRatePlansResourceWithStreamingResponse(client.rate_plans)
         self.certificate_authorities = resources.AsyncCertificateAuthoritiesResourceWithStreamingResponse(
             client.certificate_authorities
         )

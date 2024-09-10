@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.rate_plans import RatePlanGetResponse
+from cloudflare.types.zones import RatePlanGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,14 +19,14 @@ class TestRatePlans:
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        rate_plan = client.rate_plans.get(
+        rate_plan = client.zones.rate_plans.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[RatePlanGetResponse], rate_plan, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.rate_plans.with_raw_response.get(
+        response = client.zones.rate_plans.with_raw_response.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -37,7 +37,7 @@ class TestRatePlans:
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.rate_plans.with_streaming_response.get(
+        with client.zones.rate_plans.with_streaming_response.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -51,7 +51,7 @@ class TestRatePlans:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.rate_plans.with_raw_response.get(
+            client.zones.rate_plans.with_raw_response.get(
                 zone_id="",
             )
 
@@ -61,14 +61,14 @@ class TestAsyncRatePlans:
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        rate_plan = await async_client.rate_plans.get(
+        rate_plan = await async_client.zones.rate_plans.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[RatePlanGetResponse], rate_plan, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.rate_plans.with_raw_response.get(
+        response = await async_client.zones.rate_plans.with_raw_response.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -79,7 +79,7 @@ class TestAsyncRatePlans:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.rate_plans.with_streaming_response.get(
+        async with async_client.zones.rate_plans.with_streaming_response.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -93,6 +93,6 @@ class TestAsyncRatePlans:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.rate_plans.with_raw_response.get(
+            await async_client.zones.rate_plans.with_raw_response.get(
                 zone_id="",
             )
