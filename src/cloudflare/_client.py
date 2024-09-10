@@ -86,7 +86,7 @@ class Cloudflare(SyncAPIClient):
     durable_objects: resources.DurableObjectsResource
     queues: resources.QueuesResource
     api_gateway: resources.APIGatewayResource
-    managed_headers: resources.ManagedHeadersResource
+    managed_transforms: resources.ManagedTransformsResource
     page_shield: resources.PageShieldResource
     rulesets: resources.RulesetsResource
     url_normalization: resources.URLNormalizationResource
@@ -246,7 +246,7 @@ class Cloudflare(SyncAPIClient):
         self.durable_objects = resources.DurableObjectsResource(self)
         self.queues = resources.QueuesResource(self)
         self.api_gateway = resources.APIGatewayResource(self)
-        self.managed_headers = resources.ManagedHeadersResource(self)
+        self.managed_transforms = resources.ManagedTransformsResource(self)
         self.page_shield = resources.PageShieldResource(self)
         self.rulesets = resources.RulesetsResource(self)
         self.url_normalization = resources.URLNormalizationResource(self)
@@ -509,7 +509,7 @@ class AsyncCloudflare(AsyncAPIClient):
     durable_objects: resources.AsyncDurableObjectsResource
     queues: resources.AsyncQueuesResource
     api_gateway: resources.AsyncAPIGatewayResource
-    managed_headers: resources.AsyncManagedHeadersResource
+    managed_transforms: resources.AsyncManagedTransformsResource
     page_shield: resources.AsyncPageShieldResource
     rulesets: resources.AsyncRulesetsResource
     url_normalization: resources.AsyncURLNormalizationResource
@@ -669,7 +669,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.durable_objects = resources.AsyncDurableObjectsResource(self)
         self.queues = resources.AsyncQueuesResource(self)
         self.api_gateway = resources.AsyncAPIGatewayResource(self)
-        self.managed_headers = resources.AsyncManagedHeadersResource(self)
+        self.managed_transforms = resources.AsyncManagedTransformsResource(self)
         self.page_shield = resources.AsyncPageShieldResource(self)
         self.rulesets = resources.AsyncRulesetsResource(self)
         self.url_normalization = resources.AsyncURLNormalizationResource(self)
@@ -939,7 +939,7 @@ class CloudflareWithRawResponse:
         self.durable_objects = resources.DurableObjectsResourceWithRawResponse(client.durable_objects)
         self.queues = resources.QueuesResourceWithRawResponse(client.queues)
         self.api_gateway = resources.APIGatewayResourceWithRawResponse(client.api_gateway)
-        self.managed_headers = resources.ManagedHeadersResourceWithRawResponse(client.managed_headers)
+        self.managed_transforms = resources.ManagedTransformsResourceWithRawResponse(client.managed_transforms)
         self.page_shield = resources.PageShieldResourceWithRawResponse(client.page_shield)
         self.rulesets = resources.RulesetsResourceWithRawResponse(client.rulesets)
         self.url_normalization = resources.URLNormalizationResourceWithRawResponse(client.url_normalization)
@@ -1040,7 +1040,7 @@ class AsyncCloudflareWithRawResponse:
         self.durable_objects = resources.AsyncDurableObjectsResourceWithRawResponse(client.durable_objects)
         self.queues = resources.AsyncQueuesResourceWithRawResponse(client.queues)
         self.api_gateway = resources.AsyncAPIGatewayResourceWithRawResponse(client.api_gateway)
-        self.managed_headers = resources.AsyncManagedHeadersResourceWithRawResponse(client.managed_headers)
+        self.managed_transforms = resources.AsyncManagedTransformsResourceWithRawResponse(client.managed_transforms)
         self.page_shield = resources.AsyncPageShieldResourceWithRawResponse(client.page_shield)
         self.rulesets = resources.AsyncRulesetsResourceWithRawResponse(client.rulesets)
         self.url_normalization = resources.AsyncURLNormalizationResourceWithRawResponse(client.url_normalization)
@@ -1143,7 +1143,7 @@ class CloudflareWithStreamedResponse:
         self.durable_objects = resources.DurableObjectsResourceWithStreamingResponse(client.durable_objects)
         self.queues = resources.QueuesResourceWithStreamingResponse(client.queues)
         self.api_gateway = resources.APIGatewayResourceWithStreamingResponse(client.api_gateway)
-        self.managed_headers = resources.ManagedHeadersResourceWithStreamingResponse(client.managed_headers)
+        self.managed_transforms = resources.ManagedTransformsResourceWithStreamingResponse(client.managed_transforms)
         self.page_shield = resources.PageShieldResourceWithStreamingResponse(client.page_shield)
         self.rulesets = resources.RulesetsResourceWithStreamingResponse(client.rulesets)
         self.url_normalization = resources.URLNormalizationResourceWithStreamingResponse(client.url_normalization)
@@ -1252,7 +1252,9 @@ class AsyncCloudflareWithStreamedResponse:
         self.durable_objects = resources.AsyncDurableObjectsResourceWithStreamingResponse(client.durable_objects)
         self.queues = resources.AsyncQueuesResourceWithStreamingResponse(client.queues)
         self.api_gateway = resources.AsyncAPIGatewayResourceWithStreamingResponse(client.api_gateway)
-        self.managed_headers = resources.AsyncManagedHeadersResourceWithStreamingResponse(client.managed_headers)
+        self.managed_transforms = resources.AsyncManagedTransformsResourceWithStreamingResponse(
+            client.managed_transforms
+        )
         self.page_shield = resources.AsyncPageShieldResourceWithStreamingResponse(client.page_shield)
         self.rulesets = resources.AsyncRulesetsResourceWithStreamingResponse(client.rulesets)
         self.url_normalization = resources.AsyncURLNormalizationResourceWithStreamingResponse(client.url_normalization)

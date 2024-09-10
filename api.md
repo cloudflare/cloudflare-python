@@ -2638,22 +2638,22 @@ Methods:
 
 - <code title="get /zones/{zone_id}/api_gateway/user_schemas/{schema_id}/operations">client.api_gateway.user_schemas.operations.<a href="./src/cloudflare/resources/api_gateway/user_schemas/operations.py">list</a>(schema_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/user_schemas/operation_list_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/user_schemas/operation_list_response.py">SyncV4PagePaginationArray[OperationListResponse]</a></code>
 
-# ManagedHeaders
+# ManagedTransforms
 
 Types:
 
 ```python
-from cloudflare.types.managed_headers import (
+from cloudflare.types.managed_transforms import (
     RequestModel,
-    ManagedHeaderListResponse,
-    ManagedHeaderEditResponse,
+    ManagedTransformListResponse,
+    ManagedTransformEditResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /zones/{zone_id}/managed_headers">client.managed_headers.<a href="./src/cloudflare/resources/managed_headers.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/managed_headers/managed_header_list_response.py">ManagedHeaderListResponse</a></code>
-- <code title="patch /zones/{zone_id}/managed_headers">client.managed_headers.<a href="./src/cloudflare/resources/managed_headers.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/managed_headers/managed_header_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/managed_headers/managed_header_edit_response.py">ManagedHeaderEditResponse</a></code>
+- <code title="get /zones/{zone_id}/managed_headers">client.managed_transforms.<a href="./src/cloudflare/resources/managed_transforms.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/managed_transforms/managed_transform_list_response.py">ManagedTransformListResponse</a></code>
+- <code title="patch /zones/{zone_id}/managed_headers">client.managed_transforms.<a href="./src/cloudflare/resources/managed_transforms.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/managed_transforms/managed_transform_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/managed_transforms/managed_transform_edit_response.py">ManagedTransformEditResponse</a></code>
 
 # PageShield
 

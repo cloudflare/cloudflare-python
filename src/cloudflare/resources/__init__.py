@@ -544,14 +544,6 @@ from .durable_objects import (
     DurableObjectsResourceWithStreamingResponse,
     AsyncDurableObjectsResourceWithStreamingResponse,
 )
-from .managed_headers import (
-    ManagedHeadersResource,
-    AsyncManagedHeadersResource,
-    ManagedHeadersResourceWithRawResponse,
-    AsyncManagedHeadersResourceWithRawResponse,
-    ManagedHeadersResourceWithStreamingResponse,
-    AsyncManagedHeadersResourceWithStreamingResponse,
-)
 from .request_tracers import (
     RequestTracersResource,
     AsyncRequestTracersResource,
@@ -599,6 +591,14 @@ from .custom_nameservers import (
     AsyncCustomNameserversResourceWithRawResponse,
     CustomNameserversResourceWithStreamingResponse,
     AsyncCustomNameserversResourceWithStreamingResponse,
+)
+from .managed_transforms import (
+    ManagedTransformsResource,
+    AsyncManagedTransformsResource,
+    ManagedTransformsResourceWithRawResponse,
+    AsyncManagedTransformsResourceWithRawResponse,
+    ManagedTransformsResourceWithStreamingResponse,
+    AsyncManagedTransformsResourceWithStreamingResponse,
 )
 from .client_certificates import (
     ClientCertificatesResource,
@@ -916,12 +916,12 @@ __all__ = [
     "AsyncAPIGatewayResourceWithRawResponse",
     "APIGatewayResourceWithStreamingResponse",
     "AsyncAPIGatewayResourceWithStreamingResponse",
-    "ManagedHeadersResource",
-    "AsyncManagedHeadersResource",
-    "ManagedHeadersResourceWithRawResponse",
-    "AsyncManagedHeadersResourceWithRawResponse",
-    "ManagedHeadersResourceWithStreamingResponse",
-    "AsyncManagedHeadersResourceWithStreamingResponse",
+    "ManagedTransformsResource",
+    "AsyncManagedTransformsResource",
+    "ManagedTransformsResourceWithRawResponse",
+    "AsyncManagedTransformsResourceWithRawResponse",
+    "ManagedTransformsResourceWithStreamingResponse",
+    "AsyncManagedTransformsResourceWithStreamingResponse",
     "PageShieldResource",
     "AsyncPageShieldResource",
     "PageShieldResourceWithRawResponse",
