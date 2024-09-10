@@ -8,7 +8,6 @@ from .cidr_list import CIDRList as CIDRList
 from .rate_plan import RatePlan as RatePlan
 from .organization import Organization as Organization
 from .policy_param import PolicyParam as PolicyParam
-from .subscription import Subscription as Subscription
 from .rate_plan_param import RatePlanParam as RatePlanParam
 from .user_edit_params import UserEditParams as UserEditParams
 from .token_list_params import TokenListParams as TokenListParams
