@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["ManagedHeaderEditResponse", "ManagedRequestHeader", "ManagedResponseHeader"]
+__all__ = ["ManagedTransformEditResponse", "ManagedRequestHeader", "ManagedResponseHeader"]
 
 
 class ManagedRequestHeader(BaseModel):
@@ -29,7 +29,7 @@ class ManagedResponseHeader(BaseModel):
     """When true, the Managed Transform is enabled."""
 
 
-class ManagedHeaderEditResponse(BaseModel):
+class ManagedTransformEditResponse(BaseModel):
     managed_request_headers: Optional[List[ManagedRequestHeader]] = None
 
     managed_response_headers: Optional[List[ManagedResponseHeader]] = None

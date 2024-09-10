@@ -7,10 +7,10 @@ from typing_extensions import Required, TypedDict
 
 from .request_model_param import RequestModelParam
 
-__all__ = ["ManagedHeaderEditParams"]
+__all__ = ["ManagedTransformEditParams"]
 
 
-class ManagedHeaderEditParams(TypedDict, total=False):
+class ManagedTransformEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 

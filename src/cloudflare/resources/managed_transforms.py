@@ -20,33 +20,33 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.managed_headers import managed_header_edit_params
-from ..types.managed_headers.request_model_param import RequestModelParam
-from ..types.managed_headers.managed_header_edit_response import ManagedHeaderEditResponse
-from ..types.managed_headers.managed_header_list_response import ManagedHeaderListResponse
+from ..types.managed_transforms import managed_transform_edit_params
+from ..types.managed_transforms.request_model_param import RequestModelParam
+from ..types.managed_transforms.managed_transform_edit_response import ManagedTransformEditResponse
+from ..types.managed_transforms.managed_transform_list_response import ManagedTransformListResponse
 
-__all__ = ["ManagedHeadersResource", "AsyncManagedHeadersResource"]
+__all__ = ["ManagedTransformsResource", "AsyncManagedTransformsResource"]
 
 
-class ManagedHeadersResource(SyncAPIResource):
+class ManagedTransformsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ManagedHeadersResourceWithRawResponse:
+    def with_raw_response(self) -> ManagedTransformsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return ManagedHeadersResourceWithRawResponse(self)
+        return ManagedTransformsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ManagedHeadersResourceWithStreamingResponse:
+    def with_streaming_response(self) -> ManagedTransformsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return ManagedHeadersResourceWithStreamingResponse(self)
+        return ManagedTransformsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -58,7 +58,7 @@ class ManagedHeadersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ManagedHeaderListResponse:
+    ) -> ManagedTransformListResponse:
         """
         Fetches a list of all Managed Transforms.
 
@@ -80,7 +80,7 @@ class ManagedHeadersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ManagedHeaderListResponse,
+            cast_to=ManagedTransformListResponse,
         )
 
     def edit(
@@ -95,7 +95,7 @@ class ManagedHeadersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ManagedHeaderEditResponse:
+    ) -> ManagedTransformEditResponse:
         """
         Updates the status of one or more Managed Transforms.
 
@@ -119,34 +119,34 @@ class ManagedHeadersResource(SyncAPIResource):
                     "managed_request_headers": managed_request_headers,
                     "managed_response_headers": managed_response_headers,
                 },
-                managed_header_edit_params.ManagedHeaderEditParams,
+                managed_transform_edit_params.ManagedTransformEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ManagedHeaderEditResponse,
+            cast_to=ManagedTransformEditResponse,
         )
 
 
-class AsyncManagedHeadersResource(AsyncAPIResource):
+class AsyncManagedTransformsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncManagedHeadersResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncManagedTransformsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncManagedHeadersResourceWithRawResponse(self)
+        return AsyncManagedTransformsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncManagedHeadersResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncManagedTransformsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncManagedHeadersResourceWithStreamingResponse(self)
+        return AsyncManagedTransformsResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -158,7 +158,7 @@ class AsyncManagedHeadersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ManagedHeaderListResponse:
+    ) -> ManagedTransformListResponse:
         """
         Fetches a list of all Managed Transforms.
 
@@ -180,7 +180,7 @@ class AsyncManagedHeadersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ManagedHeaderListResponse,
+            cast_to=ManagedTransformListResponse,
         )
 
     async def edit(
@@ -195,7 +195,7 @@ class AsyncManagedHeadersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ManagedHeaderEditResponse:
+    ) -> ManagedTransformEditResponse:
         """
         Updates the status of one or more Managed Transforms.
 
@@ -219,58 +219,58 @@ class AsyncManagedHeadersResource(AsyncAPIResource):
                     "managed_request_headers": managed_request_headers,
                     "managed_response_headers": managed_response_headers,
                 },
-                managed_header_edit_params.ManagedHeaderEditParams,
+                managed_transform_edit_params.ManagedTransformEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ManagedHeaderEditResponse,
+            cast_to=ManagedTransformEditResponse,
         )
 
 
-class ManagedHeadersResourceWithRawResponse:
-    def __init__(self, managed_headers: ManagedHeadersResource) -> None:
-        self._managed_headers = managed_headers
+class ManagedTransformsResourceWithRawResponse:
+    def __init__(self, managed_transforms: ManagedTransformsResource) -> None:
+        self._managed_transforms = managed_transforms
 
         self.list = to_raw_response_wrapper(
-            managed_headers.list,
+            managed_transforms.list,
         )
         self.edit = to_raw_response_wrapper(
-            managed_headers.edit,
+            managed_transforms.edit,
         )
 
 
-class AsyncManagedHeadersResourceWithRawResponse:
-    def __init__(self, managed_headers: AsyncManagedHeadersResource) -> None:
-        self._managed_headers = managed_headers
+class AsyncManagedTransformsResourceWithRawResponse:
+    def __init__(self, managed_transforms: AsyncManagedTransformsResource) -> None:
+        self._managed_transforms = managed_transforms
 
         self.list = async_to_raw_response_wrapper(
-            managed_headers.list,
+            managed_transforms.list,
         )
         self.edit = async_to_raw_response_wrapper(
-            managed_headers.edit,
+            managed_transforms.edit,
         )
 
 
-class ManagedHeadersResourceWithStreamingResponse:
-    def __init__(self, managed_headers: ManagedHeadersResource) -> None:
-        self._managed_headers = managed_headers
+class ManagedTransformsResourceWithStreamingResponse:
+    def __init__(self, managed_transforms: ManagedTransformsResource) -> None:
+        self._managed_transforms = managed_transforms
 
         self.list = to_streamed_response_wrapper(
-            managed_headers.list,
+            managed_transforms.list,
         )
         self.edit = to_streamed_response_wrapper(
-            managed_headers.edit,
+            managed_transforms.edit,
         )
 
 
-class AsyncManagedHeadersResourceWithStreamingResponse:
-    def __init__(self, managed_headers: AsyncManagedHeadersResource) -> None:
-        self._managed_headers = managed_headers
+class AsyncManagedTransformsResourceWithStreamingResponse:
+    def __init__(self, managed_transforms: AsyncManagedTransformsResource) -> None:
+        self._managed_transforms = managed_transforms
 
         self.list = async_to_streamed_response_wrapper(
-            managed_headers.list,
+            managed_transforms.list,
         )
         self.edit = async_to_streamed_response_wrapper(
-            managed_headers.edit,
+            managed_transforms.edit,
         )

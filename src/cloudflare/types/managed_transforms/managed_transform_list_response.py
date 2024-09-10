@@ -5,10 +5,10 @@ from typing import List, Optional
 from ..._models import BaseModel
 from .request_model import RequestModel
 
-__all__ = ["ManagedHeaderListResponse"]
+__all__ = ["ManagedTransformListResponse"]
 
 
-class ManagedHeaderListResponse(BaseModel):
+class ManagedTransformListResponse(BaseModel):
     managed_request_headers: Optional[List[RequestModel]] = None
 
     managed_response_headers: Optional[List[RequestModel]] = None
