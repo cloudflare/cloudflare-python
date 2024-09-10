@@ -6016,24 +6016,24 @@ Methods:
 
 - <code title="get /accounts/{account_id}/zt_risk_scoring/integrations/reference_id/{reference_id}">client.zero_trust.risk_scoring.integrations.references.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/integrations/references.py">get</a>(reference_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/integrations/reference_get_response.py">Optional</a></code>
 
-# Challenges
+# Turnstile
 
 ## Widgets
 
 Types:
 
 ```python
-from cloudflare.types.challenges import Widget, WidgetDomain, WidgetListResponse
+from cloudflare.types.turnstile import Widget, WidgetDomain, WidgetListResponse
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/challenges/widgets">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/challenges/widget_create_params.py">params</a>) -> <a href="./src/cloudflare/types/challenges/widget.py">Optional</a></code>
-- <code title="put /accounts/{account_id}/challenges/widgets/{sitekey}">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">update</a>(sitekey, \*, account_id, \*\*<a href="src/cloudflare/types/challenges/widget_update_params.py">params</a>) -> <a href="./src/cloudflare/types/challenges/widget.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/challenges/widgets">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/challenges/widget_list_params.py">params</a>) -> <a href="./src/cloudflare/types/challenges/widget_list_response.py">SyncV4PagePaginationArray[WidgetListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/challenges/widgets/{sitekey}">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">delete</a>(sitekey, \*, account_id) -> <a href="./src/cloudflare/types/challenges/widget.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/challenges/widgets/{sitekey}">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">get</a>(sitekey, \*, account_id) -> <a href="./src/cloudflare/types/challenges/widget.py">Optional</a></code>
-- <code title="post /accounts/{account_id}/challenges/widgets/{sitekey}/rotate_secret">client.challenges.widgets.<a href="./src/cloudflare/resources/challenges/widgets.py">rotate_secret</a>(sitekey, \*, account_id, \*\*<a href="src/cloudflare/types/challenges/widget_rotate_secret_params.py">params</a>) -> <a href="./src/cloudflare/types/challenges/widget.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/challenges/widgets">client.turnstile.widgets.<a href="./src/cloudflare/resources/turnstile/widgets.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/turnstile/widget_create_params.py">params</a>) -> <a href="./src/cloudflare/types/turnstile/widget.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/challenges/widgets/{sitekey}">client.turnstile.widgets.<a href="./src/cloudflare/resources/turnstile/widgets.py">update</a>(sitekey, \*, account_id, \*\*<a href="src/cloudflare/types/turnstile/widget_update_params.py">params</a>) -> <a href="./src/cloudflare/types/turnstile/widget.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/challenges/widgets">client.turnstile.widgets.<a href="./src/cloudflare/resources/turnstile/widgets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/turnstile/widget_list_params.py">params</a>) -> <a href="./src/cloudflare/types/turnstile/widget_list_response.py">SyncV4PagePaginationArray[WidgetListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/challenges/widgets/{sitekey}">client.turnstile.widgets.<a href="./src/cloudflare/resources/turnstile/widgets.py">delete</a>(sitekey, \*, account_id) -> <a href="./src/cloudflare/types/turnstile/widget.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/challenges/widgets/{sitekey}">client.turnstile.widgets.<a href="./src/cloudflare/resources/turnstile/widgets.py">get</a>(sitekey, \*, account_id) -> <a href="./src/cloudflare/types/turnstile/widget.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/challenges/widgets/{sitekey}/rotate_secret">client.turnstile.widgets.<a href="./src/cloudflare/resources/turnstile/widgets.py">rotate_secret</a>(sitekey, \*, account_id, \*\*<a href="src/cloudflare/types/turnstile/widget_rotate_secret_params.py">params</a>) -> <a href="./src/cloudflare/types/turnstile/widget.py">Optional</a></code>
 
 # Hyperdrive
 

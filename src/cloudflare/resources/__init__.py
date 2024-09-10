@@ -328,6 +328,14 @@ from .registrar import (
     RegistrarResourceWithStreamingResponse,
     AsyncRegistrarResourceWithStreamingResponse,
 )
+from .turnstile import (
+    TurnstileResource,
+    AsyncTurnstileResource,
+    TurnstileResourceWithRawResponse,
+    AsyncTurnstileResourceWithRawResponse,
+    TurnstileResourceWithStreamingResponse,
+    AsyncTurnstileResourceWithStreamingResponse,
+)
 from .vectorize import (
     VectorizeResource,
     AsyncVectorizeResource,
@@ -359,14 +367,6 @@ from .audit_logs import (
     AsyncAuditLogsResourceWithRawResponse,
     AuditLogsResourceWithStreamingResponse,
     AsyncAuditLogsResourceWithStreamingResponse,
-)
-from .challenges import (
-    ChallengesResource,
-    AsyncChallengesResource,
-    ChallengesResourceWithRawResponse,
-    AsyncChallengesResourceWithRawResponse,
-    ChallengesResourceWithStreamingResponse,
-    AsyncChallengesResourceWithStreamingResponse,
 )
 from .hyperdrive import (
     HyperdriveResource,
@@ -1092,12 +1092,12 @@ __all__ = [
     "AsyncZeroTrustResourceWithRawResponse",
     "ZeroTrustResourceWithStreamingResponse",
     "AsyncZeroTrustResourceWithStreamingResponse",
-    "ChallengesResource",
-    "AsyncChallengesResource",
-    "ChallengesResourceWithRawResponse",
-    "AsyncChallengesResourceWithRawResponse",
-    "ChallengesResourceWithStreamingResponse",
-    "AsyncChallengesResourceWithStreamingResponse",
+    "TurnstileResource",
+    "AsyncTurnstileResource",
+    "TurnstileResourceWithRawResponse",
+    "AsyncTurnstileResourceWithRawResponse",
+    "TurnstileResourceWithStreamingResponse",
+    "AsyncTurnstileResourceWithStreamingResponse",
     "HyperdriveResource",
     "AsyncHyperdriveResource",
     "HyperdriveResourceWithRawResponse",
