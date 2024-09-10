@@ -6,24 +6,24 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ..._utils import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...types.pcaps import ownership_create_params, ownership_validate_params
-from ..._base_client import make_request_options
-from ...types.pcaps.ownership import Ownership
-from ...types.pcaps.ownership_get_response import OwnershipGetResponse
+from ...._wrappers import ResultWrapper
+from ...._base_client import make_request_options
+from ....types.magic_transit.pcaps import ownership_create_params, ownership_validate_params
+from ....types.magic_transit.pcaps.ownership import Ownership
+from ....types.magic_transit.pcaps.ownership_get_response import OwnershipGetResponse
 
 __all__ = ["OwnershipResource", "AsyncOwnershipResource"]
 

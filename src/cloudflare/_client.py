@@ -102,7 +102,6 @@ class Cloudflare(SyncAPIClient):
     magic_network_monitoring: resources.MagicNetworkMonitoringResource
     mtls_certificates: resources.MTLSCertificatesResource
     pages: resources.PagesResource
-    pcaps: resources.PCAPsResource
     registrar: resources.RegistrarResource
     request_tracers: resources.RequestTracersResource
     rules: resources.RulesResource
@@ -263,7 +262,6 @@ class Cloudflare(SyncAPIClient):
         self.magic_network_monitoring = resources.MagicNetworkMonitoringResource(self)
         self.mtls_certificates = resources.MTLSCertificatesResource(self)
         self.pages = resources.PagesResource(self)
-        self.pcaps = resources.PCAPsResource(self)
         self.registrar = resources.RegistrarResource(self)
         self.request_tracers = resources.RequestTracersResource(self)
         self.rules = resources.RulesResource(self)
@@ -527,7 +525,6 @@ class AsyncCloudflare(AsyncAPIClient):
     magic_network_monitoring: resources.AsyncMagicNetworkMonitoringResource
     mtls_certificates: resources.AsyncMTLSCertificatesResource
     pages: resources.AsyncPagesResource
-    pcaps: resources.AsyncPCAPsResource
     registrar: resources.AsyncRegistrarResource
     request_tracers: resources.AsyncRequestTracersResource
     rules: resources.AsyncRulesResource
@@ -688,7 +685,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoringResource(self)
         self.mtls_certificates = resources.AsyncMTLSCertificatesResource(self)
         self.pages = resources.AsyncPagesResource(self)
-        self.pcaps = resources.AsyncPCAPsResource(self)
         self.registrar = resources.AsyncRegistrarResource(self)
         self.request_tracers = resources.AsyncRequestTracersResource(self)
         self.rules = resources.AsyncRulesResource(self)
@@ -961,7 +957,6 @@ class CloudflareWithRawResponse:
         )
         self.mtls_certificates = resources.MTLSCertificatesResourceWithRawResponse(client.mtls_certificates)
         self.pages = resources.PagesResourceWithRawResponse(client.pages)
-        self.pcaps = resources.PCAPsResourceWithRawResponse(client.pcaps)
         self.registrar = resources.RegistrarResourceWithRawResponse(client.registrar)
         self.request_tracers = resources.RequestTracersResourceWithRawResponse(client.request_tracers)
         self.rules = resources.RulesResourceWithRawResponse(client.rules)
@@ -1063,7 +1058,6 @@ class AsyncCloudflareWithRawResponse:
         )
         self.mtls_certificates = resources.AsyncMTLSCertificatesResourceWithRawResponse(client.mtls_certificates)
         self.pages = resources.AsyncPagesResourceWithRawResponse(client.pages)
-        self.pcaps = resources.AsyncPCAPsResourceWithRawResponse(client.pcaps)
         self.registrar = resources.AsyncRegistrarResourceWithRawResponse(client.registrar)
         self.request_tracers = resources.AsyncRequestTracersResourceWithRawResponse(client.request_tracers)
         self.rules = resources.AsyncRulesResourceWithRawResponse(client.rules)
@@ -1167,7 +1161,6 @@ class CloudflareWithStreamedResponse:
         )
         self.mtls_certificates = resources.MTLSCertificatesResourceWithStreamingResponse(client.mtls_certificates)
         self.pages = resources.PagesResourceWithStreamingResponse(client.pages)
-        self.pcaps = resources.PCAPsResourceWithStreamingResponse(client.pcaps)
         self.registrar = resources.RegistrarResourceWithStreamingResponse(client.registrar)
         self.request_tracers = resources.RequestTracersResourceWithStreamingResponse(client.request_tracers)
         self.rules = resources.RulesResourceWithStreamingResponse(client.rules)
@@ -1277,7 +1270,6 @@ class AsyncCloudflareWithStreamedResponse:
         )
         self.mtls_certificates = resources.AsyncMTLSCertificatesResourceWithStreamingResponse(client.mtls_certificates)
         self.pages = resources.AsyncPagesResourceWithStreamingResponse(client.pages)
-        self.pcaps = resources.AsyncPCAPsResourceWithStreamingResponse(client.pcaps)
         self.registrar = resources.AsyncRegistrarResourceWithStreamingResponse(client.registrar)
         self.request_tracers = resources.AsyncRequestTracersResourceWithStreamingResponse(client.request_tracers)
         self.rules = resources.AsyncRulesResourceWithStreamingResponse(client.rules)
