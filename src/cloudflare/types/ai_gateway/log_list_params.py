@@ -30,6 +30,10 @@ class LogListParams(TypedDict, total=False):
 
     max_tokens_out: float
 
+    max_total_tokens: float
+
+    meta_info: bool
+
     min_cost: float
 
     min_duration: float
@@ -37,6 +41,8 @@ class LogListParams(TypedDict, total=False):
     min_tokens_in: float
 
     min_tokens_out: float
+
+    min_total_tokens: float
 
     model: str
 
