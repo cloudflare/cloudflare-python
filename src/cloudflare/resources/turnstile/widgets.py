@@ -23,15 +23,15 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.challenges import (
+from ...types.turnstile import (
     widget_list_params,
     widget_create_params,
     widget_update_params,
     widget_rotate_secret_params,
 )
-from ...types.challenges.widget import Widget
-from ...types.challenges.widget_domain import WidgetDomain
-from ...types.challenges.widget_list_response import WidgetListResponse
+from ...types.turnstile.widget import Widget
+from ...types.turnstile.widget_domain import WidgetDomain
+from ...types.turnstile.widget_list_response import WidgetListResponse
 
 __all__ = ["WidgetsResource", "AsyncWidgetsResource"]
 
