@@ -12,11 +12,13 @@ from .shared import (
     Identifier as Identifier,
     Permission as Permission,
     ResponseInfo as ResponseInfo,
+    Subscription as Subscription,
     CertificateCA as CertificateCA,
     SortDirection as SortDirection,
     PaginationInfo as PaginationInfo,
     PermissionGrant as PermissionGrant,
     CloudflareTunnel as CloudflareTunnel,
     LoadBalancerPreview as LoadBalancerPreview,
+    SubscriptionComponent as SubscriptionComponent,
     CertificateRequestType as CertificateRequestType,
 )

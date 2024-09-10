@@ -18,6 +18,8 @@ from cloudflare.types import (
     Result,
     Role,
     SortDirection,
+    Subscription,
+    SubscriptionComponent,
 )
 ```
 
@@ -224,8 +226,6 @@ Types:
 ```python
 from cloudflare.types.user import (
     RatePlan,
-    Subscription,
-    SubscriptionComponent,
     SubscriptionZone,
     SubscriptionUpdateResponse,
     SubscriptionDeleteResponse,
