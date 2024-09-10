@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from datetime import datetime
+from datetime import date, datetime
 from typing_extensions import Literal
 
 import httpx
@@ -53,13 +53,13 @@ class AuditLogsResource(SyncAPIResource):
         id: str | NotGiven = NOT_GIVEN,
         action: audit_log_list_params.Action | NotGiven = NOT_GIVEN,
         actor: audit_log_list_params.Actor | NotGiven = NOT_GIVEN,
-        before: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        before: Union[Union[str, date], Union[str, datetime]] | NotGiven = NOT_GIVEN,
         direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
         export: bool | NotGiven = NOT_GIVEN,
         hide_user_logs: bool | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
-        since: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        since: Union[Union[str, date], Union[str, datetime]] | NotGiven = NOT_GIVEN,
         zone: audit_log_list_params.Zone | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -78,8 +78,8 @@ class AuditLogsResource(SyncAPIResource):
 
           id: Finds a specific log by its ID.
 
-          before: Limits the returned results to logs older than the specified date. This can be a
-              date string `2019-04-30` or an absolute timestamp that conforms to RFC3339.
+          before: Limits the returned results to logs older than the specified date. A `full-date`
+              that conforms to RFC3339.
 
           direction: Changes the direction of the chronological sorting.
 
@@ -91,8 +91,8 @@ class AuditLogsResource(SyncAPIResource):
 
           per_page: Sets the number of results to return per page.
 
-          since: Limits the returned results to logs newer than the specified date. This can be a
-              date string `2019-04-30` or an absolute timestamp that conforms to RFC3339.
+          since: Limits the returned results to logs newer than the specified date. A `full-date`
+              that conforms to RFC3339.
 
           extra_headers: Send extra headers
 
@@ -160,13 +160,13 @@ class AsyncAuditLogsResource(AsyncAPIResource):
         id: str | NotGiven = NOT_GIVEN,
         action: audit_log_list_params.Action | NotGiven = NOT_GIVEN,
         actor: audit_log_list_params.Actor | NotGiven = NOT_GIVEN,
-        before: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        before: Union[Union[str, date], Union[str, datetime]] | NotGiven = NOT_GIVEN,
         direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
         export: bool | NotGiven = NOT_GIVEN,
         hide_user_logs: bool | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
-        since: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        since: Union[Union[str, date], Union[str, datetime]] | NotGiven = NOT_GIVEN,
         zone: audit_log_list_params.Zone | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -185,8 +185,8 @@ class AsyncAuditLogsResource(AsyncAPIResource):
 
           id: Finds a specific log by its ID.
 
-          before: Limits the returned results to logs older than the specified date. This can be a
-              date string `2019-04-30` or an absolute timestamp that conforms to RFC3339.
+          before: Limits the returned results to logs older than the specified date. A `full-date`
+              that conforms to RFC3339.
 
           direction: Changes the direction of the chronological sorting.
 
@@ -198,8 +198,8 @@ class AsyncAuditLogsResource(AsyncAPIResource):
 
           per_page: Sets the number of results to return per page.
 
-          since: Limits the returned results to logs newer than the specified date. This can be a
-              date string `2019-04-30` or an absolute timestamp that conforms to RFC3339.
+          since: Limits the returned results to logs newer than the specified date. A `full-date`
+              that conforms to RFC3339.
 
           extra_headers: Send extra headers
 
