@@ -8,13 +8,13 @@ from .widgets import (
     WidgetsResourceWithStreamingResponse,
     AsyncWidgetsResourceWithStreamingResponse,
 )
-from .challenges import (
-    ChallengesResource,
-    AsyncChallengesResource,
-    ChallengesResourceWithRawResponse,
-    AsyncChallengesResourceWithRawResponse,
-    ChallengesResourceWithStreamingResponse,
-    AsyncChallengesResourceWithStreamingResponse,
+from .turnstile import (
+    TurnstileResource,
+    AsyncTurnstileResource,
+    TurnstileResourceWithRawResponse,
+    AsyncTurnstileResourceWithRawResponse,
+    TurnstileResourceWithStreamingResponse,
+    AsyncTurnstileResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -24,10 +24,10 @@ __all__ = [
     "AsyncWidgetsResourceWithRawResponse",
     "WidgetsResourceWithStreamingResponse",
     "AsyncWidgetsResourceWithStreamingResponse",
-    "ChallengesResource",
-    "AsyncChallengesResource",
-    "ChallengesResourceWithRawResponse",
-    "AsyncChallengesResourceWithRawResponse",
-    "ChallengesResourceWithStreamingResponse",
-    "AsyncChallengesResourceWithStreamingResponse",
+    "TurnstileResource",
+    "AsyncTurnstileResource",
+    "TurnstileResourceWithRawResponse",
+    "AsyncTurnstileResourceWithRawResponse",
+    "TurnstileResourceWithStreamingResponse",
+    "AsyncTurnstileResourceWithStreamingResponse",
 ]

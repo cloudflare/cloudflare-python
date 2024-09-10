@@ -13,90 +13,90 @@ from .widgets import (
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["ChallengesResource", "AsyncChallengesResource"]
+__all__ = ["TurnstileResource", "AsyncTurnstileResource"]
 
 
-class ChallengesResource(SyncAPIResource):
+class TurnstileResource(SyncAPIResource):
     @cached_property
     def widgets(self) -> WidgetsResource:
         return WidgetsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> ChallengesResourceWithRawResponse:
+    def with_raw_response(self) -> TurnstileResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return ChallengesResourceWithRawResponse(self)
+        return TurnstileResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ChallengesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> TurnstileResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return ChallengesResourceWithStreamingResponse(self)
+        return TurnstileResourceWithStreamingResponse(self)
 
 
-class AsyncChallengesResource(AsyncAPIResource):
+class AsyncTurnstileResource(AsyncAPIResource):
     @cached_property
     def widgets(self) -> AsyncWidgetsResource:
         return AsyncWidgetsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncChallengesResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncTurnstileResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncChallengesResourceWithRawResponse(self)
+        return AsyncTurnstileResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncChallengesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncTurnstileResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncChallengesResourceWithStreamingResponse(self)
+        return AsyncTurnstileResourceWithStreamingResponse(self)
 
 
-class ChallengesResourceWithRawResponse:
-    def __init__(self, challenges: ChallengesResource) -> None:
-        self._challenges = challenges
+class TurnstileResourceWithRawResponse:
+    def __init__(self, turnstile: TurnstileResource) -> None:
+        self._turnstile = turnstile
 
     @cached_property
     def widgets(self) -> WidgetsResourceWithRawResponse:
-        return WidgetsResourceWithRawResponse(self._challenges.widgets)
+        return WidgetsResourceWithRawResponse(self._turnstile.widgets)
 
 
-class AsyncChallengesResourceWithRawResponse:
-    def __init__(self, challenges: AsyncChallengesResource) -> None:
-        self._challenges = challenges
+class AsyncTurnstileResourceWithRawResponse:
+    def __init__(self, turnstile: AsyncTurnstileResource) -> None:
+        self._turnstile = turnstile
 
     @cached_property
     def widgets(self) -> AsyncWidgetsResourceWithRawResponse:
-        return AsyncWidgetsResourceWithRawResponse(self._challenges.widgets)
+        return AsyncWidgetsResourceWithRawResponse(self._turnstile.widgets)
 
 
-class ChallengesResourceWithStreamingResponse:
-    def __init__(self, challenges: ChallengesResource) -> None:
-        self._challenges = challenges
+class TurnstileResourceWithStreamingResponse:
+    def __init__(self, turnstile: TurnstileResource) -> None:
+        self._turnstile = turnstile
 
     @cached_property
     def widgets(self) -> WidgetsResourceWithStreamingResponse:
-        return WidgetsResourceWithStreamingResponse(self._challenges.widgets)
+        return WidgetsResourceWithStreamingResponse(self._turnstile.widgets)
 
 
-class AsyncChallengesResourceWithStreamingResponse:
-    def __init__(self, challenges: AsyncChallengesResource) -> None:
-        self._challenges = challenges
+class AsyncTurnstileResourceWithStreamingResponse:
+    def __init__(self, turnstile: AsyncTurnstileResource) -> None:
+        self._turnstile = turnstile
 
     @cached_property
     def widgets(self) -> AsyncWidgetsResourceWithStreamingResponse:
-        return AsyncWidgetsResourceWithStreamingResponse(self._challenges.widgets)
+        return AsyncWidgetsResourceWithStreamingResponse(self._turnstile.widgets)

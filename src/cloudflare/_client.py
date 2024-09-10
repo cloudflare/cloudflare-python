@@ -114,7 +114,7 @@ class Cloudflare(SyncAPIClient):
     warp_connector: resources.WARPConnectorResource
     workers_for_platforms: resources.WorkersForPlatformsResource
     zero_trust: resources.ZeroTrustResource
-    challenges: resources.ChallengesResource
+    turnstile: resources.TurnstileResource
     hyperdrive: resources.HyperdriveResource
     rum: resources.RUMResource
     vectorize: resources.VectorizeResource
@@ -275,7 +275,7 @@ class Cloudflare(SyncAPIClient):
         self.warp_connector = resources.WARPConnectorResource(self)
         self.workers_for_platforms = resources.WorkersForPlatformsResource(self)
         self.zero_trust = resources.ZeroTrustResource(self)
-        self.challenges = resources.ChallengesResource(self)
+        self.turnstile = resources.TurnstileResource(self)
         self.hyperdrive = resources.HyperdriveResource(self)
         self.rum = resources.RUMResource(self)
         self.vectorize = resources.VectorizeResource(self)
@@ -539,7 +539,7 @@ class AsyncCloudflare(AsyncAPIClient):
     warp_connector: resources.AsyncWARPConnectorResource
     workers_for_platforms: resources.AsyncWorkersForPlatformsResource
     zero_trust: resources.AsyncZeroTrustResource
-    challenges: resources.AsyncChallengesResource
+    turnstile: resources.AsyncTurnstileResource
     hyperdrive: resources.AsyncHyperdriveResource
     rum: resources.AsyncRUMResource
     vectorize: resources.AsyncVectorizeResource
@@ -700,7 +700,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.warp_connector = resources.AsyncWARPConnectorResource(self)
         self.workers_for_platforms = resources.AsyncWorkersForPlatformsResource(self)
         self.zero_trust = resources.AsyncZeroTrustResource(self)
-        self.challenges = resources.AsyncChallengesResource(self)
+        self.turnstile = resources.AsyncTurnstileResource(self)
         self.hyperdrive = resources.AsyncHyperdriveResource(self)
         self.rum = resources.AsyncRUMResource(self)
         self.vectorize = resources.AsyncVectorizeResource(self)
@@ -973,7 +973,7 @@ class CloudflareWithRawResponse:
         self.warp_connector = resources.WARPConnectorResourceWithRawResponse(client.warp_connector)
         self.workers_for_platforms = resources.WorkersForPlatformsResourceWithRawResponse(client.workers_for_platforms)
         self.zero_trust = resources.ZeroTrustResourceWithRawResponse(client.zero_trust)
-        self.challenges = resources.ChallengesResourceWithRawResponse(client.challenges)
+        self.turnstile = resources.TurnstileResourceWithRawResponse(client.turnstile)
         self.hyperdrive = resources.HyperdriveResourceWithRawResponse(client.hyperdrive)
         self.rum = resources.RUMResourceWithRawResponse(client.rum)
         self.vectorize = resources.VectorizeResourceWithRawResponse(client.vectorize)
@@ -1077,7 +1077,7 @@ class AsyncCloudflareWithRawResponse:
             client.workers_for_platforms
         )
         self.zero_trust = resources.AsyncZeroTrustResourceWithRawResponse(client.zero_trust)
-        self.challenges = resources.AsyncChallengesResourceWithRawResponse(client.challenges)
+        self.turnstile = resources.AsyncTurnstileResourceWithRawResponse(client.turnstile)
         self.hyperdrive = resources.AsyncHyperdriveResourceWithRawResponse(client.hyperdrive)
         self.rum = resources.AsyncRUMResourceWithRawResponse(client.rum)
         self.vectorize = resources.AsyncVectorizeResourceWithRawResponse(client.vectorize)
@@ -1181,7 +1181,7 @@ class CloudflareWithStreamedResponse:
             client.workers_for_platforms
         )
         self.zero_trust = resources.ZeroTrustResourceWithStreamingResponse(client.zero_trust)
-        self.challenges = resources.ChallengesResourceWithStreamingResponse(client.challenges)
+        self.turnstile = resources.TurnstileResourceWithStreamingResponse(client.turnstile)
         self.hyperdrive = resources.HyperdriveResourceWithStreamingResponse(client.hyperdrive)
         self.rum = resources.RUMResourceWithStreamingResponse(client.rum)
         self.vectorize = resources.VectorizeResourceWithStreamingResponse(client.vectorize)
@@ -1291,7 +1291,7 @@ class AsyncCloudflareWithStreamedResponse:
             client.workers_for_platforms
         )
         self.zero_trust = resources.AsyncZeroTrustResourceWithStreamingResponse(client.zero_trust)
-        self.challenges = resources.AsyncChallengesResourceWithStreamingResponse(client.challenges)
+        self.turnstile = resources.AsyncTurnstileResourceWithStreamingResponse(client.turnstile)
         self.hyperdrive = resources.AsyncHyperdriveResourceWithStreamingResponse(client.hyperdrive)
         self.rum = resources.AsyncRUMResourceWithStreamingResponse(client.rum)
         self.vectorize = resources.AsyncVectorizeResourceWithStreamingResponse(client.vectorize)
