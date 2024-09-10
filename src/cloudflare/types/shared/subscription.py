@@ -5,7 +5,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..user.rate_plan import RatePlan
+from .rate_plan import RatePlan
 
 __all__ = ["Subscription"]
 

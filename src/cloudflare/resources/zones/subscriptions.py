@@ -23,7 +23,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...types.zones import subscription_create_params, subscription_update_params
 from ..._base_client import make_request_options
-from ...types.user.rate_plan_param import RatePlanParam
+from ...types.shared_params.rate_plan import RatePlan
 from ...types.zones.subscription_get_response import SubscriptionGetResponse
 from ...types.zones.subscription_create_response import SubscriptionCreateResponse
 from ...types.zones.subscription_update_response import SubscriptionUpdateResponse
@@ -56,7 +56,7 @@ class SubscriptionsResource(SyncAPIResource):
         identifier: str,
         *,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: RatePlanParam | NotGiven = NOT_GIVEN,
+        rate_plan: RatePlan | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -113,7 +113,7 @@ class SubscriptionsResource(SyncAPIResource):
         identifier: str,
         *,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: RatePlanParam | NotGiven = NOT_GIVEN,
+        rate_plan: RatePlan | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -235,7 +235,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         identifier: str,
         *,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: RatePlanParam | NotGiven = NOT_GIVEN,
+        rate_plan: RatePlan | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -292,7 +292,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         identifier: str,
         *,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
-        rate_plan: RatePlanParam | NotGiven = NOT_GIVEN,
+        rate_plan: RatePlan | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
