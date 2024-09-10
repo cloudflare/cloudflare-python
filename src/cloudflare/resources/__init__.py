@@ -136,14 +136,6 @@ from .pages import (
     PagesResourceWithStreamingResponse,
     AsyncPagesResourceWithStreamingResponse,
 )
-from .pcaps import (
-    PCAPsResource,
-    AsyncPCAPsResource,
-    PCAPsResourceWithRawResponse,
-    AsyncPCAPsResourceWithRawResponse,
-    PCAPsResourceWithStreamingResponse,
-    AsyncPCAPsResourceWithStreamingResponse,
-)
 from .plans import (
     PlansResource,
     AsyncPlansResource,
@@ -1020,12 +1012,6 @@ __all__ = [
     "AsyncPagesResourceWithRawResponse",
     "PagesResourceWithStreamingResponse",
     "AsyncPagesResourceWithStreamingResponse",
-    "PCAPsResource",
-    "AsyncPCAPsResource",
-    "PCAPsResourceWithRawResponse",
-    "AsyncPCAPsResourceWithRawResponse",
-    "PCAPsResourceWithStreamingResponse",
-    "AsyncPCAPsResourceWithStreamingResponse",
     "RegistrarResource",
     "AsyncRegistrarResource",
     "RegistrarResourceWithRawResponse",

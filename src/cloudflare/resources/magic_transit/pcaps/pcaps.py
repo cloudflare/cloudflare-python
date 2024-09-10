@@ -7,12 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    required_args,
-    maybe_transform,
-    async_maybe_transform,
-)
 from .download import (
     DownloadResource,
     AsyncDownloadResource,
@@ -21,7 +15,12 @@ from .download import (
     DownloadResourceWithStreamingResponse,
     AsyncDownloadResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    required_args,
+    maybe_transform,
+    async_maybe_transform,
+)
 from .ownership import (
     OwnershipResource,
     AsyncOwnershipResource,
@@ -30,21 +29,22 @@ from .ownership import (
     OwnershipResourceWithStreamingResponse,
     AsyncOwnershipResourceWithStreamingResponse,
 )
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ...types.pcaps import pcap_create_params
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.pcaps.pcap_filter_param import PCAPFilterParam
-from ...types.pcaps.pcap_get_response import PCAPGetResponse
-from ...types.pcaps.pcap_list_response import PCAPListResponse
-from ...types.pcaps.pcap_create_response import PCAPCreateResponse
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.magic_transit import pcap_create_params
+from ....types.magic_transit.pcap_filter_param import PCAPFilterParam
+from ....types.magic_transit.pcap_get_response import PCAPGetResponse
+from ....types.magic_transit.pcap_list_response import PCAPListResponse
+from ....types.magic_transit.pcap_create_response import PCAPCreateResponse
 
 __all__ = ["PCAPsResource", "AsyncPCAPsResource"]
 
