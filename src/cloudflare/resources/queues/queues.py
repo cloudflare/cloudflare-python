@@ -91,7 +91,7 @@ class QueuesResource(SyncAPIResource):
         Creates a new queue.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -133,9 +133,9 @@ class QueuesResource(SyncAPIResource):
         Updates a queue.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -177,7 +177,7 @@ class QueuesResource(SyncAPIResource):
         Returns the queues owned by an account.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -214,9 +214,9 @@ class QueuesResource(SyncAPIResource):
         Deletes a queue.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -263,9 +263,9 @@ class QueuesResource(SyncAPIResource):
         Get information about a specific queue.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -336,7 +336,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         Creates a new queue.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -378,9 +378,9 @@ class AsyncQueuesResource(AsyncAPIResource):
         Updates a queue.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -422,7 +422,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         Returns the queues owned by an account.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -459,9 +459,9 @@ class AsyncQueuesResource(AsyncAPIResource):
         Deletes a queue.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -508,9 +508,9 @@ class AsyncQueuesResource(AsyncAPIResource):
         Get information about a specific queue.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          queue_id: Identifier.
+          queue_id: Identifier
 
           extra_headers: Send extra headers
 
