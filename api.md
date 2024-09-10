@@ -428,6 +428,31 @@ Methods:
 - <code title="put /zones/{identifier}/subscription">client.zones.subscriptions.<a href="./src/cloudflare/resources/zones/subscriptions.py">update</a>(identifier, \*\*<a href="src/cloudflare/types/zones/subscription_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/subscription_update_response.py">SubscriptionUpdateResponse</a></code>
 - <code title="get /zones/{identifier}/subscription">client.zones.subscriptions.<a href="./src/cloudflare/resources/zones/subscriptions.py">get</a>(identifier) -> <a href="./src/cloudflare/types/zones/subscription_get_response.py">SubscriptionGetResponse</a></code>
 
+## Plans
+
+Types:
+
+```python
+from cloudflare.types.zones import AvailableRatePlan
+```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/available_plans">client.zones.plans.<a href="./src/cloudflare/resources/zones/plans.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/available_rate_plan.py">SyncSinglePage[AvailableRatePlan]</a></code>
+- <code title="get /zones/{zone_id}/available_plans/{plan_identifier}">client.zones.plans.<a href="./src/cloudflare/resources/zones/plans.py">get</a>(plan_identifier, \*, zone_id) -> <a href="./src/cloudflare/types/zones/available_rate_plan.py">AvailableRatePlan</a></code>
+
+## RatePlans
+
+Types:
+
+```python
+from cloudflare.types.zones import RatePlanGetResponse
+```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/available_rate_plans">client.zones.rate_plans.<a href="./src/cloudflare/resources/zones/rate_plans.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/rate_plan_get_response.py">Optional</a></code>
+
 # LoadBalancers
 
 Types:
@@ -817,31 +842,6 @@ Methods:
 
 - <code title="patch /zones/{zone_id}/argo/tiered_caching">client.argo.tiered_caching.<a href="./src/cloudflare/resources/argo/tiered_caching.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/argo/tiered_caching_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/argo/tiered_caching_edit_response.py">TieredCachingEditResponse</a></code>
 - <code title="get /zones/{zone_id}/argo/tiered_caching">client.argo.tiered_caching.<a href="./src/cloudflare/resources/argo/tiered_caching.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/argo/tiered_caching_get_response.py">TieredCachingGetResponse</a></code>
-
-# Plans
-
-Types:
-
-```python
-from cloudflare.types.plans import AvailableRatePlan
-```
-
-Methods:
-
-- <code title="get /zones/{zone_id}/available_plans">client.plans.<a href="./src/cloudflare/resources/plans.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/plans/available_rate_plan.py">SyncSinglePage[AvailableRatePlan]</a></code>
-- <code title="get /zones/{zone_id}/available_plans/{plan_identifier}">client.plans.<a href="./src/cloudflare/resources/plans.py">get</a>(plan_identifier, \*, zone_id) -> <a href="./src/cloudflare/types/plans/available_rate_plan.py">AvailableRatePlan</a></code>
-
-# RatePlans
-
-Types:
-
-```python
-from cloudflare.types.rate_plans import RatePlan, RatePlanGetResponse
-```
-
-Methods:
-
-- <code title="get /zones/{zone_id}/available_rate_plans">client.rate_plans.<a href="./src/cloudflare/resources/rate_plans.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/rate_plans/rate_plan_get_response.py">Optional</a></code>
 
 # CertificateAuthorities
 

@@ -136,14 +136,6 @@ from .pages import (
     PagesResourceWithStreamingResponse,
     AsyncPagesResourceWithStreamingResponse,
 )
-from .plans import (
-    PlansResource,
-    AsyncPlansResource,
-    PlansResourceWithRawResponse,
-    AsyncPlansResourceWithRawResponse,
-    PlansResourceWithStreamingResponse,
-    AsyncPlansResourceWithStreamingResponse,
-)
 from .radar import (
     RadarResource,
     AsyncRadarResource,
@@ -367,14 +359,6 @@ from .hyperdrive import (
     AsyncHyperdriveResourceWithRawResponse,
     HyperdriveResourceWithStreamingResponse,
     AsyncHyperdriveResourceWithStreamingResponse,
-)
-from .rate_plans import (
-    RatePlansResource,
-    AsyncRatePlansResource,
-    RatePlansResourceWithRawResponse,
-    AsyncRatePlansResourceWithRawResponse,
-    RatePlansResourceWithStreamingResponse,
-    AsyncRatePlansResourceWithStreamingResponse,
 )
 from .zero_trust import (
     ZeroTrustResource,
@@ -748,18 +732,6 @@ __all__ = [
     "AsyncArgoResourceWithRawResponse",
     "ArgoResourceWithStreamingResponse",
     "AsyncArgoResourceWithStreamingResponse",
-    "PlansResource",
-    "AsyncPlansResource",
-    "PlansResourceWithRawResponse",
-    "AsyncPlansResourceWithRawResponse",
-    "PlansResourceWithStreamingResponse",
-    "AsyncPlansResourceWithStreamingResponse",
-    "RatePlansResource",
-    "AsyncRatePlansResource",
-    "RatePlansResourceWithRawResponse",
-    "AsyncRatePlansResourceWithRawResponse",
-    "RatePlansResourceWithStreamingResponse",
-    "AsyncRatePlansResourceWithStreamingResponse",
     "CertificateAuthoritiesResource",
     "AsyncCertificateAuthoritiesResource",
     "CertificateAuthoritiesResourceWithRawResponse",

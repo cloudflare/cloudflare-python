@@ -1,14 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["RatePlan", "Component"]
+__all__ = ["RatePlanGetResponse", "RatePlanGetResponseItem", "RatePlanGetResponseItemComponent"]
 
 
-class Component(BaseModel):
+class RatePlanGetResponseItemComponent(BaseModel):
     default: Optional[float] = None
     """The default amount allocated."""
 
@@ -19,11 +19,11 @@ class Component(BaseModel):
     """The unit price of the addon."""
 
 
-class RatePlan(BaseModel):
+class RatePlanGetResponseItem(BaseModel):
     id: Optional[str] = None
     """Plan identifier tag."""
 
-    components: Optional[List[Component]] = None
+    components: Optional[List[RatePlanGetResponseItemComponent]] = None
     """Array of available components values for the plan."""
 
     currency: Optional[str] = None
@@ -37,3 +37,6 @@ class RatePlan(BaseModel):
 
     name: Optional[str] = None
     """The plan name."""
+
+
+RatePlanGetResponse: TypeAlias = List[RatePlanGetResponseItem]

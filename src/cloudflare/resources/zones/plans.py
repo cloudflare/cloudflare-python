@@ -6,19 +6,19 @@ from typing import Type, cast
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._wrappers import ResultWrapper
-from ..pagination import SyncSinglePage, AsyncSinglePage
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.plans.available_rate_plan import AvailableRatePlan
+from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.zones.available_rate_plan import AvailableRatePlan
 
 __all__ = ["PlansResource", "AsyncPlansResource"]
 
