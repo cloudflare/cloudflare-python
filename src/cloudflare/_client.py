@@ -56,7 +56,6 @@ class Cloudflare(SyncAPIClient):
     load_balancers: resources.LoadBalancersResource
     cache: resources.CacheResource
     ssl: resources.SSLResource
-    subscriptions: resources.SubscriptionsResource
     acm: resources.ACMResource
     argo: resources.ArgoResource
     plans: resources.PlansResource
@@ -218,7 +217,6 @@ class Cloudflare(SyncAPIClient):
         self.load_balancers = resources.LoadBalancersResource(self)
         self.cache = resources.CacheResource(self)
         self.ssl = resources.SSLResource(self)
-        self.subscriptions = resources.SubscriptionsResource(self)
         self.acm = resources.ACMResource(self)
         self.argo = resources.ArgoResource(self)
         self.plans = resources.PlansResource(self)
@@ -483,7 +481,6 @@ class AsyncCloudflare(AsyncAPIClient):
     load_balancers: resources.AsyncLoadBalancersResource
     cache: resources.AsyncCacheResource
     ssl: resources.AsyncSSLResource
-    subscriptions: resources.AsyncSubscriptionsResource
     acm: resources.AsyncACMResource
     argo: resources.AsyncArgoResource
     plans: resources.AsyncPlansResource
@@ -645,7 +642,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.load_balancers = resources.AsyncLoadBalancersResource(self)
         self.cache = resources.AsyncCacheResource(self)
         self.ssl = resources.AsyncSSLResource(self)
-        self.subscriptions = resources.AsyncSubscriptionsResource(self)
         self.acm = resources.AsyncACMResource(self)
         self.argo = resources.AsyncArgoResource(self)
         self.plans = resources.AsyncPlansResource(self)
@@ -913,7 +909,6 @@ class CloudflareWithRawResponse:
         self.load_balancers = resources.LoadBalancersResourceWithRawResponse(client.load_balancers)
         self.cache = resources.CacheResourceWithRawResponse(client.cache)
         self.ssl = resources.SSLResourceWithRawResponse(client.ssl)
-        self.subscriptions = resources.SubscriptionsResourceWithRawResponse(client.subscriptions)
         self.acm = resources.ACMResourceWithRawResponse(client.acm)
         self.argo = resources.ArgoResourceWithRawResponse(client.argo)
         self.plans = resources.PlansResourceWithRawResponse(client.plans)
@@ -1014,7 +1009,6 @@ class AsyncCloudflareWithRawResponse:
         self.load_balancers = resources.AsyncLoadBalancersResourceWithRawResponse(client.load_balancers)
         self.cache = resources.AsyncCacheResourceWithRawResponse(client.cache)
         self.ssl = resources.AsyncSSLResourceWithRawResponse(client.ssl)
-        self.subscriptions = resources.AsyncSubscriptionsResourceWithRawResponse(client.subscriptions)
         self.acm = resources.AsyncACMResourceWithRawResponse(client.acm)
         self.argo = resources.AsyncArgoResourceWithRawResponse(client.argo)
         self.plans = resources.AsyncPlansResourceWithRawResponse(client.plans)
@@ -1119,7 +1113,6 @@ class CloudflareWithStreamedResponse:
         self.load_balancers = resources.LoadBalancersResourceWithStreamingResponse(client.load_balancers)
         self.cache = resources.CacheResourceWithStreamingResponse(client.cache)
         self.ssl = resources.SSLResourceWithStreamingResponse(client.ssl)
-        self.subscriptions = resources.SubscriptionsResourceWithStreamingResponse(client.subscriptions)
         self.acm = resources.ACMResourceWithStreamingResponse(client.acm)
         self.argo = resources.ArgoResourceWithStreamingResponse(client.argo)
         self.plans = resources.PlansResourceWithStreamingResponse(client.plans)
@@ -1224,7 +1217,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.load_balancers = resources.AsyncLoadBalancersResourceWithStreamingResponse(client.load_balancers)
         self.cache = resources.AsyncCacheResourceWithStreamingResponse(client.cache)
         self.ssl = resources.AsyncSSLResourceWithStreamingResponse(client.ssl)
-        self.subscriptions = resources.AsyncSubscriptionsResourceWithStreamingResponse(client.subscriptions)
         self.acm = resources.AsyncACMResourceWithStreamingResponse(client.acm)
         self.argo = resources.AsyncArgoResourceWithStreamingResponse(client.argo)
         self.plans = resources.AsyncPlansResourceWithStreamingResponse(client.plans)
