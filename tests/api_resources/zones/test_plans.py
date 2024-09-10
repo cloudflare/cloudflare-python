@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.plans import AvailableRatePlan
+from cloudflare.types.zones import AvailableRatePlan
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,14 +20,14 @@ class TestPlans:
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        plan = client.plans.list(
+        plan = client.zones.plans.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncSinglePage[AvailableRatePlan], plan, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.plans.with_raw_response.list(
+        response = client.zones.plans.with_raw_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -38,7 +38,7 @@ class TestPlans:
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.plans.with_streaming_response.list(
+        with client.zones.plans.with_streaming_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -52,13 +52,13 @@ class TestPlans:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.plans.with_raw_response.list(
+            client.zones.plans.with_raw_response.list(
                 zone_id="",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        plan = client.plans.get(
+        plan = client.zones.plans.get(
             plan_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -66,7 +66,7 @@ class TestPlans:
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.plans.with_raw_response.get(
+        response = client.zones.plans.with_raw_response.get(
             plan_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -78,7 +78,7 @@ class TestPlans:
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.plans.with_streaming_response.get(
+        with client.zones.plans.with_streaming_response.get(
             plan_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -93,13 +93,13 @@ class TestPlans:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.plans.with_raw_response.get(
+            client.zones.plans.with_raw_response.get(
                 plan_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `plan_identifier` but received ''"):
-            client.plans.with_raw_response.get(
+            client.zones.plans.with_raw_response.get(
                 plan_identifier="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -110,14 +110,14 @@ class TestAsyncPlans:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        plan = await async_client.plans.list(
+        plan = await async_client.zones.plans.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncSinglePage[AvailableRatePlan], plan, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.plans.with_raw_response.list(
+        response = await async_client.zones.plans.with_raw_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -128,7 +128,7 @@ class TestAsyncPlans:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.plans.with_streaming_response.list(
+        async with async_client.zones.plans.with_streaming_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -142,13 +142,13 @@ class TestAsyncPlans:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.plans.with_raw_response.list(
+            await async_client.zones.plans.with_raw_response.list(
                 zone_id="",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        plan = await async_client.plans.get(
+        plan = await async_client.zones.plans.get(
             plan_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -156,7 +156,7 @@ class TestAsyncPlans:
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.plans.with_raw_response.get(
+        response = await async_client.zones.plans.with_raw_response.get(
             plan_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -168,7 +168,7 @@ class TestAsyncPlans:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.plans.with_streaming_response.get(
+        async with async_client.zones.plans.with_streaming_response.get(
             plan_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -183,13 +183,13 @@ class TestAsyncPlans:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.plans.with_raw_response.get(
+            await async_client.zones.plans.with_raw_response.get(
                 plan_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `plan_identifier` but received ''"):
-            await async_client.plans.with_raw_response.get(
+            await async_client.zones.plans.with_raw_response.get(
                 plan_identifier="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

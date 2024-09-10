@@ -8,6 +8,14 @@ from .holds import (
     HoldsResourceWithStreamingResponse,
     AsyncHoldsResourceWithStreamingResponse,
 )
+from .plans import (
+    PlansResource,
+    AsyncPlansResource,
+    PlansResourceWithRawResponse,
+    AsyncPlansResourceWithRawResponse,
+    PlansResourceWithStreamingResponse,
+    AsyncPlansResourceWithStreamingResponse,
+)
 from .zones import (
     ZonesResource,
     AsyncZonesResource,
@@ -23,6 +31,14 @@ from .settings import (
     AsyncSettingsResourceWithRawResponse,
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
+)
+from .rate_plans import (
+    RatePlansResource,
+    AsyncRatePlansResource,
+    RatePlansResourceWithRawResponse,
+    AsyncRatePlansResourceWithRawResponse,
+    RatePlansResourceWithStreamingResponse,
+    AsyncRatePlansResourceWithStreamingResponse,
 )
 from .subscriptions import (
     SubscriptionsResource,
@@ -80,6 +96,18 @@ __all__ = [
     "AsyncSubscriptionsResourceWithRawResponse",
     "SubscriptionsResourceWithStreamingResponse",
     "AsyncSubscriptionsResourceWithStreamingResponse",
+    "PlansResource",
+    "AsyncPlansResource",
+    "PlansResourceWithRawResponse",
+    "AsyncPlansResourceWithRawResponse",
+    "PlansResourceWithStreamingResponse",
+    "AsyncPlansResourceWithStreamingResponse",
+    "RatePlansResource",
+    "AsyncRatePlansResource",
+    "RatePlansResourceWithRawResponse",
+    "AsyncRatePlansResourceWithRawResponse",
+    "RatePlansResourceWithStreamingResponse",
+    "AsyncRatePlansResourceWithStreamingResponse",
     "ZonesResource",
     "AsyncZonesResource",
     "ZonesResourceWithRawResponse",
