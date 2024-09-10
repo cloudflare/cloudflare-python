@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import TypedDict
 
-__all__ = ["RatePlanParam"]
+__all__ = ["RatePlan"]
 
 
-class RatePlanParam(TypedDict, total=False):
+class RatePlan(TypedDict, total=False):
     id: str
     """The ID of the rate plan."""
 

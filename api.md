@@ -14,12 +14,14 @@ from cloudflare.types import (
     PaginationInfo,
     Permission,
     PermissionGrant,
+    RatePlan,
     ResponseInfo,
     Result,
     Role,
     SortDirection,
     Subscription,
     SubscriptionComponent,
+    SubscriptionZone,
 )
 ```
 
@@ -225,8 +227,6 @@ Types:
 
 ```python
 from cloudflare.types.user import (
-    RatePlan,
-    SubscriptionZone,
     SubscriptionUpdateResponse,
     SubscriptionDeleteResponse,
     SubscriptionGetResponse,
