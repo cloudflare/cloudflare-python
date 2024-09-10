@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from ..user.rate_plan_param import RatePlanParam
 
@@ -10,6 +10,9 @@ __all__ = ["SubscriptionCreateParams"]
 
 
 class SubscriptionCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     frequency: Literal["weekly", "monthly", "quarterly", "yearly"]
     """How often the subscription is renewed automatically."""
 

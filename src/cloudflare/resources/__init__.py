@@ -480,14 +480,6 @@ from .secondary_dns import (
     SecondaryDNSResourceWithStreamingResponse,
     AsyncSecondaryDNSResourceWithStreamingResponse,
 )
-from .subscriptions import (
-    SubscriptionsResource,
-    AsyncSubscriptionsResource,
-    SubscriptionsResourceWithRawResponse,
-    AsyncSubscriptionsResourceWithRawResponse,
-    SubscriptionsResourceWithStreamingResponse,
-    AsyncSubscriptionsResourceWithStreamingResponse,
-)
 from .waiting_rooms import (
     WaitingRoomsResource,
     AsyncWaitingRoomsResource,
@@ -752,12 +744,6 @@ __all__ = [
     "AsyncSSLResourceWithRawResponse",
     "SSLResourceWithStreamingResponse",
     "AsyncSSLResourceWithStreamingResponse",
-    "SubscriptionsResource",
-    "AsyncSubscriptionsResource",
-    "SubscriptionsResourceWithRawResponse",
-    "AsyncSubscriptionsResourceWithRawResponse",
-    "SubscriptionsResourceWithStreamingResponse",
-    "AsyncSubscriptionsResourceWithStreamingResponse",
     "ACMResource",
     "AsyncACMResource",
     "ACMResourceWithRawResponse",
