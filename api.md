@@ -74,6 +74,26 @@ Methods:
 - <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/shared/role.py">SyncSinglePage[Role]</a></code>
 - <code title="get /accounts/{account_id}/roles/{role_id}">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">get</a>(role_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/role_get_response.py">object</a></code>
 
+## Subscriptions
+
+Types:
+
+```python
+from cloudflare.types.accounts import (
+    SubscriptionCreateResponse,
+    SubscriptionUpdateResponse,
+    SubscriptionDeleteResponse,
+    SubscriptionGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/subscriptions">client.accounts.subscriptions.<a href="./src/cloudflare/resources/accounts/subscriptions.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/subscription_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/subscription_create_response.py">SubscriptionCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/subscriptions/{subscription_identifier}">client.accounts.subscriptions.<a href="./src/cloudflare/resources/accounts/subscriptions.py">update</a>(subscription_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/subscription_update_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/subscription_update_response.py">SubscriptionUpdateResponse</a></code>
+- <code title="delete /accounts/{account_id}/subscriptions/{subscription_identifier}">client.accounts.subscriptions.<a href="./src/cloudflare/resources/accounts/subscriptions.py">delete</a>(subscription_identifier, \*, account_id) -> <a href="./src/cloudflare/types/accounts/subscription_delete_response.py">SubscriptionDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/subscriptions">client.accounts.subscriptions.<a href="./src/cloudflare/resources/accounts/subscriptions.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/subscription_get_response.py">Optional</a></code>
+
 # OriginCACertificates
 
 Types:
@@ -754,27 +774,6 @@ Methods:
 
 - <code title="patch /zones/{zone_id}/ssl/verification/{certificate_pack_id}">client.ssl.verification.<a href="./src/cloudflare/resources/ssl/verification.py">edit</a>(certificate_pack_id, \*, zone_id, \*\*<a href="src/cloudflare/types/ssl/verification_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/verification_edit_response.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/ssl/verification">client.ssl.verification.<a href="./src/cloudflare/resources/ssl/verification.py">get</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/verification_get_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/verification_get_response.py">Optional</a></code>
-
-# Subscriptions
-
-Types:
-
-```python
-from cloudflare.types.subscriptions import (
-    SubscriptionCreateResponse,
-    SubscriptionUpdateResponse,
-    SubscriptionDeleteResponse,
-    SubscriptionGetResponse,
-)
-```
-
-Methods:
-
-- <code title="post /zones/{identifier}/subscription">client.subscriptions.<a href="./src/cloudflare/resources/subscriptions.py">create</a>(identifier, \*\*<a href="src/cloudflare/types/subscriptions/subscription_create_params.py">params</a>) -> <a href="./src/cloudflare/types/subscriptions/subscription_create_response.py">SubscriptionCreateResponse</a></code>
-- <code title="put /accounts/{account_id}/subscriptions/{subscription_identifier}">client.subscriptions.<a href="./src/cloudflare/resources/subscriptions.py">update</a>(subscription_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/subscriptions/subscription_update_params.py">params</a>) -> <a href="./src/cloudflare/types/subscriptions/subscription_update_response.py">SubscriptionUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/subscriptions">client.subscriptions.<a href="./src/cloudflare/resources/subscriptions.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/user/subscription.py">SyncSinglePage[Subscription]</a></code>
-- <code title="delete /accounts/{account_id}/subscriptions/{subscription_identifier}">client.subscriptions.<a href="./src/cloudflare/resources/subscriptions.py">delete</a>(subscription_identifier, \*, account_id) -> <a href="./src/cloudflare/types/subscriptions/subscription_delete_response.py">SubscriptionDeleteResponse</a></code>
-- <code title="get /zones/{identifier}/subscription">client.subscriptions.<a href="./src/cloudflare/resources/subscriptions.py">get</a>(identifier) -> <a href="./src/cloudflare/types/subscriptions/subscription_get_response.py">SubscriptionGetResponse</a></code>
 
 # ACM
 
