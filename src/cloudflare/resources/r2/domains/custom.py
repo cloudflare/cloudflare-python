@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -58,6 +59,7 @@ class CustomResource(SyncAPIResource):
         domain: str,
         zone_id: str,
         enabled: bool | NotGiven = NOT_GIVEN,
+        min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -80,6 +82,9 @@ class CustomResource(SyncAPIResource):
           enabled: Whether to enable public bucket access at the custom domain. If undefined, the
               domain will be enabled.
 
+          min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
+              not set, defaults to 1.0.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -99,6 +104,7 @@ class CustomResource(SyncAPIResource):
                     "domain": domain,
                     "zone_id": zone_id,
                     "enabled": enabled,
+                    "min_tls": min_tls,
                 },
                 custom_create_params.CustomCreateParams,
             ),
@@ -119,6 +125,7 @@ class CustomResource(SyncAPIResource):
         account_id: str,
         bucket_name: str,
         enabled: bool | NotGiven = NOT_GIVEN,
+        min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -138,6 +145,9 @@ class CustomResource(SyncAPIResource):
 
           enabled: Whether to enable public bucket access at the specified custom domain
 
+          min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
+              not set, defaults to previous value.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -154,7 +164,13 @@ class CustomResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return self._put(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}",
-            body=maybe_transform({"enabled": enabled}, custom_update_params.CustomUpdateParams),
+            body=maybe_transform(
+                {
+                    "enabled": enabled,
+                    "min_tls": min_tls,
+                },
+                custom_update_params.CustomUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -287,6 +303,7 @@ class AsyncCustomResource(AsyncAPIResource):
         domain: str,
         zone_id: str,
         enabled: bool | NotGiven = NOT_GIVEN,
+        min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -309,6 +326,9 @@ class AsyncCustomResource(AsyncAPIResource):
           enabled: Whether to enable public bucket access at the custom domain. If undefined, the
               domain will be enabled.
 
+          min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
+              not set, defaults to 1.0.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -328,6 +348,7 @@ class AsyncCustomResource(AsyncAPIResource):
                     "domain": domain,
                     "zone_id": zone_id,
                     "enabled": enabled,
+                    "min_tls": min_tls,
                 },
                 custom_create_params.CustomCreateParams,
             ),
@@ -348,6 +369,7 @@ class AsyncCustomResource(AsyncAPIResource):
         account_id: str,
         bucket_name: str,
         enabled: bool | NotGiven = NOT_GIVEN,
+        min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -367,6 +389,9 @@ class AsyncCustomResource(AsyncAPIResource):
 
           enabled: Whether to enable public bucket access at the specified custom domain
 
+          min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
+              not set, defaults to previous value.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -383,7 +408,13 @@ class AsyncCustomResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         return await self._put(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}",
-            body=await async_maybe_transform({"enabled": enabled}, custom_update_params.CustomUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "enabled": enabled,
+                    "min_tls": min_tls,
+                },
+                custom_update_params.CustomUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
