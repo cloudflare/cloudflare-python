@@ -5308,7 +5308,7 @@ Types:
 
 ```python
 from cloudflare.types.zero_trust import (
-    DeviceExperienceMonitor,
+    DigitalExperienceMonitor,
     NetworkPath,
     NetworkPathResponse,
     Percentiles,
