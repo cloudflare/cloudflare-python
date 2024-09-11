@@ -4,10 +4,10 @@
 
 from ..._models import BaseModel
 
-__all__ = ["DeviceExperienceMonitor"]
+__all__ = ["DigitalExperienceMonitor"]
 
 
-class DeviceExperienceMonitor(BaseModel):
+class DigitalExperienceMonitor(BaseModel):
     id: str
 
     default: bool
