@@ -36,6 +36,8 @@ class Integration(BaseModel):
     """The name of the device posture integration."""
 
     type: Optional[
-        Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"]
+        Literal[
+            "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+        ]
     ] = None
     """The type of device posture integration."""

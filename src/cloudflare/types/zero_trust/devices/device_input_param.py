@@ -26,6 +26,7 @@ __all__ = [
     "TeamsDevicesApplicationInputRequest",
     "TeamsDevicesClientCertificateV2InputRequest",
     "TeamsDevicesClientCertificateV2InputRequestLocations",
+    "TeamsDevicesCustomS2sInputRequest",
 ]
 
 
@@ -95,6 +96,19 @@ class TeamsDevicesClientCertificateV2InputRequest(TypedDict, total=False):
     locations: TeamsDevicesClientCertificateV2InputRequestLocations
 
 
+class TeamsDevicesCustomS2sInputRequest(TypedDict, total=False):
+    connection_id: Required[str]
+    """Posture Integration ID."""
+
+    operator: Required[Literal["<", "<=", ">", ">=", "=="]]
+    """operator"""
+
+    score: Required[float]
+    """
+    A value between 0-100 assigned to devices set by the 3rd party posture provider.
+    """
+
+
 DeviceInputParam: TypeAlias = Union[
     FileInputParam,
     UniqueClientIDInputParam,
@@ -113,4 +127,5 @@ DeviceInputParam: TypeAlias = Union[
     KolideInputParam,
     TaniumInputParam,
     SentineloneS2sInputParam,
+    TeamsDevicesCustomS2sInputRequest,
 ]
