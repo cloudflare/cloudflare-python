@@ -256,7 +256,7 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
-          content: A valid domain name. Must not match the record's name.
+          content: A valid hostname. Must not match the record's name.
 
           type: Record type.
 
@@ -439,7 +439,8 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.MXRecordData | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -461,7 +462,10 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
-          data: Components of a MX record.
+          content: A valid mail server hostname.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           type: Record type.
 
@@ -891,6 +895,7 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         data: record_create_params.URIRecordData | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -913,6 +918,9 @@ class RecordsResource(SyncAPIResource):
           zone_id: Identifier
 
           data: Components of a URI record.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           type: Record type.
 
@@ -960,13 +968,13 @@ class RecordsResource(SyncAPIResource):
         | record_create_params.DSRecordData
         | record_create_params.HTTPSRecordData
         | record_create_params.LOCRecordData
-        | record_create_params.MXRecordData
         | record_create_params.NAPTRRecordData
         | record_create_params.SMIMEARecordData
         | record_create_params.SRVRecordData
         | record_create_params.SSHFPRecordData
         | record_create_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -983,6 +991,7 @@ class RecordsResource(SyncAPIResource):
                     "content": content,
                     "type": type,
                     "data": data,
+                    "priority": priority,
                 },
                 record_create_params.RecordCreateParams,
             ),
@@ -1197,7 +1206,7 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
-          content: A valid domain name. Must not match the record's name.
+          content: A valid hostname. Must not match the record's name.
 
           type: Record type.
 
@@ -1389,7 +1398,8 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.MXRecordData | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1412,7 +1422,10 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
-          data: Components of a MX record.
+          content: A valid mail server hostname.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           type: Record type.
 
@@ -1863,6 +1876,7 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         data: record_update_params.URIRecordData | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1886,6 +1900,9 @@ class RecordsResource(SyncAPIResource):
           dns_record_id: Identifier
 
           data: Components of a URI record.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           type: Record type.
 
@@ -1934,13 +1951,13 @@ class RecordsResource(SyncAPIResource):
         | record_update_params.DSRecordData
         | record_update_params.HTTPSRecordData
         | record_update_params.LOCRecordData
-        | record_update_params.MXRecordData
         | record_update_params.NAPTRRecordData
         | record_update_params.SMIMEARecordData
         | record_update_params.SRVRecordData
         | record_update_params.SSHFPRecordData
         | record_update_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1959,6 +1976,7 @@ class RecordsResource(SyncAPIResource):
                     "content": content,
                     "type": type,
                     "data": data,
+                    "priority": priority,
                 },
                 record_update_params.RecordUpdateParams,
             ),
@@ -2343,7 +2361,7 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
-          content: A valid domain name. Must not match the record's name.
+          content: A valid hostname. Must not match the record's name.
 
           type: Record type.
 
@@ -2535,7 +2553,8 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.MXRecordData | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2558,7 +2577,10 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
-          data: Components of a MX record.
+          content: A valid mail server hostname.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           type: Record type.
 
@@ -3009,6 +3031,7 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         data: record_edit_params.URIRecordData | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3032,6 +3055,9 @@ class RecordsResource(SyncAPIResource):
           dns_record_id: Identifier
 
           data: Components of a URI record.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           type: Record type.
 
@@ -3080,13 +3106,13 @@ class RecordsResource(SyncAPIResource):
         | record_edit_params.DSRecordData
         | record_edit_params.HTTPSRecordData
         | record_edit_params.LOCRecordData
-        | record_edit_params.MXRecordData
         | record_edit_params.NAPTRRecordData
         | record_edit_params.SMIMEARecordData
         | record_edit_params.SRVRecordData
         | record_edit_params.SSHFPRecordData
         | record_edit_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3105,6 +3131,7 @@ class RecordsResource(SyncAPIResource):
                     "content": content,
                     "type": type,
                     "data": data,
+                    "priority": priority,
                 },
                 record_edit_params.RecordEditParams,
             ),
@@ -3527,7 +3554,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
-          content: A valid domain name. Must not match the record's name.
+          content: A valid hostname. Must not match the record's name.
 
           type: Record type.
 
@@ -3710,7 +3737,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.MXRecordData | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3732,7 +3760,10 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
-          data: Components of a MX record.
+          content: A valid mail server hostname.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           type: Record type.
 
@@ -4162,6 +4193,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         data: record_create_params.URIRecordData | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4184,6 +4216,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           zone_id: Identifier
 
           data: Components of a URI record.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           type: Record type.
 
@@ -4231,13 +4266,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_create_params.DSRecordData
         | record_create_params.HTTPSRecordData
         | record_create_params.LOCRecordData
-        | record_create_params.MXRecordData
         | record_create_params.NAPTRRecordData
         | record_create_params.SMIMEARecordData
         | record_create_params.SRVRecordData
         | record_create_params.SSHFPRecordData
         | record_create_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4254,6 +4289,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                     "content": content,
                     "type": type,
                     "data": data,
+                    "priority": priority,
                 },
                 record_create_params.RecordCreateParams,
             ),
@@ -4468,7 +4504,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
-          content: A valid domain name. Must not match the record's name.
+          content: A valid hostname. Must not match the record's name.
 
           type: Record type.
 
@@ -4660,7 +4696,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.MXRecordData | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4683,7 +4720,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
-          data: Components of a MX record.
+          content: A valid mail server hostname.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           type: Record type.
 
@@ -5134,6 +5174,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         data: record_update_params.URIRecordData | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5157,6 +5198,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           dns_record_id: Identifier
 
           data: Components of a URI record.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           type: Record type.
 
@@ -5205,13 +5249,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_update_params.DSRecordData
         | record_update_params.HTTPSRecordData
         | record_update_params.LOCRecordData
-        | record_update_params.MXRecordData
         | record_update_params.NAPTRRecordData
         | record_update_params.SMIMEARecordData
         | record_update_params.SRVRecordData
         | record_update_params.SSHFPRecordData
         | record_update_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5230,6 +5274,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                     "content": content,
                     "type": type,
                     "data": data,
+                    "priority": priority,
                 },
                 record_update_params.RecordUpdateParams,
             ),
@@ -5614,7 +5659,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
-          content: A valid domain name. Must not match the record's name.
+          content: A valid hostname. Must not match the record's name.
 
           type: Record type.
 
@@ -5806,7 +5851,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.MXRecordData | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5829,7 +5875,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
-          data: Components of a MX record.
+          content: A valid mail server hostname.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           type: Record type.
 
@@ -6280,6 +6329,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         data: record_edit_params.URIRecordData | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6303,6 +6353,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           dns_record_id: Identifier
 
           data: Components of a URI record.
+
+          priority: Required for MX, SRV and URI records; unused by other record types. Records with
+              lower priorities are preferred.
 
           type: Record type.
 
@@ -6351,13 +6404,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_edit_params.DSRecordData
         | record_edit_params.HTTPSRecordData
         | record_edit_params.LOCRecordData
-        | record_edit_params.MXRecordData
         | record_edit_params.NAPTRRecordData
         | record_edit_params.SMIMEARecordData
         | record_edit_params.SRVRecordData
         | record_edit_params.SSHFPRecordData
         | record_edit_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6376,6 +6429,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                     "content": content,
                     "type": type,
                     "data": data,
+                    "priority": priority,
                 },
                 record_edit_params.RecordEditParams,
             ),
