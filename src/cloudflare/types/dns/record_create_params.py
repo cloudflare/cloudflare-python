@@ -23,7 +23,6 @@ __all__ = [
     "LOCRecord",
     "LOCRecordData",
     "MXRecord",
-    "MXRecordData",
     "NAPTRRecord",
     "NAPTRRecordData",
     "NSRecord",
@@ -119,7 +118,7 @@ class CNAMERecord(TypedDict, total=False):
     """Identifier"""
 
     content: str
-    """A valid domain name. Must not match the record's name."""
+    """A valid hostname. Must not match the record's name."""
 
     type: Literal["CNAME"]
     """Record type."""
@@ -250,19 +249,17 @@ class MXRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    data: MXRecordData
-    """Components of a MX record."""
+    content: str
+    """A valid mail server hostname."""
+
+    priority: float
+    """Required for MX, SRV and URI records; unused by other record types.
+
+    Records with lower priorities are preferred.
+    """
 
     type: Literal["MX"]
     """Record type."""
-
-
-class MXRecordData(TypedDict, total=False):
-    priority: float
-    """The record priority."""
-
-    target: str
-    """A valid mail server domain name."""
 
 
 class NAPTRRecord(TypedDict, total=False):
@@ -376,7 +373,7 @@ class SRVRecordData(TypedDict, total=False):
     """
 
     target: str
-    """A valid domain name."""
+    """A valid hostname."""
 
     weight: float
     """The record weight."""
@@ -469,14 +466,17 @@ class URIRecord(TypedDict, total=False):
     data: URIRecordData
     """Components of a URI record."""
 
+    priority: float
+    """Required for MX, SRV and URI records; unused by other record types.
+
+    Records with lower priorities are preferred.
+    """
+
     type: Literal["URI"]
     """Record type."""
 
 
 class URIRecordData(TypedDict, total=False):
-    priority: float
-    """The record priority."""
-
     target: str
     """The record content."""
 
