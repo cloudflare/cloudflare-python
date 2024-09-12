@@ -544,10 +544,8 @@ class TestRecords:
     def test_method_create_with_all_params_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            data={
-                "priority": 20,
-                "target": "mx.example.com",
-            },
+            content="mx.example.com",
+            priority=10,
             type="MX",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -1150,10 +1148,10 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
-                "priority": 20,
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
+            priority=10,
             type="URI",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -1810,10 +1808,8 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            data={
-                "priority": 20,
-                "target": "mx.example.com",
-            },
+            content="mx.example.com",
+            priority=10,
             type="MX",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -2537,10 +2533,10 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
-                "priority": 20,
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
+            priority=10,
             type="URI",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -3326,10 +3322,8 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            data={
-                "priority": 20,
-                "target": "mx.example.com",
-            },
+            content="mx.example.com",
+            priority=10,
             type="MX",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -4053,10 +4047,10 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
-                "priority": 20,
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
+            priority=10,
             type="URI",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -4809,10 +4803,8 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            data={
-                "priority": 20,
-                "target": "mx.example.com",
-            },
+            content="mx.example.com",
+            priority=10,
             type="MX",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -5415,10 +5407,10 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
-                "priority": 20,
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
+            priority=10,
             type="URI",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -6075,10 +6067,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            data={
-                "priority": 20,
-                "target": "mx.example.com",
-            },
+            content="mx.example.com",
+            priority=10,
             type="MX",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6802,10 +6792,10 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
-                "priority": 20,
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
+            priority=10,
             type="URI",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -7591,10 +7581,8 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            data={
-                "priority": 20,
-                "target": "mx.example.com",
-            },
+            content="mx.example.com",
+            priority=10,
             type="MX",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -8318,10 +8306,10 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
-                "priority": 20,
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
+            priority=10,
             type="URI",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
