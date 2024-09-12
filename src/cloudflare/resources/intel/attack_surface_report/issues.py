@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Optional, cast
+from typing import List, Type, Optional, cast
 
 import httpx
 
@@ -212,7 +212,7 @@ class IssuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IssueDismissResponse]:
+    ) -> IssueDismissResponse:
         """
         Archive Security Center Insight
 
@@ -231,22 +231,13 @@ class IssuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not issue_id:
             raise ValueError(f"Expected a non-empty value for `issue_id` but received {issue_id!r}")
-        return cast(
-            Optional[IssueDismissResponse],
-            self._put(
-                f"/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
-                body=maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IssueDismissResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[IssueDismissResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
+            body=maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=IssueDismissResponse,
         )
 
     def severity(
@@ -554,7 +545,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IssueDismissResponse]:
+    ) -> IssueDismissResponse:
         """
         Archive Security Center Insight
 
@@ -573,22 +564,13 @@ class AsyncIssuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not issue_id:
             raise ValueError(f"Expected a non-empty value for `issue_id` but received {issue_id!r}")
-        return cast(
-            Optional[IssueDismissResponse],
-            await self._put(
-                f"/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
-                body=await async_maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IssueDismissResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[IssueDismissResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
+            body=await async_maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=IssueDismissResponse,
         )
 
     async def severity(
