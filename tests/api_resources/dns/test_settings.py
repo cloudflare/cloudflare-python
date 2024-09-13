@@ -31,7 +31,6 @@ class TestSettings:
         setting = client.dns.settings.edit(
             account_id="account_id",
             zone_defaults={
-                "flatten_all_cnames": False,
                 "foundation_dns": False,
                 "multi_provider": False,
                 "nameservers": {"type": "cloudflare.standard"},
@@ -163,7 +162,6 @@ class TestAsyncSettings:
         setting = await async_client.dns.settings.edit(
             account_id="account_id",
             zone_defaults={
-                "flatten_all_cnames": False,
                 "foundation_dns": False,
                 "multi_provider": False,
                 "nameservers": {"type": "cloudflare.standard"},

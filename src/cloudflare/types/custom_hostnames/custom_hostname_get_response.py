@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -16,6 +16,7 @@ __all__ = [
     "SSLSettings",
     "SSLValidationError",
     "SSLValidationRecord",
+    "CustomMetadata",
     "OwnershipVerification",
     "OwnershipVerificationHTTP",
 ]
@@ -168,6 +169,11 @@ class SSL(BaseModel):
     """Indicates whether the certificate covers a wildcard."""
 
 
+class CustomMetadata(BaseModel):
+    key: Optional[str] = None
+    """Unique metadata for this hostname."""
+
+
 class OwnershipVerification(BaseModel):
     name: Optional[str] = None
     """DNS Name for record."""
@@ -203,11 +209,8 @@ class CustomHostnameGetResponse(BaseModel):
     created_at: Optional[datetime] = None
     """This is the time the hostname was created."""
 
-    custom_metadata: Optional[Dict[str, str]] = None
-    """Unique key/value metadata for this hostname.
-
-    These are per-hostname (customer) settings.
-    """
+    custom_metadata: Optional[CustomMetadata] = None
+    """These are per-hostname (customer) settings."""
 
     custom_origin_server: Optional[str] = None
     """
