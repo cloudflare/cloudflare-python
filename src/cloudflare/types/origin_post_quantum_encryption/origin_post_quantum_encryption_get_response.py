@@ -3,6 +3,6 @@
 from typing import Union, Optional
 from typing_extensions import TypeAlias
 
-__all__ = ["CertificateUpdateResponse"]
+__all__ = ["OriginPostQuantumEncryptionGetResponse"]
 
-CertificateUpdateResponse: TypeAlias = Union[Optional[str], Optional[object]]
+OriginPostQuantumEncryptionGetResponse: TypeAlias = Union[Optional[str], Optional[object]]
