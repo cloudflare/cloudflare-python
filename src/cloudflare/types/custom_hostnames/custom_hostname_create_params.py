@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import Dict, List
 from typing_extensions import Literal, Required, TypedDict
 
 from .dcv_method import DCVMethod
@@ -10,7 +10,7 @@ from .bundle_method import BundleMethod
 from ..shared.certificate_ca import CertificateCA
 from .domain_validation_type import DomainValidationType
 
-__all__ = ["CustomHostnameCreateParams", "SSL", "SSLSettings", "CustomMetadata"]
+__all__ = ["CustomHostnameCreateParams", "SSL", "SSLSettings"]
 
 
 class CustomHostnameCreateParams(TypedDict, total=False):
@@ -23,8 +23,11 @@ class CustomHostnameCreateParams(TypedDict, total=False):
     ssl: Required[SSL]
     """SSL properties used when creating the custom hostname."""
 
-    custom_metadata: CustomMetadata
-    """These are per-hostname (customer) settings."""
+    custom_metadata: Dict[str, str]
+    """Unique key/value metadata for this hostname.
+
+    These are per-hostname (customer) settings.
+    """
 
 
 class SSLSettings(TypedDict, total=False):
@@ -79,8 +82,3 @@ class SSL(TypedDict, total=False):
 
     wildcard: bool
     """Indicates whether the certificate covers a wildcard."""
-
-
-class CustomMetadata(TypedDict, total=False):
-    key: str
-    """Unique metadata for this hostname."""
