@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Type, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -75,7 +75,7 @@ class CustomHostnamesResource(SyncAPIResource):
         zone_id: str,
         hostname: str,
         ssl: custom_hostname_create_params.SSL,
-        custom_metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        custom_metadata: custom_hostname_create_params.CustomMetadata | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -99,8 +99,7 @@ class CustomHostnamesResource(SyncAPIResource):
 
           ssl: SSL properties used when creating the custom hostname.
 
-          custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
-              settings.
+          custom_metadata: These are per-hostname (customer) settings.
 
           extra_headers: Send extra headers
 
@@ -252,7 +251,7 @@ class CustomHostnamesResource(SyncAPIResource):
         custom_hostname_id: str,
         *,
         zone_id: str,
-        custom_metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        custom_metadata: custom_hostname_edit_params.CustomMetadata | NotGiven = NOT_GIVEN,
         custom_origin_server: str | NotGiven = NOT_GIVEN,
         custom_origin_sni: str | NotGiven = NOT_GIVEN,
         ssl: custom_hostname_edit_params.SSL | NotGiven = NOT_GIVEN,
@@ -275,8 +274,7 @@ class CustomHostnamesResource(SyncAPIResource):
 
           custom_hostname_id: Identifier
 
-          custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
-              settings.
+          custom_metadata: These are per-hostname (customer) settings.
 
           custom_origin_server: a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME
               record.
@@ -397,7 +395,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         zone_id: str,
         hostname: str,
         ssl: custom_hostname_create_params.SSL,
-        custom_metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        custom_metadata: custom_hostname_create_params.CustomMetadata | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -421,8 +419,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
 
           ssl: SSL properties used when creating the custom hostname.
 
-          custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
-              settings.
+          custom_metadata: These are per-hostname (customer) settings.
 
           extra_headers: Send extra headers
 
@@ -574,7 +571,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         custom_hostname_id: str,
         *,
         zone_id: str,
-        custom_metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
+        custom_metadata: custom_hostname_edit_params.CustomMetadata | NotGiven = NOT_GIVEN,
         custom_origin_server: str | NotGiven = NOT_GIVEN,
         custom_origin_sni: str | NotGiven = NOT_GIVEN,
         ssl: custom_hostname_edit_params.SSL | NotGiven = NOT_GIVEN,
@@ -597,8 +594,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
 
           custom_hostname_id: Identifier
 
-          custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
-              settings.
+          custom_metadata: These are per-hostname (customer) settings.
 
           custom_origin_server: a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME
               record.
