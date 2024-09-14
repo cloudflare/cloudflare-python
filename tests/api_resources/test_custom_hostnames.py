@@ -54,7 +54,7 @@ class TestCustomHostnames:
                 "type": "dv",
                 "wildcard": False,
             },
-            custom_metadata={"key": "value"},
+            custom_metadata={"foo": "string"},
         )
         assert_matches_type(Optional[CustomHostnameCreateResponse], custom_hostname, path=["response"])
 
@@ -210,7 +210,7 @@ class TestCustomHostnames:
         custom_hostname = client.custom_hostnames.edit(
             custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_metadata={"key": "value"},
+            custom_metadata={"foo": "string"},
             custom_origin_server="origin2.example.com",
             custom_origin_sni="sni.example.com",
             ssl={
@@ -354,7 +354,7 @@ class TestAsyncCustomHostnames:
                 "type": "dv",
                 "wildcard": False,
             },
-            custom_metadata={"key": "value"},
+            custom_metadata={"foo": "string"},
         )
         assert_matches_type(Optional[CustomHostnameCreateResponse], custom_hostname, path=["response"])
 
@@ -510,7 +510,7 @@ class TestAsyncCustomHostnames:
         custom_hostname = await async_client.custom_hostnames.edit(
             custom_hostname_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            custom_metadata={"key": "value"},
+            custom_metadata={"foo": "string"},
             custom_origin_server="origin2.example.com",
             custom_origin_sni="sni.example.com",
             ssl={
