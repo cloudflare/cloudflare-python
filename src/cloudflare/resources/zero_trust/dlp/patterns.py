@@ -52,6 +52,7 @@ class PatternsResource(SyncAPIResource):
         *,
         account_id: str,
         regex: str,
+        max_match_bytes: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,6 +68,16 @@ class PatternsResource(SyncAPIResource):
         characters that can be matched using a range, e.g. `{1,100}`.
 
         Args:
+          max_match_bytes: Maximum number of bytes that the regular expression can match.
+
+              If this is `null` then there is no limit on the length. Patterns can use `*` and
+              `+`. Otherwise repeats should use a range `{m,n}` to restrict patterns to the
+              length. If this field is missing, then a default length limit is used.
+
+              Note that the length is specified in bytes. Since regular expressions use UTF-8
+              the pattern `.` can match up to 4 bytes. Hence `.{1,256}` has a maximum length
+              of 1024 bytes.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -79,7 +90,13 @@ class PatternsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/dlp/patterns/validate",
-            body=maybe_transform({"regex": regex}, pattern_validate_params.PatternValidateParams),
+            body=maybe_transform(
+                {
+                    "regex": regex,
+                    "max_match_bytes": max_match_bytes,
+                },
+                pattern_validate_params.PatternValidateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -116,6 +133,7 @@ class AsyncPatternsResource(AsyncAPIResource):
         *,
         account_id: str,
         regex: str,
+        max_match_bytes: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -131,6 +149,16 @@ class AsyncPatternsResource(AsyncAPIResource):
         characters that can be matched using a range, e.g. `{1,100}`.
 
         Args:
+          max_match_bytes: Maximum number of bytes that the regular expression can match.
+
+              If this is `null` then there is no limit on the length. Patterns can use `*` and
+              `+`. Otherwise repeats should use a range `{m,n}` to restrict patterns to the
+              length. If this field is missing, then a default length limit is used.
+
+              Note that the length is specified in bytes. Since regular expressions use UTF-8
+              the pattern `.` can match up to 4 bytes. Hence `.{1,256}` has a maximum length
+              of 1024 bytes.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -143,7 +171,13 @@ class AsyncPatternsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/dlp/patterns/validate",
-            body=await async_maybe_transform({"regex": regex}, pattern_validate_params.PatternValidateParams),
+            body=await async_maybe_transform(
+                {
+                    "regex": regex,
+                    "max_match_bytes": max_match_bytes,
+                },
+                pattern_validate_params.PatternValidateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
