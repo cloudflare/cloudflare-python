@@ -5,4 +5,4 @@ from typing_extensions import TypeAlias
 
 __all__ = ["RateLimitCreateResponse"]
 
-RateLimitCreateResponse: TypeAlias = Union[Optional[str], object]
+RateLimitCreateResponse: TypeAlias = Union[Optional[str], Optional[object]]
