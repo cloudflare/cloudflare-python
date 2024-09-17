@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import List, Type, Iterable, cast
 
 import httpx
 
@@ -63,7 +63,10 @@ class ConfigsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: object,
+        default_sampling: float,
+        name: str,
+        router_ips: List[str] | NotGiven = NOT_GIVEN,
+        warp_devices: Iterable[config_create_params.WARPDevice] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -75,6 +78,11 @@ class ConfigsResource(SyncAPIResource):
         Create a new network monitoring configuration.
 
         Args:
+          default_sampling: Fallback sampling rate of flow messages being sent in packets per second. This
+              should match the packet sampling rate configured on the router.
+
+          name: The account name.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -87,7 +95,15 @@ class ConfigsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/mnm/config",
-            body=maybe_transform(body, config_create_params.ConfigCreateParams),
+            body=maybe_transform(
+                {
+                    "default_sampling": default_sampling,
+                    "name": name,
+                    "router_ips": router_ips,
+                    "warp_devices": warp_devices,
+                },
+                config_create_params.ConfigCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -102,7 +118,10 @@ class ConfigsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: object,
+        default_sampling: float,
+        name: str,
+        router_ips: List[str] | NotGiven = NOT_GIVEN,
+        warp_devices: Iterable[config_update_params.WARPDevice] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -115,6 +134,11 @@ class ConfigsResource(SyncAPIResource):
         configuration to be updated at once.
 
         Args:
+          default_sampling: Fallback sampling rate of flow messages being sent in packets per second. This
+              should match the packet sampling rate configured on the router.
+
+          name: The account name.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -127,7 +151,15 @@ class ConfigsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
             f"/accounts/{account_id}/mnm/config",
-            body=maybe_transform(body, config_update_params.ConfigUpdateParams),
+            body=maybe_transform(
+                {
+                    "default_sampling": default_sampling,
+                    "name": name,
+                    "router_ips": router_ips,
+                    "warp_devices": warp_devices,
+                },
+                config_update_params.ConfigUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -179,7 +211,10 @@ class ConfigsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: object,
+        default_sampling: float | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        router_ips: List[str] | NotGiven = NOT_GIVEN,
+        warp_devices: Iterable[config_edit_params.WARPDevice] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -191,6 +226,11 @@ class ConfigsResource(SyncAPIResource):
         Update fields in an existing network monitoring configuration.
 
         Args:
+          default_sampling: Fallback sampling rate of flow messages being sent in packets per second. This
+              should match the packet sampling rate configured on the router.
+
+          name: The account name.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -203,7 +243,15 @@ class ConfigsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._patch(
             f"/accounts/{account_id}/mnm/config",
-            body=maybe_transform(body, config_edit_params.ConfigEditParams),
+            body=maybe_transform(
+                {
+                    "default_sampling": default_sampling,
+                    "name": name,
+                    "router_ips": router_ips,
+                    "warp_devices": warp_devices,
+                },
+                config_edit_params.ConfigEditParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -226,7 +274,7 @@ class ConfigsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Configuration:
         """
-        Lists default sampling and router IPs for account.
+        Lists default sampling, router IPs and warp devices for account.
 
         Args:
           extra_headers: Send extra headers
@@ -280,7 +328,10 @@ class AsyncConfigsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: object,
+        default_sampling: float,
+        name: str,
+        router_ips: List[str] | NotGiven = NOT_GIVEN,
+        warp_devices: Iterable[config_create_params.WARPDevice] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -292,6 +343,11 @@ class AsyncConfigsResource(AsyncAPIResource):
         Create a new network monitoring configuration.
 
         Args:
+          default_sampling: Fallback sampling rate of flow messages being sent in packets per second. This
+              should match the packet sampling rate configured on the router.
+
+          name: The account name.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -304,7 +360,15 @@ class AsyncConfigsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/mnm/config",
-            body=await async_maybe_transform(body, config_create_params.ConfigCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "default_sampling": default_sampling,
+                    "name": name,
+                    "router_ips": router_ips,
+                    "warp_devices": warp_devices,
+                },
+                config_create_params.ConfigCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -319,7 +383,10 @@ class AsyncConfigsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: object,
+        default_sampling: float,
+        name: str,
+        router_ips: List[str] | NotGiven = NOT_GIVEN,
+        warp_devices: Iterable[config_update_params.WARPDevice] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -332,6 +399,11 @@ class AsyncConfigsResource(AsyncAPIResource):
         configuration to be updated at once.
 
         Args:
+          default_sampling: Fallback sampling rate of flow messages being sent in packets per second. This
+              should match the packet sampling rate configured on the router.
+
+          name: The account name.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -344,7 +416,15 @@ class AsyncConfigsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/mnm/config",
-            body=await async_maybe_transform(body, config_update_params.ConfigUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "default_sampling": default_sampling,
+                    "name": name,
+                    "router_ips": router_ips,
+                    "warp_devices": warp_devices,
+                },
+                config_update_params.ConfigUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -396,7 +476,10 @@ class AsyncConfigsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: object,
+        default_sampling: float | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        router_ips: List[str] | NotGiven = NOT_GIVEN,
+        warp_devices: Iterable[config_edit_params.WARPDevice] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -408,6 +491,11 @@ class AsyncConfigsResource(AsyncAPIResource):
         Update fields in an existing network monitoring configuration.
 
         Args:
+          default_sampling: Fallback sampling rate of flow messages being sent in packets per second. This
+              should match the packet sampling rate configured on the router.
+
+          name: The account name.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -420,7 +508,15 @@ class AsyncConfigsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/mnm/config",
-            body=await async_maybe_transform(body, config_edit_params.ConfigEditParams),
+            body=await async_maybe_transform(
+                {
+                    "default_sampling": default_sampling,
+                    "name": name,
+                    "router_ips": router_ips,
+                    "warp_devices": warp_devices,
+                },
+                config_edit_params.ConfigEditParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -443,7 +539,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Configuration:
         """
-        Lists default sampling and router IPs for account.
+        Lists default sampling, router IPs and warp devices for account.
 
         Args:
           extra_headers: Send extra headers
