@@ -1995,10 +1995,10 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         comment: record_list_params.Comment | NotGiven = NOT_GIVEN,
-        content: record_list_params.Content | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
         direction: SortDirection | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        name: record_list_params.Name | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         order: Literal["type", "name", "content", "ttl", "proxied"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -2043,12 +2043,16 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          content: DNS record content.
+
           direction: Direction to order DNS records in.
 
           match: Whether to match all search requirements or at least one (any). If set to `all`,
               acts like a logical AND between filters. If set to `any`, acts like a logical OR
               instead. Note that the interaction between tag filters is controlled by the
               `tag-match` parameter instead.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
 
           order: Field to order DNS records by.
 
@@ -5289,10 +5293,10 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         comment: record_list_params.Comment | NotGiven = NOT_GIVEN,
-        content: record_list_params.Content | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
         direction: SortDirection | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        name: record_list_params.Name | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         order: Literal["type", "name", "content", "ttl", "proxied"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -5337,12 +5341,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          content: DNS record content.
+
           direction: Direction to order DNS records in.
 
           match: Whether to match all search requirements or at least one (any). If set to `all`,
               acts like a logical AND between filters. If set to `any`, acts like a logical OR
               instead. Note that the interaction between tag filters is controlled by the
               `tag-match` parameter instead.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
 
           order: Field to order DNS records by.
 
