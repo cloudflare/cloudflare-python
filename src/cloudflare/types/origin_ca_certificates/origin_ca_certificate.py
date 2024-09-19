@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from datetime import datetime
 
 from ..._models import BaseModel
 from ..ssl.request_validity import RequestValidity
@@ -35,5 +34,5 @@ class OriginCACertificate(BaseModel):
     certificate: Optional[str] = None
     """The Origin CA certificate. Will be newline-encoded."""
 
-    expires_on: Optional[datetime] = None
+    expires_on: Optional[str] = None
     """When the certificate will expire."""

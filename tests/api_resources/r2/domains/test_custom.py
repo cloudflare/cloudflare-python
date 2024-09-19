@@ -40,6 +40,7 @@ class TestCustom:
             domain="prefix.example-domain.com",
             zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             enabled=True,
+            min_tls="1.0",
         )
         assert_matches_type(CustomCreateResponse, custom, path=["response"])
 
@@ -107,6 +108,7 @@ class TestCustom:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
             enabled=True,
+            min_tls="1.0",
         )
         assert_matches_type(CustomUpdateResponse, custom, path=["response"])
 
@@ -291,6 +293,7 @@ class TestAsyncCustom:
             domain="prefix.example-domain.com",
             zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             enabled=True,
+            min_tls="1.0",
         )
         assert_matches_type(CustomCreateResponse, custom, path=["response"])
 
@@ -358,6 +361,7 @@ class TestAsyncCustom:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
             enabled=True,
+            min_tls="1.0",
         )
         assert_matches_type(CustomUpdateResponse, custom, path=["response"])
 

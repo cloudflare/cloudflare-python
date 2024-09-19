@@ -16,7 +16,7 @@ class AIGatewayListParams(TypedDict, total=False):
     order_by: str
     """Order By Column Name"""
 
-    order_by_direction: Literal["ASC", "DESC"]
+    order_by_direction: Literal["asc", "desc"]
     """Order By Direction"""
 
     page: int

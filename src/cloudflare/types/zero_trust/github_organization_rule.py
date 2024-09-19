@@ -9,7 +9,7 @@ __all__ = ["GitHubOrganizationRule", "GitHubOrganization"]
 
 
 class GitHubOrganization(BaseModel):
-    connection_id: str
+    identity_provider_id: str
     """The ID of your Github identity provider."""
 
     name: str

@@ -45,6 +45,13 @@ class SOA(BaseModel):
 
 
 class DNSSetting(BaseModel):
+    flatten_all_cnames: Optional[bool] = None
+    """Whether to flatten all CNAME records in the zone.
+
+    Note that, due to DNS limitations, a CNAME record at the zone apex will always
+    be flattened.
+    """
+
     foundation_dns: Optional[bool] = None
     """Whether to enable Foundation DNS Advanced Nameservers on the zone."""
 

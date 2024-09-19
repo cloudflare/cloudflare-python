@@ -179,7 +179,7 @@ class ActionParametersCacheReserve(BaseModel):
     the resource to cache reserve.
     """
 
-    min_file_size: int
+    minimum_file_size: int
     """The minimum file size eligible for store in cache reserve."""
 
 
