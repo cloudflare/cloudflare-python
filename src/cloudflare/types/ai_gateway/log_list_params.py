@@ -16,33 +16,21 @@ class LogListParams(TypedDict, total=False):
 
     cached: bool
 
-    direction: Literal["asc", "desc"]
+    direction: Literal["asc", "desc", "ASC", "DESC"]
 
     end_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-
-    feedback: Literal[0, 1]
 
     max_cost: float
 
     max_duration: float
 
-    max_tokens_in: float
-
-    max_tokens_out: float
-
-    max_total_tokens: float
-
-    meta_info: bool
+    max_tokens: float
 
     min_cost: float
 
     min_duration: float
 
-    min_tokens_in: float
-
-    min_tokens_out: float
-
-    min_total_tokens: float
+    min_tokens: float
 
     model: str
 
@@ -50,7 +38,7 @@ class LogListParams(TypedDict, total=False):
 
     order_by: Literal["created_at", "provider", "model", "model_type", "success", "cached"]
 
-    order_by_direction: Literal["asc", "desc"]
+    order_by_direction: Literal["asc", "desc", "ASC", "DESC"]
 
     page: int
 

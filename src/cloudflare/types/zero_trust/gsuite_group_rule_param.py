@@ -8,11 +8,11 @@ __all__ = ["GSuiteGroupRuleParam", "GSuite"]
 
 
 class GSuite(TypedDict, total=False):
+    connection_id: Required[str]
+    """The ID of your Google Workspace identity provider."""
+
     email: Required[str]
     """The email of the Google Workspace group."""
-
-    identity_provider_id: Required[str]
-    """The ID of your Google Workspace identity provider."""
 
 
 class GSuiteGroupRuleParam(TypedDict, total=False):

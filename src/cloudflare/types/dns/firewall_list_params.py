@@ -12,7 +12,7 @@ class FirewallListParams(TypedDict, total=False):
     """Identifier"""
 
     page: float
-    """Page number of paginated results"""
+    """Page number of paginated results."""
 
     per_page: float
-    """Number of clusters per page"""
+    """Number of clusters per page."""

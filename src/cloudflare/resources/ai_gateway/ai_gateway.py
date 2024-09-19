@@ -188,7 +188,7 @@ class AIGatewayResource(SyncAPIResource):
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
-        order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        order_by_direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -470,7 +470,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
-        order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        order_by_direction: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

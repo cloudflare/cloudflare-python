@@ -19,7 +19,7 @@ class Message(BaseModel):
     """Content of message"""
 
     is_follow_on_request: bool
-    """Whether the message is a follow-on request"""
+    """Message is a follow-on request"""
 
     updated: datetime
     """Message last updated time"""

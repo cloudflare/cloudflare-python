@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
@@ -23,10 +23,4 @@ class CustomCreateParams(TypedDict, total=False):
     """Whether to enable public bucket access at the custom domain.
 
     If undefined, the domain will be enabled.
-    """
-
-    min_tls: Annotated[Literal["1.0", "1.1", "1.2", "1.3"], PropertyInfo(alias="minTLS")]
-    """Minimum TLS Version the custom domain will accept for incoming connections.
-
-    If not set, defaults to 1.0.
     """

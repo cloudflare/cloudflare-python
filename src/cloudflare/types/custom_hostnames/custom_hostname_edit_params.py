@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
 from .dcv_method import DCVMethod
@@ -10,18 +10,15 @@ from .bundle_method import BundleMethod
 from ..shared.certificate_ca import CertificateCA
 from .domain_validation_type import DomainValidationType
 
-__all__ = ["CustomHostnameEditParams", "SSL", "SSLSettings"]
+__all__ = ["CustomHostnameEditParams", "CustomMetadata", "SSL", "SSLSettings"]
 
 
 class CustomHostnameEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    custom_metadata: Dict[str, str]
-    """Unique key/value metadata for this hostname.
-
-    These are per-hostname (customer) settings.
-    """
+    custom_metadata: CustomMetadata
+    """These are per-hostname (customer) settings."""
 
     custom_origin_server: str
     """
@@ -40,6 +37,11 @@ class CustomHostnameEditParams(TypedDict, total=False):
 
     ssl: SSL
     """SSL properties used when creating the custom hostname."""
+
+
+class CustomMetadata(TypedDict, total=False):
+    key: str
+    """Unique metadata for this hostname."""
 
 
 class SSLSettings(TypedDict, total=False):

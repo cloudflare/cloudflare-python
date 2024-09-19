@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare._utils import parse_date
+from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.shared import AuditLog
 
@@ -33,13 +33,13 @@ class TestAuditLogs:
                 "email": "alice@example.com",
                 "ip": "17.168.228.63",
             },
-            before=parse_date("2019-04-30"),
+            before=parse_datetime("2019-04-30T01:12:20Z"),
             direction="desc",
             export=True,
             hide_user_logs=True,
             page=50,
             per_page=25,
-            since=parse_date("2019-04-30"),
+            since=parse_datetime("2019-04-30T01:12:20Z"),
             zone={"name": "example.com"},
         )
         assert_matches_type(SyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
@@ -82,13 +82,13 @@ class TestAsyncAuditLogs:
                 "email": "alice@example.com",
                 "ip": "17.168.228.63",
             },
-            before=parse_date("2019-04-30"),
+            before=parse_datetime("2019-04-30T01:12:20Z"),
             direction="desc",
             export=True,
             hide_user_logs=True,
             page=50,
             per_page=25,
-            since=parse_date("2019-04-30"),
+            since=parse_datetime("2019-04-30T01:12:20Z"),
             zone={"name": "example.com"},
         )
         assert_matches_type(AsyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])

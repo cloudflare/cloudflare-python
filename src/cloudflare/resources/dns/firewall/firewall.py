@@ -89,35 +89,35 @@ class FirewallResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[FirewallCreateResponse]:
         """
-        Create a DNS Firewall cluster
+        Create a configured DNS Firewall Cluster.
 
         Args:
           account_id: Identifier
 
-          name: DNS Firewall cluster name
+          name: DNS Firewall Cluster Name.
 
-          attack_mitigation: Attack mitigation settings
+          attack_mitigation: Attack mitigation settings.
 
-          deprecate_any_requests: Whether to refuse to answer queries for the ANY type
+          deprecate_any_requests: Deprecate the response to ANY requests.
 
-          ecs_fallback: Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent
+          ecs_fallback: Forward client IP (resolver) subnet if no EDNS Client Subnet is sent.
 
-          maximum_cache_ttl: Maximum DNS cache TTL This setting sets an upper bound on DNS TTLs for purposes
+          maximum_cache_ttl: Maximum DNS cache TTL. This setting sets an upper bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Higher TTLs will be
               decreased to the maximum defined here for caching purposes.
 
-          minimum_cache_ttl: Minimum DNS cache TTL This setting sets a lower bound on DNS TTLs for purposes
+          minimum_cache_ttl: Minimum DNS cache TTL. This setting sets a lower bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Lower TTLs will be
               increased to the minimum defined here for caching purposes.
 
-          negative_cache_ttl: Negative DNS cache TTL This setting controls how long DNS Firewall should cache
+          negative_cache_ttl: Negative DNS cache TTL. This setting controls how long DNS Firewall should cache
               negative responses (e.g., NXDOMAIN) from the upstream servers.
 
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
-              the upstream nameservers configured on the cluster)
+              the upstream nameservers configured on the cluster).
 
           retries: Number of retries for fetching DNS responses from upstream nameservers (not
-              counting the initial attempt)
+              counting the initial attempt).
 
           extra_headers: Send extra headers
 
@@ -170,14 +170,14 @@ class FirewallResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePaginationArray[FirewallListResponse]:
         """
-        List DNS Firewall clusters for an account
+        List configured DNS Firewall clusters for an account.
 
         Args:
           account_id: Identifier
 
-          page: Page number of paginated results
+          page: Page number of paginated results.
 
-          per_page: Number of clusters per page
+          per_page: Number of clusters per page.
 
           extra_headers: Send extra headers
 
@@ -221,7 +221,7 @@ class FirewallResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[FirewallDeleteResponse]:
         """
-        Delete a DNS Firewall cluster
+        Delete a configured DNS Firewall Cluster.
 
         Args:
           account_id: Identifier
@@ -275,37 +275,37 @@ class FirewallResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[FirewallEditResponse]:
         """
-        Modify the configuration of a DNS Firewall cluster
+        Modify a DNS Firewall Cluster configuration.
 
         Args:
           account_id: Identifier
 
           dns_firewall_id: Identifier
 
-          attack_mitigation: Attack mitigation settings
+          attack_mitigation: Attack mitigation settings.
 
-          deprecate_any_requests: Whether to refuse to answer queries for the ANY type
+          deprecate_any_requests: Deprecate the response to ANY requests.
 
-          ecs_fallback: Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent
+          ecs_fallback: Forward client IP (resolver) subnet if no EDNS Client Subnet is sent.
 
-          maximum_cache_ttl: Maximum DNS cache TTL This setting sets an upper bound on DNS TTLs for purposes
+          maximum_cache_ttl: Maximum DNS cache TTL. This setting sets an upper bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Higher TTLs will be
               decreased to the maximum defined here for caching purposes.
 
-          minimum_cache_ttl: Minimum DNS cache TTL This setting sets a lower bound on DNS TTLs for purposes
+          minimum_cache_ttl: Minimum DNS cache TTL. This setting sets a lower bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Lower TTLs will be
               increased to the minimum defined here for caching purposes.
 
-          name: DNS Firewall cluster name
+          name: DNS Firewall Cluster Name.
 
-          negative_cache_ttl: Negative DNS cache TTL This setting controls how long DNS Firewall should cache
+          negative_cache_ttl: Negative DNS cache TTL. This setting controls how long DNS Firewall should cache
               negative responses (e.g., NXDOMAIN) from the upstream servers.
 
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
-              the upstream nameservers configured on the cluster)
+              the upstream nameservers configured on the cluster).
 
           retries: Number of retries for fetching DNS responses from upstream nameservers (not
-              counting the initial attempt)
+              counting the initial attempt).
 
           extra_headers: Send extra headers
 
@@ -359,7 +359,7 @@ class FirewallResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[FirewallGetResponse]:
         """
-        Show a single DNS Firewall cluster for an account
+        Show a single configured DNS Firewall cluster for an account.
 
         Args:
           account_id: Identifier
@@ -437,35 +437,35 @@ class AsyncFirewallResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[FirewallCreateResponse]:
         """
-        Create a DNS Firewall cluster
+        Create a configured DNS Firewall Cluster.
 
         Args:
           account_id: Identifier
 
-          name: DNS Firewall cluster name
+          name: DNS Firewall Cluster Name.
 
-          attack_mitigation: Attack mitigation settings
+          attack_mitigation: Attack mitigation settings.
 
-          deprecate_any_requests: Whether to refuse to answer queries for the ANY type
+          deprecate_any_requests: Deprecate the response to ANY requests.
 
-          ecs_fallback: Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent
+          ecs_fallback: Forward client IP (resolver) subnet if no EDNS Client Subnet is sent.
 
-          maximum_cache_ttl: Maximum DNS cache TTL This setting sets an upper bound on DNS TTLs for purposes
+          maximum_cache_ttl: Maximum DNS cache TTL. This setting sets an upper bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Higher TTLs will be
               decreased to the maximum defined here for caching purposes.
 
-          minimum_cache_ttl: Minimum DNS cache TTL This setting sets a lower bound on DNS TTLs for purposes
+          minimum_cache_ttl: Minimum DNS cache TTL. This setting sets a lower bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Lower TTLs will be
               increased to the minimum defined here for caching purposes.
 
-          negative_cache_ttl: Negative DNS cache TTL This setting controls how long DNS Firewall should cache
+          negative_cache_ttl: Negative DNS cache TTL. This setting controls how long DNS Firewall should cache
               negative responses (e.g., NXDOMAIN) from the upstream servers.
 
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
-              the upstream nameservers configured on the cluster)
+              the upstream nameservers configured on the cluster).
 
           retries: Number of retries for fetching DNS responses from upstream nameservers (not
-              counting the initial attempt)
+              counting the initial attempt).
 
           extra_headers: Send extra headers
 
@@ -518,14 +518,14 @@ class AsyncFirewallResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[FirewallListResponse, AsyncV4PagePaginationArray[FirewallListResponse]]:
         """
-        List DNS Firewall clusters for an account
+        List configured DNS Firewall clusters for an account.
 
         Args:
           account_id: Identifier
 
-          page: Page number of paginated results
+          page: Page number of paginated results.
 
-          per_page: Number of clusters per page
+          per_page: Number of clusters per page.
 
           extra_headers: Send extra headers
 
@@ -569,7 +569,7 @@ class AsyncFirewallResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[FirewallDeleteResponse]:
         """
-        Delete a DNS Firewall cluster
+        Delete a configured DNS Firewall Cluster.
 
         Args:
           account_id: Identifier
@@ -623,37 +623,37 @@ class AsyncFirewallResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[FirewallEditResponse]:
         """
-        Modify the configuration of a DNS Firewall cluster
+        Modify a DNS Firewall Cluster configuration.
 
         Args:
           account_id: Identifier
 
           dns_firewall_id: Identifier
 
-          attack_mitigation: Attack mitigation settings
+          attack_mitigation: Attack mitigation settings.
 
-          deprecate_any_requests: Whether to refuse to answer queries for the ANY type
+          deprecate_any_requests: Deprecate the response to ANY requests.
 
-          ecs_fallback: Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent
+          ecs_fallback: Forward client IP (resolver) subnet if no EDNS Client Subnet is sent.
 
-          maximum_cache_ttl: Maximum DNS cache TTL This setting sets an upper bound on DNS TTLs for purposes
+          maximum_cache_ttl: Maximum DNS cache TTL. This setting sets an upper bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Higher TTLs will be
               decreased to the maximum defined here for caching purposes.
 
-          minimum_cache_ttl: Minimum DNS cache TTL This setting sets a lower bound on DNS TTLs for purposes
+          minimum_cache_ttl: Minimum DNS cache TTL. This setting sets a lower bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Lower TTLs will be
               increased to the minimum defined here for caching purposes.
 
-          name: DNS Firewall cluster name
+          name: DNS Firewall Cluster Name.
 
-          negative_cache_ttl: Negative DNS cache TTL This setting controls how long DNS Firewall should cache
+          negative_cache_ttl: Negative DNS cache TTL. This setting controls how long DNS Firewall should cache
               negative responses (e.g., NXDOMAIN) from the upstream servers.
 
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
-              the upstream nameservers configured on the cluster)
+              the upstream nameservers configured on the cluster).
 
           retries: Number of retries for fetching DNS responses from upstream nameservers (not
-              counting the initial attempt)
+              counting the initial attempt).
 
           extra_headers: Send extra headers
 
@@ -707,7 +707,7 @@ class AsyncFirewallResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[FirewallGetResponse]:
         """
-        Show a single DNS Firewall cluster for an account
+        Show a single configured DNS Firewall cluster for an account.
 
         Args:
           account_id: Identifier
