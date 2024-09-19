@@ -84,6 +84,9 @@ class PolicyFilter(BaseModel):
     pool_id: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
+    pop_name: Optional[List[str]] = None
+    """Usage depends on specific alert type"""
+
     product: Optional[List[str]] = None
     """Used for configuring billing_usage_alert"""
 

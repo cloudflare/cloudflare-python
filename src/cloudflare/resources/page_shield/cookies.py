@@ -82,8 +82,7 @@ class CookiesResource(SyncAPIResource):
 
           domain: Filters the returned cookies that match the specified domain attribute
 
-          export: Export the list of cookies as a file. Cannot be used with per_page or page
-              options.
+          export: Export the list of cookies as a file.
 
           hosts: Includes cookies that match one or more URL-encoded hostnames separated by
               commas.
@@ -101,6 +100,10 @@ class CookiesResource(SyncAPIResource):
           order_by: The field used to sort returned cookies.
 
           page: The current page number of the paginated results.
+
+              We additionally support a special value "all". When "all" is used, the API will
+              return all the cookies with the applied filters in a single page. This feature
+              is best-effort and it may only work for zones with a low number of cookies
 
           page_url: Includes connections that match one or more page URLs (separated by commas)
               where they were last seen
@@ -260,8 +263,7 @@ class AsyncCookiesResource(AsyncAPIResource):
 
           domain: Filters the returned cookies that match the specified domain attribute
 
-          export: Export the list of cookies as a file. Cannot be used with per_page or page
-              options.
+          export: Export the list of cookies as a file.
 
           hosts: Includes cookies that match one or more URL-encoded hostnames separated by
               commas.
@@ -279,6 +281,10 @@ class AsyncCookiesResource(AsyncAPIResource):
           order_by: The field used to sort returned cookies.
 
           page: The current page number of the paginated results.
+
+              We additionally support a special value "all". When "all" is used, the API will
+              return all the cookies with the applied filters in a single page. This feature
+              is best-effort and it may only work for zones with a low number of cookies
 
           page_url: Includes connections that match one or more page URLs (separated by commas)
               where they were last seen

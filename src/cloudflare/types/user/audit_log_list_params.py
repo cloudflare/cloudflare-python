@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from datetime import datetime
+from datetime import date, datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
@@ -19,11 +19,10 @@ class AuditLogListParams(TypedDict, total=False):
 
     actor: Actor
 
-    before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    before: Annotated[Union[Union[str, date], Union[str, datetime]], PropertyInfo(format="iso8601")]
     """Limits the returned results to logs older than the specified date.
 
-    This can be a date string `2019-04-30` or an absolute timestamp that conforms to
-    RFC3339.
+    A `full-date` that conforms to RFC3339.
     """
 
     direction: Literal["desc", "asc"]
@@ -41,11 +40,10 @@ class AuditLogListParams(TypedDict, total=False):
     per_page: float
     """Sets the number of results to return per page."""
 
-    since: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    since: Annotated[Union[Union[str, date], Union[str, datetime]], PropertyInfo(format="iso8601")]
     """Limits the returned results to logs newer than the specified date.
 
-    This can be a date string `2019-04-30` or an absolute timestamp that conforms to
-    RFC3339.
+    A `full-date` that conforms to RFC3339.
     """
 
     zone: Zone

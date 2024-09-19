@@ -75,6 +75,10 @@ class AutomaticSpeechRecognition(TypedDict, total=False):
 
     audio: Required[Iterable[float]]
 
+    source_lang: str
+
+    target_lang: str
+
 
 class ImageClassification(TypedDict, total=False):
     account_id: Required[str]
