@@ -71,9 +71,9 @@ class ConfigurationResource(SyncAPIResource):
         produced.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          bucket_name: Identifier.
+          bucket_name: Identifier
 
           extra_headers: Send extra headers
 
@@ -141,9 +141,9 @@ class AsyncConfigurationResource(AsyncAPIResource):
         produced.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
-          bucket_name: Identifier.
+          bucket_name: Identifier
 
           extra_headers: Send extra headers
 
