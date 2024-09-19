@@ -57,7 +57,9 @@ class IntegrationsResource(SyncAPIResource):
         config: integration_create_params.Config,
         interval: str,
         name: str,
-        type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"],
+        type: Literal[
+            "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+        ],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -198,7 +200,9 @@ class IntegrationsResource(SyncAPIResource):
         config: integration_edit_params.Config | NotGiven = NOT_GIVEN,
         interval: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"]
+        type: Literal[
+            "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+        ]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -325,7 +329,9 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         config: integration_create_params.Config,
         interval: str,
         name: str,
-        type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"],
+        type: Literal[
+            "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+        ],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -466,7 +472,9 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         config: integration_edit_params.Config | NotGiven = NOT_GIVEN,
         interval: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"]
+        type: Literal[
+            "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+        ]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

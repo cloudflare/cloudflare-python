@@ -83,8 +83,7 @@ class ConnectionsResource(SyncAPIResource):
           exclude_urls: Excludes connections whose URL contains one of the URL-encoded URLs separated by
               commas.
 
-          export: Export the list of connections as a file. Cannot be used with per_page or page
-              options.
+          export: Export the list of connections as a file.
 
           hosts: Includes connections that match one or more URL-encoded hostnames separated by
               commas.
@@ -98,10 +97,9 @@ class ConnectionsResource(SyncAPIResource):
           page: The current page number of the paginated results.
 
               We additionally support a special value "all". When "all" is used, the API will
-              return all the connections with the applied filters in a single page.
-              Additionally, when using this value, the API will not return the categorisation
-              data for the URL and domain of the connections. This feature is best-effort and
-              it may only work for zones with a low number of connections
+              return all the connections with the applied filters in a single page. This
+              feature is best-effort and it may only work for zones with a low number of
+              connections
 
           page_url: Includes connections that match one or more page URLs (separated by commas)
               where they were last seen
@@ -262,8 +260,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
           exclude_urls: Excludes connections whose URL contains one of the URL-encoded URLs separated by
               commas.
 
-          export: Export the list of connections as a file. Cannot be used with per_page or page
-              options.
+          export: Export the list of connections as a file.
 
           hosts: Includes connections that match one or more URL-encoded hostnames separated by
               commas.
@@ -277,10 +274,9 @@ class AsyncConnectionsResource(AsyncAPIResource):
           page: The current page number of the paginated results.
 
               We additionally support a special value "all". When "all" is used, the API will
-              return all the connections with the applied filters in a single page.
-              Additionally, when using this value, the API will not return the categorisation
-              data for the URL and domain of the connections. This feature is best-effort and
-              it may only work for zones with a low number of connections
+              return all the connections with the applied filters in a single page. This
+              feature is best-effort and it may only work for zones with a low number of
+              connections
 
           page_url: Includes connections that match one or more page URLs (separated by commas)
               where they were last seen

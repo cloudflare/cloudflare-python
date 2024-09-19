@@ -68,7 +68,7 @@ class PriorityResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Priority]:
         """
-        Create a New Priority Requirement
+        Create a New Priority Intelligence Requirement
 
         Args:
           account_identifier: Identifier
@@ -190,7 +190,7 @@ class PriorityResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PriorityDeleteResponse:
         """
-        Delete a Priority Intelligence Report
+        Delete a Priority Intelligence Requirement
 
         Args:
           account_identifier: Identifier
@@ -337,7 +337,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Priority]:
         """
-        Create a New Priority Requirement
+        Create a New Priority Intelligence Requirement
 
         Args:
           account_identifier: Identifier
@@ -459,7 +459,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PriorityDeleteResponse:
         """
-        Delete a Priority Intelligence Report
+        Delete a Priority Intelligence Requirement
 
         Args:
           account_identifier: Identifier

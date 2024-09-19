@@ -54,7 +54,7 @@ class FullResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Configuration:
         """
-        Lists default sampling, router IPs, and rules for account.
+        Lists default sampling, router IPs, warp devices, and rules for account.
 
         Args:
           extra_headers: Send extra headers
@@ -112,7 +112,7 @@ class AsyncFullResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Configuration:
         """
-        Lists default sampling, router IPs, and rules for account.
+        Lists default sampling, router IPs, warp devices, and rules for account.
 
         Args:
           extra_headers: Send extra headers

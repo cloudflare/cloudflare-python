@@ -68,6 +68,9 @@ class CustomNameserversResource(SyncAPIResource):
         default, use PUT /accounts/:identifier to set the account setting
         use_account_custom_ns_by_default to true.
 
+        Deprecated in favor of
+        [Update DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-update-dns-settings).
+
         Args:
           zone_id: Identifier
 
@@ -114,9 +117,12 @@ class CustomNameserversResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverGetResponse]:
+    ) -> CustomNameserverGetResponse:
         """
         Get metadata for account-level custom nameservers on a zone.
+
+        Deprecated in favor of
+        [Show DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-list-dns-settings).
 
         Args:
           zone_id: Identifier
@@ -134,13 +140,9 @@ class CustomNameserversResource(SyncAPIResource):
         return self._get(
             f"/zones/{zone_id}/custom_ns",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomNameserverGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomNameserverGetResponse]], ResultWrapper[CustomNameserverGetResponse]),
+            cast_to=CustomNameserverGetResponse,
         )
 
 
@@ -183,6 +185,9 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         If you would like new zones in the account to use account custom nameservers by
         default, use PUT /accounts/:identifier to set the account setting
         use_account_custom_ns_by_default to true.
+
+        Deprecated in favor of
+        [Update DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-update-dns-settings).
 
         Args:
           zone_id: Identifier
@@ -230,9 +235,12 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverGetResponse]:
+    ) -> CustomNameserverGetResponse:
         """
         Get metadata for account-level custom nameservers on a zone.
+
+        Deprecated in favor of
+        [Show DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-list-dns-settings).
 
         Args:
           zone_id: Identifier
@@ -250,13 +258,9 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         return await self._get(
             f"/zones/{zone_id}/custom_ns",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomNameserverGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomNameserverGetResponse]], ResultWrapper[CustomNameserverGetResponse]),
+            cast_to=CustomNameserverGetResponse,
         )
 
 
