@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -60,7 +60,7 @@ class SmartTieredCacheResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheDeleteResponse]:
+    ) -> SmartTieredCacheDeleteResponse:
         """
         Remvoves enablement of Smart Tiered Cache
 
@@ -84,9 +84,9 @@ class SmartTieredCacheResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[SmartTieredCacheDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SmartTieredCacheDeleteResponse]], ResultWrapper[SmartTieredCacheDeleteResponse]),
+            cast_to=cast(Type[SmartTieredCacheDeleteResponse], ResultWrapper[SmartTieredCacheDeleteResponse]),
         )
 
     def edit(
@@ -100,7 +100,7 @@ class SmartTieredCacheResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheEditResponse]:
+    ) -> SmartTieredCacheEditResponse:
         """
         Updates enablement of Tiered Cache
 
@@ -127,9 +127,9 @@ class SmartTieredCacheResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[SmartTieredCacheEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SmartTieredCacheEditResponse]], ResultWrapper[SmartTieredCacheEditResponse]),
+            cast_to=cast(Type[SmartTieredCacheEditResponse], ResultWrapper[SmartTieredCacheEditResponse]),
         )
 
     def get(
@@ -142,7 +142,7 @@ class SmartTieredCacheResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheGetResponse]:
+    ) -> SmartTieredCacheGetResponse:
         """
         Get Smart Tiered Cache setting
 
@@ -166,9 +166,9 @@ class SmartTieredCacheResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[SmartTieredCacheGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SmartTieredCacheGetResponse]], ResultWrapper[SmartTieredCacheGetResponse]),
+            cast_to=cast(Type[SmartTieredCacheGetResponse], ResultWrapper[SmartTieredCacheGetResponse]),
         )
 
 
@@ -202,7 +202,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheDeleteResponse]:
+    ) -> SmartTieredCacheDeleteResponse:
         """
         Remvoves enablement of Smart Tiered Cache
 
@@ -226,9 +226,9 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[SmartTieredCacheDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SmartTieredCacheDeleteResponse]], ResultWrapper[SmartTieredCacheDeleteResponse]),
+            cast_to=cast(Type[SmartTieredCacheDeleteResponse], ResultWrapper[SmartTieredCacheDeleteResponse]),
         )
 
     async def edit(
@@ -242,7 +242,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheEditResponse]:
+    ) -> SmartTieredCacheEditResponse:
         """
         Updates enablement of Tiered Cache
 
@@ -271,9 +271,9 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[SmartTieredCacheEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SmartTieredCacheEditResponse]], ResultWrapper[SmartTieredCacheEditResponse]),
+            cast_to=cast(Type[SmartTieredCacheEditResponse], ResultWrapper[SmartTieredCacheEditResponse]),
         )
 
     async def get(
@@ -286,7 +286,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheGetResponse]:
+    ) -> SmartTieredCacheGetResponse:
         """
         Get Smart Tiered Cache setting
 
@@ -310,9 +310,9 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[SmartTieredCacheGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SmartTieredCacheGetResponse]], ResultWrapper[SmartTieredCacheGetResponse]),
+            cast_to=cast(Type[SmartTieredCacheGetResponse], ResultWrapper[SmartTieredCacheGetResponse]),
         )
 
 
