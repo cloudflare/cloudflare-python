@@ -1078,7 +1078,7 @@ class SetCacheSettingsRuleActionParametersCacheReserve(TypedDict, total=False):
     the resource to cache reserve.
     """
 
-    minimum_file_size: Required[int]
+    min_file_size: Required[int]
     """The minimum file size eligible for store in cache reserve."""
 
 

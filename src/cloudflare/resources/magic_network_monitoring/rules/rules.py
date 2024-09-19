@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -64,12 +64,7 @@ class RulesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        duration: str,
-        name: str,
-        automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
-        bandwidth: float | NotGiven = NOT_GIVEN,
-        packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -83,26 +78,6 @@ class RulesResource(SyncAPIResource):
         single rule per API request.
 
         Args:
-          duration: The amount of time that the rule threshold must be exceeded to send an alert
-              notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"]. The format is
-              AhBmCsDmsEusFns where A, B, C, D, E and F durations are optional; however at
-              least one unit must be provided.
-
-          name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
-              underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
-              the rule name. Max 256 characters.
-
-          automatic_advertisement: Toggle on if you would like Cloudflare to automatically advertise the IP
-              Prefixes within the rule via Magic Transit when the rule is triggered. Only
-              available for users of Magic Transit.
-
-          bandwidth: The number of bits per second for the rule. When this value is exceeded for the
-              set duration, an alert notification is sent. Minimum of 1 and no maximum.
-
-          packet_threshold: The number of packets per second for the rule. When this value is exceeded for
-              the set duration, an alert notification is sent. Minimum of 1 and no maximum.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -115,17 +90,7 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/mnm/rules",
-            body=maybe_transform(
-                {
-                    "duration": duration,
-                    "name": name,
-                    "automatic_advertisement": automatic_advertisement,
-                    "bandwidth": bandwidth,
-                    "packet_threshold": packet_threshold,
-                    "prefixes": prefixes,
-                },
-                rule_create_params.RuleCreateParams,
-            ),
+            body=maybe_transform(body, rule_create_params.RuleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -140,13 +105,7 @@ class RulesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        duration: str,
-        name: str,
-        id: str | NotGiven = NOT_GIVEN,
-        automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
-        bandwidth: float | NotGiven = NOT_GIVEN,
-        packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -158,28 +117,6 @@ class RulesResource(SyncAPIResource):
         Update network monitoring rules for account.
 
         Args:
-          duration: The amount of time that the rule threshold must be exceeded to send an alert
-              notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"]. The format is
-              AhBmCsDmsEusFns where A, B, C, D, E and F durations are optional; however at
-              least one unit must be provided.
-
-          name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
-              underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
-              the rule name. Max 256 characters.
-
-          id: The id of the rule. Must be unique.
-
-          automatic_advertisement: Toggle on if you would like Cloudflare to automatically advertise the IP
-              Prefixes within the rule via Magic Transit when the rule is triggered. Only
-              available for users of Magic Transit.
-
-          bandwidth: The number of bits per second for the rule. When this value is exceeded for the
-              set duration, an alert notification is sent. Minimum of 1 and no maximum.
-
-          packet_threshold: The number of packets per second for the rule. When this value is exceeded for
-              the set duration, an alert notification is sent. Minimum of 1 and no maximum.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -192,18 +129,7 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
             f"/accounts/{account_id}/mnm/rules",
-            body=maybe_transform(
-                {
-                    "duration": duration,
-                    "name": name,
-                    "id": id,
-                    "automatic_advertisement": automatic_advertisement,
-                    "bandwidth": bandwidth,
-                    "packet_threshold": packet_threshold,
-                    "prefixes": prefixes,
-                },
-                rule_update_params.RuleUpdateParams,
-            ),
+            body=maybe_transform(body, rule_update_params.RuleUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -295,12 +221,7 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
-        automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
-        bandwidth: float | NotGiven = NOT_GIVEN,
-        duration: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -313,26 +234,6 @@ class RulesResource(SyncAPIResource):
 
         Args:
           rule_id: The id of the rule. Must be unique.
-
-          automatic_advertisement: Toggle on if you would like Cloudflare to automatically advertise the IP
-              Prefixes within the rule via Magic Transit when the rule is triggered. Only
-              available for users of Magic Transit.
-
-          bandwidth: The number of bits per second for the rule. When this value is exceeded for the
-              set duration, an alert notification is sent. Minimum of 1 and no maximum.
-
-          duration: The amount of time that the rule threshold must be exceeded to send an alert
-              notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"]. The format is
-              AhBmCsDmsEusFns where A, B, C, D, E and F durations are optional; however at
-              least one unit must be provided.
-
-          name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
-              underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
-              the rule name. Max 256 characters.
-
-          packet_threshold: The number of packets per second for the rule. When this value is exceeded for
-              the set duration, an alert notification is sent. Minimum of 1 and no maximum.
 
           extra_headers: Send extra headers
 
@@ -348,17 +249,7 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return self._patch(
             f"/accounts/{account_id}/mnm/rules/{rule_id}",
-            body=maybe_transform(
-                {
-                    "automatic_advertisement": automatic_advertisement,
-                    "bandwidth": bandwidth,
-                    "duration": duration,
-                    "name": name,
-                    "packet_threshold": packet_threshold,
-                    "prefixes": prefixes,
-                },
-                rule_edit_params.RuleEditParams,
-            ),
+            body=maybe_transform(body, rule_edit_params.RuleEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -440,12 +331,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        duration: str,
-        name: str,
-        automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
-        bandwidth: float | NotGiven = NOT_GIVEN,
-        packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -459,26 +345,6 @@ class AsyncRulesResource(AsyncAPIResource):
         single rule per API request.
 
         Args:
-          duration: The amount of time that the rule threshold must be exceeded to send an alert
-              notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"]. The format is
-              AhBmCsDmsEusFns where A, B, C, D, E and F durations are optional; however at
-              least one unit must be provided.
-
-          name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
-              underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
-              the rule name. Max 256 characters.
-
-          automatic_advertisement: Toggle on if you would like Cloudflare to automatically advertise the IP
-              Prefixes within the rule via Magic Transit when the rule is triggered. Only
-              available for users of Magic Transit.
-
-          bandwidth: The number of bits per second for the rule. When this value is exceeded for the
-              set duration, an alert notification is sent. Minimum of 1 and no maximum.
-
-          packet_threshold: The number of packets per second for the rule. When this value is exceeded for
-              the set duration, an alert notification is sent. Minimum of 1 and no maximum.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -491,17 +357,7 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/mnm/rules",
-            body=await async_maybe_transform(
-                {
-                    "duration": duration,
-                    "name": name,
-                    "automatic_advertisement": automatic_advertisement,
-                    "bandwidth": bandwidth,
-                    "packet_threshold": packet_threshold,
-                    "prefixes": prefixes,
-                },
-                rule_create_params.RuleCreateParams,
-            ),
+            body=await async_maybe_transform(body, rule_create_params.RuleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -516,13 +372,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        duration: str,
-        name: str,
-        id: str | NotGiven = NOT_GIVEN,
-        automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
-        bandwidth: float | NotGiven = NOT_GIVEN,
-        packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -534,28 +384,6 @@ class AsyncRulesResource(AsyncAPIResource):
         Update network monitoring rules for account.
 
         Args:
-          duration: The amount of time that the rule threshold must be exceeded to send an alert
-              notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"]. The format is
-              AhBmCsDmsEusFns where A, B, C, D, E and F durations are optional; however at
-              least one unit must be provided.
-
-          name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
-              underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
-              the rule name. Max 256 characters.
-
-          id: The id of the rule. Must be unique.
-
-          automatic_advertisement: Toggle on if you would like Cloudflare to automatically advertise the IP
-              Prefixes within the rule via Magic Transit when the rule is triggered. Only
-              available for users of Magic Transit.
-
-          bandwidth: The number of bits per second for the rule. When this value is exceeded for the
-              set duration, an alert notification is sent. Minimum of 1 and no maximum.
-
-          packet_threshold: The number of packets per second for the rule. When this value is exceeded for
-              the set duration, an alert notification is sent. Minimum of 1 and no maximum.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -568,18 +396,7 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/mnm/rules",
-            body=await async_maybe_transform(
-                {
-                    "duration": duration,
-                    "name": name,
-                    "id": id,
-                    "automatic_advertisement": automatic_advertisement,
-                    "bandwidth": bandwidth,
-                    "packet_threshold": packet_threshold,
-                    "prefixes": prefixes,
-                },
-                rule_update_params.RuleUpdateParams,
-            ),
+            body=await async_maybe_transform(body, rule_update_params.RuleUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -671,12 +488,7 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         account_id: str,
-        automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
-        bandwidth: float | NotGiven = NOT_GIVEN,
-        duration: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        packet_threshold: float | NotGiven = NOT_GIVEN,
-        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -689,26 +501,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
         Args:
           rule_id: The id of the rule. Must be unique.
-
-          automatic_advertisement: Toggle on if you would like Cloudflare to automatically advertise the IP
-              Prefixes within the rule via Magic Transit when the rule is triggered. Only
-              available for users of Magic Transit.
-
-          bandwidth: The number of bits per second for the rule. When this value is exceeded for the
-              set duration, an alert notification is sent. Minimum of 1 and no maximum.
-
-          duration: The amount of time that the rule threshold must be exceeded to send an alert
-              notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"]. The format is
-              AhBmCsDmsEusFns where A, B, C, D, E and F durations are optional; however at
-              least one unit must be provided.
-
-          name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
-              underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
-              the rule name. Max 256 characters.
-
-          packet_threshold: The number of packets per second for the rule. When this value is exceeded for
-              the set duration, an alert notification is sent. Minimum of 1 and no maximum.
 
           extra_headers: Send extra headers
 
@@ -724,17 +516,7 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/mnm/rules/{rule_id}",
-            body=await async_maybe_transform(
-                {
-                    "automatic_advertisement": automatic_advertisement,
-                    "bandwidth": bandwidth,
-                    "duration": duration,
-                    "name": name,
-                    "packet_threshold": packet_threshold,
-                    "prefixes": prefixes,
-                },
-                rule_edit_params.RuleEditParams,
-            ),
+            body=await async_maybe_transform(body, rule_edit_params.RuleEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -4,15 +4,7 @@ from typing import List
 
 from ..._models import BaseModel
 
-__all__ = ["Configuration", "WARPDevice"]
-
-
-class WARPDevice(BaseModel):
-    id: str
-    """Unique identifier for the warp device."""
-
-    name: str
-    """Name of the warp device."""
+__all__ = ["Configuration"]
 
 
 class Configuration(BaseModel):
@@ -26,5 +18,3 @@ class Configuration(BaseModel):
     """The account name."""
 
     router_ips: List[str]
-
-    warp_devices: List[WARPDevice]

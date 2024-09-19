@@ -42,9 +42,6 @@ class MigrationStepParam(TypedDict, total=False):
     new_classes: List[str]
     """A list of classes to create Durable Object namespaces from."""
 
-    new_sqlite_classes: List[str]
-    """A list of classes to create Durable Object namespaces with SQLite from."""
-
     renamed_classes: Iterable[RenamedClass]
     """A list of classes with Durable Object namespaces that were renamed."""
 

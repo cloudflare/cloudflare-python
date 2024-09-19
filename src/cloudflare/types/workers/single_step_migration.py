@@ -30,9 +30,6 @@ class SingleStepMigration(BaseModel):
     new_classes: Optional[List[str]] = None
     """A list of classes to create Durable Object namespaces from."""
 
-    new_sqlite_classes: Optional[List[str]] = None
-    """A list of classes to create Durable Object namespaces with SQLite from."""
-
     new_tag: Optional[str] = None
     """Tag to set as the latest migration tag."""
 

@@ -26,15 +26,6 @@ class TestPatterns:
         assert_matches_type(Optional[PatternValidateResponse], pattern, path=["response"])
 
     @parametrize
-    def test_method_validate_with_all_params(self, client: Cloudflare) -> None:
-        pattern = client.zero_trust.dlp.patterns.validate(
-            account_id="account_id",
-            regex="regex",
-            max_match_bytes=0,
-        )
-        assert_matches_type(Optional[PatternValidateResponse], pattern, path=["response"])
-
-    @parametrize
     def test_raw_response_validate(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.patterns.with_raw_response.validate(
             account_id="account_id",
@@ -77,15 +68,6 @@ class TestAsyncPatterns:
         pattern = await async_client.zero_trust.dlp.patterns.validate(
             account_id="account_id",
             regex="regex",
-        )
-        assert_matches_type(Optional[PatternValidateResponse], pattern, path=["response"])
-
-    @parametrize
-    async def test_method_validate_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        pattern = await async_client.zero_trust.dlp.patterns.validate(
-            account_id="account_id",
-            regex="regex",
-            max_match_bytes=0,
         )
         assert_matches_type(Optional[PatternValidateResponse], pattern, path=["response"])
 

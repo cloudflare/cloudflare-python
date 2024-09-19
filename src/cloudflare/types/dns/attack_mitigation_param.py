@@ -10,9 +10,9 @@ __all__ = ["AttackMitigationParam"]
 class AttackMitigationParam(TypedDict, total=False):
     enabled: bool
     """
-    When enabled, automatically mitigate random-prefix attacks to protect upstream
-    DNS servers
+    When enabled, random-prefix attacks are automatically mitigated and the upstream
+    DNS servers protected.
     """
 
     only_when_upstream_unhealthy: bool
-    """Only mitigate attacks when upstream servers seem unhealthy"""
+    """Only mitigate attacks when upstream servers seem unhealthy."""

@@ -42,9 +42,6 @@ class SingleStepMigrationParam(TypedDict, total=False):
     new_classes: List[str]
     """A list of classes to create Durable Object namespaces from."""
 
-    new_sqlite_classes: List[str]
-    """A list of classes to create Durable Object namespaces with SQLite from."""
-
     new_tag: str
     """Tag to set as the latest migration tag."""
 

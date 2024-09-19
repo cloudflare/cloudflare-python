@@ -30,9 +30,6 @@ class MigrationStep(BaseModel):
     new_classes: Optional[List[str]] = None
     """A list of classes to create Durable Object namespaces from."""
 
-    new_sqlite_classes: Optional[List[str]] = None
-    """A list of classes to create Durable Object namespaces with SQLite from."""
-
     renamed_classes: Optional[List[RenamedClass]] = None
     """A list of classes with Durable Object namespaces that were renamed."""
 
