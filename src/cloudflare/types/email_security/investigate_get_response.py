@@ -42,22 +42,6 @@ class InvestigateGetResponse(BaseModel):
 
     alert_id: Optional[str] = None
 
-    delivery_mode: Optional[
-        Literal[
-            "DIRECT",
-            "BCC",
-            "JOURNAL",
-            "REVIEW_SUBMISSION",
-            "DMARC_UNVERIFIED",
-            "DMARC_FAILURE_REPORT",
-            "DMARC_AGGREGATE_REPORT",
-            "THREAT_INTEL_SUBMISSION",
-            "SIMULATION_SUBMISSION",
-            "API",
-            "RETRO_SCAN",
-        ]
-    ] = None
-
     edf_hash: Optional[str] = None
 
     final_disposition: Optional[

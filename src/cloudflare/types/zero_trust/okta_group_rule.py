@@ -8,11 +8,11 @@ __all__ = ["OktaGroupRule", "Okta"]
 
 
 class Okta(BaseModel):
-    identity_provider_id: str
+    connection_id: str
     """The ID of your Okta identity provider."""
 
-    name: str
-    """The name of the Okta group."""
+    email: str
+    """The email of the Okta group."""
 
 
 class OktaGroupRule(BaseModel):

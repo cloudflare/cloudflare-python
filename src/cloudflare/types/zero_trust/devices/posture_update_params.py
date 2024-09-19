@@ -39,7 +39,6 @@ class PostureUpdateParams(TypedDict, total=False):
             "intune",
             "workspace_one",
             "sentinelone_s2s",
-            "custom_s2s",
         ]
     ]
     """The type of device posture rule."""

@@ -1221,7 +1221,7 @@ class TestRules:
                 },
                 "cache_reserve": {
                     "eligible": True,
-                    "minimum_file_size": 0,
+                    "min_file_size": 0,
                 },
                 "edge_ttl": {
                     "default": 0,
@@ -3024,7 +3024,7 @@ class TestRules:
                 },
                 "cache_reserve": {
                     "eligible": True,
-                    "minimum_file_size": 0,
+                    "min_file_size": 0,
                 },
                 "edge_ttl": {
                     "default": 0,
@@ -4606,7 +4606,7 @@ class TestAsyncRules:
                 },
                 "cache_reserve": {
                     "eligible": True,
-                    "minimum_file_size": 0,
+                    "min_file_size": 0,
                 },
                 "edge_ttl": {
                     "default": 0,
@@ -6409,7 +6409,7 @@ class TestAsyncRules:
                 },
                 "cache_reserve": {
                     "eligible": True,
-                    "minimum_file_size": 0,
+                    "min_file_size": 0,
                 },
                 "edge_ttl": {
                     "default": 0,

@@ -8,11 +8,11 @@ __all__ = ["OktaGroupRuleParam", "Okta"]
 
 
 class Okta(TypedDict, total=False):
-    identity_provider_id: Required[str]
+    connection_id: Required[str]
     """The ID of your Okta identity provider."""
 
-    name: Required[str]
-    """The name of the Okta group."""
+    email: Required[str]
+    """The email of the Okta group."""
 
 
 class OktaGroupRuleParam(TypedDict, total=False):

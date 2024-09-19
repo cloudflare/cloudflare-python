@@ -61,7 +61,6 @@ class DevicePostureRule(BaseModel):
             "intune",
             "workspace_one",
             "sentinelone_s2s",
-            "custom_s2s",
         ]
     ] = None
     """The type of device posture rule."""

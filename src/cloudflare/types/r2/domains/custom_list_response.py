@@ -27,12 +27,6 @@ class Domain(BaseModel):
 
     status: DomainStatus
 
-    min_tls: Optional[Literal["1.0", "1.1", "1.2", "1.3"]] = FieldInfo(alias="minTLS", default=None)
-    """Minimum TLS Version the custom domain will accept for incoming connections.
-
-    If not set, defaults to 1.0.
-    """
-
     zone_id: Optional[str] = FieldInfo(alias="zoneId", default=None)
     """Zone ID of the custom domain resides in"""
 

@@ -130,7 +130,7 @@ class TestDomains:
             domain_id=2400,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="domain",
-            lookback_hops=1,
+            lookback_hops=0,
         )
         assert_matches_type(DomainEditResponse, domain, path=["response"])
 
@@ -280,7 +280,7 @@ class TestAsyncDomains:
             domain_id=2400,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="domain",
-            lookback_hops=1,
+            lookback_hops=0,
         )
         assert_matches_type(DomainEditResponse, domain, path=["response"])
 
