@@ -845,6 +845,7 @@ class TestCloudflare:
         response = client.zones.with_raw_response.create(account={}, name="example.com")
 
         assert response.retries_taken == failures_before_success
+        assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
 
 class TestAsyncCloudflare:
@@ -1658,3 +1659,4 @@ class TestAsyncCloudflare:
         response = await client.zones.with_raw_response.create(account={}, name="example.com")
 
         assert response.retries_taken == failures_before_success
+        assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
