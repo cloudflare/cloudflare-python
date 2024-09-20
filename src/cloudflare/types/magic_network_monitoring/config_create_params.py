@@ -31,3 +31,9 @@ class WARPDevice(TypedDict, total=False):
 
     name: Required[str]
     """Name of the warp device."""
+
+    router_ip: Required[str]
+    """IPv4 CIDR of the router sourcing flow data associated with this warp device.
+
+    Only /32 addresses are currently supported.
+    """
