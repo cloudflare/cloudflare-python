@@ -9,7 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.kv import Namespace
+from cloudflare.types.kv import (
+    Namespace,
+    NamespaceDeleteResponse,
+    NamespaceUpdateResponse,
+)
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -67,7 +71,7 @@ class TestNamespaces:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
         )
-        assert_matches_type(object, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceUpdateResponse], namespace, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -80,7 +84,7 @@ class TestNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = response.parse()
-        assert_matches_type(object, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceUpdateResponse], namespace, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -93,7 +97,7 @@ class TestNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = response.parse()
-            assert_matches_type(object, namespace, path=["response"])
+            assert_matches_type(Optional[NamespaceUpdateResponse], namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -168,7 +172,7 @@ class TestNamespaces:
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceDeleteResponse], namespace, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -180,7 +184,7 @@ class TestNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = response.parse()
-        assert_matches_type(object, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceDeleteResponse], namespace, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -192,7 +196,7 @@ class TestNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = response.parse()
-            assert_matches_type(object, namespace, path=["response"])
+            assert_matches_type(Optional[NamespaceDeleteResponse], namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -311,7 +315,7 @@ class TestAsyncNamespaces:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
         )
-        assert_matches_type(object, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceUpdateResponse], namespace, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -324,7 +328,7 @@ class TestAsyncNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = await response.parse()
-        assert_matches_type(object, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceUpdateResponse], namespace, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -337,7 +341,7 @@ class TestAsyncNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = await response.parse()
-            assert_matches_type(object, namespace, path=["response"])
+            assert_matches_type(Optional[NamespaceUpdateResponse], namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -412,7 +416,7 @@ class TestAsyncNamespaces:
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceDeleteResponse], namespace, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -424,7 +428,7 @@ class TestAsyncNamespaces:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         namespace = await response.parse()
-        assert_matches_type(object, namespace, path=["response"])
+        assert_matches_type(Optional[NamespaceDeleteResponse], namespace, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -436,7 +440,7 @@ class TestAsyncNamespaces:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             namespace = await response.parse()
-            assert_matches_type(object, namespace, path=["response"])
+            assert_matches_type(Optional[NamespaceDeleteResponse], namespace, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
