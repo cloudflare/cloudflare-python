@@ -2,11 +2,15 @@
 
 from __future__ import annotations
 
+from .tests import Tests as Tests
 from .live_stat import LiveStat as LiveStat
 from .traceroute import Traceroute as Traceroute
 from .http_details import HTTPDetails as HTTPDetails
 from .colo_list_params import ColoListParams as ColoListParams
+from .test_list_params import TestListParams as TestListParams
+from .test_list_response import TestListResponse as TestListResponse
 from .http_test_get_params import HTTPTestGetParams as HTTPTestGetParams
+from .aggregate_time_period import AggregateTimePeriod as AggregateTimePeriod
 from .fleet_status_live_params import FleetStatusLiveParams as FleetStatusLiveParams
 from .fleet_status_live_response import FleetStatusLiveResponse as FleetStatusLiveResponse
 from .traceroute_test_get_params import TracerouteTestGetParams as TracerouteTestGetParams
