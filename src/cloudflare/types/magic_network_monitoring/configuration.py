@@ -14,6 +14,12 @@ class WARPDevice(BaseModel):
     name: str
     """Name of the warp device."""
 
+    router_ip: str
+    """IPv4 CIDR of the router sourcing flow data associated with this warp device.
+
+    Only /32 addresses are currently supported.
+    """
+
 
 class Configuration(BaseModel):
     default_sampling: float
