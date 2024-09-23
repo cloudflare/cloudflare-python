@@ -448,7 +448,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDeviceTypeResponse:
         """
-        Get a time series of the percentage distribution of traffic per device type.
+        Get a time series of the percentage distribution of traffic by device type.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -559,7 +559,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupHTTPProtocolResponse:
         """
-        Get a time series of the percentage distribution of traffic per HTTP protocol.
+        Get a time series of the percentage distribution of traffic by HTTP protocol.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -670,8 +670,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupHTTPVersionResponse:
         """
-        Get a time series of the percentage distribution of traffic per HTTP protocol
-        version.
+        Get a time series of the percentage distribution of traffic by HTTP version.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -782,8 +781,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Get a time series of the percentage distribution of traffic per IP protocol
-        version.
+        Get a time series of the percentage distribution of traffic by IP version.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -1006,7 +1004,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupPostQuantumResponse:
         """
-        Get a time series of the percentage distribution of traffic per Post Quantum
+        Get a time series of the percentage distribution of traffic by post-quantum
         suport.
 
         Args:
@@ -1121,7 +1119,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupTLSVersionResponse:
         """
-        Get a time series of the percentage distribution of traffic per TLS protocol
+        Get a time series of the percentage distribution of traffic by TLS protocol
         version.
 
         Args:
@@ -1606,7 +1604,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDeviceTypeResponse:
         """
-        Get a time series of the percentage distribution of traffic per device type.
+        Get a time series of the percentage distribution of traffic by device type.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -1717,7 +1715,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupHTTPProtocolResponse:
         """
-        Get a time series of the percentage distribution of traffic per HTTP protocol.
+        Get a time series of the percentage distribution of traffic by HTTP protocol.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -1828,8 +1826,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupHTTPVersionResponse:
         """
-        Get a time series of the percentage distribution of traffic per HTTP protocol
-        version.
+        Get a time series of the percentage distribution of traffic by HTTP version.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -1940,8 +1937,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Get a time series of the percentage distribution of traffic per IP protocol
-        version.
+        Get a time series of the percentage distribution of traffic by IP version.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -2164,7 +2160,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupPostQuantumResponse:
         """
-        Get a time series of the percentage distribution of traffic per Post Quantum
+        Get a time series of the percentage distribution of traffic by post-quantum
         suport.
 
         Args:
@@ -2279,7 +2275,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupTLSVersionResponse:
         """
-        Get a time series of the percentage distribution of traffic per TLS protocol
+        Get a time series of the percentage distribution of traffic by TLS protocol
         version.
 
         Args:

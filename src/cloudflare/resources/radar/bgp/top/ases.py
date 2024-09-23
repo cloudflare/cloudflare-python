@@ -69,10 +69,9 @@ class AsesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AseGetResponse:
-        """Get the top autonomous systems (AS) by BGP updates (announcements only).
-
-        Values
-        are a percentage out of the total updates.
+        """
+        Get the top autonomous systems (ASes) by BGP updates (announcements only).
+        Values are a percentage out of the total updates.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -224,10 +223,9 @@ class AsyncAsesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AseGetResponse:
-        """Get the top autonomous systems (AS) by BGP updates (announcements only).
-
-        Values
-        are a percentage out of the total updates.
+        """
+        Get the top autonomous systems (ASes) by BGP updates (announcements only).
+        Values are a percentage out of the total updates.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.

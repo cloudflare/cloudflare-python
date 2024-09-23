@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .ai import (
-    AIResource,
-    AsyncAIResource,
-    AIResourceWithRawResponse,
-    AsyncAIResourceWithRawResponse,
-    AIResourceWithStreamingResponse,
-    AsyncAIResourceWithStreamingResponse,
-)
 from .bgp import (
     BGPResource,
     AsyncBGPResource,
@@ -34,7 +26,6 @@ from .http import (
     HTTPResourceWithStreamingResponse,
     AsyncHTTPResourceWithStreamingResponse,
 )
-from .ai.ai import AIResource, AsyncAIResource
 from .as112 import (
     AS112Resource,
     AsyncAS112Resource,
@@ -160,10 +151,6 @@ __all__ = ["RadarResource", "AsyncRadarResource"]
 
 class RadarResource(SyncAPIResource):
     @cached_property
-    def ai(self) -> AIResource:
-        return AIResource(self._client)
-
-    @cached_property
     def annotations(self) -> AnnotationsResource:
         return AnnotationsResource(self._client)
 
@@ -248,10 +235,6 @@ class RadarResource(SyncAPIResource):
 
 
 class AsyncRadarResource(AsyncAPIResource):
-    @cached_property
-    def ai(self) -> AsyncAIResource:
-        return AsyncAIResource(self._client)
-
     @cached_property
     def annotations(self) -> AsyncAnnotationsResource:
         return AsyncAnnotationsResource(self._client)
@@ -341,10 +324,6 @@ class RadarResourceWithRawResponse:
         self._radar = radar
 
     @cached_property
-    def ai(self) -> AIResourceWithRawResponse:
-        return AIResourceWithRawResponse(self._radar.ai)
-
-    @cached_property
     def annotations(self) -> AnnotationsResourceWithRawResponse:
         return AnnotationsResourceWithRawResponse(self._radar.annotations)
 
@@ -412,10 +391,6 @@ class RadarResourceWithRawResponse:
 class AsyncRadarResourceWithRawResponse:
     def __init__(self, radar: AsyncRadarResource) -> None:
         self._radar = radar
-
-    @cached_property
-    def ai(self) -> AsyncAIResourceWithRawResponse:
-        return AsyncAIResourceWithRawResponse(self._radar.ai)
 
     @cached_property
     def annotations(self) -> AsyncAnnotationsResourceWithRawResponse:
@@ -487,10 +462,6 @@ class RadarResourceWithStreamingResponse:
         self._radar = radar
 
     @cached_property
-    def ai(self) -> AIResourceWithStreamingResponse:
-        return AIResourceWithStreamingResponse(self._radar.ai)
-
-    @cached_property
     def annotations(self) -> AnnotationsResourceWithStreamingResponse:
         return AnnotationsResourceWithStreamingResponse(self._radar.annotations)
 
@@ -558,10 +529,6 @@ class RadarResourceWithStreamingResponse:
 class AsyncRadarResourceWithStreamingResponse:
     def __init__(self, radar: AsyncRadarResource) -> None:
         self._radar = radar
-
-    @cached_property
-    def ai(self) -> AsyncAIResourceWithStreamingResponse:
-        return AsyncAIResourceWithStreamingResponse(self._radar.ai)
 
     @cached_property
     def annotations(self) -> AsyncAnnotationsResourceWithStreamingResponse:

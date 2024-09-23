@@ -189,7 +189,7 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIndustryResponse:
         """
-        Get the Industry of attacks.
+        Get the industries targeted by attacks.
 
         Args:
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
@@ -274,7 +274,7 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopVerticalResponse:
         """
-        Get the Verticals of attacks.
+        Get the verticals targeted by attacks.
 
         Args:
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
@@ -489,7 +489,7 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIndustryResponse:
         """
-        Get the Industry of attacks.
+        Get the industries targeted by attacks.
 
         Args:
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
@@ -574,7 +574,7 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopVerticalResponse:
         """
-        Get the Verticals of attacks.
+        Get the verticals targeted by attacks.
 
         Args:
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start

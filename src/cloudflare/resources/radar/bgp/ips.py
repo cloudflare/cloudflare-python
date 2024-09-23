@@ -69,8 +69,8 @@ class IPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IPTimeseriesResponse:
         """
-        Gets time-series data for the announced IP space count, represented as the
-        number of IPv4 /24s and IPv6 /48s, for a given ASN.
+        Get time series data for the announced IP space count, represented as the number
+        of IPv4 /24s and IPv6 /48s, for a given ASN.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -170,8 +170,8 @@ class AsyncIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IPTimeseriesResponse:
         """
-        Gets time-series data for the announced IP space count, represented as the
-        number of IPv4 /24s and IPv6 /48s, for a given ASN.
+        Get time series data for the announced IP space count, represented as the number
+        of IPv4 /24s and IPv6 /48s, for a given ASN.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.

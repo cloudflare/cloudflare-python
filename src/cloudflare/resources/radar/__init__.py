@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .ai import (
-    AIResource,
-    AsyncAIResource,
-    AIResourceWithRawResponse,
-    AsyncAIResourceWithRawResponse,
-    AIResourceWithStreamingResponse,
-    AsyncAIResourceWithStreamingResponse,
-)
 from .bgp import (
     BGPResource,
     AsyncBGPResource,
@@ -146,12 +138,6 @@ from .tcp_resets_timeouts import (
 )
 
 __all__ = [
-    "AIResource",
-    "AsyncAIResource",
-    "AIResourceWithRawResponse",
-    "AsyncAIResourceWithRawResponse",
-    "AIResourceWithStreamingResponse",
-    "AsyncAIResourceWithStreamingResponse",
     "AnnotationsResource",
     "AsyncAnnotationsResource",
     "AnnotationsResourceWithRawResponse",

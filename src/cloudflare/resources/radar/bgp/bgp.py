@@ -131,10 +131,10 @@ class BGPResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BGPTimeseriesResponse:
-        """Gets BGP updates change over time.
+        """Get BGP updates change over time.
 
         Raw values are returned. When requesting
-        updates of an autonomous system (AS), only BGP updates of type announcement are
+        updates for an autonomous system (AS), only BGP updates of type announcement are
         returned.
 
         Args:
@@ -256,10 +256,10 @@ class AsyncBGPResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BGPTimeseriesResponse:
-        """Gets BGP updates change over time.
+        """Get BGP updates change over time.
 
         Raw values are returned. When requesting
-        updates of an autonomous system (AS), only BGP updates of type announcement are
+        updates for an autonomous system (AS), only BGP updates of type announcement are
         returned.
 
         Args:

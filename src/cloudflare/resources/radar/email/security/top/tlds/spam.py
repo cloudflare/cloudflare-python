@@ -73,7 +73,7 @@ class SpamResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SpamGetResponse:
         """
-        Get the top TLDs by emails classified as Spam or not.
+        Get the top TLDs by emails classified as spam or not.
 
         Args:
           spam: Spam.
@@ -188,7 +188,7 @@ class AsyncSpamResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SpamGetResponse:
         """
-        Get the top TLDs by emails classified as Spam or not.
+        Get the top TLDs by emails classified as spam or not.
 
         Args:
           spam: Spam.

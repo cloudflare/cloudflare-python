@@ -138,7 +138,7 @@ class OutagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OutageLocationsResponse:
         """
-        Get the number of outages for locations.
+        Get the number of outages by location.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -291,7 +291,7 @@ class AsyncOutagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OutageLocationsResponse:
         """
-        Get the number of outages for locations.
+        Get the number of outages by location.
 
         Args:
           date_end: End of the date range (inclusive).

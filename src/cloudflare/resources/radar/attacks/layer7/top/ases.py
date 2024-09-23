@@ -126,11 +126,11 @@ class AsesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AseOriginResponse:
-        """Get the top origin Autonomous Systems of and by layer 7 attacks.
+        """Get the top origin Autonomous Systems of and by Layer 7 attacks.
 
         Values are a
-        percentage out of the total layer 7 attacks. The origin Autonomous Systems is
-        determined by the client IP.
+        percentage out of the total Layer 7 attacks. The origin Autonomous Systems is
+        determined by the client IP address.
 
         Args:
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
@@ -298,11 +298,11 @@ class AsyncAsesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AseOriginResponse:
-        """Get the top origin Autonomous Systems of and by layer 7 attacks.
+        """Get the top origin Autonomous Systems of and by Layer 7 attacks.
 
         Values are a
-        percentage out of the total layer 7 attacks. The origin Autonomous Systems is
-        determined by the client IP.
+        percentage out of the total Layer 7 attacks. The origin Autonomous Systems is
+        determined by the client IP address.
 
         Args:
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start

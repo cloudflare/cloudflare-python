@@ -87,7 +87,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryARCResponse:
         """
-        Percentage distribution of emails classified per ARC validation.
+        Percentage distribution of emails classified by ARC validation.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -164,7 +164,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryDKIMResponse:
         """
-        Percentage distribution of emails classified per DKIM validation.
+        Percentage distribution of emails classified by DKIM validation.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -241,7 +241,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryDMARCResponse:
         """
-        Percentage distribution of emails classified per DMARC validation.
+        Percentage distribution of emails classified by DMARC validation.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -480,7 +480,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummarySPFResponse:
         """
-        Percentage distribution of emails classified per SPF validation.
+        Percentage distribution of emails classified by SPF validation.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -719,7 +719,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryTLSVersionResponse:
         """
-        Percentage distribution of emails classified per TLS Version.
+        Percentage distribution of emails classified by TLS version.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -817,7 +817,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryARCResponse:
         """
-        Percentage distribution of emails classified per ARC validation.
+        Percentage distribution of emails classified by ARC validation.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -894,7 +894,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryDKIMResponse:
         """
-        Percentage distribution of emails classified per DKIM validation.
+        Percentage distribution of emails classified by DKIM validation.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -971,7 +971,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryDMARCResponse:
         """
-        Percentage distribution of emails classified per DMARC validation.
+        Percentage distribution of emails classified by DMARC validation.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -1210,7 +1210,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummarySPFResponse:
         """
-        Percentage distribution of emails classified per SPF validation.
+        Percentage distribution of emails classified by SPF validation.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -1449,7 +1449,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryTLSVersionResponse:
         """
-        Percentage distribution of emails classified per TLS Version.
+        Percentage distribution of emails classified by TLS version.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).

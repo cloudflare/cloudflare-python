@@ -80,8 +80,9 @@ class TrafficAnomaliesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TrafficAnomalyGetResponse:
-        """
-        Internet traffic anomalies are signals that might point to an outage, These
+        """Internet traffic anomalies are signals that might point to an outage.
+
+        These
         alerts are automatically detected by Radar and then manually verified by our
         team. This endpoint returns the latest alerts.
 
@@ -181,8 +182,9 @@ class AsyncTrafficAnomaliesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TrafficAnomalyGetResponse:
-        """
-        Internet traffic anomalies are signals that might point to an outage, These
+        """Internet traffic anomalies are signals that might point to an outage.
+
+        These
         alerts are automatically detected by Radar and then manually verified by our
         team. This endpoint returns the latest alerts.
 

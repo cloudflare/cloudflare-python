@@ -77,7 +77,7 @@ class HTTPMethodResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> HTTPMethodGetResponse:
-        """Get the top locations, by HTTP traffic, of the requested HTTP protocol.
+        """Get the top locations, by HTTP traffic, of the requested HTTP version.
 
         Values
         are a percentage out of the total traffic.
@@ -218,7 +218,7 @@ class AsyncHTTPMethodResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> HTTPMethodGetResponse:
-        """Get the top locations, by HTTP traffic, of the requested HTTP protocol.
+        """Get the top locations, by HTTP traffic, of the requested HTTP version.
 
         Values
         are a percentage out of the total traffic.

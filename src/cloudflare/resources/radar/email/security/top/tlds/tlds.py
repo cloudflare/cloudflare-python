@@ -109,8 +109,8 @@ class TldsResource(SyncAPIResource):
     ) -> TldGetResponse:
         """Get the top TLDs by email messages.
 
-        Values are a percentage out of the total
-        emails.
+        Values are a percentage out of total email
+        volume.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -233,8 +233,8 @@ class AsyncTldsResource(AsyncAPIResource):
     ) -> TldGetResponse:
         """Get the top TLDs by email messages.
 
-        Values are a percentage out of the total
-        emails.
+        Values are a percentage out of total email
+        volume.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
