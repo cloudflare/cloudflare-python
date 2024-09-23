@@ -125,7 +125,6 @@ class Cloudflare(SyncAPIClient):
     snippets: resources.SnippetsResource
     calls: resources.CallsResource
     cloudforce_one: resources.CloudforceOneResource
-    event_notifications: resources.EventNotificationsResource
     ai_gateway: resources.AIGatewayResource
     iam: resources.IAMResource
     cloud_connector: resources.CloudConnectorResource
@@ -283,7 +282,6 @@ class Cloudflare(SyncAPIClient):
         self.snippets = resources.SnippetsResource(self)
         self.calls = resources.CallsResource(self)
         self.cloudforce_one = resources.CloudforceOneResource(self)
-        self.event_notifications = resources.EventNotificationsResource(self)
         self.ai_gateway = resources.AIGatewayResource(self)
         self.iam = resources.IAMResource(self)
         self.cloud_connector = resources.CloudConnectorResource(self)
@@ -544,7 +542,6 @@ class AsyncCloudflare(AsyncAPIClient):
     snippets: resources.AsyncSnippetsResource
     calls: resources.AsyncCallsResource
     cloudforce_one: resources.AsyncCloudforceOneResource
-    event_notifications: resources.AsyncEventNotificationsResource
     ai_gateway: resources.AsyncAIGatewayResource
     iam: resources.AsyncIAMResource
     cloud_connector: resources.AsyncCloudConnectorResource
@@ -702,7 +699,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.snippets = resources.AsyncSnippetsResource(self)
         self.calls = resources.AsyncCallsResource(self)
         self.cloudforce_one = resources.AsyncCloudforceOneResource(self)
-        self.event_notifications = resources.AsyncEventNotificationsResource(self)
         self.ai_gateway = resources.AsyncAIGatewayResource(self)
         self.iam = resources.AsyncIAMResource(self)
         self.cloud_connector = resources.AsyncCloudConnectorResource(self)
@@ -974,7 +970,6 @@ class CloudflareWithRawResponse:
         self.snippets = resources.SnippetsResourceWithRawResponse(client.snippets)
         self.calls = resources.CallsResourceWithRawResponse(client.calls)
         self.cloudforce_one = resources.CloudforceOneResourceWithRawResponse(client.cloudforce_one)
-        self.event_notifications = resources.EventNotificationsResourceWithRawResponse(client.event_notifications)
         self.ai_gateway = resources.AIGatewayResourceWithRawResponse(client.ai_gateway)
         self.iam = resources.IAMResourceWithRawResponse(client.iam)
         self.cloud_connector = resources.CloudConnectorResourceWithRawResponse(client.cloud_connector)
@@ -1075,7 +1070,6 @@ class AsyncCloudflareWithRawResponse:
         self.snippets = resources.AsyncSnippetsResourceWithRawResponse(client.snippets)
         self.calls = resources.AsyncCallsResourceWithRawResponse(client.calls)
         self.cloudforce_one = resources.AsyncCloudforceOneResourceWithRawResponse(client.cloudforce_one)
-        self.event_notifications = resources.AsyncEventNotificationsResourceWithRawResponse(client.event_notifications)
         self.ai_gateway = resources.AsyncAIGatewayResourceWithRawResponse(client.ai_gateway)
         self.iam = resources.AsyncIAMResourceWithRawResponse(client.iam)
         self.cloud_connector = resources.AsyncCloudConnectorResourceWithRawResponse(client.cloud_connector)
@@ -1176,7 +1170,6 @@ class CloudflareWithStreamedResponse:
         self.snippets = resources.SnippetsResourceWithStreamingResponse(client.snippets)
         self.calls = resources.CallsResourceWithStreamingResponse(client.calls)
         self.cloudforce_one = resources.CloudforceOneResourceWithStreamingResponse(client.cloudforce_one)
-        self.event_notifications = resources.EventNotificationsResourceWithStreamingResponse(client.event_notifications)
         self.ai_gateway = resources.AIGatewayResourceWithStreamingResponse(client.ai_gateway)
         self.iam = resources.IAMResourceWithStreamingResponse(client.iam)
         self.cloud_connector = resources.CloudConnectorResourceWithStreamingResponse(client.cloud_connector)
@@ -1285,9 +1278,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.snippets = resources.AsyncSnippetsResourceWithStreamingResponse(client.snippets)
         self.calls = resources.AsyncCallsResourceWithStreamingResponse(client.calls)
         self.cloudforce_one = resources.AsyncCloudforceOneResourceWithStreamingResponse(client.cloudforce_one)
-        self.event_notifications = resources.AsyncEventNotificationsResourceWithStreamingResponse(
-            client.event_notifications
-        )
         self.ai_gateway = resources.AsyncAIGatewayResourceWithStreamingResponse(client.ai_gateway)
         self.iam = resources.AsyncIAMResourceWithStreamingResponse(client.iam)
         self.cloud_connector = resources.AsyncCloudConnectorResourceWithStreamingResponse(client.cloud_connector)
