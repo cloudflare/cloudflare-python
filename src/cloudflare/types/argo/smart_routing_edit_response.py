@@ -5,4 +5,4 @@ from typing_extensions import TypeAlias
 
 __all__ = ["SmartRoutingEditResponse"]
 
-SmartRoutingEditResponse: TypeAlias = Union[Optional[str], Optional[object]]
+SmartRoutingEditResponse: TypeAlias = Union[Optional[str], object]
