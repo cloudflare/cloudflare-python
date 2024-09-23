@@ -68,7 +68,7 @@ class RoutesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteAsesResponse:
         """
-        List all ASes on current global routing tables with routing statistics
+        List all ASes in current global routing tables with routing statistics
 
         Args:
           format: Format results are returned in.
@@ -126,7 +126,7 @@ class RoutesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteMoasResponse:
         """
-        List all Multi-origin AS (MOAS) prefixes on the global routing tables.
+        List all Multi-Origin AS (MOAS) prefixes on the global routing tables.
 
         Args:
           format: Format results are returned in.
@@ -315,7 +315,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteAsesResponse:
         """
-        List all ASes on current global routing tables with routing statistics
+        List all ASes in current global routing tables with routing statistics
 
         Args:
           format: Format results are returned in.
@@ -373,7 +373,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteMoasResponse:
         """
-        List all Multi-origin AS (MOAS) prefixes on the global routing tables.
+        List all Multi-Origin AS (MOAS) prefixes on the global routing tables.
 
         Args:
           format: Format results are returned in.

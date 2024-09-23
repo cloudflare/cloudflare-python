@@ -80,7 +80,7 @@ class AnnotationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AnnotationListResponse:
         """
-        Get latest annotations.
+        Get the latest annotations.
 
         Args:
           asn: Single ASN as integer.
@@ -177,7 +177,7 @@ class AsyncAnnotationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AnnotationListResponse:
         """
-        Get latest annotations.
+        Get the latest annotations.
 
         Args:
           asn: Single ASN as integer.

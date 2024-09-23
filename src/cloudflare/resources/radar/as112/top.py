@@ -73,7 +73,7 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopDNSSECResponse:
         """
-        Get the top locations by DNS queries DNSSEC support to AS112.
+        Get the top locations of DNS queries to AS112 with DNSSEC.
 
         Args:
           dnssec: DNSSEC.
@@ -161,7 +161,7 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopEdnsResponse:
         """
-        Get the top locations, by DNS queries EDNS support to AS112.
+        Get the top locations of DNS queries to AS112 with EDNS support.
 
         Args:
           edns: EDNS.
@@ -249,7 +249,7 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIPVersionResponse:
         """
-        Get the top locations by DNS queries IP version to AS112.
+        Get the top locations of DNS queries to AS112 by IP version.
 
         Args:
           ip_version: IP Version.
@@ -443,7 +443,7 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopDNSSECResponse:
         """
-        Get the top locations by DNS queries DNSSEC support to AS112.
+        Get the top locations of DNS queries to AS112 with DNSSEC.
 
         Args:
           dnssec: DNSSEC.
@@ -531,7 +531,7 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopEdnsResponse:
         """
-        Get the top locations, by DNS queries EDNS support to AS112.
+        Get the top locations of DNS queries to AS112 with EDNS support.
 
         Args:
           edns: EDNS.
@@ -619,7 +619,7 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIPVersionResponse:
         """
-        Get the top locations by DNS queries IP version to AS112.
+        Get the top locations of DNS queries to AS112 by IP version.
 
         Args:
           ip_version: IP Version.

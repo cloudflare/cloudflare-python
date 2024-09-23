@@ -65,7 +65,7 @@ class SearchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SearchGlobalResponse:
         """
-        Lets you search for locations, autonomous systems (AS) and reports.
+        Lets you search for locations, autonomous systems (ASes), and reports.
 
         Args:
           query: Search for locations, AS and reports.
@@ -149,7 +149,7 @@ class AsyncSearchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SearchGlobalResponse:
         """
-        Lets you search for locations, autonomous systems (AS) and reports.
+        Lets you search for locations, autonomous systems (ASes), and reports.
 
         Args:
           query: Search for locations, AS and reports.

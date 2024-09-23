@@ -1020,7 +1020,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1063,7 +1064,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1106,7 +1108,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1149,7 +1152,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1192,7 +1196,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1235,7 +1240,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1278,7 +1284,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1321,7 +1328,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1364,7 +1372,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1408,7 +1417,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1454,7 +1464,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1497,7 +1508,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1540,7 +1552,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1583,7 +1596,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1626,7 +1640,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1669,7 +1684,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1712,7 +1728,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1755,7 +1772,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1798,7 +1816,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1841,7 +1860,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1885,7 +1905,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -2175,7 +2196,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2218,7 +2240,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2261,7 +2284,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2304,7 +2328,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2347,7 +2372,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2390,7 +2416,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2433,7 +2460,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2476,7 +2504,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2519,7 +2548,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2563,7 +2593,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2609,7 +2640,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2652,7 +2684,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2695,7 +2728,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2738,7 +2772,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2781,7 +2816,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2824,7 +2860,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2867,7 +2904,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2910,7 +2948,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2953,7 +2992,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2996,7 +3036,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3040,7 +3081,8 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -4318,7 +4360,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4361,7 +4404,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4404,7 +4448,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4447,7 +4492,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4490,7 +4536,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4533,7 +4580,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4576,7 +4624,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4619,7 +4668,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4662,7 +4712,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4706,7 +4757,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4752,7 +4804,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4795,7 +4848,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4838,7 +4892,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4881,7 +4936,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4924,7 +4980,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -4967,7 +5024,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -5010,7 +5068,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -5053,7 +5112,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -5096,7 +5156,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -5139,7 +5200,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -5183,7 +5245,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordUpdateResponse]:
-        """Overwrite an existing DNS record.
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -5473,7 +5536,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -5516,7 +5580,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -5559,7 +5624,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -5602,7 +5668,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -5645,7 +5712,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -5688,7 +5756,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -5731,7 +5800,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -5774,7 +5844,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -5817,7 +5888,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -5861,7 +5933,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -5907,7 +5980,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -5950,7 +6024,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -5993,7 +6068,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -6036,7 +6112,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -6079,7 +6156,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -6122,7 +6200,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -6165,7 +6244,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -6208,7 +6288,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -6251,7 +6332,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -6294,7 +6376,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -6338,7 +6421,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[RecordEditResponse]:
-        """Update an existing DNS record.
+        """
+        Update an existing DNS record.
 
         Notes:
 

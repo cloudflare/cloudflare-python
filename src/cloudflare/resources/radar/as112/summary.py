@@ -159,7 +159,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryEdnsResponse:
         """
-        Percentage distribution of DNS queries, to AS112, by EDNS support.
+        Percentage distribution of DNS queries to AS112 by EDNS support.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -396,7 +396,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryQueryTypeResponse:
         """
-        Percentage distribution of DNS queries to AS112 by Query Type.
+        Percentage distribution of DNS queries to AS112 by query type.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -475,7 +475,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryResponseCodesResponse:
         """
-        Percentage distribution of AS112 dns requests classified per Response Codes.
+        Percentage distribution of AS112 DNS requests classified by response code.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -654,7 +654,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryEdnsResponse:
         """
-        Percentage distribution of DNS queries, to AS112, by EDNS support.
+        Percentage distribution of DNS queries to AS112 by EDNS support.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -891,7 +891,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryQueryTypeResponse:
         """
-        Percentage distribution of DNS queries to AS112 by Query Type.
+        Percentage distribution of DNS queries to AS112 by query type.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -970,7 +970,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryResponseCodesResponse:
         """
-        Percentage distribution of AS112 dns requests classified per Response Codes.
+        Percentage distribution of AS112 DNS requests classified by response code.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
