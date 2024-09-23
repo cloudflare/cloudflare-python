@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import Union
 from typing_extensions import TypeAlias
 
 __all__ = ["PageruleEditResponse"]
 
-PageruleEditResponse: TypeAlias = Union[Optional[str], Optional[object]]
+PageruleEditResponse: TypeAlias = Union[str, object]
