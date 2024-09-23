@@ -77,9 +77,10 @@ class IPVersionResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IPVersionGetResponse:
-        """
-        Get the top locations, by HTTP traffic, of the requested IP protocol version.
-        Values are a percentage out of the total traffic.
+        """Get the top locations, by HTTP traffic, of the requested IP version.
+
+        Values are
+        a percentage out of the total traffic.
 
         Args:
           ip_version: IP version.
@@ -217,9 +218,10 @@ class AsyncIPVersionResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IPVersionGetResponse:
-        """
-        Get the top locations, by HTTP traffic, of the requested IP protocol version.
-        Values are a percentage out of the total traffic.
+        """Get the top locations, by HTTP traffic, of the requested IP version.
+
+        Values are
+        a percentage out of the total traffic.
 
         Args:
           ip_version: IP version.

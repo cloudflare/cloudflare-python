@@ -251,7 +251,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Percentage distribution of AS112 DNS queries by IP Version over time.
+        Percentage distribution of AS112 DNS queries by IP version over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -336,7 +336,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupProtocolResponse:
         """
-        Percentage distribution of AS112 dns requests classified per Protocol over time.
+        Percentage distribution of AS112 DNS requests classified by protocol over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -421,7 +421,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupQueryTypeResponse:
         """
-        Percentage distribution of AS112 DNS queries by Query Type over time.
+        Percentage distribution of AS112 DNS queries by query type over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -506,7 +506,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupResponseCodesResponse:
         """
-        Percentage distribution of AS112 dns requests classified per Response Codes over
+        Percentage distribution of AS112 DNS requests classified by response code over
         time.
 
         Args:
@@ -785,7 +785,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Percentage distribution of AS112 DNS queries by IP Version over time.
+        Percentage distribution of AS112 DNS queries by IP version over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -870,7 +870,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupProtocolResponse:
         """
-        Percentage distribution of AS112 dns requests classified per Protocol over time.
+        Percentage distribution of AS112 DNS requests classified by protocol over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -955,7 +955,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupQueryTypeResponse:
         """
-        Percentage distribution of AS112 DNS queries by Query Type over time.
+        Percentage distribution of AS112 DNS queries by query type over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -1040,7 +1040,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupResponseCodesResponse:
         """
-        Percentage distribution of AS112 dns requests classified per Response Codes over
+        Percentage distribution of AS112 DNS requests classified by response code over
         time.
 
         Args:

@@ -68,7 +68,7 @@ class ASNsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ASNListResponse:
         """
-        Gets a list of autonomous systems (AS).
+        Get a list of autonomous systems (ASes).
 
         Args:
           asn: Comma separated list of ASNs.
@@ -296,7 +296,7 @@ class AsyncASNsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ASNListResponse:
         """
-        Gets a list of autonomous systems (AS).
+        Get a list of autonomous systems (ASes).
 
         Args:
           asn: Comma separated list of ASNs.

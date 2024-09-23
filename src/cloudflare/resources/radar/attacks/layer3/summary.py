@@ -252,7 +252,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryGetResponse:
         """
-        Percentage distribution of network protocols in layer 3/4 attacks over a given
+        Percentage distribution of network protocols in Layer 3/4 attacks over a given
         time period.
 
         Args:
@@ -775,7 +775,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryGetResponse:
         """
-        Percentage distribution of network protocols in layer 3/4 attacks over a given
+        Percentage distribution of network protocols in Layer 3/4 attacks over a given
         time period.
 
         Args:

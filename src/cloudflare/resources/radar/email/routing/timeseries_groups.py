@@ -83,7 +83,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupARCResponse:
         """
-        Percentage distribution of emails classified per Arc validation over time.
+        Percentage distribution of emails classified by ARC validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -170,7 +170,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDKIMResponse:
         """
-        Percentage distribution of emails classified per DKIM validation over time.
+        Percentage distribution of emails classified by DKIM validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -257,7 +257,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDMARCResponse:
         """
-        Percentage distribution of emails classified per DMARC validation over time.
+        Percentage distribution of emails classified by DMARC validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -344,7 +344,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupEncryptedResponse:
         """
-        Percentage distribution of emails by Encrypted over time.
+        Percentage distribution of emails by encryption status over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -431,7 +431,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Percentage distribution of emails by Ip Version over time.
+        Percentage distribution of emails by IP version over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -518,7 +518,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupSPFResponse:
         """
-        Percentage distribution of emails classified per SPF validation over time.
+        Percentage distribution of emails classified by SPF validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -626,7 +626,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupARCResponse:
         """
-        Percentage distribution of emails classified per Arc validation over time.
+        Percentage distribution of emails classified by ARC validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -713,7 +713,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDKIMResponse:
         """
-        Percentage distribution of emails classified per DKIM validation over time.
+        Percentage distribution of emails classified by DKIM validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -800,7 +800,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDMARCResponse:
         """
-        Percentage distribution of emails classified per DMARC validation over time.
+        Percentage distribution of emails classified by DMARC validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -887,7 +887,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupEncryptedResponse:
         """
-        Percentage distribution of emails by Encrypted over time.
+        Percentage distribution of emails by encryption status over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -974,7 +974,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Percentage distribution of emails by Ip Version over time.
+        Percentage distribution of emails by IP version over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -1061,7 +1061,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupSPFResponse:
         """
-        Percentage distribution of emails classified per SPF validation over time.
+        Percentage distribution of emails classified by SPF validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes

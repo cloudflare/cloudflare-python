@@ -155,7 +155,7 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
-        """Get the csv content of a given dataset by alias or id.
+        """Get the CSV content of a given dataset by alias or ID.
 
         When getting the content
         by alias the latest dataset is returned, optionally filtered by the latest
@@ -310,7 +310,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
-        """Get the csv content of a given dataset by alias or id.
+        """Get the CSV content of a given dataset by alias or ID.
 
         When getting the content
         by alias the latest dataset is returned, optionally filtered by the latest

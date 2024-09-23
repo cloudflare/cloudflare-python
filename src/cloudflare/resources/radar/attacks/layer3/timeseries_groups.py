@@ -279,7 +279,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupGetResponse:
         """
-        Get a timeseries of the percentage distribution of network protocols in Layer
+        Get a time series of the percentage distribution of network protocols in Layer
         3/4 attacks.
 
         Args:
@@ -1072,7 +1072,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupGetResponse:
         """
-        Get a timeseries of the percentage distribution of network protocols in Layer
+        Get a time series of the percentage distribution of network protocols in Layer
         3/4 attacks.
 
         Args:

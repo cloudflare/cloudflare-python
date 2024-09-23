@@ -127,11 +127,11 @@ class LocationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationOriginResponse:
-        """Get the top origin locations of and by layer 7 attacks.
+        """Get the top origin locations of and by Layer 7 attacks.
 
         Values are a percentage
-        out of the total layer 7 attacks. The origin location is determined by the
-        client IP.
+        out of the total Layer 7 attacks. The origin location is determined by the
+        client IP address.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -444,11 +444,11 @@ class AsyncLocationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationOriginResponse:
-        """Get the top origin locations of and by layer 7 attacks.
+        """Get the top origin locations of and by Layer 7 attacks.
 
         Values are a percentage
-        out of the total layer 7 attacks. The origin location is determined by the
-        client IP.
+        out of the total Layer 7 attacks. The origin location is determined by the
+        client IP address.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
