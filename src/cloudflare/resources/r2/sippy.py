@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, cast, overload
+from typing import Type, cast
+from typing_extensions import overload
 
 import httpx
 
