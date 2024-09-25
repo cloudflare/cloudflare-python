@@ -21,7 +21,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
-from .....types.event_notifications.r2.configuration import queue_update_params
+from .....types.r2.event_notifications.configuration import queue_update_params
 
 __all__ = ["QueuesResource", "AsyncQueuesResource"]
 

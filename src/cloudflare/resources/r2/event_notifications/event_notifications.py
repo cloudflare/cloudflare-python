@@ -14,90 +14,90 @@ from .configuration import (
 )
 from .configuration.configuration import ConfigurationResource, AsyncConfigurationResource
 
-__all__ = ["R2Resource", "AsyncR2Resource"]
+__all__ = ["EventNotificationsResource", "AsyncEventNotificationsResource"]
 
 
-class R2Resource(SyncAPIResource):
+class EventNotificationsResource(SyncAPIResource):
     @cached_property
     def configuration(self) -> ConfigurationResource:
         return ConfigurationResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> R2ResourceWithRawResponse:
+    def with_raw_response(self) -> EventNotificationsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return R2ResourceWithRawResponse(self)
+        return EventNotificationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> R2ResourceWithStreamingResponse:
+    def with_streaming_response(self) -> EventNotificationsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return R2ResourceWithStreamingResponse(self)
+        return EventNotificationsResourceWithStreamingResponse(self)
 
 
-class AsyncR2Resource(AsyncAPIResource):
+class AsyncEventNotificationsResource(AsyncAPIResource):
     @cached_property
     def configuration(self) -> AsyncConfigurationResource:
         return AsyncConfigurationResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncR2ResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncEventNotificationsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncR2ResourceWithRawResponse(self)
+        return AsyncEventNotificationsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncR2ResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncEventNotificationsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncR2ResourceWithStreamingResponse(self)
+        return AsyncEventNotificationsResourceWithStreamingResponse(self)
 
 
-class R2ResourceWithRawResponse:
-    def __init__(self, r2: R2Resource) -> None:
-        self._r2 = r2
+class EventNotificationsResourceWithRawResponse:
+    def __init__(self, event_notifications: EventNotificationsResource) -> None:
+        self._event_notifications = event_notifications
 
     @cached_property
     def configuration(self) -> ConfigurationResourceWithRawResponse:
-        return ConfigurationResourceWithRawResponse(self._r2.configuration)
+        return ConfigurationResourceWithRawResponse(self._event_notifications.configuration)
 
 
-class AsyncR2ResourceWithRawResponse:
-    def __init__(self, r2: AsyncR2Resource) -> None:
-        self._r2 = r2
+class AsyncEventNotificationsResourceWithRawResponse:
+    def __init__(self, event_notifications: AsyncEventNotificationsResource) -> None:
+        self._event_notifications = event_notifications
 
     @cached_property
     def configuration(self) -> AsyncConfigurationResourceWithRawResponse:
-        return AsyncConfigurationResourceWithRawResponse(self._r2.configuration)
+        return AsyncConfigurationResourceWithRawResponse(self._event_notifications.configuration)
 
 
-class R2ResourceWithStreamingResponse:
-    def __init__(self, r2: R2Resource) -> None:
-        self._r2 = r2
+class EventNotificationsResourceWithStreamingResponse:
+    def __init__(self, event_notifications: EventNotificationsResource) -> None:
+        self._event_notifications = event_notifications
 
     @cached_property
     def configuration(self) -> ConfigurationResourceWithStreamingResponse:
-        return ConfigurationResourceWithStreamingResponse(self._r2.configuration)
+        return ConfigurationResourceWithStreamingResponse(self._event_notifications.configuration)
 
 
-class AsyncR2ResourceWithStreamingResponse:
-    def __init__(self, r2: AsyncR2Resource) -> None:
-        self._r2 = r2
+class AsyncEventNotificationsResourceWithStreamingResponse:
+    def __init__(self, event_notifications: AsyncEventNotificationsResource) -> None:
+        self._event_notifications = event_notifications
 
     @cached_property
     def configuration(self) -> AsyncConfigurationResourceWithStreamingResponse:
-        return AsyncConfigurationResourceWithStreamingResponse(self._r2.configuration)
+        return AsyncConfigurationResourceWithStreamingResponse(self._event_notifications.configuration)

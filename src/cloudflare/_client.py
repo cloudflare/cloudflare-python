@@ -111,7 +111,6 @@ if TYPE_CHECKING:
         managed_transforms,
         client_certificates,
         custom_certificates,
-        event_notifications,
         keyless_certificates,
         workers_for_platforms,
         origin_ca_certificates,
@@ -673,12 +672,6 @@ class Cloudflare(SyncAPIClient):
         from .resources.cloudforce_one import CloudforceOneResource
 
         return CloudforceOneResource(self)
-
-    @cached_property
-    def event_notifications(self) -> event_notifications.EventNotificationsResource:
-        from .resources.event_notifications import EventNotificationsResource
-
-        return EventNotificationsResource(self)
 
     @cached_property
     def ai_gateway(self) -> ai_gateway.AIGatewayResource:
@@ -1428,12 +1421,6 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncCloudforceOneResource(self)
 
     @cached_property
-    def event_notifications(self) -> event_notifications.AsyncEventNotificationsResource:
-        from .resources.event_notifications import AsyncEventNotificationsResource
-
-        return AsyncEventNotificationsResource(self)
-
-    @cached_property
     def ai_gateway(self) -> ai_gateway.AsyncAIGatewayResource:
         from .resources.ai_gateway import AsyncAIGatewayResource
 
@@ -2116,12 +2103,6 @@ class CloudflareWithRawResponse:
         return CloudforceOneResourceWithRawResponse(self._client.cloudforce_one)
 
     @cached_property
-    def event_notifications(self) -> event_notifications.EventNotificationsResourceWithRawResponse:
-        from .resources.event_notifications import EventNotificationsResourceWithRawResponse
-
-        return EventNotificationsResourceWithRawResponse(self._client.event_notifications)
-
-    @cached_property
     def ai_gateway(self) -> ai_gateway.AIGatewayResourceWithRawResponse:
         from .resources.ai_gateway import AIGatewayResourceWithRawResponse
 
@@ -2623,12 +2604,6 @@ class AsyncCloudflareWithRawResponse:
         return AsyncCloudforceOneResourceWithRawResponse(self._client.cloudforce_one)
 
     @cached_property
-    def event_notifications(self) -> event_notifications.AsyncEventNotificationsResourceWithRawResponse:
-        from .resources.event_notifications import AsyncEventNotificationsResourceWithRawResponse
-
-        return AsyncEventNotificationsResourceWithRawResponse(self._client.event_notifications)
-
-    @cached_property
     def ai_gateway(self) -> ai_gateway.AsyncAIGatewayResourceWithRawResponse:
         from .resources.ai_gateway import AsyncAIGatewayResourceWithRawResponse
 
@@ -3128,12 +3103,6 @@ class CloudflareWithStreamedResponse:
         from .resources.cloudforce_one import CloudforceOneResourceWithStreamingResponse
 
         return CloudforceOneResourceWithStreamingResponse(self._client.cloudforce_one)
-
-    @cached_property
-    def event_notifications(self) -> event_notifications.EventNotificationsResourceWithStreamingResponse:
-        from .resources.event_notifications import EventNotificationsResourceWithStreamingResponse
-
-        return EventNotificationsResourceWithStreamingResponse(self._client.event_notifications)
 
     @cached_property
     def ai_gateway(self) -> ai_gateway.AIGatewayResourceWithStreamingResponse:
@@ -3643,12 +3612,6 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.cloudforce_one import AsyncCloudforceOneResourceWithStreamingResponse
 
         return AsyncCloudforceOneResourceWithStreamingResponse(self._client.cloudforce_one)
-
-    @cached_property
-    def event_notifications(self) -> event_notifications.AsyncEventNotificationsResourceWithStreamingResponse:
-        from .resources.event_notifications import AsyncEventNotificationsResourceWithStreamingResponse
-
-        return AsyncEventNotificationsResourceWithStreamingResponse(self._client.event_notifications)
 
     @cached_property
     def ai_gateway(self) -> ai_gateway.AsyncAIGatewayResourceWithStreamingResponse:
