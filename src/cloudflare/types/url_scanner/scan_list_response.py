@@ -5,7 +5,7 @@ from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["URLScannerScanResponse", "Task"]
+__all__ = ["ScanListResponse", "Task"]
 
 
 class Task(BaseModel):
@@ -28,5 +28,5 @@ class Task(BaseModel):
     """Visibility status."""
 
 
-class URLScannerScanResponse(BaseModel):
+class ScanListResponse(BaseModel):
     tasks: List[Task]
