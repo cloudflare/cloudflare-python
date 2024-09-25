@@ -8,10 +8,10 @@ from typing_extensions import Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["URLScannerScanParams"]
+__all__ = ["ScanListParams"]
 
 
-class URLScannerScanParams(TypedDict, total=False):
+class ScanListParams(TypedDict, total=False):
     account_scans: bool
     """Return only scans created by account."""
 
