@@ -18,7 +18,7 @@ class TestQueues:
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
-        queue = client.event_notifications.r2.configuration.queues.update(
+        queue = client.r2.event_notifications.configuration.queues.update(
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
@@ -27,7 +27,7 @@ class TestQueues:
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        queue = client.event_notifications.r2.configuration.queues.update(
+        queue = client.r2.event_notifications.configuration.queues.update(
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
@@ -53,7 +53,7 @@ class TestQueues:
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.event_notifications.r2.configuration.queues.with_raw_response.update(
+        response = client.r2.event_notifications.configuration.queues.with_raw_response.update(
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
@@ -66,7 +66,7 @@ class TestQueues:
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.event_notifications.r2.configuration.queues.with_streaming_response.update(
+        with client.r2.event_notifications.configuration.queues.with_streaming_response.update(
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
@@ -82,21 +82,21 @@ class TestQueues:
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.event_notifications.r2.configuration.queues.with_raw_response.update(
+            client.r2.event_notifications.configuration.queues.with_raw_response.update(
                 queue_id="queue_id",
                 account_id="",
                 bucket_name="example-bucket",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
-            client.event_notifications.r2.configuration.queues.with_raw_response.update(
+            client.r2.event_notifications.configuration.queues.with_raw_response.update(
                 queue_id="queue_id",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-            client.event_notifications.r2.configuration.queues.with_raw_response.update(
+            client.r2.event_notifications.configuration.queues.with_raw_response.update(
                 queue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="example-bucket",
@@ -104,7 +104,7 @@ class TestQueues:
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
-        queue = client.event_notifications.r2.configuration.queues.delete(
+        queue = client.r2.event_notifications.configuration.queues.delete(
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
@@ -113,7 +113,7 @@ class TestQueues:
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.event_notifications.r2.configuration.queues.with_raw_response.delete(
+        response = client.r2.event_notifications.configuration.queues.with_raw_response.delete(
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
@@ -126,7 +126,7 @@ class TestQueues:
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.event_notifications.r2.configuration.queues.with_streaming_response.delete(
+        with client.r2.event_notifications.configuration.queues.with_streaming_response.delete(
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
@@ -142,21 +142,21 @@ class TestQueues:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.event_notifications.r2.configuration.queues.with_raw_response.delete(
+            client.r2.event_notifications.configuration.queues.with_raw_response.delete(
                 queue_id="queue_id",
                 account_id="",
                 bucket_name="example-bucket",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
-            client.event_notifications.r2.configuration.queues.with_raw_response.delete(
+            client.r2.event_notifications.configuration.queues.with_raw_response.delete(
                 queue_id="queue_id",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-            client.event_notifications.r2.configuration.queues.with_raw_response.delete(
+            client.r2.event_notifications.configuration.queues.with_raw_response.delete(
                 queue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="example-bucket",
@@ -168,7 +168,7 @@ class TestAsyncQueues:
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        queue = await async_client.event_notifications.r2.configuration.queues.update(
+        queue = await async_client.r2.event_notifications.configuration.queues.update(
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
@@ -177,7 +177,7 @@ class TestAsyncQueues:
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        queue = await async_client.event_notifications.r2.configuration.queues.update(
+        queue = await async_client.r2.event_notifications.configuration.queues.update(
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
@@ -203,7 +203,7 @@ class TestAsyncQueues:
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.event_notifications.r2.configuration.queues.with_raw_response.update(
+        response = await async_client.r2.event_notifications.configuration.queues.with_raw_response.update(
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
@@ -216,7 +216,7 @@ class TestAsyncQueues:
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.event_notifications.r2.configuration.queues.with_streaming_response.update(
+        async with async_client.r2.event_notifications.configuration.queues.with_streaming_response.update(
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
@@ -232,21 +232,21 @@ class TestAsyncQueues:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.event_notifications.r2.configuration.queues.with_raw_response.update(
+            await async_client.r2.event_notifications.configuration.queues.with_raw_response.update(
                 queue_id="queue_id",
                 account_id="",
                 bucket_name="example-bucket",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
-            await async_client.event_notifications.r2.configuration.queues.with_raw_response.update(
+            await async_client.r2.event_notifications.configuration.queues.with_raw_response.update(
                 queue_id="queue_id",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-            await async_client.event_notifications.r2.configuration.queues.with_raw_response.update(
+            await async_client.r2.event_notifications.configuration.queues.with_raw_response.update(
                 queue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="example-bucket",
@@ -254,7 +254,7 @@ class TestAsyncQueues:
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        queue = await async_client.event_notifications.r2.configuration.queues.delete(
+        queue = await async_client.r2.event_notifications.configuration.queues.delete(
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
@@ -263,7 +263,7 @@ class TestAsyncQueues:
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.event_notifications.r2.configuration.queues.with_raw_response.delete(
+        response = await async_client.r2.event_notifications.configuration.queues.with_raw_response.delete(
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
@@ -276,7 +276,7 @@ class TestAsyncQueues:
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.event_notifications.r2.configuration.queues.with_streaming_response.delete(
+        async with async_client.r2.event_notifications.configuration.queues.with_streaming_response.delete(
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
@@ -292,21 +292,21 @@ class TestAsyncQueues:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.event_notifications.r2.configuration.queues.with_raw_response.delete(
+            await async_client.r2.event_notifications.configuration.queues.with_raw_response.delete(
                 queue_id="queue_id",
                 account_id="",
                 bucket_name="example-bucket",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
-            await async_client.event_notifications.r2.configuration.queues.with_raw_response.delete(
+            await async_client.r2.event_notifications.configuration.queues.with_raw_response.delete(
                 queue_id="queue_id",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
-            await async_client.event_notifications.r2.configuration.queues.with_raw_response.delete(
+            await async_client.r2.event_notifications.configuration.queues.with_raw_response.delete(
                 queue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="example-bucket",

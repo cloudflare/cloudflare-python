@@ -4491,6 +4491,36 @@ Methods:
 - <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed">client.r2.domains.managed.<a href="./src/cloudflare/resources/r2/domains/managed.py">update</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/domains/managed_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/domains/managed_update_response.py">ManagedUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed">client.r2.domains.managed.<a href="./src/cloudflare/resources/r2/domains/managed.py">list</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/domains/managed_list_response.py">ManagedListResponse</a></code>
 
+## EventNotifications
+
+### Configuration
+
+Types:
+
+```python
+from cloudflare.types.r2.event_notifications import ConfigurationGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration">client.r2.event_notifications.configuration.<a href="./src/cloudflare/resources/r2/event_notifications/configuration/configuration.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/event_notifications/configuration_get_response.py">ConfigurationGetResponse</a></code>
+
+#### Queues
+
+Types:
+
+```python
+from cloudflare.types.r2.event_notifications.configuration import (
+    QueueUpdateResponse,
+    QueueDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.r2.event_notifications.configuration.queues.<a href="./src/cloudflare/resources/r2/event_notifications/configuration/queues.py">update</a>(queue_id, \*, account_id, bucket_name, \*\*<a href="src/cloudflare/types/r2/event_notifications/configuration/queue_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/event_notifications/configuration/queue_update_response.py">object</a></code>
+- <code title="delete /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.r2.event_notifications.configuration.queues.<a href="./src/cloudflare/resources/r2/event_notifications/configuration/queues.py">delete</a>(queue_id, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/event_notifications/configuration/queue_delete_response.py">object</a></code>
+
 # WARPConnector
 
 Types:
@@ -7615,38 +7645,6 @@ Methods:
 - <code title="put /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset/{asset_identifer}">client.cloudforce_one.requests.assets.<a href="./src/cloudflare/resources/cloudforce_one/requests/assets.py">update</a>(asset_identifer, \*, account_identifier, request_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/asset_update_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/requests/asset_update_response.py">Optional</a></code>
 - <code title="delete /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset/{asset_identifer}">client.cloudforce_one.requests.assets.<a href="./src/cloudflare/resources/cloudforce_one/requests/assets.py">delete</a>(asset_identifer, \*, account_identifier, request_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/requests/asset_delete_response.py">AssetDeleteResponse</a></code>
 - <code title="get /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset/{asset_identifer}">client.cloudforce_one.requests.assets.<a href="./src/cloudflare/resources/cloudforce_one/requests/assets.py">get</a>(asset_identifer, \*, account_identifier, request_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/requests/asset_get_response.py">Optional</a></code>
-
-# EventNotifications
-
-## R2
-
-### Configuration
-
-Types:
-
-```python
-from cloudflare.types.event_notifications.r2 import ConfigurationGetResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration">client.event_notifications.r2.configuration.<a href="./src/cloudflare/resources/event_notifications/r2/configuration/configuration.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/event_notifications/r2/configuration_get_response.py">ConfigurationGetResponse</a></code>
-
-#### Queues
-
-Types:
-
-```python
-from cloudflare.types.event_notifications.r2.configuration import (
-    QueueUpdateResponse,
-    QueueDeleteResponse,
-)
-```
-
-Methods:
-
-- <code title="put /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.event_notifications.r2.configuration.queues.<a href="./src/cloudflare/resources/event_notifications/r2/configuration/queues.py">update</a>(queue_id, \*, account_id, bucket_name, \*\*<a href="src/cloudflare/types/event_notifications/r2/configuration/queue_update_params.py">params</a>) -> <a href="./src/cloudflare/types/event_notifications/r2/configuration/queue_update_response.py">object</a></code>
-- <code title="delete /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.event_notifications.r2.configuration.queues.<a href="./src/cloudflare/resources/event_notifications/r2/configuration/queues.py">delete</a>(queue_id, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/event_notifications/r2/configuration/queue_delete_response.py">object</a></code>
 
 # AIGateway
 
