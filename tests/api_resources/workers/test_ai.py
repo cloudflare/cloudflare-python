@@ -385,6 +385,7 @@ class TestAI:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
             frequency_penalty=0,
+            image=[0, 0, 0],
             lora="lora",
             max_tokens=0,
             presence_penalty=0,
@@ -498,6 +499,7 @@ class TestAI:
                     "name": "name",
                 },
             ],
+            image=[0, 0, 0],
             max_tokens=0,
             presence_penalty=0,
             repetition_penalty=0,
@@ -797,20 +799,6 @@ class TestAI:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0, 0, 0],
             max_tokens=0,
-            messages=[
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-            ],
             prompt="prompt",
             raw=True,
             temperature=0,
@@ -1233,6 +1221,7 @@ class TestAsyncAI:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
             frequency_penalty=0,
+            image=[0, 0, 0],
             lora="lora",
             max_tokens=0,
             presence_penalty=0,
@@ -1346,6 +1335,7 @@ class TestAsyncAI:
                     "name": "name",
                 },
             ],
+            image=[0, 0, 0],
             max_tokens=0,
             presence_penalty=0,
             repetition_penalty=0,
@@ -1645,20 +1635,6 @@ class TestAsyncAI:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0, 0, 0],
             max_tokens=0,
-            messages=[
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-            ],
             prompt="prompt",
             raw=True,
             temperature=0,

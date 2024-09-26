@@ -88,6 +88,8 @@ class AIResource(SyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          text: The text that you want to classify
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -134,6 +136,32 @@ class AIResource(SyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          prompt: A text description of the image you want to generate
+
+          guidance: Controls how closely the generated image should adhere to the prompt; higher
+              values make the image more aligned with the prompt
+
+          height: The height of the generated image in pixels
+
+          image: For use with img2img tasks. An array of integers that represent the image data
+              constrained to 8-bit unsigned integer values
+
+          image_b64: For use with img2img tasks. A base64-encoded string of the input image
+
+          mask: An array representing An array of integers that represent mask image data for
+              inpainting constrained to 8-bit unsigned integer values
+
+          negative_prompt: Text describing elements to avoid in the generated image
+
+          num_steps: The number of diffusion steps; higher values can improve quality but take longer
+
+          seed: Random seed for reproducibility of the image generation
+
+          strength: A value between 0 and 1 indicating how strongly to apply the transformation
+              during img2img tasks; lower values make the output closer to the input image
+
+          width: The width of the generated image in pixels
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -170,6 +198,8 @@ class AIResource(SyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          text: The text to embed
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -208,6 +238,14 @@ class AIResource(SyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          audio: An array of integers that represent the audio data constrained to 8-bit unsigned
+              integer values
+
+          source_lang: The language of the recorded audio
+
+          target_lang: The language to translate the transcription into. Currently only English is
+              supported.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -244,6 +282,9 @@ class AIResource(SyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          image: An array of integers that represent the image data constrained to 8-bit unsigned
+              integer values
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -280,6 +321,9 @@ class AIResource(SyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          image: An array of integers that represent the image data constrained to 8-bit unsigned
+              integer values
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -298,6 +342,7 @@ class AIResource(SyncAPIResource):
         account_id: str,
         prompt: str,
         frequency_penalty: float | NotGiven = NOT_GIVEN,
+        image: Iterable[float] | NotGiven = NOT_GIVEN,
         lora: str | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         presence_penalty: float | NotGiven = NOT_GIVEN,
@@ -327,6 +372,40 @@ class AIResource(SyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          prompt: The input text prompt for the model to generate a response.
+
+          frequency_penalty: Decreases the likelihood of the model repeating the same lines verbatim.
+
+          image: An array of integers that represent the image data constrained to 8-bit unsigned
+              integer values
+
+          lora: Name of the LoRA (Low-Rank Adaptation) model to fine-tune the base model.
+
+          max_tokens: The maximum number of tokens to generate in the response.
+
+          presence_penalty: Increases the likelihood of the model introducing new topics.
+
+          raw: If true, a chat template is not applied and you must adhere to the specific
+              model's expected formatting.
+
+          repetition_penalty: Penalty for repeated tokens; higher values discourage repetition.
+
+          seed: Random seed for reproducibility of the generation.
+
+          stream: If true, the response will be streamed back incrementally using SSE, Server Sent
+              Events.
+
+          temperature: Controls the randomness of the output; higher values produce more random
+              results.
+
+          top_k: Limits the AI to choose from the top 'k' most probable words. Lower values make
+              responses more focused; higher values introduce more variety and potential
+              surprises.
+
+          top_p: Adjusts the creativity of the AI's responses by controlling how many possible
+              words it considers. Lower values make outputs more predictable; higher values
+              allow for more varied and creative responses.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -343,16 +422,17 @@ class AIResource(SyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        messages: Iterable[ai_run_params.Variant7Message],
+        messages: Iterable[ai_run_params.MessagesMessage],
         frequency_penalty: float | NotGiven = NOT_GIVEN,
-        functions: Iterable[ai_run_params.Variant7Function] | NotGiven = NOT_GIVEN,
+        functions: Iterable[ai_run_params.MessagesFunction] | NotGiven = NOT_GIVEN,
+        image: Iterable[float] | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         presence_penalty: float | NotGiven = NOT_GIVEN,
         repetition_penalty: float | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         stream: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
-        tools: Iterable[ai_run_params.Variant7Tool] | NotGiven = NOT_GIVEN,
+        tools: Iterable[ai_run_params.MessagesTool] | NotGiven = NOT_GIVEN,
         top_k: int | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -374,6 +454,36 @@ class AIResource(SyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          messages: An array of message objects representing the conversation history.
+
+          frequency_penalty: Decreases the likelihood of the model repeating the same lines verbatim.
+
+          image: An array of integers that represent the image data constrained to 8-bit unsigned
+              integer values
+
+          max_tokens: The maximum number of tokens to generate in the response.
+
+          presence_penalty: Increases the likelihood of the model introducing new topics.
+
+          repetition_penalty: Penalty for repeated tokens; higher values discourage repetition.
+
+          seed: Random seed for reproducibility of the generation.
+
+          stream: If true, the response will be streamed back incrementally.
+
+          temperature: Controls the randomness of the output; higher values produce more random
+              results.
+
+          tools: A list of tools available for the assistant to use.
+
+          top_k: Limits the AI to choose from the top 'k' most probable words. Lower values make
+              responses more focused; higher values introduce more variety and potential
+              surprises.
+
+          top_p: Controls the creativity of the AI's responses by adjusting how many possible
+              words it considers. Lower values make outputs more predictable; higher values
+              allow for more varied and creative responses.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -412,6 +522,13 @@ class AIResource(SyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          target_lang: The language code to translate the text into (e.g., 'es' for Spanish)
+
+          text: The text to be translated
+
+          source_lang: The language code of the source text (e.g., 'en' for English). Defaults to 'en'
+              if not specified
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -449,6 +566,10 @@ class AIResource(SyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          input_text: The text that you want the model to summarize
+
+          max_length: The maximum length of the generated summary in tokens
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -467,7 +588,6 @@ class AIResource(SyncAPIResource):
         account_id: str,
         image: Iterable[float],
         max_tokens: int | NotGiven = NOT_GIVEN,
-        messages: Iterable[ai_run_params.ImageToTextMessage] | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
         raw: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -490,6 +610,19 @@ class AIResource(SyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          image: An array of integers that represent the image data constrained to 8-bit unsigned
+              integer values
+
+          max_tokens: The maximum number of tokens to generate in the response.
+
+          prompt: The input text prompt for the model to generate a response.
+
+          raw: If true, a chat template is not applied and you must adhere to the specific
+              model's expected formatting.
+
+          temperature: Controls the randomness of the output; higher values produce more random
+              results.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -540,9 +673,9 @@ class AIResource(SyncAPIResource):
         temperature: float | NotGiven = NOT_GIVEN,
         top_k: int | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
-        messages: Iterable[ai_run_params.Variant7Message] | NotGiven = NOT_GIVEN,
-        functions: Iterable[ai_run_params.Variant7Function] | NotGiven = NOT_GIVEN,
-        tools: Iterable[ai_run_params.Variant7Tool] | NotGiven = NOT_GIVEN,
+        messages: Iterable[ai_run_params.MessagesMessage] | NotGiven = NOT_GIVEN,
+        functions: Iterable[ai_run_params.MessagesFunction] | NotGiven = NOT_GIVEN,
+        tools: Iterable[ai_run_params.MessagesTool] | NotGiven = NOT_GIVEN,
         input_text: str | NotGiven = NOT_GIVEN,
         max_length: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -659,6 +792,8 @@ class AsyncAIResource(AsyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          text: The text that you want to classify
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -705,6 +840,32 @@ class AsyncAIResource(AsyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          prompt: A text description of the image you want to generate
+
+          guidance: Controls how closely the generated image should adhere to the prompt; higher
+              values make the image more aligned with the prompt
+
+          height: The height of the generated image in pixels
+
+          image: For use with img2img tasks. An array of integers that represent the image data
+              constrained to 8-bit unsigned integer values
+
+          image_b64: For use with img2img tasks. A base64-encoded string of the input image
+
+          mask: An array representing An array of integers that represent mask image data for
+              inpainting constrained to 8-bit unsigned integer values
+
+          negative_prompt: Text describing elements to avoid in the generated image
+
+          num_steps: The number of diffusion steps; higher values can improve quality but take longer
+
+          seed: Random seed for reproducibility of the image generation
+
+          strength: A value between 0 and 1 indicating how strongly to apply the transformation
+              during img2img tasks; lower values make the output closer to the input image
+
+          width: The width of the generated image in pixels
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -741,6 +902,8 @@ class AsyncAIResource(AsyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          text: The text to embed
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -779,6 +942,14 @@ class AsyncAIResource(AsyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          audio: An array of integers that represent the audio data constrained to 8-bit unsigned
+              integer values
+
+          source_lang: The language of the recorded audio
+
+          target_lang: The language to translate the transcription into. Currently only English is
+              supported.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -815,6 +986,9 @@ class AsyncAIResource(AsyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          image: An array of integers that represent the image data constrained to 8-bit unsigned
+              integer values
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -851,6 +1025,9 @@ class AsyncAIResource(AsyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          image: An array of integers that represent the image data constrained to 8-bit unsigned
+              integer values
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -869,6 +1046,7 @@ class AsyncAIResource(AsyncAPIResource):
         account_id: str,
         prompt: str,
         frequency_penalty: float | NotGiven = NOT_GIVEN,
+        image: Iterable[float] | NotGiven = NOT_GIVEN,
         lora: str | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         presence_penalty: float | NotGiven = NOT_GIVEN,
@@ -898,6 +1076,40 @@ class AsyncAIResource(AsyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          prompt: The input text prompt for the model to generate a response.
+
+          frequency_penalty: Decreases the likelihood of the model repeating the same lines verbatim.
+
+          image: An array of integers that represent the image data constrained to 8-bit unsigned
+              integer values
+
+          lora: Name of the LoRA (Low-Rank Adaptation) model to fine-tune the base model.
+
+          max_tokens: The maximum number of tokens to generate in the response.
+
+          presence_penalty: Increases the likelihood of the model introducing new topics.
+
+          raw: If true, a chat template is not applied and you must adhere to the specific
+              model's expected formatting.
+
+          repetition_penalty: Penalty for repeated tokens; higher values discourage repetition.
+
+          seed: Random seed for reproducibility of the generation.
+
+          stream: If true, the response will be streamed back incrementally using SSE, Server Sent
+              Events.
+
+          temperature: Controls the randomness of the output; higher values produce more random
+              results.
+
+          top_k: Limits the AI to choose from the top 'k' most probable words. Lower values make
+              responses more focused; higher values introduce more variety and potential
+              surprises.
+
+          top_p: Adjusts the creativity of the AI's responses by controlling how many possible
+              words it considers. Lower values make outputs more predictable; higher values
+              allow for more varied and creative responses.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -914,16 +1126,17 @@ class AsyncAIResource(AsyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        messages: Iterable[ai_run_params.Variant7Message],
+        messages: Iterable[ai_run_params.MessagesMessage],
         frequency_penalty: float | NotGiven = NOT_GIVEN,
-        functions: Iterable[ai_run_params.Variant7Function] | NotGiven = NOT_GIVEN,
+        functions: Iterable[ai_run_params.MessagesFunction] | NotGiven = NOT_GIVEN,
+        image: Iterable[float] | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         presence_penalty: float | NotGiven = NOT_GIVEN,
         repetition_penalty: float | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         stream: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
-        tools: Iterable[ai_run_params.Variant7Tool] | NotGiven = NOT_GIVEN,
+        tools: Iterable[ai_run_params.MessagesTool] | NotGiven = NOT_GIVEN,
         top_k: int | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -945,6 +1158,36 @@ class AsyncAIResource(AsyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          messages: An array of message objects representing the conversation history.
+
+          frequency_penalty: Decreases the likelihood of the model repeating the same lines verbatim.
+
+          image: An array of integers that represent the image data constrained to 8-bit unsigned
+              integer values
+
+          max_tokens: The maximum number of tokens to generate in the response.
+
+          presence_penalty: Increases the likelihood of the model introducing new topics.
+
+          repetition_penalty: Penalty for repeated tokens; higher values discourage repetition.
+
+          seed: Random seed for reproducibility of the generation.
+
+          stream: If true, the response will be streamed back incrementally.
+
+          temperature: Controls the randomness of the output; higher values produce more random
+              results.
+
+          tools: A list of tools available for the assistant to use.
+
+          top_k: Limits the AI to choose from the top 'k' most probable words. Lower values make
+              responses more focused; higher values introduce more variety and potential
+              surprises.
+
+          top_p: Controls the creativity of the AI's responses by adjusting how many possible
+              words it considers. Lower values make outputs more predictable; higher values
+              allow for more varied and creative responses.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -983,6 +1226,13 @@ class AsyncAIResource(AsyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          target_lang: The language code to translate the text into (e.g., 'es' for Spanish)
+
+          text: The text to be translated
+
+          source_lang: The language code of the source text (e.g., 'en' for English). Defaults to 'en'
+              if not specified
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1020,6 +1270,10 @@ class AsyncAIResource(AsyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          input_text: The text that you want the model to summarize
+
+          max_length: The maximum length of the generated summary in tokens
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1038,7 +1292,6 @@ class AsyncAIResource(AsyncAPIResource):
         account_id: str,
         image: Iterable[float],
         max_tokens: int | NotGiven = NOT_GIVEN,
-        messages: Iterable[ai_run_params.ImageToTextMessage] | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
         raw: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -1061,6 +1314,19 @@ class AsyncAIResource(AsyncAPIResource):
         [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/).
 
         Args:
+          image: An array of integers that represent the image data constrained to 8-bit unsigned
+              integer values
+
+          max_tokens: The maximum number of tokens to generate in the response.
+
+          prompt: The input text prompt for the model to generate a response.
+
+          raw: If true, a chat template is not applied and you must adhere to the specific
+              model's expected formatting.
+
+          temperature: Controls the randomness of the output; higher values produce more random
+              results.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1111,9 +1377,9 @@ class AsyncAIResource(AsyncAPIResource):
         temperature: float | NotGiven = NOT_GIVEN,
         top_k: int | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
-        messages: Iterable[ai_run_params.Variant7Message] | NotGiven = NOT_GIVEN,
-        functions: Iterable[ai_run_params.Variant7Function] | NotGiven = NOT_GIVEN,
-        tools: Iterable[ai_run_params.Variant7Tool] | NotGiven = NOT_GIVEN,
+        messages: Iterable[ai_run_params.MessagesMessage] | NotGiven = NOT_GIVEN,
+        functions: Iterable[ai_run_params.MessagesFunction] | NotGiven = NOT_GIVEN,
+        tools: Iterable[ai_run_params.MessagesTool] | NotGiven = NOT_GIVEN,
         input_text: str | NotGiven = NOT_GIVEN,
         max_length: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
