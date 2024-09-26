@@ -11,7 +11,7 @@ __all__ = ["ScanGetParams"]
 
 class ScanGetParams(TypedDict, total=False):
     account_id: Required[Annotated[str, PropertyInfo(alias="accountId")]]
-    """Account Id"""
+    """Account Id."""
 
     full: bool
     """Whether to return full report (scan summary and network log)."""

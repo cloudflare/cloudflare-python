@@ -82,11 +82,11 @@ class ScansResource(SyncAPIResource):
         https://developers.cloudflare.com/security-center/investigate/scan-limits/.
 
         Args:
-          account_id: Account Id
+          account_id: Account Id.
 
-          custom_headers: Set custom headers
+          custom_headers: Set custom headers.
 
-          screenshots_resolutions: Take multiple screenshots targeting different device types
+          screenshots_resolutions: Take multiple screenshots targeting different device types.
 
           visibility: The option `Public` means it will be included in listings like recent scans and
               search results. `Unlisted` means it will not be included in the aforementioned
@@ -163,7 +163,7 @@ class ScansResource(SyncAPIResource):
         may be removed from the search index at an unspecified time.
 
         Args:
-          account_id: Account Id
+          account_id: Account Id.
 
           account_scans: Return only scans created by account.
 
@@ -264,9 +264,9 @@ class ScansResource(SyncAPIResource):
         Get URL scan by uuid
 
         Args:
-          account_id: Account Id
+          account_id: Account Id.
 
-          scan_id: Scan uuid
+          scan_id: Scan uuid.
 
           full: Whether to return full report (scan summary and network log).
 
@@ -313,9 +313,9 @@ class ScansResource(SyncAPIResource):
         http://www.softwareishard.com/blog/har-12-spec/.
 
         Args:
-          account_id: Account Id
+          account_id: Account Id.
 
-          scan_id: Scan uuid
+          scan_id: Scan uuid.
 
           extra_headers: Send extra headers
 
@@ -358,11 +358,11 @@ class ScansResource(SyncAPIResource):
         Get scan's screenshot by resolution (desktop/mobile/tablet).
 
         Args:
-          account_id: Account Id
+          account_id: Account Id.
 
-          scan_id: Scan uuid
+          scan_id: Scan uuid.
 
-          resolution: Target device type
+          resolution: Target device type.
 
           extra_headers: Send extra headers
 
@@ -432,11 +432,11 @@ class AsyncScansResource(AsyncAPIResource):
         https://developers.cloudflare.com/security-center/investigate/scan-limits/.
 
         Args:
-          account_id: Account Id
+          account_id: Account Id.
 
-          custom_headers: Set custom headers
+          custom_headers: Set custom headers.
 
-          screenshots_resolutions: Take multiple screenshots targeting different device types
+          screenshots_resolutions: Take multiple screenshots targeting different device types.
 
           visibility: The option `Public` means it will be included in listings like recent scans and
               search results. `Unlisted` means it will not be included in the aforementioned
@@ -513,7 +513,7 @@ class AsyncScansResource(AsyncAPIResource):
         may be removed from the search index at an unspecified time.
 
         Args:
-          account_id: Account Id
+          account_id: Account Id.
 
           account_scans: Return only scans created by account.
 
@@ -614,9 +614,9 @@ class AsyncScansResource(AsyncAPIResource):
         Get URL scan by uuid
 
         Args:
-          account_id: Account Id
+          account_id: Account Id.
 
-          scan_id: Scan uuid
+          scan_id: Scan uuid.
 
           full: Whether to return full report (scan summary and network log).
 
@@ -663,9 +663,9 @@ class AsyncScansResource(AsyncAPIResource):
         http://www.softwareishard.com/blog/har-12-spec/.
 
         Args:
-          account_id: Account Id
+          account_id: Account Id.
 
-          scan_id: Scan uuid
+          scan_id: Scan uuid.
 
           extra_headers: Send extra headers
 
@@ -708,11 +708,11 @@ class AsyncScansResource(AsyncAPIResource):
         Get scan's screenshot by resolution (desktop/mobile/tablet).
 
         Args:
-          account_id: Account Id
+          account_id: Account Id.
 
-          scan_id: Scan uuid
+          scan_id: Scan uuid.
 
-          resolution: Target device type
+          resolution: Target device type.
 
           extra_headers: Send extra headers
 
