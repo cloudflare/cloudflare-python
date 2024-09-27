@@ -22,7 +22,7 @@ class Pool(BaseModel):
     Null means every Cloudflare data center.
     """
 
-    created_on: Optional[datetime] = None
+    created_on: Optional[str] = None
 
     description: Optional[str] = None
     """A human-readable description of the pool."""
@@ -63,7 +63,7 @@ class Pool(BaseModel):
     be marked unhealthy and will failover to the next available pool.
     """
 
-    modified_on: Optional[datetime] = None
+    modified_on: Optional[str] = None
 
     monitor: Optional[str] = None
     """

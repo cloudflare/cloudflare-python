@@ -6,7 +6,7 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
-from ..device_experience_monitor import DeviceExperienceMonitor
+from ..digital_experience_monitor import DigitalExperienceMonitor
 from .http_tests.test_stat_over_time import TestStatOverTime
 
 __all__ = [
@@ -140,7 +140,7 @@ class Traceroute(BaseModel):
     name: str
     """The name of the Traceroute synthetic application test"""
 
-    target_policies: Optional[List[DeviceExperienceMonitor]] = None
+    target_policies: Optional[List[DigitalExperienceMonitor]] = None
 
     targeted: Optional[bool] = None
 
