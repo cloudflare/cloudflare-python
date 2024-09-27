@@ -16,14 +16,6 @@ from .analytics import (
     AnalyticsResourceWithStreamingResponse,
     AsyncAnalyticsResourceWithStreamingResponse,
 )
-from .reverse_dns import (
-    ReverseDNSResource,
-    AsyncReverseDNSResource,
-    ReverseDNSResourceWithRawResponse,
-    AsyncReverseDNSResourceWithRawResponse,
-    ReverseDNSResourceWithStreamingResponse,
-    AsyncReverseDNSResourceWithStreamingResponse,
-)
 
 __all__ = [
     "AnalyticsResource",
@@ -32,12 +24,6 @@ __all__ = [
     "AsyncAnalyticsResourceWithRawResponse",
     "AnalyticsResourceWithStreamingResponse",
     "AsyncAnalyticsResourceWithStreamingResponse",
-    "ReverseDNSResource",
-    "AsyncReverseDNSResource",
-    "ReverseDNSResourceWithRawResponse",
-    "AsyncReverseDNSResourceWithRawResponse",
-    "ReverseDNSResourceWithStreamingResponse",
-    "AsyncReverseDNSResourceWithStreamingResponse",
     "FirewallResource",
     "AsyncFirewallResource",
     "FirewallResourceWithRawResponse",

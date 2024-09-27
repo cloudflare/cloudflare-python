@@ -32,14 +32,6 @@ from .domains import (
     DomainsResourceWithStreamingResponse,
     AsyncDomainsResourceWithStreamingResponse,
 )
-from .event_notifications import (
-    EventNotificationsResource,
-    AsyncEventNotificationsResource,
-    EventNotificationsResourceWithRawResponse,
-    AsyncEventNotificationsResourceWithRawResponse,
-    EventNotificationsResourceWithStreamingResponse,
-    AsyncEventNotificationsResourceWithStreamingResponse,
-)
 from .temporary_credentials import (
     TemporaryCredentialsResource,
     AsyncTemporaryCredentialsResource,
@@ -74,12 +66,6 @@ __all__ = [
     "AsyncDomainsResourceWithRawResponse",
     "DomainsResourceWithStreamingResponse",
     "AsyncDomainsResourceWithStreamingResponse",
-    "EventNotificationsResource",
-    "AsyncEventNotificationsResource",
-    "EventNotificationsResourceWithRawResponse",
-    "AsyncEventNotificationsResourceWithRawResponse",
-    "EventNotificationsResourceWithStreamingResponse",
-    "AsyncEventNotificationsResourceWithStreamingResponse",
     "R2Resource",
     "AsyncR2Resource",
     "R2ResourceWithRawResponse",

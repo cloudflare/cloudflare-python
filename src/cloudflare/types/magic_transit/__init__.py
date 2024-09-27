@@ -2,10 +2,8 @@
 
 from __future__ import annotations
 
-from .pcap import PCAP as PCAP
 from .site import Site as Site
 from .scope import Scope as Scope
-from .pcap_filter import PCAPFilter as PCAPFilter
 from .scope_param import ScopeParam as ScopeParam
 from .health_check import HealthCheck as HealthCheck
 from .psk_metadata import PSKMetadata as PSKMetadata
@@ -17,11 +15,7 @@ from .app_list_response import AppListResponse as AppListResponse
 from .app_update_params import AppUpdateParams as AppUpdateParams
 from .health_check_rate import HealthCheckRate as HealthCheckRate
 from .health_check_type import HealthCheckType as HealthCheckType
-from .pcap_filter_param import PCAPFilterParam as PCAPFilterParam
-from .pcap_get_response import PCAPGetResponse as PCAPGetResponse
 from .health_check_param import HealthCheckParam as HealthCheckParam
-from .pcap_create_params import PCAPCreateParams as PCAPCreateParams
-from .pcap_list_response import PCAPListResponse as PCAPListResponse
 from .route_get_response import RouteGetResponse as RouteGetResponse
 from .site_create_params import SiteCreateParams as SiteCreateParams
 from .site_update_params import SiteUpdateParams as SiteUpdateParams
@@ -32,7 +26,6 @@ from .route_create_params import RouteCreateParams as RouteCreateParams
 from .route_list_response import RouteListResponse as RouteListResponse
 from .route_update_params import RouteUpdateParams as RouteUpdateParams
 from .site_location_param import SiteLocationParam as SiteLocationParam
-from .pcap_create_response import PCAPCreateResponse as PCAPCreateResponse
 from .route_empty_response import RouteEmptyResponse as RouteEmptyResponse
 from .connector_edit_params import ConnectorEditParams as ConnectorEditParams
 from .route_create_response import RouteCreateResponse as RouteCreateResponse

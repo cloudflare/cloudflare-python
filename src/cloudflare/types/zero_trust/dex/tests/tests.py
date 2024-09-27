@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 
 from ....._models import BaseModel
 from ..aggregate_time_period import AggregateTimePeriod
-from ...digital_experience_monitor import DigitalExperienceMonitor
+from ...device_experience_monitor import DeviceExperienceMonitor
 
 __all__ = [
     "Tests",
@@ -238,7 +238,7 @@ class Test(BaseModel):
     method: Optional[str] = None
     """for HTTP, the method to use when running the test"""
 
-    target_policies: Optional[List[DigitalExperienceMonitor]] = None
+    target_policies: Optional[List[DeviceExperienceMonitor]] = None
 
     targeted: Optional[bool] = None
 

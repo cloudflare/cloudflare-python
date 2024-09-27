@@ -8,14 +8,6 @@ from .apps import (
     AppsResourceWithStreamingResponse,
     AsyncAppsResourceWithStreamingResponse,
 )
-from .pcaps import (
-    PCAPsResource,
-    AsyncPCAPsResource,
-    PCAPsResourceWithRawResponse,
-    AsyncPCAPsResourceWithRawResponse,
-    PCAPsResourceWithStreamingResponse,
-    AsyncPCAPsResourceWithStreamingResponse,
-)
 from .sites import (
     SitesResource,
     AsyncSitesResource,
@@ -116,12 +108,6 @@ __all__ = [
     "AsyncConnectorsResourceWithRawResponse",
     "ConnectorsResourceWithStreamingResponse",
     "AsyncConnectorsResourceWithStreamingResponse",
-    "PCAPsResource",
-    "AsyncPCAPsResource",
-    "PCAPsResourceWithRawResponse",
-    "AsyncPCAPsResourceWithRawResponse",
-    "PCAPsResourceWithStreamingResponse",
-    "AsyncPCAPsResourceWithStreamingResponse",
     "MagicTransitResource",
     "AsyncMagicTransitResource",
     "MagicTransitResourceWithRawResponse",
