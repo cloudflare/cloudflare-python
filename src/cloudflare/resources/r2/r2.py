@@ -29,6 +29,14 @@ from .domains import (
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .domains.domains import DomainsResource, AsyncDomainsResource
+from .event_notifications import (
+    EventNotificationsResource,
+    AsyncEventNotificationsResource,
+    EventNotificationsResourceWithRawResponse,
+    AsyncEventNotificationsResourceWithRawResponse,
+    EventNotificationsResourceWithStreamingResponse,
+    AsyncEventNotificationsResourceWithStreamingResponse,
+)
 from .temporary_credentials import (
     TemporaryCredentialsResource,
     AsyncTemporaryCredentialsResource,
@@ -37,6 +45,7 @@ from .temporary_credentials import (
     TemporaryCredentialsResourceWithStreamingResponse,
     AsyncTemporaryCredentialsResourceWithStreamingResponse,
 )
+from .event_notifications.event_notifications import EventNotificationsResource, AsyncEventNotificationsResource
 
 __all__ = ["R2Resource", "AsyncR2Resource"]
 
@@ -57,6 +66,10 @@ class R2Resource(SyncAPIResource):
     @cached_property
     def domains(self) -> DomainsResource:
         return DomainsResource(self._client)
+
+    @cached_property
+    def event_notifications(self) -> EventNotificationsResource:
+        return EventNotificationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> R2ResourceWithRawResponse:
@@ -94,6 +107,10 @@ class AsyncR2Resource(AsyncAPIResource):
     @cached_property
     def domains(self) -> AsyncDomainsResource:
         return AsyncDomainsResource(self._client)
+
+    @cached_property
+    def event_notifications(self) -> AsyncEventNotificationsResource:
+        return AsyncEventNotificationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncR2ResourceWithRawResponse:
@@ -135,6 +152,10 @@ class R2ResourceWithRawResponse:
     def domains(self) -> DomainsResourceWithRawResponse:
         return DomainsResourceWithRawResponse(self._r2.domains)
 
+    @cached_property
+    def event_notifications(self) -> EventNotificationsResourceWithRawResponse:
+        return EventNotificationsResourceWithRawResponse(self._r2.event_notifications)
+
 
 class AsyncR2ResourceWithRawResponse:
     def __init__(self, r2: AsyncR2Resource) -> None:
@@ -155,6 +176,10 @@ class AsyncR2ResourceWithRawResponse:
     @cached_property
     def domains(self) -> AsyncDomainsResourceWithRawResponse:
         return AsyncDomainsResourceWithRawResponse(self._r2.domains)
+
+    @cached_property
+    def event_notifications(self) -> AsyncEventNotificationsResourceWithRawResponse:
+        return AsyncEventNotificationsResourceWithRawResponse(self._r2.event_notifications)
 
 
 class R2ResourceWithStreamingResponse:
@@ -177,6 +202,10 @@ class R2ResourceWithStreamingResponse:
     def domains(self) -> DomainsResourceWithStreamingResponse:
         return DomainsResourceWithStreamingResponse(self._r2.domains)
 
+    @cached_property
+    def event_notifications(self) -> EventNotificationsResourceWithStreamingResponse:
+        return EventNotificationsResourceWithStreamingResponse(self._r2.event_notifications)
+
 
 class AsyncR2ResourceWithStreamingResponse:
     def __init__(self, r2: AsyncR2Resource) -> None:
@@ -197,3 +226,7 @@ class AsyncR2ResourceWithStreamingResponse:
     @cached_property
     def domains(self) -> AsyncDomainsResourceWithStreamingResponse:
         return AsyncDomainsResourceWithStreamingResponse(self._r2.domains)
+
+    @cached_property
+    def event_notifications(self) -> AsyncEventNotificationsResourceWithStreamingResponse:
+        return AsyncEventNotificationsResourceWithStreamingResponse(self._r2.event_notifications)

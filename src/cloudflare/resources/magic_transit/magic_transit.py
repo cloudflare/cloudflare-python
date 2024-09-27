@@ -10,6 +10,14 @@ from .apps import (
     AppsResourceWithStreamingResponse,
     AsyncAppsResourceWithStreamingResponse,
 )
+from .pcaps import (
+    PCAPsResource,
+    AsyncPCAPsResource,
+    PCAPsResourceWithRawResponse,
+    AsyncPCAPsResourceWithRawResponse,
+    PCAPsResourceWithStreamingResponse,
+    AsyncPCAPsResourceWithStreamingResponse,
+)
 from .sites import (
     SitesResource,
     AsyncSitesResource,
@@ -44,6 +52,7 @@ from .gre_tunnels import (
     GRETunnelsResourceWithStreamingResponse,
     AsyncGRETunnelsResourceWithStreamingResponse,
 )
+from .pcaps.pcaps import PCAPsResource, AsyncPCAPsResource
 from .sites.sites import SitesResource, AsyncSitesResource
 from .ipsec_tunnels import (
     IPSECTunnelsResource,
@@ -95,6 +104,10 @@ class MagicTransitResource(SyncAPIResource):
         return ConnectorsResource(self._client)
 
     @cached_property
+    def pcaps(self) -> PCAPsResource:
+        return PCAPsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> MagicTransitResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
@@ -142,6 +155,10 @@ class AsyncMagicTransitResource(AsyncAPIResource):
     @cached_property
     def connectors(self) -> AsyncConnectorsResource:
         return AsyncConnectorsResource(self._client)
+
+    @cached_property
+    def pcaps(self) -> AsyncPCAPsResource:
+        return AsyncPCAPsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncMagicTransitResourceWithRawResponse:
@@ -195,6 +212,10 @@ class MagicTransitResourceWithRawResponse:
     def connectors(self) -> ConnectorsResourceWithRawResponse:
         return ConnectorsResourceWithRawResponse(self._magic_transit.connectors)
 
+    @cached_property
+    def pcaps(self) -> PCAPsResourceWithRawResponse:
+        return PCAPsResourceWithRawResponse(self._magic_transit.pcaps)
+
 
 class AsyncMagicTransitResourceWithRawResponse:
     def __init__(self, magic_transit: AsyncMagicTransitResource) -> None:
@@ -227,6 +248,10 @@ class AsyncMagicTransitResourceWithRawResponse:
     @cached_property
     def connectors(self) -> AsyncConnectorsResourceWithRawResponse:
         return AsyncConnectorsResourceWithRawResponse(self._magic_transit.connectors)
+
+    @cached_property
+    def pcaps(self) -> AsyncPCAPsResourceWithRawResponse:
+        return AsyncPCAPsResourceWithRawResponse(self._magic_transit.pcaps)
 
 
 class MagicTransitResourceWithStreamingResponse:
@@ -261,6 +286,10 @@ class MagicTransitResourceWithStreamingResponse:
     def connectors(self) -> ConnectorsResourceWithStreamingResponse:
         return ConnectorsResourceWithStreamingResponse(self._magic_transit.connectors)
 
+    @cached_property
+    def pcaps(self) -> PCAPsResourceWithStreamingResponse:
+        return PCAPsResourceWithStreamingResponse(self._magic_transit.pcaps)
+
 
 class AsyncMagicTransitResourceWithStreamingResponse:
     def __init__(self, magic_transit: AsyncMagicTransitResource) -> None:
@@ -293,3 +322,7 @@ class AsyncMagicTransitResourceWithStreamingResponse:
     @cached_property
     def connectors(self) -> AsyncConnectorsResourceWithStreamingResponse:
         return AsyncConnectorsResourceWithStreamingResponse(self._magic_transit.connectors)
+
+    @cached_property
+    def pcaps(self) -> AsyncPCAPsResourceWithStreamingResponse:
+        return AsyncPCAPsResourceWithStreamingResponse(self._magic_transit.pcaps)

@@ -15,6 +15,14 @@ from .holds import (
     HoldsResourceWithStreamingResponse,
     AsyncHoldsResourceWithStreamingResponse,
 )
+from .plans import (
+    PlansResource,
+    AsyncPlansResource,
+    PlansResourceWithRawResponse,
+    AsyncPlansResourceWithRawResponse,
+    PlansResourceWithStreamingResponse,
+    AsyncPlansResourceWithStreamingResponse,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -29,6 +37,14 @@ from .settings import (
     AsyncSettingsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
+from .rate_plans import (
+    RatePlansResource,
+    AsyncRatePlansResource,
+    RatePlansResourceWithRawResponse,
+    AsyncRatePlansResourceWithRawResponse,
+    RatePlansResourceWithStreamingResponse,
+    AsyncRatePlansResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -91,6 +107,14 @@ class ZonesResource(SyncAPIResource):
     @cached_property
     def subscriptions(self) -> SubscriptionsResource:
         return SubscriptionsResource(self._client)
+
+    @cached_property
+    def plans(self) -> PlansResource:
+        return PlansResource(self._client)
+
+    @cached_property
+    def rate_plans(self) -> RatePlansResource:
+        return RatePlansResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ZonesResourceWithRawResponse:
@@ -398,6 +422,14 @@ class AsyncZonesResource(AsyncAPIResource):
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsResource:
         return AsyncSubscriptionsResource(self._client)
+
+    @cached_property
+    def plans(self) -> AsyncPlansResource:
+        return AsyncPlansResource(self._client)
+
+    @cached_property
+    def rate_plans(self) -> AsyncRatePlansResource:
+        return AsyncRatePlansResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncZonesResourceWithRawResponse:
@@ -725,6 +757,14 @@ class ZonesResourceWithRawResponse:
     def subscriptions(self) -> SubscriptionsResourceWithRawResponse:
         return SubscriptionsResourceWithRawResponse(self._zones.subscriptions)
 
+    @cached_property
+    def plans(self) -> PlansResourceWithRawResponse:
+        return PlansResourceWithRawResponse(self._zones.plans)
+
+    @cached_property
+    def rate_plans(self) -> RatePlansResourceWithRawResponse:
+        return RatePlansResourceWithRawResponse(self._zones.rate_plans)
+
 
 class AsyncZonesResourceWithRawResponse:
     def __init__(self, zones: AsyncZonesResource) -> None:
@@ -765,6 +805,14 @@ class AsyncZonesResourceWithRawResponse:
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsResourceWithRawResponse:
         return AsyncSubscriptionsResourceWithRawResponse(self._zones.subscriptions)
+
+    @cached_property
+    def plans(self) -> AsyncPlansResourceWithRawResponse:
+        return AsyncPlansResourceWithRawResponse(self._zones.plans)
+
+    @cached_property
+    def rate_plans(self) -> AsyncRatePlansResourceWithRawResponse:
+        return AsyncRatePlansResourceWithRawResponse(self._zones.rate_plans)
 
 
 class ZonesResourceWithStreamingResponse:
@@ -807,6 +855,14 @@ class ZonesResourceWithStreamingResponse:
     def subscriptions(self) -> SubscriptionsResourceWithStreamingResponse:
         return SubscriptionsResourceWithStreamingResponse(self._zones.subscriptions)
 
+    @cached_property
+    def plans(self) -> PlansResourceWithStreamingResponse:
+        return PlansResourceWithStreamingResponse(self._zones.plans)
+
+    @cached_property
+    def rate_plans(self) -> RatePlansResourceWithStreamingResponse:
+        return RatePlansResourceWithStreamingResponse(self._zones.rate_plans)
+
 
 class AsyncZonesResourceWithStreamingResponse:
     def __init__(self, zones: AsyncZonesResource) -> None:
@@ -847,3 +903,11 @@ class AsyncZonesResourceWithStreamingResponse:
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsResourceWithStreamingResponse:
         return AsyncSubscriptionsResourceWithStreamingResponse(self._zones.subscriptions)
+
+    @cached_property
+    def plans(self) -> AsyncPlansResourceWithStreamingResponse:
+        return AsyncPlansResourceWithStreamingResponse(self._zones.plans)
+
+    @cached_property
+    def rate_plans(self) -> AsyncRatePlansResourceWithStreamingResponse:
+        return AsyncRatePlansResourceWithStreamingResponse(self._zones.rate_plans)
