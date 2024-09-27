@@ -20,14 +20,6 @@ from .analytics import (
     AsyncAnalyticsResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
-from .reverse_dns import (
-    ReverseDNSResource,
-    AsyncReverseDNSResource,
-    ReverseDNSResourceWithRawResponse,
-    AsyncReverseDNSResourceWithRawResponse,
-    ReverseDNSResourceWithStreamingResponse,
-    AsyncReverseDNSResourceWithStreamingResponse,
-)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -55,10 +47,6 @@ class FirewallResource(SyncAPIResource):
     @cached_property
     def analytics(self) -> AnalyticsResource:
         return AnalyticsResource(self._client)
-
-    @cached_property
-    def reverse_dns(self) -> ReverseDNSResource:
-        return ReverseDNSResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> FirewallResourceWithRawResponse:
@@ -407,10 +395,6 @@ class AsyncFirewallResource(AsyncAPIResource):
     @cached_property
     def analytics(self) -> AsyncAnalyticsResource:
         return AsyncAnalyticsResource(self._client)
-
-    @cached_property
-    def reverse_dns(self) -> AsyncReverseDNSResource:
-        return AsyncReverseDNSResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncFirewallResourceWithRawResponse:
@@ -779,10 +763,6 @@ class FirewallResourceWithRawResponse:
     def analytics(self) -> AnalyticsResourceWithRawResponse:
         return AnalyticsResourceWithRawResponse(self._firewall.analytics)
 
-    @cached_property
-    def reverse_dns(self) -> ReverseDNSResourceWithRawResponse:
-        return ReverseDNSResourceWithRawResponse(self._firewall.reverse_dns)
-
 
 class AsyncFirewallResourceWithRawResponse:
     def __init__(self, firewall: AsyncFirewallResource) -> None:
@@ -807,10 +787,6 @@ class AsyncFirewallResourceWithRawResponse:
     @cached_property
     def analytics(self) -> AsyncAnalyticsResourceWithRawResponse:
         return AsyncAnalyticsResourceWithRawResponse(self._firewall.analytics)
-
-    @cached_property
-    def reverse_dns(self) -> AsyncReverseDNSResourceWithRawResponse:
-        return AsyncReverseDNSResourceWithRawResponse(self._firewall.reverse_dns)
 
 
 class FirewallResourceWithStreamingResponse:
@@ -837,10 +813,6 @@ class FirewallResourceWithStreamingResponse:
     def analytics(self) -> AnalyticsResourceWithStreamingResponse:
         return AnalyticsResourceWithStreamingResponse(self._firewall.analytics)
 
-    @cached_property
-    def reverse_dns(self) -> ReverseDNSResourceWithStreamingResponse:
-        return ReverseDNSResourceWithStreamingResponse(self._firewall.reverse_dns)
-
 
 class AsyncFirewallResourceWithStreamingResponse:
     def __init__(self, firewall: AsyncFirewallResource) -> None:
@@ -865,7 +837,3 @@ class AsyncFirewallResourceWithStreamingResponse:
     @cached_property
     def analytics(self) -> AsyncAnalyticsResourceWithStreamingResponse:
         return AsyncAnalyticsResourceWithStreamingResponse(self._firewall.analytics)
-
-    @cached_property
-    def reverse_dns(self) -> AsyncReverseDNSResourceWithStreamingResponse:
-        return AsyncReverseDNSResourceWithStreamingResponse(self._firewall.reverse_dns)

@@ -3,7 +3,7 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from ..shared.subscription import Subscription
+from .subscription import Subscription
 
 __all__ = ["SubscriptionGetResponse"]
 

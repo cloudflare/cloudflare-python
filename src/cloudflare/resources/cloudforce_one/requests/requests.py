@@ -8,14 +8,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from .assets import (
-    AssetsResource,
-    AsyncAssetsResource,
-    AssetsResourceWithRawResponse,
-    AsyncAssetsResourceWithRawResponse,
-    AssetsResourceWithStreamingResponse,
-    AsyncAssetsResourceWithStreamingResponse,
-)
 from .message import (
     MessageResource,
     AsyncMessageResource,
@@ -67,10 +59,6 @@ class RequestsResource(SyncAPIResource):
     @cached_property
     def priority(self) -> PriorityResource:
         return PriorityResource(self._client)
-
-    @cached_property
-    def assets(self) -> AssetsResource:
-        return AssetsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> RequestsResourceWithRawResponse:
@@ -521,10 +509,6 @@ class AsyncRequestsResource(AsyncAPIResource):
     @cached_property
     def priority(self) -> AsyncPriorityResource:
         return AsyncPriorityResource(self._client)
-
-    @cached_property
-    def assets(self) -> AsyncAssetsResource:
-        return AsyncAssetsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncRequestsResourceWithRawResponse:
@@ -1004,10 +988,6 @@ class RequestsResourceWithRawResponse:
     def priority(self) -> PriorityResourceWithRawResponse:
         return PriorityResourceWithRawResponse(self._requests.priority)
 
-    @cached_property
-    def assets(self) -> AssetsResourceWithRawResponse:
-        return AssetsResourceWithRawResponse(self._requests.assets)
-
 
 class AsyncRequestsResourceWithRawResponse:
     def __init__(self, requests: AsyncRequestsResource) -> None:
@@ -1045,10 +1025,6 @@ class AsyncRequestsResourceWithRawResponse:
     @cached_property
     def priority(self) -> AsyncPriorityResourceWithRawResponse:
         return AsyncPriorityResourceWithRawResponse(self._requests.priority)
-
-    @cached_property
-    def assets(self) -> AsyncAssetsResourceWithRawResponse:
-        return AsyncAssetsResourceWithRawResponse(self._requests.assets)
 
 
 class RequestsResourceWithStreamingResponse:
@@ -1088,10 +1064,6 @@ class RequestsResourceWithStreamingResponse:
     def priority(self) -> PriorityResourceWithStreamingResponse:
         return PriorityResourceWithStreamingResponse(self._requests.priority)
 
-    @cached_property
-    def assets(self) -> AssetsResourceWithStreamingResponse:
-        return AssetsResourceWithStreamingResponse(self._requests.assets)
-
 
 class AsyncRequestsResourceWithStreamingResponse:
     def __init__(self, requests: AsyncRequestsResource) -> None:
@@ -1129,7 +1101,3 @@ class AsyncRequestsResourceWithStreamingResponse:
     @cached_property
     def priority(self) -> AsyncPriorityResourceWithStreamingResponse:
         return AsyncPriorityResourceWithStreamingResponse(self._requests.priority)
-
-    @cached_property
-    def assets(self) -> AsyncAssetsResourceWithStreamingResponse:
-        return AsyncAssetsResourceWithStreamingResponse(self._requests.assets)

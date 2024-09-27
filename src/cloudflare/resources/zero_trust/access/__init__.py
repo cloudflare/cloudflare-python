@@ -88,14 +88,6 @@ from .custom_pages import (
     CustomPagesResourceWithStreamingResponse,
     AsyncCustomPagesResourceWithStreamingResponse,
 )
-from .infrastructure import (
-    InfrastructureResource,
-    AsyncInfrastructureResource,
-    InfrastructureResourceWithRawResponse,
-    AsyncInfrastructureResourceWithRawResponse,
-    InfrastructureResourceWithStreamingResponse,
-    AsyncInfrastructureResourceWithStreamingResponse,
-)
 from .service_tokens import (
     ServiceTokensResource,
     AsyncServiceTokensResource,
@@ -106,12 +98,6 @@ from .service_tokens import (
 )
 
 __all__ = [
-    "InfrastructureResource",
-    "AsyncInfrastructureResource",
-    "InfrastructureResourceWithRawResponse",
-    "AsyncInfrastructureResourceWithRawResponse",
-    "InfrastructureResourceWithStreamingResponse",
-    "AsyncInfrastructureResourceWithStreamingResponse",
     "ApplicationsResource",
     "AsyncApplicationsResource",
     "ApplicationsResourceWithRawResponse",

@@ -49,7 +49,6 @@ from .hotlink_protection import HotlinkProtection as HotlinkProtection
 from .proxy_read_timeout import ProxyReadTimeout as ProxyReadTimeout
 from .response_buffering import ResponseBuffering as ResponseBuffering
 from .zone_create_params import ZoneCreateParams as ZoneCreateParams
-from .available_rate_plan import AvailableRatePlan as AvailableRatePlan
 from .opportunistic_onion import OpportunisticOnion as OpportunisticOnion
 from .setting_edit_params import SettingEditParams as SettingEditParams
 from .server_side_excludes import ServerSideExcludes as ServerSideExcludes
@@ -57,7 +56,6 @@ from .setting_get_response import SettingGetResponse as SettingGetResponse
 from .zone_delete_response import ZoneDeleteResponse as ZoneDeleteResponse
 from .setting_edit_response import SettingEditResponse as SettingEditResponse
 from .true_client_ip_header import TrueClientIPHeader as TrueClientIPHeader
-from .rate_plan_get_response import RatePlanGetResponse as RatePlanGetResponse
 from .origin_max_http_version import OriginMaxHTTPVersion as OriginMaxHTTPVersion
 from .automatic_https_rewrites import AutomaticHTTPSRewrites as AutomaticHTTPSRewrites
 from .opportunistic_encryption import OpportunisticEncryption as OpportunisticEncryption
