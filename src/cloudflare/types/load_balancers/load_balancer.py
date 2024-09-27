@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Optional
+from datetime import datetime
 
 from .rules import Rules
 from ..._models import BaseModel
@@ -36,7 +37,7 @@ class LoadBalancer(BaseModel):
     default_pools.
     """
 
-    created_on: Optional[str] = None
+    created_on: Optional[datetime] = None
 
     default_pools: Optional[List[DefaultPools]] = None
     """A list of pool IDs ordered by their failover priority.
@@ -60,7 +61,7 @@ class LoadBalancer(BaseModel):
     See `steering_policy` to learn how steering is affected.
     """
 
-    modified_on: Optional[str] = None
+    modified_on: Optional[datetime] = None
 
     name: Optional[str] = None
     """The DNS hostname to associate with your Load Balancer.
