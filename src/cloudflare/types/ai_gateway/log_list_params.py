@@ -20,7 +20,7 @@ class LogListParams(TypedDict, total=False):
 
     end_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
-    feedback: Literal[-1, 0, 1]
+    feedback: Literal[0, 1]
 
     max_cost: float
 
