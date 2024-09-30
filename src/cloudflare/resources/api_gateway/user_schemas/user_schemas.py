@@ -7,6 +7,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .hosts import (
+    HostsResource,
+    AsyncHostsResource,
+    HostsResourceWithRawResponse,
+    AsyncHostsResourceWithRawResponse,
+    HostsResourceWithStreamingResponse,
+    AsyncHostsResourceWithStreamingResponse,
+)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from ...._utils import (
     extract_files,
@@ -50,6 +58,10 @@ class UserSchemasResource(SyncAPIResource):
     @cached_property
     def operations(self) -> OperationsResource:
         return OperationsResource(self._client)
+
+    @cached_property
+    def hosts(self) -> HostsResource:
+        return HostsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> UserSchemasResourceWithRawResponse:
@@ -333,6 +345,10 @@ class AsyncUserSchemasResource(AsyncAPIResource):
     @cached_property
     def operations(self) -> AsyncOperationsResource:
         return AsyncOperationsResource(self._client)
+
+    @cached_property
+    def hosts(self) -> AsyncHostsResource:
+        return AsyncHostsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncUserSchemasResourceWithRawResponse:
@@ -638,6 +654,10 @@ class UserSchemasResourceWithRawResponse:
     def operations(self) -> OperationsResourceWithRawResponse:
         return OperationsResourceWithRawResponse(self._user_schemas.operations)
 
+    @cached_property
+    def hosts(self) -> HostsResourceWithRawResponse:
+        return HostsResourceWithRawResponse(self._user_schemas.hosts)
+
 
 class AsyncUserSchemasResourceWithRawResponse:
     def __init__(self, user_schemas: AsyncUserSchemasResource) -> None:
@@ -662,6 +682,10 @@ class AsyncUserSchemasResourceWithRawResponse:
     @cached_property
     def operations(self) -> AsyncOperationsResourceWithRawResponse:
         return AsyncOperationsResourceWithRawResponse(self._user_schemas.operations)
+
+    @cached_property
+    def hosts(self) -> AsyncHostsResourceWithRawResponse:
+        return AsyncHostsResourceWithRawResponse(self._user_schemas.hosts)
 
 
 class UserSchemasResourceWithStreamingResponse:
@@ -688,6 +712,10 @@ class UserSchemasResourceWithStreamingResponse:
     def operations(self) -> OperationsResourceWithStreamingResponse:
         return OperationsResourceWithStreamingResponse(self._user_schemas.operations)
 
+    @cached_property
+    def hosts(self) -> HostsResourceWithStreamingResponse:
+        return HostsResourceWithStreamingResponse(self._user_schemas.hosts)
+
 
 class AsyncUserSchemasResourceWithStreamingResponse:
     def __init__(self, user_schemas: AsyncUserSchemasResource) -> None:
@@ -712,3 +740,7 @@ class AsyncUserSchemasResourceWithStreamingResponse:
     @cached_property
     def operations(self) -> AsyncOperationsResourceWithStreamingResponse:
         return AsyncOperationsResourceWithStreamingResponse(self._user_schemas.operations)
+
+    @cached_property
+    def hosts(self) -> AsyncHostsResourceWithStreamingResponse:
+        return AsyncHostsResourceWithStreamingResponse(self._user_schemas.hosts)

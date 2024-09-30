@@ -1,5 +1,21 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .dom import (
+    DomResource,
+    AsyncDomResource,
+    DomResourceWithRawResponse,
+    AsyncDomResourceWithRawResponse,
+    DomResourceWithStreamingResponse,
+    AsyncDomResourceWithStreamingResponse,
+)
+from .har import (
+    HarResource,
+    AsyncHarResource,
+    HarResourceWithRawResponse,
+    AsyncHarResourceWithRawResponse,
+    HarResourceWithStreamingResponse,
+    AsyncHarResourceWithStreamingResponse,
+)
 from .scans import (
     ScansResource,
     AsyncScansResource,
@@ -7,6 +23,30 @@ from .scans import (
     AsyncScansResourceWithRawResponse,
     ScansResourceWithStreamingResponse,
     AsyncScansResourceWithStreamingResponse,
+)
+from .result import (
+    ResultResource,
+    AsyncResultResource,
+    ResultResourceWithRawResponse,
+    AsyncResultResourceWithRawResponse,
+    ResultResourceWithStreamingResponse,
+    AsyncResultResourceWithStreamingResponse,
+)
+from .responses import (
+    ResponsesResource,
+    AsyncResponsesResource,
+    ResponsesResourceWithRawResponse,
+    AsyncResponsesResourceWithRawResponse,
+    ResponsesResourceWithStreamingResponse,
+    AsyncResponsesResourceWithStreamingResponse,
+)
+from .screenshot import (
+    ScreenshotResource,
+    AsyncScreenshotResource,
+    ScreenshotResourceWithRawResponse,
+    AsyncScreenshotResourceWithRawResponse,
+    ScreenshotResourceWithStreamingResponse,
+    AsyncScreenshotResourceWithStreamingResponse,
 )
 from .url_scanner import (
     URLScannerResource,
@@ -18,12 +58,42 @@ from .url_scanner import (
 )
 
 __all__ = [
+    "ResponsesResource",
+    "AsyncResponsesResource",
+    "ResponsesResourceWithRawResponse",
+    "AsyncResponsesResourceWithRawResponse",
+    "ResponsesResourceWithStreamingResponse",
+    "AsyncResponsesResourceWithStreamingResponse",
     "ScansResource",
     "AsyncScansResource",
     "ScansResourceWithRawResponse",
     "AsyncScansResourceWithRawResponse",
     "ScansResourceWithStreamingResponse",
     "AsyncScansResourceWithStreamingResponse",
+    "DomResource",
+    "AsyncDomResource",
+    "DomResourceWithRawResponse",
+    "AsyncDomResourceWithRawResponse",
+    "DomResourceWithStreamingResponse",
+    "AsyncDomResourceWithStreamingResponse",
+    "HarResource",
+    "AsyncHarResource",
+    "HarResourceWithRawResponse",
+    "AsyncHarResourceWithRawResponse",
+    "HarResourceWithStreamingResponse",
+    "AsyncHarResourceWithStreamingResponse",
+    "ResultResource",
+    "AsyncResultResource",
+    "ResultResourceWithRawResponse",
+    "AsyncResultResourceWithRawResponse",
+    "ResultResourceWithStreamingResponse",
+    "AsyncResultResourceWithStreamingResponse",
+    "ScreenshotResource",
+    "AsyncScreenshotResource",
+    "ScreenshotResourceWithRawResponse",
+    "AsyncScreenshotResourceWithRawResponse",
+    "ScreenshotResourceWithStreamingResponse",
+    "AsyncScreenshotResourceWithStreamingResponse",
     "URLScannerResource",
     "AsyncURLScannerResource",
     "URLScannerResourceWithRawResponse",

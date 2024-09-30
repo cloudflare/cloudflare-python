@@ -54,8 +54,17 @@ from .configurations import (
 )
 from .settings.settings import SettingsResource, AsyncSettingsResource
 from .discovery.discovery import DiscoveryResource, AsyncDiscoveryResource
+from .expression_template import (
+    ExpressionTemplateResource,
+    AsyncExpressionTemplateResource,
+    ExpressionTemplateResourceWithRawResponse,
+    AsyncExpressionTemplateResourceWithRawResponse,
+    ExpressionTemplateResourceWithStreamingResponse,
+    AsyncExpressionTemplateResourceWithStreamingResponse,
+)
 from .operations.operations import OperationsResource, AsyncOperationsResource
 from .user_schemas.user_schemas import UserSchemasResource, AsyncUserSchemasResource
+from .expression_template.expression_template import ExpressionTemplateResource, AsyncExpressionTemplateResource
 
 __all__ = ["APIGatewayResource", "AsyncAPIGatewayResource"]
 
@@ -84,6 +93,10 @@ class APIGatewayResource(SyncAPIResource):
     @cached_property
     def user_schemas(self) -> UserSchemasResource:
         return UserSchemasResource(self._client)
+
+    @cached_property
+    def expression_template(self) -> ExpressionTemplateResource:
+        return ExpressionTemplateResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> APIGatewayResourceWithRawResponse:
@@ -129,6 +142,10 @@ class AsyncAPIGatewayResource(AsyncAPIResource):
     @cached_property
     def user_schemas(self) -> AsyncUserSchemasResource:
         return AsyncUserSchemasResource(self._client)
+
+    @cached_property
+    def expression_template(self) -> AsyncExpressionTemplateResource:
+        return AsyncExpressionTemplateResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAPIGatewayResourceWithRawResponse:
@@ -178,6 +195,10 @@ class APIGatewayResourceWithRawResponse:
     def user_schemas(self) -> UserSchemasResourceWithRawResponse:
         return UserSchemasResourceWithRawResponse(self._api_gateway.user_schemas)
 
+    @cached_property
+    def expression_template(self) -> ExpressionTemplateResourceWithRawResponse:
+        return ExpressionTemplateResourceWithRawResponse(self._api_gateway.expression_template)
+
 
 class AsyncAPIGatewayResourceWithRawResponse:
     def __init__(self, api_gateway: AsyncAPIGatewayResource) -> None:
@@ -206,6 +227,10 @@ class AsyncAPIGatewayResourceWithRawResponse:
     @cached_property
     def user_schemas(self) -> AsyncUserSchemasResourceWithRawResponse:
         return AsyncUserSchemasResourceWithRawResponse(self._api_gateway.user_schemas)
+
+    @cached_property
+    def expression_template(self) -> AsyncExpressionTemplateResourceWithRawResponse:
+        return AsyncExpressionTemplateResourceWithRawResponse(self._api_gateway.expression_template)
 
 
 class APIGatewayResourceWithStreamingResponse:
@@ -236,6 +261,10 @@ class APIGatewayResourceWithStreamingResponse:
     def user_schemas(self) -> UserSchemasResourceWithStreamingResponse:
         return UserSchemasResourceWithStreamingResponse(self._api_gateway.user_schemas)
 
+    @cached_property
+    def expression_template(self) -> ExpressionTemplateResourceWithStreamingResponse:
+        return ExpressionTemplateResourceWithStreamingResponse(self._api_gateway.expression_template)
+
 
 class AsyncAPIGatewayResourceWithStreamingResponse:
     def __init__(self, api_gateway: AsyncAPIGatewayResource) -> None:
@@ -264,3 +293,7 @@ class AsyncAPIGatewayResourceWithStreamingResponse:
     @cached_property
     def user_schemas(self) -> AsyncUserSchemasResourceWithStreamingResponse:
         return AsyncUserSchemasResourceWithStreamingResponse(self._api_gateway.user_schemas)
+
+    @cached_property
+    def expression_template(self) -> AsyncExpressionTemplateResourceWithStreamingResponse:
+        return AsyncExpressionTemplateResourceWithStreamingResponse(self._api_gateway.expression_template)
