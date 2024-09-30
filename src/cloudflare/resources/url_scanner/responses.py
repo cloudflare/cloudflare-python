@@ -50,8 +50,10 @@ class ResponsesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
-        """
-        Returns the plain text response of the network request.
+        """Returns the raw response of the network request.
+
+        If HTML, a plain text response
+        will be returned.
 
         Args:
           account_id: Account Id.
@@ -112,8 +114,10 @@ class AsyncResponsesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
-        """
-        Returns the plain text response of the network request.
+        """Returns the raw response of the network request.
+
+        If HTML, a plain text response
+        will be returned.
 
         Args:
           account_id: Account Id.
