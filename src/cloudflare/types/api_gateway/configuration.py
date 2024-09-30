@@ -9,7 +9,7 @@ __all__ = [
     "Configuration",
     "AuthIDCharacteristic",
     "AuthIDCharacteristicAPIShieldAuthIDCharacteristic",
-    "AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim",
+    "AuthIDCharacteristicAPIShieldAuthIDCharacteristicJWTClaim",
 ]
 
 
@@ -21,7 +21,7 @@ class AuthIDCharacteristicAPIShieldAuthIDCharacteristic(BaseModel):
     """The type of characteristic."""
 
 
-class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim(BaseModel):
+class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJWTClaim(BaseModel):
     name: str
     """
     Claim location expressed as `$(token_config_id):$(json_path)`, where
@@ -38,7 +38,7 @@ class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim(BaseModel):
 
 
 AuthIDCharacteristic: TypeAlias = Union[
-    AuthIDCharacteristicAPIShieldAuthIDCharacteristic, AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim
+    AuthIDCharacteristicAPIShieldAuthIDCharacteristic, AuthIDCharacteristicAPIShieldAuthIDCharacteristicJWTClaim
 ]
 
 
