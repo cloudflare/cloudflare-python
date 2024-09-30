@@ -33,7 +33,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
 from ...types.url_scanner import scan_get_params, scan_list_params, scan_create_params, scan_screenshot_params
 from ...types.url_scanner.scan_get_response import ScanGetResponse
-from ...types.url_scanner.scan_har_response import ScanHarResponse
+from ...types.url_scanner.scan_har_response import ScanHARResponse
 from ...types.url_scanner.scan_list_response import ScanListResponse
 from ...types.url_scanner.scan_create_response import ScanCreateResponse
 
@@ -306,7 +306,7 @@ class ScansResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScanHarResponse:
+    ) -> ScanHARResponse:
         """Get a URL scan's HAR file.
 
         See HAR spec at
@@ -336,9 +336,9 @@ class ScansResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ScanHarResponse]._unwrapper,
+                post_parser=ResultWrapper[ScanHARResponse]._unwrapper,
             ),
-            cast_to=cast(Type[ScanHarResponse], ResultWrapper[ScanHarResponse]),
+            cast_to=cast(Type[ScanHARResponse], ResultWrapper[ScanHARResponse]),
         )
 
     def screenshot(
@@ -656,7 +656,7 @@ class AsyncScansResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScanHarResponse:
+    ) -> ScanHARResponse:
         """Get a URL scan's HAR file.
 
         See HAR spec at
@@ -686,9 +686,9 @@ class AsyncScansResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ScanHarResponse]._unwrapper,
+                post_parser=ResultWrapper[ScanHARResponse]._unwrapper,
             ),
-            cast_to=cast(Type[ScanHarResponse], ResultWrapper[ScanHarResponse]),
+            cast_to=cast(Type[ScanHARResponse], ResultWrapper[ScanHARResponse]),
         )
 
     async def screenshot(

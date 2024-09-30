@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 from .scan_get_params import ScanGetParams as ScanGetParams
-from .dom_get_response import DomGetResponse as DomGetResponse
-from .har_get_response import HarGetResponse as HarGetResponse
+from .dom_get_response import DOMGetResponse as DOMGetResponse
+from .har_get_response import HARGetResponse as HARGetResponse
 from .scan_list_params import ScanListParams as ScanListParams
 from .scan_get_response import ScanGetResponse as ScanGetResponse
-from .scan_har_response import ScanHarResponse as ScanHarResponse
+from .scan_har_response import ScanHARResponse as ScanHARResponse
 from .scan_create_params import ScanCreateParams as ScanCreateParams
 from .scan_list_response import ScanListResponse as ScanListResponse
 from .url_scanner_domain import URLScannerDomain as URLScannerDomain
