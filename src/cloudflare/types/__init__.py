@@ -24,3 +24,7 @@ from .shared import (
     SubscriptionComponent as SubscriptionComponent,
     CertificateRequestType as CertificateRequestType,
 )
+from .security_txt_get_response import SecurityTXTGetResponse as SecurityTXTGetResponse
+from .security_txt_update_params import SecurityTXTUpdateParams as SecurityTXTUpdateParams
+from .security_txt_delete_response import SecurityTXTDeleteResponse as SecurityTXTDeleteResponse
+from .security_txt_update_response import SecurityTXTUpdateResponse as SecurityTXTUpdateResponse
