@@ -3,20 +3,20 @@
 from __future__ import annotations
 
 from .dom import (
-    DomResource,
-    AsyncDomResource,
-    DomResourceWithRawResponse,
-    AsyncDomResourceWithRawResponse,
-    DomResourceWithStreamingResponse,
-    AsyncDomResourceWithStreamingResponse,
+    DOMResource,
+    AsyncDOMResource,
+    DOMResourceWithRawResponse,
+    AsyncDOMResourceWithRawResponse,
+    DOMResourceWithStreamingResponse,
+    AsyncDOMResourceWithStreamingResponse,
 )
 from .har import (
-    HarResource,
-    AsyncHarResource,
-    HarResourceWithRawResponse,
-    AsyncHarResourceWithRawResponse,
-    HarResourceWithStreamingResponse,
-    AsyncHarResourceWithStreamingResponse,
+    HARResource,
+    AsyncHARResource,
+    HARResourceWithRawResponse,
+    AsyncHARResourceWithRawResponse,
+    HARResourceWithStreamingResponse,
+    AsyncHARResourceWithStreamingResponse,
 )
 from .scans import (
     ScansResource,
@@ -66,12 +66,12 @@ class URLScannerResource(SyncAPIResource):
         return ScansResource(self._client)
 
     @cached_property
-    def dom(self) -> DomResource:
-        return DomResource(self._client)
+    def dom(self) -> DOMResource:
+        return DOMResource(self._client)
 
     @cached_property
-    def har(self) -> HarResource:
-        return HarResource(self._client)
+    def har(self) -> HARResource:
+        return HARResource(self._client)
 
     @cached_property
     def result(self) -> ResultResource:
@@ -111,12 +111,12 @@ class AsyncURLScannerResource(AsyncAPIResource):
         return AsyncScansResource(self._client)
 
     @cached_property
-    def dom(self) -> AsyncDomResource:
-        return AsyncDomResource(self._client)
+    def dom(self) -> AsyncDOMResource:
+        return AsyncDOMResource(self._client)
 
     @cached_property
-    def har(self) -> AsyncHarResource:
-        return AsyncHarResource(self._client)
+    def har(self) -> AsyncHARResource:
+        return AsyncHARResource(self._client)
 
     @cached_property
     def result(self) -> AsyncResultResource:
@@ -159,12 +159,12 @@ class URLScannerResourceWithRawResponse:
         return ScansResourceWithRawResponse(self._url_scanner.scans)
 
     @cached_property
-    def dom(self) -> DomResourceWithRawResponse:
-        return DomResourceWithRawResponse(self._url_scanner.dom)
+    def dom(self) -> DOMResourceWithRawResponse:
+        return DOMResourceWithRawResponse(self._url_scanner.dom)
 
     @cached_property
-    def har(self) -> HarResourceWithRawResponse:
-        return HarResourceWithRawResponse(self._url_scanner.har)
+    def har(self) -> HARResourceWithRawResponse:
+        return HARResourceWithRawResponse(self._url_scanner.har)
 
     @cached_property
     def result(self) -> ResultResourceWithRawResponse:
@@ -188,12 +188,12 @@ class AsyncURLScannerResourceWithRawResponse:
         return AsyncScansResourceWithRawResponse(self._url_scanner.scans)
 
     @cached_property
-    def dom(self) -> AsyncDomResourceWithRawResponse:
-        return AsyncDomResourceWithRawResponse(self._url_scanner.dom)
+    def dom(self) -> AsyncDOMResourceWithRawResponse:
+        return AsyncDOMResourceWithRawResponse(self._url_scanner.dom)
 
     @cached_property
-    def har(self) -> AsyncHarResourceWithRawResponse:
-        return AsyncHarResourceWithRawResponse(self._url_scanner.har)
+    def har(self) -> AsyncHARResourceWithRawResponse:
+        return AsyncHARResourceWithRawResponse(self._url_scanner.har)
 
     @cached_property
     def result(self) -> AsyncResultResourceWithRawResponse:
@@ -217,12 +217,12 @@ class URLScannerResourceWithStreamingResponse:
         return ScansResourceWithStreamingResponse(self._url_scanner.scans)
 
     @cached_property
-    def dom(self) -> DomResourceWithStreamingResponse:
-        return DomResourceWithStreamingResponse(self._url_scanner.dom)
+    def dom(self) -> DOMResourceWithStreamingResponse:
+        return DOMResourceWithStreamingResponse(self._url_scanner.dom)
 
     @cached_property
-    def har(self) -> HarResourceWithStreamingResponse:
-        return HarResourceWithStreamingResponse(self._url_scanner.har)
+    def har(self) -> HARResourceWithStreamingResponse:
+        return HARResourceWithStreamingResponse(self._url_scanner.har)
 
     @cached_property
     def result(self) -> ResultResourceWithStreamingResponse:
@@ -246,12 +246,12 @@ class AsyncURLScannerResourceWithStreamingResponse:
         return AsyncScansResourceWithStreamingResponse(self._url_scanner.scans)
 
     @cached_property
-    def dom(self) -> AsyncDomResourceWithStreamingResponse:
-        return AsyncDomResourceWithStreamingResponse(self._url_scanner.dom)
+    def dom(self) -> AsyncDOMResourceWithStreamingResponse:
+        return AsyncDOMResourceWithStreamingResponse(self._url_scanner.dom)
 
     @cached_property
-    def har(self) -> AsyncHarResourceWithStreamingResponse:
-        return AsyncHarResourceWithStreamingResponse(self._url_scanner.har)
+    def har(self) -> AsyncHARResourceWithStreamingResponse:
+        return AsyncHARResourceWithStreamingResponse(self._url_scanner.har)
 
     @cached_property
     def result(self) -> AsyncResultResourceWithStreamingResponse:

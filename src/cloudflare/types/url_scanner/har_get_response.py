@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 from ..._models import BaseModel
 
 __all__ = [
-    "HarGetResponse",
+    "HARGetResponse",
     "Log",
     "LogCreator",
     "LogEntry",
@@ -139,5 +139,5 @@ class Log(BaseModel):
     version: str
 
 
-class HarGetResponse(BaseModel):
+class HARGetResponse(BaseModel):
     log: Log

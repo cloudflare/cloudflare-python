@@ -6284,7 +6284,7 @@ from cloudflare.types.url_scanner import (
     ScanCreateResponse,
     ScanListResponse,
     ScanGetResponse,
-    ScanHarResponse,
+    ScanHARResponse,
 )
 ```
 
@@ -6293,32 +6293,32 @@ Methods:
 - <code title="post /accounts/{accountId}/urlscanner/scan">client.url_scanner.scans.<a href="./src/cloudflare/resources/url_scanner/scans.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/url_scanner/scan_create_params.py">params</a>) -> <a href="./src/cloudflare/types/url_scanner/scan_create_response.py">ScanCreateResponse</a></code>
 - <code title="get /accounts/{accountId}/urlscanner/scan">client.url_scanner.scans.<a href="./src/cloudflare/resources/url_scanner/scans.py">list</a>(account_id, \*\*<a href="src/cloudflare/types/url_scanner/scan_list_params.py">params</a>) -> <a href="./src/cloudflare/types/url_scanner/scan_list_response.py">ScanListResponse</a></code>
 - <code title="get /accounts/{accountId}/urlscanner/scan/{scanId}">client.url_scanner.scans.<a href="./src/cloudflare/resources/url_scanner/scans.py">get</a>(scan_id, \*, account_id, \*\*<a href="src/cloudflare/types/url_scanner/scan_get_params.py">params</a>) -> <a href="./src/cloudflare/types/url_scanner/scan_get_response.py">ScanGetResponse</a></code>
-- <code title="get /accounts/{accountId}/urlscanner/scan/{scanId}/har">client.url_scanner.scans.<a href="./src/cloudflare/resources/url_scanner/scans.py">har</a>(scan_id, \*, account_id) -> <a href="./src/cloudflare/types/url_scanner/scan_har_response.py">ScanHarResponse</a></code>
+- <code title="get /accounts/{accountId}/urlscanner/scan/{scanId}/har">client.url_scanner.scans.<a href="./src/cloudflare/resources/url_scanner/scans.py">har</a>(scan_id, \*, account_id) -> <a href="./src/cloudflare/types/url_scanner/scan_har_response.py">ScanHARResponse</a></code>
 - <code title="get /accounts/{accountId}/urlscanner/scan/{scanId}/screenshot">client.url_scanner.scans.<a href="./src/cloudflare/resources/url_scanner/scans.py">screenshot</a>(scan_id, \*, account_id, \*\*<a href="src/cloudflare/types/url_scanner/scan_screenshot_params.py">params</a>) -> BinaryAPIResponse</code>
 
-## Dom
+## DOM
 
 Types:
 
 ```python
-from cloudflare.types.url_scanner import DomGetResponse
+from cloudflare.types.url_scanner import DOMGetResponse
 ```
 
 Methods:
 
 - <code title="get /accounts/{accountId}/urlscanner/v2/dom/{scanId}">client.url_scanner.dom.<a href="./src/cloudflare/resources/url_scanner/dom.py">get</a>(scan_id, \*, account_id) -> str</code>
 
-## Har
+## HAR
 
 Types:
 
 ```python
-from cloudflare.types.url_scanner import HarGetResponse
+from cloudflare.types.url_scanner import HARGetResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{accountId}/urlscanner/v2/har/{scanId}">client.url_scanner.har.<a href="./src/cloudflare/resources/url_scanner/har.py">get</a>(scan_id, \*, account_id) -> <a href="./src/cloudflare/types/url_scanner/har_get_response.py">HarGetResponse</a></code>
+- <code title="get /accounts/{accountId}/urlscanner/v2/har/{scanId}">client.url_scanner.har.<a href="./src/cloudflare/resources/url_scanner/har.py">get</a>(scan_id, \*, account_id) -> <a href="./src/cloudflare/types/url_scanner/har_get_response.py">HARGetResponse</a></code>
 
 ## Result
 

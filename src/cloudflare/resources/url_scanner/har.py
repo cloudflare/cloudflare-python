@@ -14,30 +14,30 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.url_scanner.har_get_response import HarGetResponse
+from ...types.url_scanner.har_get_response import HARGetResponse
 
-__all__ = ["HarResource", "AsyncHarResource"]
+__all__ = ["HARResource", "AsyncHARResource"]
 
 
-class HarResource(SyncAPIResource):
+class HARResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> HarResourceWithRawResponse:
+    def with_raw_response(self) -> HARResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return HarResourceWithRawResponse(self)
+        return HARResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> HarResourceWithStreamingResponse:
+    def with_streaming_response(self) -> HARResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return HarResourceWithStreamingResponse(self)
+        return HARResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -50,7 +50,7 @@ class HarResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HarGetResponse:
+    ) -> HARGetResponse:
         """Get a URL scan's HAR file.
 
         See HAR spec at
@@ -78,29 +78,29 @@ class HarResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=HarGetResponse,
+            cast_to=HARGetResponse,
         )
 
 
-class AsyncHarResource(AsyncAPIResource):
+class AsyncHARResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncHarResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncHARResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncHarResourceWithRawResponse(self)
+        return AsyncHARResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHarResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncHARResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncHarResourceWithStreamingResponse(self)
+        return AsyncHARResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -113,7 +113,7 @@ class AsyncHarResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HarGetResponse:
+    ) -> HARGetResponse:
         """Get a URL scan's HAR file.
 
         See HAR spec at
@@ -141,12 +141,12 @@ class AsyncHarResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=HarGetResponse,
+            cast_to=HARGetResponse,
         )
 
 
-class HarResourceWithRawResponse:
-    def __init__(self, har: HarResource) -> None:
+class HARResourceWithRawResponse:
+    def __init__(self, har: HARResource) -> None:
         self._har = har
 
         self.get = to_raw_response_wrapper(
@@ -154,8 +154,8 @@ class HarResourceWithRawResponse:
         )
 
 
-class AsyncHarResourceWithRawResponse:
-    def __init__(self, har: AsyncHarResource) -> None:
+class AsyncHARResourceWithRawResponse:
+    def __init__(self, har: AsyncHARResource) -> None:
         self._har = har
 
         self.get = async_to_raw_response_wrapper(
@@ -163,8 +163,8 @@ class AsyncHarResourceWithRawResponse:
         )
 
 
-class HarResourceWithStreamingResponse:
-    def __init__(self, har: HarResource) -> None:
+class HARResourceWithStreamingResponse:
+    def __init__(self, har: HARResource) -> None:
         self._har = har
 
         self.get = to_streamed_response_wrapper(
@@ -172,8 +172,8 @@ class HarResourceWithStreamingResponse:
         )
 
 
-class AsyncHarResourceWithStreamingResponse:
-    def __init__(self, har: AsyncHarResource) -> None:
+class AsyncHARResourceWithStreamingResponse:
+    def __init__(self, har: AsyncHARResource) -> None:
         self._har = har
 
         self.get = async_to_streamed_response_wrapper(
