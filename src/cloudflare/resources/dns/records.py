@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Iterable, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -26,17 +26,20 @@ from ...types.dns import (
     record_edit_params,
     record_list_params,
     record_scan_params,
+    record_batch_params,
     record_create_params,
     record_import_params,
     record_update_params,
 )
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.dns.record_param import RecordParam
 from ...types.shared.sort_direction import SortDirection
 from ...types.dns.record_get_response import RecordGetResponse
 from ...types.dns.record_edit_response import RecordEditResponse
 from ...types.dns.record_list_response import RecordListResponse
 from ...types.dns.record_scan_response import RecordScanResponse
+from ...types.dns.record_batch_response import RecordBatchResponse
 from ...types.dns.record_create_response import RecordCreateResponse
 from ...types.dns.record_delete_response import RecordDeleteResponse
 from ...types.dns.record_import_response import RecordImportResponse
@@ -2179,6 +2182,74 @@ class RecordsResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[RecordDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RecordDeleteResponse]], ResultWrapper[RecordDeleteResponse]),
+        )
+
+    def batch(
+        self,
+        *,
+        zone_id: str,
+        deletes: Iterable[record_batch_params.Delete] | NotGiven = NOT_GIVEN,
+        patches: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
+        posts: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
+        puts: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordBatchResponse]:
+        """
+        Send a Batch of DNS Record API calls to be executed together.
+
+        Notes:
+
+        - Although Cloudflare will execute the batched operations in a single database
+          transaction, Cloudflare's distributed KV store must treat each record change
+          as a single key-value pair. This means that the propagation of changes is not
+          atomic. See
+          [the documentation](https://developers.cloudflare.com/dns/manage-dns-records/how-to/batch-record-changes/ "Batch DNS records")
+          for more information.
+        - The operations you specify within the /batch request body are always executed
+          in the following order:
+
+          - Deletes
+          - Patches
+          - Puts
+          - Posts
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._post(
+            f"/zones/{zone_id}/dns_records/batch",
+            body=maybe_transform(
+                {
+                    "deletes": deletes,
+                    "patches": patches,
+                    "posts": posts,
+                    "puts": puts,
+                },
+                record_batch_params.RecordBatchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RecordBatchResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RecordBatchResponse]], ResultWrapper[RecordBatchResponse]),
         )
 
     @overload
@@ -5521,6 +5592,74 @@ class AsyncRecordsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[RecordDeleteResponse]], ResultWrapper[RecordDeleteResponse]),
         )
 
+    async def batch(
+        self,
+        *,
+        zone_id: str,
+        deletes: Iterable[record_batch_params.Delete] | NotGiven = NOT_GIVEN,
+        patches: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
+        posts: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
+        puts: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordBatchResponse]:
+        """
+        Send a Batch of DNS Record API calls to be executed together.
+
+        Notes:
+
+        - Although Cloudflare will execute the batched operations in a single database
+          transaction, Cloudflare's distributed KV store must treat each record change
+          as a single key-value pair. This means that the propagation of changes is not
+          atomic. See
+          [the documentation](https://developers.cloudflare.com/dns/manage-dns-records/how-to/batch-record-changes/ "Batch DNS records")
+          for more information.
+        - The operations you specify within the /batch request body are always executed
+          in the following order:
+
+          - Deletes
+          - Patches
+          - Puts
+          - Posts
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._post(
+            f"/zones/{zone_id}/dns_records/batch",
+            body=await async_maybe_transform(
+                {
+                    "deletes": deletes,
+                    "patches": patches,
+                    "posts": posts,
+                    "puts": puts,
+                },
+                record_batch_params.RecordBatchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RecordBatchResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RecordBatchResponse]], ResultWrapper[RecordBatchResponse]),
+        )
+
     @overload
     async def edit(
         self,
@@ -6741,6 +6880,9 @@ class RecordsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             records.delete,
         )
+        self.batch = to_raw_response_wrapper(
+            records.batch,
+        )
         self.edit = to_raw_response_wrapper(
             records.edit,
         )
@@ -6773,6 +6915,9 @@ class AsyncRecordsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             records.delete,
+        )
+        self.batch = async_to_raw_response_wrapper(
+            records.batch,
         )
         self.edit = async_to_raw_response_wrapper(
             records.edit,
@@ -6807,6 +6952,9 @@ class RecordsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             records.delete,
         )
+        self.batch = to_streamed_response_wrapper(
+            records.batch,
+        )
         self.edit = to_streamed_response_wrapper(
             records.edit,
         )
@@ -6839,6 +6987,9 @@ class AsyncRecordsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             records.delete,
+        )
+        self.batch = async_to_streamed_response_wrapper(
+            records.batch,
         )
         self.edit = async_to_streamed_response_wrapper(
             records.edit,

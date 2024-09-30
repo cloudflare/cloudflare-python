@@ -108,6 +108,7 @@ from .connectivity_settings import (
     AsyncConnectivitySettingsResourceWithStreamingResponse,
 )
 from .risk_scoring.risk_scoring import RiskScoringResource, AsyncRiskScoringResource
+from .organizations.organizations import OrganizationsResource, AsyncOrganizationsResource
 
 __all__ = ["ZeroTrustResource", "AsyncZeroTrustResource"]
 

@@ -90,6 +90,7 @@ if TYPE_CHECKING:
         rate_limits,
         url_scanner,
         healthchecks,
+        security_txt,
         email_routing,
         magic_transit,
         secondary_dns,
@@ -696,6 +697,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.botnet_feed import BotnetFeedResource
 
         return BotnetFeedResource(self)
+
+    @cached_property
+    def security_txt(self) -> security_txt.SecurityTXTResource:
+        from .resources.security_txt import SecurityTXTResource
+
+        return SecurityTXTResource(self)
 
     @cached_property
     def with_raw_response(self) -> CloudflareWithRawResponse:
@@ -1445,6 +1452,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncBotnetFeedResource(self)
 
     @cached_property
+    def security_txt(self) -> security_txt.AsyncSecurityTXTResource:
+        from .resources.security_txt import AsyncSecurityTXTResource
+
+        return AsyncSecurityTXTResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCloudflareWithRawResponse:
         return AsyncCloudflareWithRawResponse(self)
 
@@ -2126,6 +2139,12 @@ class CloudflareWithRawResponse:
 
         return BotnetFeedResourceWithRawResponse(self._client.botnet_feed)
 
+    @cached_property
+    def security_txt(self) -> security_txt.SecurityTXTResourceWithRawResponse:
+        from .resources.security_txt import SecurityTXTResourceWithRawResponse
+
+        return SecurityTXTResourceWithRawResponse(self._client.security_txt)
+
 
 class AsyncCloudflareWithRawResponse:
     _client: AsyncCloudflare
@@ -2627,6 +2646,12 @@ class AsyncCloudflareWithRawResponse:
 
         return AsyncBotnetFeedResourceWithRawResponse(self._client.botnet_feed)
 
+    @cached_property
+    def security_txt(self) -> security_txt.AsyncSecurityTXTResourceWithRawResponse:
+        from .resources.security_txt import AsyncSecurityTXTResourceWithRawResponse
+
+        return AsyncSecurityTXTResourceWithRawResponse(self._client.security_txt)
+
 
 class CloudflareWithStreamedResponse:
     _client: Cloudflare
@@ -3127,6 +3152,12 @@ class CloudflareWithStreamedResponse:
         from .resources.botnet_feed import BotnetFeedResourceWithStreamingResponse
 
         return BotnetFeedResourceWithStreamingResponse(self._client.botnet_feed)
+
+    @cached_property
+    def security_txt(self) -> security_txt.SecurityTXTResourceWithStreamingResponse:
+        from .resources.security_txt import SecurityTXTResourceWithStreamingResponse
+
+        return SecurityTXTResourceWithStreamingResponse(self._client.security_txt)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -3636,6 +3667,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.botnet_feed import AsyncBotnetFeedResourceWithStreamingResponse
 
         return AsyncBotnetFeedResourceWithStreamingResponse(self._client.botnet_feed)
+
+    @cached_property
+    def security_txt(self) -> security_txt.AsyncSecurityTXTResourceWithStreamingResponse:
+        from .resources.security_txt import AsyncSecurityTXTResourceWithStreamingResponse
+
+        return AsyncSecurityTXTResourceWithStreamingResponse(self._client.security_txt)
 
 
 Client = Cloudflare
