@@ -68,7 +68,7 @@ __all__ = [
     "StatsTLSStat",
     "StatsTLSStatProtocols",
     "Task",
-    "TaskExtraOptions",
+    "TaskOptions",
     "Verdicts",
     "VerdictsOverall",
 ]
@@ -792,7 +792,10 @@ class Stats(BaseModel):
     uniq_countries: float = FieldInfo(alias="uniqCountries")
 
 
-class TaskExtraOptions(BaseModel):
+class TaskOptions(BaseModel):
+    custom_headers: Optional[object] = FieldInfo(alias="customHeaders", default=None)
+    """Custom headers set."""
+
     screenshots_resolutions: Optional[List[str]] = FieldInfo(alias="screenshotsResolutions", default=None)
 
 
@@ -803,9 +806,9 @@ class Task(BaseModel):
 
     dom_url: str = FieldInfo(alias="domURL")
 
-    extra_options: TaskExtraOptions = FieldInfo(alias="extraOptions")
-
     method: str
+
+    options: TaskOptions
 
     report_url: str = FieldInfo(alias="reportURL")
 
