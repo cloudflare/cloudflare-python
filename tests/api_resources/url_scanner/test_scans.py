@@ -20,7 +20,7 @@ from cloudflare._response import (
 )
 from cloudflare.types.url_scanner import (
     ScanGetResponse,
-    ScanHarResponse,
+    ScanHARResponse,
     ScanListResponse,
     ScanCreateResponse,
 )
@@ -210,7 +210,7 @@ class TestScans:
             scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="accountId",
         )
-        assert_matches_type(ScanHarResponse, scan, path=["response"])
+        assert_matches_type(ScanHARResponse, scan, path=["response"])
 
     @parametrize
     def test_raw_response_har(self, client: Cloudflare) -> None:
@@ -222,7 +222,7 @@ class TestScans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         scan = response.parse()
-        assert_matches_type(ScanHarResponse, scan, path=["response"])
+        assert_matches_type(ScanHARResponse, scan, path=["response"])
 
     @parametrize
     def test_streaming_response_har(self, client: Cloudflare) -> None:
@@ -234,7 +234,7 @@ class TestScans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             scan = response.parse()
-            assert_matches_type(ScanHarResponse, scan, path=["response"])
+            assert_matches_type(ScanHARResponse, scan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -517,7 +517,7 @@ class TestAsyncScans:
             scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="accountId",
         )
-        assert_matches_type(ScanHarResponse, scan, path=["response"])
+        assert_matches_type(ScanHARResponse, scan, path=["response"])
 
     @parametrize
     async def test_raw_response_har(self, async_client: AsyncCloudflare) -> None:
@@ -529,7 +529,7 @@ class TestAsyncScans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         scan = await response.parse()
-        assert_matches_type(ScanHarResponse, scan, path=["response"])
+        assert_matches_type(ScanHARResponse, scan, path=["response"])
 
     @parametrize
     async def test_streaming_response_har(self, async_client: AsyncCloudflare) -> None:
@@ -541,7 +541,7 @@ class TestAsyncScans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             scan = await response.parse()
-            assert_matches_type(ScanHarResponse, scan, path=["response"])
+            assert_matches_type(ScanHARResponse, scan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

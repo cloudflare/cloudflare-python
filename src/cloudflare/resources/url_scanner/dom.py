@@ -15,28 +15,28 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 
-__all__ = ["DomResource", "AsyncDomResource"]
+__all__ = ["DOMResource", "AsyncDOMResource"]
 
 
-class DomResource(SyncAPIResource):
+class DOMResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> DomResourceWithRawResponse:
+    def with_raw_response(self) -> DOMResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return DomResourceWithRawResponse(self)
+        return DOMResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> DomResourceWithStreamingResponse:
+    def with_streaming_response(self) -> DOMResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return DomResourceWithStreamingResponse(self)
+        return DOMResourceWithStreamingResponse(self)
 
     def get(
         self,
@@ -81,25 +81,25 @@ class DomResource(SyncAPIResource):
         )
 
 
-class AsyncDomResource(AsyncAPIResource):
+class AsyncDOMResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncDomResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncDOMResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncDomResourceWithRawResponse(self)
+        return AsyncDOMResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncDomResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncDOMResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncDomResourceWithStreamingResponse(self)
+        return AsyncDOMResourceWithStreamingResponse(self)
 
     async def get(
         self,
@@ -144,8 +144,8 @@ class AsyncDomResource(AsyncAPIResource):
         )
 
 
-class DomResourceWithRawResponse:
-    def __init__(self, dom: DomResource) -> None:
+class DOMResourceWithRawResponse:
+    def __init__(self, dom: DOMResource) -> None:
         self._dom = dom
 
         self.get = to_raw_response_wrapper(
@@ -153,8 +153,8 @@ class DomResourceWithRawResponse:
         )
 
 
-class AsyncDomResourceWithRawResponse:
-    def __init__(self, dom: AsyncDomResource) -> None:
+class AsyncDOMResourceWithRawResponse:
+    def __init__(self, dom: AsyncDOMResource) -> None:
         self._dom = dom
 
         self.get = async_to_raw_response_wrapper(
@@ -162,8 +162,8 @@ class AsyncDomResourceWithRawResponse:
         )
 
 
-class DomResourceWithStreamingResponse:
-    def __init__(self, dom: DomResource) -> None:
+class DOMResourceWithStreamingResponse:
+    def __init__(self, dom: DOMResource) -> None:
         self._dom = dom
 
         self.get = to_streamed_response_wrapper(
@@ -171,8 +171,8 @@ class DomResourceWithStreamingResponse:
         )
 
 
-class AsyncDomResourceWithStreamingResponse:
-    def __init__(self, dom: AsyncDomResource) -> None:
+class AsyncDOMResourceWithStreamingResponse:
+    def __init__(self, dom: AsyncDOMResource) -> None:
         self._dom = dom
 
         self.get = async_to_streamed_response_wrapper(
