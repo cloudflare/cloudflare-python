@@ -45,7 +45,6 @@ class TestPolicyTests:
                 },
             ],
             approval_required=True,
-            connection_rules={"ssh": {"usernames": ["root", "ubuntu"]}},
             decision="allow",
             exclude=[
                 {"email": {"email": "test@example.com"}},
@@ -178,7 +177,6 @@ class TestAsyncPolicyTests:
                 },
             ],
             approval_required=True,
-            connection_rules={"ssh": {"usernames": ["root", "ubuntu"]}},
             decision="allow",
             exclude=[
                 {"email": {"email": "test@example.com"}},
