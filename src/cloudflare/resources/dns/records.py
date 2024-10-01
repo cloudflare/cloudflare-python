@@ -878,7 +878,9 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
-          content: Text content for the record.
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
 
           type: Record type.
 
@@ -1878,7 +1880,9 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
-          content: Text content for the record.
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
 
           type: Record type.
 
@@ -3122,7 +3126,9 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
-          content: Text content for the record.
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
 
           type: Record type.
 
@@ -4286,7 +4292,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
-          content: Text content for the record.
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
 
           type: Record type.
 
@@ -5286,7 +5294,9 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
-          content: Text content for the record.
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
 
           type: Record type.
 
@@ -6530,7 +6540,9 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
-          content: Text content for the record.
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
 
           type: Record type.
 
