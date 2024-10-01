@@ -5,34 +5,29 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import Required, TypedDict
 
-from ..decision import Decision
-from ...access_rule_param import AccessRuleParam
-from .approval_group_param import ApprovalGroupParam
+from .decision import Decision
+from ..access_rule_param import AccessRuleParam
+from .applications.approval_group_param import ApprovalGroupParam
 
-__all__ = ["PolicyUpdateParams", "ConnectionRules", "ConnectionRulesSSH"]
+__all__ = ["ApplicationPolicyParam", "ConnectionRules", "ConnectionRulesSSH"]
 
 
-class PolicyUpdateParams(TypedDict, total=False):
-    app_id: Required[str]
-    """UUID"""
+class ConnectionRulesSSH(TypedDict, total=False):
+    usernames: Required[List[str]]
+    """Contains the Unix usernames that may be used when connecting over SSH."""
 
-    decision: Required[Decision]
-    """The action Access will take if a user matches this policy."""
 
-    include: Required[Iterable[AccessRuleParam]]
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
+class ConnectionRules(TypedDict, total=False):
+    ssh: ConnectionRulesSSH
+    """
+    The SSH-specific rules that define how users may connect to the targets secured
+    by your application.
     """
 
-    name: Required[str]
-    """The name of the Access policy."""
 
-    account_id: str
-    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
-
-    zone_id: str
-    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+class ApplicationPolicyParam(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
 
     approval_groups: Iterable[ApprovalGroupParam]
     """Administrators who can approve a temporary authentication request."""
@@ -49,10 +44,19 @@ class PolicyUpdateParams(TypedDict, total=False):
     application.
     """
 
+    decision: Decision
+    """The action Access will take if a user matches this policy."""
+
     exclude: Iterable[AccessRuleParam]
     """Rules evaluated with a NOT logical operator.
 
     To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    include: Iterable[AccessRuleParam]
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
     """
 
     isolation_required: bool
@@ -62,11 +66,8 @@ class PolicyUpdateParams(TypedDict, total=False):
     this feature.
     """
 
-    precedence: int
-    """The order of execution for this policy.
-
-    Must be unique for each policy within an app.
-    """
+    name: str
+    """The name of the Access policy."""
 
     purpose_justification_prompt: str
     """A custom message that will appear on the purpose justification screen."""
@@ -85,17 +86,4 @@ class PolicyUpdateParams(TypedDict, total=False):
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h.
-    """
-
-
-class ConnectionRulesSSH(TypedDict, total=False):
-    usernames: Required[List[str]]
-    """Contains the Unix usernames that may be used when connecting over SSH."""
-
-
-class ConnectionRules(TypedDict, total=False):
-    ssh: ConnectionRulesSSH
-    """
-    The SSH-specific rules that define how users may connect to the targets secured
-    by your application.
     """
