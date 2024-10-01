@@ -38,5 +38,8 @@ class WidgetUpdateParams(TypedDict, total=False):
     challenge clearance, this setting can determine the clearance level to be set
     """
 
+    ephemeral_id: bool
+    """Return the Ephemeral ID in /siteverify (ENT only)."""
+
     offlabel: bool
     """Do not show any Cloudflare branding on the widget (ENT only)."""

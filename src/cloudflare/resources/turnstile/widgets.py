@@ -69,6 +69,7 @@ class WidgetsResource(SyncAPIResource):
         per_page: float | NotGiven = NOT_GIVEN,
         bot_fight_mode: bool | NotGiven = NOT_GIVEN,
         clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | NotGiven = NOT_GIVEN,
+        ephemeral_id: bool | NotGiven = NOT_GIVEN,
         offlabel: bool | NotGiven = NOT_GIVEN,
         region: Literal["world"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -104,6 +105,8 @@ class WidgetsResource(SyncAPIResource):
           clearance_level: If Turnstile is embedded on a Cloudflare site and the widget should grant
               challenge clearance, this setting can determine the clearance level to be set
 
+          ephemeral_id: Return the Ephemeral ID in /siteverify (ENT only).
+
           offlabel: Do not show any Cloudflare branding on the widget (ENT only).
 
           region: Region where this widget can be used.
@@ -127,6 +130,7 @@ class WidgetsResource(SyncAPIResource):
                     "name": name,
                     "bot_fight_mode": bot_fight_mode,
                     "clearance_level": clearance_level,
+                    "ephemeral_id": ephemeral_id,
                     "offlabel": offlabel,
                     "region": region,
                 },
@@ -161,6 +165,7 @@ class WidgetsResource(SyncAPIResource):
         name: str,
         bot_fight_mode: bool | NotGiven = NOT_GIVEN,
         clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | NotGiven = NOT_GIVEN,
+        ephemeral_id: bool | NotGiven = NOT_GIVEN,
         offlabel: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -189,6 +194,8 @@ class WidgetsResource(SyncAPIResource):
           clearance_level: If Turnstile is embedded on a Cloudflare site and the widget should grant
               challenge clearance, this setting can determine the clearance level to be set
 
+          ephemeral_id: Return the Ephemeral ID in /siteverify (ENT only).
+
           offlabel: Do not show any Cloudflare branding on the widget (ENT only).
 
           extra_headers: Send extra headers
@@ -212,6 +219,7 @@ class WidgetsResource(SyncAPIResource):
                     "name": name,
                     "bot_fight_mode": bot_fight_mode,
                     "clearance_level": clearance_level,
+                    "ephemeral_id": ephemeral_id,
                     "offlabel": offlabel,
                 },
                 widget_update_params.WidgetUpdateParams,
@@ -464,6 +472,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         per_page: float | NotGiven = NOT_GIVEN,
         bot_fight_mode: bool | NotGiven = NOT_GIVEN,
         clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | NotGiven = NOT_GIVEN,
+        ephemeral_id: bool | NotGiven = NOT_GIVEN,
         offlabel: bool | NotGiven = NOT_GIVEN,
         region: Literal["world"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -499,6 +508,8 @@ class AsyncWidgetsResource(AsyncAPIResource):
           clearance_level: If Turnstile is embedded on a Cloudflare site and the widget should grant
               challenge clearance, this setting can determine the clearance level to be set
 
+          ephemeral_id: Return the Ephemeral ID in /siteverify (ENT only).
+
           offlabel: Do not show any Cloudflare branding on the widget (ENT only).
 
           region: Region where this widget can be used.
@@ -522,6 +533,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
                     "name": name,
                     "bot_fight_mode": bot_fight_mode,
                     "clearance_level": clearance_level,
+                    "ephemeral_id": ephemeral_id,
                     "offlabel": offlabel,
                     "region": region,
                 },
@@ -556,6 +568,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         name: str,
         bot_fight_mode: bool | NotGiven = NOT_GIVEN,
         clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | NotGiven = NOT_GIVEN,
+        ephemeral_id: bool | NotGiven = NOT_GIVEN,
         offlabel: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -584,6 +597,8 @@ class AsyncWidgetsResource(AsyncAPIResource):
           clearance_level: If Turnstile is embedded on a Cloudflare site and the widget should grant
               challenge clearance, this setting can determine the clearance level to be set
 
+          ephemeral_id: Return the Ephemeral ID in /siteverify (ENT only).
+
           offlabel: Do not show any Cloudflare branding on the widget (ENT only).
 
           extra_headers: Send extra headers
@@ -607,6 +622,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
                     "name": name,
                     "bot_fight_mode": bot_fight_mode,
                     "clearance_level": clearance_level,
+                    "ephemeral_id": ephemeral_id,
                     "offlabel": offlabel,
                 },
                 widget_update_params.WidgetUpdateParams,

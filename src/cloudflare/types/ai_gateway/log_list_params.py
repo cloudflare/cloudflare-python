@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["LogListParams"]
+__all__ = ["LogListParams", "Filter"]
 
 
 class LogListParams(TypedDict, total=False):
@@ -21,6 +21,8 @@ class LogListParams(TypedDict, total=False):
     end_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
     feedback: Literal[0, 1]
+
+    filters: Iterable[Filter]
 
     max_cost: float
 
@@ -67,3 +69,27 @@ class LogListParams(TypedDict, total=False):
     start_date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
     success: bool
+
+
+class Filter(TypedDict, total=False):
+    key: Required[
+        Literal[
+            "created_at",
+            "request_content_type",
+            "response_content_type",
+            "success",
+            "cached",
+            "provider",
+            "model",
+            "cost",
+            "tokens",
+            "tokens_in",
+            "tokens_out",
+            "duration",
+            "feedback",
+        ]
+    ]
+
+    operator: Required[Literal["eq", "neq", "contains", "lt", "gt"]]
+
+    value: Required[List[Union[Optional[str], float, bool]]]
