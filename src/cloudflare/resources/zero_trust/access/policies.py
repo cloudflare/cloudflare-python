@@ -64,6 +64,7 @@ class PoliciesResource(SyncAPIResource):
         name: str,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
+        connection_rules: policy_create_params.ConnectionRules | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
@@ -94,6 +95,9 @@ class PoliciesResource(SyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -132,6 +136,7 @@ class PoliciesResource(SyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "purpose_justification_prompt": purpose_justification_prompt,
@@ -161,6 +166,7 @@ class PoliciesResource(SyncAPIResource):
         name: str,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
+        connection_rules: policy_update_params.ConnectionRules | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
@@ -193,6 +199,9 @@ class PoliciesResource(SyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -233,6 +242,7 @@ class PoliciesResource(SyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "purpose_justification_prompt": purpose_justification_prompt,
@@ -406,6 +416,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         name: str,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
+        connection_rules: policy_create_params.ConnectionRules | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
@@ -436,6 +447,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -474,6 +488,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "purpose_justification_prompt": purpose_justification_prompt,
@@ -503,6 +518,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         name: str,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
+        connection_rules: policy_update_params.ConnectionRules | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
@@ -535,6 +551,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -575,6 +594,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "purpose_justification_prompt": purpose_justification_prompt,

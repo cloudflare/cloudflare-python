@@ -70,6 +70,7 @@ class PolicyTestsResource(SyncAPIResource):
         id: str | NotGiven = NOT_GIVEN,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
+        connection_rules: policy_test_create_params.ConnectionRules | NotGiven = NOT_GIVEN,
         decision: Decision | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         include: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
@@ -98,6 +99,9 @@ class PolicyTestsResource(SyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
 
           decision: The action Access will take if a user matches this policy.
 
@@ -141,6 +145,7 @@ class PolicyTestsResource(SyncAPIResource):
                     "id": id,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "decision": decision,
                     "exclude": exclude,
                     "include": include,
@@ -231,6 +236,7 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
         id: str | NotGiven = NOT_GIVEN,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
+        connection_rules: policy_test_create_params.ConnectionRules | NotGiven = NOT_GIVEN,
         decision: Decision | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         include: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
@@ -259,6 +265,9 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
 
           decision: The action Access will take if a user matches this policy.
 
@@ -302,6 +311,7 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
                     "id": id,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "decision": decision,
                     "exclude": exclude,
                     "include": include,
