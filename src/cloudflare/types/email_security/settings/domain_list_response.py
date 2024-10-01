@@ -23,6 +23,8 @@ class DomainListResponse(BaseModel):
 
     lookback_hops: int
 
+    folder: Optional[Literal["AllItems", "Inbox"]] = None
+
     integration_id: Optional[str] = None
 
     o365_tenant_id: Optional[str] = None
