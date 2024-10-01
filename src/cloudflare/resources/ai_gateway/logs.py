@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -55,6 +55,7 @@ class LogsResource(SyncAPIResource):
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         end_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
         feedback: Literal[0, 1] | NotGiven = NOT_GIVEN,
+        filters: Iterable[log_list_params.Filter] | NotGiven = NOT_GIVEN,
         max_cost: float | NotGiven = NOT_GIVEN,
         max_duration: float | NotGiven = NOT_GIVEN,
         max_tokens_in: float | NotGiven = NOT_GIVEN,
@@ -117,6 +118,7 @@ class LogsResource(SyncAPIResource):
                         "direction": direction,
                         "end_date": end_date,
                         "feedback": feedback,
+                        "filters": filters,
                         "max_cost": max_cost,
                         "max_duration": max_duration,
                         "max_tokens_in": max_tokens_in,
@@ -177,6 +179,7 @@ class AsyncLogsResource(AsyncAPIResource):
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         end_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
         feedback: Literal[0, 1] | NotGiven = NOT_GIVEN,
+        filters: Iterable[log_list_params.Filter] | NotGiven = NOT_GIVEN,
         max_cost: float | NotGiven = NOT_GIVEN,
         max_duration: float | NotGiven = NOT_GIVEN,
         max_tokens_in: float | NotGiven = NOT_GIVEN,
@@ -239,6 +242,7 @@ class AsyncLogsResource(AsyncAPIResource):
                         "direction": direction,
                         "end_date": end_date,
                         "feedback": feedback,
+                        "filters": filters,
                         "max_cost": max_cost,
                         "max_duration": max_duration,
                         "max_tokens_in": max_tokens_in,
