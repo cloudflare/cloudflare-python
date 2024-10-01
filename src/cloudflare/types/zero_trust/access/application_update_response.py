@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
-from typing_extensions import TypeAlias
+from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
 from .allowed_idps import AllowedIdPs
@@ -50,6 +50,10 @@ __all__ = [
     "BookmarkApplication",
     "BookmarkApplicationSCIMConfig",
     "BookmarkApplicationSCIMConfigAuthentication",
+    "InfrastructureApplication",
+    "InfrastructureApplicationTargetCriterion",
+    "InfrastructureApplicationSCIMConfig",
+    "InfrastructureApplicationSCIMConfigAuthentication",
 ]
 
 SelfHostedApplicationSCIMConfigAuthentication: TypeAlias = Union[
@@ -1153,6 +1157,86 @@ class BookmarkApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
+class InfrastructureApplicationTargetCriterion(BaseModel):
+    port: int
+    """The port that the targets use for the chosen communication protocol.
+
+    A port cannot be assigned to multiple protocols.
+    """
+
+    protocol: Literal["ssh"]
+    """The communication protocol your application secures."""
+
+    target_attributes: Dict[str, List[str]]
+    """Contains a map of target attribute keys to target attribute values."""
+
+
+InfrastructureApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
+]
+
+
+class InfrastructureApplicationSCIMConfig(BaseModel):
+    idp_uid: str
+    """
+    The UID of the IdP to use as the source for SCIM resources to provision to this
+    application.
+    """
+
+    remote_uri: str
+    """The base URI for the application's SCIM-compatible API."""
+
+    authentication: Optional[InfrastructureApplicationSCIMConfigAuthentication] = None
+    """
+    Attributes for configuring HTTP Basic authentication scheme for SCIM
+    provisioning to an application.
+    """
+
+    deactivate_on_delete: Optional[bool] = None
+    """
+    If false, propagates DELETE requests to the target application for SCIM
+    resources. If true, sets 'active' to false on the SCIM resource. Note: Some
+    targets do not support DELETE operations.
+    """
+
+    enabled: Optional[bool] = None
+    """Whether SCIM provisioning is turned on for this application."""
+
+    mappings: Optional[List[SCIMConfigMapping]] = None
+    """
+    A list of mappings to apply to SCIM resources before provisioning them in this
+    application. These can transform or filter the resources to be provisioned.
+    """
+
+
+class InfrastructureApplication(BaseModel):
+    target_criteria: List[InfrastructureApplicationTargetCriterion]
+
+    type: ApplicationType
+    """The application type."""
+
+    id: Optional[str] = None
+    """UUID"""
+
+    aud: Optional[str] = None
+    """Audience tag."""
+
+    created_at: Optional[datetime] = None
+
+    name: Optional[str] = None
+    """The name of the application."""
+
+    policies: Optional[List[ApplicationPolicy]] = None
+
+    scim_config: Optional[InfrastructureApplicationSCIMConfig] = None
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
+    updated_at: Optional[datetime] = None
+
+
 ApplicationUpdateResponse: TypeAlias = Union[
     SelfHostedApplication,
     SaaSApplication,
@@ -1162,4 +1246,5 @@ ApplicationUpdateResponse: TypeAlias = Union[
     DeviceEnrollmentPermissionsApplication,
     BrowserIsolationPermissionsApplication,
     BookmarkApplication,
+    InfrastructureApplication,
 ]

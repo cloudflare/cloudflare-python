@@ -4,9 +4,13 @@
 
 from ..._models import BaseModel
 
-__all__ = ["EveryoneRule"]
+__all__ = ["EveryoneRule", "Everyone"]
+
+
+class Everyone(BaseModel):
+    pass
 
 
 class EveryoneRule(BaseModel):
-    everyone: object
+    everyone: Everyone
     """An empty object which matches on all users."""

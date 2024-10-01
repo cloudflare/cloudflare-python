@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing import Dict, List, Union, Iterable
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .decision import Decision
 from .allowed_idps import AllowedIdPs
@@ -13,6 +13,7 @@ from .cors_headers_param import CORSHeadersParam
 from .oidc_saas_app_param import OIDCSaaSAppParam
 from .saml_saas_app_param import SAMLSaaSAppParam
 from .self_hosted_domains import SelfHostedDomains
+from .application_policy_param import ApplicationPolicyParam
 from .scim_config_mapping_param import SCIMConfigMappingParam
 from .applications.approval_group_param import ApprovalGroupParam
 from .scim_config_authentication_oauth2_param import SCIMConfigAuthenticationOauth2Param
@@ -25,12 +26,16 @@ __all__ = [
     "SelfHostedApplicationPolicy",
     "SelfHostedApplicationPolicyAccessAppPolicyLink",
     "SelfHostedApplicationPolicyUnionMember2",
+    "SelfHostedApplicationPolicyUnionMember2ConnectionRules",
+    "SelfHostedApplicationPolicyUnionMember2ConnectionRulesSSH",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
     "SaaSApplication",
     "SaaSApplicationPolicy",
     "SaaSApplicationPolicyAccessAppPolicyLink",
     "SaaSApplicationPolicyUnionMember2",
+    "SaaSApplicationPolicyUnionMember2ConnectionRules",
+    "SaaSApplicationPolicyUnionMember2ConnectionRulesSSH",
     "SaaSApplicationSaaSApp",
     "SaaSApplicationSCIMConfig",
     "SaaSApplicationSCIMConfigAuthentication",
@@ -38,12 +43,16 @@ __all__ = [
     "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationPolicyAccessAppPolicyLink",
     "BrowserSSHApplicationPolicyUnionMember2",
+    "BrowserSSHApplicationPolicyUnionMember2ConnectionRules",
+    "BrowserSSHApplicationPolicyUnionMember2ConnectionRulesSSH",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
     "BrowserVNCApplication",
     "BrowserVNCApplicationPolicy",
     "BrowserVNCApplicationPolicyAccessAppPolicyLink",
     "BrowserVNCApplicationPolicyUnionMember2",
+    "BrowserVNCApplicationPolicyUnionMember2ConnectionRules",
+    "BrowserVNCApplicationPolicyUnionMember2ConnectionRulesSSH",
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
     "AppLauncherApplication",
@@ -52,6 +61,8 @@ __all__ = [
     "AppLauncherApplicationPolicy",
     "AppLauncherApplicationPolicyAccessAppPolicyLink",
     "AppLauncherApplicationPolicyUnionMember2",
+    "AppLauncherApplicationPolicyUnionMember2ConnectionRules",
+    "AppLauncherApplicationPolicyUnionMember2ConnectionRulesSSH",
     "AppLauncherApplicationSCIMConfig",
     "AppLauncherApplicationSCIMConfigAuthentication",
     "DeviceEnrollmentPermissionsApplication",
@@ -60,6 +71,8 @@ __all__ = [
     "DeviceEnrollmentPermissionsApplicationPolicy",
     "DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink",
     "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2",
+    "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2ConnectionRules",
+    "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2ConnectionRulesSSH",
     "DeviceEnrollmentPermissionsApplicationSCIMConfig",
     "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication",
     "BrowserIsolationPermissionsApplication",
@@ -68,11 +81,15 @@ __all__ = [
     "BrowserIsolationPermissionsApplicationPolicy",
     "BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink",
     "BrowserIsolationPermissionsApplicationPolicyUnionMember2",
+    "BrowserIsolationPermissionsApplicationPolicyUnionMember2ConnectionRules",
+    "BrowserIsolationPermissionsApplicationPolicyUnionMember2ConnectionRulesSSH",
     "BrowserIsolationPermissionsApplicationSCIMConfig",
     "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication",
     "BookmarkApplication",
     "BookmarkApplicationSCIMConfig",
     "BookmarkApplicationSCIMConfigAuthentication",
+    "InfrastructureApplication",
+    "InfrastructureApplicationTargetCriterion",
 ]
 
 
@@ -224,6 +241,19 @@ class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class SelfHostedApplicationPolicyUnionMember2ConnectionRulesSSH(TypedDict, total=False):
+    usernames: Required[List[str]]
+    """Contains the Unix usernames that may be used when connecting over SSH."""
+
+
+class SelfHostedApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    ssh: SelfHostedApplicationPolicyUnionMember2ConnectionRulesSSH
+    """
+    The SSH-specific rules that define how users may connect to the targets secured
+    by your application.
+    """
+
+
 class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
@@ -247,6 +277,12 @@ class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: SelfHostedApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to the targets secured by your
+    application.
     """
 
     exclude: Iterable[AccessRuleParam]
@@ -401,6 +437,19 @@ class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class SaaSApplicationPolicyUnionMember2ConnectionRulesSSH(TypedDict, total=False):
+    usernames: Required[List[str]]
+    """Contains the Unix usernames that may be used when connecting over SSH."""
+
+
+class SaaSApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    ssh: SaaSApplicationPolicyUnionMember2ConnectionRulesSSH
+    """
+    The SSH-specific rules that define how users may connect to the targets secured
+    by your application.
+    """
+
+
 class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
@@ -424,6 +473,12 @@ class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: SaaSApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to the targets secured by your
+    application.
     """
 
     exclude: Iterable[AccessRuleParam]
@@ -659,6 +714,19 @@ class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class BrowserSSHApplicationPolicyUnionMember2ConnectionRulesSSH(TypedDict, total=False):
+    usernames: Required[List[str]]
+    """Contains the Unix usernames that may be used when connecting over SSH."""
+
+
+class BrowserSSHApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    ssh: BrowserSSHApplicationPolicyUnionMember2ConnectionRulesSSH
+    """
+    The SSH-specific rules that define how users may connect to the targets secured
+    by your application.
+    """
+
+
 class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
@@ -682,6 +750,12 @@ class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: BrowserSSHApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to the targets secured by your
+    application.
     """
 
     exclude: Iterable[AccessRuleParam]
@@ -915,6 +989,19 @@ class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class BrowserVNCApplicationPolicyUnionMember2ConnectionRulesSSH(TypedDict, total=False):
+    usernames: Required[List[str]]
+    """Contains the Unix usernames that may be used when connecting over SSH."""
+
+
+class BrowserVNCApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    ssh: BrowserVNCApplicationPolicyUnionMember2ConnectionRulesSSH
+    """
+    The SSH-specific rules that define how users may connect to the targets secured
+    by your application.
+    """
+
+
 class BrowserVNCApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
@@ -938,6 +1025,12 @@ class BrowserVNCApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: BrowserVNCApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to the targets secured by your
+    application.
     """
 
     exclude: Iterable[AccessRuleParam]
@@ -1122,6 +1215,19 @@ class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class AppLauncherApplicationPolicyUnionMember2ConnectionRulesSSH(TypedDict, total=False):
+    usernames: Required[List[str]]
+    """Contains the Unix usernames that may be used when connecting over SSH."""
+
+
+class AppLauncherApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    ssh: AppLauncherApplicationPolicyUnionMember2ConnectionRulesSSH
+    """
+    The SSH-specific rules that define how users may connect to the targets secured
+    by your application.
+    """
+
+
 class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
@@ -1145,6 +1251,12 @@ class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: AppLauncherApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to the targets secured by your
+    application.
     """
 
     exclude: Iterable[AccessRuleParam]
@@ -1329,6 +1441,19 @@ class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
     """
 
 
+class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2ConnectionRulesSSH(TypedDict, total=False):
+    usernames: Required[List[str]]
+    """Contains the Unix usernames that may be used when connecting over SSH."""
+
+
+class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    ssh: DeviceEnrollmentPermissionsApplicationPolicyUnionMember2ConnectionRulesSSH
+    """
+    The SSH-specific rules that define how users may connect to the targets secured
+    by your application.
+    """
+
+
 class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
@@ -1352,6 +1477,12 @@ class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: DeviceEnrollmentPermissionsApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to the targets secured by your
+    application.
     """
 
     exclude: Iterable[AccessRuleParam]
@@ -1538,6 +1669,19 @@ class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
     """
 
 
+class BrowserIsolationPermissionsApplicationPolicyUnionMember2ConnectionRulesSSH(TypedDict, total=False):
+    usernames: Required[List[str]]
+    """Contains the Unix usernames that may be used when connecting over SSH."""
+
+
+class BrowserIsolationPermissionsApplicationPolicyUnionMember2ConnectionRules(TypedDict, total=False):
+    ssh: BrowserIsolationPermissionsApplicationPolicyUnionMember2ConnectionRulesSSH
+    """
+    The SSH-specific rules that define how users may connect to the targets secured
+    by your application.
+    """
+
+
 class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
@@ -1561,6 +1705,12 @@ class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     """
     Requires the user to request access from an administrator at the start of each
     session.
+    """
+
+    connection_rules: BrowserIsolationPermissionsApplicationPolicyUnionMember2ConnectionRules
+    """
+    The rules that define how users may connect to the targets secured by your
+    application.
     """
 
     exclude: Iterable[AccessRuleParam]
@@ -1723,6 +1873,38 @@ class BookmarkApplicationSCIMConfig(TypedDict, total=False):
     """
 
 
+class InfrastructureApplication(TypedDict, total=False):
+    target_criteria: Required[Iterable[InfrastructureApplicationTargetCriterion]]
+
+    type: Required[ApplicationType]
+    """The application type."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    name: str
+    """The name of the application."""
+
+    policies: Iterable[ApplicationPolicyParam]
+
+
+class InfrastructureApplicationTargetCriterion(TypedDict, total=False):
+    port: Required[int]
+    """The port that the targets use for the chosen communication protocol.
+
+    A port cannot be assigned to multiple protocols.
+    """
+
+    protocol: Required[Literal["ssh"]]
+    """The communication protocol your application secures."""
+
+    target_attributes: Required[Dict[str, List[str]]]
+    """Contains a map of target attribute keys to target attribute values."""
+
+
 ApplicationUpdateParams: TypeAlias = Union[
     SelfHostedApplication,
     SaaSApplication,
@@ -1732,4 +1914,5 @@ ApplicationUpdateParams: TypeAlias = Union[
     DeviceEnrollmentPermissionsApplication,
     BrowserIsolationPermissionsApplication,
     BookmarkApplication,
+    InfrastructureApplication,
 ]
