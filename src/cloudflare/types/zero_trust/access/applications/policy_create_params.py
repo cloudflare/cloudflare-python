@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 from typing_extensions import Required, TypedDict
 
 from ..decision import Decision
 from ...access_rule_param import AccessRuleParam
 from .approval_group_param import ApprovalGroupParam
 
-__all__ = ["PolicyCreateParams", "ConnectionRules", "ConnectionRulesSSH"]
+__all__ = ["PolicyCreateParams"]
 
 
 class PolicyCreateParams(TypedDict, total=False):
@@ -38,12 +38,6 @@ class PolicyCreateParams(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
-    """
-
-    connection_rules: ConnectionRules
-    """
-    The rules that define how users may connect to the targets secured by your
-    application.
     """
 
     exclude: Iterable[AccessRuleParam]
@@ -82,17 +76,4 @@ class PolicyCreateParams(TypedDict, total=False):
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h.
-    """
-
-
-class ConnectionRulesSSH(TypedDict, total=False):
-    usernames: Required[List[str]]
-    """Contains the Unix usernames that may be used when connecting over SSH."""
-
-
-class ConnectionRules(TypedDict, total=False):
-    ssh: ConnectionRulesSSH
-    """
-    The SSH-specific rules that define how users may connect to the targets secured
-    by your application.
     """
