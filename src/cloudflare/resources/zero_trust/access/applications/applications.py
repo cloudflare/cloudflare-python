@@ -68,7 +68,6 @@ from .....types.zero_trust.access.application_type import ApplicationType
 from .....types.zero_trust.access.cors_headers_param import CORSHeadersParam
 from .....types.zero_trust.access.self_hosted_domains import SelfHostedDomains
 from .....types.zero_trust.access.application_get_response import ApplicationGetResponse
-from .....types.zero_trust.access.application_policy_param import ApplicationPolicyParam
 from .....types.zero_trust.access.application_list_response import ApplicationListResponse
 from .....types.zero_trust.access.application_create_response import ApplicationCreateResponse
 from .....types.zero_trust.access.application_delete_response import ApplicationDeleteResponse
@@ -833,45 +832,6 @@ class ApplicationsResource(SyncAPIResource):
         """
         ...
 
-    @overload
-    def create(
-        self,
-        *,
-        target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion],
-        type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[ApplicationPolicyParam] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ApplicationCreateResponse]:
-        """
-        Adds a new application to Access.
-
-        Args:
-          type: The application type.
-
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          name: The name of the application.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
     def create(
         self,
         *,
@@ -894,9 +854,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.SelfHostedApplicationPolicy]
-        | Iterable[ApplicationPolicyParam]
-        | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -911,8 +869,6 @@ class ApplicationsResource(SyncAPIResource):
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-        target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion]
-        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -970,7 +926,6 @@ class ApplicationsResource(SyncAPIResource):
                         "header_bg_color": header_bg_color,
                         "landing_page_design": landing_page_design,
                         "skip_app_launcher_login_page": skip_app_launcher_login_page,
-                        "target_criteria": target_criteria,
                     },
                     application_create_params.ApplicationCreateParams,
                 ),
@@ -1731,48 +1686,6 @@ class ApplicationsResource(SyncAPIResource):
         """
         ...
 
-    @overload
-    def update(
-        self,
-        app_id: AppID,
-        *,
-        target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion],
-        type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[ApplicationPolicyParam] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ApplicationUpdateResponse]:
-        """
-        Updates an Access application.
-
-        Args:
-          app_id: Identifier
-
-          type: The application type.
-
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          name: The name of the application.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
     def update(
         self,
         app_id: AppID,
@@ -1796,9 +1709,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.SelfHostedApplicationPolicy]
-        | Iterable[ApplicationPolicyParam]
-        | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1813,8 +1724,6 @@ class ApplicationsResource(SyncAPIResource):
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-        target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion]
-        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1874,7 +1783,6 @@ class ApplicationsResource(SyncAPIResource):
                         "header_bg_color": header_bg_color,
                         "landing_page_design": landing_page_design,
                         "skip_app_launcher_login_page": skip_app_launcher_login_page,
-                        "target_criteria": target_criteria,
                     },
                     application_update_params.ApplicationUpdateParams,
                 ),
@@ -2873,45 +2781,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         """
         ...
 
-    @overload
-    async def create(
-        self,
-        *,
-        target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion],
-        type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[ApplicationPolicyParam] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ApplicationCreateResponse]:
-        """
-        Adds a new application to Access.
-
-        Args:
-          type: The application type.
-
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          name: The name of the application.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
     async def create(
         self,
         *,
@@ -2934,9 +2803,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.SelfHostedApplicationPolicy]
-        | Iterable[ApplicationPolicyParam]
-        | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -2951,8 +2818,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-        target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion]
-        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3010,7 +2875,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "header_bg_color": header_bg_color,
                         "landing_page_design": landing_page_design,
                         "skip_app_launcher_login_page": skip_app_launcher_login_page,
-                        "target_criteria": target_criteria,
                     },
                     application_create_params.ApplicationCreateParams,
                 ),
@@ -3771,48 +3635,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         """
         ...
 
-    @overload
-    async def update(
-        self,
-        app_id: AppID,
-        *,
-        target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion],
-        type: ApplicationType,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[ApplicationPolicyParam] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ApplicationUpdateResponse]:
-        """
-        Updates an Access application.
-
-        Args:
-          app_id: Identifier
-
-          type: The application type.
-
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          name: The name of the application.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
     async def update(
         self,
         app_id: AppID,
@@ -3836,9 +3658,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.SelfHostedApplicationPolicy]
-        | Iterable[ApplicationPolicyParam]
-        | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3853,8 +3673,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-        target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion]
-        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3914,7 +3732,6 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "header_bg_color": header_bg_color,
                         "landing_page_design": landing_page_design,
                         "skip_app_launcher_login_page": skip_app_launcher_login_page,
-                        "target_criteria": target_criteria,
                     },
                     application_update_params.ApplicationUpdateParams,
                 ),

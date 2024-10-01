@@ -9,20 +9,7 @@ from ...._models import BaseModel
 from ..access_rule import AccessRule
 from .applications.approval_group import ApprovalGroup
 
-__all__ = ["PolicyListResponse", "ConnectionRules", "ConnectionRulesSSH"]
-
-
-class ConnectionRulesSSH(BaseModel):
-    usernames: List[str]
-    """Contains the Unix usernames that may be used when connecting over SSH."""
-
-
-class ConnectionRules(BaseModel):
-    ssh: Optional[ConnectionRulesSSH] = None
-    """
-    The SSH-specific rules that define how users may connect to the targets secured
-    by your application.
-    """
+__all__ = ["PolicyListResponse"]
 
 
 class PolicyListResponse(BaseModel):
@@ -39,12 +26,6 @@ class PolicyListResponse(BaseModel):
     """
     Requires the user to request access from an administrator at the start of each
     session.
-    """
-
-    connection_rules: Optional[ConnectionRules] = None
-    """
-    The rules that define how users may connect to the targets secured by your
-    application.
     """
 
     created_at: Optional[datetime] = None

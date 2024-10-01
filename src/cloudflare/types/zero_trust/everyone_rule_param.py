@@ -4,13 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["EveryoneRuleParam", "Everyone"]
-
-
-class Everyone(TypedDict, total=False):
-    pass
+__all__ = ["EveryoneRuleParam"]
 
 
 class EveryoneRuleParam(TypedDict, total=False):
-    everyone: Required[Everyone]
+    everyone: Required[object]
     """An empty object which matches on all users."""

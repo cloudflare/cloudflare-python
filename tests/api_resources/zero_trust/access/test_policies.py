@@ -62,7 +62,6 @@ class TestPolicies:
                 },
             ],
             approval_required=True,
-            connection_rules={"ssh": {"usernames": ["root", "ubuntu"]}},
             exclude=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -172,7 +171,6 @@ class TestPolicies:
                 },
             ],
             approval_required=True,
-            connection_rules={"ssh": {"usernames": ["root", "ubuntu"]}},
             exclude=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -434,7 +432,6 @@ class TestAsyncPolicies:
                 },
             ],
             approval_required=True,
-            connection_rules={"ssh": {"usernames": ["root", "ubuntu"]}},
             exclude=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
@@ -544,7 +541,6 @@ class TestAsyncPolicies:
                 },
             ],
             approval_required=True,
-            connection_rules={"ssh": {"usernames": ["root", "ubuntu"]}},
             exclude=[
                 {"email": {"email": "test@example.com"}},
                 {"email": {"email": "test@example.com"}},
