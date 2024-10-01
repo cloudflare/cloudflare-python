@@ -4,13 +4,9 @@
 
 from ..._models import BaseModel
 
-__all__ = ["AnyValidServiceTokenRule", "AnyValidServiceToken"]
-
-
-class AnyValidServiceToken(BaseModel):
-    pass
+__all__ = ["AnyValidServiceTokenRule"]
 
 
 class AnyValidServiceTokenRule(BaseModel):
-    any_valid_service_token: AnyValidServiceToken
+    any_valid_service_token: object
     """An empty object which matches on all service tokens."""

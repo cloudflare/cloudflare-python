@@ -50,7 +50,6 @@ from .policy_delete_response import PolicyDeleteResponse as PolicyDeleteResponse
 from .policy_update_response import PolicyUpdateResponse as PolicyUpdateResponse
 from .saas_app_name_id_format import SaaSAppNameIDFormat as SaaSAppNameIDFormat
 from .application_get_response import ApplicationGetResponse as ApplicationGetResponse
-from .application_policy_param import ApplicationPolicyParam as ApplicationPolicyParam
 from .bookmark_delete_response import BookmarkDeleteResponse as BookmarkDeleteResponse
 from .custom_page_without_html import CustomPageWithoutHTML as CustomPageWithoutHTML
 from .application_create_params import ApplicationCreateParams as ApplicationCreateParams
