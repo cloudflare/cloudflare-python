@@ -44,6 +44,7 @@ class TestWidgets:
             per_page=5,
             bot_fight_mode=False,
             clearance_level="no_clearance",
+            ephemeral_id=False,
             offlabel=False,
             region="world",
         )
@@ -110,6 +111,7 @@ class TestWidgets:
             name="blog.cloudflare.com login form",
             bot_fight_mode=False,
             clearance_level="no_clearance",
+            ephemeral_id=False,
             offlabel=False,
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
@@ -395,6 +397,7 @@ class TestAsyncWidgets:
             per_page=5,
             bot_fight_mode=False,
             clearance_level="no_clearance",
+            ephemeral_id=False,
             offlabel=False,
             region="world",
         )
@@ -461,6 +464,7 @@ class TestAsyncWidgets:
             name="blog.cloudflare.com login form",
             bot_fight_mode=False,
             clearance_level="no_clearance",
+            ephemeral_id=False,
             offlabel=False,
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])

@@ -28,6 +28,9 @@ class Widget(BaseModel):
 
     domains: List[WidgetDomain]
 
+    ephemeral_id: bool
+    """Return the Ephemeral ID in /siteverify (ENT only)."""
+
     mode: Literal["non-interactive", "invisible", "managed"]
     """Widget Mode"""
 
