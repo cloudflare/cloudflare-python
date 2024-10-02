@@ -882,6 +882,9 @@ class RecordsResource(SyncAPIResource):
               strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
               this allowed maximum length are automatically split.
 
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
           type: Record type.
 
           extra_headers: Send extra headers
@@ -1883,6 +1886,9 @@ class RecordsResource(SyncAPIResource):
           content: Text content for the record. The content must consist of quoted "character
               strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
               this allowed maximum length are automatically split.
+
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
 
           type: Record type.
 
@@ -3130,6 +3136,9 @@ class RecordsResource(SyncAPIResource):
               strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
               this allowed maximum length are automatically split.
 
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
           type: Record type.
 
           extra_headers: Send extra headers
@@ -4296,6 +4305,9 @@ class AsyncRecordsResource(AsyncAPIResource):
               strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
               this allowed maximum length are automatically split.
 
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
           type: Record type.
 
           extra_headers: Send extra headers
@@ -5297,6 +5309,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           content: Text content for the record. The content must consist of quoted "character
               strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
               this allowed maximum length are automatically split.
+
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
 
           type: Record type.
 
@@ -6543,6 +6558,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           content: Text content for the record. The content must consist of quoted "character
               strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
               this allowed maximum length are automatically split.
+
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
 
           type: Record type.
 

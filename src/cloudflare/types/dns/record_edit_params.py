@@ -458,6 +458,9 @@ class TXTRecord(TypedDict, total=False):
     The content must consist of quoted "character strings" (RFC 1035), each with a
     length of up to 255 bytes. Strings exceeding this allowed maximum length are
     automatically split.
+
+    Learn more at
+    <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
     """
 
     type: Literal["TXT"]
