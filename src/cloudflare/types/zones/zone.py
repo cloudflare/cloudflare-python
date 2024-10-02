@@ -78,7 +78,7 @@ class Zone(BaseModel):
     name: str
     """The domain name"""
 
-    name_servers: List[str]
+    name_servers: Optional[List[str]]
     """The name servers Cloudflare assigns to a zone"""
 
     original_dnshost: Optional[str] = None
