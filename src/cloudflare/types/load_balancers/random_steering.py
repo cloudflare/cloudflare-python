@@ -1,18 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["RandomSteering", "PoolWeights"]
-
-
-class PoolWeights(BaseModel):
-    key: Optional[str] = None
-    """Pool ID"""
-
-    value: Optional[float] = None
-    """Weight"""
+__all__ = ["RandomSteering"]
 
 
 class RandomSteering(BaseModel):
@@ -22,7 +14,7 @@ class RandomSteering(BaseModel):
     pool_weights map.
     """
 
-    pool_weights: Optional[PoolWeights] = None
+    pool_weights: Optional[Dict[str, float]] = None
     """A mapping of pool IDs to custom weights.
 
     The weight is relative to other pools in the load balancer.
