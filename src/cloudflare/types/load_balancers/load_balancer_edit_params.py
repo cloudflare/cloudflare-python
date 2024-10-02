@@ -105,7 +105,7 @@ class LoadBalancerEditParams(TypedDict, total=False):
     session_affinity: SessionAffinity
     """
     Specifies the type of session affinity the load balancer should use unless
-    specified as `"none"` or "" (default). The supported types are:
+    specified as `"none"`. The supported types are:
 
     - `"cookie"`: On the first request to a proxied load balancer, a cookie is
       generated, encoding information of which origin the request will be forwarded
