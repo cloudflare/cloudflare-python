@@ -47,8 +47,22 @@ class TestRules:
             },
             description="Block when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -122,8 +136,22 @@ class TestRules:
             action_parameters={},
             description="Issue an Interactive Challenge if the visitor had not solved an Interactive Challenge prior to the request when the address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -197,8 +225,22 @@ class TestRules:
             action_parameters={"algorithms": [{"name": "none"}]},
             description="Disable compression when address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -297,8 +339,22 @@ class TestRules:
             },
             description="Execute the OWASP ruleset when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -372,8 +428,22 @@ class TestRules:
             action_parameters={},
             description="Issue a non-interactive Javascript Challenge if the visitor had not solved a Interactive Challenge, Managed Challenge, or Javascript Challenge prior to the request when the address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -447,8 +517,22 @@ class TestRules:
             action_parameters={},
             description="Log when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -522,8 +606,22 @@ class TestRules:
             action_parameters={},
             description="Issue a Managed Challenge if the visitor had not solved a Managed Challenge or Interactive Challenge prior to the request when the address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -607,8 +705,22 @@ class TestRules:
             },
             description="Redirect when IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -693,8 +805,22 @@ class TestRules:
             },
             description="Add a header when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -775,8 +901,22 @@ class TestRules:
             },
             description="Select origin server when IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -850,8 +990,22 @@ class TestRules:
             action_parameters={"increment": 3},
             description="Increment score when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -929,8 +1083,22 @@ class TestRules:
             },
             description="Serve a JSON response to api users on error",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -1026,8 +1194,22 @@ class TestRules:
             },
             description="Disable Zaraz when IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -1107,8 +1289,22 @@ class TestRules:
             },
             description="Skip the current ruleset when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -1261,8 +1457,22 @@ class TestRules:
             },
             description="Set cache settings when the hostname  address is not example.com",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -1340,8 +1550,22 @@ class TestRules:
             },
             description="Log custom field when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -1415,8 +1639,22 @@ class TestRules:
             action_parameters={},
             description="Performs a specific action according to a set of internal guidelines defined by Cloudflare.",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -1490,8 +1728,22 @@ class TestRules:
             action_parameters={},
             description="Closes ongoing HTTP connections. This action does not block a request, but it forces the client to reconnect. For HTTP/2 and HTTP/3 connections, the connection will be closed even if it breaks other requests running on the same connection.",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -1654,8 +1906,22 @@ class TestRules:
             },
             description="Block when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -1743,8 +2009,22 @@ class TestRules:
             action_parameters={},
             description="Issue an Interactive Challenge if the visitor had not solved an Interactive Challenge prior to the request when the address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -1832,8 +2112,22 @@ class TestRules:
             action_parameters={"algorithms": [{"name": "none"}]},
             description="Disable compression when address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -1946,8 +2240,22 @@ class TestRules:
             },
             description="Execute the OWASP ruleset when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -2035,8 +2343,22 @@ class TestRules:
             action_parameters={},
             description="Issue a non-interactive Javascript Challenge if the visitor had not solved a Interactive Challenge, Managed Challenge, or Javascript Challenge prior to the request when the address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -2124,8 +2446,22 @@ class TestRules:
             action_parameters={},
             description="Log when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -2213,8 +2549,22 @@ class TestRules:
             action_parameters={},
             description="Issue a Managed Challenge if the visitor had not solved a Managed Challenge or Interactive Challenge prior to the request when the address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -2312,8 +2662,22 @@ class TestRules:
             },
             description="Redirect when IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -2412,8 +2776,22 @@ class TestRules:
             },
             description="Add a header when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -2508,8 +2886,22 @@ class TestRules:
             },
             description="Select origin server when IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -2597,8 +2989,22 @@ class TestRules:
             action_parameters={"increment": 3},
             description="Increment score when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -2690,8 +3096,22 @@ class TestRules:
             },
             description="Serve a JSON response to api users on error",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -2801,8 +3221,22 @@ class TestRules:
             },
             description="Disable Zaraz when IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -2896,8 +3330,22 @@ class TestRules:
             },
             description="Skip the current ruleset when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -3064,8 +3512,22 @@ class TestRules:
             },
             description="Set cache settings when the hostname  address is not example.com",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -3157,8 +3619,22 @@ class TestRules:
             },
             description="Log custom field when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -3246,8 +3722,22 @@ class TestRules:
             action_parameters={},
             description="Performs a specific action according to a set of internal guidelines defined by Cloudflare.",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -3335,8 +3825,22 @@ class TestRules:
             action_parameters={},
             description="Closes ongoing HTTP connections. This action does not block a request, but it forces the client to reconnect. For HTTP/2 and HTTP/3 connections, the connection will be closed even if it breaks other requests running on the same connection.",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -3432,8 +3936,22 @@ class TestAsyncRules:
             },
             description="Block when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -3507,8 +4025,22 @@ class TestAsyncRules:
             action_parameters={},
             description="Issue an Interactive Challenge if the visitor had not solved an Interactive Challenge prior to the request when the address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -3582,8 +4114,22 @@ class TestAsyncRules:
             action_parameters={"algorithms": [{"name": "none"}]},
             description="Disable compression when address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -3682,8 +4228,22 @@ class TestAsyncRules:
             },
             description="Execute the OWASP ruleset when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -3757,8 +4317,22 @@ class TestAsyncRules:
             action_parameters={},
             description="Issue a non-interactive Javascript Challenge if the visitor had not solved a Interactive Challenge, Managed Challenge, or Javascript Challenge prior to the request when the address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -3832,8 +4406,22 @@ class TestAsyncRules:
             action_parameters={},
             description="Log when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -3907,8 +4495,22 @@ class TestAsyncRules:
             action_parameters={},
             description="Issue a Managed Challenge if the visitor had not solved a Managed Challenge or Interactive Challenge prior to the request when the address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -3992,8 +4594,22 @@ class TestAsyncRules:
             },
             description="Redirect when IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -4078,8 +4694,22 @@ class TestAsyncRules:
             },
             description="Add a header when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -4160,8 +4790,22 @@ class TestAsyncRules:
             },
             description="Select origin server when IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -4235,8 +4879,22 @@ class TestAsyncRules:
             action_parameters={"increment": 3},
             description="Increment score when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -4314,8 +4972,22 @@ class TestAsyncRules:
             },
             description="Serve a JSON response to api users on error",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -4411,8 +5083,22 @@ class TestAsyncRules:
             },
             description="Disable Zaraz when IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -4492,8 +5178,22 @@ class TestAsyncRules:
             },
             description="Skip the current ruleset when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -4646,8 +5346,22 @@ class TestAsyncRules:
             },
             description="Set cache settings when the hostname  address is not example.com",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -4725,8 +5439,22 @@ class TestAsyncRules:
             },
             description="Log custom field when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -4800,8 +5528,22 @@ class TestAsyncRules:
             action_parameters={},
             description="Performs a specific action according to a set of internal guidelines defined by Cloudflare.",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -4875,8 +5617,22 @@ class TestAsyncRules:
             action_parameters={},
             description="Closes ongoing HTTP connections. This action does not block a request, but it forces the client to reconnect. For HTTP/2 and HTTP/3 connections, the connection will be closed even if it breaks other requests running on the same connection.",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleCreateResponse, rule, path=["response"])
@@ -5039,8 +5795,22 @@ class TestAsyncRules:
             },
             description="Block when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -5128,8 +5898,22 @@ class TestAsyncRules:
             action_parameters={},
             description="Issue an Interactive Challenge if the visitor had not solved an Interactive Challenge prior to the request when the address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -5217,8 +6001,22 @@ class TestAsyncRules:
             action_parameters={"algorithms": [{"name": "none"}]},
             description="Disable compression when address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -5331,8 +6129,22 @@ class TestAsyncRules:
             },
             description="Execute the OWASP ruleset when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -5420,8 +6232,22 @@ class TestAsyncRules:
             action_parameters={},
             description="Issue a non-interactive Javascript Challenge if the visitor had not solved a Interactive Challenge, Managed Challenge, or Javascript Challenge prior to the request when the address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -5509,8 +6335,22 @@ class TestAsyncRules:
             action_parameters={},
             description="Log when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -5598,8 +6438,22 @@ class TestAsyncRules:
             action_parameters={},
             description="Issue a Managed Challenge if the visitor had not solved a Managed Challenge or Interactive Challenge prior to the request when the address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -5697,8 +6551,22 @@ class TestAsyncRules:
             },
             description="Redirect when IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -5797,8 +6665,22 @@ class TestAsyncRules:
             },
             description="Add a header when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -5893,8 +6775,22 @@ class TestAsyncRules:
             },
             description="Select origin server when IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -5982,8 +6878,22 @@ class TestAsyncRules:
             action_parameters={"increment": 3},
             description="Increment score when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -6075,8 +6985,22 @@ class TestAsyncRules:
             },
             description="Serve a JSON response to api users on error",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -6186,8 +7110,22 @@ class TestAsyncRules:
             },
             description="Disable Zaraz when IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -6281,8 +7219,22 @@ class TestAsyncRules:
             },
             description="Skip the current ruleset when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -6449,8 +7401,22 @@ class TestAsyncRules:
             },
             description="Set cache settings when the hostname  address is not example.com",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -6542,8 +7508,22 @@ class TestAsyncRules:
             },
             description="Log custom field when the IP address is not 1.1.1.1",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -6631,8 +7611,22 @@ class TestAsyncRules:
             action_parameters={},
             description="Performs a specific action according to a set of internal guidelines defined by Cloudflare.",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
@@ -6720,8 +7714,22 @@ class TestAsyncRules:
             action_parameters={},
             description="Closes ongoing HTTP connections. This action does not block a request, but it forces the client to reconnect. For HTTP/2 and HTTP/3 connections, the connection will be closed even if it breaks other requests running on the same connection.",
             enabled=True,
+            exposed_credential_check={
+                "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
+            },
             expression="ip.src ne 1.1.1.1",
             logging={"enabled": True},
+            ratelimit={
+                "characteristics": ["ip.src"],
+                "period": 10,
+                "counting_expression": 'http.request.body.raw eq "abcd"',
+                "mitigation_timeout": 600,
+                "requests_per_period": 1000,
+                "requests_to_origin": True,
+                "score_per_period": 400,
+                "score_response_header_name": 0,
+            },
             ref="my_ref",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
