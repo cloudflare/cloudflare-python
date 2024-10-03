@@ -14,19 +14,33 @@ __all__ = [
     "BlockRule",
     "BlockRuleActionParameters",
     "BlockRuleActionParametersResponse",
+    "BlockRuleExposedCredentialCheck",
+    "BlockRuleRatelimit",
     "RulesetsChallengeRule",
+    "RulesetsChallengeRuleExposedCredentialCheck",
+    "RulesetsChallengeRuleRatelimit",
     "CompressResponseRule",
     "CompressResponseRuleActionParameters",
     "CompressResponseRuleActionParametersAlgorithm",
+    "CompressResponseRuleExposedCredentialCheck",
+    "CompressResponseRuleRatelimit",
     "ExecuteRule",
     "ExecuteRuleActionParameters",
     "ExecuteRuleActionParametersMatchedData",
     "ExecuteRuleActionParametersOverrides",
     "ExecuteRuleActionParametersOverridesCategory",
     "ExecuteRuleActionParametersOverridesRule",
+    "ExecuteRuleExposedCredentialCheck",
+    "ExecuteRuleRatelimit",
     "RulesetsJSChallengeRule",
+    "RulesetsJSChallengeRuleExposedCredentialCheck",
+    "RulesetsJSChallengeRuleRatelimit",
     "LogRule",
+    "LogRuleExposedCredentialCheck",
+    "LogRuleRatelimit",
     "ManagedChallengeRule",
+    "ManagedChallengeRuleExposedCredentialCheck",
+    "ManagedChallengeRuleRatelimit",
     "RedirectRule",
     "RedirectRuleActionParameters",
     "RedirectRuleActionParametersFromList",
@@ -34,6 +48,8 @@ __all__ = [
     "RedirectRuleActionParametersFromValueTargetURL",
     "RedirectRuleActionParametersFromValueTargetURLStaticURLRedirect",
     "RedirectRuleActionParametersFromValueTargetURLDynamicURLRedirect",
+    "RedirectRuleExposedCredentialCheck",
+    "RedirectRuleRatelimit",
     "RewriteRule",
     "RewriteRuleActionParameters",
     "RewriteRuleActionParametersHeaders",
@@ -41,19 +57,31 @@ __all__ = [
     "RewriteRuleActionParametersHeadersStaticHeader",
     "RewriteRuleActionParametersHeadersDynamicHeader",
     "RewriteRuleActionParametersURI",
+    "RewriteRuleExposedCredentialCheck",
+    "RewriteRuleRatelimit",
     "RouteRule",
     "RouteRuleActionParameters",
     "RouteRuleActionParametersOrigin",
     "RouteRuleActionParametersSNI",
+    "RouteRuleExposedCredentialCheck",
+    "RouteRuleRatelimit",
     "ScoreRule",
     "ScoreRuleActionParameters",
+    "ScoreRuleExposedCredentialCheck",
+    "ScoreRuleRatelimit",
     "ServeErrorRule",
     "ServeErrorRuleActionParameters",
+    "ServeErrorRuleExposedCredentialCheck",
+    "ServeErrorRuleRatelimit",
     "SetConfigRule",
     "SetConfigRuleActionParameters",
     "SetConfigRuleActionParametersAutominify",
+    "SetConfigRuleExposedCredentialCheck",
+    "SetConfigRuleRatelimit",
     "SkipRule",
     "SkipRuleActionParameters",
+    "SkipRuleExposedCredentialCheck",
+    "SkipRuleRatelimit",
     "SetCacheSettingsRule",
     "SetCacheSettingsRuleActionParameters",
     "SetCacheSettingsRuleActionParametersBrowserTTL",
@@ -71,13 +99,21 @@ __all__ = [
     "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTL",
     "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRange",
     "SetCacheSettingsRuleActionParametersServeStale",
+    "SetCacheSettingsRuleExposedCredentialCheck",
+    "SetCacheSettingsRuleRatelimit",
     "LogCustomFieldRule",
     "LogCustomFieldRuleActionParameters",
     "LogCustomFieldRuleActionParametersCookieField",
     "LogCustomFieldRuleActionParametersRequestField",
     "LogCustomFieldRuleActionParametersResponseField",
+    "LogCustomFieldRuleExposedCredentialCheck",
+    "LogCustomFieldRuleRatelimit",
     "DDoSDynamicRule",
+    "DDoSDynamicRuleExposedCredentialCheck",
+    "DDoSDynamicRuleRatelimit",
     "ForceConnectionCloseRule",
+    "ForceConnectionCloseRuleExposedCredentialCheck",
+    "ForceConnectionCloseRuleRatelimit",
 ]
 
 
@@ -103,11 +139,17 @@ class BlockRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: BlockRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    ratelimit: BlockRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -127,6 +169,58 @@ class BlockRuleActionParametersResponse(TypedDict, total=False):
 class BlockRuleActionParameters(TypedDict, total=False):
     response: BlockRuleActionParametersResponse
     """The response to show when the block is applied."""
+
+
+class BlockRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class BlockRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class RulesetsChallengeRule(TypedDict, total=False):
@@ -151,14 +245,72 @@ class RulesetsChallengeRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: RulesetsChallengeRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    ratelimit: RulesetsChallengeRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
+
+
+class RulesetsChallengeRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class RulesetsChallengeRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class CompressResponseRule(TypedDict, total=False):
@@ -183,11 +335,17 @@ class CompressResponseRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: CompressResponseRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    ratelimit: CompressResponseRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -201,6 +359,58 @@ class CompressResponseRuleActionParametersAlgorithm(TypedDict, total=False):
 class CompressResponseRuleActionParameters(TypedDict, total=False):
     algorithms: Iterable[CompressResponseRuleActionParametersAlgorithm]
     """Custom order for compression algorithms."""
+
+
+class CompressResponseRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class CompressResponseRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class ExecuteRule(TypedDict, total=False):
@@ -225,11 +435,17 @@ class ExecuteRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: ExecuteRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    ratelimit: ExecuteRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -312,6 +528,58 @@ class ExecuteRuleActionParameters(TypedDict, total=False):
     """A set of overrides to apply to the target ruleset."""
 
 
+class ExecuteRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class ExecuteRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
 class RulesetsJSChallengeRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -334,14 +602,72 @@ class RulesetsJSChallengeRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: RulesetsJSChallengeRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    ratelimit: RulesetsJSChallengeRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
+
+
+class RulesetsJSChallengeRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class RulesetsJSChallengeRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class LogRule(TypedDict, total=False):
@@ -366,14 +692,72 @@ class LogRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: LogRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    ratelimit: LogRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
+
+
+class LogRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class LogRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class ManagedChallengeRule(TypedDict, total=False):
@@ -398,14 +782,72 @@ class ManagedChallengeRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: ManagedChallengeRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    ratelimit: ManagedChallengeRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
+
+
+class ManagedChallengeRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class ManagedChallengeRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class RedirectRule(TypedDict, total=False):
@@ -430,11 +872,17 @@ class RedirectRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: RedirectRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    ratelimit: RedirectRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -483,6 +931,58 @@ class RedirectRuleActionParameters(TypedDict, total=False):
     """Serve a redirect based on the request properties."""
 
 
+class RedirectRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class RedirectRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
 class RewriteRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -505,11 +1005,17 @@ class RewriteRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: RewriteRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    ratelimit: RewriteRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -556,6 +1062,58 @@ class RewriteRuleActionParameters(TypedDict, total=False):
     """URI to rewrite the request to."""
 
 
+class RewriteRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class RewriteRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
 class RouteRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -578,11 +1136,17 @@ class RouteRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: RouteRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    ratelimit: RouteRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -612,6 +1176,58 @@ class RouteRuleActionParameters(TypedDict, total=False):
     """Override the Server Name Indication (SNI)."""
 
 
+class RouteRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class RouteRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
 class ScoreRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -634,11 +1250,17 @@ class ScoreRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: ScoreRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    ratelimit: ScoreRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -649,6 +1271,58 @@ class ScoreRuleActionParameters(TypedDict, total=False):
     """
     Increment contains the delta to change the score and can be either positive or
     negative.
+    """
+
+
+class ScoreRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class ScoreRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
     """
 
 
@@ -674,11 +1348,17 @@ class ServeErrorRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: ServeErrorRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    ratelimit: ServeErrorRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -693,6 +1373,58 @@ class ServeErrorRuleActionParameters(TypedDict, total=False):
 
     status_code: float
     """The status code to use for the error."""
+
+
+class ServeErrorRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class ServeErrorRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class SetConfigRule(TypedDict, total=False):
@@ -717,11 +1449,17 @@ class SetConfigRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: SetConfigRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    ratelimit: SetConfigRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -791,6 +1529,58 @@ class SetConfigRuleActionParameters(TypedDict, total=False):
     """Turn on or off Signed Exchanges (SXG)."""
 
 
+class SetConfigRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class SetConfigRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
 class SkipRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -813,11 +1603,17 @@ class SkipRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: SkipRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    ratelimit: SkipRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -852,6 +1648,58 @@ class SkipRuleActionParameters(TypedDict, total=False):
     """
 
 
+class SkipRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class SkipRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
 class SetCacheSettingsRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -874,11 +1722,17 @@ class SetCacheSettingsRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: SetCacheSettingsRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    ratelimit: SetCacheSettingsRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -1157,6 +2011,58 @@ class SetCacheSettingsRuleActionParameters(TypedDict, total=False):
     """
 
 
+class SetCacheSettingsRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class SetCacheSettingsRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
 class LogCustomFieldRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -1179,11 +2085,17 @@ class LogCustomFieldRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: LogCustomFieldRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    ratelimit: LogCustomFieldRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -1215,6 +2127,58 @@ class LogCustomFieldRuleActionParameters(TypedDict, total=False):
     """The response fields to log."""
 
 
+class LogCustomFieldRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class LogCustomFieldRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
 class DDoSDynamicRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -1237,14 +2201,72 @@ class DDoSDynamicRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: DDoSDynamicRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    ratelimit: DDoSDynamicRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
+
+
+class DDoSDynamicRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class DDoSDynamicRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class ForceConnectionCloseRule(TypedDict, total=False):
@@ -1269,14 +2291,72 @@ class ForceConnectionCloseRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: ForceConnectionCloseRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    ratelimit: ForceConnectionCloseRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
+
+
+class ForceConnectionCloseRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class ForceConnectionCloseRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: int
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 RuleCreateParams: TypeAlias = Union[
