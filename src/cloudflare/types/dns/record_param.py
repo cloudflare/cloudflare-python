@@ -8,7 +8,17 @@ from typing_extensions import TypedDict
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
 
-__all__ = ["RecordParam"]
+__all__ = ["RecordParam", "Settings"]
+
+
+class Settings(TypedDict, total=False):
+    flatten_cname: bool
+    """
+    If enabled, causes the CNAME record to be resolved externally and the resulting
+    address records (e.g., A and AAAA) to be returned instead of the CNAME record
+    itself. This setting has no effect on proxied records, which are always
+    flattened.
+    """
 
 
 class RecordParam(TypedDict, total=False):
@@ -27,7 +37,7 @@ class RecordParam(TypedDict, total=False):
     Cloudflare.
     """
 
-    settings: object
+    settings: Settings
     """Settings for the DNS record."""
 
     tags: List[RecordTags]
