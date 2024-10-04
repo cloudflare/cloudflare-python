@@ -14,6 +14,7 @@ __all__ = [
     "CERTRecord",
     "CERTRecordData",
     "CNAMERecord",
+    "CNAMERecordSettings",
     "DNSKEYRecord",
     "DNSKEYRecordData",
     "DSRecord",
@@ -120,8 +121,20 @@ class CNAMERecord(TypedDict, total=False):
     content: str
     """A valid hostname. Must not match the record's name."""
 
+    settings: CNAMERecordSettings
+
     type: Literal["CNAME"]
     """Record type."""
+
+
+class CNAMERecordSettings(TypedDict, total=False):
+    flatten_cname: bool
+    """
+    If enabled, causes the CNAME record to be resolved externally and the resulting
+    address records (e.g., A and AAAA) to be returned instead of the CNAME record
+    itself. This setting has no effect on proxied records, which are always
+    flattened.
+    """
 
 
 class DNSKEYRecord(TypedDict, total=False):
