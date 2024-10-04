@@ -4,12 +4,8 @@
 
 from ..._models import BaseModel
 
-__all__ = ["CertificateRule", "Certificate"]
-
-
-class Certificate(BaseModel):
-    pass
+__all__ = ["CertificateRule"]
 
 
 class CertificateRule(BaseModel):
-    certificate: Certificate
+    certificate: object
