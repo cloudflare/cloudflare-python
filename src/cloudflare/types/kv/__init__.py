@@ -6,3 +6,5 @@ from .namespace import Namespace as Namespace
 from .namespace_list_params import NamespaceListParams as NamespaceListParams
 from .namespace_create_params import NamespaceCreateParams as NamespaceCreateParams
 from .namespace_update_params import NamespaceUpdateParams as NamespaceUpdateParams
+from .namespace_delete_response import NamespaceDeleteResponse as NamespaceDeleteResponse
+from .namespace_update_response import NamespaceUpdateResponse as NamespaceUpdateResponse
