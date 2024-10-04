@@ -7,17 +7,7 @@ from .ttl import TTL
 from ..._models import BaseModel
 from .record_tags import RecordTags
 
-__all__ = ["RecordGetResponse", "Settings"]
-
-
-class Settings(BaseModel):
-    flatten_cname: Optional[bool] = None
-    """
-    If enabled, causes the CNAME record to be resolved externally and the resulting
-    address records (e.g., A and AAAA) to be returned instead of the CNAME record
-    itself. This setting has no effect on proxied records, which are always
-    flattened.
-    """
+__all__ = ["RecordGetResponse"]
 
 
 class RecordGetResponse(BaseModel):
@@ -51,7 +41,7 @@ class RecordGetResponse(BaseModel):
     Cloudflare.
     """
 
-    settings: Settings
+    settings: object
     """Settings for the DNS record."""
 
     tags: List[RecordTags]

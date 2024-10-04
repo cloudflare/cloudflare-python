@@ -7,27 +7,7 @@ from .ttl import TTL
 from ..._models import BaseModel
 from .record_tags import RecordTags
 
-__all__ = [
-    "RecordBatchResponse",
-    "Delete",
-    "DeleteSettings",
-    "Patch",
-    "PatchSettings",
-    "Post",
-    "PostSettings",
-    "Put",
-    "PutSettings",
-]
-
-
-class DeleteSettings(BaseModel):
-    flatten_cname: Optional[bool] = None
-    """
-    If enabled, causes the CNAME record to be resolved externally and the resulting
-    address records (e.g., A and AAAA) to be returned instead of the CNAME record
-    itself. This setting has no effect on proxied records, which are always
-    flattened.
-    """
+__all__ = ["RecordBatchResponse", "Delete", "Patch", "Post", "Put"]
 
 
 class Delete(BaseModel):
@@ -61,7 +41,7 @@ class Delete(BaseModel):
     Cloudflare.
     """
 
-    settings: DeleteSettings
+    settings: object
     """Settings for the DNS record."""
 
     tags: List[RecordTags]
@@ -79,16 +59,6 @@ class Delete(BaseModel):
 
     tags_modified_on: Optional[datetime] = None
     """When the record tags were last modified. Omitted if there are no tags."""
-
-
-class PatchSettings(BaseModel):
-    flatten_cname: Optional[bool] = None
-    """
-    If enabled, causes the CNAME record to be resolved externally and the resulting
-    address records (e.g., A and AAAA) to be returned instead of the CNAME record
-    itself. This setting has no effect on proxied records, which are always
-    flattened.
-    """
 
 
 class Patch(BaseModel):
@@ -122,7 +92,7 @@ class Patch(BaseModel):
     Cloudflare.
     """
 
-    settings: PatchSettings
+    settings: object
     """Settings for the DNS record."""
 
     tags: List[RecordTags]
@@ -140,16 +110,6 @@ class Patch(BaseModel):
 
     tags_modified_on: Optional[datetime] = None
     """When the record tags were last modified. Omitted if there are no tags."""
-
-
-class PostSettings(BaseModel):
-    flatten_cname: Optional[bool] = None
-    """
-    If enabled, causes the CNAME record to be resolved externally and the resulting
-    address records (e.g., A and AAAA) to be returned instead of the CNAME record
-    itself. This setting has no effect on proxied records, which are always
-    flattened.
-    """
 
 
 class Post(BaseModel):
@@ -183,7 +143,7 @@ class Post(BaseModel):
     Cloudflare.
     """
 
-    settings: PostSettings
+    settings: object
     """Settings for the DNS record."""
 
     tags: List[RecordTags]
@@ -201,16 +161,6 @@ class Post(BaseModel):
 
     tags_modified_on: Optional[datetime] = None
     """When the record tags were last modified. Omitted if there are no tags."""
-
-
-class PutSettings(BaseModel):
-    flatten_cname: Optional[bool] = None
-    """
-    If enabled, causes the CNAME record to be resolved externally and the resulting
-    address records (e.g., A and AAAA) to be returned instead of the CNAME record
-    itself. This setting has no effect on proxied records, which are always
-    flattened.
-    """
 
 
 class Put(BaseModel):
@@ -244,7 +194,7 @@ class Put(BaseModel):
     Cloudflare.
     """
 
-    settings: PutSettings
+    settings: object
     """Settings for the DNS record."""
 
     tags: List[RecordTags]

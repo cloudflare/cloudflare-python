@@ -238,6 +238,7 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         content: str | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -982,6 +983,7 @@ class RecordsResource(SyncAPIResource):
         | record_create_params.SSHFPRecordData
         | record_create_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -999,6 +1001,7 @@ class RecordsResource(SyncAPIResource):
                     "content": content,
                     "type": type,
                     "data": data,
+                    "settings": settings,
                     "priority": priority,
                 },
                 record_create_params.RecordCreateParams,
@@ -1196,6 +1199,7 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         content: str | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1991,6 +1995,7 @@ class RecordsResource(SyncAPIResource):
         | record_update_params.SSHFPRecordData
         | record_update_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2010,6 +2015,7 @@ class RecordsResource(SyncAPIResource):
                     "content": content,
                     "type": type,
                     "data": data,
+                    "settings": settings,
                     "priority": priority,
                 },
                 record_update_params.RecordUpdateParams,
@@ -2445,6 +2451,7 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         content: str | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3240,6 +3247,7 @@ class RecordsResource(SyncAPIResource):
         | record_edit_params.SSHFPRecordData
         | record_edit_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3259,6 +3267,7 @@ class RecordsResource(SyncAPIResource):
                     "content": content,
                     "type": type,
                     "data": data,
+                    "settings": settings,
                     "priority": priority,
                 },
                 record_edit_params.RecordEditParams,
@@ -3661,6 +3670,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         content: str | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4405,6 +4415,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_create_params.SSHFPRecordData
         | record_create_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4422,6 +4433,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                     "content": content,
                     "type": type,
                     "data": data,
+                    "settings": settings,
                     "priority": priority,
                 },
                 record_create_params.RecordCreateParams,
@@ -4619,6 +4631,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         content: str | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5414,6 +5427,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_update_params.SSHFPRecordData
         | record_update_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5433,6 +5447,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                     "content": content,
                     "type": type,
                     "data": data,
+                    "settings": settings,
                     "priority": priority,
                 },
                 record_update_params.RecordUpdateParams,
@@ -5868,6 +5883,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         content: str | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6663,6 +6679,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_edit_params.SSHFPRecordData
         | record_edit_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6682,6 +6699,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                     "content": content,
                     "type": type,
                     "data": data,
+                    "settings": settings,
                     "priority": priority,
                 },
                 record_edit_params.RecordEditParams,
