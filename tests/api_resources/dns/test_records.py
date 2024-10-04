@@ -259,6 +259,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="content",
+            settings={"flatten_cname": True},
             type="CNAME",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -1468,6 +1469,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="content",
+            settings={"flatten_cname": True},
             type="CNAME",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -2740,7 +2742,7 @@ class TestRecords:
                     "name": "example.com",
                     "comment": "Domain verification record",
                     "proxied": True,
-                    "settings": {"flatten_cname": True},
+                    "settings": {},
                     "tags": ["owner:dns-team", "owner:dns-team", "owner:dns-team"],
                     "ttl": 3600,
                 },
@@ -2748,7 +2750,7 @@ class TestRecords:
                     "name": "example.com",
                     "comment": "Domain verification record",
                     "proxied": True,
-                    "settings": {"flatten_cname": True},
+                    "settings": {},
                     "tags": ["owner:dns-team", "owner:dns-team", "owner:dns-team"],
                     "ttl": 3600,
                 },
@@ -2756,7 +2758,7 @@ class TestRecords:
                     "name": "example.com",
                     "comment": "Domain verification record",
                     "proxied": True,
-                    "settings": {"flatten_cname": True},
+                    "settings": {},
                     "tags": ["owner:dns-team", "owner:dns-team", "owner:dns-team"],
                     "ttl": 3600,
                 },
@@ -3086,6 +3088,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="content",
+            settings={"flatten_cname": True},
             type="CNAME",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -4622,6 +4625,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="content",
+            settings={"flatten_cname": True},
             type="CNAME",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -5831,6 +5835,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="content",
+            settings={"flatten_cname": True},
             type="CNAME",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -7103,7 +7108,7 @@ class TestAsyncRecords:
                     "name": "example.com",
                     "comment": "Domain verification record",
                     "proxied": True,
-                    "settings": {"flatten_cname": True},
+                    "settings": {},
                     "tags": ["owner:dns-team", "owner:dns-team", "owner:dns-team"],
                     "ttl": 3600,
                 },
@@ -7111,7 +7116,7 @@ class TestAsyncRecords:
                     "name": "example.com",
                     "comment": "Domain verification record",
                     "proxied": True,
-                    "settings": {"flatten_cname": True},
+                    "settings": {},
                     "tags": ["owner:dns-team", "owner:dns-team", "owner:dns-team"],
                     "ttl": 3600,
                 },
@@ -7119,7 +7124,7 @@ class TestAsyncRecords:
                     "name": "example.com",
                     "comment": "Domain verification record",
                     "proxied": True,
-                    "settings": {"flatten_cname": True},
+                    "settings": {},
                     "tags": ["owner:dns-team", "owner:dns-team", "owner:dns-team"],
                     "ttl": 3600,
                 },
@@ -7449,6 +7454,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="content",
+            settings={"flatten_cname": True},
             type="CNAME",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
