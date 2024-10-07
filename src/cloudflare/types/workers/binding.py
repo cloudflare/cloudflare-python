@@ -12,7 +12,7 @@ from .kv_namespace_binding import KVNamespaceBinding
 from .durable_object_binding import DurableObjectBinding
 from .dispatch_namespace_binding import DispatchNamespaceBinding
 
-__all__ = ["Binding", "WorkersQueueBinding"]
+__all__ = ["Binding", "WorkersQueueBinding", "WorkersAssetsBinding"]
 
 
 class WorkersQueueBinding(BaseModel):
@@ -26,6 +26,14 @@ class WorkersQueueBinding(BaseModel):
     """The class of resource that the binding provides."""
 
 
+class WorkersAssetsBinding(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    type: Literal["assets"]
+    """The class of resource that the binding provides."""
+
+
 Binding: TypeAlias = Union[
     KVNamespaceBinding,
     ServiceBinding,
@@ -35,4 +43,5 @@ Binding: TypeAlias = Union[
     D1Binding,
     DispatchNamespaceBinding,
     MTLSCERTBinding,
+    WorkersAssetsBinding,
 ]

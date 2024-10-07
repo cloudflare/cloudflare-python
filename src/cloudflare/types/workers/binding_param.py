@@ -13,7 +13,7 @@ from .kv_namespace_binding_param import KVNamespaceBindingParam
 from .durable_object_binding_param import DurableObjectBindingParam
 from .dispatch_namespace_binding_param import DispatchNamespaceBindingParam
 
-__all__ = ["BindingParam", "WorkersQueueBinding"]
+__all__ = ["BindingParam", "WorkersQueueBinding", "WorkersAssetsBinding"]
 
 
 class WorkersQueueBinding(TypedDict, total=False):
@@ -21,6 +21,11 @@ class WorkersQueueBinding(TypedDict, total=False):
     """Name of the Queue to bind to"""
 
     type: Required[Literal["queue"]]
+    """The class of resource that the binding provides."""
+
+
+class WorkersAssetsBinding(TypedDict, total=False):
+    type: Required[Literal["assets"]]
     """The class of resource that the binding provides."""
 
 
@@ -33,4 +38,5 @@ BindingParam: TypeAlias = Union[
     D1BindingParam,
     DispatchNamespaceBindingParam,
     MTLSCERTBindingParam,
+    WorkersAssetsBinding,
 ]
