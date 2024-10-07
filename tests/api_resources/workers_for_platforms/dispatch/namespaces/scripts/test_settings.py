@@ -85,6 +85,10 @@ class TestSettings:
                         },
                     ],
                 },
+                "observability": {
+                    "enabled": True,
+                    "head_sampling_rate": 0.1,
+                },
                 "placement": {"mode": "smart"},
                 "tags": ["my-tag", "my-tag", "my-tag"],
                 "tail_consumers": [
@@ -291,6 +295,10 @@ class TestAsyncSettings:
                             "to": "to",
                         },
                     ],
+                },
+                "observability": {
+                    "enabled": True,
+                    "head_sampling_rate": 0.1,
                 },
                 "placement": {"mode": "smart"},
                 "tags": ["my-tag", "my-tag", "my-tag"],
