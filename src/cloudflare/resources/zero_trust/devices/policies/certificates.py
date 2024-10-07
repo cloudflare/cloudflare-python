@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -59,7 +59,7 @@ class CertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateUpdateResponse:
+    ) -> Optional[CertificateUpdateResponse]:
         """
         Enable Zero Trust Clients to provision a certificate, containing a x509 subject,
         and referenced by Access device posture policies when the client visits MTLS
@@ -80,7 +80,7 @@ class CertificatesResource(SyncAPIResource):
         if not zone_tag:
             raise ValueError(f"Expected a non-empty value for `zone_tag` but received {zone_tag!r}")
         return cast(
-            CertificateUpdateResponse,
+            Optional[CertificateUpdateResponse],
             self._patch(
                 f"/zones/{zone_tag}/devices/policy/certificates",
                 body=maybe_transform({"enabled": enabled}, certificate_update_params.CertificateUpdateParams),
@@ -89,7 +89,7 @@ class CertificatesResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[CertificateUpdateResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[CertificateUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CertificateUpdateResponse]
@@ -107,7 +107,7 @@ class CertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateGetResponse:
+    ) -> Optional[CertificateGetResponse]:
         """
         Fetches device certificate provisioning
 
@@ -123,7 +123,7 @@ class CertificatesResource(SyncAPIResource):
         if not zone_tag:
             raise ValueError(f"Expected a non-empty value for `zone_tag` but received {zone_tag!r}")
         return cast(
-            CertificateGetResponse,
+            Optional[CertificateGetResponse],
             self._get(
                 f"/zones/{zone_tag}/devices/policy/certificates",
                 options=make_request_options(
@@ -131,7 +131,7 @@ class CertificatesResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[CertificateGetResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[CertificateGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CertificateGetResponse]
@@ -171,7 +171,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateUpdateResponse:
+    ) -> Optional[CertificateUpdateResponse]:
         """
         Enable Zero Trust Clients to provision a certificate, containing a x509 subject,
         and referenced by Access device posture policies when the client visits MTLS
@@ -192,7 +192,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         if not zone_tag:
             raise ValueError(f"Expected a non-empty value for `zone_tag` but received {zone_tag!r}")
         return cast(
-            CertificateUpdateResponse,
+            Optional[CertificateUpdateResponse],
             await self._patch(
                 f"/zones/{zone_tag}/devices/policy/certificates",
                 body=await async_maybe_transform(
@@ -203,7 +203,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[CertificateUpdateResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[CertificateUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CertificateUpdateResponse]
@@ -221,7 +221,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateGetResponse:
+    ) -> Optional[CertificateGetResponse]:
         """
         Fetches device certificate provisioning
 
@@ -237,7 +237,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         if not zone_tag:
             raise ValueError(f"Expected a non-empty value for `zone_tag` but received {zone_tag!r}")
         return cast(
-            CertificateGetResponse,
+            Optional[CertificateGetResponse],
             await self._get(
                 f"/zones/{zone_tag}/devices/policy/certificates",
                 options=make_request_options(
@@ -245,7 +245,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[CertificateGetResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[CertificateGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CertificateGetResponse]
