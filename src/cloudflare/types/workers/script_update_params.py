@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable
+from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._types import FileTypes
@@ -18,6 +18,7 @@ __all__ = [
     "Variant0Metadata",
     "Variant0MetadataBinding",
     "Variant0MetadataMigrations",
+    "Variant0MetadataObservability",
     "Variant1",
 ]
 
@@ -64,6 +65,17 @@ Variant0MetadataBinding: TypeAlias = Union[Variant0MetadataBindingTyped, Dict[st
 Variant0MetadataMigrations: TypeAlias = Union[SingleStepMigrationParam, SteppedMigrationParam]
 
 
+class Variant0MetadataObservability(TypedDict, total=False):
+    enabled: Required[bool]
+    """Whether observability is enabled for the Worker"""
+
+    head_sampling_rate: Optional[float]
+    """The sampling rate for incoming requests.
+
+    From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1.
+    """
+
+
 class Variant0Metadata(TypedDict, total=False):
     bindings: Iterable[Variant0MetadataBinding]
     """List of bindings available to the worker."""
@@ -103,6 +115,9 @@ class Variant0Metadata(TypedDict, total=False):
 
     migrations: Variant0MetadataMigrations
     """Migrations to apply for Durable Objects associated with this Worker."""
+
+    observability: Variant0MetadataObservability
+    """Observability settings for the Worker"""
 
     placement: PlacementConfigurationParam
 

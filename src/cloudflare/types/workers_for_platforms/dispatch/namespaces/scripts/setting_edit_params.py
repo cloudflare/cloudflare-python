@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import List, Union, Iterable, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
 from .....workers.binding_param import BindingParam
@@ -11,7 +11,7 @@ from .....workers.single_step_migration_param import SingleStepMigrationParam
 from .....workers.placement_configuration_param import PlacementConfigurationParam
 from .....workers.scripts.consumer_script_param import ConsumerScriptParam
 
-__all__ = ["SettingEditParams", "Settings", "SettingsLimits", "SettingsMigrations"]
+__all__ = ["SettingEditParams", "Settings", "SettingsLimits", "SettingsMigrations", "SettingsObservability"]
 
 
 class SettingEditParams(TypedDict, total=False):
@@ -32,6 +32,17 @@ class SettingsLimits(TypedDict, total=False):
 SettingsMigrations: TypeAlias = Union[SingleStepMigrationParam, SteppedMigrationParam]
 
 
+class SettingsObservability(TypedDict, total=False):
+    enabled: Required[bool]
+    """Whether observability is enabled for the Worker"""
+
+    head_sampling_rate: Optional[float]
+    """The sampling rate for incoming requests.
+
+    From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1.
+    """
+
+
 class Settings(TypedDict, total=False):
     bindings: Iterable[BindingParam]
     """List of bindings attached to this Worker"""
@@ -50,6 +61,9 @@ class Settings(TypedDict, total=False):
 
     migrations: SettingsMigrations
     """Migrations to apply for Durable Objects associated with this Worker."""
+
+    observability: SettingsObservability
+    """Observability settings for the Worker"""
 
     placement: PlacementConfigurationParam
 

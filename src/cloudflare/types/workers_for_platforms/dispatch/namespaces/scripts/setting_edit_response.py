@@ -10,7 +10,7 @@ from .....workers.single_step_migration import SingleStepMigration
 from .....workers.placement_configuration import PlacementConfiguration
 from .....workers.scripts.consumer_script import ConsumerScript
 
-__all__ = ["SettingEditResponse", "Limits", "Migrations"]
+__all__ = ["SettingEditResponse", "Limits", "Migrations", "Observability"]
 
 
 class Limits(BaseModel):
@@ -19,6 +19,17 @@ class Limits(BaseModel):
 
 
 Migrations: TypeAlias = Union[SingleStepMigration, SteppedMigration]
+
+
+class Observability(BaseModel):
+    enabled: bool
+    """Whether observability is enabled for the Worker"""
+
+    head_sampling_rate: Optional[float] = None
+    """The sampling rate for incoming requests.
+
+    From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1.
+    """
 
 
 class SettingEditResponse(BaseModel):
@@ -39,6 +50,9 @@ class SettingEditResponse(BaseModel):
 
     migrations: Optional[Migrations] = None
     """Migrations to apply for Durable Objects associated with this Worker."""
+
+    observability: Optional[Observability] = None
+    """Observability settings for the Worker"""
 
     placement: Optional[PlacementConfiguration] = None
 

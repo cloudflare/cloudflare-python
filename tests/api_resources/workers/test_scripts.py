@@ -94,6 +94,10 @@ class TestScripts:
                         },
                     ],
                 },
+                "observability": {
+                    "enabled": True,
+                    "head_sampling_rate": 0.1,
+                },
                 "placement": {"mode": "smart"},
                 "tags": ["string", "string", "string"],
                 "tail_consumers": [
@@ -457,6 +461,10 @@ class TestAsyncScripts:
                             "to": "to",
                         },
                     ],
+                },
+                "observability": {
+                    "enabled": True,
+                    "head_sampling_rate": 0.1,
                 },
                 "placement": {"mode": "smart"},
                 "tags": ["string", "string", "string"],
