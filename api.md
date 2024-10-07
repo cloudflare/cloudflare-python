@@ -2246,6 +2246,19 @@ Methods:
 - <code title="delete /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">delete</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/script_delete_params.py">params</a>) -> None</code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">get</a>(script_name, \*, account_id) -> BinaryAPIResponse</code>
 
+### Subdomain
+
+Types:
+
+```python
+from cloudflare.types.workers.scripts import SubdomainCreateResponse, SubdomainGetResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/subdomain">client.workers.scripts.subdomain.<a href="./src/cloudflare/resources/workers/scripts/subdomain.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/subdomain_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/subdomain_create_response.py">SubdomainCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/subdomain">client.workers.scripts.subdomain.<a href="./src/cloudflare/resources/workers/scripts/subdomain.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/subdomain_get_response.py">SubdomainGetResponse</a></code>
+
 ### Schedules
 
 Types:

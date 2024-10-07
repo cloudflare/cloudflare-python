@@ -53,6 +53,14 @@ from .schedules import (
     SchedulesResourceWithStreamingResponse,
     AsyncSchedulesResourceWithStreamingResponse,
 )
+from .subdomain import (
+    SubdomainResource,
+    AsyncSubdomainResource,
+    SubdomainResourceWithRawResponse,
+    AsyncSubdomainResourceWithRawResponse,
+    SubdomainResourceWithStreamingResponse,
+    AsyncSubdomainResourceWithStreamingResponse,
+)
 from ...._compat import cached_property
 from .deployments import (
     DeploymentsResource,
@@ -88,6 +96,10 @@ __all__ = ["ScriptsResource", "AsyncScriptsResource"]
 
 
 class ScriptsResource(SyncAPIResource):
+    @cached_property
+    def subdomain(self) -> SubdomainResource:
+        return SubdomainResource(self._client)
+
     @cached_property
     def schedules(self) -> SchedulesResource:
         return SchedulesResource(self._client)
@@ -397,6 +409,10 @@ class ScriptsResource(SyncAPIResource):
 
 
 class AsyncScriptsResource(AsyncAPIResource):
+    @cached_property
+    def subdomain(self) -> AsyncSubdomainResource:
+        return AsyncSubdomainResource(self._client)
+
     @cached_property
     def schedules(self) -> AsyncSchedulesResource:
         return AsyncSchedulesResource(self._client)
@@ -726,6 +742,10 @@ class ScriptsResourceWithRawResponse:
         )
 
     @cached_property
+    def subdomain(self) -> SubdomainResourceWithRawResponse:
+        return SubdomainResourceWithRawResponse(self._scripts.subdomain)
+
+    @cached_property
     def schedules(self) -> SchedulesResourceWithRawResponse:
         return SchedulesResourceWithRawResponse(self._scripts.schedules)
 
@@ -767,6 +787,10 @@ class AsyncScriptsResourceWithRawResponse:
             scripts.get,
             AsyncBinaryAPIResponse,
         )
+
+    @cached_property
+    def subdomain(self) -> AsyncSubdomainResourceWithRawResponse:
+        return AsyncSubdomainResourceWithRawResponse(self._scripts.subdomain)
 
     @cached_property
     def schedules(self) -> AsyncSchedulesResourceWithRawResponse:
@@ -812,6 +836,10 @@ class ScriptsResourceWithStreamingResponse:
         )
 
     @cached_property
+    def subdomain(self) -> SubdomainResourceWithStreamingResponse:
+        return SubdomainResourceWithStreamingResponse(self._scripts.subdomain)
+
+    @cached_property
     def schedules(self) -> SchedulesResourceWithStreamingResponse:
         return SchedulesResourceWithStreamingResponse(self._scripts.schedules)
 
@@ -853,6 +881,10 @@ class AsyncScriptsResourceWithStreamingResponse:
             scripts.get,
             AsyncStreamedBinaryAPIResponse,
         )
+
+    @cached_property
+    def subdomain(self) -> AsyncSubdomainResourceWithStreamingResponse:
+        return AsyncSubdomainResourceWithStreamingResponse(self._scripts.subdomain)
 
     @cached_property
     def schedules(self) -> AsyncSchedulesResourceWithStreamingResponse:
