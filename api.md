@@ -3575,7 +3575,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.magic_transit import HealthCheck, HealthCheckRate, HealthCheckType
+from cloudflare.types.magic_transit import HealthCheckRate, HealthCheckType
 ```
 
 ## Apps

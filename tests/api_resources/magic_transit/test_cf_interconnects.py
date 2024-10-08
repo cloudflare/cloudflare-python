@@ -39,11 +39,12 @@ class TestCfInterconnects:
             health_check={
                 "enabled": True,
                 "rate": "low",
-                "target": "203.0.113.1",
+                "target": {"saved": "203.0.113.1"},
                 "type": "reply",
             },
             interface_address="192.0.2.0/31",
             mtu=0,
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(CfInterconnectUpdateResponse, cf_interconnect, path=["response"])
 
@@ -95,6 +96,14 @@ class TestCfInterconnects:
         assert_matches_type(CfInterconnectListResponse, cf_interconnect, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        cf_interconnect = client.magic_transit.cf_interconnects.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
+        )
+        assert_matches_type(CfInterconnectListResponse, cf_interconnect, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.magic_transit.cf_interconnects.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -130,6 +139,15 @@ class TestCfInterconnects:
         cf_interconnect = client.magic_transit.cf_interconnects.get(
             cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(CfInterconnectGetResponse, cf_interconnect, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        cf_interconnect = client.magic_transit.cf_interconnects.get(
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(CfInterconnectGetResponse, cf_interconnect, path=["response"])
 
@@ -195,11 +213,12 @@ class TestAsyncCfInterconnects:
             health_check={
                 "enabled": True,
                 "rate": "low",
-                "target": "203.0.113.1",
+                "target": {"saved": "203.0.113.1"},
                 "type": "reply",
             },
             interface_address="192.0.2.0/31",
             mtu=0,
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(CfInterconnectUpdateResponse, cf_interconnect, path=["response"])
 
@@ -251,6 +270,14 @@ class TestAsyncCfInterconnects:
         assert_matches_type(CfInterconnectListResponse, cf_interconnect, path=["response"])
 
     @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        cf_interconnect = await async_client.magic_transit.cf_interconnects.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
+        )
+        assert_matches_type(CfInterconnectListResponse, cf_interconnect, path=["response"])
+
+    @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.cf_interconnects.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -286,6 +313,15 @@ class TestAsyncCfInterconnects:
         cf_interconnect = await async_client.magic_transit.cf_interconnects.get(
             cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(CfInterconnectGetResponse, cf_interconnect, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        cf_interconnect = await async_client.magic_transit.cf_interconnects.get(
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(CfInterconnectGetResponse, cf_interconnect, path=["response"])
 

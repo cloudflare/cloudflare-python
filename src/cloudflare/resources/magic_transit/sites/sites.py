@@ -32,7 +32,9 @@ from .wans import (
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
+    is_given,
     maybe_transform,
+    strip_not_given,
     async_maybe_transform,
 )
 from ...._compat import cached_property
@@ -386,6 +388,7 @@ class SitesResource(SyncAPIResource):
         site_id: str,
         *,
         account_id: str,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -413,6 +416,16 @@ class SitesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             f"/accounts/{account_id}/magic/sites/{site_id}",
             options=make_request_options(
@@ -754,6 +767,7 @@ class AsyncSitesResource(AsyncAPIResource):
         site_id: str,
         *,
         account_id: str,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -781,6 +795,16 @@ class AsyncSitesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             f"/accounts/{account_id}/magic/sites/{site_id}",
             options=make_request_options(
