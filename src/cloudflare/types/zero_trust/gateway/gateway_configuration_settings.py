@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from typing_extensions import Literal
 
 from ...._models import BaseModel
 from .tls_settings import TLSSettings
@@ -14,7 +15,7 @@ from .extended_email_matching import ExtendedEmailMatching
 from .browser_isolation_settings import BrowserIsolationSettings
 from .custom_certificate_settings import CustomCertificateSettings
 
-__all__ = ["GatewayConfigurationSettings", "Certificate"]
+__all__ = ["GatewayConfigurationSettings", "Certificate", "Sandbox"]
 
 
 class Certificate(BaseModel):
@@ -24,6 +25,14 @@ class Certificate(BaseModel):
     Certificate must be active on the edge. A nil UUID will indicate the Cloudflare
     Root CA should be used.
     """
+
+
+class Sandbox(BaseModel):
+    enabled: Optional[bool] = None
+    """Enable sandbox."""
+
+    fallback_action: Optional[Literal["allow", "block"]] = None
+    """Action to take when the file cannot be scanned."""
 
 
 class GatewayConfigurationSettings(BaseModel):
@@ -62,6 +71,9 @@ class GatewayConfigurationSettings(BaseModel):
 
     protocol_detection: Optional[ProtocolDetection] = None
     """Protocol Detection settings."""
+
+    sandbox: Optional[Sandbox] = None
+    """Sandbox settings."""
 
     tls_decrypt: Optional[TLSSettings] = None
     """TLS interception settings."""

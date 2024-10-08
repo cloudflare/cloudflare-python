@@ -17,6 +17,7 @@ __all__ = [
     "L4override",
     "NotificationSettings",
     "PayloadLog",
+    "Quarantine",
     "UntrustedCERT",
 ]
 
@@ -97,6 +98,13 @@ class NotificationSettings(BaseModel):
 class PayloadLog(BaseModel):
     enabled: Optional[bool] = None
     """Set to true to enable DLP payload logging for this rule."""
+
+
+class Quarantine(BaseModel):
+    file_types: Optional[
+        List[Literal["exe", "pdf", "doc", "docm", "docx", "rtf", "ppt", "pptx", "xls", "xlsm", "xlsx", "zip", "rar"]]
+    ] = None
+    """Types of files to sandbox."""
 
 
 class UntrustedCERT(BaseModel):
@@ -192,6 +200,9 @@ class RuleSetting(BaseModel):
 
     payload_log: Optional[PayloadLog] = None
     """Configure DLP payload logging."""
+
+    quarantine: Optional[Quarantine] = None
+    """Settings that apply to quarantine rules"""
 
     resolve_dns_through_cloudflare: Optional[bool] = None
     """

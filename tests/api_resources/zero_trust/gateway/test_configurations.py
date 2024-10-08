@@ -68,6 +68,10 @@ class TestConfigurations:
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
                 "protocol_detection": {"enabled": True},
+                "sandbox": {
+                    "enabled": True,
+                    "fallback_action": "allow",
+                },
                 "tls_decrypt": {"enabled": True},
             },
         )
@@ -151,6 +155,10 @@ class TestConfigurations:
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
                 "protocol_detection": {"enabled": True},
+                "sandbox": {
+                    "enabled": True,
+                    "fallback_action": "allow",
+                },
                 "tls_decrypt": {"enabled": True},
             },
         )
@@ -276,6 +284,10 @@ class TestAsyncConfigurations:
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
                 "protocol_detection": {"enabled": True},
+                "sandbox": {
+                    "enabled": True,
+                    "fallback_action": "allow",
+                },
                 "tls_decrypt": {"enabled": True},
             },
         )
@@ -359,6 +371,10 @@ class TestAsyncConfigurations:
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
                 "protocol_detection": {"enabled": True},
+                "sandbox": {
+                    "enabled": True,
+                    "fallback_action": "allow",
+                },
                 "tls_decrypt": {"enabled": True},
             },
         )
