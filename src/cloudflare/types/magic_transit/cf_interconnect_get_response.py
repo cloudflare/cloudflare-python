@@ -1,13 +1,21 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Union, Optional
 from datetime import datetime
+from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 from .health_check_rate import HealthCheckRate
 from .health_check_type import HealthCheckType
 
-__all__ = ["CfInterconnectGetResponse", "Interconnect", "InterconnectGRE", "InterconnectHealthCheck"]
+__all__ = [
+    "CfInterconnectGetResponse",
+    "Interconnect",
+    "InterconnectGRE",
+    "InterconnectHealthCheck",
+    "InterconnectHealthCheckTarget",
+    "InterconnectHealthCheckTargetMagicHealthCheckTarget",
+]
 
 
 class InterconnectGRE(BaseModel):
@@ -18,6 +26,25 @@ class InterconnectGRE(BaseModel):
     """
 
 
+class InterconnectHealthCheckTargetMagicHealthCheckTarget(BaseModel):
+    effective: Optional[str] = None
+    """The effective health check target.
+
+    If 'saved' is empty, then this field will be populated with the calculated
+    default value on GET requests. Ignored in POST, PUT, and PATCH requests.
+    """
+
+    saved: Optional[str] = None
+    """The saved health check target.
+
+    Setting the value to the empty string indicates that the calculated default
+    value will be used.
+    """
+
+
+InterconnectHealthCheckTarget: TypeAlias = Union[InterconnectHealthCheckTargetMagicHealthCheckTarget, str]
+
+
 class InterconnectHealthCheck(BaseModel):
     enabled: Optional[bool] = None
     """Determines whether to run healthchecks for a tunnel."""
@@ -25,12 +52,16 @@ class InterconnectHealthCheck(BaseModel):
     rate: Optional[HealthCheckRate] = None
     """How frequent the health check is run. The default value is `mid`."""
 
-    target: Optional[str] = None
+    target: Optional[InterconnectHealthCheckTarget] = None
     """The destination address in a request type health check.
 
     After the healthcheck is decapsulated at the customer end of the tunnel, the
     ICMP echo will be forwarded to this address. This field defaults to
-    `customer_gre_endpoint address`.
+    `customer_gre_endpoint address`. This field is ignored for bidirectional
+    healthchecks as the interface_address (not assigned to the Cloudflare side of
+    the tunnel) is used as the target. Must be in object form if the
+    x-magic-new-hc-target header is set to true and string form if
+    x-magic-new-hc-target is absent or set to false.
     """
 
     type: Optional[HealthCheckType] = None

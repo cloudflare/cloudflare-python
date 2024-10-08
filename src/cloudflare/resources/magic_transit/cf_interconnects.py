@@ -8,7 +8,9 @@ import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
+    is_given,
     maybe_transform,
+    strip_not_given,
     async_maybe_transform,
 )
 from ..._compat import cached_property
@@ -59,6 +61,7 @@ class CfInterconnectsResource(SyncAPIResource):
         health_check: cf_interconnect_update_params.HealthCheck | NotGiven = NOT_GIVEN,
         interface_address: str | NotGiven = NOT_GIVEN,
         mtu: int | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -100,6 +103,16 @@ class CfInterconnectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not cf_interconnect_id:
             raise ValueError(f"Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._put(
             f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
             body=maybe_transform(
@@ -126,6 +139,7 @@ class CfInterconnectsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -149,6 +163,16 @@ class CfInterconnectsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             f"/accounts/{account_id}/magic/cf_interconnects",
             options=make_request_options(
@@ -166,6 +190,7 @@ class CfInterconnectsResource(SyncAPIResource):
         cf_interconnect_id: str,
         *,
         account_id: str,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -193,6 +218,16 @@ class CfInterconnectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not cf_interconnect_id:
             raise ValueError(f"Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
             options=make_request_options(
@@ -236,6 +271,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         health_check: cf_interconnect_update_params.HealthCheck | NotGiven = NOT_GIVEN,
         interface_address: str | NotGiven = NOT_GIVEN,
         mtu: int | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -277,6 +313,16 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not cf_interconnect_id:
             raise ValueError(f"Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._put(
             f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
             body=await async_maybe_transform(
@@ -303,6 +349,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -326,6 +373,16 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             f"/accounts/{account_id}/magic/cf_interconnects",
             options=make_request_options(
@@ -343,6 +400,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         cf_interconnect_id: str,
         *,
         account_id: str,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -370,6 +428,16 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not cf_interconnect_id:
             raise ValueError(f"Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
             options=make_request_options(

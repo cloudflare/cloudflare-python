@@ -34,6 +34,16 @@ class TestGRETunnels:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        gre_tunnel = client.magic_transit.gre_tunnels.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+            x_magic_new_hc_target=True,
+        )
+        assert_matches_type(GRETunnelCreateResponse, gre_tunnel, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.magic_transit.gre_tunnels.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -95,11 +105,12 @@ class TestGRETunnels:
                 "direction": "unidirectional",
                 "enabled": True,
                 "rate": "low",
-                "target": "203.0.113.1",
+                "target": {"saved": "203.0.113.1"},
                 "type": "reply",
             },
             mtu=0,
             ttl=0,
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(GRETunnelUpdateResponse, gre_tunnel, path=["response"])
 
@@ -167,6 +178,14 @@ class TestGRETunnels:
         assert_matches_type(GRETunnelListResponse, gre_tunnel, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        gre_tunnel = client.magic_transit.gre_tunnels.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
+        )
+        assert_matches_type(GRETunnelListResponse, gre_tunnel, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.magic_transit.gre_tunnels.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -202,6 +221,15 @@ class TestGRETunnels:
         gre_tunnel = client.magic_transit.gre_tunnels.delete(
             gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(GRETunnelDeleteResponse, gre_tunnel, path=["response"])
+
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        gre_tunnel = client.magic_transit.gre_tunnels.delete(
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(GRETunnelDeleteResponse, gre_tunnel, path=["response"])
 
@@ -250,6 +278,15 @@ class TestGRETunnels:
         gre_tunnel = client.magic_transit.gre_tunnels.get(
             gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(GRETunnelGetResponse, gre_tunnel, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        gre_tunnel = client.magic_transit.gre_tunnels.get(
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(GRETunnelGetResponse, gre_tunnel, path=["response"])
 
@@ -303,6 +340,16 @@ class TestAsyncGRETunnels:
         gre_tunnel = await async_client.magic_transit.gre_tunnels.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
+        )
+        assert_matches_type(GRETunnelCreateResponse, gre_tunnel, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        gre_tunnel = await async_client.magic_transit.gre_tunnels.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(GRETunnelCreateResponse, gre_tunnel, path=["response"])
 
@@ -369,11 +416,12 @@ class TestAsyncGRETunnels:
                 "direction": "unidirectional",
                 "enabled": True,
                 "rate": "low",
-                "target": "203.0.113.1",
+                "target": {"saved": "203.0.113.1"},
                 "type": "reply",
             },
             mtu=0,
             ttl=0,
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(GRETunnelUpdateResponse, gre_tunnel, path=["response"])
 
@@ -441,6 +489,14 @@ class TestAsyncGRETunnels:
         assert_matches_type(GRETunnelListResponse, gre_tunnel, path=["response"])
 
     @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        gre_tunnel = await async_client.magic_transit.gre_tunnels.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
+        )
+        assert_matches_type(GRETunnelListResponse, gre_tunnel, path=["response"])
+
+    @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.gre_tunnels.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -476,6 +532,15 @@ class TestAsyncGRETunnels:
         gre_tunnel = await async_client.magic_transit.gre_tunnels.delete(
             gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(GRETunnelDeleteResponse, gre_tunnel, path=["response"])
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        gre_tunnel = await async_client.magic_transit.gre_tunnels.delete(
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(GRETunnelDeleteResponse, gre_tunnel, path=["response"])
 
@@ -524,6 +589,15 @@ class TestAsyncGRETunnels:
         gre_tunnel = await async_client.magic_transit.gre_tunnels.get(
             gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(GRETunnelGetResponse, gre_tunnel, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        gre_tunnel = await async_client.magic_transit.gre_tunnels.get(
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(GRETunnelGetResponse, gre_tunnel, path=["response"])
 
