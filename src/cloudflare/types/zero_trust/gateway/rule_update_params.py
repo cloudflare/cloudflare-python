@@ -32,6 +32,7 @@ class RuleUpdateParams(TypedDict, total=False):
             "egress",
             "audit_ssh",
             "resolve",
+            "quarantine",
         ]
     ]
     """
