@@ -47,11 +47,12 @@ class TestIPSECTunnels:
                 "direction": "unidirectional",
                 "enabled": True,
                 "rate": "low",
-                "target": "203.0.113.1",
+                "target": {"saved": "203.0.113.1"},
                 "type": "reply",
             },
             psk="O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
             replay_protection=False,
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=["response"])
 
@@ -120,11 +121,12 @@ class TestIPSECTunnels:
                 "direction": "unidirectional",
                 "enabled": True,
                 "rate": "low",
-                "target": "203.0.113.1",
+                "target": {"saved": "203.0.113.1"},
                 "type": "reply",
             },
             psk="O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
             replay_protection=False,
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=["response"])
 
@@ -188,6 +190,14 @@ class TestIPSECTunnels:
         assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        ipsec_tunnel = client.magic_transit.ipsec_tunnels.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
+        )
+        assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.magic_transit.ipsec_tunnels.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -223,6 +233,15 @@ class TestIPSECTunnels:
         ipsec_tunnel = client.magic_transit.ipsec_tunnels.delete(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=["response"])
+
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        ipsec_tunnel = client.magic_transit.ipsec_tunnels.delete(
+            ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=["response"])
 
@@ -271,6 +290,15 @@ class TestIPSECTunnels:
         ipsec_tunnel = client.magic_transit.ipsec_tunnels.get(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        ipsec_tunnel = client.magic_transit.ipsec_tunnels.get(
+            ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=["response"])
 
@@ -394,11 +422,12 @@ class TestAsyncIPSECTunnels:
                 "direction": "unidirectional",
                 "enabled": True,
                 "rate": "low",
-                "target": "203.0.113.1",
+                "target": {"saved": "203.0.113.1"},
                 "type": "reply",
             },
             psk="O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
             replay_protection=False,
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(IPSECTunnelCreateResponse, ipsec_tunnel, path=["response"])
 
@@ -467,11 +496,12 @@ class TestAsyncIPSECTunnels:
                 "direction": "unidirectional",
                 "enabled": True,
                 "rate": "low",
-                "target": "203.0.113.1",
+                "target": {"saved": "203.0.113.1"},
                 "type": "reply",
             },
             psk="O3bwKSjnaoCxDoUxjcq4Rk8ZKkezQUiy",
             replay_protection=False,
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(IPSECTunnelUpdateResponse, ipsec_tunnel, path=["response"])
 
@@ -535,6 +565,14 @@ class TestAsyncIPSECTunnels:
         assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=["response"])
 
     @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        ipsec_tunnel = await async_client.magic_transit.ipsec_tunnels.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
+        )
+        assert_matches_type(IPSECTunnelListResponse, ipsec_tunnel, path=["response"])
+
+    @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.ipsec_tunnels.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -570,6 +608,15 @@ class TestAsyncIPSECTunnels:
         ipsec_tunnel = await async_client.magic_transit.ipsec_tunnels.delete(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=["response"])
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        ipsec_tunnel = await async_client.magic_transit.ipsec_tunnels.delete(
+            ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(IPSECTunnelDeleteResponse, ipsec_tunnel, path=["response"])
 
@@ -618,6 +665,15 @@ class TestAsyncIPSECTunnels:
         ipsec_tunnel = await async_client.magic_transit.ipsec_tunnels.get(
             ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        ipsec_tunnel = await async_client.magic_transit.ipsec_tunnels.get(
+            ipsec_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(IPSECTunnelGetResponse, ipsec_tunnel, path=["response"])
 
