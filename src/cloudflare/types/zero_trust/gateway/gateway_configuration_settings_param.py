@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from .tls_settings_param import TLSSettingsParam
 from .fips_settings_param import FipsSettingsParam
@@ -15,7 +15,7 @@ from .extended_email_matching_param import ExtendedEmailMatchingParam
 from .browser_isolation_settings_param import BrowserIsolationSettingsParam
 from .custom_certificate_settings_param import CustomCertificateSettingsParam
 
-__all__ = ["GatewayConfigurationSettingsParam", "Certificate"]
+__all__ = ["GatewayConfigurationSettingsParam", "Certificate", "Sandbox"]
 
 
 class Certificate(TypedDict, total=False):
@@ -25,6 +25,14 @@ class Certificate(TypedDict, total=False):
     Certificate must be active on the edge. A nil UUID will indicate the Cloudflare
     Root CA should be used.
     """
+
+
+class Sandbox(TypedDict, total=False):
+    enabled: bool
+    """Enable sandbox."""
+
+    fallback_action: Literal["allow", "block"]
+    """Action to take when the file cannot be scanned."""
 
 
 class GatewayConfigurationSettingsParam(TypedDict, total=False):
@@ -63,6 +71,9 @@ class GatewayConfigurationSettingsParam(TypedDict, total=False):
 
     protocol_detection: ProtocolDetectionParam
     """Protocol Detection settings."""
+
+    sandbox: Sandbox
+    """Sandbox settings."""
 
     tls_decrypt: TLSSettingsParam
     """TLS interception settings."""
