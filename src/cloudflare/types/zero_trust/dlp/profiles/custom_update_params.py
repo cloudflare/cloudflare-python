@@ -30,6 +30,8 @@ class CustomUpdateParams(TypedDict, total=False):
 
     allowed_match_count: Optional[int]
 
+    confidence_threshold: Optional[str]
+
     context_awareness: ContextAwarenessParam
     """
     Scan the context of predefined entries to only return matches surrounded by

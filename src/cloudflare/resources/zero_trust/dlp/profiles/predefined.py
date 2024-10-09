@@ -55,6 +55,7 @@ class PredefinedResource(SyncAPIResource):
         account_id: str,
         entries: Iterable[predefined_update_params.Entry],
         allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
+        confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
         ocr_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -92,6 +93,7 @@ class PredefinedResource(SyncAPIResource):
                     {
                         "entries": entries,
                         "allowed_match_count": allowed_match_count,
+                        "confidence_threshold": confidence_threshold,
                         "context_awareness": context_awareness,
                         "ocr_enabled": ocr_enabled,
                     },
@@ -183,6 +185,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
         account_id: str,
         entries: Iterable[predefined_update_params.Entry],
         allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
+        confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
         ocr_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -220,6 +223,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
                     {
                         "entries": entries,
                         "allowed_match_count": allowed_match_count,
+                        "confidence_threshold": confidence_threshold,
                         "context_awareness": context_awareness,
                         "ocr_enabled": ocr_enabled,
                     },

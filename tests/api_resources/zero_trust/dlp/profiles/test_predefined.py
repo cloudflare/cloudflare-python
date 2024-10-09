@@ -59,6 +59,7 @@ class TestPredefined:
                 },
             ],
             allowed_match_count=0,
+            confidence_threshold="confidence_threshold",
             context_awareness={
                 "enabled": True,
                 "skip": {"files": True},
@@ -257,6 +258,7 @@ class TestAsyncPredefined:
                 },
             ],
             allowed_match_count=0,
+            confidence_threshold="confidence_threshold",
             context_awareness={
                 "enabled": True,
                 "skip": {"files": True},

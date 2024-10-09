@@ -92,6 +92,8 @@ class Profile(TypedDict, total=False):
     allowed_match_count: int
     """Related DLP policies will trigger when the match count exceeds the number set."""
 
+    confidence_threshold: Optional[str]
+
     context_awareness: ContextAwarenessParam
     """
     Scan the context of predefined entries to only return matches surrounded by
