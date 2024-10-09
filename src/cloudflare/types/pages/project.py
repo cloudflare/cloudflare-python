@@ -14,6 +14,7 @@ __all__ = [
     "DeploymentConfigsPreview",
     "DeploymentConfigsPreviewAIBindings",
     "DeploymentConfigsPreviewAnalyticsEngineDatasets",
+    "DeploymentConfigsPreviewBrowsers",
     "DeploymentConfigsPreviewD1Databases",
     "DeploymentConfigsPreviewDurableObjectNamespaces",
     "DeploymentConfigsPreviewEnvVars",
@@ -28,6 +29,7 @@ __all__ = [
     "DeploymentConfigsProduction",
     "DeploymentConfigsProductionAIBindings",
     "DeploymentConfigsProductionAnalyticsEngineDatasets",
+    "DeploymentConfigsProductionBrowsers",
     "DeploymentConfigsProductionD1Databases",
     "DeploymentConfigsProductionDurableObjectNamespaces",
     "DeploymentConfigsProductionEnvVars",
@@ -71,6 +73,10 @@ class DeploymentConfigsPreviewAIBindings(BaseModel):
 class DeploymentConfigsPreviewAnalyticsEngineDatasets(BaseModel):
     dataset: Optional[str] = None
     """Name of the dataset."""
+
+
+class DeploymentConfigsPreviewBrowsers(BaseModel):
+    pass
 
 
 class DeploymentConfigsPreviewD1Databases(BaseModel):
@@ -144,7 +150,7 @@ class DeploymentConfigsPreview(BaseModel):
     analytics_engine_datasets: Optional[Dict[str, Optional[DeploymentConfigsPreviewAnalyticsEngineDatasets]]] = None
     """Analytics Engine bindings used for Pages Functions."""
 
-    browsers: Optional[Dict[str, Optional[object]]] = None
+    browsers: Optional[Dict[str, Optional[DeploymentConfigsPreviewBrowsers]]] = None
     """Browser bindings used for Pages Functions."""
 
     compatibility_date: Optional[str] = None
@@ -194,6 +200,10 @@ class DeploymentConfigsProductionAIBindings(BaseModel):
 class DeploymentConfigsProductionAnalyticsEngineDatasets(BaseModel):
     dataset: Optional[str] = None
     """Name of the dataset."""
+
+
+class DeploymentConfigsProductionBrowsers(BaseModel):
+    pass
 
 
 class DeploymentConfigsProductionD1Databases(BaseModel):
@@ -267,7 +277,7 @@ class DeploymentConfigsProduction(BaseModel):
     analytics_engine_datasets: Optional[Dict[str, Optional[DeploymentConfigsProductionAnalyticsEngineDatasets]]] = None
     """Analytics Engine bindings used for Pages Functions."""
 
-    browsers: Optional[Dict[str, Optional[object]]] = None
+    browsers: Optional[Dict[str, Optional[DeploymentConfigsProductionBrowsers]]] = None
     """Browser bindings used for Pages Functions."""
 
     compatibility_date: Optional[str] = None
