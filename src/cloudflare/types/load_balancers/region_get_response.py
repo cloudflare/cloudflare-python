@@ -5,4 +5,4 @@ from typing_extensions import TypeAlias
 
 __all__ = ["RegionGetResponse"]
 
-RegionGetResponse: TypeAlias = Union[Optional[str], object]
+RegionGetResponse: TypeAlias = Union[Optional[str], Optional[object]]
