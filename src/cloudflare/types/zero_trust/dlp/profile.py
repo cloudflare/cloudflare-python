@@ -15,6 +15,7 @@ __all__ = [
     "CustomEntry",
     "CustomEntryCustom",
     "CustomEntryPredefined",
+    "CustomEntryPredefinedConfidence",
     "CustomEntryIntegration",
     "CustomEntryExactData",
     "CustomEntryWordList",
@@ -22,6 +23,7 @@ __all__ = [
     "PredefinedEntry",
     "PredefinedEntryCustom",
     "PredefinedEntryPredefined",
+    "PredefinedEntryPredefinedConfidence",
     "PredefinedEntryIntegration",
     "PredefinedEntryExactData",
     "PredefinedEntryWordList",
@@ -29,6 +31,7 @@ __all__ = [
     "IntegrationEntry",
     "IntegrationEntryCustom",
     "IntegrationEntryPredefined",
+    "IntegrationEntryPredefinedConfidence",
     "IntegrationEntryIntegration",
     "IntegrationEntryExactData",
     "IntegrationEntryWordList",
@@ -53,8 +56,19 @@ class CustomEntryCustom(BaseModel):
     profile_id: Optional[str] = None
 
 
+class CustomEntryPredefinedConfidence(BaseModel):
+    available: bool
+    """
+    Indicates whether this entry can be made more or less sensitive by setting a
+    confidence threshold. Profiles that use an entry with `available` set to true
+    can use confidence thresholds
+    """
+
+
 class CustomEntryPredefined(BaseModel):
     id: str
+
+    confidence: CustomEntryPredefinedConfidence
 
     enabled: bool
 
@@ -149,6 +163,8 @@ class Custom(BaseModel):
     updated_at: datetime
     """When the profile was lasted updated"""
 
+    confidence_threshold: Optional[Literal["low", "medium", "high", "very_high"]] = None
+
     description: Optional[str] = None
     """The description of the profile"""
 
@@ -171,8 +187,19 @@ class PredefinedEntryCustom(BaseModel):
     profile_id: Optional[str] = None
 
 
+class PredefinedEntryPredefinedConfidence(BaseModel):
+    available: bool
+    """
+    Indicates whether this entry can be made more or less sensitive by setting a
+    confidence threshold. Profiles that use an entry with `available` set to true
+    can use confidence thresholds
+    """
+
+
 class PredefinedEntryPredefined(BaseModel):
     id: str
+
+    confidence: PredefinedEntryPredefinedConfidence
 
     enabled: bool
 
@@ -258,6 +285,8 @@ class Predefined(BaseModel):
 
     type: Literal["predefined"]
 
+    confidence_threshold: Optional[Literal["low", "medium", "high", "very_high"]] = None
+
     context_awareness: Optional[ContextAwareness] = None
     """
     Scan the context of predefined entries to only return matches surrounded by
@@ -288,8 +317,19 @@ class IntegrationEntryCustom(BaseModel):
     profile_id: Optional[str] = None
 
 
+class IntegrationEntryPredefinedConfidence(BaseModel):
+    available: bool
+    """
+    Indicates whether this entry can be made more or less sensitive by setting a
+    confidence threshold. Profiles that use an entry with `available` set to true
+    can use confidence thresholds
+    """
+
+
 class IntegrationEntryPredefined(BaseModel):
     id: str
+
+    confidence: IntegrationEntryPredefinedConfidence
 
     enabled: bool
 

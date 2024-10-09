@@ -369,6 +369,7 @@ class TestCustom:
             ],
             name="name",
             allowed_match_count=0,
+            confidence_threshold="confidence_threshold",
             context_awareness={
                 "enabled": True,
                 "skip": {"files": True},
@@ -970,6 +971,7 @@ class TestAsyncCustom:
             ],
             name="name",
             allowed_match_count=0,
+            confidence_threshold="confidence_threshold",
             context_awareness={
                 "enabled": True,
                 "skip": {"files": True},
