@@ -23,8 +23,10 @@ class ImpersonationRegistryListResponse(BaseModel):
 
     directory_id: Optional[int] = None
 
-    directory_node_id: Optional[str] = None
+    directory_node_id: Optional[int] = None
 
     email: Optional[str] = None
+
+    external_directory_node_id: Optional[str] = None
 
     provenance: Optional[str] = None
