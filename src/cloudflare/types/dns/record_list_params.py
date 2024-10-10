@@ -6,7 +6,7 @@ from typing_extensions import Literal, Required, TypedDict
 
 from ..shared.sort_direction import SortDirection
 
-__all__ = ["RecordListParams", "Comment", "Tag"]
+__all__ = ["RecordListParams", "Comment", "Content", "Name", "Tag"]
 
 
 class RecordListParams(TypedDict, total=False):
@@ -15,8 +15,7 @@ class RecordListParams(TypedDict, total=False):
 
     comment: Comment
 
-    content: str
-    """DNS record content."""
+    content: Content
 
     direction: SortDirection
     """Direction to order DNS records in."""
@@ -29,8 +28,7 @@ class RecordListParams(TypedDict, total=False):
     controlled by the `tag-match` parameter instead.
     """
 
-    name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
+    name: Name
 
     order: Literal["type", "name", "content", "ttl", "proxied"]
     """Field to order DNS records by."""
@@ -111,6 +109,34 @@ class Comment(TypedDict, total=False):
 
     startswith: str
     """Prefix of the DNS record comment. Comment filters are case-insensitive."""
+
+
+class Content(TypedDict, total=False):
+    contains: str
+    """Substring of the DNS record content. Content filters are case-insensitive."""
+
+    endswith: str
+    """Suffix of the DNS record content. Content filters are case-insensitive."""
+
+    exact: str
+    """Exact value of the DNS record content. Content filters are case-insensitive."""
+
+    startswith: str
+    """Prefix of the DNS record content. Content filters are case-insensitive."""
+
+
+class Name(TypedDict, total=False):
+    contains: str
+    """Substring of the DNS record name. Name filters are case-insensitive."""
+
+    endswith: str
+    """Suffix of the DNS record name. Name filters are case-insensitive."""
+
+    exact: str
+    """Exact value of the DNS record name. Name filters are case-insensitive."""
+
+    startswith: str
+    """Prefix of the DNS record name. Name filters are case-insensitive."""
 
 
 class Tag(TypedDict, total=False):
