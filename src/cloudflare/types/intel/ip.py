@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -28,6 +28,6 @@ class IP(BaseModel):
     to.
     """
 
-    ip: Union[str, str, None] = None
+    ip: Optional[str] = None
 
     risk_types: Optional[List[object]] = None

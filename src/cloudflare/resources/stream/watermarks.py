@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -32,10 +32,21 @@ __all__ = ["WatermarksResource", "AsyncWatermarksResource"]
 class WatermarksResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> WatermarksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return WatermarksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> WatermarksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return WatermarksResourceWithStreamingResponse(self)
 
     def create(
@@ -167,7 +178,7 @@ class WatermarksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WatermarkDeleteResponse]:
+    ) -> str:
         """
         Deletes a watermark profile.
 
@@ -188,21 +199,16 @@ class WatermarksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return cast(
-            Optional[WatermarkDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/stream/watermarks/{identifier}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[WatermarkDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WatermarkDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/stream/watermarks/{identifier}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[WatermarkDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     def get(
@@ -253,10 +259,21 @@ class WatermarksResource(SyncAPIResource):
 class AsyncWatermarksResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncWatermarksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncWatermarksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncWatermarksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncWatermarksResourceWithStreamingResponse(self)
 
     async def create(
@@ -388,7 +405,7 @@ class AsyncWatermarksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WatermarkDeleteResponse]:
+    ) -> str:
         """
         Deletes a watermark profile.
 
@@ -409,21 +426,16 @@ class AsyncWatermarksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return cast(
-            Optional[WatermarkDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/stream/watermarks/{identifier}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[WatermarkDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WatermarkDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/stream/watermarks/{identifier}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[WatermarkDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     async def get(

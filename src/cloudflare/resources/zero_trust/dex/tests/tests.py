@@ -41,10 +41,21 @@ class TestsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> TestsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TestsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TestsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TestsResourceWithStreamingResponse(self)
 
     def list(
@@ -64,7 +75,7 @@ class TestsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePagination[TestListResponse]:
         """
-        List DEX tests
+        List DEX tests with overview metrics
 
         Args:
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
@@ -90,7 +101,7 @@ class TestsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dex/tests",
+            f"/accounts/{account_id}/dex/tests/overview",
             page=SyncV4PagePagination[TestListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -119,10 +130,21 @@ class AsyncTestsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncTestsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTestsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTestsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTestsResourceWithStreamingResponse(self)
 
     def list(
@@ -142,7 +164,7 @@ class AsyncTestsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[TestListResponse, AsyncV4PagePagination[TestListResponse]]:
         """
-        List DEX tests
+        List DEX tests with overview metrics
 
         Args:
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
@@ -168,7 +190,7 @@ class AsyncTestsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dex/tests",
+            f"/accounts/{account_id}/dex/tests/overview",
             page=AsyncV4PagePagination[TestListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,

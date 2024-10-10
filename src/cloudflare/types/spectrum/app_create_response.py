@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from .dns import DNS
 from .edge_ips import EdgeIPs
@@ -10,12 +10,55 @@ from ..._models import BaseModel
 from .origin_dns import OriginDNS
 from .origin_port import OriginPort
 
-__all__ = ["AppCreateResponse"]
+__all__ = ["AppCreateResponse", "SpectrumConfigAppConfig", "SpectrumConfigPaygoAppConfig"]
 
 
-class AppCreateResponse(BaseModel):
-    id: Optional[str] = None
-    """Application identifier."""
+class SpectrumConfigAppConfig(BaseModel):
+    id: str
+    """App identifier."""
+
+    created_on: datetime
+    """When the Application was created."""
+
+    dns: DNS
+    """The name and type of DNS record for the Spectrum application."""
+
+    ip_firewall: bool
+    """
+    Enables IP Access Rules for this application. Notes: Only available for TCP
+    applications.
+    """
+
+    modified_on: datetime
+    """When the Application was last modified."""
+
+    protocol: str
+    """The port configuration at Cloudflare's edge.
+
+    May specify a single port, for example `"tcp/1000"`, or a range of ports, for
+    example `"tcp/1000-2000"`.
+    """
+
+    proxy_protocol: Literal["off", "v1", "v2", "simple"]
+    """Enables Proxy Protocol to the origin.
+
+    Refer to
+    [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
+    for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
+    Proxy Protocol.
+    """
+
+    tls: Literal["off", "flexible", "full", "strict"]
+    """The type of TLS termination associated with the application."""
+
+    traffic_type: Literal["direct", "http", "https"]
+    """Determines how data travels from the edge to your origin.
+
+    When set to "direct", Spectrum will send traffic directly to your origin, and
+    the application's type is derived from the `protocol`. When set to "http" or
+    "https", Spectrum will apply Cloudflare's HTTP/HTTPS features as it sends
+    traffic to your origin, and the application type matches this property exactly.
+    """
 
     argo_smart_routing: Optional[bool] = None
     """
@@ -23,23 +66,14 @@ class AppCreateResponse(BaseModel):
     applications with traffic_type set to "direct".
     """
 
-    created_on: Optional[datetime] = None
-    """When the Application was created."""
-
-    dns: Optional[DNS] = None
-    """The name and type of DNS record for the Spectrum application."""
-
     edge_ips: Optional[EdgeIPs] = None
     """The anycast edge IP configuration for the hostname of this application."""
 
-    ip_firewall: Optional[bool] = None
-    """
-    Enables IP Access Rules for this application. Notes: Only available for TCP
-    applications.
-    """
+    origin_direct: Optional[List[str]] = None
+    """List of origin IP addresses.
 
-    modified_on: Optional[datetime] = None
-    """When the Application was last modified."""
+    Array may contain multiple IP addresses for load balancing.
+    """
 
     origin_dns: Optional[OriginDNS] = None
     """The name and type of DNS record for the Spectrum application."""
@@ -54,30 +88,32 @@ class AppCreateResponse(BaseModel):
     field.
     """
 
-    protocol: Optional[str] = None
-    """The port configuration at Cloudflare’s edge.
+
+class SpectrumConfigPaygoAppConfig(BaseModel):
+    id: str
+    """App identifier."""
+
+    created_on: datetime
+    """When the Application was created."""
+
+    dns: DNS
+    """The name and type of DNS record for the Spectrum application."""
+
+    modified_on: datetime
+    """When the Application was last modified."""
+
+    protocol: str
+    """The port configuration at Cloudflare's edge.
 
     May specify a single port, for example `"tcp/1000"`, or a range of ports, for
     example `"tcp/1000-2000"`.
     """
 
-    proxy_protocol: Optional[Literal["off", "v1", "v2", "simple"]] = None
-    """Enables Proxy Protocol to the origin.
+    origin_direct: Optional[List[str]] = None
+    """List of origin IP addresses.
 
-    Refer to
-    [Enable Proxy protocol](https://developers.cloudflare.com/spectrum/getting-started/proxy-protocol/)
-    for implementation details on PROXY Protocol V1, PROXY Protocol V2, and Simple
-    Proxy Protocol.
+    Array may contain multiple IP addresses for load balancing.
     """
 
-    tls: Optional[Literal["off", "flexible", "full", "strict"]] = None
-    """The type of TLS termination associated with the application."""
 
-    traffic_type: Optional[Literal["direct", "http", "https"]] = None
-    """Determines how data travels from the edge to your origin.
-
-    When set to "direct", Spectrum will send traffic directly to your origin, and
-    the application's type is derived from the `protocol`. When set to "http" or
-    "https", Spectrum will apply Cloudflare's HTTP/HTTPS features as it sends
-    traffic to your origin, and the application type matches this property exactly.
-    """
+AppCreateResponse: TypeAlias = Union[SpectrumConfigAppConfig, SpectrumConfigPaygoAppConfig]

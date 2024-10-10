@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Optional, cast
+from typing import List, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -28,7 +28,6 @@ from ....types.zero_trust.gateway.gateway_rule import GatewayRule
 from ....types.zero_trust.gateway.gateway_filter import GatewayFilter
 from ....types.zero_trust.gateway.schedule_param import ScheduleParam
 from ....types.zero_trust.gateway.rule_setting_param import RuleSettingParam
-from ....types.zero_trust.gateway.rule_delete_response import RuleDeleteResponse
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 
@@ -36,10 +35,21 @@ __all__ = ["RulesResource", "AsyncRulesResource"]
 class RulesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return RulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> RulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return RulesResourceWithStreamingResponse(self)
 
     def create(
@@ -62,6 +72,7 @@ class RulesResource(SyncAPIResource):
             "egress",
             "audit_ssh",
             "resolve",
+            "quarantine",
         ],
         name: str,
         description: str | NotGiven = NOT_GIVEN,
@@ -170,6 +181,7 @@ class RulesResource(SyncAPIResource):
             "egress",
             "audit_ssh",
             "resolve",
+            "quarantine",
         ],
         name: str,
         description: str | NotGiven = NOT_GIVEN,
@@ -306,7 +318,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleDeleteResponse]:
+    ) -> object:
         """
         Deletes a Zero Trust Gateway rule.
 
@@ -325,21 +337,16 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        return cast(
-            Optional[RuleDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/gateway/rules/{rule_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[RuleDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[RuleDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/gateway/rules/{rule_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -388,10 +395,21 @@ class RulesResource(SyncAPIResource):
 class AsyncRulesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncRulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncRulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncRulesResourceWithStreamingResponse(self)
 
     async def create(
@@ -414,6 +432,7 @@ class AsyncRulesResource(AsyncAPIResource):
             "egress",
             "audit_ssh",
             "resolve",
+            "quarantine",
         ],
         name: str,
         description: str | NotGiven = NOT_GIVEN,
@@ -522,6 +541,7 @@ class AsyncRulesResource(AsyncAPIResource):
             "egress",
             "audit_ssh",
             "resolve",
+            "quarantine",
         ],
         name: str,
         description: str | NotGiven = NOT_GIVEN,
@@ -658,7 +678,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleDeleteResponse]:
+    ) -> object:
         """
         Deletes a Zero Trust Gateway rule.
 
@@ -677,21 +697,16 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        return cast(
-            Optional[RuleDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/gateway/rules/{rule_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[RuleDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[RuleDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/gateway/rules/{rule_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(

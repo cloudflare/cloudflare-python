@@ -38,10 +38,21 @@ __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 class PoliciesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PoliciesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PoliciesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PoliciesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PoliciesResourceWithStreamingResponse(self)
 
     def create(
@@ -53,6 +64,7 @@ class PoliciesResource(SyncAPIResource):
         name: str,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
+        connection_rules: policy_create_params.ConnectionRules | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
@@ -83,6 +95,9 @@ class PoliciesResource(SyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -121,6 +136,7 @@ class PoliciesResource(SyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "purpose_justification_prompt": purpose_justification_prompt,
@@ -150,6 +166,7 @@ class PoliciesResource(SyncAPIResource):
         name: str,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
+        connection_rules: policy_update_params.ConnectionRules | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
@@ -182,6 +199,9 @@ class PoliciesResource(SyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -222,6 +242,7 @@ class PoliciesResource(SyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "purpose_justification_prompt": purpose_justification_prompt,
@@ -369,10 +390,21 @@ class PoliciesResource(SyncAPIResource):
 class AsyncPoliciesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPoliciesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPoliciesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPoliciesResourceWithStreamingResponse(self)
 
     async def create(
@@ -384,6 +416,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         name: str,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
+        connection_rules: policy_create_params.ConnectionRules | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
@@ -414,6 +447,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -452,6 +488,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "purpose_justification_prompt": purpose_justification_prompt,
@@ -481,6 +518,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         name: str,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
+        connection_rules: policy_update_params.ConnectionRules | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
@@ -513,6 +551,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -553,6 +594,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "purpose_justification_prompt": purpose_justification_prompt,

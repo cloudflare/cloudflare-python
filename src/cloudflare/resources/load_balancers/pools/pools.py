@@ -66,10 +66,21 @@ class PoolsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> PoolsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PoolsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PoolsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PoolsResourceWithStreamingResponse(self)
 
     def create(
@@ -84,7 +95,7 @@ class PoolsResource(SyncAPIResource):
         load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
         origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
@@ -193,7 +204,7 @@ class PoolsResource(SyncAPIResource):
         load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
         origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
@@ -298,7 +309,7 @@ class PoolsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -392,7 +403,7 @@ class PoolsResource(SyncAPIResource):
         load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
@@ -549,10 +560,21 @@ class AsyncPoolsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncPoolsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPoolsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPoolsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPoolsResourceWithStreamingResponse(self)
 
     async def create(
@@ -567,7 +589,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
         origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
@@ -676,7 +698,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
         origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
@@ -781,7 +803,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -875,7 +897,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,

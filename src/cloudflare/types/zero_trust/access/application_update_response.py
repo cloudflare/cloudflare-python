@@ -2,255 +2,63 @@
 
 from typing import Dict, List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
-from pydantic import Field as FieldInfo
-
-from .decision import Decision
 from ...._models import BaseModel
-from ..access_rule import AccessRule
 from .allowed_idps import AllowedIdPs
 from .cors_headers import CORSHeaders
+from .oidc_saas_app import OIDCSaaSApp
 from .saml_saas_app import SAMLSaaSApp
 from .application_type import ApplicationType
+from .application_policy import ApplicationPolicy
+from .scim_config_mapping import SCIMConfigMapping
 from .self_hosted_domains import SelfHostedDomains
-from .applications.approval_group import ApprovalGroup
+from .scim_config_authentication_oauth2 import SCIMConfigAuthenticationOauth2
+from .scim_config_authentication_http_basic import SCIMConfigAuthenticationHTTPBasic
+from .scim_config_authentication_oauth_bearer_token import SCIMConfigAuthenticationOAuthBearerToken
 
 __all__ = [
     "ApplicationUpdateResponse",
     "SelfHostedApplication",
-    "SelfHostedApplicationPolicy",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
-    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "SelfHostedApplicationSCIMConfigMapping",
-    "SelfHostedApplicationSCIMConfigMappingOperations",
     "SaaSApplication",
-    "SaaSApplicationPolicy",
     "SaaSApplicationSaaSApp",
-    "SaaSApplicationSaaSAppAccessOIDCSaaSApp",
-    "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims",
-    "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource",
-    "SaaSApplicationSaaSAppAccessOIDCSaaSAppHybridAndImplicitOptions",
-    "SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions",
     "SaaSApplicationSCIMConfig",
     "SaaSApplicationSCIMConfigAuthentication",
-    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "SaaSApplicationSCIMConfigMapping",
-    "SaaSApplicationSCIMConfigMappingOperations",
     "BrowserSSHApplication",
-    "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
-    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "BrowserSSHApplicationSCIMConfigMapping",
-    "BrowserSSHApplicationSCIMConfigMappingOperations",
-    "BrowserVncApplication",
-    "BrowserVncApplicationPolicy",
-    "BrowserVncApplicationSCIMConfig",
-    "BrowserVncApplicationSCIMConfigAuthentication",
-    "BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "BrowserVncApplicationSCIMConfigMapping",
-    "BrowserVncApplicationSCIMConfigMappingOperations",
+    "BrowserVNCApplication",
+    "BrowserVNCApplicationSCIMConfig",
+    "BrowserVNCApplicationSCIMConfigAuthentication",
     "AppLauncherApplication",
-    "AppLauncherApplicationPolicy",
+    "AppLauncherApplicationFooterLink",
+    "AppLauncherApplicationLandingPageDesign",
     "AppLauncherApplicationSCIMConfig",
     "AppLauncherApplicationSCIMConfigAuthentication",
-    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "AppLauncherApplicationSCIMConfigMapping",
-    "AppLauncherApplicationSCIMConfigMappingOperations",
     "DeviceEnrollmentPermissionsApplication",
-    "DeviceEnrollmentPermissionsApplicationPolicy",
+    "DeviceEnrollmentPermissionsApplicationFooterLink",
+    "DeviceEnrollmentPermissionsApplicationLandingPageDesign",
     "DeviceEnrollmentPermissionsApplicationSCIMConfig",
     "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigMapping",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigMappingOperations",
     "BrowserIsolationPermissionsApplication",
-    "BrowserIsolationPermissionsApplicationPolicy",
+    "BrowserIsolationPermissionsApplicationFooterLink",
+    "BrowserIsolationPermissionsApplicationLandingPageDesign",
     "BrowserIsolationPermissionsApplicationSCIMConfig",
     "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "BrowserIsolationPermissionsApplicationSCIMConfigMapping",
-    "BrowserIsolationPermissionsApplicationSCIMConfigMappingOperations",
     "BookmarkApplication",
     "BookmarkApplicationSCIMConfig",
     "BookmarkApplicationSCIMConfigAuthentication",
-    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "BookmarkApplicationSCIMConfigMapping",
-    "BookmarkApplicationSCIMConfigMappingOperations",
+    "InfrastructureApplication",
+    "InfrastructureApplicationTargetCriterion",
+    "InfrastructureApplicationSCIMConfig",
+    "InfrastructureApplicationSCIMConfigAuthentication",
 ]
 
-
-class SelfHostedApplicationPolicy(BaseModel):
-    id: Optional[str] = None
-    """The UUID of the policy"""
-
-    approval_groups: Optional[List[ApprovalGroup]] = None
-    """Administrators who can approve a temporary authentication request."""
-
-    approval_required: Optional[bool] = None
-    """
-    Requires the user to request access from an administrator at the start of each
-    session.
-    """
-
-    created_at: Optional[datetime] = None
-
-    decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
-
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    isolation_required: Optional[bool] = None
-    """
-    Require this application to be served in an isolated browser for users matching
-    this policy. 'Client Web Isolation' must be on for the account in order to use
-    this feature.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access policy."""
-
-    purpose_justification_prompt: Optional[str] = None
-    """A custom message that will appear on the purpose justification screen."""
-
-    purpose_justification_required: Optional[bool] = None
-    """Require users to enter a justification when they log in to the application."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
-    session_duration: Optional[str] = None
-    """The amount of time that tokens issued for the application will be valid.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
-    """
-
-    updated_at: Optional[datetime] = None
-
-
-class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(BaseModel):
-    password: str
-    """Password used to authenticate with the remote SCIM service."""
-
-    scheme: Literal["httpbasic"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: str
-    """User name used to authenticate with the remote SCIM service."""
-
-
-class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(BaseModel):
-    token: str
-    """Token used to authenticate with the remote SCIM service."""
-
-    scheme: Literal["oauthbearertoken"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(BaseModel):
-    authorization_url: str
-    """URL used to generate the auth code used during token generation."""
-
-    client_id: str
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: str
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Literal["oauth2"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: str
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: Optional[List[str]] = None
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
-
-
-SelfHostedApplicationSCIMConfigAuthentication = Union[
-    SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+SelfHostedApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
-
-
-class SelfHostedApplicationSCIMConfigMappingOperations(BaseModel):
-    create: Optional[bool] = None
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: Optional[bool] = None
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: Optional[bool] = None
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class SelfHostedApplicationSCIMConfigMapping(BaseModel):
-    schema_: str = FieldInfo(alias="schema")
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: Optional[bool] = None
-    """Whether or not this mapping is enabled."""
-
-    filter: Optional[str] = None
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: Optional[SelfHostedApplicationSCIMConfigMappingOperations] = None
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: Optional[str] = None
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
 
 
 class SelfHostedApplicationSCIMConfig(BaseModel):
@@ -279,7 +87,7 @@ class SelfHostedApplicationSCIMConfig(BaseModel):
     enabled: Optional[bool] = None
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Optional[List[SelfHostedApplicationSCIMConfigMapping]] = None
+    mappings: Optional[List[SCIMConfigMapping]] = None
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -383,7 +191,7 @@ class SelfHostedApplication(BaseModel):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: Optional[List[SelfHostedApplicationPolicy]] = None
+    policies: Optional[List[ApplicationPolicy]] = None
 
     same_site_cookie_attribute: Optional[str] = None
     """
@@ -422,262 +230,11 @@ class SelfHostedApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class SaaSApplicationPolicy(BaseModel):
-    id: Optional[str] = None
-    """The UUID of the policy"""
+SaaSApplicationSaaSApp: TypeAlias = Union[SAMLSaaSApp, OIDCSaaSApp]
 
-    approval_groups: Optional[List[ApprovalGroup]] = None
-    """Administrators who can approve a temporary authentication request."""
-
-    approval_required: Optional[bool] = None
-    """
-    Requires the user to request access from an administrator at the start of each
-    session.
-    """
-
-    created_at: Optional[datetime] = None
-
-    decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
-
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    isolation_required: Optional[bool] = None
-    """
-    Require this application to be served in an isolated browser for users matching
-    this policy. 'Client Web Isolation' must be on for the account in order to use
-    this feature.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access policy."""
-
-    purpose_justification_prompt: Optional[str] = None
-    """A custom message that will appear on the purpose justification screen."""
-
-    purpose_justification_required: Optional[bool] = None
-    """Require users to enter a justification when they log in to the application."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
-    session_duration: Optional[str] = None
-    """The amount of time that tokens issued for the application will be valid.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
-    """
-
-    updated_at: Optional[datetime] = None
-
-
-class SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource(BaseModel):
-    name: Optional[str] = None
-    """The name of the IdP claim."""
-
-    name_by_idp: Optional[Dict[str, str]] = None
-    """A mapping from IdP ID to claim name."""
-
-
-class SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims(BaseModel):
-    name: Optional[str] = None
-    """The name of the claim."""
-
-    required: Optional[bool] = None
-    """If the claim is required when building an OIDC token."""
-
-    scope: Optional[Literal["groups", "profile", "email", "openid"]] = None
-    """The scope of the claim."""
-
-    source: Optional[SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource] = None
-
-
-class SaaSApplicationSaaSAppAccessOIDCSaaSAppHybridAndImplicitOptions(BaseModel):
-    return_access_token_from_authorization_endpoint: Optional[bool] = None
-    """If an Access Token should be returned from the OIDC Authorization endpoint"""
-
-    return_id_token_from_authorization_endpoint: Optional[bool] = None
-    """If an ID Token should be returned from the OIDC Authorization endpoint"""
-
-
-class SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions(BaseModel):
-    lifetime: Optional[str] = None
-    """How long a refresh token will be valid for after creation.
-
-    Valid units are m,h,d. Must be longer than 1m.
-    """
-
-
-class SaaSApplicationSaaSAppAccessOIDCSaaSApp(BaseModel):
-    access_token_lifetime: Optional[str] = None
-    """The lifetime of the OIDC Access Token after creation.
-
-    Valid units are m,h. Must be greater than or equal to 1m and less than or equal
-    to 24h.
-    """
-
-    allow_pkce_without_client_secret: Optional[bool] = None
-    """
-    If client secret should be required on the token endpoint when
-    authorization_code_with_pkce grant is used.
-    """
-
-    app_launcher_url: Optional[str] = None
-    """The URL where this applications tile redirects users"""
-
-    auth_type: Optional[Literal["saml", "oidc"]] = None
-    """Identifier of the authentication protocol used for the saas app.
-
-    Required for OIDC.
-    """
-
-    client_id: Optional[str] = None
-    """The application client id"""
-
-    client_secret: Optional[str] = None
-    """The application client secret, only returned on POST request."""
-
-    created_at: Optional[datetime] = None
-
-    custom_claims: Optional[SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims] = None
-
-    grant_types: Optional[
-        List[Literal["authorization_code", "authorization_code_with_pkce", "refresh_tokens", "hybrid", "implicit"]]
-    ] = None
-    """The OIDC flows supported by this application"""
-
-    group_filter_regex: Optional[str] = None
-    """A regex to filter Cloudflare groups returned in ID token and userinfo endpoint"""
-
-    hybrid_and_implicit_options: Optional[SaaSApplicationSaaSAppAccessOIDCSaaSAppHybridAndImplicitOptions] = None
-
-    public_key: Optional[str] = None
-    """The Access public certificate that will be used to verify your identity."""
-
-    redirect_uris: Optional[List[str]] = None
-    """
-    The permitted URL's for Cloudflare to return Authorization codes and Access/ID
-    tokens
-    """
-
-    refresh_token_options: Optional[SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions] = None
-
-    scopes: Optional[List[Literal["openid", "groups", "email", "profile"]]] = None
-    """
-    Define the user information shared with access, "offline_access" scope will be
-    automatically enabled if refresh tokens are enabled
-    """
-
-    updated_at: Optional[datetime] = None
-
-
-SaaSApplicationSaaSApp = Union[SAMLSaaSApp, SaaSApplicationSaaSAppAccessOIDCSaaSApp]
-
-
-class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(BaseModel):
-    password: str
-    """Password used to authenticate with the remote SCIM service."""
-
-    scheme: Literal["httpbasic"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: str
-    """User name used to authenticate with the remote SCIM service."""
-
-
-class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(BaseModel):
-    token: str
-    """Token used to authenticate with the remote SCIM service."""
-
-    scheme: Literal["oauthbearertoken"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(BaseModel):
-    authorization_url: str
-    """URL used to generate the auth code used during token generation."""
-
-    client_id: str
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: str
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Literal["oauth2"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: str
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: Optional[List[str]] = None
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
-
-
-SaaSApplicationSCIMConfigAuthentication = Union[
-    SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+SaaSApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
-
-
-class SaaSApplicationSCIMConfigMappingOperations(BaseModel):
-    create: Optional[bool] = None
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: Optional[bool] = None
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: Optional[bool] = None
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class SaaSApplicationSCIMConfigMapping(BaseModel):
-    schema_: str = FieldInfo(alias="schema")
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: Optional[bool] = None
-    """Whether or not this mapping is enabled."""
-
-    filter: Optional[str] = None
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: Optional[SaaSApplicationSCIMConfigMappingOperations] = None
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: Optional[str] = None
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
 
 
 class SaaSApplicationSCIMConfig(BaseModel):
@@ -706,7 +263,7 @@ class SaaSApplicationSCIMConfig(BaseModel):
     enabled: Optional[bool] = None
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Optional[List[SaaSApplicationSCIMConfigMapping]] = None
+    mappings: Optional[List[SCIMConfigMapping]] = None
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -748,7 +305,7 @@ class SaaSApplication(BaseModel):
     name: Optional[str] = None
     """The name of the application."""
 
-    policies: Optional[List[SaaSApplicationPolicy]] = None
+    policies: Optional[List[ApplicationPolicy]] = None
 
     saas_app: Optional[SaaSApplicationSaaSApp] = None
 
@@ -770,159 +327,9 @@ class SaaSApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class BrowserSSHApplicationPolicy(BaseModel):
-    id: Optional[str] = None
-    """The UUID of the policy"""
-
-    approval_groups: Optional[List[ApprovalGroup]] = None
-    """Administrators who can approve a temporary authentication request."""
-
-    approval_required: Optional[bool] = None
-    """
-    Requires the user to request access from an administrator at the start of each
-    session.
-    """
-
-    created_at: Optional[datetime] = None
-
-    decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
-
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    isolation_required: Optional[bool] = None
-    """
-    Require this application to be served in an isolated browser for users matching
-    this policy. 'Client Web Isolation' must be on for the account in order to use
-    this feature.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access policy."""
-
-    purpose_justification_prompt: Optional[str] = None
-    """A custom message that will appear on the purpose justification screen."""
-
-    purpose_justification_required: Optional[bool] = None
-    """Require users to enter a justification when they log in to the application."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
-    session_duration: Optional[str] = None
-    """The amount of time that tokens issued for the application will be valid.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
-    """
-
-    updated_at: Optional[datetime] = None
-
-
-class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(BaseModel):
-    password: str
-    """Password used to authenticate with the remote SCIM service."""
-
-    scheme: Literal["httpbasic"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: str
-    """User name used to authenticate with the remote SCIM service."""
-
-
-class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(BaseModel):
-    token: str
-    """Token used to authenticate with the remote SCIM service."""
-
-    scheme: Literal["oauthbearertoken"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(BaseModel):
-    authorization_url: str
-    """URL used to generate the auth code used during token generation."""
-
-    client_id: str
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: str
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Literal["oauth2"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: str
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: Optional[List[str]] = None
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
-
-
-BrowserSSHApplicationSCIMConfigAuthentication = Union[
-    BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+BrowserSSHApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
-
-
-class BrowserSSHApplicationSCIMConfigMappingOperations(BaseModel):
-    create: Optional[bool] = None
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: Optional[bool] = None
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: Optional[bool] = None
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class BrowserSSHApplicationSCIMConfigMapping(BaseModel):
-    schema_: str = FieldInfo(alias="schema")
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: Optional[bool] = None
-    """Whether or not this mapping is enabled."""
-
-    filter: Optional[str] = None
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: Optional[BrowserSSHApplicationSCIMConfigMappingOperations] = None
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: Optional[str] = None
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
 
 
 class BrowserSSHApplicationSCIMConfig(BaseModel):
@@ -951,7 +358,7 @@ class BrowserSSHApplicationSCIMConfig(BaseModel):
     enabled: Optional[bool] = None
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Optional[List[BrowserSSHApplicationSCIMConfigMapping]] = None
+    mappings: Optional[List[SCIMConfigMapping]] = None
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -1055,7 +462,7 @@ class BrowserSSHApplication(BaseModel):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: Optional[List[BrowserSSHApplicationPolicy]] = None
+    policies: Optional[List[ApplicationPolicy]] = None
 
     same_site_cookie_attribute: Optional[str] = None
     """
@@ -1094,162 +501,12 @@ class BrowserSSHApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class BrowserVncApplicationPolicy(BaseModel):
-    id: Optional[str] = None
-    """The UUID of the policy"""
-
-    approval_groups: Optional[List[ApprovalGroup]] = None
-    """Administrators who can approve a temporary authentication request."""
-
-    approval_required: Optional[bool] = None
-    """
-    Requires the user to request access from an administrator at the start of each
-    session.
-    """
-
-    created_at: Optional[datetime] = None
-
-    decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
-
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    isolation_required: Optional[bool] = None
-    """
-    Require this application to be served in an isolated browser for users matching
-    this policy. 'Client Web Isolation' must be on for the account in order to use
-    this feature.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access policy."""
-
-    purpose_justification_prompt: Optional[str] = None
-    """A custom message that will appear on the purpose justification screen."""
-
-    purpose_justification_required: Optional[bool] = None
-    """Require users to enter a justification when they log in to the application."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
-    session_duration: Optional[str] = None
-    """The amount of time that tokens issued for the application will be valid.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
-    """
-
-    updated_at: Optional[datetime] = None
-
-
-class BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(BaseModel):
-    password: str
-    """Password used to authenticate with the remote SCIM service."""
-
-    scheme: Literal["httpbasic"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: str
-    """User name used to authenticate with the remote SCIM service."""
-
-
-class BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(BaseModel):
-    token: str
-    """Token used to authenticate with the remote SCIM service."""
-
-    scheme: Literal["oauthbearertoken"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(BaseModel):
-    authorization_url: str
-    """URL used to generate the auth code used during token generation."""
-
-    client_id: str
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: str
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Literal["oauth2"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: str
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: Optional[List[str]] = None
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
-
-
-BrowserVncApplicationSCIMConfigAuthentication = Union[
-    BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+BrowserVNCApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
 
 
-class BrowserVncApplicationSCIMConfigMappingOperations(BaseModel):
-    create: Optional[bool] = None
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: Optional[bool] = None
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: Optional[bool] = None
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class BrowserVncApplicationSCIMConfigMapping(BaseModel):
-    schema_: str = FieldInfo(alias="schema")
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: Optional[bool] = None
-    """Whether or not this mapping is enabled."""
-
-    filter: Optional[str] = None
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: Optional[BrowserVncApplicationSCIMConfigMappingOperations] = None
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: Optional[str] = None
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
-
-
-class BrowserVncApplicationSCIMConfig(BaseModel):
+class BrowserVNCApplicationSCIMConfig(BaseModel):
     idp_uid: str
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -1259,7 +516,7 @@ class BrowserVncApplicationSCIMConfig(BaseModel):
     remote_uri: str
     """The base URI for the application's SCIM-compatible API."""
 
-    authentication: Optional[BrowserVncApplicationSCIMConfigAuthentication] = None
+    authentication: Optional[BrowserVNCApplicationSCIMConfigAuthentication] = None
     """
     Attributes for configuring HTTP Basic authentication scheme for SCIM
     provisioning to an application.
@@ -1275,14 +532,14 @@ class BrowserVncApplicationSCIMConfig(BaseModel):
     enabled: Optional[bool] = None
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Optional[List[BrowserVncApplicationSCIMConfigMapping]] = None
+    mappings: Optional[List[SCIMConfigMapping]] = None
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
 
 
-class BrowserVncApplication(BaseModel):
+class BrowserVNCApplication(BaseModel):
     domain: str
     """The primary hostname and path that Access will secure.
 
@@ -1379,7 +636,7 @@ class BrowserVncApplication(BaseModel):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: Optional[List[BrowserVncApplicationPolicy]] = None
+    policies: Optional[List[ApplicationPolicy]] = None
 
     same_site_cookie_attribute: Optional[str] = None
     """
@@ -1387,7 +644,7 @@ class BrowserVncApplication(BaseModel):
     attacks.
     """
 
-    scim_config: Optional[BrowserVncApplicationSCIMConfig] = None
+    scim_config: Optional[BrowserVNCApplicationSCIMConfig] = None
     """Configuration for provisioning to this application via SCIM.
 
     This is currently in closed beta.
@@ -1418,159 +675,34 @@ class BrowserVncApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class AppLauncherApplicationPolicy(BaseModel):
-    id: Optional[str] = None
-    """The UUID of the policy"""
+class AppLauncherApplicationFooterLink(BaseModel):
+    name: str
+    """The hypertext in the footer link."""
 
-    approval_groups: Optional[List[ApprovalGroup]] = None
-    """Administrators who can approve a temporary authentication request."""
-
-    approval_required: Optional[bool] = None
-    """
-    Requires the user to request access from an administrator at the start of each
-    session.
-    """
-
-    created_at: Optional[datetime] = None
-
-    decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
-
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    isolation_required: Optional[bool] = None
-    """
-    Require this application to be served in an isolated browser for users matching
-    this policy. 'Client Web Isolation' must be on for the account in order to use
-    this feature.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access policy."""
-
-    purpose_justification_prompt: Optional[str] = None
-    """A custom message that will appear on the purpose justification screen."""
-
-    purpose_justification_required: Optional[bool] = None
-    """Require users to enter a justification when they log in to the application."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
-    session_duration: Optional[str] = None
-    """The amount of time that tokens issued for the application will be valid.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
-    """
-
-    updated_at: Optional[datetime] = None
+    url: str
+    """the hyperlink in the footer link."""
 
 
-class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(BaseModel):
-    password: str
-    """Password used to authenticate with the remote SCIM service."""
+class AppLauncherApplicationLandingPageDesign(BaseModel):
+    button_color: Optional[str] = None
+    """The background color of the log in button on the landing page."""
 
-    scheme: Literal["httpbasic"]
-    """The authentication scheme to use when making SCIM requests to this application."""
+    button_text_color: Optional[str] = None
+    """The color of the text in the log in button on the landing page."""
 
-    user: str
-    """User name used to authenticate with the remote SCIM service."""
+    image_url: Optional[str] = None
+    """The URL of the image shown on the landing page."""
 
+    message: Optional[str] = None
+    """The message shown on the landing page."""
 
-class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(BaseModel):
-    token: str
-    """Token used to authenticate with the remote SCIM service."""
-
-    scheme: Literal["oauthbearertoken"]
-    """The authentication scheme to use when making SCIM requests to this application."""
+    title: Optional[str] = None
+    """The title shown on the landing page."""
 
 
-class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(BaseModel):
-    authorization_url: str
-    """URL used to generate the auth code used during token generation."""
-
-    client_id: str
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: str
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Literal["oauth2"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: str
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: Optional[List[str]] = None
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
-
-
-AppLauncherApplicationSCIMConfigAuthentication = Union[
-    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+AppLauncherApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
-
-
-class AppLauncherApplicationSCIMConfigMappingOperations(BaseModel):
-    create: Optional[bool] = None
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: Optional[bool] = None
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: Optional[bool] = None
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class AppLauncherApplicationSCIMConfigMapping(BaseModel):
-    schema_: str = FieldInfo(alias="schema")
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: Optional[bool] = None
-    """Whether or not this mapping is enabled."""
-
-    filter: Optional[str] = None
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: Optional[AppLauncherApplicationSCIMConfigMappingOperations] = None
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: Optional[str] = None
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
 
 
 class AppLauncherApplicationSCIMConfig(BaseModel):
@@ -1599,7 +731,7 @@ class AppLauncherApplicationSCIMConfig(BaseModel):
     enabled: Optional[bool] = None
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Optional[List[AppLauncherApplicationSCIMConfigMapping]] = None
+    mappings: Optional[List[SCIMConfigMapping]] = None
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -1620,6 +752,9 @@ class AppLauncherApplication(BaseModel):
     Defaults to all IdPs configured in your account.
     """
 
+    app_launcher_logo_url: Optional[str] = None
+    """The image URL of the logo shown in the App Launcher header."""
+
     aud: Optional[str] = None
     """Audience tag."""
 
@@ -1630,6 +765,9 @@ class AppLauncherApplication(BaseModel):
     You must specify only one identity provider in allowed_idps.
     """
 
+    bg_color: Optional[str] = None
+    """The background color of the App Launcher page."""
+
     created_at: Optional[datetime] = None
 
     domain: Optional[str] = None
@@ -1639,10 +777,19 @@ class AppLauncherApplication(BaseModel):
     will be displayed.
     """
 
+    footer_links: Optional[List[AppLauncherApplicationFooterLink]] = None
+    """The links in the App Launcher footer."""
+
+    header_bg_color: Optional[str] = None
+    """The background color of the App Launcher header."""
+
+    landing_page_design: Optional[AppLauncherApplicationLandingPageDesign] = None
+    """The design of the App Launcher landing page shown to users when they log in."""
+
     name: Optional[str] = None
     """The name of the application."""
 
-    policies: Optional[List[AppLauncherApplicationPolicy]] = None
+    policies: Optional[List[ApplicationPolicy]] = None
 
     scim_config: Optional[AppLauncherApplicationSCIMConfig] = None
     """Configuration for provisioning to this application via SCIM.
@@ -1657,164 +804,40 @@ class AppLauncherApplication(BaseModel):
     ms, s, m, h.
     """
 
-    updated_at: Optional[datetime] = None
-
-
-class DeviceEnrollmentPermissionsApplicationPolicy(BaseModel):
-    id: Optional[str] = None
-    """The UUID of the policy"""
-
-    approval_groups: Optional[List[ApprovalGroup]] = None
-    """Administrators who can approve a temporary authentication request."""
-
-    approval_required: Optional[bool] = None
-    """
-    Requires the user to request access from an administrator at the start of each
-    session.
-    """
-
-    created_at: Optional[datetime] = None
-
-    decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
-
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    isolation_required: Optional[bool] = None
-    """
-    Require this application to be served in an isolated browser for users matching
-    this policy. 'Client Web Isolation' must be on for the account in order to use
-    this feature.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access policy."""
-
-    purpose_justification_prompt: Optional[str] = None
-    """A custom message that will appear on the purpose justification screen."""
-
-    purpose_justification_required: Optional[bool] = None
-    """Require users to enter a justification when they log in to the application."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
-    session_duration: Optional[str] = None
-    """The amount of time that tokens issued for the application will be valid.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
-    """
+    skip_app_launcher_login_page: Optional[bool] = None
+    """Determines when to skip the App Launcher landing page."""
 
     updated_at: Optional[datetime] = None
 
 
-class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(BaseModel):
-    password: str
-    """Password used to authenticate with the remote SCIM service."""
+class DeviceEnrollmentPermissionsApplicationFooterLink(BaseModel):
+    name: str
+    """The hypertext in the footer link."""
 
-    scheme: Literal["httpbasic"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: str
-    """User name used to authenticate with the remote SCIM service."""
+    url: str
+    """the hyperlink in the footer link."""
 
 
-class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(
-    BaseModel
-):
-    token: str
-    """Token used to authenticate with the remote SCIM service."""
+class DeviceEnrollmentPermissionsApplicationLandingPageDesign(BaseModel):
+    button_color: Optional[str] = None
+    """The background color of the log in button on the landing page."""
 
-    scheme: Literal["oauthbearertoken"]
-    """The authentication scheme to use when making SCIM requests to this application."""
+    button_text_color: Optional[str] = None
+    """The color of the text in the log in button on the landing page."""
 
+    image_url: Optional[str] = None
+    """The URL of the image shown on the landing page."""
 
-class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(BaseModel):
-    authorization_url: str
-    """URL used to generate the auth code used during token generation."""
+    message: Optional[str] = None
+    """The message shown on the landing page."""
 
-    client_id: str
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: str
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Literal["oauth2"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: str
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: Optional[List[str]] = None
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
+    title: Optional[str] = None
+    """The title shown on the landing page."""
 
 
-DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication = Union[
-    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
-
-
-class DeviceEnrollmentPermissionsApplicationSCIMConfigMappingOperations(BaseModel):
-    create: Optional[bool] = None
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: Optional[bool] = None
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: Optional[bool] = None
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class DeviceEnrollmentPermissionsApplicationSCIMConfigMapping(BaseModel):
-    schema_: str = FieldInfo(alias="schema")
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: Optional[bool] = None
-    """Whether or not this mapping is enabled."""
-
-    filter: Optional[str] = None
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: Optional[DeviceEnrollmentPermissionsApplicationSCIMConfigMappingOperations] = None
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: Optional[str] = None
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
 
 
 class DeviceEnrollmentPermissionsApplicationSCIMConfig(BaseModel):
@@ -1843,7 +866,7 @@ class DeviceEnrollmentPermissionsApplicationSCIMConfig(BaseModel):
     enabled: Optional[bool] = None
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Optional[List[DeviceEnrollmentPermissionsApplicationSCIMConfigMapping]] = None
+    mappings: Optional[List[SCIMConfigMapping]] = None
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -1864,6 +887,9 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     Defaults to all IdPs configured in your account.
     """
 
+    app_launcher_logo_url: Optional[str] = None
+    """The image URL of the logo shown in the App Launcher header."""
+
     aud: Optional[str] = None
     """Audience tag."""
 
@@ -1874,6 +900,9 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     You must specify only one identity provider in allowed_idps.
     """
 
+    bg_color: Optional[str] = None
+    """The background color of the App Launcher page."""
+
     created_at: Optional[datetime] = None
 
     domain: Optional[str] = None
@@ -1883,10 +912,19 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     will be displayed.
     """
 
+    footer_links: Optional[List[DeviceEnrollmentPermissionsApplicationFooterLink]] = None
+    """The links in the App Launcher footer."""
+
+    header_bg_color: Optional[str] = None
+    """The background color of the App Launcher header."""
+
+    landing_page_design: Optional[DeviceEnrollmentPermissionsApplicationLandingPageDesign] = None
+    """The design of the App Launcher landing page shown to users when they log in."""
+
     name: Optional[str] = None
     """The name of the application."""
 
-    policies: Optional[List[DeviceEnrollmentPermissionsApplicationPolicy]] = None
+    policies: Optional[List[ApplicationPolicy]] = None
 
     scim_config: Optional[DeviceEnrollmentPermissionsApplicationSCIMConfig] = None
     """Configuration for provisioning to this application via SCIM.
@@ -1901,164 +939,40 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     ms, s, m, h.
     """
 
-    updated_at: Optional[datetime] = None
-
-
-class BrowserIsolationPermissionsApplicationPolicy(BaseModel):
-    id: Optional[str] = None
-    """The UUID of the policy"""
-
-    approval_groups: Optional[List[ApprovalGroup]] = None
-    """Administrators who can approve a temporary authentication request."""
-
-    approval_required: Optional[bool] = None
-    """
-    Requires the user to request access from an administrator at the start of each
-    session.
-    """
-
-    created_at: Optional[datetime] = None
-
-    decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
-
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    isolation_required: Optional[bool] = None
-    """
-    Require this application to be served in an isolated browser for users matching
-    this policy. 'Client Web Isolation' must be on for the account in order to use
-    this feature.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access policy."""
-
-    purpose_justification_prompt: Optional[str] = None
-    """A custom message that will appear on the purpose justification screen."""
-
-    purpose_justification_required: Optional[bool] = None
-    """Require users to enter a justification when they log in to the application."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
-    session_duration: Optional[str] = None
-    """The amount of time that tokens issued for the application will be valid.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
-    """
+    skip_app_launcher_login_page: Optional[bool] = None
+    """Determines when to skip the App Launcher landing page."""
 
     updated_at: Optional[datetime] = None
 
 
-class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(BaseModel):
-    password: str
-    """Password used to authenticate with the remote SCIM service."""
+class BrowserIsolationPermissionsApplicationFooterLink(BaseModel):
+    name: str
+    """The hypertext in the footer link."""
 
-    scheme: Literal["httpbasic"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: str
-    """User name used to authenticate with the remote SCIM service."""
+    url: str
+    """the hyperlink in the footer link."""
 
 
-class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(
-    BaseModel
-):
-    token: str
-    """Token used to authenticate with the remote SCIM service."""
+class BrowserIsolationPermissionsApplicationLandingPageDesign(BaseModel):
+    button_color: Optional[str] = None
+    """The background color of the log in button on the landing page."""
 
-    scheme: Literal["oauthbearertoken"]
-    """The authentication scheme to use when making SCIM requests to this application."""
+    button_text_color: Optional[str] = None
+    """The color of the text in the log in button on the landing page."""
 
+    image_url: Optional[str] = None
+    """The URL of the image shown on the landing page."""
 
-class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(BaseModel):
-    authorization_url: str
-    """URL used to generate the auth code used during token generation."""
+    message: Optional[str] = None
+    """The message shown on the landing page."""
 
-    client_id: str
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: str
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Literal["oauth2"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: str
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: Optional[List[str]] = None
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
+    title: Optional[str] = None
+    """The title shown on the landing page."""
 
 
-BrowserIsolationPermissionsApplicationSCIMConfigAuthentication = Union[
-    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+BrowserIsolationPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
-
-
-class BrowserIsolationPermissionsApplicationSCIMConfigMappingOperations(BaseModel):
-    create: Optional[bool] = None
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: Optional[bool] = None
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: Optional[bool] = None
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class BrowserIsolationPermissionsApplicationSCIMConfigMapping(BaseModel):
-    schema_: str = FieldInfo(alias="schema")
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: Optional[bool] = None
-    """Whether or not this mapping is enabled."""
-
-    filter: Optional[str] = None
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: Optional[BrowserIsolationPermissionsApplicationSCIMConfigMappingOperations] = None
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: Optional[str] = None
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
 
 
 class BrowserIsolationPermissionsApplicationSCIMConfig(BaseModel):
@@ -2087,7 +1001,7 @@ class BrowserIsolationPermissionsApplicationSCIMConfig(BaseModel):
     enabled: Optional[bool] = None
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Optional[List[BrowserIsolationPermissionsApplicationSCIMConfigMapping]] = None
+    mappings: Optional[List[SCIMConfigMapping]] = None
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -2108,6 +1022,9 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     Defaults to all IdPs configured in your account.
     """
 
+    app_launcher_logo_url: Optional[str] = None
+    """The image URL of the logo shown in the App Launcher header."""
+
     aud: Optional[str] = None
     """Audience tag."""
 
@@ -2118,6 +1035,9 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     You must specify only one identity provider in allowed_idps.
     """
 
+    bg_color: Optional[str] = None
+    """The background color of the App Launcher page."""
+
     created_at: Optional[datetime] = None
 
     domain: Optional[str] = None
@@ -2127,10 +1047,19 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     will be displayed.
     """
 
+    footer_links: Optional[List[BrowserIsolationPermissionsApplicationFooterLink]] = None
+    """The links in the App Launcher footer."""
+
+    header_bg_color: Optional[str] = None
+    """The background color of the App Launcher header."""
+
+    landing_page_design: Optional[BrowserIsolationPermissionsApplicationLandingPageDesign] = None
+    """The design of the App Launcher landing page shown to users when they log in."""
+
     name: Optional[str] = None
     """The name of the application."""
 
-    policies: Optional[List[BrowserIsolationPermissionsApplicationPolicy]] = None
+    policies: Optional[List[ApplicationPolicy]] = None
 
     scim_config: Optional[BrowserIsolationPermissionsApplicationSCIMConfig] = None
     """Configuration for provisioning to this application via SCIM.
@@ -2145,100 +1074,15 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     ms, s, m, h.
     """
 
+    skip_app_launcher_login_page: Optional[bool] = None
+    """Determines when to skip the App Launcher landing page."""
+
     updated_at: Optional[datetime] = None
 
 
-class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(BaseModel):
-    password: str
-    """Password used to authenticate with the remote SCIM service."""
-
-    scheme: Literal["httpbasic"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: str
-    """User name used to authenticate with the remote SCIM service."""
-
-
-class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(BaseModel):
-    token: str
-    """Token used to authenticate with the remote SCIM service."""
-
-    scheme: Literal["oauthbearertoken"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(BaseModel):
-    authorization_url: str
-    """URL used to generate the auth code used during token generation."""
-
-    client_id: str
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: str
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Literal["oauth2"]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: str
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: Optional[List[str]] = None
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
-
-
-BookmarkApplicationSCIMConfigAuthentication = Union[
-    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+BookmarkApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
-
-
-class BookmarkApplicationSCIMConfigMappingOperations(BaseModel):
-    create: Optional[bool] = None
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: Optional[bool] = None
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: Optional[bool] = None
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class BookmarkApplicationSCIMConfigMapping(BaseModel):
-    schema_: str = FieldInfo(alias="schema")
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: Optional[bool] = None
-    """Whether or not this mapping is enabled."""
-
-    filter: Optional[str] = None
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: Optional[BookmarkApplicationSCIMConfigMappingOperations] = None
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: Optional[str] = None
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
 
 
 class BookmarkApplicationSCIMConfig(BaseModel):
@@ -2267,7 +1111,7 @@ class BookmarkApplicationSCIMConfig(BaseModel):
     enabled: Optional[bool] = None
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Optional[List[BookmarkApplicationSCIMConfigMapping]] = None
+    mappings: Optional[List[SCIMConfigMapping]] = None
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -2313,13 +1157,94 @@ class BookmarkApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-ApplicationUpdateResponse = Union[
+class InfrastructureApplicationTargetCriterion(BaseModel):
+    port: int
+    """The port that the targets use for the chosen communication protocol.
+
+    A port cannot be assigned to multiple protocols.
+    """
+
+    protocol: Literal["ssh"]
+    """The communication protocol your application secures."""
+
+    target_attributes: Dict[str, List[str]]
+    """Contains a map of target attribute keys to target attribute values."""
+
+
+InfrastructureApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
+]
+
+
+class InfrastructureApplicationSCIMConfig(BaseModel):
+    idp_uid: str
+    """
+    The UID of the IdP to use as the source for SCIM resources to provision to this
+    application.
+    """
+
+    remote_uri: str
+    """The base URI for the application's SCIM-compatible API."""
+
+    authentication: Optional[InfrastructureApplicationSCIMConfigAuthentication] = None
+    """
+    Attributes for configuring HTTP Basic authentication scheme for SCIM
+    provisioning to an application.
+    """
+
+    deactivate_on_delete: Optional[bool] = None
+    """
+    If false, propagates DELETE requests to the target application for SCIM
+    resources. If true, sets 'active' to false on the SCIM resource. Note: Some
+    targets do not support DELETE operations.
+    """
+
+    enabled: Optional[bool] = None
+    """Whether SCIM provisioning is turned on for this application."""
+
+    mappings: Optional[List[SCIMConfigMapping]] = None
+    """
+    A list of mappings to apply to SCIM resources before provisioning them in this
+    application. These can transform or filter the resources to be provisioned.
+    """
+
+
+class InfrastructureApplication(BaseModel):
+    target_criteria: List[InfrastructureApplicationTargetCriterion]
+
+    type: ApplicationType
+    """The application type."""
+
+    id: Optional[str] = None
+    """UUID"""
+
+    aud: Optional[str] = None
+    """Audience tag."""
+
+    created_at: Optional[datetime] = None
+
+    name: Optional[str] = None
+    """The name of the application."""
+
+    policies: Optional[List[ApplicationPolicy]] = None
+
+    scim_config: Optional[InfrastructureApplicationSCIMConfig] = None
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
+    updated_at: Optional[datetime] = None
+
+
+ApplicationUpdateResponse: TypeAlias = Union[
     SelfHostedApplication,
     SaaSApplication,
     BrowserSSHApplication,
-    BrowserVncApplication,
+    BrowserVNCApplication,
     AppLauncherApplication,
     DeviceEnrollmentPermissionsApplication,
     BrowserIsolationPermissionsApplication,
     BookmarkApplication,
+    InfrastructureApplication,
 ]

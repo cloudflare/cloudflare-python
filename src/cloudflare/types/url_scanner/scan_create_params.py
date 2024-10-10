@@ -14,12 +14,12 @@ class ScanCreateParams(TypedDict, total=False):
     url: Required[str]
 
     custom_headers: Annotated[Dict[str, str], PropertyInfo(alias="customHeaders")]
-    """Set custom headers"""
+    """Set custom headers."""
 
     screenshots_resolutions: Annotated[
         List[Literal["desktop", "mobile", "tablet"]], PropertyInfo(alias="screenshotsResolutions")
     ]
-    """Take multiple screenshots targeting different device types"""
+    """Take multiple screenshots targeting different device types."""
 
     visibility: Literal["Public", "Unlisted"]
     """

@@ -56,6 +56,14 @@ from .configurations import (
     ConfigurationsResourceWithStreamingResponse,
     AsyncConfigurationsResourceWithStreamingResponse,
 )
+from .expression_template import (
+    ExpressionTemplateResource,
+    AsyncExpressionTemplateResource,
+    ExpressionTemplateResourceWithRawResponse,
+    AsyncExpressionTemplateResourceWithRawResponse,
+    ExpressionTemplateResourceWithStreamingResponse,
+    AsyncExpressionTemplateResourceWithStreamingResponse,
+)
 
 __all__ = [
     "ConfigurationsResource",
@@ -94,6 +102,12 @@ __all__ = [
     "AsyncUserSchemasResourceWithRawResponse",
     "UserSchemasResourceWithStreamingResponse",
     "AsyncUserSchemasResourceWithStreamingResponse",
+    "ExpressionTemplateResource",
+    "AsyncExpressionTemplateResource",
+    "ExpressionTemplateResourceWithRawResponse",
+    "AsyncExpressionTemplateResourceWithRawResponse",
+    "ExpressionTemplateResourceWithStreamingResponse",
+    "AsyncExpressionTemplateResourceWithStreamingResponse",
     "APIGatewayResource",
     "AsyncAPIGatewayResource",
     "APIGatewayResourceWithRawResponse",

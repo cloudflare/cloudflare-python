@@ -26,7 +26,7 @@ class TestAS112:
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         as112 = client.radar.as112.timeseries(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -78,7 +78,7 @@ class TestAsyncAS112:
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         as112 = await async_client.radar.as112.timeseries(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[

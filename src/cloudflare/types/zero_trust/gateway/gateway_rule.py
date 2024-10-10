@@ -33,6 +33,7 @@ class GatewayRule(BaseModel):
             "egress",
             "audit_ssh",
             "resolve",
+            "quarantine",
         ]
     ] = None
     """

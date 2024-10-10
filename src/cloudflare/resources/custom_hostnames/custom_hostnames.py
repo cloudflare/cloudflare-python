@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Dict, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -52,10 +52,21 @@ class CustomHostnamesResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> CustomHostnamesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return CustomHostnamesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> CustomHostnamesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return CustomHostnamesResourceWithStreamingResponse(self)
 
     def create(
@@ -64,7 +75,7 @@ class CustomHostnamesResource(SyncAPIResource):
         zone_id: str,
         hostname: str,
         ssl: custom_hostname_create_params.SSL,
-        custom_metadata: custom_hostname_create_params.CustomMetadata | NotGiven = NOT_GIVEN,
+        custom_metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -88,7 +99,8 @@ class CustomHostnamesResource(SyncAPIResource):
 
           ssl: SSL properties used when creating the custom hostname.
 
-          custom_metadata: These are per-hostname (customer) settings.
+          custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
+              settings.
 
           extra_headers: Send extra headers
 
@@ -240,7 +252,7 @@ class CustomHostnamesResource(SyncAPIResource):
         custom_hostname_id: str,
         *,
         zone_id: str,
-        custom_metadata: custom_hostname_edit_params.CustomMetadata | NotGiven = NOT_GIVEN,
+        custom_metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         custom_origin_server: str | NotGiven = NOT_GIVEN,
         custom_origin_sni: str | NotGiven = NOT_GIVEN,
         ssl: custom_hostname_edit_params.SSL | NotGiven = NOT_GIVEN,
@@ -263,7 +275,8 @@ class CustomHostnamesResource(SyncAPIResource):
 
           custom_hostname_id: Identifier
 
-          custom_metadata: These are per-hostname (customer) settings.
+          custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
+              settings.
 
           custom_origin_server: a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME
               record.
@@ -361,10 +374,21 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncCustomHostnamesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncCustomHostnamesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncCustomHostnamesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncCustomHostnamesResourceWithStreamingResponse(self)
 
     async def create(
@@ -373,7 +397,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         zone_id: str,
         hostname: str,
         ssl: custom_hostname_create_params.SSL,
-        custom_metadata: custom_hostname_create_params.CustomMetadata | NotGiven = NOT_GIVEN,
+        custom_metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -397,7 +421,8 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
 
           ssl: SSL properties used when creating the custom hostname.
 
-          custom_metadata: These are per-hostname (customer) settings.
+          custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
+              settings.
 
           extra_headers: Send extra headers
 
@@ -549,7 +574,7 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         custom_hostname_id: str,
         *,
         zone_id: str,
-        custom_metadata: custom_hostname_edit_params.CustomMetadata | NotGiven = NOT_GIVEN,
+        custom_metadata: Dict[str, str] | NotGiven = NOT_GIVEN,
         custom_origin_server: str | NotGiven = NOT_GIVEN,
         custom_origin_sni: str | NotGiven = NOT_GIVEN,
         ssl: custom_hostname_edit_params.SSL | NotGiven = NOT_GIVEN,
@@ -572,7 +597,8 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
 
           custom_hostname_id: Identifier
 
-          custom_metadata: These are per-hostname (customer) settings.
+          custom_metadata: Unique key/value metadata for this hostname. These are per-hostname (customer)
+              settings.
 
           custom_origin_server: a valid hostname that’s been added to your DNS zone as an A, AAAA, or CNAME
               record.

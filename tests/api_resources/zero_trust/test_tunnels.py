@@ -30,6 +30,15 @@ class TestTunnels:
         tunnel = client.zero_trust.tunnels.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
+        )
+        assert_matches_type(TunnelCreateResponse, tunnel, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        tunnel = client.zero_trust.tunnels.create(
+            account_id="699d98642c564d2e855e9661899b7252",
+            name="blog",
+            config_src="local",
             tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         )
         assert_matches_type(TunnelCreateResponse, tunnel, path=["response"])
@@ -39,7 +48,6 @@ class TestTunnels:
         response = client.zero_trust.tunnels.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
-            tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         )
 
         assert response.is_closed is True
@@ -52,7 +60,6 @@ class TestTunnels:
         with client.zero_trust.tunnels.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
-            tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -68,7 +75,6 @@ class TestTunnels:
             client.zero_trust.tunnels.with_raw_response.create(
                 account_id="",
                 name="blog",
-                tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
             )
 
     @parametrize
@@ -89,8 +95,7 @@ class TestTunnels:
             name="blog",
             page=1,
             per_page=1,
-            status="healthy",
-            tun_types="cfd_tunnel,warp_connector",
+            status="inactive",
             uuid="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             was_active_at=parse_datetime("2009-11-10T23:00:00Z"),
             was_inactive_at=parse_datetime("2009-11-10T23:00:00Z"),
@@ -291,6 +296,15 @@ class TestAsyncTunnels:
         tunnel = await async_client.zero_trust.tunnels.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
+        )
+        assert_matches_type(TunnelCreateResponse, tunnel, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        tunnel = await async_client.zero_trust.tunnels.create(
+            account_id="699d98642c564d2e855e9661899b7252",
+            name="blog",
+            config_src="local",
             tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         )
         assert_matches_type(TunnelCreateResponse, tunnel, path=["response"])
@@ -300,7 +314,6 @@ class TestAsyncTunnels:
         response = await async_client.zero_trust.tunnels.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
-            tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         )
 
         assert response.is_closed is True
@@ -313,7 +326,6 @@ class TestAsyncTunnels:
         async with async_client.zero_trust.tunnels.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
-            tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -329,7 +341,6 @@ class TestAsyncTunnels:
             await async_client.zero_trust.tunnels.with_raw_response.create(
                 account_id="",
                 name="blog",
-                tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
             )
 
     @parametrize
@@ -350,8 +361,7 @@ class TestAsyncTunnels:
             name="blog",
             page=1,
             per_page=1,
-            status="healthy",
-            tun_types="cfd_tunnel,warp_connector",
+            status="inactive",
             uuid="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             was_active_at=parse_datetime("2009-11-10T23:00:00Z"),
             was_inactive_at=parse_datetime("2009-11-10T23:00:00Z"),

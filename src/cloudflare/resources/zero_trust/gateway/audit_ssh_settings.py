@@ -30,10 +30,21 @@ __all__ = ["AuditSSHSettingsResource", "AsyncAuditSSHSettingsResource"]
 class AuditSSHSettingsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AuditSSHSettingsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AuditSSHSettingsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AuditSSHSettingsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AuditSSHSettingsResourceWithStreamingResponse(self)
 
     def update(
@@ -127,10 +138,21 @@ class AuditSSHSettingsResource(SyncAPIResource):
 class AsyncAuditSSHSettingsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAuditSSHSettingsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAuditSSHSettingsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAuditSSHSettingsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAuditSSHSettingsResourceWithStreamingResponse(self)
 
     async def update(

@@ -34,10 +34,21 @@ __all__ = ["ItemsResource", "AsyncItemsResource"]
 class ItemsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ItemsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ItemsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ItemsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ItemsResourceWithStreamingResponse(self)
 
     def create(
@@ -80,7 +91,7 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._post(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            body=maybe_transform(body, item_create_params.ItemCreateParams),
+            body=maybe_transform(body, Iterable[item_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -131,7 +142,7 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._put(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            body=maybe_transform(body, item_update_params.ItemUpdateParams),
+            body=maybe_transform(body, Iterable[item_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -317,10 +328,21 @@ class ItemsResource(SyncAPIResource):
 class AsyncItemsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncItemsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncItemsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncItemsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncItemsResourceWithStreamingResponse(self)
 
     async def create(
@@ -363,7 +385,7 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return await self._post(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            body=await async_maybe_transform(body, item_create_params.ItemCreateParams),
+            body=await async_maybe_transform(body, Iterable[item_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -414,7 +436,7 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return await self._put(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            body=await async_maybe_transform(body, item_update_params.ItemUpdateParams),
+            body=await async_maybe_transform(body, Iterable[item_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

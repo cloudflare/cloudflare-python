@@ -27,10 +27,21 @@ __all__ = ["ActiveSessionsResource", "AsyncActiveSessionsResource"]
 class ActiveSessionsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ActiveSessionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ActiveSessionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ActiveSessionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ActiveSessionsResourceWithStreamingResponse(self)
 
     def list(
@@ -125,10 +136,21 @@ class ActiveSessionsResource(SyncAPIResource):
 class AsyncActiveSessionsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncActiveSessionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncActiveSessionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncActiveSessionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncActiveSessionsResourceWithStreamingResponse(self)
 
     def list(

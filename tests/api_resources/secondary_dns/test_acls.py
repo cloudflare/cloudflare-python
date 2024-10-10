@@ -23,7 +23,8 @@ class TestACLs:
     def test_method_create(self, client: Cloudflare) -> None:
         acl = client.secondary_dns.acls.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
+            ip_range="192.0.2.53/28",
+            name="my-acl-1",
         )
         assert_matches_type(Optional[ACL], acl, path=["response"])
 
@@ -32,7 +33,8 @@ class TestACLs:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.secondary_dns.acls.with_raw_response.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
+            ip_range="192.0.2.53/28",
+            name="my-acl-1",
         )
 
         assert response.is_closed is True
@@ -45,7 +47,8 @@ class TestACLs:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.secondary_dns.acls.with_streaming_response.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
+            ip_range="192.0.2.53/28",
+            name="my-acl-1",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,7 +64,8 @@ class TestACLs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.secondary_dns.acls.with_raw_response.create(
                 account_id="",
-                body={},
+                ip_range="192.0.2.53/28",
+                name="my-acl-1",
             )
 
     @parametrize
@@ -265,7 +269,8 @@ class TestAsyncACLs:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.secondary_dns.acls.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
+            ip_range="192.0.2.53/28",
+            name="my-acl-1",
         )
         assert_matches_type(Optional[ACL], acl, path=["response"])
 
@@ -274,7 +279,8 @@ class TestAsyncACLs:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.acls.with_raw_response.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
+            ip_range="192.0.2.53/28",
+            name="my-acl-1",
         )
 
         assert response.is_closed is True
@@ -287,7 +293,8 @@ class TestAsyncACLs:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.acls.with_streaming_response.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
+            ip_range="192.0.2.53/28",
+            name="my-acl-1",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -303,7 +310,8 @@ class TestAsyncACLs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.secondary_dns.acls.with_raw_response.create(
                 account_id="",
-                body={},
+                ip_range="192.0.2.53/28",
+                name="my-acl-1",
             )
 
     @parametrize

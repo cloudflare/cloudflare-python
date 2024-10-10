@@ -2,12 +2,20 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing import Union
+from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 
+from ..._utils import PropertyInfo
 from .health_check_rate import HealthCheckRate
 from .health_check_type import HealthCheckType
 
-__all__ = ["CfInterconnectUpdateParams", "GRE", "HealthCheck"]
+__all__ = [
+    "CfInterconnectUpdateParams",
+    "GRE",
+    "HealthCheck",
+    "HealthCheckTarget",
+    "HealthCheckTargetMagicHealthCheckTarget",
+]
 
 
 class CfInterconnectUpdateParams(TypedDict, total=False):
@@ -35,6 +43,8 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
     The minimum value is 576.
     """
 
+    x_magic_new_hc_target: Annotated[bool, PropertyInfo(alias="x-magic-new-hc-target")]
+
 
 class GRE(TypedDict, total=False):
     cloudflare_endpoint: str
@@ -44,6 +54,18 @@ class GRE(TypedDict, total=False):
     """
 
 
+class HealthCheckTargetMagicHealthCheckTarget(TypedDict, total=False):
+    saved: str
+    """The saved health check target.
+
+    Setting the value to the empty string indicates that the calculated default
+    value will be used.
+    """
+
+
+HealthCheckTarget: TypeAlias = Union[HealthCheckTargetMagicHealthCheckTarget, str]
+
+
 class HealthCheck(TypedDict, total=False):
     enabled: bool
     """Determines whether to run healthchecks for a tunnel."""
@@ -51,12 +73,16 @@ class HealthCheck(TypedDict, total=False):
     rate: HealthCheckRate
     """How frequent the health check is run. The default value is `mid`."""
 
-    target: str
+    target: HealthCheckTarget
     """The destination address in a request type health check.
 
     After the healthcheck is decapsulated at the customer end of the tunnel, the
     ICMP echo will be forwarded to this address. This field defaults to
-    `customer_gre_endpoint address`.
+    `customer_gre_endpoint address`. This field is ignored for bidirectional
+    healthchecks as the interface_address (not assigned to the Cloudflare side of
+    the tunnel) is used as the target. Must be in object form if the
+    x-magic-new-hc-target header is set to true and string form if
+    x-magic-new-hc-target is absent or set to false.
     """
 
     type: HealthCheckType

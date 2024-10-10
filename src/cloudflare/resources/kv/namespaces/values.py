@@ -30,8 +30,6 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.kv.namespaces import value_update_params
-from ....types.kv.namespaces.value_delete_response import ValueDeleteResponse
-from ....types.kv.namespaces.value_update_response import ValueUpdateResponse
 
 __all__ = ["ValuesResource", "AsyncValuesResource"]
 
@@ -39,10 +37,21 @@ __all__ = ["ValuesResource", "AsyncValuesResource"]
 class ValuesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ValuesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ValuesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ValuesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ValuesResourceWithStreamingResponse(self)
 
     def update(
@@ -59,7 +68,7 @@ class ValuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ValueUpdateResponse]:
+    ) -> object:
         """Write a value identified by a key.
 
         Use URL-encoding to use special characters
@@ -95,10 +104,6 @@ class ValuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
-        # It should be noted that the actual Content-Type header that will be
-        # sent to the server will contain a `boundary` parameter, e.g.
-        # multipart/form-data; boundary=---abc--
-        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
             body=maybe_transform(
@@ -113,9 +118,9 @@ class ValuesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ValueUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ValueUpdateResponse]], ResultWrapper[ValueUpdateResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def delete(
@@ -130,7 +135,7 @@ class ValuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ValueDeleteResponse]:
+    ) -> object:
         """Remove a KV pair from the namespace.
 
         Use URL-encoding to use special characters
@@ -165,9 +170,9 @@ class ValuesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ValueDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ValueDeleteResponse]], ResultWrapper[ValueDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -226,10 +231,21 @@ class ValuesResource(SyncAPIResource):
 class AsyncValuesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncValuesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncValuesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncValuesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncValuesResourceWithStreamingResponse(self)
 
     async def update(
@@ -246,7 +262,7 @@ class AsyncValuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ValueUpdateResponse]:
+    ) -> object:
         """Write a value identified by a key.
 
         Use URL-encoding to use special characters
@@ -282,10 +298,6 @@ class AsyncValuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
-        # It should be noted that the actual Content-Type header that will be
-        # sent to the server will contain a `boundary` parameter, e.g.
-        # multipart/form-data; boundary=---abc--
-        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
             body=await async_maybe_transform(
@@ -300,9 +312,9 @@ class AsyncValuesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ValueUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ValueUpdateResponse]], ResultWrapper[ValueUpdateResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def delete(
@@ -317,7 +329,7 @@ class AsyncValuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ValueDeleteResponse]:
+    ) -> object:
         """Remove a KV pair from the namespace.
 
         Use URL-encoding to use special characters
@@ -352,9 +364,9 @@ class AsyncValuesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ValueDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ValueDeleteResponse]], ResultWrapper[ValueDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(

@@ -37,7 +37,7 @@ class TestBytimes:
             metrics="queryCount,uncachedCount",
             since=parse_datetime("2023-11-11T12:00:00Z"),
             sort="+responseCode,-queryName",
-            time_delta="hour",
+            time_delta="all",
             until=parse_datetime("2023-11-11T13:00:00Z"),
         )
         assert_matches_type(Optional[ByTime], bytime, path=["response"])
@@ -105,7 +105,7 @@ class TestAsyncBytimes:
             metrics="queryCount,uncachedCount",
             since=parse_datetime("2023-11-11T12:00:00Z"),
             sort="+responseCode,-queryName",
-            time_delta="hour",
+            time_delta="all",
             until=parse_datetime("2023-11-11T13:00:00Z"),
         )
         assert_matches_type(Optional[ByTime], bytime, path=["response"])

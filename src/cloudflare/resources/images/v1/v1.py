@@ -81,10 +81,21 @@ class V1Resource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> V1ResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return V1ResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> V1ResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return V1ResourceWithStreamingResponse(self)
 
     def create(
@@ -386,10 +397,21 @@ class AsyncV1Resource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncV1ResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncV1ResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncV1ResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncV1ResourceWithStreamingResponse(self)
 
     async def create(

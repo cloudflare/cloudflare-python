@@ -34,16 +34,27 @@ __all__ = ["CatchAllsResource", "AsyncCatchAllsResource"]
 class CatchAllsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CatchAllsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return CatchAllsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> CatchAllsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return CatchAllsResourceWithStreamingResponse(self)
 
     def update(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         actions: Iterable[CatchAllActionParam],
         matchers: Iterable[CatchAllMatcherParam],
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
@@ -60,7 +71,7 @@ class CatchAllsResource(SyncAPIResource):
         specific destination address.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           actions: List actions for the catch-all routing rule.
 
@@ -78,10 +89,10 @@ class CatchAllsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._put(
-            f"/zones/{zone_identifier}/email/routing/rules/catch_all",
+            f"/zones/{zone_id}/email/routing/rules/catch_all",
             body=maybe_transform(
                 {
                     "actions": actions,
@@ -103,8 +114,8 @@ class CatchAllsResource(SyncAPIResource):
 
     def get(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -116,7 +127,7 @@ class CatchAllsResource(SyncAPIResource):
         Get information on the default catch-all routing rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -126,10 +137,10 @@ class CatchAllsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone_identifier}/email/routing/rules/catch_all",
+            f"/zones/{zone_id}/email/routing/rules/catch_all",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -144,16 +155,27 @@ class CatchAllsResource(SyncAPIResource):
 class AsyncCatchAllsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCatchAllsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncCatchAllsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncCatchAllsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncCatchAllsResourceWithStreamingResponse(self)
 
     async def update(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         actions: Iterable[CatchAllActionParam],
         matchers: Iterable[CatchAllMatcherParam],
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
@@ -170,7 +192,7 @@ class AsyncCatchAllsResource(AsyncAPIResource):
         specific destination address.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           actions: List actions for the catch-all routing rule.
 
@@ -188,10 +210,10 @@ class AsyncCatchAllsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
-            f"/zones/{zone_identifier}/email/routing/rules/catch_all",
+            f"/zones/{zone_id}/email/routing/rules/catch_all",
             body=await async_maybe_transform(
                 {
                     "actions": actions,
@@ -213,8 +235,8 @@ class AsyncCatchAllsResource(AsyncAPIResource):
 
     async def get(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -226,7 +248,7 @@ class AsyncCatchAllsResource(AsyncAPIResource):
         Get information on the default catch-all routing rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -236,10 +258,10 @@ class AsyncCatchAllsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/email/routing/rules/catch_all",
+            f"/zones/{zone_id}/email/routing/rules/catch_all",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

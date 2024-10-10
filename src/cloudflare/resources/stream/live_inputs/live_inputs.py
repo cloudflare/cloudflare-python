@@ -43,10 +43,21 @@ class LiveInputsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> LiveInputsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return LiveInputsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> LiveInputsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return LiveInputsResourceWithStreamingResponse(self)
 
     def create(
@@ -335,10 +346,21 @@ class AsyncLiveInputsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncLiveInputsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLiveInputsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLiveInputsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncLiveInputsResourceWithStreamingResponse(self)
 
     async def create(

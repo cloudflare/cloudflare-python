@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -32,10 +32,21 @@ __all__ = ["AudioTracksResource", "AsyncAudioTracksResource"]
 class AudioTracksResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AudioTracksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AudioTracksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AudioTracksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AudioTracksResourceWithStreamingResponse(self)
 
     def delete(
@@ -50,7 +61,7 @@ class AudioTracksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AudioTrackDeleteResponse]:
+    ) -> str:
         """Deletes additional audio tracks on a video.
 
         Deleting a default audio track is
@@ -77,21 +88,16 @@ class AudioTracksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not audio_identifier:
             raise ValueError(f"Expected a non-empty value for `audio_identifier` but received {audio_identifier!r}")
-        return cast(
-            Optional[AudioTrackDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AudioTrackDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AudioTrackDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AudioTrackDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     def copy(
@@ -270,10 +276,21 @@ class AudioTracksResource(SyncAPIResource):
 class AsyncAudioTracksResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAudioTracksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAudioTracksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAudioTracksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAudioTracksResourceWithStreamingResponse(self)
 
     async def delete(
@@ -288,7 +305,7 @@ class AsyncAudioTracksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AudioTrackDeleteResponse]:
+    ) -> str:
         """Deletes additional audio tracks on a video.
 
         Deleting a default audio track is
@@ -315,21 +332,16 @@ class AsyncAudioTracksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not audio_identifier:
             raise ValueError(f"Expected a non-empty value for `audio_identifier` but received {audio_identifier!r}")
-        return cast(
-            Optional[AudioTrackDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AudioTrackDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AudioTrackDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/stream/{identifier}/audio/{audio_identifier}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AudioTrackDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     async def copy(

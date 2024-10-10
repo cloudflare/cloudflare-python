@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -31,29 +31,40 @@ __all__ = ["RetentionResource", "AsyncRetentionResource"]
 class RetentionResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RetentionResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return RetentionResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> RetentionResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return RetentionResourceWithStreamingResponse(self)
 
     def create(
         self,
-        zone_identifier: str,
         *,
-        flag: bool,
+        zone_id: str,
+        flag: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RetentionCreateResponse:
+    ) -> Optional[RetentionCreateResponse]:
         """
         Updates log retention flag for Logpull API.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           flag: The log retention flag for Logpull API.
 
@@ -65,37 +76,37 @@ class RetentionResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_identifier}/logs/control/retention/flag",
+            f"/zones/{zone_id}/logs/control/retention/flag",
             body=maybe_transform({"flag": flag}, retention_create_params.RetentionCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[RetentionCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[RetentionCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[RetentionCreateResponse], ResultWrapper[RetentionCreateResponse]),
+            cast_to=cast(Type[Optional[RetentionCreateResponse]], ResultWrapper[RetentionCreateResponse]),
         )
 
     def get(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RetentionGetResponse:
+    ) -> Optional[RetentionGetResponse]:
         """
         Gets log retention flag for Logpull API.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -105,47 +116,58 @@ class RetentionResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone_identifier}/logs/control/retention/flag",
+            f"/zones/{zone_id}/logs/control/retention/flag",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[RetentionGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[RetentionGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[RetentionGetResponse], ResultWrapper[RetentionGetResponse]),
+            cast_to=cast(Type[Optional[RetentionGetResponse]], ResultWrapper[RetentionGetResponse]),
         )
 
 
 class AsyncRetentionResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRetentionResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncRetentionResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncRetentionResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncRetentionResourceWithStreamingResponse(self)
 
     async def create(
         self,
-        zone_identifier: str,
         *,
-        flag: bool,
+        zone_id: str,
+        flag: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RetentionCreateResponse:
+    ) -> Optional[RetentionCreateResponse]:
         """
         Updates log retention flag for Logpull API.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           flag: The log retention flag for Logpull API.
 
@@ -157,37 +179,37 @@ class AsyncRetentionResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_identifier}/logs/control/retention/flag",
+            f"/zones/{zone_id}/logs/control/retention/flag",
             body=await async_maybe_transform({"flag": flag}, retention_create_params.RetentionCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[RetentionCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[RetentionCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[RetentionCreateResponse], ResultWrapper[RetentionCreateResponse]),
+            cast_to=cast(Type[Optional[RetentionCreateResponse]], ResultWrapper[RetentionCreateResponse]),
         )
 
     async def get(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RetentionGetResponse:
+    ) -> Optional[RetentionGetResponse]:
         """
         Gets log retention flag for Logpull API.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -197,18 +219,18 @@ class AsyncRetentionResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/logs/control/retention/flag",
+            f"/zones/{zone_id}/logs/control/retention/flag",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[RetentionGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[RetentionGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[RetentionGetResponse], ResultWrapper[RetentionGetResponse]),
+            cast_to=cast(Type[Optional[RetentionGetResponse]], ResultWrapper[RetentionGetResponse]),
         )
 
 

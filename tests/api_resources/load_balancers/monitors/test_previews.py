@@ -49,7 +49,7 @@ class TestPreviews:
             probe_zone="example.com",
             retries=0,
             load_balancer_monitor_timeout=0,
-            type="https",
+            type="http",
         )
         assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
@@ -133,7 +133,7 @@ class TestAsyncPreviews:
             probe_zone="example.com",
             retries=0,
             load_balancer_monitor_timeout=0,
-            type="https",
+            type="http",
         )
         assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 

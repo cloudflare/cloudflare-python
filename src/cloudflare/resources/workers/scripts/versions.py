@@ -35,10 +35,21 @@ __all__ = ["VersionsResource", "AsyncVersionsResource"]
 class VersionsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> VersionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return VersionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> VersionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return VersionsResourceWithStreamingResponse(self)
 
     def create(
@@ -55,8 +66,11 @@ class VersionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[VersionCreateResponse]:
-        """
-        Upload a Worker Version without deploying to Cloudflare's network.
+        """Upload a Worker Version without deploying to Cloudflare's network.
+
+        You can find
+        more about the multipart metadata on our docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -219,10 +233,21 @@ class VersionsResource(SyncAPIResource):
 class AsyncVersionsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncVersionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncVersionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncVersionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncVersionsResourceWithStreamingResponse(self)
 
     async def create(
@@ -239,8 +264,11 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[VersionCreateResponse]:
-        """
-        Upload a Worker Version without deploying to Cloudflare's network.
+        """Upload a Worker Version without deploying to Cloudflare's network.
+
+        You can find
+        more about the multipart metadata on our docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier

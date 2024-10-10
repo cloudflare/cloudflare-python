@@ -47,18 +47,18 @@ class TestDEXTests:
             description="Checks the dash endpoint every 30 minutes",
             target_policies=[
                 {
-                    "default": True,
                     "id": "id",
+                    "default": True,
                     "name": "name",
                 },
                 {
-                    "default": True,
                     "id": "id",
+                    "default": True,
                     "name": "name",
                 },
                 {
-                    "default": True,
                     "id": "id",
+                    "default": True,
                     "name": "name",
                 },
             ],
@@ -137,18 +137,18 @@ class TestDEXTests:
             description="Checks the dash endpoint every 30 minutes",
             target_policies=[
                 {
-                    "default": True,
                     "id": "id",
+                    "default": True,
                     "name": "name",
                 },
                 {
-                    "default": True,
                     "id": "id",
+                    "default": True,
                     "name": "name",
                 },
                 {
-                    "default": True,
                     "id": "id",
+                    "default": True,
                     "name": "name",
                 },
             ],
@@ -376,18 +376,18 @@ class TestAsyncDEXTests:
             description="Checks the dash endpoint every 30 minutes",
             target_policies=[
                 {
-                    "default": True,
                     "id": "id",
+                    "default": True,
                     "name": "name",
                 },
                 {
-                    "default": True,
                     "id": "id",
+                    "default": True,
                     "name": "name",
                 },
                 {
-                    "default": True,
                     "id": "id",
+                    "default": True,
                     "name": "name",
                 },
             ],
@@ -466,18 +466,18 @@ class TestAsyncDEXTests:
             description="Checks the dash endpoint every 30 minutes",
             target_policies=[
                 {
-                    "default": True,
                     "id": "id",
+                    "default": True,
                     "name": "name",
                 },
                 {
-                    "default": True,
                     "id": "id",
+                    "default": True,
                     "name": "name",
                 },
                 {
-                    "default": True,
                     "id": "id",
+                    "default": True,
                     "name": "name",
                 },
             ],

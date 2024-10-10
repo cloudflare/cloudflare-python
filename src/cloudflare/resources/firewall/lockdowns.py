@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, Optional, cast
+from typing import List, Type, Union, Optional, cast
 from datetime import datetime
 
 import httpx
@@ -25,6 +25,8 @@ from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.firewall import lockdown_list_params, lockdown_create_params, lockdown_update_params
 from ...types.firewall.lockdown import Lockdown
+from ...types.firewall.waf.override_url import OverrideURL
+from ...types.firewall.configuration_param import ConfigurationParam
 from ...types.firewall.lockdown_delete_response import LockdownDeleteResponse
 
 __all__ = ["LockdownsResource", "AsyncLockdownsResource"]
@@ -33,17 +35,29 @@ __all__ = ["LockdownsResource", "AsyncLockdownsResource"]
 class LockdownsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LockdownsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return LockdownsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> LockdownsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return LockdownsResourceWithStreamingResponse(self)
 
     def create(
         self,
         zone_identifier: str,
         *,
-        body: object,
+        configurations: ConfigurationParam,
+        urls: List[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -57,6 +71,14 @@ class LockdownsResource(SyncAPIResource):
         Args:
           zone_identifier: Identifier
 
+          configurations: A list of IP addresses or CIDR ranges that will be allowed to access the URLs
+              specified in the Zone Lockdown rule. You can include any number of `ip` or
+              `ip_range` configurations.
+
+          urls: The URLs to include in the current WAF override. You can use wildcards. Each
+              entered URL will be escaped before use, which means you can only use simple
+              wildcard patterns.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -69,7 +91,13 @@ class LockdownsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._post(
             f"/zones/{zone_identifier}/firewall/lockdowns",
-            body=maybe_transform(body, lockdown_create_params.LockdownCreateParams),
+            body=maybe_transform(
+                {
+                    "configurations": configurations,
+                    "urls": urls,
+                },
+                lockdown_create_params.LockdownCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -85,7 +113,8 @@ class LockdownsResource(SyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
-        body: object,
+        configurations: ConfigurationParam,
+        urls: List[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -101,6 +130,14 @@ class LockdownsResource(SyncAPIResource):
 
           id: The unique identifier of the Zone Lockdown rule.
 
+          configurations: A list of IP addresses or CIDR ranges that will be allowed to access the URLs
+              specified in the Zone Lockdown rule. You can include any number of `ip` or
+              `ip_range` configurations.
+
+          urls: The URLs to include in the current WAF override. You can use wildcards. Each
+              entered URL will be escaped before use, which means you can only use simple
+              wildcard patterns.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -115,7 +152,13 @@ class LockdownsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
             f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
-            body=maybe_transform(body, lockdown_update_params.LockdownUpdateParams),
+            body=maybe_transform(
+                {
+                    "configurations": configurations,
+                    "urls": urls,
+                },
+                lockdown_update_params.LockdownUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -311,17 +354,29 @@ class LockdownsResource(SyncAPIResource):
 class AsyncLockdownsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncLockdownsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLockdownsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLockdownsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncLockdownsResourceWithStreamingResponse(self)
 
     async def create(
         self,
         zone_identifier: str,
         *,
-        body: object,
+        configurations: ConfigurationParam,
+        urls: List[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -335,6 +390,14 @@ class AsyncLockdownsResource(AsyncAPIResource):
         Args:
           zone_identifier: Identifier
 
+          configurations: A list of IP addresses or CIDR ranges that will be allowed to access the URLs
+              specified in the Zone Lockdown rule. You can include any number of `ip` or
+              `ip_range` configurations.
+
+          urls: The URLs to include in the current WAF override. You can use wildcards. Each
+              entered URL will be escaped before use, which means you can only use simple
+              wildcard patterns.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -347,7 +410,13 @@ class AsyncLockdownsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._post(
             f"/zones/{zone_identifier}/firewall/lockdowns",
-            body=await async_maybe_transform(body, lockdown_create_params.LockdownCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "configurations": configurations,
+                    "urls": urls,
+                },
+                lockdown_create_params.LockdownCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -363,7 +432,8 @@ class AsyncLockdownsResource(AsyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
-        body: object,
+        configurations: ConfigurationParam,
+        urls: List[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -379,6 +449,14 @@ class AsyncLockdownsResource(AsyncAPIResource):
 
           id: The unique identifier of the Zone Lockdown rule.
 
+          configurations: A list of IP addresses or CIDR ranges that will be allowed to access the URLs
+              specified in the Zone Lockdown rule. You can include any number of `ip` or
+              `ip_range` configurations.
+
+          urls: The URLs to include in the current WAF override. You can use wildcards. Each
+              entered URL will be escaped before use, which means you can only use simple
+              wildcard patterns.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -393,7 +471,13 @@ class AsyncLockdownsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
             f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
-            body=await async_maybe_transform(body, lockdown_update_params.LockdownUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "configurations": configurations,
+                    "urls": urls,
+                },
+                lockdown_update_params.LockdownUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

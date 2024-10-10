@@ -211,20 +211,17 @@ def required_args(*variants: Sequence[str]) -> Callable[[CallableT], CallableT]:
     Example usage:
     ```py
     @overload
-    def foo(*, a: str) -> str:
-        ...
+    def foo(*, a: str) -> str: ...
 
 
     @overload
-    def foo(*, b: bool) -> str:
-        ...
+    def foo(*, b: bool) -> str: ...
 
 
     # This enforces the same constraints that a static type checker would
     # i.e. that either a or b must be passed to the function
     @required_args(["a"], ["b"])
-    def foo(*, a: str | None = None, b: bool | None = None) -> str:
-        ...
+    def foo(*, a: str | None = None, b: bool | None = None) -> str: ...
     ```
     """
 
@@ -286,18 +283,15 @@ _V = TypeVar("_V")
 
 
 @overload
-def strip_not_given(obj: None) -> None:
-    ...
+def strip_not_given(obj: None) -> None: ...
 
 
 @overload
-def strip_not_given(obj: Mapping[_K, _V | NotGiven]) -> dict[_K, _V]:
-    ...
+def strip_not_given(obj: Mapping[_K, _V | NotGiven]) -> dict[_K, _V]: ...
 
 
 @overload
-def strip_not_given(obj: object) -> object:
-    ...
+def strip_not_given(obj: object) -> object: ...
 
 
 def strip_not_given(obj: object | None) -> object:
@@ -369,12 +363,13 @@ def file_from_path(path: str) -> FileTypes:
 
 def get_required_header(headers: HeadersLike, header: str) -> str:
     lower_header = header.lower()
-    if isinstance(headers, Mapping):
-        for k, v in headers.items():
+    if is_mapping_t(headers):
+        # mypy doesn't understand the type narrowing here
+        for k, v in headers.items():  # type: ignore
             if k.lower() == lower_header and isinstance(v, str):
                 return v
 
-    """ to deal with the case where the header looks like Stainless-Event-Id """
+    # to deal with the case where the header looks like Stainless-Event-Id
     intercaps_header = re.sub(r"([^\w])(\w)", lambda pat: pat.group(1) + pat.group(2).upper(), header.capitalize())
 
     for normalized_header in [header, lower_header, header.upper(), intercaps_header]:

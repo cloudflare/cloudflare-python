@@ -12,7 +12,6 @@ from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.gateway import (
     GatewayRule,
-    RuleDeleteResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -25,7 +24,7 @@ class TestRules:
     def test_method_create(self, client: Cloudflare) -> None:
         rule = client.zero_trust.gateway.rules.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
         )
         assert_matches_type(Optional[GatewayRule], rule, path=["response"])
@@ -34,7 +33,7 @@ class TestRules:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         rule = client.zero_trust.gateway.rules.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
             description="Block bad websites based on their host name.",
             device_posture='any(device_posture.checks.passed[*] in {"1308749e-fcfb-4ebc-b051-fe022b632644"})',
@@ -43,10 +42,7 @@ class TestRules:
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
             rule_settings={
-                "add_headers": {
-                    "My-Next-Header": ["foo", "bar"],
-                    "X-Custom-Header-Name": ["somecustomvalue"],
-                },
+                "add_headers": {"foo": "string"},
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
@@ -126,8 +122,9 @@ class TestRules:
                 "override_host": "example.com",
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
+                "quarantine": {"file_types": ["exe", "pdf", "doc"]},
                 "resolve_dns_through_cloudflare": True,
-                "untrusted_cert": {"action": "error"},
+                "untrusted_cert": {"action": "pass_through"},
             },
             schedule={
                 "fri": "08:00-12:30,13:30-17:00",
@@ -147,7 +144,7 @@ class TestRules:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.rules.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
         )
 
@@ -160,7 +157,7 @@ class TestRules:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.rules.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
         ) as response:
             assert not response.is_closed
@@ -176,7 +173,7 @@ class TestRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.gateway.rules.with_raw_response.create(
                 account_id="",
-                action="allow",
+                action="on",
                 name="block bad websites",
             )
 
@@ -185,7 +182,7 @@ class TestRules:
         rule = client.zero_trust.gateway.rules.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
         )
         assert_matches_type(Optional[GatewayRule], rule, path=["response"])
@@ -195,7 +192,7 @@ class TestRules:
         rule = client.zero_trust.gateway.rules.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
             description="Block bad websites based on their host name.",
             device_posture='any(device_posture.checks.passed[*] in {"1308749e-fcfb-4ebc-b051-fe022b632644"})',
@@ -204,10 +201,7 @@ class TestRules:
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
             rule_settings={
-                "add_headers": {
-                    "My-Next-Header": ["foo", "bar"],
-                    "X-Custom-Header-Name": ["somecustomvalue"],
-                },
+                "add_headers": {"foo": "string"},
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
@@ -287,8 +281,9 @@ class TestRules:
                 "override_host": "example.com",
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
+                "quarantine": {"file_types": ["exe", "pdf", "doc"]},
                 "resolve_dns_through_cloudflare": True,
-                "untrusted_cert": {"action": "error"},
+                "untrusted_cert": {"action": "pass_through"},
             },
             schedule={
                 "fri": "08:00-12:30,13:30-17:00",
@@ -309,7 +304,7 @@ class TestRules:
         response = client.zero_trust.gateway.rules.with_raw_response.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
         )
 
@@ -323,7 +318,7 @@ class TestRules:
         with client.zero_trust.gateway.rules.with_streaming_response.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
         ) as response:
             assert not response.is_closed
@@ -340,7 +335,7 @@ class TestRules:
             client.zero_trust.gateway.rules.with_raw_response.update(
                 rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                action="allow",
+                action="on",
                 name="block bad websites",
             )
 
@@ -348,7 +343,7 @@ class TestRules:
             client.zero_trust.gateway.rules.with_raw_response.update(
                 rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
-                action="allow",
+                action="on",
                 name="block bad websites",
             )
 
@@ -396,7 +391,7 @@ class TestRules:
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -408,7 +403,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -420,7 +415,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
+            assert_matches_type(object, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -494,7 +489,7 @@ class TestAsyncRules:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.zero_trust.gateway.rules.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
         )
         assert_matches_type(Optional[GatewayRule], rule, path=["response"])
@@ -503,7 +498,7 @@ class TestAsyncRules:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.zero_trust.gateway.rules.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
             description="Block bad websites based on their host name.",
             device_posture='any(device_posture.checks.passed[*] in {"1308749e-fcfb-4ebc-b051-fe022b632644"})',
@@ -512,10 +507,7 @@ class TestAsyncRules:
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
             rule_settings={
-                "add_headers": {
-                    "My-Next-Header": ["foo", "bar"],
-                    "X-Custom-Header-Name": ["somecustomvalue"],
-                },
+                "add_headers": {"foo": "string"},
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
@@ -595,8 +587,9 @@ class TestAsyncRules:
                 "override_host": "example.com",
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
+                "quarantine": {"file_types": ["exe", "pdf", "doc"]},
                 "resolve_dns_through_cloudflare": True,
-                "untrusted_cert": {"action": "error"},
+                "untrusted_cert": {"action": "pass_through"},
             },
             schedule={
                 "fri": "08:00-12:30,13:30-17:00",
@@ -616,7 +609,7 @@ class TestAsyncRules:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.rules.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
         )
 
@@ -629,7 +622,7 @@ class TestAsyncRules:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.rules.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
         ) as response:
             assert not response.is_closed
@@ -645,7 +638,7 @@ class TestAsyncRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.gateway.rules.with_raw_response.create(
                 account_id="",
-                action="allow",
+                action="on",
                 name="block bad websites",
             )
 
@@ -654,7 +647,7 @@ class TestAsyncRules:
         rule = await async_client.zero_trust.gateway.rules.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
         )
         assert_matches_type(Optional[GatewayRule], rule, path=["response"])
@@ -664,7 +657,7 @@ class TestAsyncRules:
         rule = await async_client.zero_trust.gateway.rules.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
             description="Block bad websites based on their host name.",
             device_posture='any(device_posture.checks.passed[*] in {"1308749e-fcfb-4ebc-b051-fe022b632644"})',
@@ -673,10 +666,7 @@ class TestAsyncRules:
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
             rule_settings={
-                "add_headers": {
-                    "My-Next-Header": ["foo", "bar"],
-                    "X-Custom-Header-Name": ["somecustomvalue"],
-                },
+                "add_headers": {"foo": "string"},
                 "allow_child_bypass": False,
                 "audit_ssh": {"command_logging": False},
                 "biso_admin_controls": {
@@ -756,8 +746,9 @@ class TestAsyncRules:
                 "override_host": "example.com",
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
+                "quarantine": {"file_types": ["exe", "pdf", "doc"]},
                 "resolve_dns_through_cloudflare": True,
-                "untrusted_cert": {"action": "error"},
+                "untrusted_cert": {"action": "pass_through"},
             },
             schedule={
                 "fri": "08:00-12:30,13:30-17:00",
@@ -778,7 +769,7 @@ class TestAsyncRules:
         response = await async_client.zero_trust.gateway.rules.with_raw_response.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
         )
 
@@ -792,7 +783,7 @@ class TestAsyncRules:
         async with async_client.zero_trust.gateway.rules.with_streaming_response.update(
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            action="allow",
+            action="on",
             name="block bad websites",
         ) as response:
             assert not response.is_closed
@@ -809,7 +800,7 @@ class TestAsyncRules:
             await async_client.zero_trust.gateway.rules.with_raw_response.update(
                 rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                action="allow",
+                action="on",
                 name="block bad websites",
             )
 
@@ -817,7 +808,7 @@ class TestAsyncRules:
             await async_client.zero_trust.gateway.rules.with_raw_response.update(
                 rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
-                action="allow",
+                action="on",
                 name="block bad websites",
             )
 
@@ -865,7 +856,7 @@ class TestAsyncRules:
             rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -877,7 +868,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
+        assert_matches_type(object, rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -889,7 +880,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
+            assert_matches_type(object, rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

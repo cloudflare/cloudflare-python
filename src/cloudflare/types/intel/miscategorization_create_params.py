@@ -12,21 +12,21 @@ class MiscategorizationCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    content_adds: Iterable[float]
+    content_adds: Iterable[int]
     """Content category IDs to add."""
 
-    content_removes: Iterable[float]
+    content_removes: Iterable[int]
     """Content category IDs to remove."""
 
     indicator_type: Literal["domain", "ipv4", "ipv6", "url"]
 
-    ip: object
+    ip: str
     """Provide only if indicator_type is `ipv4` or `ipv6`."""
 
-    security_adds: Iterable[float]
+    security_adds: Iterable[int]
     """Security category IDs to add."""
 
-    security_removes: Iterable[float]
+    security_removes: Iterable[int]
     """Security category IDs to remove."""
 
     url: str

@@ -8,6 +8,9 @@ __all__ = ["HostnameCreateParams"]
 
 
 class HostnameCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     target: Required[Literal["ethereum", "ipfs", "ipfs_universal_path"]]
     """Target gateway of the hostname."""
 

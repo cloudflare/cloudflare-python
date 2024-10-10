@@ -57,8 +57,6 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.kv.namespace import Namespace
-from ....types.kv.namespace_delete_response import NamespaceDeleteResponse
-from ....types.kv.namespace_update_response import NamespaceUpdateResponse
 
 __all__ = ["NamespacesResource", "AsyncNamespacesResource"]
 
@@ -82,10 +80,21 @@ class NamespacesResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> NamespacesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return NamespacesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> NamespacesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return NamespacesResourceWithStreamingResponse(self)
 
     def create(
@@ -146,7 +155,7 @@ class NamespacesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NamespaceUpdateResponse]:
+    ) -> object:
         """
         Modifies a namespace's title.
 
@@ -177,9 +186,9 @@ class NamespacesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[NamespaceUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NamespaceUpdateResponse]], ResultWrapper[NamespaceUpdateResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def list(
@@ -253,7 +262,7 @@ class NamespacesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NamespaceDeleteResponse]:
+    ) -> object:
         """
         Deletes the namespace corresponding to the given ID.
 
@@ -281,9 +290,9 @@ class NamespacesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[NamespaceDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NamespaceDeleteResponse]], ResultWrapper[NamespaceDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -350,10 +359,21 @@ class AsyncNamespacesResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncNamespacesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncNamespacesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncNamespacesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncNamespacesResourceWithStreamingResponse(self)
 
     async def create(
@@ -414,7 +434,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NamespaceUpdateResponse]:
+    ) -> object:
         """
         Modifies a namespace's title.
 
@@ -445,9 +465,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[NamespaceUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NamespaceUpdateResponse]], ResultWrapper[NamespaceUpdateResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def list(
@@ -521,7 +541,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NamespaceDeleteResponse]:
+    ) -> object:
         """
         Deletes the namespace corresponding to the given ID.
 
@@ -549,9 +569,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[NamespaceDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NamespaceDeleteResponse]], ResultWrapper[NamespaceDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(

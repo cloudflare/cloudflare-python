@@ -26,10 +26,10 @@ class TestOrganizations:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         organization = client.user.organizations.list(
-            direction="desc",
+            direction="asc",
             match="any",
             name="Cloudflare, Inc.",
-            order="status",
+            order="id",
             page=1,
             per_page=5,
             status="member",
@@ -144,10 +144,10 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         organization = await async_client.user.organizations.list(
-            direction="desc",
+            direction="asc",
             match="any",
             name="Cloudflare, Inc.",
-            order="status",
+            order="id",
             page=1,
             per_page=5,
             status="member",

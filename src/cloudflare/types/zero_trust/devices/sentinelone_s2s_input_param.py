@@ -23,5 +23,16 @@ class SentineloneS2sInputParam(TypedDict, total=False):
     network_status: Literal["connected", "disconnected", "disconnecting", "connecting"]
     """Network status of device."""
 
+    operational_state: Literal[
+        "na",
+        "partially_disabled",
+        "auto_fully_disabled",
+        "fully_disabled",
+        "auto_partially_disabled",
+        "disabled_error",
+        "db_corruption",
+    ]
+    """Agent operational state."""
+
     operator: Literal["<", "<=", ">", ">=", "=="]
     """operator"""

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -22,7 +22,7 @@ class TestVariants:
         variant = client.cache.variants.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CacheVariant, variant, path=["response"])
+        assert_matches_type(Optional[CacheVariant], variant, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -33,7 +33,7 @@ class TestVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = response.parse()
-        assert_matches_type(CacheVariant, variant, path=["response"])
+        assert_matches_type(Optional[CacheVariant], variant, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -44,7 +44,7 @@ class TestVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = response.parse()
-            assert_matches_type(CacheVariant, variant, path=["response"])
+            assert_matches_type(Optional[CacheVariant], variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -61,7 +61,7 @@ class TestVariants:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={},
         )
-        assert_matches_type(VariantEditResponse, variant, path=["response"])
+        assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -81,7 +81,7 @@ class TestVariants:
                 "webp": ["image/jpeg", "image/avif"],
             },
         )
-        assert_matches_type(VariantEditResponse, variant, path=["response"])
+        assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -93,7 +93,7 @@ class TestVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = response.parse()
-        assert_matches_type(VariantEditResponse, variant, path=["response"])
+        assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -105,7 +105,7 @@ class TestVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = response.parse()
-            assert_matches_type(VariantEditResponse, variant, path=["response"])
+            assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -122,7 +122,7 @@ class TestVariants:
         variant = client.cache.variants.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(VariantGetResponse, variant, path=["response"])
+        assert_matches_type(Optional[VariantGetResponse], variant, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -133,7 +133,7 @@ class TestVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = response.parse()
-        assert_matches_type(VariantGetResponse, variant, path=["response"])
+        assert_matches_type(Optional[VariantGetResponse], variant, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -144,7 +144,7 @@ class TestVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = response.parse()
-            assert_matches_type(VariantGetResponse, variant, path=["response"])
+            assert_matches_type(Optional[VariantGetResponse], variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -164,7 +164,7 @@ class TestAsyncVariants:
         variant = await async_client.cache.variants.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CacheVariant, variant, path=["response"])
+        assert_matches_type(Optional[CacheVariant], variant, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -175,7 +175,7 @@ class TestAsyncVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = await response.parse()
-        assert_matches_type(CacheVariant, variant, path=["response"])
+        assert_matches_type(Optional[CacheVariant], variant, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -186,7 +186,7 @@ class TestAsyncVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = await response.parse()
-            assert_matches_type(CacheVariant, variant, path=["response"])
+            assert_matches_type(Optional[CacheVariant], variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -203,7 +203,7 @@ class TestAsyncVariants:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={},
         )
-        assert_matches_type(VariantEditResponse, variant, path=["response"])
+        assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -223,7 +223,7 @@ class TestAsyncVariants:
                 "webp": ["image/jpeg", "image/avif"],
             },
         )
-        assert_matches_type(VariantEditResponse, variant, path=["response"])
+        assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -235,7 +235,7 @@ class TestAsyncVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = await response.parse()
-        assert_matches_type(VariantEditResponse, variant, path=["response"])
+        assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -247,7 +247,7 @@ class TestAsyncVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = await response.parse()
-            assert_matches_type(VariantEditResponse, variant, path=["response"])
+            assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -264,7 +264,7 @@ class TestAsyncVariants:
         variant = await async_client.cache.variants.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(VariantGetResponse, variant, path=["response"])
+        assert_matches_type(Optional[VariantGetResponse], variant, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -275,7 +275,7 @@ class TestAsyncVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = await response.parse()
-        assert_matches_type(VariantGetResponse, variant, path=["response"])
+        assert_matches_type(Optional[VariantGetResponse], variant, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -286,7 +286,7 @@ class TestAsyncVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = await response.parse()
-            assert_matches_type(VariantGetResponse, variant, path=["response"])
+            assert_matches_type(Optional[VariantGetResponse], variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

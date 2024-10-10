@@ -43,19 +43,19 @@ class TestLANs:
             nat={"static_prefix": "192.0.2.0/24"},
             routed_subnets=[
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
             ],
             static_addressing={
@@ -144,19 +144,19 @@ class TestLANs:
             physport=1,
             routed_subnets=[
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
             ],
             static_addressing={
@@ -357,19 +357,19 @@ class TestLANs:
             physport=1,
             routed_subnets=[
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
             ],
             static_addressing={
@@ -528,19 +528,19 @@ class TestAsyncLANs:
             nat={"static_prefix": "192.0.2.0/24"},
             routed_subnets=[
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
             ],
             static_addressing={
@@ -629,19 +629,19 @@ class TestAsyncLANs:
             physport=1,
             routed_subnets=[
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
             ],
             static_addressing={
@@ -842,19 +842,19 @@ class TestAsyncLANs:
             physport=1,
             routed_subnets=[
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
                 {
-                    "nat": {"static_prefix": "192.0.2.0/24"},
                     "next_hop": "192.0.2.1",
                     "prefix": "192.0.2.0/24",
+                    "nat": {"static_prefix": "192.0.2.0/24"},
                 },
             ],
             static_addressing={

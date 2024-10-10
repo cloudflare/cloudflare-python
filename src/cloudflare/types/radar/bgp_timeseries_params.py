@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import List, Union
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["BGPTimeseriesParams", "Prefix"]
+__all__ = ["BGPTimeseriesParams"]
 
 
 class BGPTimeseriesParams(TypedDict, total=False):
@@ -45,26 +45,8 @@ class BGPTimeseriesParams(TypedDict, total=False):
     name: List[str]
     """Array of names that will be used to name the series in responses."""
 
-    prefix: Iterable[Prefix]
+    prefix: List[str]
     """Array of BGP network prefixes."""
 
     update_type: Annotated[List[Literal["ANNOUNCEMENT", "WITHDRAWAL"]], PropertyInfo(alias="updateType")]
     """Array of BGP update types."""
-
-
-_PrefixReservedKeywords = TypedDict(
-    "_PrefixReservedKeywords",
-    {
-        "in": str,
-    },
-    total=False,
-)
-
-
-class Prefix(_PrefixReservedKeywords, total=False):
-    name: Required[str]
-
-    test: Required[float]
-
-    type: str
-    """Network prefix, IPv4 or IPv6."""

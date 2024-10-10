@@ -30,10 +30,21 @@ __all__ = ["CookiesResource", "AsyncCookiesResource"]
 class CookiesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CookiesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return CookiesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> CookiesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return CookiesResourceWithStreamingResponse(self)
 
     def list(
@@ -71,8 +82,7 @@ class CookiesResource(SyncAPIResource):
 
           domain: Filters the returned cookies that match the specified domain attribute
 
-          export: Export the list of cookies as a file. Cannot be used with per_page or page
-              options.
+          export: Export the list of cookies as a file.
 
           hosts: Includes cookies that match one or more URL-encoded hostnames separated by
               commas.
@@ -90,6 +100,10 @@ class CookiesResource(SyncAPIResource):
           order_by: The field used to sort returned cookies.
 
           page: The current page number of the paginated results.
+
+              We additionally support a special value "all". When "all" is used, the API will
+              return all the cookies with the applied filters in a single page. This feature
+              is best-effort and it may only work for zones with a low number of cookies
 
           page_url: Includes connections that match one or more page URLs (separated by commas)
               where they were last seen
@@ -197,10 +211,21 @@ class CookiesResource(SyncAPIResource):
 class AsyncCookiesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCookiesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncCookiesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncCookiesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncCookiesResourceWithStreamingResponse(self)
 
     def list(
@@ -238,8 +263,7 @@ class AsyncCookiesResource(AsyncAPIResource):
 
           domain: Filters the returned cookies that match the specified domain attribute
 
-          export: Export the list of cookies as a file. Cannot be used with per_page or page
-              options.
+          export: Export the list of cookies as a file.
 
           hosts: Includes cookies that match one or more URL-encoded hostnames separated by
               commas.
@@ -257,6 +281,10 @@ class AsyncCookiesResource(AsyncAPIResource):
           order_by: The field used to sort returned cookies.
 
           page: The current page number of the paginated results.
+
+              We additionally support a special value "all". When "all" is used, the API will
+              return all the cookies with the applied filters in a single page. This feature
+              is best-effort and it may only work for zones with a low number of cookies
 
           page_url: Includes connections that match one or more page URLs (separated by commas)
               where they were last seen

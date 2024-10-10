@@ -31,21 +31,25 @@ class TestSettings:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             logpush=False,
+            observability={
+                "enabled": True,
+                "head_sampling_rate": 0.1,
+            },
             tail_consumers=[
                 {
+                    "service": "my-log-consumer",
                     "environment": "production",
                     "namespace": "my-namespace",
-                    "service": "my-log-consumer",
                 },
                 {
+                    "service": "my-log-consumer",
                     "environment": "production",
                     "namespace": "my-namespace",
-                    "service": "my-log-consumer",
                 },
                 {
+                    "service": "my-log-consumer",
                     "environment": "production",
                     "namespace": "my-namespace",
-                    "service": "my-log-consumer",
                 },
             ],
         )
@@ -157,21 +161,25 @@ class TestAsyncSettings:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             logpush=False,
+            observability={
+                "enabled": True,
+                "head_sampling_rate": 0.1,
+            },
             tail_consumers=[
                 {
+                    "service": "my-log-consumer",
                     "environment": "production",
                     "namespace": "my-namespace",
-                    "service": "my-log-consumer",
                 },
                 {
+                    "service": "my-log-consumer",
                     "environment": "production",
                     "namespace": "my-namespace",
-                    "service": "my-log-consumer",
                 },
                 {
+                    "service": "my-log-consumer",
                     "environment": "production",
                     "namespace": "my-namespace",
-                    "service": "my-log-consumer",
                 },
             ],
         )
