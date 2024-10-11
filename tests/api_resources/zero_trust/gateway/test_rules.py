@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.gateway import (
     GatewayRule,
@@ -38,6 +39,10 @@ class TestRules:
             description="Block bad websites based on their host name.",
             device_posture='any(device_posture.checks.passed[*] in {"1308749e-fcfb-4ebc-b051-fe022b632644"})',
             enabled=True,
+            expiration={
+                "expires_at": parse_datetime("2014-01-01T05:20:20Z"),
+                "duration": 10,
+            },
             filters=["http"],
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
@@ -197,6 +202,10 @@ class TestRules:
             description="Block bad websites based on their host name.",
             device_posture='any(device_posture.checks.passed[*] in {"1308749e-fcfb-4ebc-b051-fe022b632644"})',
             enabled=True,
+            expiration={
+                "expires_at": parse_datetime("2014-01-01T05:20:20Z"),
+                "duration": 10,
+            },
             filters=["http"],
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
@@ -503,6 +512,10 @@ class TestAsyncRules:
             description="Block bad websites based on their host name.",
             device_posture='any(device_posture.checks.passed[*] in {"1308749e-fcfb-4ebc-b051-fe022b632644"})',
             enabled=True,
+            expiration={
+                "expires_at": parse_datetime("2014-01-01T05:20:20Z"),
+                "duration": 10,
+            },
             filters=["http"],
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
@@ -662,6 +675,10 @@ class TestAsyncRules:
             description="Block bad websites based on their host name.",
             device_posture='any(device_posture.checks.passed[*] in {"1308749e-fcfb-4ebc-b051-fe022b632644"})',
             enabled=True,
+            expiration={
+                "expires_at": parse_datetime("2014-01-01T05:20:20Z"),
+                "duration": 10,
+            },
             filters=["http"],
             identity='any(identity.groups.name[*] in {"finance"})',
             precedence=0,
