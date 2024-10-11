@@ -78,6 +78,7 @@ class RulesResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        expiration: rule_create_params.Expiration | NotGiven = NOT_GIVEN,
         filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
@@ -105,6 +106,11 @@ class RulesResource(SyncAPIResource):
           device_posture: The wirefilter expression used for device posture check matching.
 
           enabled: True if the rule is enabled.
+
+          expiration: The expiration time stamp and default duration of a DNS policy. Takes precedence
+              over the policy's `schedule` configuration, if any.
+
+              This does not apply to HTTP or network policies.
 
           filters: The protocol or layer to evaluate the traffic, identity, and device posture
               expressions.
@@ -141,6 +147,7 @@ class RulesResource(SyncAPIResource):
                     "description": description,
                     "device_posture": device_posture,
                     "enabled": enabled,
+                    "expiration": expiration,
                     "filters": filters,
                     "identity": identity,
                     "precedence": precedence,
@@ -187,6 +194,7 @@ class RulesResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        expiration: rule_update_params.Expiration | NotGiven = NOT_GIVEN,
         filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
@@ -216,6 +224,11 @@ class RulesResource(SyncAPIResource):
           device_posture: The wirefilter expression used for device posture check matching.
 
           enabled: True if the rule is enabled.
+
+          expiration: The expiration time stamp and default duration of a DNS policy. Takes precedence
+              over the policy's `schedule` configuration, if any.
+
+              This does not apply to HTTP or network policies.
 
           filters: The protocol or layer to evaluate the traffic, identity, and device posture
               expressions.
@@ -254,6 +267,7 @@ class RulesResource(SyncAPIResource):
                     "description": description,
                     "device_posture": device_posture,
                     "enabled": enabled,
+                    "expiration": expiration,
                     "filters": filters,
                     "identity": identity,
                     "precedence": precedence,
@@ -438,6 +452,7 @@ class AsyncRulesResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        expiration: rule_create_params.Expiration | NotGiven = NOT_GIVEN,
         filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
@@ -465,6 +480,11 @@ class AsyncRulesResource(AsyncAPIResource):
           device_posture: The wirefilter expression used for device posture check matching.
 
           enabled: True if the rule is enabled.
+
+          expiration: The expiration time stamp and default duration of a DNS policy. Takes precedence
+              over the policy's `schedule` configuration, if any.
+
+              This does not apply to HTTP or network policies.
 
           filters: The protocol or layer to evaluate the traffic, identity, and device posture
               expressions.
@@ -501,6 +521,7 @@ class AsyncRulesResource(AsyncAPIResource):
                     "description": description,
                     "device_posture": device_posture,
                     "enabled": enabled,
+                    "expiration": expiration,
                     "filters": filters,
                     "identity": identity,
                     "precedence": precedence,
@@ -547,6 +568,7 @@ class AsyncRulesResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        expiration: rule_update_params.Expiration | NotGiven = NOT_GIVEN,
         filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
@@ -576,6 +598,11 @@ class AsyncRulesResource(AsyncAPIResource):
           device_posture: The wirefilter expression used for device posture check matching.
 
           enabled: True if the rule is enabled.
+
+          expiration: The expiration time stamp and default duration of a DNS policy. Takes precedence
+              over the policy's `schedule` configuration, if any.
+
+              This does not apply to HTTP or network policies.
 
           filters: The protocol or layer to evaluate the traffic, identity, and device posture
               expressions.
@@ -614,6 +641,7 @@ class AsyncRulesResource(AsyncAPIResource):
                     "description": description,
                     "device_posture": device_posture,
                     "enabled": enabled,
+                    "expiration": expiration,
                     "filters": filters,
                     "identity": identity,
                     "precedence": precedence,
