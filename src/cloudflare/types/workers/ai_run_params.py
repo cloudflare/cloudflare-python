@@ -145,12 +145,6 @@ class Prompt(TypedDict, total=False):
     frequency_penalty: float
     """Decreases the likelihood of the model repeating the same lines verbatim."""
 
-    image: Iterable[float]
-    """
-    An array of integers that represent the image data constrained to 8-bit unsigned
-    integer values
-    """
-
     lora: str
     """Name of the LoRA (Low-Rank Adaptation) model to fine-tune the base model."""
 
@@ -209,12 +203,6 @@ class Messages(TypedDict, total=False):
     """Decreases the likelihood of the model repeating the same lines verbatim."""
 
     functions: Iterable[MessagesFunction]
-
-    image: Iterable[float]
-    """
-    An array of integers that represent the image data constrained to 8-bit unsigned
-    integer values
-    """
 
     max_tokens: int
     """The maximum number of tokens to generate in the response."""

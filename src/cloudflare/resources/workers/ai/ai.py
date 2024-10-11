@@ -342,7 +342,6 @@ class AIResource(SyncAPIResource):
         account_id: str,
         prompt: str,
         frequency_penalty: float | NotGiven = NOT_GIVEN,
-        image: Iterable[float] | NotGiven = NOT_GIVEN,
         lora: str | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         presence_penalty: float | NotGiven = NOT_GIVEN,
@@ -375,9 +374,6 @@ class AIResource(SyncAPIResource):
           prompt: The input text prompt for the model to generate a response.
 
           frequency_penalty: Decreases the likelihood of the model repeating the same lines verbatim.
-
-          image: An array of integers that represent the image data constrained to 8-bit unsigned
-              integer values
 
           lora: Name of the LoRA (Low-Rank Adaptation) model to fine-tune the base model.
 
@@ -425,7 +421,6 @@ class AIResource(SyncAPIResource):
         messages: Iterable[ai_run_params.MessagesMessage],
         frequency_penalty: float | NotGiven = NOT_GIVEN,
         functions: Iterable[ai_run_params.MessagesFunction] | NotGiven = NOT_GIVEN,
-        image: Iterable[float] | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         presence_penalty: float | NotGiven = NOT_GIVEN,
         repetition_penalty: float | NotGiven = NOT_GIVEN,
@@ -457,9 +452,6 @@ class AIResource(SyncAPIResource):
           messages: An array of message objects representing the conversation history.
 
           frequency_penalty: Decreases the likelihood of the model repeating the same lines verbatim.
-
-          image: An array of integers that represent the image data constrained to 8-bit unsigned
-              integer values
 
           max_tokens: The maximum number of tokens to generate in the response.
 
@@ -1046,7 +1038,6 @@ class AsyncAIResource(AsyncAPIResource):
         account_id: str,
         prompt: str,
         frequency_penalty: float | NotGiven = NOT_GIVEN,
-        image: Iterable[float] | NotGiven = NOT_GIVEN,
         lora: str | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         presence_penalty: float | NotGiven = NOT_GIVEN,
@@ -1079,9 +1070,6 @@ class AsyncAIResource(AsyncAPIResource):
           prompt: The input text prompt for the model to generate a response.
 
           frequency_penalty: Decreases the likelihood of the model repeating the same lines verbatim.
-
-          image: An array of integers that represent the image data constrained to 8-bit unsigned
-              integer values
 
           lora: Name of the LoRA (Low-Rank Adaptation) model to fine-tune the base model.
 
@@ -1129,7 +1117,6 @@ class AsyncAIResource(AsyncAPIResource):
         messages: Iterable[ai_run_params.MessagesMessage],
         frequency_penalty: float | NotGiven = NOT_GIVEN,
         functions: Iterable[ai_run_params.MessagesFunction] | NotGiven = NOT_GIVEN,
-        image: Iterable[float] | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
         presence_penalty: float | NotGiven = NOT_GIVEN,
         repetition_penalty: float | NotGiven = NOT_GIVEN,
@@ -1161,9 +1148,6 @@ class AsyncAIResource(AsyncAPIResource):
           messages: An array of message objects representing the conversation history.
 
           frequency_penalty: Decreases the likelihood of the model repeating the same lines verbatim.
-
-          image: An array of integers that represent the image data constrained to 8-bit unsigned
-              integer values
 
           max_tokens: The maximum number of tokens to generate in the response.
 
