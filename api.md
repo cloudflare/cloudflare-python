@@ -4100,6 +4100,7 @@ Methods:
 - <code title="post /accounts/{account_id}/stream">client.stream.<a href="./src/cloudflare/resources/stream/stream.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/stream/stream_create_params.py">params</a>) -> None</code>
 - <code title="get /accounts/{account_id}/stream">client.stream.<a href="./src/cloudflare/resources/stream/stream.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/stream/stream_list_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/video.py">SyncSinglePage[Video]</a></code>
 - <code title="delete /accounts/{account_id}/stream/{identifier}">client.stream.<a href="./src/cloudflare/resources/stream/stream.py">delete</a>(identifier, \*, account_id) -> None</code>
+- <code title="post /accounts/{account_id}/stream/{identifier}">client.stream.<a href="./src/cloudflare/resources/stream/stream.py">edit</a>(identifier, \*, account_id, \*\*<a href="src/cloudflare/types/stream/stream_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/stream/video.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/stream/{identifier}">client.stream.<a href="./src/cloudflare/resources/stream/stream.py">get</a>(identifier, \*, account_id) -> <a href="./src/cloudflare/types/stream/video.py">Optional</a></code>
 
 ## AudioTracks

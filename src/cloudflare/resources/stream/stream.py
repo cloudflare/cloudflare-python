@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, Optional, cast
+from typing import List, Type, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -129,10 +129,11 @@ from .direct_upload import (
     AsyncDirectUploadResourceWithStreamingResponse,
 )
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.stream import stream_list_params, stream_create_params
+from ...types.stream import stream_edit_params, stream_list_params, stream_create_params
 from .captions.captions import CaptionsResource, AsyncCaptionsResource
 from ...types.stream.video import Video
 from .live_inputs.live_inputs import LiveInputsResource, AsyncLiveInputsResource
+from ...types.stream.allowed_origins import AllowedOrigins
 
 __all__ = ["StreamResource", "AsyncStreamResource"]
 
@@ -398,6 +399,100 @@ class StreamResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    def edit(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
+        creator: str | NotGiven = NOT_GIVEN,
+        max_duration_seconds: int | NotGiven = NOT_GIVEN,
+        meta: object | NotGiven = NOT_GIVEN,
+        require_signed_urls: bool | NotGiven = NOT_GIVEN,
+        scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
+        upload_expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Video]:
+        """
+        Edit details for a single video.
+
+        Args:
+          account_id: The account identifier tag.
+
+          identifier: A Cloudflare-generated unique identifier for a media item.
+
+          allowed_origins: Lists the origins allowed to display the video. Enter allowed origin domains in
+              an array and use `*` for wildcard subdomains. Empty arrays allow the video to be
+              viewed on any origin.
+
+          creator: A user-defined identifier for the media creator.
+
+          max_duration_seconds: The maximum duration in seconds for a video upload. Can be set for a video that
+              is not yet uploaded to limit its duration. Uploads that exceed the specified
+              duration will fail during processing. A value of `-1` means the value is
+              unknown.
+
+          meta: A user modifiable key-value store used to reference other systems of record for
+              managing videos.
+
+          require_signed_urls: Indicates whether the video can be a accessed using the UID. When set to `true`,
+              a signed token must be generated with a signing key to view the video.
+
+          scheduled_deletion: Indicates the date and time at which the video will be deleted. Omit the field
+              to indicate no change, or include with a `null` value to remove an existing
+              scheduled deletion. If specified, must be at least 30 days from upload time.
+
+          thumbnail_timestamp_pct: The timestamp for a thumbnail image calculated as a percentage value of the
+              video's duration. To convert from a second-wise timestamp to a percentage,
+              divide the desired timestamp by the total duration of the video. If this value
+              is not set, the default thumbnail image is taken from 0s of the video.
+
+          upload_expiry: The date and time when the video upload URL is no longer valid for direct user
+              uploads.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        return self._post(
+            f"/accounts/{account_id}/stream/{identifier}",
+            body=maybe_transform(
+                {
+                    "allowed_origins": allowed_origins,
+                    "creator": creator,
+                    "max_duration_seconds": max_duration_seconds,
+                    "meta": meta,
+                    "require_signed_urls": require_signed_urls,
+                    "scheduled_deletion": scheduled_deletion,
+                    "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
+                    "upload_expiry": upload_expiry,
+                },
+                stream_edit_params.StreamEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Video]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Video]], ResultWrapper[Video]),
         )
 
     def get(
@@ -708,6 +803,100 @@ class AsyncStreamResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
+    async def edit(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
+        creator: str | NotGiven = NOT_GIVEN,
+        max_duration_seconds: int | NotGiven = NOT_GIVEN,
+        meta: object | NotGiven = NOT_GIVEN,
+        require_signed_urls: bool | NotGiven = NOT_GIVEN,
+        scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
+        upload_expiry: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Video]:
+        """
+        Edit details for a single video.
+
+        Args:
+          account_id: The account identifier tag.
+
+          identifier: A Cloudflare-generated unique identifier for a media item.
+
+          allowed_origins: Lists the origins allowed to display the video. Enter allowed origin domains in
+              an array and use `*` for wildcard subdomains. Empty arrays allow the video to be
+              viewed on any origin.
+
+          creator: A user-defined identifier for the media creator.
+
+          max_duration_seconds: The maximum duration in seconds for a video upload. Can be set for a video that
+              is not yet uploaded to limit its duration. Uploads that exceed the specified
+              duration will fail during processing. A value of `-1` means the value is
+              unknown.
+
+          meta: A user modifiable key-value store used to reference other systems of record for
+              managing videos.
+
+          require_signed_urls: Indicates whether the video can be a accessed using the UID. When set to `true`,
+              a signed token must be generated with a signing key to view the video.
+
+          scheduled_deletion: Indicates the date and time at which the video will be deleted. Omit the field
+              to indicate no change, or include with a `null` value to remove an existing
+              scheduled deletion. If specified, must be at least 30 days from upload time.
+
+          thumbnail_timestamp_pct: The timestamp for a thumbnail image calculated as a percentage value of the
+              video's duration. To convert from a second-wise timestamp to a percentage,
+              divide the desired timestamp by the total duration of the video. If this value
+              is not set, the default thumbnail image is taken from 0s of the video.
+
+          upload_expiry: The date and time when the video upload URL is no longer valid for direct user
+              uploads.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        return await self._post(
+            f"/accounts/{account_id}/stream/{identifier}",
+            body=await async_maybe_transform(
+                {
+                    "allowed_origins": allowed_origins,
+                    "creator": creator,
+                    "max_duration_seconds": max_duration_seconds,
+                    "meta": meta,
+                    "require_signed_urls": require_signed_urls,
+                    "scheduled_deletion": scheduled_deletion,
+                    "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
+                    "upload_expiry": upload_expiry,
+                },
+                stream_edit_params.StreamEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Video]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Video]], ResultWrapper[Video]),
+        )
+
     async def get(
         self,
         identifier: str,
@@ -765,6 +954,9 @@ class StreamResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             stream.delete,
+        )
+        self.edit = to_raw_response_wrapper(
+            stream.edit,
         )
         self.get = to_raw_response_wrapper(
             stream.get,
@@ -836,6 +1028,9 @@ class AsyncStreamResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             stream.delete,
         )
+        self.edit = async_to_raw_response_wrapper(
+            stream.edit,
+        )
         self.get = async_to_raw_response_wrapper(
             stream.get,
         )
@@ -906,6 +1101,9 @@ class StreamResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             stream.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            stream.edit,
+        )
         self.get = to_streamed_response_wrapper(
             stream.get,
         )
@@ -975,6 +1173,9 @@ class AsyncStreamResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             stream.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            stream.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             stream.get,
