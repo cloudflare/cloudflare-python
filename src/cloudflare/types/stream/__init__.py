@@ -15,6 +15,7 @@ from .key_create_params import KeyCreateParams as KeyCreateParams
 from .clip_create_params import ClipCreateParams as ClipCreateParams
 from .copy_create_params import CopyCreateParams as CopyCreateParams
 from .embed_get_response import EmbedGetResponse as EmbedGetResponse
+from .stream_edit_params import StreamEditParams as StreamEditParams
 from .stream_list_params import StreamListParams as StreamListParams
 from .key_delete_response import KeyDeleteResponse as KeyDeleteResponse
 from .token_create_params import TokenCreateParams as TokenCreateParams
