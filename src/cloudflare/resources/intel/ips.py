@@ -61,7 +61,7 @@ class IPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IPGetResponse]:
         """
-        Get IP Overview
+        Same as summary
 
         Args:
           account_id: Identifier
@@ -130,7 +130,7 @@ class AsyncIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IPGetResponse]:
         """
-        Get IP Overview
+        Same as summary
 
         Args:
           account_id: Identifier

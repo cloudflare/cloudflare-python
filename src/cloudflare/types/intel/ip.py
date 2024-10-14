@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["IP", "BelongsToRef"]
+__all__ = ["IP", "BelongsToRef", "RiskType"]
 
 
 class BelongsToRef(BaseModel):
@@ -21,6 +21,14 @@ class BelongsToRef(BaseModel):
     value: Optional[str] = None
 
 
+class RiskType(BaseModel):
+    id: Optional[float] = None
+
+    name: Optional[str] = None
+
+    super_category_id: Optional[float] = None
+
+
 class IP(BaseModel):
     belongs_to_ref: Optional[BelongsToRef] = None
     """
@@ -30,4 +38,4 @@ class IP(BaseModel):
 
     ip: Optional[str] = None
 
-    risk_types: Optional[List[object]] = None
+    risk_types: Optional[List[RiskType]] = None

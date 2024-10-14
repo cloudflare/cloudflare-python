@@ -8,9 +8,11 @@ __all__ = [
     "Domain",
     "AdditionalInformation",
     "Application",
+    "ContentCategory",
     "InheritedContentCategory",
     "InheritedRiskType",
     "ResolvesToRef",
+    "RiskType",
 ]
 
 
@@ -23,6 +25,14 @@ class Application(BaseModel):
     id: Optional[int] = None
 
     name: Optional[str] = None
+
+
+class ContentCategory(BaseModel):
+    id: Optional[int] = None
+
+    name: Optional[str] = None
+
+    super_category_id: Optional[int] = None
 
 
 class InheritedContentCategory(BaseModel):
@@ -52,6 +62,14 @@ class ResolvesToRef(BaseModel):
     """IP address or domain name."""
 
 
+class RiskType(BaseModel):
+    id: Optional[int] = None
+
+    name: Optional[str] = None
+
+    super_category_id: Optional[int] = None
+
+
 class Domain(BaseModel):
     additional_information: Optional[AdditionalInformation] = None
     """Additional information related to the host name."""
@@ -59,8 +77,7 @@ class Domain(BaseModel):
     application: Optional[Application] = None
     """Application that the hostname belongs to."""
 
-    content_categories: Optional[List[object]] = None
-    """Current content categories."""
+    content_categories: Optional[List[ContentCategory]] = None
 
     domain: Optional[str] = None
 
@@ -92,4 +109,4 @@ class Domain(BaseModel):
     risk).
     """
 
-    risk_types: Optional[List[object]] = None
+    risk_types: Optional[List[RiskType]] = None
