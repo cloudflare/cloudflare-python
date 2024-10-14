@@ -60,7 +60,7 @@ class BulksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[BulkGetResponse]:
         """
-        Get Multiple Domain Details
+        Same as summary
 
         Args:
           account_id: Identifier
@@ -124,7 +124,7 @@ class AsyncBulksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[BulkGetResponse]:
         """
-        Get Multiple Domain Details
+        Same as summary
 
         Args:
           account_id: Identifier
