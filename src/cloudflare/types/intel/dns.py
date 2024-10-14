@@ -12,7 +12,7 @@ class ReverseRecord(BaseModel):
     first_seen: Optional[date] = None
     """First seen date of the DNS record during the time period."""
 
-    hostname: Optional[object] = None
+    hostname: Optional[str] = None
     """Hostname that the IP was observed resolving to."""
 
     last_seen: Optional[date] = None

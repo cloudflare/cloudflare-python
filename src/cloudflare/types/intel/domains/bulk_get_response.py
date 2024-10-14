@@ -10,8 +10,10 @@ __all__ = [
     "BulkGetResponseItem",
     "BulkGetResponseItemAdditionalInformation",
     "BulkGetResponseItemApplication",
+    "BulkGetResponseItemContentCategory",
     "BulkGetResponseItemInheritedContentCategory",
     "BulkGetResponseItemInheritedRiskType",
+    "BulkGetResponseItemRiskType",
 ]
 
 
@@ -24,6 +26,14 @@ class BulkGetResponseItemApplication(BaseModel):
     id: Optional[int] = None
 
     name: Optional[str] = None
+
+
+class BulkGetResponseItemContentCategory(BaseModel):
+    id: Optional[int] = None
+
+    name: Optional[str] = None
+
+    super_category_id: Optional[int] = None
 
 
 class BulkGetResponseItemInheritedContentCategory(BaseModel):
@@ -42,6 +52,14 @@ class BulkGetResponseItemInheritedRiskType(BaseModel):
     super_category_id: Optional[int] = None
 
 
+class BulkGetResponseItemRiskType(BaseModel):
+    id: Optional[int] = None
+
+    name: Optional[str] = None
+
+    super_category_id: Optional[int] = None
+
+
 class BulkGetResponseItem(BaseModel):
     additional_information: Optional[BulkGetResponseItemAdditionalInformation] = None
     """Additional information related to the host name."""
@@ -49,8 +67,7 @@ class BulkGetResponseItem(BaseModel):
     application: Optional[BulkGetResponseItemApplication] = None
     """Application that the hostname belongs to."""
 
-    content_categories: Optional[List[object]] = None
-    """Current content categories."""
+    content_categories: Optional[List[BulkGetResponseItemContentCategory]] = None
 
     domain: Optional[str] = None
 
@@ -76,7 +93,7 @@ class BulkGetResponseItem(BaseModel):
     risk).
     """
 
-    risk_types: Optional[List[object]] = None
+    risk_types: Optional[List[BulkGetResponseItemRiskType]] = None
 
 
 BulkGetResponse: TypeAlias = List[BulkGetResponseItem]

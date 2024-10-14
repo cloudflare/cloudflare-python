@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["MiscategorizationCreateParams"]
@@ -20,7 +20,7 @@ class MiscategorizationCreateParams(TypedDict, total=False):
 
     indicator_type: Literal["domain", "ipv4", "ipv6", "url"]
 
-    ip: str
+    ip: Optional[str]
     """Provide only if indicator_type is `ipv4` or `ipv6`."""
 
     security_adds: Iterable[int]
