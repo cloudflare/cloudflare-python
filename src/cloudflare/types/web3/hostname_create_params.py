@@ -11,6 +11,9 @@ class HostnameCreateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    name: Required[str]
+    """The hostname that will point to the target gateway via CNAME."""
+
     target: Required[Literal["ethereum", "ipfs", "ipfs_universal_path"]]
     """Target gateway of the hostname."""
 

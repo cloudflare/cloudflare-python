@@ -22,6 +22,7 @@ class TestHostnames:
     def test_method_create(self, client: Cloudflare) -> None:
         hostname = client.web3.hostnames.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
             target="ethereum",
         )
         assert_matches_type(Hostname, hostname, path=["response"])
@@ -30,6 +31,7 @@ class TestHostnames:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         hostname = client.web3.hostnames.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
             target="ethereum",
             description="This is my IPFS gateway.",
             dnslink="/ipns/onboarding.ipfs.cloudflare.com",
@@ -40,6 +42,7 @@ class TestHostnames:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
             target="ethereum",
         )
 
@@ -52,6 +55,7 @@ class TestHostnames:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.web3.hostnames.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
             target="ethereum",
         ) as response:
             assert not response.is_closed
@@ -67,6 +71,7 @@ class TestHostnames:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.web3.hostnames.with_raw_response.create(
                 zone_id="",
+                name="gateway.example.com",
                 target="ethereum",
             )
 
@@ -270,6 +275,7 @@ class TestAsyncHostnames:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         hostname = await async_client.web3.hostnames.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
             target="ethereum",
         )
         assert_matches_type(Hostname, hostname, path=["response"])
@@ -278,6 +284,7 @@ class TestAsyncHostnames:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         hostname = await async_client.web3.hostnames.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
             target="ethereum",
             description="This is my IPFS gateway.",
             dnslink="/ipns/onboarding.ipfs.cloudflare.com",
@@ -288,6 +295,7 @@ class TestAsyncHostnames:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.web3.hostnames.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
             target="ethereum",
         )
 
@@ -300,6 +308,7 @@ class TestAsyncHostnames:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
             target="ethereum",
         ) as response:
             assert not response.is_closed
@@ -315,6 +324,7 @@ class TestAsyncHostnames:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.web3.hostnames.with_raw_response.create(
                 zone_id="",
+                name="gateway.example.com",
                 target="ethereum",
             )
 
