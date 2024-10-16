@@ -369,7 +369,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIndustryResponse:
         """
-        Percentage distribution of attacks by industry used over time.
+        Percentage distribution of attacks by industry targeted over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -759,7 +759,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupVerticalResponse:
         """
-        Percentage distribution of attacks by vertical used over time.
+        Percentage distribution of attacks by vertical targeted over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -1162,7 +1162,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIndustryResponse:
         """
-        Percentage distribution of attacks by industry used over time.
+        Percentage distribution of attacks by industry targeted over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -1552,7 +1552,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupVerticalResponse:
         """
-        Percentage distribution of attacks by vertical used over time.
+        Percentage distribution of attacks by vertical targeted over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
