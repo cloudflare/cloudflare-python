@@ -81,7 +81,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDNSSECResponse:
         """
-        Percentage distribution of DNS AS112 queries by DNSSEC support over time.
+        Percentage distribution of AS112 DNS queries by DNSSEC support over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -615,7 +615,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDNSSECResponse:
         """
-        Percentage distribution of DNS AS112 queries by DNSSEC support over time.
+        Percentage distribution of AS112 DNS queries by DNSSEC support over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
