@@ -67,6 +67,7 @@ class HostnamesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        name: str,
         target: Literal["ethereum", "ipfs", "ipfs_universal_path"],
         description: str | NotGiven = NOT_GIVEN,
         dnslink: str | NotGiven = NOT_GIVEN,
@@ -82,6 +83,8 @@ class HostnamesResource(SyncAPIResource):
 
         Args:
           zone_id: Identifier
+
+          name: The hostname that will point to the target gateway via CNAME.
 
           target: Target gateway of the hostname.
 
@@ -103,6 +106,7 @@ class HostnamesResource(SyncAPIResource):
             f"/zones/{zone_id}/web3/hostnames",
             body=maybe_transform(
                 {
+                    "name": name,
                     "target": target,
                     "description": description,
                     "dnslink": dnslink,
@@ -329,6 +333,7 @@ class AsyncHostnamesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        name: str,
         target: Literal["ethereum", "ipfs", "ipfs_universal_path"],
         description: str | NotGiven = NOT_GIVEN,
         dnslink: str | NotGiven = NOT_GIVEN,
@@ -344,6 +349,8 @@ class AsyncHostnamesResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier
+
+          name: The hostname that will point to the target gateway via CNAME.
 
           target: Target gateway of the hostname.
 
@@ -365,6 +372,7 @@ class AsyncHostnamesResource(AsyncAPIResource):
             f"/zones/{zone_id}/web3/hostnames",
             body=await async_maybe_transform(
                 {
+                    "name": name,
                     "target": target,
                     "description": description,
                     "dnslink": dnslink,
