@@ -64,6 +64,8 @@ class ValuesResource(SyncAPIResource):
         namespace_id: str,
         metadata: str,
         value: str,
+        expiration: float | NotGiven = NOT_GIVEN,
+        expiration_ttl: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -75,10 +77,12 @@ class ValuesResource(SyncAPIResource):
 
         Use URL-encoding to use special characters
         (for example, `:`, `!`, `%`) in the key name. Body should be the value to be
-        stored along with JSON metadata to be associated with the key/value pair.
-        Existing values, expirations, and metadata will be overwritten. If neither
-        `expiration` nor `expiration_ttl` is specified, the key-value pair will never
-        expire. If both are set, `expiration_ttl` is used and `expiration` is ignored.
+        stored. If JSON metadata to be associated with the key/value pair is needed, use
+        `multipart/form-data` content type for your PUT request (see dropdown below in
+        `REQUEST BODY SCHEMA`). Existing values, expirations, and metadata will be
+        overwritten. If neither `expiration` nor `expiration_ttl` is specified, the
+        key-value pair will never expire. If both are set, `expiration_ttl` is used and
+        `expiration` is ignored.
 
         Args:
           account_id: Identifier
@@ -91,6 +95,12 @@ class ValuesResource(SyncAPIResource):
           metadata: Arbitrary JSON to be associated with a key/value pair.
 
           value: A byte sequence to be stored, up to 25 MiB in length.
+
+          expiration: The time, measured in number of seconds since the UNIX epoch, at which the key
+              should expire.
+
+          expiration_ttl: The number of seconds for which the key should be visible before it expires. At
+              least 60.
 
           extra_headers: Send extra headers
 
@@ -120,6 +130,13 @@ class ValuesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "expiration": expiration,
+                        "expiration_ttl": expiration_ttl,
+                    },
+                    value_update_params.ValueUpdateParams,
+                ),
                 post_parser=ResultWrapper[Optional[ValueUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ValueUpdateResponse]], ResultWrapper[ValueUpdateResponse]),
@@ -258,6 +275,8 @@ class AsyncValuesResource(AsyncAPIResource):
         namespace_id: str,
         metadata: str,
         value: str,
+        expiration: float | NotGiven = NOT_GIVEN,
+        expiration_ttl: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -269,10 +288,12 @@ class AsyncValuesResource(AsyncAPIResource):
 
         Use URL-encoding to use special characters
         (for example, `:`, `!`, `%`) in the key name. Body should be the value to be
-        stored along with JSON metadata to be associated with the key/value pair.
-        Existing values, expirations, and metadata will be overwritten. If neither
-        `expiration` nor `expiration_ttl` is specified, the key-value pair will never
-        expire. If both are set, `expiration_ttl` is used and `expiration` is ignored.
+        stored. If JSON metadata to be associated with the key/value pair is needed, use
+        `multipart/form-data` content type for your PUT request (see dropdown below in
+        `REQUEST BODY SCHEMA`). Existing values, expirations, and metadata will be
+        overwritten. If neither `expiration` nor `expiration_ttl` is specified, the
+        key-value pair will never expire. If both are set, `expiration_ttl` is used and
+        `expiration` is ignored.
 
         Args:
           account_id: Identifier
@@ -285,6 +306,12 @@ class AsyncValuesResource(AsyncAPIResource):
           metadata: Arbitrary JSON to be associated with a key/value pair.
 
           value: A byte sequence to be stored, up to 25 MiB in length.
+
+          expiration: The time, measured in number of seconds since the UNIX epoch, at which the key
+              should expire.
+
+          expiration_ttl: The number of seconds for which the key should be visible before it expires. At
+              least 60.
 
           extra_headers: Send extra headers
 
@@ -314,6 +341,13 @@ class AsyncValuesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "expiration": expiration,
+                        "expiration_ttl": expiration_ttl,
+                    },
+                    value_update_params.ValueUpdateParams,
+                ),
                 post_parser=ResultWrapper[Optional[ValueUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ValueUpdateResponse]], ResultWrapper[ValueUpdateResponse]),
