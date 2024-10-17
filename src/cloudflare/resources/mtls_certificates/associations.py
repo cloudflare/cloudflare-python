@@ -25,10 +25,21 @@ __all__ = ["AssociationsResource", "AsyncAssociationsResource"]
 class AssociationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AssociationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AssociationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AssociationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AssociationsResourceWithStreamingResponse(self)
 
     def get(
@@ -81,10 +92,21 @@ class AssociationsResource(SyncAPIResource):
 class AsyncAssociationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAssociationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAssociationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAssociationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAssociationsResourceWithStreamingResponse(self)
 
     async def get(

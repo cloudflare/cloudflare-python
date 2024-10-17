@@ -48,10 +48,21 @@ class AIGatewayResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AIGatewayResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AIGatewayResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AIGatewayResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AIGatewayResourceWithStreamingResponse(self)
 
     def create(
@@ -177,6 +188,7 @@ class AIGatewayResource(SyncAPIResource):
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
+        order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -193,6 +205,8 @@ class AIGatewayResource(SyncAPIResource):
           id: gateway id
 
           order_by: Order By Column Name
+
+          order_by_direction: Order By Direction
 
           extra_headers: Send extra headers
 
@@ -216,6 +230,7 @@ class AIGatewayResource(SyncAPIResource):
                     {
                         "id": id,
                         "order_by": order_by,
+                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
                     },
@@ -315,10 +330,21 @@ class AsyncAIGatewayResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncAIGatewayResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAIGatewayResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAIGatewayResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAIGatewayResourceWithStreamingResponse(self)
 
     async def create(
@@ -444,6 +470,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
+        order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -460,6 +487,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
           id: gateway id
 
           order_by: Order By Column Name
+
+          order_by_direction: Order By Direction
 
           extra_headers: Send extra headers
 
@@ -483,6 +512,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     {
                         "id": id,
                         "order_by": order_by,
+                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
                     },

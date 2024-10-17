@@ -8,7 +8,9 @@ import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
+    is_given,
     maybe_transform,
+    strip_not_given,
     async_maybe_transform,
 )
 from ..._compat import cached_property
@@ -26,7 +28,6 @@ from ...types.magic_transit import (
     ipsec_tunnel_update_params,
     ipsec_tunnel_psk_generate_params,
 )
-from ...types.magic_transit.health_check_param import HealthCheckParam
 from ...types.magic_transit.ipsec_tunnel_get_response import IPSECTunnelGetResponse
 from ...types.magic_transit.ipsec_tunnel_list_response import IPSECTunnelListResponse
 from ...types.magic_transit.ipsec_tunnel_create_response import IPSECTunnelCreateResponse
@@ -40,10 +41,21 @@ __all__ = ["IPSECTunnelsResource", "AsyncIPSECTunnelsResource"]
 class IPSECTunnelsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IPSECTunnelsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return IPSECTunnelsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> IPSECTunnelsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return IPSECTunnelsResourceWithStreamingResponse(self)
 
     def create(
@@ -55,9 +67,10 @@ class IPSECTunnelsResource(SyncAPIResource):
         name: str,
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
+        health_check: ipsec_tunnel_create_params.HealthCheck | NotGiven = NOT_GIVEN,
         psk: str | NotGiven = NOT_GIVEN,
         replay_protection: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -102,6 +115,16 @@ class IPSECTunnelsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             f"/accounts/{account_id}/magic/ipsec_tunnels",
             body=maybe_transform(
@@ -137,9 +160,10 @@ class IPSECTunnelsResource(SyncAPIResource):
         name: str,
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
+        health_check: ipsec_tunnel_update_params.HealthCheck | NotGiven = NOT_GIVEN,
         psk: str | NotGiven = NOT_GIVEN,
         replay_protection: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -188,6 +212,16 @@ class IPSECTunnelsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ipsec_tunnel_id:
             raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._put(
             f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
             body=maybe_transform(
@@ -217,6 +251,7 @@ class IPSECTunnelsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -240,6 +275,16 @@ class IPSECTunnelsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             f"/accounts/{account_id}/magic/ipsec_tunnels",
             options=make_request_options(
@@ -257,6 +302,7 @@ class IPSECTunnelsResource(SyncAPIResource):
         ipsec_tunnel_id: str,
         *,
         account_id: str,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -286,6 +332,16 @@ class IPSECTunnelsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ipsec_tunnel_id:
             raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._delete(
             f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
             options=make_request_options(
@@ -303,6 +359,7 @@ class IPSECTunnelsResource(SyncAPIResource):
         ipsec_tunnel_id: str,
         *,
         account_id: str,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -330,6 +387,16 @@ class IPSECTunnelsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ipsec_tunnel_id:
             raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
             options=make_request_options(
@@ -396,10 +463,21 @@ class IPSECTunnelsResource(SyncAPIResource):
 class AsyncIPSECTunnelsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIPSECTunnelsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncIPSECTunnelsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncIPSECTunnelsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncIPSECTunnelsResourceWithStreamingResponse(self)
 
     async def create(
@@ -411,9 +489,10 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         name: str,
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
+        health_check: ipsec_tunnel_create_params.HealthCheck | NotGiven = NOT_GIVEN,
         psk: str | NotGiven = NOT_GIVEN,
         replay_protection: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -458,6 +537,16 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             f"/accounts/{account_id}/magic/ipsec_tunnels",
             body=await async_maybe_transform(
@@ -493,9 +582,10 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         name: str,
         customer_endpoint: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
+        health_check: ipsec_tunnel_update_params.HealthCheck | NotGiven = NOT_GIVEN,
         psk: str | NotGiven = NOT_GIVEN,
         replay_protection: bool | NotGiven = NOT_GIVEN,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -544,6 +634,16 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ipsec_tunnel_id:
             raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._put(
             f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
             body=await async_maybe_transform(
@@ -573,6 +673,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -596,6 +697,16 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             f"/accounts/{account_id}/magic/ipsec_tunnels",
             options=make_request_options(
@@ -613,6 +724,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         ipsec_tunnel_id: str,
         *,
         account_id: str,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -642,6 +754,16 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ipsec_tunnel_id:
             raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._delete(
             f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
             options=make_request_options(
@@ -659,6 +781,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         ipsec_tunnel_id: str,
         *,
         account_id: str,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -686,6 +809,16 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not ipsec_tunnel_id:
             raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
             options=make_request_options(

@@ -22,12 +22,15 @@ class IndicatorFeedGetResponse(BaseModel):
     is_attributable: Optional[bool] = None
     """Whether the indicator feed can be attributed to a provider"""
 
+    is_downloadable: Optional[bool] = None
+    """Whether the indicator feed can be downloaded"""
+
     is_public: Optional[bool] = None
     """Whether the indicator feed is exposed to customers"""
 
-    latest_upload_status: Optional[
-        Literal["Mirroring", "Unifying", "Loading", "Provisioning", "Complete", "Error"]
-    ] = None
+    latest_upload_status: Optional[Literal["Mirroring", "Unifying", "Loading", "Provisioning", "Complete", "Error"]] = (
+        None
+    )
     """Status of the latest snapshot uploaded"""
 
     modified_on: Optional[datetime] = None

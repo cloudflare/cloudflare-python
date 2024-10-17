@@ -14,7 +14,7 @@ class OrderCreateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    certificate_authority: Required[Literal["google", "lets_encrypt"]]
+    certificate_authority: Required[Literal["google", "lets_encrypt", "ssl_com"]]
     """Certificate Authority selected for the order.
 
     For information on any certificate authority specific details or restrictions

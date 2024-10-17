@@ -72,7 +72,7 @@ class TestPools:
             },
             longitude=0,
             minimum_origins=0,
-            monitor={},
+            monitor="monitor",
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
                 "origin": {
@@ -167,7 +167,7 @@ class TestPools:
                     "weight": 0.6,
                 },
             ],
-            check_regions=["WEU", "ENAM"],
+            check_regions=["WNAM", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
             latitude=0,
@@ -179,7 +179,7 @@ class TestPools:
             },
             longitude=0,
             minimum_origins=0,
-            monitor={},
+            monitor="monitor",
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
                 "origin": {
@@ -254,7 +254,7 @@ class TestPools:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            monitor={},
+            monitor="monitor",
         )
         assert_matches_type(SyncSinglePage[Pool], pool, path=["response"])
 
@@ -350,7 +350,7 @@ class TestPools:
         pool = client.load_balancers.pools.edit(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            check_regions=["WEU", "ENAM"],
+            check_regions=["WNAM", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
             latitude=0,
@@ -362,7 +362,7 @@ class TestPools:
             },
             longitude=0,
             minimum_origins=0,
-            monitor={},
+            monitor="monitor",
             name="primary-dc-1",
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
@@ -548,7 +548,7 @@ class TestAsyncPools:
             },
             longitude=0,
             minimum_origins=0,
-            monitor={},
+            monitor="monitor",
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
                 "origin": {
@@ -643,7 +643,7 @@ class TestAsyncPools:
                     "weight": 0.6,
                 },
             ],
-            check_regions=["WEU", "ENAM"],
+            check_regions=["WNAM", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
             latitude=0,
@@ -655,7 +655,7 @@ class TestAsyncPools:
             },
             longitude=0,
             minimum_origins=0,
-            monitor={},
+            monitor="monitor",
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
                 "origin": {
@@ -730,7 +730,7 @@ class TestAsyncPools:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            monitor={},
+            monitor="monitor",
         )
         assert_matches_type(AsyncSinglePage[Pool], pool, path=["response"])
 
@@ -826,7 +826,7 @@ class TestAsyncPools:
         pool = await async_client.load_balancers.pools.edit(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            check_regions=["WEU", "ENAM"],
+            check_regions=["WNAM", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
             latitude=0,
@@ -838,7 +838,7 @@ class TestAsyncPools:
             },
             longitude=0,
             minimum_origins=0,
-            monitor={},
+            monitor="monitor",
             name="primary-dc-1",
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={

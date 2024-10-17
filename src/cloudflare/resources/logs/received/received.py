@@ -42,16 +42,27 @@ class ReceivedResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> ReceivedResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ReceivedResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ReceivedResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ReceivedResourceWithStreamingResponse(self)
 
     def get(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         end: Union[str, int],
         count: int | NotGiven = NOT_GIVEN,
         fields: str | NotGiven = NOT_GIVEN,
@@ -77,7 +88,7 @@ class ReceivedResource(SyncAPIResource):
         will be handled properly.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           end: Sets the (exclusive) end of the requested time frame. This can be a unix
               timestamp (in seconds or nanoseconds), or an absolute timestamp that conforms to
@@ -129,12 +140,12 @@ class ReceivedResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             ReceivedGetResponse,
             self._get(
-                f"/zones/{zone_identifier}/logs/received",
+                f"/zones/{zone_id}/logs/received",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -166,16 +177,27 @@ class AsyncReceivedResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncReceivedResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncReceivedResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncReceivedResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncReceivedResourceWithStreamingResponse(self)
 
     async def get(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         end: Union[str, int],
         count: int | NotGiven = NOT_GIVEN,
         fields: str | NotGiven = NOT_GIVEN,
@@ -201,7 +223,7 @@ class AsyncReceivedResource(AsyncAPIResource):
         will be handled properly.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           end: Sets the (exclusive) end of the requested time frame. This can be a unix
               timestamp (in seconds or nanoseconds), or an absolute timestamp that conforms to
@@ -253,12 +275,12 @@ class AsyncReceivedResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             ReceivedGetResponse,
             await self._get(
-                f"/zones/{zone_identifier}/logs/received",
+                f"/zones/{zone_id}/logs/received",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

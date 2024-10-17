@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, cast, overload
+from typing import Type, cast
+from typing_extensions import overload
 
 import httpx
 
@@ -32,10 +33,21 @@ __all__ = ["SippyResource", "AsyncSippyResource"]
 class SippyResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SippyResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SippyResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SippyResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SippyResourceWithStreamingResponse(self)
 
     @overload
@@ -244,10 +256,21 @@ class SippyResource(SyncAPIResource):
 class AsyncSippyResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSippyResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSippyResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSippyResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSippyResourceWithStreamingResponse(self)
 
     @overload

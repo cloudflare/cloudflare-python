@@ -69,10 +69,21 @@ class Layer7Resource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> Layer7ResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return Layer7ResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> Layer7ResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return Layer7ResourceWithStreamingResponse(self)
 
     def timeseries(
@@ -263,10 +274,21 @@ class AsyncLayer7Resource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncLayer7ResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLayer7ResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLayer7ResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncLayer7ResourceWithStreamingResponse(self)
 
     async def timeseries(

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Dict, List, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -32,10 +32,21 @@ __all__ = ["HealthResource", "AsyncHealthResource"]
 class HealthResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> HealthResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return HealthResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> HealthResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return HealthResourceWithStreamingResponse(self)
 
     def create(
@@ -50,7 +61,7 @@ class HealthResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: object | NotGiven = NOT_GIVEN,
+        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -198,31 +209,37 @@ class HealthResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
-        return cast(
-            HealthGetResponse,
-            self._get(
-                f"/accounts/{account_id}/load_balancers/pools/{pool_id}/health",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[HealthGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[HealthGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/load_balancers/pools/{pool_id}/health",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[HealthGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[HealthGetResponse], ResultWrapper[HealthGetResponse]),
         )
 
 
 class AsyncHealthResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncHealthResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncHealthResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncHealthResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncHealthResourceWithStreamingResponse(self)
 
     async def create(
@@ -237,7 +254,7 @@ class AsyncHealthResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: object | NotGiven = NOT_GIVEN,
+        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -385,21 +402,16 @@ class AsyncHealthResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
-        return cast(
-            HealthGetResponse,
-            await self._get(
-                f"/accounts/{account_id}/load_balancers/pools/{pool_id}/health",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[HealthGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[HealthGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/load_balancers/pools/{pool_id}/health",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[HealthGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[HealthGetResponse], ResultWrapper[HealthGetResponse]),
         )
 
 

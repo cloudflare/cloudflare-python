@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "IntegrationEditParams",
@@ -15,6 +15,7 @@ __all__ = [
     "ConfigTeamsDevicesKolideConfigRequest",
     "ConfigTeamsDevicesTaniumConfigRequest",
     "ConfigTeamsDevicesSentineloneS2sConfigRequest",
+    "ConfigTeamsDevicesCustomS2sConfigRequest",
 ]
 
 
@@ -33,7 +34,9 @@ class IntegrationEditParams(TypedDict, total=False):
     name: str
     """The name of the device posture integration."""
 
-    type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"]
+    type: Literal[
+        "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+    ]
     """The type of device posture integration."""
 
 
@@ -126,7 +129,24 @@ class ConfigTeamsDevicesSentineloneS2sConfigRequest(TypedDict, total=False):
     """The SentinelOne S2S client secret."""
 
 
-Config = Union[
+class ConfigTeamsDevicesCustomS2sConfigRequest(TypedDict, total=False):
+    access_client_id: Required[str]
+    """
+    This id will be passed in the `CF-Access-Client-ID` header when hitting the
+    `api_url`
+    """
+
+    access_client_secret: Required[str]
+    """
+    This secret will be passed in the `CF-Access-Client-Secret` header when hitting
+    the `api_url`
+    """
+
+    api_url: Required[str]
+    """The Custom Device Posture Integration API URL."""
+
+
+Config: TypeAlias = Union[
     ConfigTeamsDevicesWorkspaceOneConfigRequest,
     ConfigTeamsDevicesCrowdstrikeConfigRequest,
     ConfigTeamsDevicesUptycsConfigRequest,
@@ -134,4 +154,5 @@ Config = Union[
     ConfigTeamsDevicesKolideConfigRequest,
     ConfigTeamsDevicesTaniumConfigRequest,
     ConfigTeamsDevicesSentineloneS2sConfigRequest,
+    ConfigTeamsDevicesCustomS2sConfigRequest,
 ]

@@ -31,10 +31,21 @@ __all__ = ["StatusesResource", "AsyncStatusesResource"]
 class StatusesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> StatusesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return StatusesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> StatusesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return StatusesResourceWithStreamingResponse(self)
 
     def edit(
@@ -133,10 +144,21 @@ class StatusesResource(SyncAPIResource):
 class AsyncStatusesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncStatusesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncStatusesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncStatusesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncStatusesResourceWithStreamingResponse(self)
 
     async def edit(

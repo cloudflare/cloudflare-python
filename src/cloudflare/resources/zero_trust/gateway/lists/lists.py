@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Iterable, Optional, cast
+from typing import List, Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -35,7 +35,6 @@ from .....types.zero_trust.gateway import list_edit_params, list_list_params, li
 from .....types.zero_trust.gateway.gateway_list import GatewayList
 from .....types.zero_trust.gateway.gateway_item_param import GatewayItemParam
 from .....types.zero_trust.gateway.list_create_response import ListCreateResponse
-from .....types.zero_trust.gateway.list_delete_response import ListDeleteResponse
 
 __all__ = ["ListsResource", "AsyncListsResource"]
 
@@ -47,10 +46,21 @@ class ListsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> ListsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ListsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ListsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ListsResourceWithStreamingResponse(self)
 
     def create(
@@ -218,7 +228,7 @@ class ListsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListDeleteResponse]:
+    ) -> object:
         """
         Deletes a Zero Trust list.
 
@@ -237,21 +247,16 @@ class ListsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return cast(
-            Optional[ListDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/gateway/lists/{list_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ListDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ListDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/gateway/lists/{list_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def edit(
@@ -359,10 +364,21 @@ class AsyncListsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncListsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncListsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncListsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncListsResourceWithStreamingResponse(self)
 
     async def create(
@@ -530,7 +546,7 @@ class AsyncListsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListDeleteResponse]:
+    ) -> object:
         """
         Deletes a Zero Trust list.
 
@@ -549,21 +565,16 @@ class AsyncListsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return cast(
-            Optional[ListDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/gateway/lists/{list_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ListDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ListDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/gateway/lists/{list_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def edit(

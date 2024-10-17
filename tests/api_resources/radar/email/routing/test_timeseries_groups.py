@@ -33,7 +33,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_arc_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.routing.timeseries_groups.arc(
-            agg_interval="1h",
+            agg_interval="15m",
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -83,7 +83,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_dkim_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.routing.timeseries_groups.dkim(
-            agg_interval="1h",
+            agg_interval="15m",
             arc=["PASS", "NONE", "FAIL"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -133,7 +133,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_dmarc_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.routing.timeseries_groups.dmarc(
-            agg_interval="1h",
+            agg_interval="15m",
             arc=["PASS", "NONE", "FAIL"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -183,7 +183,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_encrypted_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.routing.timeseries_groups.encrypted(
-            agg_interval="1h",
+            agg_interval="15m",
             arc=["PASS", "NONE", "FAIL"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -233,7 +233,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.routing.timeseries_groups.ip_version(
-            agg_interval="1h",
+            agg_interval="15m",
             arc=["PASS", "NONE", "FAIL"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -283,7 +283,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_spf_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.routing.timeseries_groups.spf(
-            agg_interval="1h",
+            agg_interval="15m",
             arc=["PASS", "NONE", "FAIL"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -337,7 +337,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_arc_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.routing.timeseries_groups.arc(
-            agg_interval="1h",
+            agg_interval="15m",
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -387,7 +387,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_dkim_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.routing.timeseries_groups.dkim(
-            agg_interval="1h",
+            agg_interval="15m",
             arc=["PASS", "NONE", "FAIL"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -437,7 +437,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_dmarc_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.routing.timeseries_groups.dmarc(
-            agg_interval="1h",
+            agg_interval="15m",
             arc=["PASS", "NONE", "FAIL"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -487,7 +487,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_encrypted_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.routing.timeseries_groups.encrypted(
-            agg_interval="1h",
+            agg_interval="15m",
             arc=["PASS", "NONE", "FAIL"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -537,7 +537,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.routing.timeseries_groups.ip_version(
-            agg_interval="1h",
+            agg_interval="15m",
             arc=["PASS", "NONE", "FAIL"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -587,7 +587,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_spf_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.routing.timeseries_groups.spf(
-            agg_interval="1h",
+            agg_interval="15m",
             arc=["PASS", "NONE", "FAIL"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),

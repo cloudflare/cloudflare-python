@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -8,6 +9,9 @@ __all__ = ["SubscriptionConfiguration"]
 
 
 class SubscriptionConfiguration(BaseModel):
+    ai_bots_protection: Optional[Literal["block", "disabled"]] = None
+    """Enable rule to block AI Scrapers and Crawlers."""
+
     auto_update_model: Optional[bool] = None
     """
     Automatically update to the newest bot detection models created by Cloudflare as

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .index_dimension_configuration_param import IndexDimensionConfigurationParam
 
@@ -36,4 +36,4 @@ class ConfigVectorizeIndexPresetConfiguration(TypedDict, total=False):
     """Specifies the preset to use for the index."""
 
 
-Config = Union[IndexDimensionConfigurationParam, ConfigVectorizeIndexPresetConfiguration]
+Config: TypeAlias = Union[IndexDimensionConfigurationParam, ConfigVectorizeIndexPresetConfiguration]

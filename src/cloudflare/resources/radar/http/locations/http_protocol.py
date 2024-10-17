@@ -32,10 +32,21 @@ __all__ = ["HTTPProtocolResource", "AsyncHTTPProtocolResource"]
 class HTTPProtocolResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> HTTPProtocolResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return HTTPProtocolResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> HTTPProtocolResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return HTTPProtocolResourceWithStreamingResponse(self)
 
     def get(
@@ -158,10 +169,21 @@ class HTTPProtocolResource(SyncAPIResource):
 class AsyncHTTPProtocolResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncHTTPProtocolResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncHTTPProtocolResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncHTTPProtocolResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncHTTPProtocolResourceWithStreamingResponse(self)
 
     async def get(

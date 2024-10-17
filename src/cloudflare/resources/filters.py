@@ -33,10 +33,21 @@ __all__ = ["FiltersResource", "AsyncFiltersResource"]
 class FiltersResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> FiltersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return FiltersResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> FiltersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return FiltersResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
@@ -46,7 +57,7 @@ class FiltersResource(SyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        body: object,
+        expression: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -60,6 +71,9 @@ class FiltersResource(SyncAPIResource):
         Args:
           zone_identifier: Identifier
 
+          expression: The filter expression. For more information, refer to
+              [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -72,7 +86,7 @@ class FiltersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._post(
             f"/zones/{zone_identifier}/filters",
-            body=maybe_transform(body, filter_create_params.FilterCreateParams),
+            body=maybe_transform({"expression": expression}, filter_create_params.FilterCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -307,10 +321,21 @@ class FiltersResource(SyncAPIResource):
 class AsyncFiltersResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncFiltersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncFiltersResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncFiltersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncFiltersResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
@@ -320,7 +345,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        body: object,
+        expression: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -334,6 +359,9 @@ class AsyncFiltersResource(AsyncAPIResource):
         Args:
           zone_identifier: Identifier
 
+          expression: The filter expression. For more information, refer to
+              [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -346,7 +374,7 @@ class AsyncFiltersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._post(
             f"/zones/{zone_identifier}/filters",
-            body=await async_maybe_transform(body, filter_create_params.FilterCreateParams),
+            body=await async_maybe_transform({"expression": expression}, filter_create_params.FilterCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -21,10 +21,10 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.speed.pages import test_list_params, test_create_params, test_delete_params
 from ....types.speed.pages.test import Test
-from ....types.speed.pages.test_list_response import TestListResponse
 from ....types.speed.pages.test_delete_response import TestDeleteResponse
 
 __all__ = ["TestsResource", "AsyncTestsResource"]
@@ -35,10 +35,21 @@ class TestsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> TestsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TestsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TestsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TestsResourceWithStreamingResponse(self)
 
     def create(
@@ -149,7 +160,7 @@ class TestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TestListResponse:
+    ) -> SyncV4PagePaginationArray[Test]:
         """
         Test history (list of tests) for a specific webpage.
 
@@ -172,8 +183,9 @@ class TestsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not url:
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/speed_api/pages/{url}/tests",
+            page=SyncV4PagePaginationArray[Test],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -188,7 +200,7 @@ class TestsResource(SyncAPIResource):
                     test_list_params.TestListParams,
                 ),
             ),
-            cast_to=TestListResponse,
+            model=Test,
         )
 
     def delete(
@@ -315,10 +327,21 @@ class TestsResource(SyncAPIResource):
 class AsyncTestsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTestsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTestsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTestsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTestsResourceWithStreamingResponse(self)
 
     async def create(
@@ -392,7 +415,7 @@ class AsyncTestsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[Test]], ResultWrapper[Test]),
         )
 
-    async def list(
+    def list(
         self,
         url: str,
         *,
@@ -429,7 +452,7 @@ class AsyncTestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TestListResponse:
+    ) -> AsyncPaginator[Test, AsyncV4PagePaginationArray[Test]]:
         """
         Test history (list of tests) for a specific webpage.
 
@@ -452,14 +475,15 @@ class AsyncTestsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not url:
             raise ValueError(f"Expected a non-empty value for `url` but received {url!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/speed_api/pages/{url}/tests",
+            page=AsyncV4PagePaginationArray[Test],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page": page,
                         "per_page": per_page,
@@ -468,7 +492,7 @@ class AsyncTestsResource(AsyncAPIResource):
                     test_list_params.TestListParams,
                 ),
             ),
-            cast_to=TestListResponse,
+            model=Test,
         )
 
     async def delete(

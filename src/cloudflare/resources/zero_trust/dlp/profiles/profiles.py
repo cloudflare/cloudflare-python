@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -15,6 +15,7 @@ from .custom import (
     AsyncCustomResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import maybe_transform
 from .predefined import (
     PredefinedResource,
     AsyncPredefinedResource,
@@ -34,8 +35,8 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
+from .....types.zero_trust.dlp import profile_list_params
 from .....types.zero_trust.dlp.profile import Profile
-from .....types.zero_trust.dlp.profile_get_response import ProfileGetResponse
 
 __all__ = ["ProfilesResource", "AsyncProfilesResource"]
 
@@ -51,16 +52,28 @@ class ProfilesResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> ProfilesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ProfilesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ProfilesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ProfilesResourceWithStreamingResponse(self)
 
     def list(
         self,
         *,
         account_id: str,
+        all: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -72,7 +85,8 @@ class ProfilesResource(SyncAPIResource):
         Lists all DLP profiles in an account.
 
         Args:
-          account_id: Identifier
+          all: Return all profiles, including those that current account does not have access
+              to.
 
           extra_headers: Send extra headers
 
@@ -88,7 +102,11 @@ class ProfilesResource(SyncAPIResource):
             f"/accounts/{account_id}/dlp/profiles",
             page=SyncSinglePage[Profile],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"all": all}, profile_list_params.ProfileListParams),
             ),
             model=cast(Any, Profile),  # Union types cannot be passed in as arguments in the type system
         )
@@ -104,16 +122,11 @@ class ProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProfileGetResponse:
-        """Fetches a DLP profile by ID.
-
-        Supports both predefined and custom profiles
+    ) -> Optional[Profile]:
+        """
+        Fetches a DLP profile by ID
 
         Args:
-          account_id: Identifier
-
-          profile_id: The ID for this profile
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -127,7 +140,7 @@ class ProfilesResource(SyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            ProfileGetResponse,
+            Optional[Profile],
             self._get(
                 f"/accounts/{account_id}/dlp/profiles/{profile_id}",
                 options=make_request_options(
@@ -135,10 +148,10 @@ class ProfilesResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ProfileGetResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -155,16 +168,28 @@ class AsyncProfilesResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncProfilesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncProfilesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncProfilesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncProfilesResourceWithStreamingResponse(self)
 
     def list(
         self,
         *,
         account_id: str,
+        all: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -176,7 +201,8 @@ class AsyncProfilesResource(AsyncAPIResource):
         Lists all DLP profiles in an account.
 
         Args:
-          account_id: Identifier
+          all: Return all profiles, including those that current account does not have access
+              to.
 
           extra_headers: Send extra headers
 
@@ -192,7 +218,11 @@ class AsyncProfilesResource(AsyncAPIResource):
             f"/accounts/{account_id}/dlp/profiles",
             page=AsyncSinglePage[Profile],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"all": all}, profile_list_params.ProfileListParams),
             ),
             model=cast(Any, Profile),  # Union types cannot be passed in as arguments in the type system
         )
@@ -208,16 +238,11 @@ class AsyncProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProfileGetResponse:
-        """Fetches a DLP profile by ID.
-
-        Supports both predefined and custom profiles
+    ) -> Optional[Profile]:
+        """
+        Fetches a DLP profile by ID
 
         Args:
-          account_id: Identifier
-
-          profile_id: The ID for this profile
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -231,7 +256,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            ProfileGetResponse,
+            Optional[Profile],
             await self._get(
                 f"/accounts/{account_id}/dlp/profiles/{profile_id}",
                 options=make_request_options(
@@ -239,10 +264,10 @@ class AsyncProfilesResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ProfileGetResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

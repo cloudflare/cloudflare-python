@@ -1,10 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 __all__ = ["Phase"]
 
-Phase = Literal[
+Phase: TypeAlias = Literal[
     "ddos_l4",
     "ddos_l7",
     "http_config_settings",
@@ -28,4 +28,5 @@ Phase = Literal[
     "magic_transit",
     "magic_transit_ids_managed",
     "magic_transit_managed",
+    "magic_transit_ratelimit",
 ]

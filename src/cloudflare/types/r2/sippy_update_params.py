@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._utils import PropertyInfo
 from .provider import Provider
@@ -118,4 +118,4 @@ class R2EnableSippyGcsSource(TypedDict, total=False):
     provider: Literal["gcs"]
 
 
-SippyUpdateParams = Union[R2EnableSippyAws, R2EnableSippyGcs]
+SippyUpdateParams: TypeAlias = Union[R2EnableSippyAws, R2EnableSippyGcs]

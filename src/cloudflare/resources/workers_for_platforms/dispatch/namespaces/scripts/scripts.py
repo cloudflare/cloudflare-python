@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast, overload
+from typing import List, Type, Optional, cast
+from typing_extensions import overload
 
 import httpx
 
@@ -62,9 +63,9 @@ from ......_response import (
 )
 from ......_wrappers import ResultWrapper
 from ......_base_client import make_request_options
-from ......types.workers.script import Script as WorkersScript
 from ......types.workers_for_platforms.dispatch.namespaces import script_delete_params, script_update_params
-from ......types.workers_for_platforms.dispatch.namespaces.script import Script as NamespacesScript
+from ......types.workers_for_platforms.dispatch.namespaces.script import Script
+from ......types.workers_for_platforms.dispatch.namespaces.script_update_response import ScriptUpdateResponse
 
 __all__ = ["ScriptsResource", "AsyncScriptsResource"]
 
@@ -92,10 +93,21 @@ class ScriptsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> ScriptsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ScriptsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ScriptsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ScriptsResourceWithStreamingResponse(self)
 
     @overload
@@ -113,12 +125,12 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersScript]:
+    ) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module to a Workers for Platforms namespace.
 
-        You can find an
-        example of the metadata on our docs:
-        https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/metadata/
+        You can find more
+        about the multipart metadata on our docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -159,12 +171,12 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersScript]:
+    ) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module to a Workers for Platforms namespace.
 
-        You can find an
-        example of the metadata on our docs:
-        https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/metadata/
+        You can find more
+        about the multipart metadata on our docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -202,7 +214,7 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersScript]:
+    ) -> Optional[ScriptUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -224,9 +236,9 @@ class ScriptsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[WorkersScript]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersScript]], ResultWrapper[WorkersScript]),
+            cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
         )
 
     def delete(
@@ -298,7 +310,7 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NamespacesScript]:
+    ) -> Optional[Script]:
         """
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
@@ -330,9 +342,9 @@ class ScriptsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[NamespacesScript]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NamespacesScript]], ResultWrapper[NamespacesScript]),
+            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
         )
 
 
@@ -359,10 +371,21 @@ class AsyncScriptsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncScriptsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncScriptsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncScriptsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncScriptsResourceWithStreamingResponse(self)
 
     @overload
@@ -380,12 +403,12 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersScript]:
+    ) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module to a Workers for Platforms namespace.
 
-        You can find an
-        example of the metadata on our docs:
-        https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/metadata/
+        You can find more
+        about the multipart metadata on our docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -426,12 +449,12 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersScript]:
+    ) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module to a Workers for Platforms namespace.
 
-        You can find an
-        example of the metadata on our docs:
-        https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/metadata/
+        You can find more
+        about the multipart metadata on our docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -469,7 +492,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersScript]:
+    ) -> Optional[ScriptUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -491,9 +514,9 @@ class AsyncScriptsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[WorkersScript]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersScript]], ResultWrapper[WorkersScript]),
+            cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
         )
 
     async def delete(
@@ -565,7 +588,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NamespacesScript]:
+    ) -> Optional[Script]:
         """
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
@@ -597,9 +620,9 @@ class AsyncScriptsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[NamespacesScript]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NamespacesScript]], ResultWrapper[NamespacesScript]),
+            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
         )
 
 

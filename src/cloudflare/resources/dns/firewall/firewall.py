@@ -20,6 +20,14 @@ from .analytics import (
     AsyncAnalyticsResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
+from .reverse_dns import (
+    ReverseDNSResource,
+    AsyncReverseDNSResource,
+    ReverseDNSResourceWithRawResponse,
+    AsyncReverseDNSResourceWithRawResponse,
+    ReverseDNSResourceWithStreamingResponse,
+    AsyncReverseDNSResourceWithStreamingResponse,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -32,10 +40,12 @@ from ....types.dns import firewall_edit_params, firewall_list_params, firewall_c
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
-from ....types.dns.firewall.firewall import Firewall
-from ....types.dns.firewall_ips_param import FirewallIPsParam
-from ....types.dns.upstream_ips_param import UpstreamIPsParam
+from ....types.dns.upstream_ips import UpstreamIPs
+from ....types.dns.firewall_get_response import FirewallGetResponse
+from ....types.dns.firewall_edit_response import FirewallEditResponse
+from ....types.dns.firewall_list_response import FirewallListResponse
 from ....types.dns.attack_mitigation_param import AttackMitigationParam
+from ....types.dns.firewall_create_response import FirewallCreateResponse
 from ....types.dns.firewall_delete_response import FirewallDeleteResponse
 
 __all__ = ["FirewallResource", "AsyncFirewallResource"]
@@ -47,11 +57,26 @@ class FirewallResource(SyncAPIResource):
         return AnalyticsResource(self._client)
 
     @cached_property
+    def reverse_dns(self) -> ReverseDNSResource:
+        return ReverseDNSResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> FirewallResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return FirewallResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> FirewallResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return FirewallResourceWithStreamingResponse(self)
 
     def create(
@@ -59,7 +84,7 @@ class FirewallResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        upstream_ips: List[UpstreamIPsParam],
+        upstream_ips: List[UpstreamIPs],
         attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
         deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
         ecs_fallback: bool | NotGiven = NOT_GIVEN,
@@ -74,37 +99,37 @@ class FirewallResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Firewall]:
+    ) -> Optional[FirewallCreateResponse]:
         """
-        Create a configured DNS Firewall Cluster.
+        Create a DNS Firewall cluster
 
         Args:
           account_id: Identifier
 
-          name: DNS Firewall Cluster Name.
+          name: DNS Firewall cluster name
 
-          attack_mitigation: Attack mitigation settings.
+          attack_mitigation: Attack mitigation settings
 
-          deprecate_any_requests: Deprecate the response to ANY requests.
+          deprecate_any_requests: Whether to refuse to answer queries for the ANY type
 
-          ecs_fallback: Forward client IP (resolver) subnet if no EDNS Client Subnet is sent.
+          ecs_fallback: Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent
 
-          maximum_cache_ttl: Maximum DNS cache TTL. This setting sets an upper bound on DNS TTLs for purposes
+          maximum_cache_ttl: Maximum DNS cache TTL This setting sets an upper bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Higher TTLs will be
               decreased to the maximum defined here for caching purposes.
 
-          minimum_cache_ttl: Minimum DNS cache TTL. This setting sets a lower bound on DNS TTLs for purposes
+          minimum_cache_ttl: Minimum DNS cache TTL This setting sets a lower bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Lower TTLs will be
               increased to the minimum defined here for caching purposes.
 
-          negative_cache_ttl: Negative DNS cache TTL. This setting controls how long DNS Firewall should cache
+          negative_cache_ttl: Negative DNS cache TTL This setting controls how long DNS Firewall should cache
               negative responses (e.g., NXDOMAIN) from the upstream servers.
 
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
-              the upstream nameservers configured on the cluster).
+              the upstream nameservers configured on the cluster)
 
           retries: Number of retries for fetching DNS responses from upstream nameservers (not
-              counting the initial attempt).
+              counting the initial attempt)
 
           extra_headers: Send extra headers
 
@@ -138,9 +163,9 @@ class FirewallResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
+                post_parser=ResultWrapper[Optional[FirewallCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
+            cast_to=cast(Type[Optional[FirewallCreateResponse]], ResultWrapper[FirewallCreateResponse]),
         )
 
     def list(
@@ -155,16 +180,16 @@ class FirewallResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[Firewall]:
+    ) -> SyncV4PagePaginationArray[FirewallListResponse]:
         """
-        List configured DNS Firewall clusters for an account.
+        List DNS Firewall clusters for an account
 
         Args:
           account_id: Identifier
 
-          page: Page number of paginated results.
+          page: Page number of paginated results
 
-          per_page: Number of clusters per page.
+          per_page: Number of clusters per page
 
           extra_headers: Send extra headers
 
@@ -178,7 +203,7 @@ class FirewallResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dns_firewall",
-            page=SyncV4PagePaginationArray[Firewall],
+            page=SyncV4PagePaginationArray[FirewallListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -192,7 +217,7 @@ class FirewallResource(SyncAPIResource):
                     firewall_list_params.FirewallListParams,
                 ),
             ),
-            model=Firewall,
+            model=FirewallListResponse,
         )
 
     def delete(
@@ -208,7 +233,7 @@ class FirewallResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[FirewallDeleteResponse]:
         """
-        Delete a configured DNS Firewall Cluster.
+        Delete a DNS Firewall cluster
 
         Args:
           account_id: Identifier
@@ -244,59 +269,55 @@ class FirewallResource(SyncAPIResource):
         dns_firewall_id: str,
         *,
         account_id: str,
-        id: str,
-        deprecate_any_requests: bool,
-        dns_firewall_ips: List[FirewallIPsParam],
-        ecs_fallback: bool,
-        maximum_cache_ttl: float,
-        minimum_cache_ttl: float,
-        name: str,
-        upstream_ips: List[UpstreamIPsParam],
         attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
+        deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
+        ecs_fallback: bool | NotGiven = NOT_GIVEN,
+        maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
+        minimum_cache_ttl: float | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
         ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
         retries: float | NotGiven = NOT_GIVEN,
+        upstream_ips: List[UpstreamIPs] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Firewall]:
+    ) -> Optional[FirewallEditResponse]:
         """
-        Modify a DNS Firewall Cluster configuration.
+        Modify the configuration of a DNS Firewall cluster
 
         Args:
           account_id: Identifier
 
           dns_firewall_id: Identifier
 
-          id: Identifier
+          attack_mitigation: Attack mitigation settings
 
-          deprecate_any_requests: Deprecate the response to ANY requests.
+          deprecate_any_requests: Whether to refuse to answer queries for the ANY type
 
-          ecs_fallback: Forward client IP (resolver) subnet if no EDNS Client Subnet is sent.
+          ecs_fallback: Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent
 
-          maximum_cache_ttl: Maximum DNS cache TTL. This setting sets an upper bound on DNS TTLs for purposes
+          maximum_cache_ttl: Maximum DNS cache TTL This setting sets an upper bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Higher TTLs will be
               decreased to the maximum defined here for caching purposes.
 
-          minimum_cache_ttl: Minimum DNS cache TTL. This setting sets a lower bound on DNS TTLs for purposes
+          minimum_cache_ttl: Minimum DNS cache TTL This setting sets a lower bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Lower TTLs will be
               increased to the minimum defined here for caching purposes.
 
-          name: DNS Firewall Cluster Name.
+          name: DNS Firewall cluster name
 
-          attack_mitigation: Attack mitigation settings.
-
-          negative_cache_ttl: Negative DNS cache TTL. This setting controls how long DNS Firewall should cache
+          negative_cache_ttl: Negative DNS cache TTL This setting controls how long DNS Firewall should cache
               negative responses (e.g., NXDOMAIN) from the upstream servers.
 
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
-              the upstream nameservers configured on the cluster).
+              the upstream nameservers configured on the cluster)
 
           retries: Number of retries for fetching DNS responses from upstream nameservers (not
-              counting the initial attempt).
+              counting the initial attempt)
 
           extra_headers: Send extra headers
 
@@ -314,18 +335,16 @@ class FirewallResource(SyncAPIResource):
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
             body=maybe_transform(
                 {
-                    "id": id,
+                    "attack_mitigation": attack_mitigation,
                     "deprecate_any_requests": deprecate_any_requests,
-                    "dns_firewall_ips": dns_firewall_ips,
                     "ecs_fallback": ecs_fallback,
                     "maximum_cache_ttl": maximum_cache_ttl,
                     "minimum_cache_ttl": minimum_cache_ttl,
                     "name": name,
-                    "upstream_ips": upstream_ips,
-                    "attack_mitigation": attack_mitigation,
                     "negative_cache_ttl": negative_cache_ttl,
                     "ratelimit": ratelimit,
                     "retries": retries,
+                    "upstream_ips": upstream_ips,
                 },
                 firewall_edit_params.FirewallEditParams,
             ),
@@ -334,9 +353,9 @@ class FirewallResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
+                post_parser=ResultWrapper[Optional[FirewallEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
+            cast_to=cast(Type[Optional[FirewallEditResponse]], ResultWrapper[FirewallEditResponse]),
         )
 
     def get(
@@ -350,9 +369,9 @@ class FirewallResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Firewall]:
+    ) -> Optional[FirewallGetResponse]:
         """
-        Show a single configured DNS Firewall cluster for an account.
+        Show a single DNS Firewall cluster for an account
 
         Args:
           account_id: Identifier
@@ -378,9 +397,9 @@ class FirewallResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
+                post_parser=ResultWrapper[Optional[FirewallGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
+            cast_to=cast(Type[Optional[FirewallGetResponse]], ResultWrapper[FirewallGetResponse]),
         )
 
 
@@ -390,11 +409,26 @@ class AsyncFirewallResource(AsyncAPIResource):
         return AsyncAnalyticsResource(self._client)
 
     @cached_property
+    def reverse_dns(self) -> AsyncReverseDNSResource:
+        return AsyncReverseDNSResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncFirewallResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncFirewallResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncFirewallResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncFirewallResourceWithStreamingResponse(self)
 
     async def create(
@@ -402,7 +436,7 @@ class AsyncFirewallResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        upstream_ips: List[UpstreamIPsParam],
+        upstream_ips: List[UpstreamIPs],
         attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
         deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
         ecs_fallback: bool | NotGiven = NOT_GIVEN,
@@ -417,37 +451,37 @@ class AsyncFirewallResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Firewall]:
+    ) -> Optional[FirewallCreateResponse]:
         """
-        Create a configured DNS Firewall Cluster.
+        Create a DNS Firewall cluster
 
         Args:
           account_id: Identifier
 
-          name: DNS Firewall Cluster Name.
+          name: DNS Firewall cluster name
 
-          attack_mitigation: Attack mitigation settings.
+          attack_mitigation: Attack mitigation settings
 
-          deprecate_any_requests: Deprecate the response to ANY requests.
+          deprecate_any_requests: Whether to refuse to answer queries for the ANY type
 
-          ecs_fallback: Forward client IP (resolver) subnet if no EDNS Client Subnet is sent.
+          ecs_fallback: Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent
 
-          maximum_cache_ttl: Maximum DNS cache TTL. This setting sets an upper bound on DNS TTLs for purposes
+          maximum_cache_ttl: Maximum DNS cache TTL This setting sets an upper bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Higher TTLs will be
               decreased to the maximum defined here for caching purposes.
 
-          minimum_cache_ttl: Minimum DNS cache TTL. This setting sets a lower bound on DNS TTLs for purposes
+          minimum_cache_ttl: Minimum DNS cache TTL This setting sets a lower bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Lower TTLs will be
               increased to the minimum defined here for caching purposes.
 
-          negative_cache_ttl: Negative DNS cache TTL. This setting controls how long DNS Firewall should cache
+          negative_cache_ttl: Negative DNS cache TTL This setting controls how long DNS Firewall should cache
               negative responses (e.g., NXDOMAIN) from the upstream servers.
 
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
-              the upstream nameservers configured on the cluster).
+              the upstream nameservers configured on the cluster)
 
           retries: Number of retries for fetching DNS responses from upstream nameservers (not
-              counting the initial attempt).
+              counting the initial attempt)
 
           extra_headers: Send extra headers
 
@@ -481,9 +515,9 @@ class AsyncFirewallResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
+                post_parser=ResultWrapper[Optional[FirewallCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
+            cast_to=cast(Type[Optional[FirewallCreateResponse]], ResultWrapper[FirewallCreateResponse]),
         )
 
     def list(
@@ -498,16 +532,16 @@ class AsyncFirewallResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Firewall, AsyncV4PagePaginationArray[Firewall]]:
+    ) -> AsyncPaginator[FirewallListResponse, AsyncV4PagePaginationArray[FirewallListResponse]]:
         """
-        List configured DNS Firewall clusters for an account.
+        List DNS Firewall clusters for an account
 
         Args:
           account_id: Identifier
 
-          page: Page number of paginated results.
+          page: Page number of paginated results
 
-          per_page: Number of clusters per page.
+          per_page: Number of clusters per page
 
           extra_headers: Send extra headers
 
@@ -521,7 +555,7 @@ class AsyncFirewallResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dns_firewall",
-            page=AsyncV4PagePaginationArray[Firewall],
+            page=AsyncV4PagePaginationArray[FirewallListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -535,7 +569,7 @@ class AsyncFirewallResource(AsyncAPIResource):
                     firewall_list_params.FirewallListParams,
                 ),
             ),
-            model=Firewall,
+            model=FirewallListResponse,
         )
 
     async def delete(
@@ -551,7 +585,7 @@ class AsyncFirewallResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[FirewallDeleteResponse]:
         """
-        Delete a configured DNS Firewall Cluster.
+        Delete a DNS Firewall cluster
 
         Args:
           account_id: Identifier
@@ -587,59 +621,55 @@ class AsyncFirewallResource(AsyncAPIResource):
         dns_firewall_id: str,
         *,
         account_id: str,
-        id: str,
-        deprecate_any_requests: bool,
-        dns_firewall_ips: List[FirewallIPsParam],
-        ecs_fallback: bool,
-        maximum_cache_ttl: float,
-        minimum_cache_ttl: float,
-        name: str,
-        upstream_ips: List[UpstreamIPsParam],
         attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
+        deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
+        ecs_fallback: bool | NotGiven = NOT_GIVEN,
+        maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
+        minimum_cache_ttl: float | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
         ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
         retries: float | NotGiven = NOT_GIVEN,
+        upstream_ips: List[UpstreamIPs] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Firewall]:
+    ) -> Optional[FirewallEditResponse]:
         """
-        Modify a DNS Firewall Cluster configuration.
+        Modify the configuration of a DNS Firewall cluster
 
         Args:
           account_id: Identifier
 
           dns_firewall_id: Identifier
 
-          id: Identifier
+          attack_mitigation: Attack mitigation settings
 
-          deprecate_any_requests: Deprecate the response to ANY requests.
+          deprecate_any_requests: Whether to refuse to answer queries for the ANY type
 
-          ecs_fallback: Forward client IP (resolver) subnet if no EDNS Client Subnet is sent.
+          ecs_fallback: Whether to forward client IP (resolver) subnet if no EDNS Client Subnet is sent
 
-          maximum_cache_ttl: Maximum DNS cache TTL. This setting sets an upper bound on DNS TTLs for purposes
+          maximum_cache_ttl: Maximum DNS cache TTL This setting sets an upper bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Higher TTLs will be
               decreased to the maximum defined here for caching purposes.
 
-          minimum_cache_ttl: Minimum DNS cache TTL. This setting sets a lower bound on DNS TTLs for purposes
+          minimum_cache_ttl: Minimum DNS cache TTL This setting sets a lower bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Lower TTLs will be
               increased to the minimum defined here for caching purposes.
 
-          name: DNS Firewall Cluster Name.
+          name: DNS Firewall cluster name
 
-          attack_mitigation: Attack mitigation settings.
-
-          negative_cache_ttl: Negative DNS cache TTL. This setting controls how long DNS Firewall should cache
+          negative_cache_ttl: Negative DNS cache TTL This setting controls how long DNS Firewall should cache
               negative responses (e.g., NXDOMAIN) from the upstream servers.
 
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
-              the upstream nameservers configured on the cluster).
+              the upstream nameservers configured on the cluster)
 
           retries: Number of retries for fetching DNS responses from upstream nameservers (not
-              counting the initial attempt).
+              counting the initial attempt)
 
           extra_headers: Send extra headers
 
@@ -657,18 +687,16 @@ class AsyncFirewallResource(AsyncAPIResource):
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
             body=await async_maybe_transform(
                 {
-                    "id": id,
+                    "attack_mitigation": attack_mitigation,
                     "deprecate_any_requests": deprecate_any_requests,
-                    "dns_firewall_ips": dns_firewall_ips,
                     "ecs_fallback": ecs_fallback,
                     "maximum_cache_ttl": maximum_cache_ttl,
                     "minimum_cache_ttl": minimum_cache_ttl,
                     "name": name,
-                    "upstream_ips": upstream_ips,
-                    "attack_mitigation": attack_mitigation,
                     "negative_cache_ttl": negative_cache_ttl,
                     "ratelimit": ratelimit,
                     "retries": retries,
+                    "upstream_ips": upstream_ips,
                 },
                 firewall_edit_params.FirewallEditParams,
             ),
@@ -677,9 +705,9 @@ class AsyncFirewallResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
+                post_parser=ResultWrapper[Optional[FirewallEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
+            cast_to=cast(Type[Optional[FirewallEditResponse]], ResultWrapper[FirewallEditResponse]),
         )
 
     async def get(
@@ -693,9 +721,9 @@ class AsyncFirewallResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Firewall]:
+    ) -> Optional[FirewallGetResponse]:
         """
-        Show a single configured DNS Firewall cluster for an account.
+        Show a single DNS Firewall cluster for an account
 
         Args:
           account_id: Identifier
@@ -721,9 +749,9 @@ class AsyncFirewallResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
+                post_parser=ResultWrapper[Optional[FirewallGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
+            cast_to=cast(Type[Optional[FirewallGetResponse]], ResultWrapper[FirewallGetResponse]),
         )
 
 
@@ -751,6 +779,10 @@ class FirewallResourceWithRawResponse:
     def analytics(self) -> AnalyticsResourceWithRawResponse:
         return AnalyticsResourceWithRawResponse(self._firewall.analytics)
 
+    @cached_property
+    def reverse_dns(self) -> ReverseDNSResourceWithRawResponse:
+        return ReverseDNSResourceWithRawResponse(self._firewall.reverse_dns)
+
 
 class AsyncFirewallResourceWithRawResponse:
     def __init__(self, firewall: AsyncFirewallResource) -> None:
@@ -775,6 +807,10 @@ class AsyncFirewallResourceWithRawResponse:
     @cached_property
     def analytics(self) -> AsyncAnalyticsResourceWithRawResponse:
         return AsyncAnalyticsResourceWithRawResponse(self._firewall.analytics)
+
+    @cached_property
+    def reverse_dns(self) -> AsyncReverseDNSResourceWithRawResponse:
+        return AsyncReverseDNSResourceWithRawResponse(self._firewall.reverse_dns)
 
 
 class FirewallResourceWithStreamingResponse:
@@ -801,6 +837,10 @@ class FirewallResourceWithStreamingResponse:
     def analytics(self) -> AnalyticsResourceWithStreamingResponse:
         return AnalyticsResourceWithStreamingResponse(self._firewall.analytics)
 
+    @cached_property
+    def reverse_dns(self) -> ReverseDNSResourceWithStreamingResponse:
+        return ReverseDNSResourceWithStreamingResponse(self._firewall.reverse_dns)
+
 
 class AsyncFirewallResourceWithStreamingResponse:
     def __init__(self, firewall: AsyncFirewallResource) -> None:
@@ -825,3 +865,7 @@ class AsyncFirewallResourceWithStreamingResponse:
     @cached_property
     def analytics(self) -> AsyncAnalyticsResourceWithStreamingResponse:
         return AsyncAnalyticsResourceWithStreamingResponse(self._firewall.analytics)
+
+    @cached_property
+    def reverse_dns(self) -> AsyncReverseDNSResourceWithStreamingResponse:
+        return AsyncReverseDNSResourceWithStreamingResponse(self._firewall.reverse_dns)

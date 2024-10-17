@@ -19,3 +19,15 @@ class ValueUpdateParams(TypedDict, total=False):
 
     value: Required[str]
     """A byte sequence to be stored, up to 25 MiB in length."""
+
+    expiration: float
+    """
+    The time, measured in number of seconds since the UNIX epoch, at which the key
+    should expire.
+    """
+
+    expiration_ttl: float
+    """The number of seconds for which the key should be visible before it expires.
+
+    At least 60.
+    """

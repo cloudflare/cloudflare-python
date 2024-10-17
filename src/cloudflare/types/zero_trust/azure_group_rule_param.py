@@ -13,7 +13,7 @@ class AzureAD(TypedDict, total=False):
     id: Required[str]
     """The ID of an Azure group."""
 
-    connection_id: Required[str]
+    identity_provider_id: Required[str]
     """The ID of your Azure identity provider."""
 
 

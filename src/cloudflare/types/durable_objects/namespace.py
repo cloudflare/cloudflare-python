@@ -10,10 +10,12 @@ __all__ = ["Namespace"]
 
 
 class Namespace(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
 
-    class_: Optional[object] = FieldInfo(alias="class", default=None)
+    class_: Optional[str] = FieldInfo(alias="class", default=None)
 
-    name: Optional[object] = None
+    name: Optional[str] = None
 
-    script: Optional[object] = None
+    script: Optional[str] = None
+
+    use_sqlite: Optional[bool] = None

@@ -47,10 +47,21 @@ class OperationsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> OperationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return OperationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> OperationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return OperationsResourceWithStreamingResponse(self)
 
     def create(
@@ -88,7 +99,7 @@ class OperationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/api_gateway/operations",
-            body=maybe_transform(body, operation_create_params.OperationCreateParams),
+            body=maybe_transform(body, Iterable[operation_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -276,10 +287,21 @@ class AsyncOperationsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncOperationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncOperationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncOperationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncOperationsResourceWithStreamingResponse(self)
 
     async def create(
@@ -317,7 +339,7 @@ class AsyncOperationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/api_gateway/operations",
-            body=await async_maybe_transform(body, operation_create_params.OperationCreateParams),
+            body=await async_maybe_transform(body, Iterable[operation_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

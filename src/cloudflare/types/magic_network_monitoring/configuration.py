@@ -4,7 +4,21 @@ from typing import List
 
 from ..._models import BaseModel
 
-__all__ = ["Configuration"]
+__all__ = ["Configuration", "WARPDevice"]
+
+
+class WARPDevice(BaseModel):
+    id: str
+    """Unique identifier for the warp device."""
+
+    name: str
+    """Name of the warp device."""
+
+    router_ip: str
+    """IPv4 CIDR of the router sourcing flow data associated with this warp device.
+
+    Only /32 addresses are currently supported.
+    """
 
 
 class Configuration(BaseModel):
@@ -18,3 +32,5 @@ class Configuration(BaseModel):
     """The account name."""
 
     router_ips: List[str]
+
+    warp_devices: List[WARPDevice]

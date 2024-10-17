@@ -56,10 +56,21 @@ class PagerulesResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> PagerulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PagerulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PagerulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PagerulesResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
@@ -464,10 +475,21 @@ class AsyncPagerulesResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncPagerulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPagerulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPagerulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPagerulesResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(

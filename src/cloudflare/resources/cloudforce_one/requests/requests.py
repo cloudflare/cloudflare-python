@@ -8,6 +8,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .assets import (
+    AssetsResource,
+    AsyncAssetsResource,
+    AssetsResourceWithRawResponse,
+    AsyncAssetsResourceWithRawResponse,
+    AssetsResourceWithStreamingResponse,
+    AsyncAssetsResourceWithStreamingResponse,
+)
 from .message import (
     MessageResource,
     AsyncMessageResource,
@@ -61,11 +69,26 @@ class RequestsResource(SyncAPIResource):
         return PriorityResource(self._client)
 
     @cached_property
+    def assets(self) -> AssetsResource:
+        return AssetsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> RequestsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return RequestsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> RequestsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return RequestsResourceWithStreamingResponse(self)
 
     def create(
@@ -87,7 +110,7 @@ class RequestsResource(SyncAPIResource):
         """
         Creating a request adds the request into the Cloudforce One queue for analysis.
         In addition to the content, a short title, type, priority, and releasability
-        should be provided. If one is not provided a default will be assigned.
+        should be provided. If one is not provided, a default will be assigned.
 
         Args:
           account_identifier: Identifier
@@ -155,7 +178,7 @@ class RequestsResource(SyncAPIResource):
 
         This API may
         be used to update any attributes of the request after the initial submission.
-        Only fields that you choose to update need to be add to the request body
+        Only fields that you choose to update need to be add to the request body.
 
         Args:
           account_identifier: Identifier
@@ -500,11 +523,26 @@ class AsyncRequestsResource(AsyncAPIResource):
         return AsyncPriorityResource(self._client)
 
     @cached_property
+    def assets(self) -> AsyncAssetsResource:
+        return AsyncAssetsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncRequestsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncRequestsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncRequestsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncRequestsResourceWithStreamingResponse(self)
 
     async def create(
@@ -526,7 +564,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         """
         Creating a request adds the request into the Cloudforce One queue for analysis.
         In addition to the content, a short title, type, priority, and releasability
-        should be provided. If one is not provided a default will be assigned.
+        should be provided. If one is not provided, a default will be assigned.
 
         Args:
           account_identifier: Identifier
@@ -594,7 +632,7 @@ class AsyncRequestsResource(AsyncAPIResource):
 
         This API may
         be used to update any attributes of the request after the initial submission.
-        Only fields that you choose to update need to be add to the request body
+        Only fields that you choose to update need to be add to the request body.
 
         Args:
           account_identifier: Identifier
@@ -966,6 +1004,10 @@ class RequestsResourceWithRawResponse:
     def priority(self) -> PriorityResourceWithRawResponse:
         return PriorityResourceWithRawResponse(self._requests.priority)
 
+    @cached_property
+    def assets(self) -> AssetsResourceWithRawResponse:
+        return AssetsResourceWithRawResponse(self._requests.assets)
+
 
 class AsyncRequestsResourceWithRawResponse:
     def __init__(self, requests: AsyncRequestsResource) -> None:
@@ -1003,6 +1045,10 @@ class AsyncRequestsResourceWithRawResponse:
     @cached_property
     def priority(self) -> AsyncPriorityResourceWithRawResponse:
         return AsyncPriorityResourceWithRawResponse(self._requests.priority)
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithRawResponse:
+        return AsyncAssetsResourceWithRawResponse(self._requests.assets)
 
 
 class RequestsResourceWithStreamingResponse:
@@ -1042,6 +1088,10 @@ class RequestsResourceWithStreamingResponse:
     def priority(self) -> PriorityResourceWithStreamingResponse:
         return PriorityResourceWithStreamingResponse(self._requests.priority)
 
+    @cached_property
+    def assets(self) -> AssetsResourceWithStreamingResponse:
+        return AssetsResourceWithStreamingResponse(self._requests.assets)
+
 
 class AsyncRequestsResourceWithStreamingResponse:
     def __init__(self, requests: AsyncRequestsResource) -> None:
@@ -1079,3 +1129,7 @@ class AsyncRequestsResourceWithStreamingResponse:
     @cached_property
     def priority(self) -> AsyncPriorityResourceWithStreamingResponse:
         return AsyncPriorityResourceWithStreamingResponse(self._requests.priority)
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithStreamingResponse:
+        return AsyncAssetsResourceWithStreamingResponse(self._requests.assets)

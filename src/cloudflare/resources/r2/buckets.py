@@ -22,9 +22,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncCursorPagination, AsyncCursorPagination
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.r2.bucket import Bucket
+from ...types.r2.bucket_list_response import BucketListResponse
 
 __all__ = ["BucketsResource", "AsyncBucketsResource"]
 
@@ -32,10 +32,21 @@ __all__ = ["BucketsResource", "AsyncBucketsResource"]
 class BucketsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BucketsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return BucketsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> BucketsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return BucketsResourceWithStreamingResponse(self)
 
     def create(
@@ -110,7 +121,7 @@ class BucketsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorPagination[Bucket]:
+    ) -> BucketListResponse:
         """
         Lists all R2 buckets on your account
 
@@ -141,9 +152,8 @@ class BucketsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/accounts/{account_id}/r2/buckets",
-            page=SyncCursorPagination[Bucket],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -160,8 +170,9 @@ class BucketsResource(SyncAPIResource):
                     },
                     bucket_list_params.BucketListParams,
                 ),
+                post_parser=ResultWrapper[BucketListResponse]._unwrapper,
             ),
-            model=Bucket,
+            cast_to=cast(Type[BucketListResponse], ResultWrapper[BucketListResponse]),
         )
 
     def delete(
@@ -256,10 +267,21 @@ class BucketsResource(SyncAPIResource):
 class AsyncBucketsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBucketsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncBucketsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncBucketsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncBucketsResourceWithStreamingResponse(self)
 
     async def create(
@@ -318,7 +340,7 @@ class AsyncBucketsResource(AsyncAPIResource):
             cast_to=cast(Type[Bucket], ResultWrapper[Bucket]),
         )
 
-    def list(
+    async def list(
         self,
         *,
         account_id: str,
@@ -334,7 +356,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Bucket, AsyncCursorPagination[Bucket]]:
+    ) -> BucketListResponse:
         """
         Lists all R2 buckets on your account
 
@@ -365,15 +387,14 @@ class AsyncBucketsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/accounts/{account_id}/r2/buckets",
-            page=AsyncCursorPagination[Bucket],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "cursor": cursor,
                         "direction": direction,
@@ -384,8 +405,9 @@ class AsyncBucketsResource(AsyncAPIResource):
                     },
                     bucket_list_params.BucketListParams,
                 ),
+                post_parser=ResultWrapper[BucketListResponse]._unwrapper,
             ),
-            model=Bucket,
+            cast_to=cast(Type[BucketListResponse], ResultWrapper[BucketListResponse]),
         )
 
     async def delete(

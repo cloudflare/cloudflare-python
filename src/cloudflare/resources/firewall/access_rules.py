@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -23,11 +23,8 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.firewall import access_rule_edit_params, access_rule_list_params, access_rule_create_params
-from ...types.firewall.access_rule_get_response import AccessRuleGetResponse
-from ...types.firewall.access_rule_edit_response import AccessRuleEditResponse
-from ...types.firewall.access_rule_create_response import AccessRuleCreateResponse
-from ...types.firewall.access_rule_delete_response import AccessRuleDeleteResponse
+from ...types.firewall import access_rule_list_params, access_rule_create_params
+from ...types.firewall.waf.waf_rule import WAFRule
 
 __all__ = ["AccessRulesResource", "AsyncAccessRulesResource"]
 
@@ -35,10 +32,21 @@ __all__ = ["AccessRulesResource", "AsyncAccessRulesResource"]
 class AccessRulesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AccessRulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AccessRulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AccessRulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AccessRulesResourceWithStreamingResponse(self)
 
     def create(
@@ -55,7 +63,7 @@ class AccessRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessRuleCreateResponse:
+    ) -> WAFRule:
         """Creates a new IP Access rule for an account or zone.
 
         The rule will apply to all
@@ -95,29 +103,24 @@ class AccessRulesResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return cast(
-            AccessRuleCreateResponse,
-            self._post(
-                f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules",
-                body=maybe_transform(
-                    {
-                        "configuration": configuration,
-                        "mode": mode,
-                        "notes": notes,
-                    },
-                    access_rule_create_params.AccessRuleCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[AccessRuleCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AccessRuleCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules",
+            body=maybe_transform(
+                {
+                    "configuration": configuration,
+                    "mode": mode,
+                    "notes": notes,
+                },
+                access_rule_create_params.AccessRuleCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WAFRule]._unwrapper,
+            ),
+            cast_to=cast(Type[WAFRule], ResultWrapper[WAFRule]),
         )
 
     def list(
@@ -125,9 +128,11 @@ class AccessRulesResource(SyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        configuration: access_rule_list_params.Configuration | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        egs_pagination: access_rule_list_params.EgsPagination | NotGiven = NOT_GIVEN,
-        filters: access_rule_list_params.Filters | NotGiven = NOT_GIVEN,
+        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"] | NotGiven = NOT_GIVEN,
+        notes: str | NotGiven = NOT_GIVEN,
         order: Literal["configuration.target", "configuration.value", "mode"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -137,7 +142,7 @@ class AccessRulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[object]:
+    ) -> SyncV4PagePaginationArray[WAFRule]:
         """Fetches IP Access rules of an account or zone.
 
         These rules apply to all the
@@ -150,6 +155,15 @@ class AccessRulesResource(SyncAPIResource):
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           direction: The direction used to sort returned rules.
+
+          match: When set to `all`, all the search requirements must match. When set to `any`,
+              only one of the search requirements has to match.
+
+          mode: The action to apply to a matched request.
+
+          notes: The string to search for in the notes of existing IP Access rules. Notes: For
+              example, the string 'attack' would match IP Access rules with notes 'Attack
+              26/02' and 'Attack 27/02'. The search is case insensitive.
 
           order: The field used to sort returned rules.
 
@@ -179,7 +193,7 @@ class AccessRulesResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules",
-            page=SyncV4PagePaginationArray[object],
+            page=SyncV4PagePaginationArray[WAFRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -187,9 +201,11 @@ class AccessRulesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "configuration": configuration,
                         "direction": direction,
-                        "egs_pagination": egs_pagination,
-                        "filters": filters,
+                        "match": match,
+                        "mode": mode,
+                        "notes": notes,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
@@ -197,207 +213,28 @@ class AccessRulesResource(SyncAPIResource):
                     access_rule_list_params.AccessRuleListParams,
                 ),
             ),
-            model=object,
-        )
-
-    def delete(
-        self,
-        identifier: object,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccessRuleDeleteResponse]:
-        """
-        Deletes an existing IP Access rule defined.
-
-        Note: This operation will affect all zones in the account or zone.
-
-        Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
-
-        if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
-        else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
-
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AccessRuleDeleteResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[AccessRuleDeleteResponse]], ResultWrapper[AccessRuleDeleteResponse]),
-        )
-
-    def edit(
-        self,
-        identifier: object,
-        *,
-        configuration: access_rule_edit_params.Configuration,
-        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        notes: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessRuleEditResponse:
-        """
-        Updates an IP Access rule defined.
-
-        Note: This operation will affect all zones in the account or zone.
-
-        Args:
-          configuration: The rule configuration.
-
-          mode: The action to apply to a matched request.
-
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          notes: An informative summary of the rule, typically used as a reminder or explanation.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
-
-        if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
-        else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
-
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return cast(
-            AccessRuleEditResponse,
-            self._patch(
-                f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
-                body=maybe_transform(
-                    {
-                        "configuration": configuration,
-                        "mode": mode,
-                        "notes": notes,
-                    },
-                    access_rule_edit_params.AccessRuleEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[AccessRuleEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AccessRuleEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
-    def get(
-        self,
-        identifier: object,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessRuleGetResponse:
-        """
-        Fetches the details of an IP Access rule defined.
-
-        Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
-
-        if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
-        else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
-
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return cast(
-            AccessRuleGetResponse,
-            self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[AccessRuleGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AccessRuleGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
+            model=WAFRule,
         )
 
 
 class AsyncAccessRulesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAccessRulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAccessRulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAccessRulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAccessRulesResourceWithStreamingResponse(self)
 
     async def create(
@@ -414,7 +251,7 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessRuleCreateResponse:
+    ) -> WAFRule:
         """Creates a new IP Access rule for an account or zone.
 
         The rule will apply to all
@@ -454,29 +291,24 @@ class AsyncAccessRulesResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return cast(
-            AccessRuleCreateResponse,
-            await self._post(
-                f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules",
-                body=await async_maybe_transform(
-                    {
-                        "configuration": configuration,
-                        "mode": mode,
-                        "notes": notes,
-                    },
-                    access_rule_create_params.AccessRuleCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[AccessRuleCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AccessRuleCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules",
+            body=await async_maybe_transform(
+                {
+                    "configuration": configuration,
+                    "mode": mode,
+                    "notes": notes,
+                },
+                access_rule_create_params.AccessRuleCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WAFRule]._unwrapper,
+            ),
+            cast_to=cast(Type[WAFRule], ResultWrapper[WAFRule]),
         )
 
     def list(
@@ -484,9 +316,11 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        configuration: access_rule_list_params.Configuration | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        egs_pagination: access_rule_list_params.EgsPagination | NotGiven = NOT_GIVEN,
-        filters: access_rule_list_params.Filters | NotGiven = NOT_GIVEN,
+        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"] | NotGiven = NOT_GIVEN,
+        notes: str | NotGiven = NOT_GIVEN,
         order: Literal["configuration.target", "configuration.value", "mode"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -496,7 +330,7 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[object, AsyncV4PagePaginationArray[object]]:
+    ) -> AsyncPaginator[WAFRule, AsyncV4PagePaginationArray[WAFRule]]:
         """Fetches IP Access rules of an account or zone.
 
         These rules apply to all the
@@ -509,6 +343,15 @@ class AsyncAccessRulesResource(AsyncAPIResource):
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           direction: The direction used to sort returned rules.
+
+          match: When set to `all`, all the search requirements must match. When set to `any`,
+              only one of the search requirements has to match.
+
+          mode: The action to apply to a matched request.
+
+          notes: The string to search for in the notes of existing IP Access rules. Notes: For
+              example, the string 'attack' would match IP Access rules with notes 'Attack
+              26/02' and 'Attack 27/02'. The search is case insensitive.
 
           order: The field used to sort returned rules.
 
@@ -538,7 +381,7 @@ class AsyncAccessRulesResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules",
-            page=AsyncV4PagePaginationArray[object],
+            page=AsyncV4PagePaginationArray[WAFRule],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -546,9 +389,11 @@ class AsyncAccessRulesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "configuration": configuration,
                         "direction": direction,
-                        "egs_pagination": egs_pagination,
-                        "filters": filters,
+                        "match": match,
+                        "mode": mode,
+                        "notes": notes,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
@@ -556,197 +401,7 @@ class AsyncAccessRulesResource(AsyncAPIResource):
                     access_rule_list_params.AccessRuleListParams,
                 ),
             ),
-            model=object,
-        )
-
-    async def delete(
-        self,
-        identifier: object,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccessRuleDeleteResponse]:
-        """
-        Deletes an existing IP Access rule defined.
-
-        Note: This operation will affect all zones in the account or zone.
-
-        Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
-
-        if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
-        else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
-
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return await self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AccessRuleDeleteResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[AccessRuleDeleteResponse]], ResultWrapper[AccessRuleDeleteResponse]),
-        )
-
-    async def edit(
-        self,
-        identifier: object,
-        *,
-        configuration: access_rule_edit_params.Configuration,
-        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        notes: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessRuleEditResponse:
-        """
-        Updates an IP Access rule defined.
-
-        Note: This operation will affect all zones in the account or zone.
-
-        Args:
-          configuration: The rule configuration.
-
-          mode: The action to apply to a matched request.
-
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          notes: An informative summary of the rule, typically used as a reminder or explanation.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
-
-        if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
-        else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
-
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return cast(
-            AccessRuleEditResponse,
-            await self._patch(
-                f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
-                body=await async_maybe_transform(
-                    {
-                        "configuration": configuration,
-                        "mode": mode,
-                        "notes": notes,
-                    },
-                    access_rule_edit_params.AccessRuleEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[AccessRuleEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AccessRuleEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
-        )
-
-    async def get(
-        self,
-        identifier: object,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccessRuleGetResponse:
-        """
-        Fetches the details of an IP Access rule defined.
-
-        Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
-
-        if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
-        else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
-
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return cast(
-            AccessRuleGetResponse,
-            await self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{identifier}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[AccessRuleGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AccessRuleGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
-            ),
+            model=WAFRule,
         )
 
 
@@ -760,15 +415,6 @@ class AccessRulesResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             access_rules.list,
         )
-        self.delete = to_raw_response_wrapper(
-            access_rules.delete,
-        )
-        self.edit = to_raw_response_wrapper(
-            access_rules.edit,
-        )
-        self.get = to_raw_response_wrapper(
-            access_rules.get,
-        )
 
 
 class AsyncAccessRulesResourceWithRawResponse:
@@ -780,15 +426,6 @@ class AsyncAccessRulesResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             access_rules.list,
-        )
-        self.delete = async_to_raw_response_wrapper(
-            access_rules.delete,
-        )
-        self.edit = async_to_raw_response_wrapper(
-            access_rules.edit,
-        )
-        self.get = async_to_raw_response_wrapper(
-            access_rules.get,
         )
 
 
@@ -802,15 +439,6 @@ class AccessRulesResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             access_rules.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            access_rules.delete,
-        )
-        self.edit = to_streamed_response_wrapper(
-            access_rules.edit,
-        )
-        self.get = to_streamed_response_wrapper(
-            access_rules.get,
-        )
 
 
 class AsyncAccessRulesResourceWithStreamingResponse:
@@ -822,13 +450,4 @@ class AsyncAccessRulesResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             access_rules.list,
-        )
-        self.delete = async_to_streamed_response_wrapper(
-            access_rules.delete,
-        )
-        self.edit = async_to_streamed_response_wrapper(
-            access_rules.edit,
-        )
-        self.get = async_to_streamed_response_wrapper(
-            access_rules.get,
         )

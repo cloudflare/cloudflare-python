@@ -10,6 +10,12 @@ __all__ = ["SettingUpdateParams"]
 class SettingUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
+    disable_for_time: float
+    """
+    Sets the time limit, in seconds, that a user can use an override code to bypass
+    WARP.
+    """
+
     gateway_proxy_enabled: bool
     """Enable gateway proxy filtering on TCP."""
 

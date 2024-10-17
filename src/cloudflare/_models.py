@@ -380,6 +380,8 @@ def is_basemodel(type_: type) -> bool:
 
 def is_basemodel_type(type_: type) -> TypeGuard[type[BaseModel] | type[GenericModel]]:
     origin = get_origin(type_) or type_
+    if not inspect.isclass(origin):
+        return False
     return issubclass(origin, BaseModel) or issubclass(origin, GenericModel)
 
 
@@ -404,6 +406,15 @@ def build(
         )
 
     return cast(_BaseModelT, construct_type(type_=base_model_cls, value=kwargs))
+
+
+def construct_type_unchecked(*, value: object, type_: type[_T]) -> _T:
+    """Loose coercion to the expected type with construction of nested values.
+
+    Note: the returned value from this function is not guaranteed to match the
+    given type.
+    """
+    return cast(_T, construct_type(value=value, type_=type_))
 
 
 def construct_type(*, value: object, type_: object) -> object:

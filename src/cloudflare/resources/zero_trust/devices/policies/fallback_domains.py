@@ -22,7 +22,6 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.devices.policies import fallback_domain_update_params
 from .....types.zero_trust.devices.policies.fallback_domain import FallbackDomain
 from .....types.zero_trust.devices.policies.fallback_domain_param import FallbackDomainParam
 from .....types.zero_trust.devices.policies.fallback_domain_get_response import FallbackDomainGetResponse
@@ -34,10 +33,21 @@ __all__ = ["FallbackDomainsResource", "AsyncFallbackDomainsResource"]
 class FallbackDomainsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> FallbackDomainsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return FallbackDomainsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> FallbackDomainsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return FallbackDomainsResourceWithStreamingResponse(self)
 
     def update(
@@ -76,7 +86,7 @@ class FallbackDomainsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._put(
             f"/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
-            body=maybe_transform(body, fallback_domain_update_params.FallbackDomainUpdateParams),
+            body=maybe_transform(body, Iterable[FallbackDomainParam]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -171,10 +181,21 @@ class FallbackDomainsResource(SyncAPIResource):
 class AsyncFallbackDomainsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncFallbackDomainsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncFallbackDomainsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncFallbackDomainsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncFallbackDomainsResourceWithStreamingResponse(self)
 
     async def update(
@@ -213,7 +234,7 @@ class AsyncFallbackDomainsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._put(
             f"/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
-            body=await async_maybe_transform(body, fallback_domain_update_params.FallbackDomainUpdateParams),
+            body=await async_maybe_transform(body, Iterable[FallbackDomainParam]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

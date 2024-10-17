@@ -4,6 +4,7 @@ from typing import Optional
 from datetime import datetime
 
 from ...._models import BaseModel
+from .setting_value import SettingValue
 
 __all__ = ["TLSDeleteResponse"]
 
@@ -16,8 +17,10 @@ class TLSDeleteResponse(BaseModel):
     """The hostname for which the tls settings are set."""
 
     status: Optional[str] = None
+    """Deployment status for the given tls setting."""
 
     updated_at: Optional[datetime] = None
     """This is the time the tls setting was updated."""
 
-    value: Optional[str] = None
+    value: Optional[SettingValue] = None
+    """The tls setting value."""

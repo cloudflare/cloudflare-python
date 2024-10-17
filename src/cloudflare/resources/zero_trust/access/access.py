@@ -86,6 +86,14 @@ from .custom_pages import (
     CustomPagesResourceWithStreamingResponse,
     AsyncCustomPagesResourceWithStreamingResponse,
 )
+from .infrastructure import (
+    InfrastructureResource,
+    AsyncInfrastructureResource,
+    InfrastructureResourceWithRawResponse,
+    AsyncInfrastructureResourceWithRawResponse,
+    InfrastructureResourceWithStreamingResponse,
+    AsyncInfrastructureResourceWithStreamingResponse,
+)
 from .service_tokens import (
     ServiceTokensResource,
     AsyncServiceTokensResource,
@@ -96,11 +104,16 @@ from .service_tokens import (
 )
 from .applications.applications import ApplicationsResource, AsyncApplicationsResource
 from .certificates.certificates import CertificatesResource, AsyncCertificatesResource
+from .infrastructure.infrastructure import InfrastructureResource, AsyncInfrastructureResource
 
 __all__ = ["AccessResource", "AsyncAccessResource"]
 
 
 class AccessResource(SyncAPIResource):
+    @cached_property
+    def infrastructure(self) -> InfrastructureResource:
+        return InfrastructureResource(self._client)
+
     @cached_property
     def applications(self) -> ApplicationsResource:
         return ApplicationsResource(self._client)
@@ -147,14 +160,29 @@ class AccessResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AccessResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AccessResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AccessResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AccessResourceWithStreamingResponse(self)
 
 
 class AsyncAccessResource(AsyncAPIResource):
+    @cached_property
+    def infrastructure(self) -> AsyncInfrastructureResource:
+        return AsyncInfrastructureResource(self._client)
+
     @cached_property
     def applications(self) -> AsyncApplicationsResource:
         return AsyncApplicationsResource(self._client)
@@ -201,16 +229,31 @@ class AsyncAccessResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncAccessResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAccessResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAccessResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAccessResourceWithStreamingResponse(self)
 
 
 class AccessResourceWithRawResponse:
     def __init__(self, access: AccessResource) -> None:
         self._access = access
+
+    @cached_property
+    def infrastructure(self) -> InfrastructureResourceWithRawResponse:
+        return InfrastructureResourceWithRawResponse(self._access.infrastructure)
 
     @cached_property
     def applications(self) -> ApplicationsResourceWithRawResponse:
@@ -262,6 +305,10 @@ class AsyncAccessResourceWithRawResponse:
         self._access = access
 
     @cached_property
+    def infrastructure(self) -> AsyncInfrastructureResourceWithRawResponse:
+        return AsyncInfrastructureResourceWithRawResponse(self._access.infrastructure)
+
+    @cached_property
     def applications(self) -> AsyncApplicationsResourceWithRawResponse:
         return AsyncApplicationsResourceWithRawResponse(self._access.applications)
 
@@ -311,6 +358,10 @@ class AccessResourceWithStreamingResponse:
         self._access = access
 
     @cached_property
+    def infrastructure(self) -> InfrastructureResourceWithStreamingResponse:
+        return InfrastructureResourceWithStreamingResponse(self._access.infrastructure)
+
+    @cached_property
     def applications(self) -> ApplicationsResourceWithStreamingResponse:
         return ApplicationsResourceWithStreamingResponse(self._access.applications)
 
@@ -358,6 +409,10 @@ class AccessResourceWithStreamingResponse:
 class AsyncAccessResourceWithStreamingResponse:
     def __init__(self, access: AsyncAccessResource) -> None:
         self._access = access
+
+    @cached_property
+    def infrastructure(self) -> AsyncInfrastructureResourceWithStreamingResponse:
+        return AsyncInfrastructureResourceWithStreamingResponse(self._access.infrastructure)
 
     @cached_property
     def applications(self) -> AsyncApplicationsResourceWithStreamingResponse:
