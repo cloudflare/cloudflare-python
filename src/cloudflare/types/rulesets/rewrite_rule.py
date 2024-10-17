@@ -105,7 +105,7 @@ class Ratelimit(BaseModel):
     time.
     """
 
-    score_response_header_name: Optional[int] = None
+    score_response_header_name: Optional[str] = None
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
