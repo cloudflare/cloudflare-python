@@ -61,7 +61,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -150,7 +150,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -239,7 +239,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -353,7 +353,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -442,7 +442,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -531,7 +531,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -620,7 +620,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -719,7 +719,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -819,7 +819,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -915,7 +915,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -1004,7 +1004,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -1097,7 +1097,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -1208,7 +1208,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -1303,7 +1303,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -1471,7 +1471,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -1564,7 +1564,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -1653,7 +1653,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -1742,7 +1742,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -1920,7 +1920,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -2023,7 +2023,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -2126,7 +2126,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -2254,7 +2254,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -2357,7 +2357,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -2460,7 +2460,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -2563,7 +2563,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -2676,7 +2676,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -2790,7 +2790,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -2900,7 +2900,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -3003,7 +3003,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -3110,7 +3110,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -3235,7 +3235,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -3344,7 +3344,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -3526,7 +3526,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -3633,7 +3633,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -3736,7 +3736,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -3839,7 +3839,7 @@ class TestRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -3950,7 +3950,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -4039,7 +4039,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -4128,7 +4128,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -4242,7 +4242,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -4331,7 +4331,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -4420,7 +4420,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -4509,7 +4509,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -4608,7 +4608,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -4708,7 +4708,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -4804,7 +4804,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -4893,7 +4893,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -4986,7 +4986,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -5097,7 +5097,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -5192,7 +5192,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -5360,7 +5360,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -5453,7 +5453,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -5542,7 +5542,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -5631,7 +5631,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -5809,7 +5809,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -5912,7 +5912,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -6015,7 +6015,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -6143,7 +6143,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -6246,7 +6246,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -6349,7 +6349,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -6452,7 +6452,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -6565,7 +6565,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -6679,7 +6679,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -6789,7 +6789,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -6892,7 +6892,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -6999,7 +6999,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -7124,7 +7124,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -7233,7 +7233,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -7415,7 +7415,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -7522,7 +7522,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -7625,7 +7625,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )
@@ -7728,7 +7728,7 @@ class TestAsyncRules:
                 "requests_per_period": 1000,
                 "requests_to_origin": True,
                 "score_per_period": 400,
-                "score_response_header_name": 0,
+                "score_response_header_name": "my-score",
             },
             ref="my_ref",
         )

@@ -219,7 +219,7 @@ class BlockRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -312,7 +312,7 @@ class RulesetsChallengeRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -415,7 +415,7 @@ class CompressResponseRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -585,7 +585,7 @@ class ExecuteRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -678,7 +678,7 @@ class RulesetsJSChallengeRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -771,7 +771,7 @@ class LogRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -864,7 +864,7 @@ class ManagedChallengeRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -1000,7 +1000,7 @@ class RedirectRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -1134,7 +1134,7 @@ class RewriteRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -1251,7 +1251,7 @@ class RouteRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -1352,7 +1352,7 @@ class ScoreRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -1456,7 +1456,7 @@ class ServeErrorRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -1613,7 +1613,7 @@ class SetConfigRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -1735,7 +1735,7 @@ class SkipRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -2101,7 +2101,7 @@ class SetCacheSettingsRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -2220,7 +2220,7 @@ class LogCustomFieldRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -2313,7 +2313,7 @@ class DDoSDynamicRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
@@ -2406,7 +2406,7 @@ class ForceConnectionCloseRuleRatelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.

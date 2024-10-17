@@ -105,7 +105,7 @@ class Ratelimit(TypedDict, total=False):
     time.
     """
 
-    score_response_header_name: int
+    score_response_header_name: str
     """
     The response header name provided by the origin which should contain the score
     to increment ratelimit counter on.
