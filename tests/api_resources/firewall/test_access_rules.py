@@ -3,17 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.firewall import (
-    AccessRuleDeleteResponse,
-)
-from cloudflare.types.firewall.waf import WAFRule
+from cloudflare.types.firewall import AccessRuleCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +26,7 @@ class TestAccessRules:
             mode="block",
             account_id="account_id",
         )
-        assert_matches_type(WAFRule, access_rule, path=["response"])
+        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -43,7 +40,7 @@ class TestAccessRules:
             account_id="account_id",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
-        assert_matches_type(WAFRule, access_rule, path=["response"])
+        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -57,7 +54,7 @@ class TestAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = response.parse()
-        assert_matches_type(WAFRule, access_rule, path=["response"])
+        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -71,7 +68,7 @@ class TestAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = response.parse()
-            assert_matches_type(WAFRule, access_rule, path=["response"])
+            assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -98,7 +95,7 @@ class TestAccessRules:
         access_rule = client.firewall.access_rules.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncV4PagePaginationArray[WAFRule], access_rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[object], access_rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -117,7 +114,7 @@ class TestAccessRules:
             page=1,
             per_page=20,
         )
-        assert_matches_type(SyncV4PagePaginationArray[WAFRule], access_rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[object], access_rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -129,7 +126,7 @@ class TestAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[WAFRule], access_rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[object], access_rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -141,7 +138,7 @@ class TestAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[WAFRule], access_rule, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[object], access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -158,225 +155,6 @@ class TestAccessRules:
                 account_id="account_id",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_delete(self, client: Cloudflare) -> None:
-        access_rule = client.firewall.access_rules.delete(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-        assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
-        access_rule = client.firewall.access_rules.delete(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-        assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.firewall.access_rules.with_raw_response.delete(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        access_rule = response.parse()
-        assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.firewall.access_rules.with_streaming_response.delete(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            access_rule = response.parse()
-            assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
-            client.firewall.access_rules.with_raw_response.delete(
-                rule_id="",
-                account_id="account_id",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.firewall.access_rules.with_raw_response.delete(
-                rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.firewall.access_rules.with_raw_response.delete(
-                rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="account_id",
-            )
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_edit(self, client: Cloudflare) -> None:
-        access_rule = client.firewall.access_rules.edit(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="block",
-            account_id="account_id",
-        )
-        assert_matches_type(WAFRule, access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
-        access_rule = client.firewall.access_rules.edit(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={
-                "target": "ip",
-                "value": "198.51.100.4",
-            },
-            mode="block",
-            account_id="account_id",
-            notes="This rule is enabled because of an event that occurred on date X.",
-        )
-        assert_matches_type(WAFRule, access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_raw_response_edit(self, client: Cloudflare) -> None:
-        response = client.firewall.access_rules.with_raw_response.edit(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="block",
-            account_id="account_id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        access_rule = response.parse()
-        assert_matches_type(WAFRule, access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_streaming_response_edit(self, client: Cloudflare) -> None:
-        with client.firewall.access_rules.with_streaming_response.edit(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="block",
-            account_id="account_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            access_rule = response.parse()
-            assert_matches_type(WAFRule, access_rule, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_path_params_edit(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
-            client.firewall.access_rules.with_raw_response.edit(
-                rule_id="",
-                configuration={},
-                mode="block",
-                account_id="account_id",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.firewall.access_rules.with_raw_response.edit(
-                rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-                configuration={},
-                mode="block",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.firewall.access_rules.with_raw_response.edit(
-                rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-                configuration={},
-                mode="block",
-                account_id="account_id",
-            )
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_get(self, client: Cloudflare) -> None:
-        access_rule = client.firewall.access_rules.get(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-        assert_matches_type(WAFRule, access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
-        access_rule = client.firewall.access_rules.get(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-        assert_matches_type(WAFRule, access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.firewall.access_rules.with_raw_response.get(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        access_rule = response.parse()
-        assert_matches_type(WAFRule, access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.firewall.access_rules.with_streaming_response.get(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            access_rule = response.parse()
-            assert_matches_type(WAFRule, access_rule, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
-            client.firewall.access_rules.with_raw_response.get(
-                rule_id="",
-                account_id="account_id",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.firewall.access_rules.with_raw_response.get(
-                rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.firewall.access_rules.with_raw_response.get(
-                rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="account_id",
-            )
-
 
 class TestAsyncAccessRules:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -389,7 +167,7 @@ class TestAsyncAccessRules:
             mode="block",
             account_id="account_id",
         )
-        assert_matches_type(WAFRule, access_rule, path=["response"])
+        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -403,7 +181,7 @@ class TestAsyncAccessRules:
             account_id="account_id",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
-        assert_matches_type(WAFRule, access_rule, path=["response"])
+        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -417,7 +195,7 @@ class TestAsyncAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = await response.parse()
-        assert_matches_type(WAFRule, access_rule, path=["response"])
+        assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -431,7 +209,7 @@ class TestAsyncAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = await response.parse()
-            assert_matches_type(WAFRule, access_rule, path=["response"])
+            assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -458,7 +236,7 @@ class TestAsyncAccessRules:
         access_rule = await async_client.firewall.access_rules.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[WAFRule], access_rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[object], access_rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -477,7 +255,7 @@ class TestAsyncAccessRules:
             page=1,
             per_page=20,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[WAFRule], access_rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[object], access_rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -489,7 +267,7 @@ class TestAsyncAccessRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         access_rule = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[WAFRule], access_rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[object], access_rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -501,7 +279,7 @@ class TestAsyncAccessRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             access_rule = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[WAFRule], access_rule, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[object], access_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -515,224 +293,5 @@ class TestAsyncAccessRules:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.list(
-                account_id="account_id",
-            )
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        access_rule = await async_client.firewall.access_rules.delete(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-        assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        access_rule = await async_client.firewall.access_rules.delete(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-        assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.firewall.access_rules.with_raw_response.delete(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        access_rule = await response.parse()
-        assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.firewall.access_rules.with_streaming_response.delete(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            access_rule = await response.parse()
-            assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
-            await async_client.firewall.access_rules.with_raw_response.delete(
-                rule_id="",
-                account_id="account_id",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.firewall.access_rules.with_raw_response.delete(
-                rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.firewall.access_rules.with_raw_response.delete(
-                rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="account_id",
-            )
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
-        access_rule = await async_client.firewall.access_rules.edit(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="block",
-            account_id="account_id",
-        )
-        assert_matches_type(WAFRule, access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        access_rule = await async_client.firewall.access_rules.edit(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={
-                "target": "ip",
-                "value": "198.51.100.4",
-            },
-            mode="block",
-            account_id="account_id",
-            notes="This rule is enabled because of an event that occurred on date X.",
-        )
-        assert_matches_type(WAFRule, access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.firewall.access_rules.with_raw_response.edit(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="block",
-            account_id="account_id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        access_rule = await response.parse()
-        assert_matches_type(WAFRule, access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.firewall.access_rules.with_streaming_response.edit(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="block",
-            account_id="account_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            access_rule = await response.parse()
-            assert_matches_type(WAFRule, access_rule, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
-            await async_client.firewall.access_rules.with_raw_response.edit(
-                rule_id="",
-                configuration={},
-                mode="block",
-                account_id="account_id",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.firewall.access_rules.with_raw_response.edit(
-                rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-                configuration={},
-                mode="block",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.firewall.access_rules.with_raw_response.edit(
-                rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-                configuration={},
-                mode="block",
-                account_id="account_id",
-            )
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        access_rule = await async_client.firewall.access_rules.get(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-        assert_matches_type(WAFRule, access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        access_rule = await async_client.firewall.access_rules.get(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-        assert_matches_type(WAFRule, access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.firewall.access_rules.with_raw_response.get(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        access_rule = await response.parse()
-        assert_matches_type(WAFRule, access_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.firewall.access_rules.with_streaming_response.get(
-            rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="account_id",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            access_rule = await response.parse()
-            assert_matches_type(WAFRule, access_rule, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
-            await async_client.firewall.access_rules.with_raw_response.get(
-                rule_id="",
-                account_id="account_id",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.firewall.access_rules.with_raw_response.get(
-                rule_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.firewall.access_rules.with_raw_response.get(
-                rule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="account_id",
             )
