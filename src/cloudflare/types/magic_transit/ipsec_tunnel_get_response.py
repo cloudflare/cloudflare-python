@@ -7,7 +7,6 @@ from typing_extensions import Literal, TypeAlias
 from ..._models import BaseModel
 from .psk_metadata import PSKMetadata
 from .health_check_rate import HealthCheckRate
-from .health_check_type import HealthCheckType
 
 __all__ = [
     "IPSECTunnelGetResponse",
@@ -64,7 +63,7 @@ class IPSECTunnelHealthCheck(BaseModel):
     x-magic-new-hc-target is absent or set to false.
     """
 
-    type: Optional[HealthCheckType] = None
+    type: Optional[Literal["reply", "request"]] = None
     """The type of healthcheck to run, reply or request. The default value is `reply`."""
 
 

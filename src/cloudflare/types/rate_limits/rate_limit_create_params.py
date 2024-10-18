@@ -11,6 +11,9 @@ __all__ = ["RateLimitCreateParams", "Action", "ActionResponse", "Match", "MatchH
 
 
 class RateLimitCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     action: Required[Action]
     """
     The action to perform when the threshold of matched traffic within the
