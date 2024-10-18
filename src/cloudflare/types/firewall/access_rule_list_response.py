@@ -11,7 +11,7 @@ from .country_configuration import CountryConfiguration
 from .access_rule_ip_configuration import AccessRuleIPConfiguration
 from .access_rule_cidr_configuration import AccessRuleCIDRConfiguration
 
-__all__ = ["AccessRuleGetResponse", "Configuration", "Scope"]
+__all__ = ["AccessRuleListResponse", "Configuration", "Scope"]
 
 Configuration: TypeAlias = Union[
     AccessRuleIPConfiguration, IPV6Configuration, AccessRuleCIDRConfiguration, ASNConfiguration, CountryConfiguration
@@ -29,7 +29,7 @@ class Scope(BaseModel):
     """The scope of the rule."""
 
 
-class AccessRuleGetResponse(BaseModel):
+class AccessRuleListResponse(BaseModel):
     id: str
     """The unique identifier of the IP Access rule."""
 
