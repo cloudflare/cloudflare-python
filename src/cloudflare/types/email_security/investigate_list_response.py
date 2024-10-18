@@ -33,8 +33,6 @@ class InvestigateListResponse(BaseModel):
 
     is_quarantined: bool
 
-    message_id: str
-
     postfix_id: str
     """Message identifier"""
 
@@ -78,6 +76,8 @@ class InvestigateListResponse(BaseModel):
     from_: Optional[str] = FieldInfo(alias="from", default=None)
 
     from_name: Optional[str] = None
+
+    message_id: Optional[str] = None
 
     sent_date: Optional[str] = None
 
