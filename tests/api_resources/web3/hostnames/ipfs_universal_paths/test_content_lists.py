@@ -21,7 +21,7 @@ class TestContentLists:
     def test_method_update(self, client: Cloudflare) -> None:
         content_list = client.web3.hostnames.ipfs_universal_paths.content_lists.update(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             action="block",
             entries=[{}, {}, {}],
         )
@@ -31,7 +31,7 @@ class TestContentLists:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.update(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             action="block",
             entries=[{}, {}, {}],
         )
@@ -45,7 +45,7 @@ class TestContentLists:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.web3.hostnames.ipfs_universal_paths.content_lists.with_streaming_response.update(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             action="block",
             entries=[{}, {}, {}],
         ) as response:
@@ -59,10 +59,10 @@ class TestContentLists:
 
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.update(
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_identifier="",
+                zone_id="",
                 action="block",
                 entries=[{}, {}, {}],
             )
@@ -70,7 +70,7 @@ class TestContentLists:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.update(
                 identifier="",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 action="block",
                 entries=[{}, {}, {}],
             )
@@ -79,7 +79,7 @@ class TestContentLists:
     def test_method_get(self, client: Cloudflare) -> None:
         content_list = client.web3.hostnames.ipfs_universal_paths.content_lists.get(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ContentList, content_list, path=["response"])
 
@@ -87,7 +87,7 @@ class TestContentLists:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.get(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -99,7 +99,7 @@ class TestContentLists:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.web3.hostnames.ipfs_universal_paths.content_lists.with_streaming_response.get(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -111,16 +111,16 @@ class TestContentLists:
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.get(
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_identifier="",
+                zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.get(
                 identifier="",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -131,7 +131,7 @@ class TestAsyncContentLists:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         content_list = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.update(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             action="block",
             entries=[{}, {}, {}],
         )
@@ -141,7 +141,7 @@ class TestAsyncContentLists:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.update(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             action="block",
             entries=[{}, {}, {}],
         )
@@ -155,7 +155,7 @@ class TestAsyncContentLists:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_streaming_response.update(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             action="block",
             entries=[{}, {}, {}],
         ) as response:
@@ -169,10 +169,10 @@ class TestAsyncContentLists:
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.update(
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_identifier="",
+                zone_id="",
                 action="block",
                 entries=[{}, {}, {}],
             )
@@ -180,7 +180,7 @@ class TestAsyncContentLists:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.update(
                 identifier="",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 action="block",
                 entries=[{}, {}, {}],
             )
@@ -189,7 +189,7 @@ class TestAsyncContentLists:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         content_list = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.get(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ContentList, content_list, path=["response"])
 
@@ -197,7 +197,7 @@ class TestAsyncContentLists:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.get(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -209,7 +209,7 @@ class TestAsyncContentLists:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_streaming_response.get(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -221,14 +221,14 @@ class TestAsyncContentLists:
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.get(
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_identifier="",
+                zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.with_raw_response.get(
                 identifier="",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

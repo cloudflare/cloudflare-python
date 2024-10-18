@@ -2,7 +2,7 @@
 
 from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from .nel import NEL
 from .ssl import SSL
@@ -12,7 +12,6 @@ from .webp import WebP
 from .http2 import HTTP2
 from .http3 import HTTP3
 from .brotli import Brotli
-from .minify import Minify
 from .mirage import Mirage
 from .polish import Polish
 from .ciphers import Ciphers
@@ -32,7 +31,6 @@ from .image_resizing import ImageResizing
 from .ip_geolocation import IPGeolocation
 from .security_level import SecurityLevel
 from .min_tls_version import MinTLSVersion
-from .mobile_redirect import MobileRedirect
 from .ssl_recommender import SSLRecommender
 from .tls_client_auth import TLSClientAuth
 from .always_use_https import AlwaysUseHTTPS
@@ -208,7 +206,7 @@ class ZonesTLS1_2Only(BaseModel):
     """last time this setting was modified."""
 
 
-SettingGetResponse = Union[
+SettingGetResponse: TypeAlias = Union[
     ZeroRTT,
     AdvancedDDoS,
     AlwaysOnline,
@@ -234,9 +232,7 @@ SettingGetResponse = Union[
     IPV6,
     ZonesMaxUpload,
     MinTLSVersion,
-    Minify,
     Mirage,
-    MobileRedirect,
     NEL,
     OpportunisticEncryption,
     OpportunisticOnion,

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Dict, List, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -31,10 +31,21 @@ __all__ = ["PreviewsResource", "AsyncPreviewsResource"]
 class PreviewsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PreviewsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PreviewsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PreviewsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PreviewsResourceWithStreamingResponse(self)
 
     def create(
@@ -49,7 +60,7 @@ class PreviewsResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: object | NotGiven = NOT_GIVEN,
+        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -171,10 +182,21 @@ class PreviewsResource(SyncAPIResource):
 class AsyncPreviewsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPreviewsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPreviewsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPreviewsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPreviewsResourceWithStreamingResponse(self)
 
     async def create(
@@ -189,7 +211,7 @@ class AsyncPreviewsResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: object | NotGiven = NOT_GIVEN,
+        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,

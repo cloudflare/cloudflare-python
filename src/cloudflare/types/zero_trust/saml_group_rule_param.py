@@ -14,6 +14,9 @@ class SAML(TypedDict, total=False):
     attribute_value: Required[str]
     """The SAML attribute value to look for."""
 
+    identity_provider_id: Required[str]
+    """The ID of your SAML identity provider."""
+
 
 class SAMLGroupRuleParam(TypedDict, total=False):
     saml: Required[SAML]

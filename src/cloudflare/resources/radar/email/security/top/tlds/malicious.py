@@ -32,10 +32,21 @@ __all__ = ["MaliciousResource", "AsyncMaliciousResource"]
 class MaliciousResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> MaliciousResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return MaliciousResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> MaliciousResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return MaliciousResourceWithStreamingResponse(self)
 
     def get(
@@ -136,10 +147,21 @@ class MaliciousResource(SyncAPIResource):
 class AsyncMaliciousResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncMaliciousResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncMaliciousResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncMaliciousResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncMaliciousResourceWithStreamingResponse(self)
 
     async def get(

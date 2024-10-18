@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
@@ -9,8 +9,10 @@ __all__ = ["Components", "Data", "Query"]
 
 
 class Data(BaseModel):
-    metrics: List[object]
+    metrics: List[List[float]]
     """List of metrics returned by the query."""
+
+    dimensions: Optional[List[str]] = None
 
 
 class Query(BaseModel):
@@ -46,7 +48,7 @@ class Query(BaseModel):
     since: Optional[datetime] = None
     """Start of time interval to query, defaults to 6 hours before request received."""
 
-    sort: Optional[List[object]] = None
+    sort: Optional[List[str]] = None
     """
     Array of dimensions or metrics to sort by, each dimension/metric may be prefixed
     by - (descending) or + (ascending).
@@ -65,10 +67,10 @@ class Components(BaseModel):
     how many seconds of data could be missing.
     """
 
-    max: object
+    max: Dict[str, float]
     """Maximum results for each metric."""
 
-    min: object
+    min: Dict[str, float]
     """Minimum results for each metric."""
 
     query: Query
@@ -77,5 +79,8 @@ class Components(BaseModel):
     rows: float
     """Total number of rows in the result."""
 
-    totals: object
+    totals: Dict[str, float]
     """Total results for metrics across all data."""
+
+    time_intervals: Optional[List[List[datetime]]] = None
+    """Time interval buckets by beginning and ending"""

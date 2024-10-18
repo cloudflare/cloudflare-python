@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Optional, cast
+from typing import List, Type, Optional, cast
 
 import httpx
 
@@ -25,7 +25,6 @@ from ....types.zero_trust.gateway import proxy_endpoint_edit_params, proxy_endpo
 from ....types.zero_trust.gateway.gateway_ips import GatewayIPs
 from ....types.zero_trust.gateway.proxy_endpoint import ProxyEndpoint
 from ....types.zero_trust.gateway.proxy_endpoint_get_response import ProxyEndpointGetResponse
-from ....types.zero_trust.gateway.proxy_endpoint_delete_response import ProxyEndpointDeleteResponse
 
 __all__ = ["ProxyEndpointsResource", "AsyncProxyEndpointsResource"]
 
@@ -33,10 +32,21 @@ __all__ = ["ProxyEndpointsResource", "AsyncProxyEndpointsResource"]
 class ProxyEndpointsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ProxyEndpointsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ProxyEndpointsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ProxyEndpointsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ProxyEndpointsResourceWithStreamingResponse(self)
 
     def create(
@@ -137,7 +147,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ProxyEndpointDeleteResponse]:
+    ) -> object:
         """
         Deletes a configured Zero Trust Gateway proxy endpoint.
 
@@ -154,21 +164,16 @@ class ProxyEndpointsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not proxy_endpoint_id:
             raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
-        return cast(
-            Optional[ProxyEndpointDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ProxyEndpointDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ProxyEndpointDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def edit(
@@ -268,10 +273,21 @@ class ProxyEndpointsResource(SyncAPIResource):
 class AsyncProxyEndpointsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncProxyEndpointsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncProxyEndpointsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncProxyEndpointsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncProxyEndpointsResourceWithStreamingResponse(self)
 
     async def create(
@@ -372,7 +388,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ProxyEndpointDeleteResponse]:
+    ) -> object:
         """
         Deletes a configured Zero Trust Gateway proxy endpoint.
 
@@ -389,21 +405,16 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not proxy_endpoint_id:
             raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
-        return cast(
-            Optional[ProxyEndpointDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ProxyEndpointDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ProxyEndpointDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def edit(

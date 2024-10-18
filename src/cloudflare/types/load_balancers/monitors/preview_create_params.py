@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Dict, List
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
@@ -53,7 +54,7 @@ class PreviewCreateParams(TypedDict, total=False):
     This parameter is only valid for HTTP and HTTPS monitors.
     """
 
-    header: object
+    header: Dict[str, List[str]]
     """The HTTP request headers to send in the health check.
 
     It is recommended you set a Host header by default. The User-Agent header cannot

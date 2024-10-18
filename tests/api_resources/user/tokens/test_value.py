@@ -19,7 +19,7 @@ class TestValue:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         value = client.user.tokens.value.update(
-            token_id={},
+            token_id="ed17574386854bf78a67040be0a770b0",
             body={},
         )
         assert_matches_type(str, value, path=["response"])
@@ -27,7 +27,7 @@ class TestValue:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.user.tokens.value.with_raw_response.update(
-            token_id={},
+            token_id="ed17574386854bf78a67040be0a770b0",
             body={},
         )
 
@@ -39,7 +39,7 @@ class TestValue:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.user.tokens.value.with_streaming_response.update(
-            token_id={},
+            token_id="ed17574386854bf78a67040be0a770b0",
             body={},
         ) as response:
             assert not response.is_closed
@@ -50,6 +50,14 @@ class TestValue:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
+            client.user.tokens.value.with_raw_response.update(
+                token_id="",
+                body={},
+            )
+
 
 class TestAsyncValue:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -57,7 +65,7 @@ class TestAsyncValue:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         value = await async_client.user.tokens.value.update(
-            token_id={},
+            token_id="ed17574386854bf78a67040be0a770b0",
             body={},
         )
         assert_matches_type(str, value, path=["response"])
@@ -65,7 +73,7 @@ class TestAsyncValue:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.tokens.value.with_raw_response.update(
-            token_id={},
+            token_id="ed17574386854bf78a67040be0a770b0",
             body={},
         )
 
@@ -77,7 +85,7 @@ class TestAsyncValue:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.tokens.value.with_streaming_response.update(
-            token_id={},
+            token_id="ed17574386854bf78a67040be0a770b0",
             body={},
         ) as response:
             assert not response.is_closed
@@ -87,3 +95,11 @@ class TestAsyncValue:
             assert_matches_type(str, value, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
+            await async_client.user.tokens.value.with_raw_response.update(
+                token_id="",
+                body={},
+            )

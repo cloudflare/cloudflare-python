@@ -44,10 +44,21 @@ __all__ = ["SummaryResource", "AsyncSummaryResource"]
 class SummaryResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SummaryResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SummaryResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SummaryResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SummaryResourceWithStreamingResponse(self)
 
     def dnssec(
@@ -148,7 +159,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryEdnsResponse:
         """
-        Percentage distribution of DNS queries, to AS112, by EDNS support.
+        Percentage distribution of DNS queries to AS112 by EDNS support.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -385,7 +396,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryQueryTypeResponse:
         """
-        Percentage distribution of DNS queries to AS112 by Query Type.
+        Percentage distribution of DNS queries to AS112 by query type.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -464,7 +475,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryResponseCodesResponse:
         """
-        Percentage distribution of AS112 dns requests classified per Response Codes.
+        Percentage distribution of AS112 DNS requests classified by response code.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -528,10 +539,21 @@ class SummaryResource(SyncAPIResource):
 class AsyncSummaryResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSummaryResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSummaryResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSummaryResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
     async def dnssec(
@@ -632,7 +654,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryEdnsResponse:
         """
-        Percentage distribution of DNS queries, to AS112, by EDNS support.
+        Percentage distribution of DNS queries to AS112 by EDNS support.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -869,7 +891,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryQueryTypeResponse:
         """
-        Percentage distribution of DNS queries to AS112 by Query Type.
+        Percentage distribution of DNS queries to AS112 by query type.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -948,7 +970,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryResponseCodesResponse:
         """
-        Percentage distribution of AS112 dns requests classified per Response Codes.
+        Percentage distribution of AS112 DNS requests classified by response code.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.

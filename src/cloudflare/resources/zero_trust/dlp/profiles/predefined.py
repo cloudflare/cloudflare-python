@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Any, Iterable, Optional, cast
 
 import httpx
 
@@ -21,9 +21,9 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
+from .....types.zero_trust.dlp.profile import Profile
 from .....types.zero_trust.dlp.profiles import predefined_update_params
 from .....types.zero_trust.dlp.context_awareness_param import ContextAwarenessParam
-from .....types.zero_trust.dlp.profiles.predefined_profile import PredefinedProfile
 
 __all__ = ["PredefinedResource", "AsyncPredefinedResource"]
 
@@ -31,10 +31,21 @@ __all__ = ["PredefinedResource", "AsyncPredefinedResource"]
 class PredefinedResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PredefinedResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PredefinedResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PredefinedResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PredefinedResourceWithStreamingResponse(self)
 
     def update(
@@ -42,9 +53,10 @@ class PredefinedResource(SyncAPIResource):
         profile_id: str,
         *,
         account_id: str,
-        allowed_match_count: float | NotGiven = NOT_GIVEN,
+        entries: Iterable[predefined_update_params.Entry],
+        allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
+        confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
-        entries: Iterable[predefined_update_params.Entry] | NotGiven = NOT_GIVEN,
         ocr_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -52,24 +64,14 @@ class PredefinedResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PredefinedProfile:
+    ) -> Optional[Profile]:
         """Updates a DLP predefined profile.
 
         Only supports enabling/disabling entries.
 
         Args:
-          account_id: Identifier
-
-          profile_id: The ID for this profile
-
-          allowed_match_count: Related DLP policies will trigger when the match count exceeds the number set.
-
           context_awareness: Scan the context of predefined entries to only return matches surrounded by
               keywords.
-
-          entries: The entries for this profile.
-
-          ocr_enabled: If true, scan images via OCR to determine if any text present matches filters.
 
           extra_headers: Send extra headers
 
@@ -83,21 +85,31 @@ class PredefinedResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
-        return self._put(
-            f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
-            body=maybe_transform(
-                {
-                    "allowed_match_count": allowed_match_count,
-                    "context_awareness": context_awareness,
-                    "entries": entries,
-                    "ocr_enabled": ocr_enabled,
-                },
-                predefined_update_params.PredefinedUpdateParams,
+        return cast(
+            Optional[Profile],
+            self._put(
+                f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
+                body=maybe_transform(
+                    {
+                        "entries": entries,
+                        "allowed_match_count": allowed_match_count,
+                        "confidence_threshold": confidence_threshold,
+                        "context_awareness": context_awareness,
+                        "ocr_enabled": ocr_enabled,
+                    },
+                    predefined_update_params.PredefinedUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[Profile]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=PredefinedProfile,
         )
 
     def get(
@@ -111,15 +123,11 @@ class PredefinedResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PredefinedProfile:
+    ) -> Optional[Profile]:
         """
-        Fetches a predefined DLP profile.
+        Fetches a predefined DLP profile by id.
 
         Args:
-          account_id: Identifier
-
-          profile_id: The ID for this profile
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -132,26 +140,42 @@ class PredefinedResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[PredefinedProfile]._unwrapper,
+        return cast(
+            Optional[Profile],
+            self._get(
+                f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[Profile]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[PredefinedProfile], ResultWrapper[PredefinedProfile]),
         )
 
 
 class AsyncPredefinedResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPredefinedResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPredefinedResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPredefinedResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPredefinedResourceWithStreamingResponse(self)
 
     async def update(
@@ -159,9 +183,10 @@ class AsyncPredefinedResource(AsyncAPIResource):
         profile_id: str,
         *,
         account_id: str,
-        allowed_match_count: float | NotGiven = NOT_GIVEN,
+        entries: Iterable[predefined_update_params.Entry],
+        allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
+        confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
-        entries: Iterable[predefined_update_params.Entry] | NotGiven = NOT_GIVEN,
         ocr_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -169,24 +194,14 @@ class AsyncPredefinedResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PredefinedProfile:
+    ) -> Optional[Profile]:
         """Updates a DLP predefined profile.
 
         Only supports enabling/disabling entries.
 
         Args:
-          account_id: Identifier
-
-          profile_id: The ID for this profile
-
-          allowed_match_count: Related DLP policies will trigger when the match count exceeds the number set.
-
           context_awareness: Scan the context of predefined entries to only return matches surrounded by
               keywords.
-
-          entries: The entries for this profile.
-
-          ocr_enabled: If true, scan images via OCR to determine if any text present matches filters.
 
           extra_headers: Send extra headers
 
@@ -200,21 +215,31 @@ class AsyncPredefinedResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
-        return await self._put(
-            f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
-            body=await async_maybe_transform(
-                {
-                    "allowed_match_count": allowed_match_count,
-                    "context_awareness": context_awareness,
-                    "entries": entries,
-                    "ocr_enabled": ocr_enabled,
-                },
-                predefined_update_params.PredefinedUpdateParams,
+        return cast(
+            Optional[Profile],
+            await self._put(
+                f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
+                body=await async_maybe_transform(
+                    {
+                        "entries": entries,
+                        "allowed_match_count": allowed_match_count,
+                        "confidence_threshold": confidence_threshold,
+                        "context_awareness": context_awareness,
+                        "ocr_enabled": ocr_enabled,
+                    },
+                    predefined_update_params.PredefinedUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[Profile]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=PredefinedProfile,
         )
 
     async def get(
@@ -228,15 +253,11 @@ class AsyncPredefinedResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PredefinedProfile:
+    ) -> Optional[Profile]:
         """
-        Fetches a predefined DLP profile.
+        Fetches a predefined DLP profile by id.
 
         Args:
-          account_id: Identifier
-
-          profile_id: The ID for this profile
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -249,16 +270,21 @@ class AsyncPredefinedResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[PredefinedProfile]._unwrapper,
+        return cast(
+            Optional[Profile],
+            await self._get(
+                f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[Profile]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[PredefinedProfile], ResultWrapper[PredefinedProfile]),
         )
 
 

@@ -13,6 +13,7 @@ from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.pages.projects import (
     DomainGetResponse,
     DomainEditResponse,
+    DomainListResponse,
     DomainCreateResponse,
 )
 
@@ -27,7 +28,15 @@ class TestDomains:
         domain = client.pages.projects.domains.create(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={"name": "example.com"},
+        )
+        assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        domain = client.pages.projects.domains.create(
+            project_name="this-is-my-project-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
         )
         assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
 
@@ -36,7 +45,6 @@ class TestDomains:
         response = client.pages.projects.domains.with_raw_response.create(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={"name": "example.com"},
         )
 
         assert response.is_closed is True
@@ -49,7 +57,6 @@ class TestDomains:
         with client.pages.projects.domains.with_streaming_response.create(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={"name": "example.com"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -65,14 +72,12 @@ class TestDomains:
             client.pages.projects.domains.with_raw_response.create(
                 project_name="this-is-my-project-01",
                 account_id="",
-                body={"name": "example.com"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.domains.with_raw_response.create(
                 project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={"name": "example.com"},
             )
 
     @parametrize
@@ -81,7 +86,7 @@ class TestDomains:
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[object], domain, path=["response"])
+        assert_matches_type(SyncSinglePage[DomainListResponse], domain, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -93,7 +98,7 @@ class TestDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert_matches_type(SyncSinglePage[object], domain, path=["response"])
+        assert_matches_type(SyncSinglePage[DomainListResponse], domain, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -105,7 +110,7 @@ class TestDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = response.parse()
-            assert_matches_type(SyncSinglePage[object], domain, path=["response"])
+            assert_matches_type(SyncSinglePage[DomainListResponse], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -318,7 +323,15 @@ class TestAsyncDomains:
         domain = await async_client.pages.projects.domains.create(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={"name": "example.com"},
+        )
+        assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        domain = await async_client.pages.projects.domains.create(
+            project_name="this-is-my-project-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="example.com",
         )
         assert_matches_type(Optional[DomainCreateResponse], domain, path=["response"])
 
@@ -327,7 +340,6 @@ class TestAsyncDomains:
         response = await async_client.pages.projects.domains.with_raw_response.create(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={"name": "example.com"},
         )
 
         assert response.is_closed is True
@@ -340,7 +352,6 @@ class TestAsyncDomains:
         async with async_client.pages.projects.domains.with_streaming_response.create(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={"name": "example.com"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -356,14 +367,12 @@ class TestAsyncDomains:
             await async_client.pages.projects.domains.with_raw_response.create(
                 project_name="this-is-my-project-01",
                 account_id="",
-                body={"name": "example.com"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.domains.with_raw_response.create(
                 project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={"name": "example.com"},
             )
 
     @parametrize
@@ -372,7 +381,7 @@ class TestAsyncDomains:
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[object], domain, path=["response"])
+        assert_matches_type(AsyncSinglePage[DomainListResponse], domain, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -384,7 +393,7 @@ class TestAsyncDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert_matches_type(AsyncSinglePage[object], domain, path=["response"])
+        assert_matches_type(AsyncSinglePage[DomainListResponse], domain, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -396,7 +405,7 @@ class TestAsyncDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = await response.parse()
-            assert_matches_type(AsyncSinglePage[object], domain, path=["response"])
+            assert_matches_type(AsyncSinglePage[DomainListResponse], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

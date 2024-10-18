@@ -17,7 +17,8 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
-from .....types.zero_trust.access.app_id_param import AppIDParam
+from .....types.zero_trust.access import AppID
+from .....types.zero_trust.access.app_id import AppID
 from .....types.zero_trust.access.applications.user_policy_check_list_response import UserPolicyCheckListResponse
 
 __all__ = ["UserPolicyChecksResource", "AsyncUserPolicyChecksResource"]
@@ -26,15 +27,26 @@ __all__ = ["UserPolicyChecksResource", "AsyncUserPolicyChecksResource"]
 class UserPolicyChecksResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> UserPolicyChecksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return UserPolicyChecksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> UserPolicyChecksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return UserPolicyChecksResourceWithStreamingResponse(self)
 
     def list(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -63,6 +75,8 @@ class UserPolicyChecksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -91,15 +105,26 @@ class UserPolicyChecksResource(SyncAPIResource):
 class AsyncUserPolicyChecksResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncUserPolicyChecksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncUserPolicyChecksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncUserPolicyChecksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncUserPolicyChecksResourceWithStreamingResponse(self)
 
     async def list(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -128,6 +153,8 @@ class AsyncUserPolicyChecksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 

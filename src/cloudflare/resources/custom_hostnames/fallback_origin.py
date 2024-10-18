@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -32,10 +32,21 @@ __all__ = ["FallbackOriginResource", "AsyncFallbackOriginResource"]
 class FallbackOriginResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> FallbackOriginResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return FallbackOriginResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> FallbackOriginResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return FallbackOriginResourceWithStreamingResponse(self)
 
     def update(
@@ -68,22 +79,17 @@ class FallbackOriginResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[FallbackOriginUpdateResponse],
-            self._put(
-                f"/zones/{zone_id}/custom_hostnames/fallback_origin",
-                body=maybe_transform({"origin": origin}, fallback_origin_update_params.FallbackOriginUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[FallbackOriginUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[FallbackOriginUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/zones/{zone_id}/custom_hostnames/fallback_origin",
+            body=maybe_transform({"origin": origin}, fallback_origin_update_params.FallbackOriginUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[FallbackOriginUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[FallbackOriginUpdateResponse]], ResultWrapper[FallbackOriginUpdateResponse]),
         )
 
     def delete(
@@ -113,21 +119,16 @@ class FallbackOriginResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[FallbackOriginDeleteResponse],
-            self._delete(
-                f"/zones/{zone_id}/custom_hostnames/fallback_origin",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[FallbackOriginDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[FallbackOriginDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/zones/{zone_id}/custom_hostnames/fallback_origin",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[FallbackOriginDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[FallbackOriginDeleteResponse]], ResultWrapper[FallbackOriginDeleteResponse]),
         )
 
     def get(
@@ -157,31 +158,37 @@ class FallbackOriginResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[FallbackOriginGetResponse],
-            self._get(
-                f"/zones/{zone_id}/custom_hostnames/fallback_origin",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[FallbackOriginGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[FallbackOriginGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/zones/{zone_id}/custom_hostnames/fallback_origin",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[FallbackOriginGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[FallbackOriginGetResponse]], ResultWrapper[FallbackOriginGetResponse]),
         )
 
 
 class AsyncFallbackOriginResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncFallbackOriginResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncFallbackOriginResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncFallbackOriginResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncFallbackOriginResourceWithStreamingResponse(self)
 
     async def update(
@@ -214,24 +221,19 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[FallbackOriginUpdateResponse],
-            await self._put(
-                f"/zones/{zone_id}/custom_hostnames/fallback_origin",
-                body=await async_maybe_transform(
-                    {"origin": origin}, fallback_origin_update_params.FallbackOriginUpdateParams
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[FallbackOriginUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[FallbackOriginUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/zones/{zone_id}/custom_hostnames/fallback_origin",
+            body=await async_maybe_transform(
+                {"origin": origin}, fallback_origin_update_params.FallbackOriginUpdateParams
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[FallbackOriginUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[FallbackOriginUpdateResponse]], ResultWrapper[FallbackOriginUpdateResponse]),
         )
 
     async def delete(
@@ -261,21 +263,16 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[FallbackOriginDeleteResponse],
-            await self._delete(
-                f"/zones/{zone_id}/custom_hostnames/fallback_origin",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[FallbackOriginDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[FallbackOriginDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/zones/{zone_id}/custom_hostnames/fallback_origin",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[FallbackOriginDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[FallbackOriginDeleteResponse]], ResultWrapper[FallbackOriginDeleteResponse]),
         )
 
     async def get(
@@ -305,21 +302,16 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[FallbackOriginGetResponse],
-            await self._get(
-                f"/zones/{zone_id}/custom_hostnames/fallback_origin",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[FallbackOriginGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[FallbackOriginGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/zones/{zone_id}/custom_hostnames/fallback_origin",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[FallbackOriginGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[FallbackOriginGetResponse]], ResultWrapper[FallbackOriginGetResponse]),
         )
 
 

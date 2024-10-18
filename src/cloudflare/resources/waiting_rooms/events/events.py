@@ -28,7 +28,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.waiting_rooms import event_edit_params, event_list_params, event_create_params, event_update_params
 from ....types.waiting_rooms.event import Event
@@ -44,10 +44,21 @@ class EventsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> EventsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return EventsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> EventsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return EventsResourceWithStreamingResponse(self)
 
     def create(
@@ -300,15 +311,15 @@ class EventsResource(SyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: object | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Event]:
+    ) -> SyncV4PagePaginationArray[Event]:
         """
         Lists events for a waiting room.
 
@@ -333,7 +344,7 @@ class EventsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
-            page=SyncSinglePage[Event],
+            page=SyncV4PagePaginationArray[Event],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -569,10 +580,21 @@ class AsyncEventsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncEventsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncEventsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncEventsResourceWithStreamingResponse(self)
 
     async def create(
@@ -825,15 +847,15 @@ class AsyncEventsResource(AsyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: object | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Event, AsyncSinglePage[Event]]:
+    ) -> AsyncPaginator[Event, AsyncV4PagePaginationArray[Event]]:
         """
         Lists events for a waiting room.
 
@@ -858,7 +880,7 @@ class AsyncEventsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
-            page=AsyncSinglePage[Event],
+            page=AsyncV4PagePaginationArray[Event],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

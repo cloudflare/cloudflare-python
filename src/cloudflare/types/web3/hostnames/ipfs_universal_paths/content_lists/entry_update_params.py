@@ -8,7 +8,7 @@ __all__ = ["EntryUpdateParams"]
 
 
 class EntryUpdateParams(TypedDict, total=False):
-    zone_identifier: Required[str]
+    zone_id: Required[str]
     """Identifier"""
 
     identifier: Required[str]

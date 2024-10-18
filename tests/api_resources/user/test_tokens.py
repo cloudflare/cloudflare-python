@@ -12,8 +12,11 @@ from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.user import (
+    TokenGetResponse,
+    TokenListResponse,
     TokenCreateResponse,
     TokenDeleteResponse,
+    TokenUpdateResponse,
     TokenVerifyResponse,
 )
 
@@ -32,26 +35,17 @@ class TestTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
             ],
         )
@@ -68,20 +62,20 @@ class TestTokens:
                     "permission_groups": [
                         {
                             "meta": {
-                                "label": "load_balancer_admin",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                         {
                             "meta": {
-                                "label": "fbm_user",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                     ],
                     "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        "resource": "resource",
+                        "scope": "scope",
                     },
                 },
                 {
@@ -89,20 +83,20 @@ class TestTokens:
                     "permission_groups": [
                         {
                             "meta": {
-                                "label": "load_balancer_admin",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                         {
                             "meta": {
-                                "label": "fbm_user",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                     ],
                     "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        "resource": "resource",
+                        "scope": "scope",
                     },
                 },
                 {
@@ -110,20 +104,20 @@ class TestTokens:
                     "permission_groups": [
                         {
                             "meta": {
-                                "label": "load_balancer_admin",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                         {
                             "meta": {
-                                "label": "fbm_user",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                     ],
                     "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        "resource": "resource",
+                        "scope": "scope",
                     },
                 },
             ],
@@ -147,26 +141,17 @@ class TestTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
             ],
         )
@@ -185,26 +170,17 @@ class TestTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
             ],
         ) as response:
@@ -220,43 +196,34 @@ class TestTokens:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         token = client.user.tokens.update(
-            token_id={},
+            token_id="ed17574386854bf78a67040be0a770b0",
             name="readonly token",
             policies=[
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
             ],
             status="active",
         )
-        assert_matches_type(object, token, path=["response"])
+        assert_matches_type(Optional[TokenUpdateResponse], token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         token = client.user.tokens.update(
-            token_id={},
+            token_id="ed17574386854bf78a67040be0a770b0",
             name="readonly token",
             policies=[
                 {
@@ -264,20 +231,20 @@ class TestTokens:
                     "permission_groups": [
                         {
                             "meta": {
-                                "label": "load_balancer_admin",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                         {
                             "meta": {
-                                "label": "fbm_user",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                     ],
                     "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        "resource": "resource",
+                        "scope": "scope",
                     },
                 },
                 {
@@ -285,20 +252,20 @@ class TestTokens:
                     "permission_groups": [
                         {
                             "meta": {
-                                "label": "load_balancer_admin",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                         {
                             "meta": {
-                                "label": "fbm_user",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                     ],
                     "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        "resource": "resource",
+                        "scope": "scope",
                     },
                 },
                 {
@@ -306,20 +273,20 @@ class TestTokens:
                     "permission_groups": [
                         {
                             "meta": {
-                                "label": "load_balancer_admin",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                         {
                             "meta": {
-                                "label": "fbm_user",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                     ],
                     "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        "resource": "resource",
+                        "scope": "scope",
                     },
                 },
             ],
@@ -333,38 +300,29 @@ class TestTokens:
             expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             not_before=parse_datetime("2018-07-01T05:20:00Z"),
         )
-        assert_matches_type(object, token, path=["response"])
+        assert_matches_type(Optional[TokenUpdateResponse], token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.user.tokens.with_raw_response.update(
-            token_id={},
+            token_id="ed17574386854bf78a67040be0a770b0",
             name="readonly token",
             policies=[
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
             ],
             status="active",
@@ -373,38 +331,29 @@ class TestTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = response.parse()
-        assert_matches_type(object, token, path=["response"])
+        assert_matches_type(Optional[TokenUpdateResponse], token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.user.tokens.with_streaming_response.update(
-            token_id={},
+            token_id="ed17574386854bf78a67040be0a770b0",
             name="readonly token",
             policies=[
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
             ],
             status="active",
@@ -413,23 +362,50 @@ class TestTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = response.parse()
-            assert_matches_type(object, token, path=["response"])
+            assert_matches_type(Optional[TokenUpdateResponse], token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
+            client.user.tokens.with_raw_response.update(
+                token_id="",
+                name="readonly token",
+                policies=[
+                    {
+                        "effect": "allow",
+                        "permission_groups": [{}, {}],
+                        "resources": {},
+                    },
+                    {
+                        "effect": "allow",
+                        "permission_groups": [{}, {}],
+                        "resources": {},
+                    },
+                    {
+                        "effect": "allow",
+                        "permission_groups": [{}, {}],
+                        "resources": {},
+                    },
+                ],
+                status="active",
+            )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         token = client.user.tokens.list()
-        assert_matches_type(SyncV4PagePaginationArray[object], token, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[TokenListResponse], token, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         token = client.user.tokens.list(
-            direction="desc",
+            direction="asc",
             page=1,
             per_page=5,
         )
-        assert_matches_type(SyncV4PagePaginationArray[object], token, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[TokenListResponse], token, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -438,7 +414,7 @@ class TestTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[object], token, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[TokenListResponse], token, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -447,21 +423,21 @@ class TestTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[object], token, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[TokenListResponse], token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         token = client.user.tokens.delete(
-            {},
+            "ed17574386854bf78a67040be0a770b0",
         )
         assert_matches_type(Optional[TokenDeleteResponse], token, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.user.tokens.with_raw_response.delete(
-            {},
+            "ed17574386854bf78a67040be0a770b0",
         )
 
         assert response.is_closed is True
@@ -472,7 +448,7 @@ class TestTokens:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.user.tokens.with_streaming_response.delete(
-            {},
+            "ed17574386854bf78a67040be0a770b0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -483,35 +459,49 @@ class TestTokens:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
+            client.user.tokens.with_raw_response.delete(
+                "",
+            )
+
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         token = client.user.tokens.get(
-            {},
+            "ed17574386854bf78a67040be0a770b0",
         )
-        assert_matches_type(object, token, path=["response"])
+        assert_matches_type(Optional[TokenGetResponse], token, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.user.tokens.with_raw_response.get(
-            {},
+            "ed17574386854bf78a67040be0a770b0",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = response.parse()
-        assert_matches_type(object, token, path=["response"])
+        assert_matches_type(Optional[TokenGetResponse], token, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.user.tokens.with_streaming_response.get(
-            {},
+            "ed17574386854bf78a67040be0a770b0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = response.parse()
-            assert_matches_type(object, token, path=["response"])
+            assert_matches_type(Optional[TokenGetResponse], token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
+            client.user.tokens.with_raw_response.get(
+                "",
+            )
 
     @parametrize
     def test_method_verify(self, client: Cloudflare) -> None:
@@ -551,26 +541,17 @@ class TestAsyncTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
             ],
         )
@@ -587,20 +568,20 @@ class TestAsyncTokens:
                     "permission_groups": [
                         {
                             "meta": {
-                                "label": "load_balancer_admin",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                         {
                             "meta": {
-                                "label": "fbm_user",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                     ],
                     "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        "resource": "resource",
+                        "scope": "scope",
                     },
                 },
                 {
@@ -608,20 +589,20 @@ class TestAsyncTokens:
                     "permission_groups": [
                         {
                             "meta": {
-                                "label": "load_balancer_admin",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                         {
                             "meta": {
-                                "label": "fbm_user",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                     ],
                     "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        "resource": "resource",
+                        "scope": "scope",
                     },
                 },
                 {
@@ -629,20 +610,20 @@ class TestAsyncTokens:
                     "permission_groups": [
                         {
                             "meta": {
-                                "label": "load_balancer_admin",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                         {
                             "meta": {
-                                "label": "fbm_user",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                     ],
                     "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        "resource": "resource",
+                        "scope": "scope",
                     },
                 },
             ],
@@ -666,26 +647,17 @@ class TestAsyncTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
             ],
         )
@@ -704,26 +676,17 @@ class TestAsyncTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
             ],
         ) as response:
@@ -739,43 +702,34 @@ class TestAsyncTokens:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.user.tokens.update(
-            token_id={},
+            token_id="ed17574386854bf78a67040be0a770b0",
             name="readonly token",
             policies=[
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
             ],
             status="active",
         )
-        assert_matches_type(object, token, path=["response"])
+        assert_matches_type(Optional[TokenUpdateResponse], token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.user.tokens.update(
-            token_id={},
+            token_id="ed17574386854bf78a67040be0a770b0",
             name="readonly token",
             policies=[
                 {
@@ -783,20 +737,20 @@ class TestAsyncTokens:
                     "permission_groups": [
                         {
                             "meta": {
-                                "label": "load_balancer_admin",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                         {
                             "meta": {
-                                "label": "fbm_user",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                     ],
                     "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        "resource": "resource",
+                        "scope": "scope",
                     },
                 },
                 {
@@ -804,20 +758,20 @@ class TestAsyncTokens:
                     "permission_groups": [
                         {
                             "meta": {
-                                "label": "load_balancer_admin",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                         {
                             "meta": {
-                                "label": "fbm_user",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                     ],
                     "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        "resource": "resource",
+                        "scope": "scope",
                     },
                 },
                 {
@@ -825,20 +779,20 @@ class TestAsyncTokens:
                     "permission_groups": [
                         {
                             "meta": {
-                                "label": "load_balancer_admin",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                         {
                             "meta": {
-                                "label": "fbm_user",
-                                "scopes": "com.cloudflare.api.account",
+                                "key": "key",
+                                "value": "value",
                             }
                         },
                     ],
                     "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        "resource": "resource",
+                        "scope": "scope",
                     },
                 },
             ],
@@ -852,38 +806,29 @@ class TestAsyncTokens:
             expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             not_before=parse_datetime("2018-07-01T05:20:00Z"),
         )
-        assert_matches_type(object, token, path=["response"])
+        assert_matches_type(Optional[TokenUpdateResponse], token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.tokens.with_raw_response.update(
-            token_id={},
+            token_id="ed17574386854bf78a67040be0a770b0",
             name="readonly token",
             policies=[
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
             ],
             status="active",
@@ -892,38 +837,29 @@ class TestAsyncTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = await response.parse()
-        assert_matches_type(object, token, path=["response"])
+        assert_matches_type(Optional[TokenUpdateResponse], token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.tokens.with_streaming_response.update(
-            token_id={},
+            token_id="ed17574386854bf78a67040be0a770b0",
             name="readonly token",
             policies=[
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
+                    "resources": {},
                 },
             ],
             status="active",
@@ -932,23 +868,50 @@ class TestAsyncTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = await response.parse()
-            assert_matches_type(object, token, path=["response"])
+            assert_matches_type(Optional[TokenUpdateResponse], token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
+            await async_client.user.tokens.with_raw_response.update(
+                token_id="",
+                name="readonly token",
+                policies=[
+                    {
+                        "effect": "allow",
+                        "permission_groups": [{}, {}],
+                        "resources": {},
+                    },
+                    {
+                        "effect": "allow",
+                        "permission_groups": [{}, {}],
+                        "resources": {},
+                    },
+                    {
+                        "effect": "allow",
+                        "permission_groups": [{}, {}],
+                        "resources": {},
+                    },
+                ],
+                status="active",
+            )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.user.tokens.list()
-        assert_matches_type(AsyncV4PagePaginationArray[object], token, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[TokenListResponse], token, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.user.tokens.list(
-            direction="desc",
+            direction="asc",
             page=1,
             per_page=5,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[object], token, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[TokenListResponse], token, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -957,7 +920,7 @@ class TestAsyncTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[object], token, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[TokenListResponse], token, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -966,21 +929,21 @@ class TestAsyncTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[object], token, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[TokenListResponse], token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.user.tokens.delete(
-            {},
+            "ed17574386854bf78a67040be0a770b0",
         )
         assert_matches_type(Optional[TokenDeleteResponse], token, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.tokens.with_raw_response.delete(
-            {},
+            "ed17574386854bf78a67040be0a770b0",
         )
 
         assert response.is_closed is True
@@ -991,7 +954,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.tokens.with_streaming_response.delete(
-            {},
+            "ed17574386854bf78a67040be0a770b0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1002,35 +965,49 @@ class TestAsyncTokens:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
+            await async_client.user.tokens.with_raw_response.delete(
+                "",
+            )
+
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.user.tokens.get(
-            {},
+            "ed17574386854bf78a67040be0a770b0",
         )
-        assert_matches_type(object, token, path=["response"])
+        assert_matches_type(Optional[TokenGetResponse], token, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.tokens.with_raw_response.get(
-            {},
+            "ed17574386854bf78a67040be0a770b0",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = await response.parse()
-        assert_matches_type(object, token, path=["response"])
+        assert_matches_type(Optional[TokenGetResponse], token, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.tokens.with_streaming_response.get(
-            {},
+            "ed17574386854bf78a67040be0a770b0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = await response.parse()
-            assert_matches_type(object, token, path=["response"])
+            assert_matches_type(Optional[TokenGetResponse], token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
+            await async_client.user.tokens.with_raw_response.get(
+                "",
+            )
 
     @parametrize
     async def test_method_verify(self, async_client: AsyncCloudflare) -> None:

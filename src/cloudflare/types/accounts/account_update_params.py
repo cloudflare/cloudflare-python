@@ -8,7 +8,8 @@ __all__ = ["AccountUpdateParams", "Settings"]
 
 
 class AccountUpdateParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
+    """Account identifier tag."""
 
     name: Required[str]
     """Account name"""

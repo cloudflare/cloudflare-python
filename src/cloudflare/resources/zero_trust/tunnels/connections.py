@@ -2,11 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -17,8 +21,8 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
+from ....types.zero_trust.tunnels import connection_delete_params
 from ....types.zero_trust.tunnels.connection_get_response import ConnectionGetResponse
-from ....types.zero_trust.tunnels.connection_delete_response import ConnectionDeleteResponse
 
 __all__ = ["ConnectionsResource", "AsyncConnectionsResource"]
 
@@ -26,10 +30,21 @@ __all__ = ["ConnectionsResource", "AsyncConnectionsResource"]
 class ConnectionsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ConnectionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ConnectionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ConnectionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ConnectionsResourceWithStreamingResponse(self)
 
     def delete(
@@ -37,22 +52,26 @@ class ConnectionsResource(SyncAPIResource):
         tunnel_id: str,
         *,
         account_id: str,
+        client_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConnectionDeleteResponse:
-        """Removes connections that are in a disconnected or pending reconnect state.
-
-        We
-        recommend running this command after shutting down a tunnel.
+    ) -> object:
+        """
+        Removes a connection (aka Cloudflare Tunnel Connector) from a Cloudflare Tunnel
+        independently of its current state. If no connector id (client_id) is provided
+        all connectors will be removed. We recommend running this command after rotating
+        tokens.
 
         Args:
           account_id: Cloudflare account ID
 
           tunnel_id: UUID of the tunnel.
+
+          client_id: UUID of the Cloudflare Tunnel connector.
 
           extra_headers: Send extra headers
 
@@ -66,21 +85,17 @@ class ConnectionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            ConnectionDeleteResponse,
-            self._delete(
-                f"/accounts/{account_id}/tunnels/{tunnel_id}/connections",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ConnectionDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ConnectionDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"client_id": client_id}, connection_delete_params.ConnectionDeleteParams),
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -131,10 +146,21 @@ class ConnectionsResource(SyncAPIResource):
 class AsyncConnectionsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncConnectionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncConnectionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncConnectionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncConnectionsResourceWithStreamingResponse(self)
 
     async def delete(
@@ -142,22 +168,26 @@ class AsyncConnectionsResource(AsyncAPIResource):
         tunnel_id: str,
         *,
         account_id: str,
+        client_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConnectionDeleteResponse:
-        """Removes connections that are in a disconnected or pending reconnect state.
-
-        We
-        recommend running this command after shutting down a tunnel.
+    ) -> object:
+        """
+        Removes a connection (aka Cloudflare Tunnel Connector) from a Cloudflare Tunnel
+        independently of its current state. If no connector id (client_id) is provided
+        all connectors will be removed. We recommend running this command after rotating
+        tokens.
 
         Args:
           account_id: Cloudflare account ID
 
           tunnel_id: UUID of the tunnel.
+
+          client_id: UUID of the Cloudflare Tunnel connector.
 
           extra_headers: Send extra headers
 
@@ -171,21 +201,19 @@ class AsyncConnectionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            ConnectionDeleteResponse,
-            await self._delete(
-                f"/accounts/{account_id}/tunnels/{tunnel_id}/connections",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ConnectionDeleteResponse]._unwrapper,
+        return await self._delete(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"client_id": client_id}, connection_delete_params.ConnectionDeleteParams
                 ),
-                cast_to=cast(
-                    Any, ResultWrapper[ConnectionDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(

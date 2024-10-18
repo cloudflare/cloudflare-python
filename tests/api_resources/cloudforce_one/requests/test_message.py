@@ -94,11 +94,7 @@ class TestMessage:
             message_identifer=0,
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            content="What regions were most effected by the recent DoS?",
-            priority="routine",
-            request_type="Victomology",
-            summary="DoS attack",
-            tlp="clear",
+            content="Can you elaborate on the type of DoS that occurred?",
         )
         assert_matches_type(Optional[Message], message, path=["response"])
 
@@ -347,11 +343,7 @@ class TestAsyncMessage:
             message_identifer=0,
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            content="What regions were most effected by the recent DoS?",
-            priority="routine",
-            request_type="Victomology",
-            summary="DoS attack",
-            tlp="clear",
+            content="Can you elaborate on the type of DoS that occurred?",
         )
         assert_matches_type(Optional[Message], message, path=["response"])
 

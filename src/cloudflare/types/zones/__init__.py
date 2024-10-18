@@ -12,7 +12,6 @@ from .zone import Zone as Zone
 from .http2 import HTTP2 as HTTP2
 from .http3 import HTTP3 as HTTP3
 from .brotli import Brotli as Brotli
-from .minify import Minify as Minify
 from .mirage import Mirage as Mirage
 from .polish import Polish as Polish
 from .ciphers import Ciphers as Ciphers
@@ -32,7 +31,6 @@ from .image_resizing import ImageResizing as ImageResizing
 from .ip_geolocation import IPGeolocation as IPGeolocation
 from .security_level import SecurityLevel as SecurityLevel
 from .min_tls_version import MinTLSVersion as MinTLSVersion
-from .mobile_redirect import MobileRedirect as MobileRedirect
 from .ssl_recommender import SSLRecommender as SSLRecommender
 from .tls_client_auth import TLSClientAuth as TLSClientAuth
 from .always_use_https import AlwaysUseHTTPS as AlwaysUseHTTPS
@@ -51,6 +49,7 @@ from .hotlink_protection import HotlinkProtection as HotlinkProtection
 from .proxy_read_timeout import ProxyReadTimeout as ProxyReadTimeout
 from .response_buffering import ResponseBuffering as ResponseBuffering
 from .zone_create_params import ZoneCreateParams as ZoneCreateParams
+from .available_rate_plan import AvailableRatePlan as AvailableRatePlan
 from .opportunistic_onion import OpportunisticOnion as OpportunisticOnion
 from .setting_edit_params import SettingEditParams as SettingEditParams
 from .server_side_excludes import ServerSideExcludes as ServerSideExcludes
@@ -58,14 +57,17 @@ from .setting_get_response import SettingGetResponse as SettingGetResponse
 from .zone_delete_response import ZoneDeleteResponse as ZoneDeleteResponse
 from .setting_edit_response import SettingEditResponse as SettingEditResponse
 from .true_client_ip_header import TrueClientIPHeader as TrueClientIPHeader
+from .rate_plan_get_response import RatePlanGetResponse as RatePlanGetResponse
 from .origin_max_http_version import OriginMaxHTTPVersion as OriginMaxHTTPVersion
 from .automatic_https_rewrites import AutomaticHTTPSRewrites as AutomaticHTTPSRewrites
 from .opportunistic_encryption import OpportunisticEncryption as OpportunisticEncryption
 from .subscription_get_response import SubscriptionGetResponse as SubscriptionGetResponse
 from .subscription_create_params import SubscriptionCreateParams as SubscriptionCreateParams
+from .subscription_update_params import SubscriptionUpdateParams as SubscriptionUpdateParams
 from .origin_error_page_pass_thru import OriginErrorPagePassThru as OriginErrorPagePassThru
 from .sort_query_string_for_cache import SortQueryStringForCache as SortQueryStringForCache
 from .subscription_create_response import SubscriptionCreateResponse as SubscriptionCreateResponse
+from .subscription_update_response import SubscriptionUpdateResponse as SubscriptionUpdateResponse
 from .custom_nameserver_get_response import CustomNameserverGetResponse as CustomNameserverGetResponse
 from .automatic_platform_optimization import AutomaticPlatformOptimization as AutomaticPlatformOptimization
 from .custom_nameserver_update_params import CustomNameserverUpdateParams as CustomNameserverUpdateParams

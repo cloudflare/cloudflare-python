@@ -38,19 +38,18 @@ class TestIdentityProviders:
     def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.create(
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "email_claim_name": "custom_claim_name",
                 "conditional_access_enabled": True,
                 "directory_id": "<your azure directory uuid>",
+                "email_claim_name": "custom_claim_name",
                 "prompt": "login",
                 "support_groups": True,
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -128,17 +127,16 @@ class TestIdentityProviders:
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.create(
             config={
-                "client_id": "<your client id>",
-                "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "email_claim_name": "custom_claim_name",
                 "centrify_account": "https://abc123.my.centrify.com/",
                 "centrify_app_id": "exampleapp",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+                "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -222,7 +220,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -306,7 +303,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -384,15 +380,14 @@ class TestIdentityProviders:
     def test_method_create_with_all_params_overload_5(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.create(
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -470,16 +465,15 @@ class TestIdentityProviders:
     def test_method_create_with_all_params_overload_6(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.create(
             config={
+                "apps_domain": "mycompany.com",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
-                "apps_domain": "mycompany.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -563,7 +557,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -641,19 +634,18 @@ class TestIdentityProviders:
     def test_method_create_with_all_params_overload_8(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.create(
             config={
-                "client_id": "<your client id>",
-                "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "email_claim_name": "custom_claim_name",
                 "auth_url": "https://accounts.google.com/o/oauth2/auth",
                 "certs_url": "https://www.googleapis.com/oauth2/v3/certs",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+                "email_claim_name": "custom_claim_name",
                 "scopes": ["openid", "email", "profile"],
                 "token_url": "https://accounts.google.com/o/oauth2/token",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -731,17 +723,16 @@ class TestIdentityProviders:
     def test_method_create_with_all_params_overload_9(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.create(
             config={
+                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
-                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
                 "okta_account": "https://dev-abc123.oktapreview.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -819,16 +810,15 @@ class TestIdentityProviders:
     def test_method_create_with_all_params_overload_10(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.create(
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
                 "onelogin_account": "https://mycompany.onelogin.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -906,16 +896,15 @@ class TestIdentityProviders:
     def test_method_create_with_all_params_overload_11(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.create(
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
                 "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1017,7 +1006,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1101,7 +1089,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1182,7 +1169,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1262,19 +1248,18 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "email_claim_name": "custom_claim_name",
                 "conditional_access_enabled": True,
                 "directory_id": "<your azure directory uuid>",
+                "email_claim_name": "custom_claim_name",
                 "prompt": "login",
                 "support_groups": True,
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1367,17 +1352,16 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
-                "client_id": "<your client id>",
-                "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "email_claim_name": "custom_claim_name",
                 "centrify_account": "https://abc123.my.centrify.com/",
                 "centrify_app_id": "exampleapp",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+                "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1476,7 +1460,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1575,7 +1558,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1668,15 +1650,14 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1769,16 +1750,15 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
+                "apps_domain": "mycompany.com",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
-                "apps_domain": "mycompany.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1877,7 +1857,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -1970,19 +1949,18 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
-                "client_id": "<your client id>",
-                "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "email_claim_name": "custom_claim_name",
                 "auth_url": "https://accounts.google.com/o/oauth2/auth",
                 "certs_url": "https://www.googleapis.com/oauth2/v3/certs",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+                "email_claim_name": "custom_claim_name",
                 "scopes": ["openid", "email", "profile"],
                 "token_url": "https://accounts.google.com/o/oauth2/token",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2075,17 +2053,16 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
+                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
-                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
                 "okta_account": "https://dev-abc123.oktapreview.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2178,16 +2155,15 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
                 "onelogin_account": "https://mycompany.onelogin.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2280,16 +2256,15 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
                 "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2406,7 +2381,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2505,7 +2479,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2601,7 +2574,6 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2885,19 +2857,18 @@ class TestAsyncIdentityProviders:
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "email_claim_name": "custom_claim_name",
                 "conditional_access_enabled": True,
                 "directory_id": "<your azure directory uuid>",
+                "email_claim_name": "custom_claim_name",
                 "prompt": "login",
                 "support_groups": True,
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -2975,17 +2946,16 @@ class TestAsyncIdentityProviders:
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={
-                "client_id": "<your client id>",
-                "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "email_claim_name": "custom_claim_name",
                 "centrify_account": "https://abc123.my.centrify.com/",
                 "centrify_app_id": "exampleapp",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+                "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3069,7 +3039,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3153,7 +3122,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3231,15 +3199,14 @@ class TestAsyncIdentityProviders:
     async def test_method_create_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3317,16 +3284,15 @@ class TestAsyncIdentityProviders:
     async def test_method_create_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={
+                "apps_domain": "mycompany.com",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
-                "apps_domain": "mycompany.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3410,7 +3376,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3488,19 +3453,18 @@ class TestAsyncIdentityProviders:
     async def test_method_create_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={
-                "client_id": "<your client id>",
-                "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "email_claim_name": "custom_claim_name",
                 "auth_url": "https://accounts.google.com/o/oauth2/auth",
                 "certs_url": "https://www.googleapis.com/oauth2/v3/certs",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+                "email_claim_name": "custom_claim_name",
                 "scopes": ["openid", "email", "profile"],
                 "token_url": "https://accounts.google.com/o/oauth2/token",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3578,17 +3542,16 @@ class TestAsyncIdentityProviders:
     async def test_method_create_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={
+                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
-                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
                 "okta_account": "https://dev-abc123.oktapreview.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3666,16 +3629,15 @@ class TestAsyncIdentityProviders:
     async def test_method_create_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
                 "onelogin_account": "https://mycompany.onelogin.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3753,16 +3715,15 @@ class TestAsyncIdentityProviders:
     async def test_method_create_with_all_params_overload_11(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
                 "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3864,7 +3825,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -3948,7 +3908,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4029,7 +3988,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4109,19 +4067,18 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "email_claim_name": "custom_claim_name",
                 "conditional_access_enabled": True,
                 "directory_id": "<your azure directory uuid>",
+                "email_claim_name": "custom_claim_name",
                 "prompt": "login",
                 "support_groups": True,
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4214,17 +4171,16 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
-                "client_id": "<your client id>",
-                "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "email_claim_name": "custom_claim_name",
                 "centrify_account": "https://abc123.my.centrify.com/",
                 "centrify_app_id": "exampleapp",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+                "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4323,7 +4279,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4422,7 +4377,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4515,15 +4469,14 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4616,16 +4569,15 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
+                "apps_domain": "mycompany.com",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
-                "apps_domain": "mycompany.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4724,7 +4676,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4817,19 +4768,18 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
-                "client_id": "<your client id>",
-                "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
-                "email_claim_name": "custom_claim_name",
                 "auth_url": "https://accounts.google.com/o/oauth2/auth",
                 "certs_url": "https://www.googleapis.com/oauth2/v3/certs",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
+                "client_id": "<your client id>",
+                "client_secret": "<your client secret>",
+                "email_claim_name": "custom_claim_name",
                 "scopes": ["openid", "email", "profile"],
                 "token_url": "https://accounts.google.com/o/oauth2/token",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -4922,17 +4872,16 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
+                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
-                "authorization_server_id": "aus9o8wzkhckw9TLa0h7z",
                 "okta_account": "https://dev-abc123.oktapreview.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -5025,16 +4974,15 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
                 "onelogin_account": "https://mycompany.onelogin.com",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -5127,16 +5075,15 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
+                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
-                "claims": ["email_verified", "preferred_username", "custom_claim_name"],
                 "email_claim_name": "custom_claim_name",
                 "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
             },
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -5253,7 +5200,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -5352,7 +5298,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
@@ -5448,7 +5393,6 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,

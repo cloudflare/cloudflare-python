@@ -28,6 +28,14 @@ from ....._utils import (
     async_maybe_transform,
 )
 from ....._compat import cached_property
+from .certificates import (
+    CertificatesResource,
+    AsyncCertificatesResource,
+    CertificatesResourceWithRawResponse,
+    AsyncCertificatesResourceWithRawResponse,
+    CertificatesResourceWithStreamingResponse,
+    AsyncCertificatesResourceWithStreamingResponse,
+)
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
     to_raw_response_wrapper,
@@ -63,6 +71,10 @@ __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
 class PoliciesResource(SyncAPIResource):
     @cached_property
+    def certificates(self) -> CertificatesResource:
+        return CertificatesResource(self._client)
+
+    @cached_property
     def default_policy(self) -> DefaultPolicyResource:
         return DefaultPolicyResource(self._client)
 
@@ -80,10 +92,21 @@ class PoliciesResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> PoliciesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PoliciesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PoliciesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PoliciesResourceWithStreamingResponse(self)
 
     def create(
@@ -107,6 +130,7 @@ class PoliciesResource(SyncAPIResource):
         service_mode_v2: policy_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
+        tunnel_protocol: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -159,6 +183,8 @@ class PoliciesResource(SyncAPIResource):
 
           switch_locked: Whether to allow the user to turn off the WARP switch and disconnect the client.
 
+          tunnel_protocol: Determines which tunnel protocol to use.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -190,6 +216,7 @@ class PoliciesResource(SyncAPIResource):
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
+                    "tunnel_protocol": tunnel_protocol,
                 },
                 policy_create_params.PolicyCreateParams,
             ),
@@ -300,6 +327,7 @@ class PoliciesResource(SyncAPIResource):
         service_mode_v2: policy_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
+        tunnel_protocol: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -345,6 +373,8 @@ class PoliciesResource(SyncAPIResource):
 
           switch_locked: Whether to allow the user to turn off the WARP switch and disconnect the client.
 
+          tunnel_protocol: Determines which tunnel protocol to use.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -376,6 +406,7 @@ class PoliciesResource(SyncAPIResource):
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
+                    "tunnel_protocol": tunnel_protocol,
                 },
                 policy_edit_params.PolicyEditParams,
             ),
@@ -434,6 +465,10 @@ class PoliciesResource(SyncAPIResource):
 
 class AsyncPoliciesResource(AsyncAPIResource):
     @cached_property
+    def certificates(self) -> AsyncCertificatesResource:
+        return AsyncCertificatesResource(self._client)
+
+    @cached_property
     def default_policy(self) -> AsyncDefaultPolicyResource:
         return AsyncDefaultPolicyResource(self._client)
 
@@ -451,10 +486,21 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncPoliciesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPoliciesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPoliciesResourceWithStreamingResponse(self)
 
     async def create(
@@ -478,6 +524,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         service_mode_v2: policy_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
+        tunnel_protocol: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -530,6 +577,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           switch_locked: Whether to allow the user to turn off the WARP switch and disconnect the client.
 
+          tunnel_protocol: Determines which tunnel protocol to use.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -561,6 +610,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
+                    "tunnel_protocol": tunnel_protocol,
                 },
                 policy_create_params.PolicyCreateParams,
             ),
@@ -671,6 +721,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         service_mode_v2: policy_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
+        tunnel_protocol: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -716,6 +767,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           switch_locked: Whether to allow the user to turn off the WARP switch and disconnect the client.
 
+          tunnel_protocol: Determines which tunnel protocol to use.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -747,6 +800,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
+                    "tunnel_protocol": tunnel_protocol,
                 },
                 policy_edit_params.PolicyEditParams,
             ),
@@ -824,6 +878,10 @@ class PoliciesResourceWithRawResponse:
         )
 
     @cached_property
+    def certificates(self) -> CertificatesResourceWithRawResponse:
+        return CertificatesResourceWithRawResponse(self._policies.certificates)
+
+    @cached_property
     def default_policy(self) -> DefaultPolicyResourceWithRawResponse:
         return DefaultPolicyResourceWithRawResponse(self._policies.default_policy)
 
@@ -859,6 +917,10 @@ class AsyncPoliciesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             policies.get,
         )
+
+    @cached_property
+    def certificates(self) -> AsyncCertificatesResourceWithRawResponse:
+        return AsyncCertificatesResourceWithRawResponse(self._policies.certificates)
 
     @cached_property
     def default_policy(self) -> AsyncDefaultPolicyResourceWithRawResponse:
@@ -898,6 +960,10 @@ class PoliciesResourceWithStreamingResponse:
         )
 
     @cached_property
+    def certificates(self) -> CertificatesResourceWithStreamingResponse:
+        return CertificatesResourceWithStreamingResponse(self._policies.certificates)
+
+    @cached_property
     def default_policy(self) -> DefaultPolicyResourceWithStreamingResponse:
         return DefaultPolicyResourceWithStreamingResponse(self._policies.default_policy)
 
@@ -933,6 +999,10 @@ class AsyncPoliciesResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             policies.get,
         )
+
+    @cached_property
+    def certificates(self) -> AsyncCertificatesResourceWithStreamingResponse:
+        return AsyncCertificatesResourceWithStreamingResponse(self._policies.certificates)
 
     @cached_property
     def default_policy(self) -> AsyncDefaultPolicyResourceWithStreamingResponse:

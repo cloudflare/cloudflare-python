@@ -31,10 +31,21 @@ __all__ = ["BulkResource", "AsyncBulkResource"]
 class BulkResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BulkResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return BulkResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> BulkResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return BulkResourceWithStreamingResponse(self)
 
     def update(
@@ -78,7 +89,7 @@ class BulkResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
-            body=maybe_transform(body, bulk_update_params.BulkUpdateParams),
+            body=maybe_transform(body, Iterable[bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -139,10 +150,21 @@ class BulkResource(SyncAPIResource):
 class AsyncBulkResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBulkResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncBulkResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncBulkResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncBulkResourceWithStreamingResponse(self)
 
     async def update(
@@ -186,7 +208,7 @@ class AsyncBulkResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
-            body=await async_maybe_transform(body, bulk_update_params.BulkUpdateParams),
+            body=await async_maybe_transform(body, Iterable[bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

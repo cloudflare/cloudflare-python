@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .additional_routes_param import AdditionalRoutesParam
@@ -129,6 +129,9 @@ class WaitingRoomEditParams(TypedDict, total=False):
     go through the waiting room again. If `false`, a user's session cookie will be
     automatically renewed on every request.
     """
+
+    enabled_origin_commands: List[Literal["revoke"]]
+    """A list of enabled origin commands."""
 
     json_response_enabled: bool
     """Only available for the Waiting Room Advanced subscription.

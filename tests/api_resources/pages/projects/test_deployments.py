@@ -93,7 +93,7 @@ class TestDeployments:
         deployment = client.pages.projects.deployments.list(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            env="preview",
+            env="production",
         )
         assert_matches_type(SyncSinglePage[Deployment], deployment, path=["response"])
 
@@ -468,7 +468,7 @@ class TestAsyncDeployments:
         deployment = await async_client.pages.projects.deployments.list(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            env="preview",
+            env="production",
         )
         assert_matches_type(AsyncSinglePage[Deployment], deployment, path=["response"])
 

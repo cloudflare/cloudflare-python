@@ -30,7 +30,7 @@ class TestPolicies:
     def test_method_create(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{}],
@@ -48,7 +48,7 @@ class TestPolicies:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{"id": "test@example.com"}],
@@ -56,6 +56,7 @@ class TestPolicies:
                 "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
             },
             name="SSL Notification Event Policy",
+            alert_interval="30m",
             description="Something describing the policy.",
             filters={
                 "actions": ["string", "string", "string"],
@@ -64,7 +65,7 @@ class TestPolicies:
                 "affected_locations": ["string", "string", "string"],
                 "airport_code": ["string", "string", "string"],
                 "alert_trigger_preferences": ["string", "string", "string"],
-                "alert_trigger_preferences_value": ["99.0", "98.0", "97.0"],
+                "alert_trigger_preferences_value": ["string", "string", "string"],
                 "enabled": ["string", "string", "string"],
                 "environment": ["string", "string", "string"],
                 "event": ["string", "string", "string"],
@@ -81,6 +82,7 @@ class TestPolicies:
                 "new_status": ["string", "string", "string"],
                 "packets_per_second": ["string", "string", "string"],
                 "pool_id": ["string", "string", "string"],
+                "pop_name": ["string", "string", "string"],
                 "product": ["string", "string", "string"],
                 "project_id": ["string", "string", "string"],
                 "protocol": ["string", "string", "string"],
@@ -109,7 +111,7 @@ class TestPolicies:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.alerting.policies.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{}],
@@ -131,7 +133,7 @@ class TestPolicies:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.alerting.policies.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{}],
@@ -156,7 +158,7 @@ class TestPolicies:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.alerting.policies.with_raw_response.create(
                 account_id="",
-                alert_type="universal_ssl_event_type",
+                alert_type="access_custom_certificate_expiration_type",
                 enabled=True,
                 mechanisms={
                     "email": [{}],
@@ -185,7 +187,8 @@ class TestPolicies:
         policy = client.alerting.policies.update(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_interval="30m",
+            alert_type="access_custom_certificate_expiration_type",
             description="Something describing the policy.",
             enabled=True,
             filters={
@@ -195,7 +198,7 @@ class TestPolicies:
                 "affected_locations": ["string", "string", "string"],
                 "airport_code": ["string", "string", "string"],
                 "alert_trigger_preferences": ["string", "string", "string"],
-                "alert_trigger_preferences_value": ["99.0", "98.0", "97.0"],
+                "alert_trigger_preferences_value": ["string", "string", "string"],
                 "enabled": ["string", "string", "string"],
                 "environment": ["string", "string", "string"],
                 "event": ["string", "string", "string"],
@@ -212,6 +215,7 @@ class TestPolicies:
                 "new_status": ["string", "string", "string"],
                 "packets_per_second": ["string", "string", "string"],
                 "pool_id": ["string", "string", "string"],
+                "pop_name": ["string", "string", "string"],
                 "product": ["string", "string", "string"],
                 "project_id": ["string", "string", "string"],
                 "protocol": ["string", "string", "string"],
@@ -445,7 +449,7 @@ class TestAsyncPolicies:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{}],
@@ -463,7 +467,7 @@ class TestAsyncPolicies:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{"id": "test@example.com"}],
@@ -471,6 +475,7 @@ class TestAsyncPolicies:
                 "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
             },
             name="SSL Notification Event Policy",
+            alert_interval="30m",
             description="Something describing the policy.",
             filters={
                 "actions": ["string", "string", "string"],
@@ -479,7 +484,7 @@ class TestAsyncPolicies:
                 "affected_locations": ["string", "string", "string"],
                 "airport_code": ["string", "string", "string"],
                 "alert_trigger_preferences": ["string", "string", "string"],
-                "alert_trigger_preferences_value": ["99.0", "98.0", "97.0"],
+                "alert_trigger_preferences_value": ["string", "string", "string"],
                 "enabled": ["string", "string", "string"],
                 "environment": ["string", "string", "string"],
                 "event": ["string", "string", "string"],
@@ -496,6 +501,7 @@ class TestAsyncPolicies:
                 "new_status": ["string", "string", "string"],
                 "packets_per_second": ["string", "string", "string"],
                 "pool_id": ["string", "string", "string"],
+                "pop_name": ["string", "string", "string"],
                 "product": ["string", "string", "string"],
                 "project_id": ["string", "string", "string"],
                 "protocol": ["string", "string", "string"],
@@ -524,7 +530,7 @@ class TestAsyncPolicies:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.policies.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{}],
@@ -546,7 +552,7 @@ class TestAsyncPolicies:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.policies.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{}],
@@ -571,7 +577,7 @@ class TestAsyncPolicies:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.alerting.policies.with_raw_response.create(
                 account_id="",
-                alert_type="universal_ssl_event_type",
+                alert_type="access_custom_certificate_expiration_type",
                 enabled=True,
                 mechanisms={
                     "email": [{}],
@@ -600,7 +606,8 @@ class TestAsyncPolicies:
         policy = await async_client.alerting.policies.update(
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_interval="30m",
+            alert_type="access_custom_certificate_expiration_type",
             description="Something describing the policy.",
             enabled=True,
             filters={
@@ -610,7 +617,7 @@ class TestAsyncPolicies:
                 "affected_locations": ["string", "string", "string"],
                 "airport_code": ["string", "string", "string"],
                 "alert_trigger_preferences": ["string", "string", "string"],
-                "alert_trigger_preferences_value": ["99.0", "98.0", "97.0"],
+                "alert_trigger_preferences_value": ["string", "string", "string"],
                 "enabled": ["string", "string", "string"],
                 "environment": ["string", "string", "string"],
                 "event": ["string", "string", "string"],
@@ -627,6 +634,7 @@ class TestAsyncPolicies:
                 "new_status": ["string", "string", "string"],
                 "packets_per_second": ["string", "string", "string"],
                 "pool_id": ["string", "string", "string"],
+                "pop_name": ["string", "string", "string"],
                 "product": ["string", "string", "string"],
                 "project_id": ["string", "string", "string"],
                 "protocol": ["string", "string", "string"],

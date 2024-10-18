@@ -21,16 +21,18 @@ class TestHostnames:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         hostname = client.web3.hostnames.create(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            target="ipfs",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
+            target="ethereum",
         )
         assert_matches_type(Hostname, hostname, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         hostname = client.web3.hostnames.create(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            target="ipfs",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
+            target="ethereum",
             description="This is my IPFS gateway.",
             dnslink="/ipns/onboarding.ipfs.cloudflare.com",
         )
@@ -39,8 +41,9 @@ class TestHostnames:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.with_raw_response.create(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            target="ipfs",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
+            target="ethereum",
         )
 
         assert response.is_closed is True
@@ -51,8 +54,9 @@ class TestHostnames:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.web3.hostnames.with_streaming_response.create(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            target="ipfs",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
+            target="ethereum",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,23 +68,24 @@ class TestHostnames:
 
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.web3.hostnames.with_raw_response.create(
-                zone_identifier="",
-                target="ipfs",
+                zone_id="",
+                name="gateway.example.com",
+                target="ethereum",
             )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         hostname = client.web3.hostnames.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncSinglePage[Hostname], hostname, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -91,7 +96,7 @@ class TestHostnames:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.web3.hostnames.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -103,16 +108,16 @@ class TestHostnames:
 
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.web3.hostnames.with_raw_response.list(
-                "",
+                zone_id="",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         hostname = client.web3.hostnames.delete(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[HostnameDeleteResponse], hostname, path=["response"])
 
@@ -120,7 +125,7 @@ class TestHostnames:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.with_raw_response.delete(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -132,7 +137,7 @@ class TestHostnames:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.web3.hostnames.with_streaming_response.delete(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -144,23 +149,23 @@ class TestHostnames:
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.web3.hostnames.with_raw_response.delete(
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_identifier="",
+                zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.web3.hostnames.with_raw_response.delete(
                 identifier="",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         hostname = client.web3.hostnames.edit(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Hostname, hostname, path=["response"])
 
@@ -168,7 +173,7 @@ class TestHostnames:
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         hostname = client.web3.hostnames.edit(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="This is my IPFS gateway.",
             dnslink="/ipns/onboarding.ipfs.cloudflare.com",
         )
@@ -178,7 +183,7 @@ class TestHostnames:
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.with_raw_response.edit(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -190,7 +195,7 @@ class TestHostnames:
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.web3.hostnames.with_streaming_response.edit(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -202,23 +207,23 @@ class TestHostnames:
 
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.web3.hostnames.with_raw_response.edit(
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_identifier="",
+                zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.web3.hostnames.with_raw_response.edit(
                 identifier="",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         hostname = client.web3.hostnames.get(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Hostname, hostname, path=["response"])
 
@@ -226,7 +231,7 @@ class TestHostnames:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.with_raw_response.get(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -238,7 +243,7 @@ class TestHostnames:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.web3.hostnames.with_streaming_response.get(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -250,16 +255,16 @@ class TestHostnames:
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.web3.hostnames.with_raw_response.get(
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_identifier="",
+                zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.web3.hostnames.with_raw_response.get(
                 identifier="",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -269,16 +274,18 @@ class TestAsyncHostnames:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         hostname = await async_client.web3.hostnames.create(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            target="ipfs",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
+            target="ethereum",
         )
         assert_matches_type(Hostname, hostname, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         hostname = await async_client.web3.hostnames.create(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            target="ipfs",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
+            target="ethereum",
             description="This is my IPFS gateway.",
             dnslink="/ipns/onboarding.ipfs.cloudflare.com",
         )
@@ -287,8 +294,9 @@ class TestAsyncHostnames:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.web3.hostnames.with_raw_response.create(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            target="ipfs",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
+            target="ethereum",
         )
 
         assert response.is_closed is True
@@ -299,8 +307,9 @@ class TestAsyncHostnames:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.with_streaming_response.create(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            target="ipfs",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="gateway.example.com",
+            target="ethereum",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -312,23 +321,24 @@ class TestAsyncHostnames:
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.web3.hostnames.with_raw_response.create(
-                zone_identifier="",
-                target="ipfs",
+                zone_id="",
+                name="gateway.example.com",
+                target="ethereum",
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         hostname = await async_client.web3.hostnames.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncSinglePage[Hostname], hostname, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.web3.hostnames.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -339,7 +349,7 @@ class TestAsyncHostnames:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -351,16 +361,16 @@ class TestAsyncHostnames:
 
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.web3.hostnames.with_raw_response.list(
-                "",
+                zone_id="",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         hostname = await async_client.web3.hostnames.delete(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[HostnameDeleteResponse], hostname, path=["response"])
 
@@ -368,7 +378,7 @@ class TestAsyncHostnames:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.web3.hostnames.with_raw_response.delete(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -380,7 +390,7 @@ class TestAsyncHostnames:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.with_streaming_response.delete(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -392,23 +402,23 @@ class TestAsyncHostnames:
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.web3.hostnames.with_raw_response.delete(
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_identifier="",
+                zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.web3.hostnames.with_raw_response.delete(
                 identifier="",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         hostname = await async_client.web3.hostnames.edit(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Hostname, hostname, path=["response"])
 
@@ -416,7 +426,7 @@ class TestAsyncHostnames:
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         hostname = await async_client.web3.hostnames.edit(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="This is my IPFS gateway.",
             dnslink="/ipns/onboarding.ipfs.cloudflare.com",
         )
@@ -426,7 +436,7 @@ class TestAsyncHostnames:
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.web3.hostnames.with_raw_response.edit(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -438,7 +448,7 @@ class TestAsyncHostnames:
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.with_streaming_response.edit(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -450,23 +460,23 @@ class TestAsyncHostnames:
 
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.web3.hostnames.with_raw_response.edit(
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_identifier="",
+                zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.web3.hostnames.with_raw_response.edit(
                 identifier="",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         hostname = await async_client.web3.hostnames.get(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Hostname, hostname, path=["response"])
 
@@ -474,7 +484,7 @@ class TestAsyncHostnames:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.web3.hostnames.with_raw_response.get(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -486,7 +496,7 @@ class TestAsyncHostnames:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.with_streaming_response.get(
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -498,14 +508,14 @@ class TestAsyncHostnames:
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.web3.hostnames.with_raw_response.get(
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                zone_identifier="",
+                zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.web3.hostnames.with_raw_response.get(
                 identifier="",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

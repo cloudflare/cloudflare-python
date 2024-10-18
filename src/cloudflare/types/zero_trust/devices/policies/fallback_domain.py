@@ -14,5 +14,5 @@ class FallbackDomain(BaseModel):
     description: Optional[str] = None
     """A description of the fallback domain, displayed in the client UI."""
 
-    dns_server: Optional[List[object]] = None
+    dns_server: Optional[List[str]] = None
     """A list of IP addresses to handle domain resolution."""

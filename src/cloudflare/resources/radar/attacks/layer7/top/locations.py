@@ -33,10 +33,21 @@ __all__ = ["LocationsResource", "AsyncLocationsResource"]
 class LocationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LocationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return LocationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> LocationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return LocationsResourceWithStreamingResponse(self)
 
     def origin(
@@ -116,11 +127,11 @@ class LocationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationOriginResponse:
-        """Get the top origin locations of and by layer 7 attacks.
+        """Get the top origin locations of and by Layer 7 attacks.
 
         Values are a percentage
-        out of the total layer 7 attacks. The origin location is determined by the
-        client IP.
+        out of the total Layer 7 attacks. The origin location is determined by the
+        client IP address.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -339,10 +350,21 @@ class LocationsResource(SyncAPIResource):
 class AsyncLocationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncLocationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLocationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLocationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncLocationsResourceWithStreamingResponse(self)
 
     async def origin(
@@ -422,11 +444,11 @@ class AsyncLocationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationOriginResponse:
-        """Get the top origin locations of and by layer 7 attacks.
+        """Get the top origin locations of and by Layer 7 attacks.
 
         Values are a percentage
-        out of the total layer 7 attacks. The origin location is determined by the
-        client IP.
+        out of the total Layer 7 attacks. The origin location is determined by the
+        client IP address.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.

@@ -24,6 +24,22 @@ from .buckets import (
     BucketsResourceWithStreamingResponse,
     AsyncBucketsResourceWithStreamingResponse,
 )
+from .domains import (
+    DomainsResource,
+    AsyncDomainsResource,
+    DomainsResourceWithRawResponse,
+    AsyncDomainsResourceWithRawResponse,
+    DomainsResourceWithStreamingResponse,
+    AsyncDomainsResourceWithStreamingResponse,
+)
+from .event_notifications import (
+    EventNotificationsResource,
+    AsyncEventNotificationsResource,
+    EventNotificationsResourceWithRawResponse,
+    AsyncEventNotificationsResourceWithRawResponse,
+    EventNotificationsResourceWithStreamingResponse,
+    AsyncEventNotificationsResourceWithStreamingResponse,
+)
 from .temporary_credentials import (
     TemporaryCredentialsResource,
     AsyncTemporaryCredentialsResource,
@@ -52,6 +68,18 @@ __all__ = [
     "AsyncTemporaryCredentialsResourceWithRawResponse",
     "TemporaryCredentialsResourceWithStreamingResponse",
     "AsyncTemporaryCredentialsResourceWithStreamingResponse",
+    "DomainsResource",
+    "AsyncDomainsResource",
+    "DomainsResourceWithRawResponse",
+    "AsyncDomainsResourceWithRawResponse",
+    "DomainsResourceWithStreamingResponse",
+    "AsyncDomainsResourceWithStreamingResponse",
+    "EventNotificationsResource",
+    "AsyncEventNotificationsResource",
+    "EventNotificationsResourceWithRawResponse",
+    "AsyncEventNotificationsResourceWithRawResponse",
+    "EventNotificationsResourceWithStreamingResponse",
+    "AsyncEventNotificationsResourceWithStreamingResponse",
     "R2Resource",
     "AsyncR2Resource",
     "R2ResourceWithRawResponse",

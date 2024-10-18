@@ -12,11 +12,14 @@ class RewriteAction(BaseModel):
     block: Optional[Literal["challenge", "block", "simulate", "disable", "default"]] = None
     """The WAF rule action to apply."""
 
-    challenge: Optional[str] = None
+    challenge: Optional[Literal["challenge", "block", "simulate", "disable", "default"]] = None
+    """The WAF rule action to apply."""
 
-    default: Optional[str] = None
+    default: Optional[Literal["challenge", "block", "simulate", "disable", "default"]] = None
+    """The WAF rule action to apply."""
 
     disable: Optional[Literal["challenge", "block", "simulate", "disable", "default"]] = None
     """The WAF rule action to apply."""
 
-    simulate: Optional[str] = None
+    simulate: Optional[Literal["challenge", "block", "simulate", "disable", "default"]] = None
+    """The WAF rule action to apply."""

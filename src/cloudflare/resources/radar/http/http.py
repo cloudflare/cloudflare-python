@@ -73,10 +73,6 @@ __all__ = ["HTTPResource", "AsyncHTTPResource"]
 
 class HTTPResource(SyncAPIResource):
     @cached_property
-    def top(self) -> TopResource:
-        return TopResource(self._client)
-
-    @cached_property
     def locations(self) -> LocationsResource:
         return LocationsResource(self._client)
 
@@ -93,11 +89,26 @@ class HTTPResource(SyncAPIResource):
         return TimeseriesGroupsResource(self._client)
 
     @cached_property
+    def top(self) -> TopResource:
+        return TopResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> HTTPResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return HTTPResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> HTTPResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return HTTPResourceWithStreamingResponse(self)
 
     def timeseries(
@@ -112,6 +123,7 @@ class HTTPResource(SyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -150,6 +162,9 @@ class HTTPResource(SyncAPIResource):
               but includes results from PT.
 
           name: Array of names that will be used to name the series in responses.
+
+          normalization: Normalization method applied. Refer to
+              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
 
           extra_headers: Send extra headers
 
@@ -177,6 +192,7 @@ class HTTPResource(SyncAPIResource):
                         "format": format,
                         "location": location,
                         "name": name,
+                        "normalization": normalization,
                     },
                     http_timeseries_params.HTTPTimeseriesParams,
                 ),
@@ -187,10 +203,6 @@ class HTTPResource(SyncAPIResource):
 
 
 class AsyncHTTPResource(AsyncAPIResource):
-    @cached_property
-    def top(self) -> AsyncTopResource:
-        return AsyncTopResource(self._client)
-
     @cached_property
     def locations(self) -> AsyncLocationsResource:
         return AsyncLocationsResource(self._client)
@@ -208,11 +220,26 @@ class AsyncHTTPResource(AsyncAPIResource):
         return AsyncTimeseriesGroupsResource(self._client)
 
     @cached_property
+    def top(self) -> AsyncTopResource:
+        return AsyncTopResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncHTTPResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncHTTPResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncHTTPResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncHTTPResourceWithStreamingResponse(self)
 
     async def timeseries(
@@ -227,6 +254,7 @@ class AsyncHTTPResource(AsyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -266,6 +294,9 @@ class AsyncHTTPResource(AsyncAPIResource):
 
           name: Array of names that will be used to name the series in responses.
 
+          normalization: Normalization method applied. Refer to
+              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -292,6 +323,7 @@ class AsyncHTTPResource(AsyncAPIResource):
                         "format": format,
                         "location": location,
                         "name": name,
+                        "normalization": normalization,
                     },
                     http_timeseries_params.HTTPTimeseriesParams,
                 ),
@@ -310,10 +342,6 @@ class HTTPResourceWithRawResponse:
         )
 
     @cached_property
-    def top(self) -> TopResourceWithRawResponse:
-        return TopResourceWithRawResponse(self._http.top)
-
-    @cached_property
     def locations(self) -> LocationsResourceWithRawResponse:
         return LocationsResourceWithRawResponse(self._http.locations)
 
@@ -329,6 +357,10 @@ class HTTPResourceWithRawResponse:
     def timeseries_groups(self) -> TimeseriesGroupsResourceWithRawResponse:
         return TimeseriesGroupsResourceWithRawResponse(self._http.timeseries_groups)
 
+    @cached_property
+    def top(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self._http.top)
+
 
 class AsyncHTTPResourceWithRawResponse:
     def __init__(self, http: AsyncHTTPResource) -> None:
@@ -337,10 +369,6 @@ class AsyncHTTPResourceWithRawResponse:
         self.timeseries = async_to_raw_response_wrapper(
             http.timeseries,
         )
-
-    @cached_property
-    def top(self) -> AsyncTopResourceWithRawResponse:
-        return AsyncTopResourceWithRawResponse(self._http.top)
 
     @cached_property
     def locations(self) -> AsyncLocationsResourceWithRawResponse:
@@ -358,6 +386,10 @@ class AsyncHTTPResourceWithRawResponse:
     def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
         return AsyncTimeseriesGroupsResourceWithRawResponse(self._http.timeseries_groups)
 
+    @cached_property
+    def top(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self._http.top)
+
 
 class HTTPResourceWithStreamingResponse:
     def __init__(self, http: HTTPResource) -> None:
@@ -366,10 +398,6 @@ class HTTPResourceWithStreamingResponse:
         self.timeseries = to_streamed_response_wrapper(
             http.timeseries,
         )
-
-    @cached_property
-    def top(self) -> TopResourceWithStreamingResponse:
-        return TopResourceWithStreamingResponse(self._http.top)
 
     @cached_property
     def locations(self) -> LocationsResourceWithStreamingResponse:
@@ -387,6 +415,10 @@ class HTTPResourceWithStreamingResponse:
     def timeseries_groups(self) -> TimeseriesGroupsResourceWithStreamingResponse:
         return TimeseriesGroupsResourceWithStreamingResponse(self._http.timeseries_groups)
 
+    @cached_property
+    def top(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self._http.top)
+
 
 class AsyncHTTPResourceWithStreamingResponse:
     def __init__(self, http: AsyncHTTPResource) -> None:
@@ -395,10 +427,6 @@ class AsyncHTTPResourceWithStreamingResponse:
         self.timeseries = async_to_streamed_response_wrapper(
             http.timeseries,
         )
-
-    @cached_property
-    def top(self) -> AsyncTopResourceWithStreamingResponse:
-        return AsyncTopResourceWithStreamingResponse(self._http.top)
 
     @cached_property
     def locations(self) -> AsyncLocationsResourceWithStreamingResponse:
@@ -415,3 +443,7 @@ class AsyncHTTPResourceWithStreamingResponse:
     @cached_property
     def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithStreamingResponse:
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self._http.timeseries_groups)
+
+    @cached_property
+    def top(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self._http.top)
