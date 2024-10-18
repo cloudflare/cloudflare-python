@@ -7,7 +7,6 @@ from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._utils import PropertyInfo
 from .health_check_rate import HealthCheckRate
-from .health_check_type import HealthCheckType
 
 __all__ = ["IPSECTunnelUpdateParams", "HealthCheck", "HealthCheckTarget", "HealthCheckTargetMagicHealthCheckTarget"]
 
@@ -91,5 +90,5 @@ class HealthCheck(TypedDict, total=False):
     x-magic-new-hc-target is absent or set to false.
     """
 
-    type: HealthCheckType
+    type: Literal["reply", "request"]
     """The type of healthcheck to run, reply or request. The default value is `reply`."""
