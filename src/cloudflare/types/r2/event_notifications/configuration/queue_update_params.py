@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 from typing import List, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from ....._utils import PropertyInfo
 
 __all__ = ["QueueUpdateParams", "Rule"]
 
@@ -17,6 +19,9 @@ class QueueUpdateParams(TypedDict, total=False):
 
     rules: Iterable[Rule]
     """Array of rules to drive notifications"""
+
+    cf_r2_jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
+    """The bucket jurisdiction"""
 
 
 class Rule(TypedDict, total=False):
