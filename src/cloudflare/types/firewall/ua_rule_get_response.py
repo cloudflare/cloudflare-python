@@ -5,4 +5,4 @@ from typing_extensions import TypeAlias
 
 __all__ = ["UARuleGetResponse"]
 
-UARuleGetResponse: TypeAlias = Union[Optional[str], object]
+UARuleGetResponse: TypeAlias = Union[Optional[str], Optional[object]]
