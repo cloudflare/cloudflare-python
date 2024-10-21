@@ -405,52 +405,6 @@ class RulesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[GatewayRule]], ResultWrapper[GatewayRule]),
         )
 
-    def reset_expiration(
-        self,
-        rule_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[GatewayRule]:
-        """
-        Resets the expiration of a Zero Trust Gateway Rule if its duration has elapsed
-        and it has a default duration.
-
-        The Zero Trust Gateway Rule must have values for both `expiration.expires_at`
-        and `expiration.duration`.
-
-        Args:
-          rule_id: The API resource UUID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not rule_id:
-            raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/gateway/rules/{rule_id}/reset_expiration",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[GatewayRule]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[GatewayRule]], ResultWrapper[GatewayRule]),
-        )
-
 
 class AsyncRulesResource(AsyncAPIResource):
     @cached_property
@@ -825,52 +779,6 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[GatewayRule]], ResultWrapper[GatewayRule]),
         )
 
-    async def reset_expiration(
-        self,
-        rule_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[GatewayRule]:
-        """
-        Resets the expiration of a Zero Trust Gateway Rule if its duration has elapsed
-        and it has a default duration.
-
-        The Zero Trust Gateway Rule must have values for both `expiration.expires_at`
-        and `expiration.duration`.
-
-        Args:
-          rule_id: The API resource UUID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not rule_id:
-            raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/gateway/rules/{rule_id}/reset_expiration",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[GatewayRule]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[GatewayRule]], ResultWrapper[GatewayRule]),
-        )
-
 
 class RulesResourceWithRawResponse:
     def __init__(self, rules: RulesResource) -> None:
@@ -890,9 +798,6 @@ class RulesResourceWithRawResponse:
         )
         self.get = to_raw_response_wrapper(
             rules.get,
-        )
-        self.reset_expiration = to_raw_response_wrapper(
-            rules.reset_expiration,
         )
 
 
@@ -915,9 +820,6 @@ class AsyncRulesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             rules.get,
         )
-        self.reset_expiration = async_to_raw_response_wrapper(
-            rules.reset_expiration,
-        )
 
 
 class RulesResourceWithStreamingResponse:
@@ -939,9 +841,6 @@ class RulesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             rules.get,
         )
-        self.reset_expiration = to_streamed_response_wrapper(
-            rules.reset_expiration,
-        )
 
 
 class AsyncRulesResourceWithStreamingResponse:
@@ -962,7 +861,4 @@ class AsyncRulesResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             rules.get,
-        )
-        self.reset_expiration = async_to_streamed_response_wrapper(
-            rules.reset_expiration,
         )

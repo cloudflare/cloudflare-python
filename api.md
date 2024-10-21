@@ -1380,16 +1380,8 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.filters import FirewallFilter, FilterCreateResponse
+from cloudflare.types.filters import FirewallFilter
 ```
-
-Methods:
-
-- <code title="post /zones/{zone_id}/filters">client.filters.<a href="./src/cloudflare/resources/filters.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/filters/filter_create_params.py">params</a>) -> <a href="./src/cloudflare/types/filters/filter_create_response.py">Optional</a></code>
-- <code title="put /zones/{zone_id}/filters/{filter_id}">client.filters.<a href="./src/cloudflare/resources/filters.py">update</a>(filter_id, \*, zone_id, \*\*<a href="src/cloudflare/types/filters/filter_update_params.py">params</a>) -> <a href="./src/cloudflare/types/filters/firewall_filter.py">FirewallFilter</a></code>
-- <code title="get /zones/{zone_id}/filters">client.filters.<a href="./src/cloudflare/resources/filters.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/filters/filter_list_params.py">params</a>) -> <a href="./src/cloudflare/types/filters/firewall_filter.py">SyncV4PagePaginationArray[FirewallFilter]</a></code>
-- <code title="delete /zones/{zone_id}/filters/{filter_id}">client.filters.<a href="./src/cloudflare/resources/filters.py">delete</a>(filter_id, \*, zone_id) -> <a href="./src/cloudflare/types/filters/firewall_filter.py">FirewallFilter</a></code>
-- <code title="get /zones/{zone_id}/filters/{filter_id}">client.filters.<a href="./src/cloudflare/resources/filters.py">get</a>(filter_id, \*, zone_id) -> <a href="./src/cloudflare/types/filters/firewall_filter.py">FirewallFilter</a></code>
 
 # Firewall
 
@@ -1404,40 +1396,16 @@ from cloudflare.types.firewall import (
     LockdownCIDRConfiguration,
     LockdownIPConfiguration,
     LockdownURL,
-    LockdownDeleteResponse,
 )
 ```
-
-Methods:
-
-- <code title="post /zones/{zone_id}/firewall/lockdowns">client.firewall.lockdowns.<a href="./src/cloudflare/resources/firewall/lockdowns.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/firewall/lockdown_create_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/lockdown.py">Lockdown</a></code>
-- <code title="put /zones/{zone_id}/firewall/lockdowns/{lock_downs_id}">client.firewall.lockdowns.<a href="./src/cloudflare/resources/firewall/lockdowns.py">update</a>(lock_downs_id, \*, zone_id, \*\*<a href="src/cloudflare/types/firewall/lockdown_update_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/lockdown.py">Lockdown</a></code>
-- <code title="get /zones/{zone_id}/firewall/lockdowns">client.firewall.lockdowns.<a href="./src/cloudflare/resources/firewall/lockdowns.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/firewall/lockdown_list_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/lockdown.py">SyncV4PagePaginationArray[Lockdown]</a></code>
-- <code title="delete /zones/{zone_id}/firewall/lockdowns/{lock_downs_id}">client.firewall.lockdowns.<a href="./src/cloudflare/resources/firewall/lockdowns.py">delete</a>(lock_downs_id, \*, zone_id) -> <a href="./src/cloudflare/types/firewall/lockdown_delete_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/firewall/lockdowns/{lock_downs_id}">client.firewall.lockdowns.<a href="./src/cloudflare/resources/firewall/lockdowns.py">get</a>(lock_downs_id, \*, zone_id) -> <a href="./src/cloudflare/types/firewall/lockdown.py">Lockdown</a></code>
 
 ## Rules
 
 Types:
 
 ```python
-from cloudflare.types.firewall import (
-    FirewallRule,
-    Product,
-    DeletedFilter,
-    RuleCreateResponse,
-    RuleEditResponse,
-)
+from cloudflare.types.firewall import FirewallRule, Product, DeletedFilter
 ```
-
-Methods:
-
-- <code title="post /zones/{zone_id}/firewall/rules">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/firewall/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/rule_create_response.py">Optional</a></code>
-- <code title="put /zones/{zone_id}/firewall/rules/{rule_id}">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">update</a>(rule_id, \*, zone_id, \*\*<a href="src/cloudflare/types/firewall/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/firewall_rule.py">FirewallRule</a></code>
-- <code title="get /zones/{zone_id}/firewall/rules">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/firewall/rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/firewall_rule.py">SyncV4PagePaginationArray[FirewallRule]</a></code>
-- <code title="delete /zones/{zone_id}/firewall/rules/{rule_id}">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">delete</a>(rule_id, \*, zone_id) -> <a href="./src/cloudflare/types/firewall/firewall_rule.py">FirewallRule</a></code>
-- <code title="patch /zones/{zone_id}/firewall/rules/{rule_id}">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">edit</a>(rule_id, \*, zone_id) -> <a href="./src/cloudflare/types/firewall/rule_edit_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/firewall/rules/{rule_id}">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">get</a>(rule_id, \*, zone_id, \*\*<a href="src/cloudflare/types/firewall/rule_get_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/firewall_rule.py">FirewallRule</a></code>
 
 ## AccessRules
 
@@ -1452,9 +1420,6 @@ from cloudflare.types.firewall import (
     IPV6Configuration,
     AccessRuleCreateResponse,
     AccessRuleListResponse,
-    AccessRuleDeleteResponse,
-    AccessRuleEditResponse,
-    AccessRuleGetResponse,
 )
 ```
 
@@ -1462,31 +1427,6 @@ Methods:
 
 - <code title="post /{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules">client.firewall.access_rules.<a href="./src/cloudflare/resources/firewall/access_rules.py">create</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/firewall/access_rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/access_rule_create_response.py">AccessRuleCreateResponse</a></code>
 - <code title="get /{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules">client.firewall.access_rules.<a href="./src/cloudflare/resources/firewall/access_rules.py">list</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/firewall/access_rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/access_rule_list_response.py">SyncV4PagePaginationArray[AccessRuleListResponse]</a></code>
-- <code title="delete /{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{rule_id}">client.firewall.access_rules.<a href="./src/cloudflare/resources/firewall/access_rules.py">delete</a>(rule_id, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/firewall/access_rule_delete_response.py">Optional</a></code>
-- <code title="patch /{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{rule_id}">client.firewall.access_rules.<a href="./src/cloudflare/resources/firewall/access_rules.py">edit</a>(rule_id, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/firewall/access_rule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/access_rule_edit_response.py">AccessRuleEditResponse</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/firewall/access_rules/rules/{rule_id}">client.firewall.access_rules.<a href="./src/cloudflare/resources/firewall/access_rules.py">get</a>(rule_id, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/firewall/access_rule_get_response.py">AccessRuleGetResponse</a></code>
-
-## UARules
-
-Types:
-
-```python
-from cloudflare.types.firewall import (
-    UARuleCreateResponse,
-    UARuleUpdateResponse,
-    UARuleListResponse,
-    UARuleDeleteResponse,
-    UARuleGetResponse,
-)
-```
-
-Methods:
-
-- <code title="post /zones/{zone_id}/firewall/ua_rules">client.firewall.ua_rules.<a href="./src/cloudflare/resources/firewall/ua_rules.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/firewall/ua_rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/ua_rule_create_response.py">UARuleCreateResponse</a></code>
-- <code title="put /zones/{zone_id}/firewall/ua_rules/{ua_rule_id}">client.firewall.ua_rules.<a href="./src/cloudflare/resources/firewall/ua_rules.py">update</a>(ua_rule_id, \*, zone_id, \*\*<a href="src/cloudflare/types/firewall/ua_rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/ua_rule_update_response.py">UARuleUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/firewall/ua_rules">client.firewall.ua_rules.<a href="./src/cloudflare/resources/firewall/ua_rules.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/firewall/ua_rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/ua_rule_list_response.py">SyncV4PagePaginationArray[UARuleListResponse]</a></code>
-- <code title="delete /zones/{zone_id}/firewall/ua_rules/{ua_rule_id}">client.firewall.ua_rules.<a href="./src/cloudflare/resources/firewall/ua_rules.py">delete</a>(ua_rule_id, \*, zone_id) -> <a href="./src/cloudflare/types/firewall/ua_rule_delete_response.py">UARuleDeleteResponse</a></code>
-- <code title="get /zones/{zone_id}/firewall/ua_rules/{ua_rule_id}">client.firewall.ua_rules.<a href="./src/cloudflare/resources/firewall/ua_rules.py">get</a>(ua_rule_id, \*, zone_id) -> <a href="./src/cloudflare/types/firewall/ua_rule_get_response.py">UARuleGetResponse</a></code>
 
 ## WAF
 
@@ -1495,35 +1435,10 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.firewall.waf import (
-    Override,
-    OverrideURL,
-    RewriteAction,
-    WAFRule,
-    OverrideDeleteResponse,
-)
+from cloudflare.types.firewall.waf import Override, OverrideURL, RewriteAction, WAFRule
 ```
-
-Methods:
-
-- <code title="post /zones/{zone_id}/firewall/waf/overrides">client.firewall.waf.overrides.<a href="./src/cloudflare/resources/firewall/waf/overrides.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/firewall/waf/override_create_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/waf/override.py">Override</a></code>
-- <code title="put /zones/{zone_id}/firewall/waf/overrides/{overrides_id}">client.firewall.waf.overrides.<a href="./src/cloudflare/resources/firewall/waf/overrides.py">update</a>(overrides_id, \*, zone_id, \*\*<a href="src/cloudflare/types/firewall/waf/override_update_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/waf/override.py">Override</a></code>
-- <code title="get /zones/{zone_id}/firewall/waf/overrides">client.firewall.waf.overrides.<a href="./src/cloudflare/resources/firewall/waf/overrides.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/firewall/waf/override_list_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/waf/override.py">SyncV4PagePaginationArray[Override]</a></code>
-- <code title="delete /zones/{zone_id}/firewall/waf/overrides/{overrides_id}">client.firewall.waf.overrides.<a href="./src/cloudflare/resources/firewall/waf/overrides.py">delete</a>(overrides_id, \*, zone_id) -> <a href="./src/cloudflare/types/firewall/waf/override_delete_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/firewall/waf/overrides/{overrides_id}">client.firewall.waf.overrides.<a href="./src/cloudflare/resources/firewall/waf/overrides.py">get</a>(overrides_id, \*, zone_id) -> <a href="./src/cloudflare/types/firewall/waf/override.py">Override</a></code>
 
 ### Packages
-
-Types:
-
-```python
-from cloudflare.types.firewall.waf import PackageListResponse, PackageGetResponse
-```
-
-Methods:
-
-- <code title="get /zones/{zone_id}/firewall/waf/packages">client.firewall.waf.packages.<a href="./src/cloudflare/resources/firewall/waf/packages/packages.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/firewall/waf/package_list_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/waf/package_list_response.py">SyncV4PagePaginationArray[PackageListResponse]</a></code>
-- <code title="get /zones/{zone_id}/firewall/waf/packages/{package_id}">client.firewall.waf.packages.<a href="./src/cloudflare/resources/firewall/waf/packages/packages.py">get</a>(package_id, \*, zone_id) -> <a href="./src/cloudflare/types/firewall/waf/package_get_response.py">PackageGetResponse</a></code>
 
 #### Groups
 
@@ -1874,16 +1789,8 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.rate_limits import Action, Methods, RateLimit, RateLimitDeleteResponse
+from cloudflare.types.rate_limits import Action, Methods, RateLimit
 ```
-
-Methods:
-
-- <code title="post /zones/{zone_id}/rate_limits">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/rate_limits/rate_limit_create_params.py">params</a>) -> <a href="./src/cloudflare/types/rate_limits/rate_limit.py">RateLimit</a></code>
-- <code title="get /zones/{zone_id}/rate_limits">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/rate_limits/rate_limit_list_params.py">params</a>) -> <a href="./src/cloudflare/types/rate_limits/rate_limit.py">SyncV4PagePaginationArray[RateLimit]</a></code>
-- <code title="delete /zones/{zone_id}/rate_limits/{rate_limit_id}">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">delete</a>(rate_limit_id, \*, zone_id) -> <a href="./src/cloudflare/types/rate_limits/rate_limit_delete_response.py">RateLimitDeleteResponse</a></code>
-- <code title="put /zones/{zone_id}/rate_limits/{rate_limit_id}">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">edit</a>(rate_limit_id, \*, zone_id, \*\*<a href="src/cloudflare/types/rate_limits/rate_limit_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/rate_limits/rate_limit.py">RateLimit</a></code>
-- <code title="get /zones/{zone_id}/rate_limits/{rate_limit_id}">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">get</a>(rate_limit_id, \*, zone_id) -> <a href="./src/cloudflare/types/rate_limits/rate_limit.py">RateLimit</a></code>
 
 # SecondaryDNS
 
@@ -3567,7 +3474,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.magic_transit import HealthCheckRate
+from cloudflare.types.magic_transit import HealthCheckRate, HealthCheckType
 ```
 
 ## Apps
@@ -3982,19 +3889,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.registrar import (
-    Domain,
-    DomainUpdateResponse,
-    DomainListResponse,
-    DomainGetResponse,
-)
+from cloudflare.types.registrar import Domain, DomainUpdateResponse, DomainGetResponse
 ```
 
 Methods:
 
-- <code title="put /accounts/{account_id}/registrar/domains/{domain_name}">client.registrar.domains.<a href="./src/cloudflare/resources/registrar/domains.py">update</a>(domain_name, \*, account_id, \*\*<a href="src/cloudflare/types/registrar/domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/registrar/domain_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/registrar/domains">client.registrar.domains.<a href="./src/cloudflare/resources/registrar/domains.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/registrar/domain_list_response.py">SyncSinglePage[DomainListResponse]</a></code>
-- <code title="get /accounts/{account_id}/registrar/domains/{domain_name}">client.registrar.domains.<a href="./src/cloudflare/resources/registrar/domains.py">get</a>(domain_name, \*, account_id) -> <a href="./src/cloudflare/types/registrar/domain_get_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/registrar/domains/{domain_name}">client.registrar.domains.<a href="./src/cloudflare/resources/registrar/domains.py">update</a>(domain_name, \*, account_id, \*\*<a href="src/cloudflare/types/registrar/domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/registrar/domain_update_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/registrar/domains">client.registrar.domains.<a href="./src/cloudflare/resources/registrar/domains.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/registrar/domain.py">SyncSinglePage[Domain]</a></code>
+- <code title="get /accounts/{account_id}/registrar/domains/{domain_name}">client.registrar.domains.<a href="./src/cloudflare/resources/registrar/domains.py">get</a>(domain_name, \*, account_id) -> <a href="./src/cloudflare/types/registrar/domain_get_response.py">object</a></code>
 
 # RequestTracers
 
@@ -4577,7 +4479,7 @@ Methods:
 - <code title="delete /accounts/{account_id}/warp_connector/{tunnel_id}">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">delete</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/warp_connector/warp_connector_delete_response.py">WARPConnectorDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/warp_connector/{tunnel_id}">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">edit</a>(tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/warp_connector/warp_connector_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/warp_connector/warp_connector_edit_response.py">WARPConnectorEditResponse</a></code>
 - <code title="get /accounts/{account_id}/warp_connector/{tunnel_id}">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">get</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/warp_connector/warp_connector_get_response.py">WARPConnectorGetResponse</a></code>
-- <code title="get /accounts/{account_id}/warp_connector/{tunnel_id}/token">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">token</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/warp_connector/warp_connector_token_response.py">WARPConnectorTokenResponse</a></code>
+- <code title="get /accounts/{account_id}/warp_connector/{tunnel_id}/token">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">token</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/warp_connector/warp_connector_token_response.py">str</a></code>
 
 # WorkersForPlatforms
 
@@ -5607,7 +5509,7 @@ from cloudflare.types.zero_trust.tunnels import TokenGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/cfd_tunnel/{tunnel_id}/token">client.zero_trust.tunnels.token.<a href="./src/cloudflare/resources/zero_trust/tunnels/token.py">get</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/tunnels/token_get_response.py">TokenGetResponse</a></code>
+- <code title="get /accounts/{account_id}/cfd_tunnel/{tunnel_id}/token">client.zero_trust.tunnels.token.<a href="./src/cloudflare/resources/zero_trust/tunnels/token.py">get</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/tunnels/token_get_response.py">str</a></code>
 
 ### Connectors
 
@@ -5625,7 +5527,7 @@ from cloudflare.types.zero_trust.tunnels import ManagementCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/cfd_tunnel/{tunnel_id}/management">client.zero_trust.tunnels.management.<a href="./src/cloudflare/resources/zero_trust/tunnels/management.py">create</a>(tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/tunnels/management_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/tunnels/management_create_response.py">ManagementCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/cfd_tunnel/{tunnel_id}/management">client.zero_trust.tunnels.management.<a href="./src/cloudflare/resources/zero_trust/tunnels/management.py">create</a>(tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/tunnels/management_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/tunnels/management_create_response.py">str</a></code>
 
 ## ConnectivitySettings
 
@@ -5984,7 +5886,6 @@ Methods:
 - <code title="get /accounts/{account_id}/gateway/rules">client.zero_trust.gateway.rules.<a href="./src/cloudflare/resources/zero_trust/gateway/rules.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/gateway_rule.py">SyncSinglePage[GatewayRule]</a></code>
 - <code title="delete /accounts/{account_id}/gateway/rules/{rule_id}">client.zero_trust.gateway.rules.<a href="./src/cloudflare/resources/zero_trust/gateway/rules.py">delete</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/rule_delete_response.py">object</a></code>
 - <code title="get /accounts/{account_id}/gateway/rules/{rule_id}">client.zero_trust.gateway.rules.<a href="./src/cloudflare/resources/zero_trust/gateway/rules.py">get</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/gateway_rule.py">Optional</a></code>
-- <code title="post /accounts/{account_id}/gateway/rules/{rule_id}/reset_expiration">client.zero_trust.gateway.rules.<a href="./src/cloudflare/resources/zero_trust/gateway/rules.py">reset_expiration</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/gateway_rule.py">Optional</a></code>
 
 ### Certificates
 

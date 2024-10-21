@@ -6,6 +6,7 @@ from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 from .health_check_rate import HealthCheckRate
+from .health_check_type import HealthCheckType
 
 __all__ = [
     "GRETunnelListResponse",
@@ -62,7 +63,7 @@ class GRETunnelHealthCheck(BaseModel):
     x-magic-new-hc-target is absent or set to false.
     """
 
-    type: Optional[Literal["reply", "request"]] = None
+    type: Optional[HealthCheckType] = None
     """The type of healthcheck to run, reply or request. The default value is `reply`."""
 
 

@@ -15,7 +15,6 @@ from cloudflare.types.warp_connector import (
     WARPConnectorGetResponse,
     WARPConnectorEditResponse,
     WARPConnectorListResponse,
-    WARPConnectorTokenResponse,
     WARPConnectorCreateResponse,
     WARPConnectorDeleteResponse,
 )
@@ -284,7 +283,7 @@ class TestWARPConnector:
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
+        assert_matches_type(str, warp_connector, path=["response"])
 
     @parametrize
     def test_raw_response_token(self, client: Cloudflare) -> None:
@@ -296,7 +295,7 @@ class TestWARPConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = response.parse()
-        assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
+        assert_matches_type(str, warp_connector, path=["response"])
 
     @parametrize
     def test_streaming_response_token(self, client: Cloudflare) -> None:
@@ -308,7 +307,7 @@ class TestWARPConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = response.parse()
-            assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
+            assert_matches_type(str, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -590,7 +589,7 @@ class TestAsyncWARPConnector:
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
+        assert_matches_type(str, warp_connector, path=["response"])
 
     @parametrize
     async def test_raw_response_token(self, async_client: AsyncCloudflare) -> None:
@@ -602,7 +601,7 @@ class TestAsyncWARPConnector:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         warp_connector = await response.parse()
-        assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
+        assert_matches_type(str, warp_connector, path=["response"])
 
     @parametrize
     async def test_streaming_response_token(self, async_client: AsyncCloudflare) -> None:
@@ -614,7 +613,7 @@ class TestAsyncWARPConnector:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             warp_connector = await response.parse()
-            assert_matches_type(WARPConnectorTokenResponse, warp_connector, path=["response"])
+            assert_matches_type(str, warp_connector, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

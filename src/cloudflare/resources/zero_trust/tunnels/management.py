@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, cast
+from typing import List, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -60,7 +60,7 @@ class ManagementResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ManagementCreateResponse:
+    ) -> str:
         """Gets a management token used to access the management resources (i.e.
 
         Streaming
@@ -83,22 +83,17 @@ class ManagementResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            ManagementCreateResponse,
-            self._post(
-                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management",
-                body=maybe_transform({"resources": resources}, management_create_params.ManagementCreateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ManagementCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ManagementCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management",
+            body=maybe_transform({"resources": resources}, management_create_params.ManagementCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ManagementCreateResponse]._unwrapper,
             ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
 
@@ -134,7 +129,7 @@ class AsyncManagementResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ManagementCreateResponse:
+    ) -> str:
         """Gets a management token used to access the management resources (i.e.
 
         Streaming
@@ -157,24 +152,17 @@ class AsyncManagementResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            ManagementCreateResponse,
-            await self._post(
-                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management",
-                body=await async_maybe_transform(
-                    {"resources": resources}, management_create_params.ManagementCreateParams
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ManagementCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ManagementCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management",
+            body=await async_maybe_transform({"resources": resources}, management_create_params.ManagementCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ManagementCreateResponse]._unwrapper,
             ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
 
