@@ -1575,7 +1575,7 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         except Exception as err:
             log.debug("Encountered Exception", exc_info=True)
 
-            if retries_taken > 0:
+            if remaining_retries > 0:
                 return await self._retry_request(
                     input_options,
                     cast_to,
