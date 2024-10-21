@@ -48,7 +48,6 @@ class TestQueues:
                     "suffix": ".jpeg",
                 },
             ],
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(object, queue, path=["response"])
 
@@ -109,16 +108,6 @@ class TestQueues:
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
-        )
-        assert_matches_type(object, queue, path=["response"])
-
-    @parametrize
-    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
-        queue = client.r2.event_notifications.configuration.queues.delete(
-            queue_id="queue_id",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            bucket_name="example-bucket",
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(object, queue, path=["response"])
 
@@ -209,7 +198,6 @@ class TestAsyncQueues:
                     "suffix": ".jpeg",
                 },
             ],
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(object, queue, path=["response"])
 
@@ -270,16 +258,6 @@ class TestAsyncQueues:
             queue_id="queue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
-        )
-        assert_matches_type(object, queue, path=["response"])
-
-    @parametrize
-    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        queue = await async_client.r2.event_notifications.configuration.queues.delete(
-            queue_id="queue_id",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            bucket_name="example-bucket",
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(object, queue, path=["response"])
 

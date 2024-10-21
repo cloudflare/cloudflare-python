@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, Annotated, TypedDict
-
-from ..._utils import PropertyInfo
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["BucketListParams"]
 
@@ -36,6 +34,3 @@ class BucketListParams(TypedDict, total=False):
 
     start_after: str
     """Bucket name to start searching after. Buckets are ordered lexicographically."""
-
-    cf_r2_jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
-    """Lists buckets in the provided jurisdiction"""
