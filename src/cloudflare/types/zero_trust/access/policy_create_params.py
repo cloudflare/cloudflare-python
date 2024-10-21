@@ -7,7 +7,7 @@ from typing_extensions import Required, TypedDict
 
 from .decision import Decision
 from ..access_rule_param import AccessRuleParam
-from .applications.approval_group_param import ApprovalGroupParam
+from .approval_group_param import ApprovalGroupParam
 
 __all__ = ["PolicyCreateParams", "ConnectionRules", "ConnectionRulesSSH"]
 

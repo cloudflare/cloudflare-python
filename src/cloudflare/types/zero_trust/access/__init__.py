@@ -14,6 +14,7 @@ from .cors_headers import CORSHeaders as CORSHeaders
 from .oidc_saas_app import OIDCSaaSApp as OIDCSaaSApp
 from .saml_saas_app import SAMLSaaSApp as SAMLSaaSApp
 from .service_token import ServiceToken as ServiceToken
+from .approval_group import ApprovalGroup as ApprovalGroup
 from .allowed_headers import AllowedHeaders as AllowedHeaders
 from .allowed_methods import AllowedMethods as AllowedMethods
 from .allowed_origins import AllowedOrigins as AllowedOrigins
@@ -36,6 +37,7 @@ from .saml_saas_app_param import SAMLSaaSAppParam as SAMLSaaSAppParam
 from .scim_config_mapping import SCIMConfigMapping as SCIMConfigMapping
 from .self_hosted_domains import SelfHostedDomains as SelfHostedDomains
 from .tag_delete_response import TagDeleteResponse as TagDeleteResponse
+from .approval_group_param import ApprovalGroupParam as ApprovalGroupParam
 from .associated_hostnames import AssociatedHostnames as AssociatedHostnames
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_list_response import PolicyListResponse as PolicyListResponse

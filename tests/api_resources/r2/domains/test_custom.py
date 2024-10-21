@@ -41,7 +41,6 @@ class TestCustom:
             zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             enabled=True,
             min_tls="1.0",
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(CustomCreateResponse, custom, path=["response"])
 
@@ -110,7 +109,6 @@ class TestCustom:
             bucket_name="example-bucket",
             enabled=True,
             min_tls="1.0",
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(CustomUpdateResponse, custom, path=["response"])
 
@@ -174,15 +172,6 @@ class TestCustom:
         assert_matches_type(CustomListResponse, custom, path=["response"])
 
     @parametrize
-    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
-        custom = client.r2.domains.custom.list(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
-        )
-        assert_matches_type(CustomListResponse, custom, path=["response"])
-
-    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.r2.domains.custom.with_raw_response.list(
             bucket_name="example-bucket",
@@ -228,16 +217,6 @@ class TestCustom:
             domain_name="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
-        )
-        assert_matches_type(CustomDeleteResponse, custom, path=["response"])
-
-    @parametrize
-    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
-        custom = client.r2.domains.custom.delete(
-            domain_name="example-domain/custom-domain.com",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            bucket_name="example-bucket",
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(CustomDeleteResponse, custom, path=["response"])
 
@@ -315,7 +294,6 @@ class TestAsyncCustom:
             zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             enabled=True,
             min_tls="1.0",
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(CustomCreateResponse, custom, path=["response"])
 
@@ -384,7 +362,6 @@ class TestAsyncCustom:
             bucket_name="example-bucket",
             enabled=True,
             min_tls="1.0",
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(CustomUpdateResponse, custom, path=["response"])
 
@@ -448,15 +425,6 @@ class TestAsyncCustom:
         assert_matches_type(CustomListResponse, custom, path=["response"])
 
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        custom = await async_client.r2.domains.custom.list(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
-        )
-        assert_matches_type(CustomListResponse, custom, path=["response"])
-
-    @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.domains.custom.with_raw_response.list(
             bucket_name="example-bucket",
@@ -502,16 +470,6 @@ class TestAsyncCustom:
             domain_name="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
-        )
-        assert_matches_type(CustomDeleteResponse, custom, path=["response"])
-
-    @parametrize
-    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        custom = await async_client.r2.domains.custom.delete(
-            domain_name="example-domain/custom-domain.com",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            bucket_name="example-bucket",
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(CustomDeleteResponse, custom, path=["response"])
 

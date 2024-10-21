@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from .decision import Decision
 from ...._models import BaseModel
 from ..access_rule import AccessRule
-from .applications.approval_group import ApprovalGroup
+from .approval_group import ApprovalGroup
 
 __all__ = ["PolicyUpdateResponse", "ConnectionRules", "ConnectionRulesSSH"]
 

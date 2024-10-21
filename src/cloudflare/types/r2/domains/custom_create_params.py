@@ -30,6 +30,3 @@ class CustomCreateParams(TypedDict, total=False):
 
     If not set, defaults to 1.0.
     """
-
-    cf_r2_jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
-    """The bucket jurisdiction"""

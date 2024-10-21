@@ -27,16 +27,6 @@ class TestManaged:
         assert_matches_type(ManagedUpdateResponse, managed, path=["response"])
 
     @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        managed = client.r2.domains.managed.update(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            enabled=True,
-            cf_r2_jurisdiction="default",
-        )
-        assert_matches_type(ManagedUpdateResponse, managed, path=["response"])
-
-    @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.r2.domains.managed.with_raw_response.update(
             bucket_name="example-bucket",
@@ -85,15 +75,6 @@ class TestManaged:
         managed = client.r2.domains.managed.list(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(ManagedListResponse, managed, path=["response"])
-
-    @parametrize
-    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
-        managed = client.r2.domains.managed.list(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(ManagedListResponse, managed, path=["response"])
 
@@ -151,16 +132,6 @@ class TestAsyncManaged:
         assert_matches_type(ManagedUpdateResponse, managed, path=["response"])
 
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        managed = await async_client.r2.domains.managed.update(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            enabled=True,
-            cf_r2_jurisdiction="default",
-        )
-        assert_matches_type(ManagedUpdateResponse, managed, path=["response"])
-
-    @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.domains.managed.with_raw_response.update(
             bucket_name="example-bucket",
@@ -209,15 +180,6 @@ class TestAsyncManaged:
         managed = await async_client.r2.domains.managed.list(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(ManagedListResponse, managed, path=["response"])
-
-    @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        managed = await async_client.r2.domains.managed.list(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(ManagedListResponse, managed, path=["response"])
 
