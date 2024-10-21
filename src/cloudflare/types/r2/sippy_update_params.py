@@ -29,6 +29,9 @@ class R2EnableSippyAws(TypedDict, total=False):
     source: R2EnableSippyAwsSource
     """AWS S3 bucket to copy objects from"""
 
+    cf_r2_jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
+    """The bucket jurisdiction"""
+
 
 class R2EnableSippyAwsDestination(TypedDict, total=False):
     access_key_id: Annotated[str, PropertyInfo(alias="accessKeyId")]
@@ -79,6 +82,9 @@ class R2EnableSippyGcs(TypedDict, total=False):
 
     source: R2EnableSippyGcsSource
     """GCS bucket to copy objects from"""
+
+    cf_r2_jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
+    """The bucket jurisdiction"""
 
 
 class R2EnableSippyGcsDestination(TypedDict, total=False):

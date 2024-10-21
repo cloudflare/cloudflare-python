@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 from typing import Type, cast
+from typing_extensions import Literal
 
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
+    is_given,
     maybe_transform,
+    strip_not_given,
     async_maybe_transform,
 )
 from ...._compat import cached_property
@@ -54,6 +57,7 @@ class ManagedResource(SyncAPIResource):
         *,
         account_id: str,
         enabled: bool,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -71,6 +75,8 @@ class ManagedResource(SyncAPIResource):
 
           enabled: Whether to enable public bucket access at the r2.dev domain
 
+          cf_r2_jurisdiction: The bucket jurisdiction
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -83,6 +89,12 @@ class ManagedResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
+        extra_headers = {
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
+            **(extra_headers or {}),
+        }
         return self._put(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed",
             body=maybe_transform({"enabled": enabled}, managed_update_params.ManagedUpdateParams),
@@ -101,6 +113,7 @@ class ManagedResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -116,6 +129,8 @@ class ManagedResource(SyncAPIResource):
 
           bucket_name: Name of the bucket
 
+          cf_r2_jurisdiction: The bucket jurisdiction
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -128,6 +143,12 @@ class ManagedResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
+        extra_headers = {
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed",
             options=make_request_options(
@@ -167,6 +188,7 @@ class AsyncManagedResource(AsyncAPIResource):
         *,
         account_id: str,
         enabled: bool,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -184,6 +206,8 @@ class AsyncManagedResource(AsyncAPIResource):
 
           enabled: Whether to enable public bucket access at the r2.dev domain
 
+          cf_r2_jurisdiction: The bucket jurisdiction
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -196,6 +220,12 @@ class AsyncManagedResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
+        extra_headers = {
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
+            **(extra_headers or {}),
+        }
         return await self._put(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed",
             body=await async_maybe_transform({"enabled": enabled}, managed_update_params.ManagedUpdateParams),
@@ -214,6 +244,7 @@ class AsyncManagedResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -229,6 +260,8 @@ class AsyncManagedResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket
 
+          cf_r2_jurisdiction: The bucket jurisdiction
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -241,6 +274,12 @@ class AsyncManagedResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
+        extra_headers = {
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed",
             options=make_request_options(
