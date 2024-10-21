@@ -26,15 +26,6 @@ class TestConfiguration:
         assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
 
     @parametrize
-    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
-        configuration = client.r2.event_notifications.configuration.get(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
-        )
-        assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
-
-    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.r2.event_notifications.configuration.with_raw_response.get(
             bucket_name="example-bucket",
@@ -83,15 +74,6 @@ class TestAsyncConfiguration:
         configuration = await async_client.r2.event_notifications.configuration.get(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
-
-    @parametrize
-    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        configuration = await async_client.r2.event_notifications.configuration.get(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
 

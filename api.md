@@ -5301,6 +5301,8 @@ Types:
 
 ```python
 from cloudflare.types.zero_trust.access import (
+    ApprovalGroup,
+    Policy,
     PolicyCreateResponse,
     PolicyUpdateResponse,
     PolicyListResponse,

@@ -42,7 +42,6 @@ class TestSippy:
                 "region": "region",
                 "secret_access_key": "secretAccessKey",
             },
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(Sippy, sippy, path=["response"])
 
@@ -110,7 +109,6 @@ class TestSippy:
                 "private_key": "privateKey",
                 "provider": "gcs",
             },
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(Sippy, sippy, path=["response"])
 
@@ -163,15 +161,6 @@ class TestSippy:
         assert_matches_type(SippyDeleteResponse, sippy, path=["response"])
 
     @parametrize
-    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
-        sippy = client.r2.sippy.delete(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
-        )
-        assert_matches_type(SippyDeleteResponse, sippy, path=["response"])
-
-    @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.r2.sippy.with_raw_response.delete(
             bucket_name="example-bucket",
@@ -216,15 +205,6 @@ class TestSippy:
         sippy = client.r2.sippy.get(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Sippy, sippy, path=["response"])
-
-    @parametrize
-    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
-        sippy = client.r2.sippy.get(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(Sippy, sippy, path=["response"])
 
@@ -297,7 +277,6 @@ class TestAsyncSippy:
                 "region": "region",
                 "secret_access_key": "secretAccessKey",
             },
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(Sippy, sippy, path=["response"])
 
@@ -365,7 +344,6 @@ class TestAsyncSippy:
                 "private_key": "privateKey",
                 "provider": "gcs",
             },
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(Sippy, sippy, path=["response"])
 
@@ -418,15 +396,6 @@ class TestAsyncSippy:
         assert_matches_type(SippyDeleteResponse, sippy, path=["response"])
 
     @parametrize
-    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        sippy = await async_client.r2.sippy.delete(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
-        )
-        assert_matches_type(SippyDeleteResponse, sippy, path=["response"])
-
-    @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.sippy.with_raw_response.delete(
             bucket_name="example-bucket",
@@ -471,15 +440,6 @@ class TestAsyncSippy:
         sippy = await async_client.r2.sippy.get(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Sippy, sippy, path=["response"])
-
-    @parametrize
-    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        sippy = await async_client.r2.sippy.get(
-            bucket_name="example-bucket",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
         )
         assert_matches_type(Sippy, sippy, path=["response"])
 

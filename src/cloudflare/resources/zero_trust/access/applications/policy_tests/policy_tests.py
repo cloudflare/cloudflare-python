@@ -32,7 +32,7 @@ from ......types.zero_trust.access import Decision
 from ......types.zero_trust.access.decision import Decision
 from ......types.zero_trust.access_rule_param import AccessRuleParam
 from ......types.zero_trust.access.applications import policy_test_create_params
-from ......types.zero_trust.access.applications.approval_group_param import ApprovalGroupParam
+from ......types.zero_trust.access.approval_group_param import ApprovalGroupParam
 from ......types.zero_trust.access.applications.policy_test_get_response import PolicyTestGetResponse
 from ......types.zero_trust.access.applications.policy_test_create_response import PolicyTestCreateResponse
 

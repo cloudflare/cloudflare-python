@@ -3,9 +3,7 @@
 from __future__ import annotations
 
 from .ca import CA as CA
-from .approval_group import ApprovalGroup as ApprovalGroup
 from .ca_delete_response import CADeleteResponse as CADeleteResponse
-from .approval_group_param import ApprovalGroupParam as ApprovalGroupParam
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams
 from .user_policy_check_geo import UserPolicyCheckGeo as UserPolicyCheckGeo

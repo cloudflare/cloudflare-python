@@ -27,7 +27,7 @@ from .....types.zero_trust.access.decision import Decision
 from .....types.zero_trust.access_rule_param import AccessRuleParam
 from .....types.zero_trust.access.applications import policy_create_params, policy_update_params
 from .....types.zero_trust.access.application_policy import ApplicationPolicy
-from .....types.zero_trust.access.applications.approval_group_param import ApprovalGroupParam
+from .....types.zero_trust.access.approval_group_param import ApprovalGroupParam
 from .....types.zero_trust.access.applications.policy_delete_response import PolicyDeleteResponse
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]

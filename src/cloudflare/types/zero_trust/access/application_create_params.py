@@ -13,9 +13,9 @@ from .cors_headers_param import CORSHeadersParam
 from .oidc_saas_app_param import OIDCSaaSAppParam
 from .saml_saas_app_param import SAMLSaaSAppParam
 from .self_hosted_domains import SelfHostedDomains
+from .approval_group_param import ApprovalGroupParam
 from .application_policy_param import ApplicationPolicyParam
 from .scim_config_mapping_param import SCIMConfigMappingParam
-from .applications.approval_group_param import ApprovalGroupParam
 from .scim_config_authentication_oauth2_param import SCIMConfigAuthenticationOauth2Param
 from .scim_config_authentication_http_basic_param import SCIMConfigAuthenticationHTTPBasicParam
 from .scim_config_authentication_oauth_bearer_token_param import SCIMConfigAuthenticationOAuthBearerTokenParam

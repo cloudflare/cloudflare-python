@@ -21,6 +21,3 @@ class BucketCreateParams(TypedDict, total=False):
 
     storage_class: Annotated[Literal["Standard", "InfrequentAccess"], PropertyInfo(alias="storageClass")]
     """Storage class for newly uploaded objects, unless specified otherwise."""
-
-    cf_r2_jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
-    """Creates the bucket in the provided jurisdiction"""
