@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Union, cast
+from typing import Any, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -362,7 +362,7 @@ class WARPConnectorResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WARPConnectorTokenResponse:
+    ) -> str:
         """
         Gets the token used to associate warp device with a specific Warp Connector
         tunnel.
@@ -384,21 +384,16 @@ class WARPConnectorResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            WARPConnectorTokenResponse,
-            self._get(
-                f"/accounts/{account_id}/warp_connector/{tunnel_id}/token",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[WARPConnectorTokenResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WARPConnectorTokenResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/warp_connector/{tunnel_id}/token",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WARPConnectorTokenResponse]._unwrapper,
             ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
 
@@ -731,7 +726,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WARPConnectorTokenResponse:
+    ) -> str:
         """
         Gets the token used to associate warp device with a specific Warp Connector
         tunnel.
@@ -753,21 +748,16 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            WARPConnectorTokenResponse,
-            await self._get(
-                f"/accounts/{account_id}/warp_connector/{tunnel_id}/token",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[WARPConnectorTokenResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WARPConnectorTokenResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/warp_connector/{tunnel_id}/token",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WARPConnectorTokenResponse]._unwrapper,
             ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
 

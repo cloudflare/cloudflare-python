@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -184,21 +184,16 @@ class ConsumersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         if not consumer_id:
             raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
-        return cast(
-            Optional[ConsumerDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ConsumerDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ConsumerDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ConsumerDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[ConsumerDeleteResponse]], ResultWrapper[ConsumerDeleteResponse]),
         )
 
     def get(
@@ -400,21 +395,16 @@ class AsyncConsumersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         if not consumer_id:
             raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
-        return cast(
-            Optional[ConsumerDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ConsumerDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ConsumerDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ConsumerDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[ConsumerDeleteResponse]], ResultWrapper[ConsumerDeleteResponse]),
         )
 
     async def get(
