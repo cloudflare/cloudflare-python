@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
+from typing import Dict, List
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["OIDCSaaSAppParam", "CustomClaim", "CustomClaimSource", "HybridAndImplicitOptions", "RefreshTokenOptions"]
+__all__ = ["OIDCSaaSAppParam", "CustomClaims", "CustomClaimsSource", "HybridAndImplicitOptions", "RefreshTokenOptions"]
 
 
-class CustomClaimSource(TypedDict, total=False):
+class CustomClaimsSource(TypedDict, total=False):
     name: str
     """The name of the IdP claim."""
 
@@ -16,7 +16,7 @@ class CustomClaimSource(TypedDict, total=False):
     """A mapping from IdP ID to claim name."""
 
 
-class CustomClaim(TypedDict, total=False):
+class CustomClaims(TypedDict, total=False):
     name: str
     """The name of the claim."""
 
@@ -26,7 +26,7 @@ class CustomClaim(TypedDict, total=False):
     scope: Literal["groups", "profile", "email", "openid"]
     """The scope of the claim."""
 
-    source: CustomClaimSource
+    source: CustomClaimsSource
 
 
 class HybridAndImplicitOptions(TypedDict, total=False):
@@ -74,7 +74,7 @@ class OIDCSaaSAppParam(TypedDict, total=False):
     client_secret: str
     """The application client secret, only returned on POST request."""
 
-    custom_claims: Iterable[CustomClaim]
+    custom_claims: CustomClaims
 
     grant_types: List[
         Literal["authorization_code", "authorization_code_with_pkce", "refresh_tokens", "hybrid", "implicit"]
