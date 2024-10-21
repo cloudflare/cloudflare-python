@@ -9,7 +9,9 @@ import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
+    is_given,
     maybe_transform,
+    strip_not_given,
     async_maybe_transform,
 )
 from ..._compat import cached_property
@@ -56,6 +58,7 @@ class BucketsResource(SyncAPIResource):
         name: str,
         location_hint: Literal["apac", "eeur", "enam", "weur", "wnam"] | NotGiven = NOT_GIVEN,
         storage_class: Literal["Standard", "InfrequentAccess"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -75,6 +78,8 @@ class BucketsResource(SyncAPIResource):
 
           storage_class: Storage class for newly uploaded objects, unless specified otherwise.
 
+          cf_r2_jurisdiction: Creates the bucket in the provided jurisdiction
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -85,6 +90,12 @@ class BucketsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             f"/accounts/{account_id}/r2/buckets",
             body=maybe_transform(
@@ -115,6 +126,7 @@ class BucketsResource(SyncAPIResource):
         order: Literal["name"] | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         start_after: str | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -142,6 +154,8 @@ class BucketsResource(SyncAPIResource):
 
           start_after: Bucket name to start searching after. Buckets are ordered lexicographically.
 
+          cf_r2_jurisdiction: Lists buckets in the provided jurisdiction
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -152,6 +166,12 @@ class BucketsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             f"/accounts/{account_id}/r2/buckets",
             options=make_request_options(
@@ -180,6 +200,7 @@ class BucketsResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -195,6 +216,8 @@ class BucketsResource(SyncAPIResource):
 
           bucket_name: Name of the bucket
 
+          cf_r2_jurisdiction: The bucket jurisdiction
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -207,6 +230,12 @@ class BucketsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
+        extra_headers = {
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
+            **(extra_headers or {}),
+        }
         return self._delete(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}",
             options=make_request_options(
@@ -224,6 +253,7 @@ class BucketsResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -239,6 +269,8 @@ class BucketsResource(SyncAPIResource):
 
           bucket_name: Name of the bucket
 
+          cf_r2_jurisdiction: The bucket jurisdiction
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -251,6 +283,12 @@ class BucketsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
+        extra_headers = {
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
+            **(extra_headers or {}),
+        }
         return self._get(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}",
             options=make_request_options(
@@ -291,6 +329,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         name: str,
         location_hint: Literal["apac", "eeur", "enam", "weur", "wnam"] | NotGiven = NOT_GIVEN,
         storage_class: Literal["Standard", "InfrequentAccess"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -310,6 +349,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           storage_class: Storage class for newly uploaded objects, unless specified otherwise.
 
+          cf_r2_jurisdiction: Creates the bucket in the provided jurisdiction
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -320,6 +361,12 @@ class AsyncBucketsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             f"/accounts/{account_id}/r2/buckets",
             body=await async_maybe_transform(
@@ -350,6 +397,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         order: Literal["name"] | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         start_after: str | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -377,6 +425,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           start_after: Bucket name to start searching after. Buckets are ordered lexicographically.
 
+          cf_r2_jurisdiction: Lists buckets in the provided jurisdiction
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -387,6 +437,12 @@ class AsyncBucketsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             f"/accounts/{account_id}/r2/buckets",
             options=make_request_options(
@@ -415,6 +471,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -430,6 +487,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket
 
+          cf_r2_jurisdiction: The bucket jurisdiction
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -442,6 +501,12 @@ class AsyncBucketsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
+        extra_headers = {
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
+            **(extra_headers or {}),
+        }
         return await self._delete(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}",
             options=make_request_options(
@@ -459,6 +524,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -474,6 +540,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket
 
+          cf_r2_jurisdiction: The bucket jurisdiction
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -486,6 +554,12 @@ class AsyncBucketsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
+        extra_headers = {
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
+            **(extra_headers or {}),
+        }
         return await self._get(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}",
             options=make_request_options(
