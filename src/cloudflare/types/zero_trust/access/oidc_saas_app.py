@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["OIDCSaaSApp", "CustomClaim", "CustomClaimSource", "HybridAndImplicitOptions", "RefreshTokenOptions"]
+__all__ = ["OIDCSaaSApp", "CustomClaims", "CustomClaimsSource", "HybridAndImplicitOptions", "RefreshTokenOptions"]
 
 
-class CustomClaimSource(BaseModel):
+class CustomClaimsSource(BaseModel):
     name: Optional[str] = None
     """The name of the IdP claim."""
 
@@ -17,7 +17,7 @@ class CustomClaimSource(BaseModel):
     """A mapping from IdP ID to claim name."""
 
 
-class CustomClaim(BaseModel):
+class CustomClaims(BaseModel):
     name: Optional[str] = None
     """The name of the claim."""
 
@@ -27,7 +27,7 @@ class CustomClaim(BaseModel):
     scope: Optional[Literal["groups", "profile", "email", "openid"]] = None
     """The scope of the claim."""
 
-    source: Optional[CustomClaimSource] = None
+    source: Optional[CustomClaimsSource] = None
 
 
 class HybridAndImplicitOptions(BaseModel):
@@ -77,7 +77,7 @@ class OIDCSaaSApp(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    custom_claims: Optional[List[CustomClaim]] = None
+    custom_claims: Optional[CustomClaims] = None
 
     grant_types: Optional[
         List[Literal["authorization_code", "authorization_code_with_pkce", "refresh_tokens", "hybrid", "implicit"]]
