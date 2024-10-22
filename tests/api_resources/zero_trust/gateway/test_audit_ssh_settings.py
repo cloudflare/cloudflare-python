@@ -26,15 +26,6 @@ class TestAuditSSHSettings:
         assert_matches_type(Optional[GatewaySettings], audit_ssh_setting, path=["response"])
 
     @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        audit_ssh_setting = client.zero_trust.gateway.audit_ssh_settings.update(
-            account_id="699d98642c564d2e855e9661899b7252",
-            public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
-            seed_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-        )
-        assert_matches_type(Optional[GatewaySettings], audit_ssh_setting, path=["response"])
-
-    @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.audit_ssh_settings.with_raw_response.update(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -115,15 +106,6 @@ class TestAsyncAuditSSHSettings:
         audit_ssh_setting = await async_client.zero_trust.gateway.audit_ssh_settings.update(
             account_id="699d98642c564d2e855e9661899b7252",
             public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
-        )
-        assert_matches_type(Optional[GatewaySettings], audit_ssh_setting, path=["response"])
-
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        audit_ssh_setting = await async_client.zero_trust.gateway.audit_ssh_settings.update(
-            account_id="699d98642c564d2e855e9661899b7252",
-            public_key="1pyl6I1tL7xfJuFYVzXlUW8uXXlpxegHXBzGCBKaSFA=",
-            seed_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Optional[GatewaySettings], audit_ssh_setting, path=["response"])
 

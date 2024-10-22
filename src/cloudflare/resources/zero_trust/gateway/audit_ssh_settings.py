@@ -52,7 +52,6 @@ class AuditSSHSettingsResource(SyncAPIResource):
         *,
         account_id: str,
         public_key: str,
-        seed_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -61,12 +60,12 @@ class AuditSSHSettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewaySettings]:
         """
-        Updates Zero Trust Audit SSH settings.
+        Updates Zero Trust Audit SSH and SSH with Access for Infrastructure settings for
+        an account.
 
         Args:
-          public_key: SSH encryption public key
-
-          seed_id: Seed ID
+          public_key: Base64 encoded HPKE public key used to encrypt all your ssh session logs.
+              https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/#enable-ssh-command-logging
 
           extra_headers: Send extra headers
 
@@ -81,11 +80,7 @@ class AuditSSHSettingsResource(SyncAPIResource):
         return self._put(
             f"/accounts/{account_id}/gateway/audit_ssh_settings",
             body=maybe_transform(
-                {
-                    "public_key": public_key,
-                    "seed_id": seed_id,
-                },
-                audit_ssh_setting_update_params.AuditSSHSettingUpdateParams,
+                {"public_key": public_key}, audit_ssh_setting_update_params.AuditSSHSettingUpdateParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -109,7 +104,8 @@ class AuditSSHSettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewaySettings]:
         """
-        Get all Zero Trust Audit SSH settings for an account.
+        Gets all Zero Trust Audit SSH and SSH with Access for Infrastructure settings
+        for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -160,7 +156,6 @@ class AsyncAuditSSHSettingsResource(AsyncAPIResource):
         *,
         account_id: str,
         public_key: str,
-        seed_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -169,12 +164,12 @@ class AsyncAuditSSHSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewaySettings]:
         """
-        Updates Zero Trust Audit SSH settings.
+        Updates Zero Trust Audit SSH and SSH with Access for Infrastructure settings for
+        an account.
 
         Args:
-          public_key: SSH encryption public key
-
-          seed_id: Seed ID
+          public_key: Base64 encoded HPKE public key used to encrypt all your ssh session logs.
+              https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/#enable-ssh-command-logging
 
           extra_headers: Send extra headers
 
@@ -189,11 +184,7 @@ class AsyncAuditSSHSettingsResource(AsyncAPIResource):
         return await self._put(
             f"/accounts/{account_id}/gateway/audit_ssh_settings",
             body=await async_maybe_transform(
-                {
-                    "public_key": public_key,
-                    "seed_id": seed_id,
-                },
-                audit_ssh_setting_update_params.AuditSSHSettingUpdateParams,
+                {"public_key": public_key}, audit_ssh_setting_update_params.AuditSSHSettingUpdateParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -217,7 +208,8 @@ class AsyncAuditSSHSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewaySettings]:
         """
-        Get all Zero Trust Audit SSH settings for an account.
+        Gets all Zero Trust Audit SSH and SSH with Access for Infrastructure settings
+        for an account.
 
         Args:
           extra_headers: Send extra headers
