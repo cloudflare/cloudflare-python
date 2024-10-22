@@ -12,6 +12,9 @@ from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.rate_limits import (
     RateLimit,
+    RateLimitGetResponse,
+    RateLimitEditResponse,
+    RateLimitCreateResponse,
     RateLimitDeleteResponse,
 )
 
@@ -28,21 +31,21 @@ class TestRateLimits:
     def test_method_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.create(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={},
                 match={},
                 period=900,
                 threshold=60,
             )
 
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.create(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={
                     "mode": "simulate",
                     "response": {
@@ -80,14 +83,14 @@ class TestRateLimits:
                 threshold=60,
             )
 
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.rate_limits.with_raw_response.create(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={},
                 match={},
                 period=900,
@@ -97,14 +100,14 @@ class TestRateLimits:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = response.parse()
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.rate_limits.with_streaming_response.create(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={},
                 match={},
                 period=900,
@@ -114,7 +117,7 @@ class TestRateLimits:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rate_limit = response.parse()
-                assert_matches_type(RateLimit, rate_limit, path=["response"])
+                assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -122,9 +125,9 @@ class TestRateLimits:
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 client.rate_limits.with_raw_response.create(
-                    zone_id="",
+                    zone_identifier="",
                     action={},
                     match={},
                     period=900,
@@ -135,7 +138,7 @@ class TestRateLimits:
     def test_method_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.list(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(SyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
@@ -144,7 +147,7 @@ class TestRateLimits:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.list(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 page=1,
                 per_page=1,
             )
@@ -155,7 +158,7 @@ class TestRateLimits:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.rate_limits.with_raw_response.list(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -167,7 +170,7 @@ class TestRateLimits:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.rate_limits.with_streaming_response.list(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -180,17 +183,17 @@ class TestRateLimits:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 client.rate_limits.with_raw_response.list(
-                    zone_id="",
+                    zone_identifier="",
                 )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.delete(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(RateLimitDeleteResponse, rate_limit, path=["response"])
@@ -199,8 +202,8 @@ class TestRateLimits:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.rate_limits.with_raw_response.delete(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -212,8 +215,8 @@ class TestRateLimits:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.rate_limits.with_streaming_response.delete(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -226,16 +229,16 @@ class TestRateLimits:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 client.rate_limits.with_raw_response.delete(
-                    rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                    zone_id="",
+                    id="372e67954025e0ba6aaa6d586b9e0b59",
+                    zone_identifier="",
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `rate_limit_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 client.rate_limits.with_raw_response.delete(
-                    rate_limit_id="",
-                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                    id="",
+                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -243,23 +246,23 @@ class TestRateLimits:
     def test_method_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.edit(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={},
                 match={},
                 period=900,
                 threshold=60,
             )
 
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.edit(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={
                     "mode": "simulate",
                     "response": {
@@ -297,15 +300,15 @@ class TestRateLimits:
                 threshold=60,
             )
 
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.rate_limits.with_raw_response.edit(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={},
                 match={},
                 period=900,
@@ -315,15 +318,15 @@ class TestRateLimits:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = response.parse()
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.rate_limits.with_streaming_response.edit(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={},
                 match={},
                 period=900,
@@ -333,7 +336,7 @@ class TestRateLimits:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rate_limit = response.parse()
-                assert_matches_type(RateLimit, rate_limit, path=["response"])
+                assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -341,20 +344,20 @@ class TestRateLimits:
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 client.rate_limits.with_raw_response.edit(
-                    rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                    zone_id="",
+                    id="372e67954025e0ba6aaa6d586b9e0b59",
+                    zone_identifier="",
                     action={},
                     match={},
                     period=900,
                     threshold=60,
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `rate_limit_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 client.rate_limits.with_raw_response.edit(
-                    rate_limit_id="",
-                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                    id="",
+                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                     action={},
                     match={},
                     period=900,
@@ -365,53 +368,53 @@ class TestRateLimits:
     def test_method_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.get(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitGetResponse, rate_limit, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.rate_limits.with_raw_response.get(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = response.parse()
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitGetResponse, rate_limit, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.rate_limits.with_streaming_response.get(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rate_limit = response.parse()
-                assert_matches_type(RateLimit, rate_limit, path=["response"])
+                assert_matches_type(RateLimitGetResponse, rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 client.rate_limits.with_raw_response.get(
-                    rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                    zone_id="",
+                    id="372e67954025e0ba6aaa6d586b9e0b59",
+                    zone_identifier="",
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `rate_limit_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 client.rate_limits.with_raw_response.get(
-                    rate_limit_id="",
-                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                    id="",
+                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
 
@@ -423,21 +426,21 @@ class TestAsyncRateLimits:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.create(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={},
                 match={},
                 period=900,
                 threshold=60,
             )
 
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.create(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={
                     "mode": "simulate",
                     "response": {
@@ -475,14 +478,14 @@ class TestAsyncRateLimits:
                 threshold=60,
             )
 
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.rate_limits.with_raw_response.create(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={},
                 match={},
                 period=900,
@@ -492,14 +495,14 @@ class TestAsyncRateLimits:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = await response.parse()
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.rate_limits.with_streaming_response.create(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={},
                 match={},
                 period=900,
@@ -509,7 +512,7 @@ class TestAsyncRateLimits:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rate_limit = await response.parse()
-                assert_matches_type(RateLimit, rate_limit, path=["response"])
+                assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -517,9 +520,9 @@ class TestAsyncRateLimits:
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 await async_client.rate_limits.with_raw_response.create(
-                    zone_id="",
+                    zone_identifier="",
                     action={},
                     match={},
                     period=900,
@@ -530,7 +533,7 @@ class TestAsyncRateLimits:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.list(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(AsyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
@@ -539,7 +542,7 @@ class TestAsyncRateLimits:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.list(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 page=1,
                 per_page=1,
             )
@@ -550,7 +553,7 @@ class TestAsyncRateLimits:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.rate_limits.with_raw_response.list(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -562,7 +565,7 @@ class TestAsyncRateLimits:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.rate_limits.with_streaming_response.list(
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -575,17 +578,17 @@ class TestAsyncRateLimits:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 await async_client.rate_limits.with_raw_response.list(
-                    zone_id="",
+                    zone_identifier="",
                 )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.delete(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(RateLimitDeleteResponse, rate_limit, path=["response"])
@@ -594,8 +597,8 @@ class TestAsyncRateLimits:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.rate_limits.with_raw_response.delete(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -607,8 +610,8 @@ class TestAsyncRateLimits:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.rate_limits.with_streaming_response.delete(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -621,16 +624,16 @@ class TestAsyncRateLimits:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 await async_client.rate_limits.with_raw_response.delete(
-                    rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                    zone_id="",
+                    id="372e67954025e0ba6aaa6d586b9e0b59",
+                    zone_identifier="",
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `rate_limit_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 await async_client.rate_limits.with_raw_response.delete(
-                    rate_limit_id="",
-                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                    id="",
+                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -638,23 +641,23 @@ class TestAsyncRateLimits:
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.edit(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={},
                 match={},
                 period=900,
                 threshold=60,
             )
 
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.edit(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={
                     "mode": "simulate",
                     "response": {
@@ -692,15 +695,15 @@ class TestAsyncRateLimits:
                 threshold=60,
             )
 
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.rate_limits.with_raw_response.edit(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={},
                 match={},
                 period=900,
@@ -710,15 +713,15 @@ class TestAsyncRateLimits:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = await response.parse()
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.rate_limits.with_streaming_response.edit(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 action={},
                 match={},
                 period=900,
@@ -728,7 +731,7 @@ class TestAsyncRateLimits:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rate_limit = await response.parse()
-                assert_matches_type(RateLimit, rate_limit, path=["response"])
+                assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -736,20 +739,20 @@ class TestAsyncRateLimits:
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 await async_client.rate_limits.with_raw_response.edit(
-                    rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                    zone_id="",
+                    id="372e67954025e0ba6aaa6d586b9e0b59",
+                    zone_identifier="",
                     action={},
                     match={},
                     period=900,
                     threshold=60,
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `rate_limit_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 await async_client.rate_limits.with_raw_response.edit(
-                    rate_limit_id="",
-                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                    id="",
+                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                     action={},
                     match={},
                     period=900,
@@ -760,51 +763,51 @@ class TestAsyncRateLimits:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.get(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitGetResponse, rate_limit, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.rate_limits.with_raw_response.get(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rate_limit = await response.parse()
-        assert_matches_type(RateLimit, rate_limit, path=["response"])
+        assert_matches_type(RateLimitGetResponse, rate_limit, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.rate_limits.with_streaming_response.get(
-                rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rate_limit = await response.parse()
-                assert_matches_type(RateLimit, rate_limit, path=["response"])
+                assert_matches_type(RateLimitGetResponse, rate_limit, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 await async_client.rate_limits.with_raw_response.get(
-                    rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
-                    zone_id="",
+                    id="372e67954025e0ba6aaa6d586b9e0b59",
+                    zone_identifier="",
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `rate_limit_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 await async_client.rate_limits.with_raw_response.get(
-                    rate_limit_id="",
-                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                    id="",
+                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 )

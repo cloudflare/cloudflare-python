@@ -10,9 +10,6 @@ __all__ = ["RuleCreateParams", "Action", "ActionResponse"]
 
 
 class RuleCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier"""
-
     action: Required[Action]
     """
     The action to perform when the threshold of matched traffic within the

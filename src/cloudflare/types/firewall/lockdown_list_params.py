@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -12,9 +12,6 @@ __all__ = ["LockdownListParams"]
 
 
 class LockdownListParams(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier"""
-
     created_on: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The timestamp of when the rule was created."""
 

@@ -15,7 +15,7 @@ __all__ = ["UARuleUpdateParams", "Configuration"]
 
 
 class UARuleUpdateParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_identifier: Required[str]
     """Identifier"""
 
     configuration: Required[Configuration]
