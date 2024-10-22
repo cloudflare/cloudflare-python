@@ -4,12 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["CertificateRuleParam", "Certificate"]
-
-
-class Certificate(TypedDict, total=False):
-    pass
+__all__ = ["CertificateRuleParam"]
 
 
 class CertificateRuleParam(TypedDict, total=False):
-    certificate: Required[Certificate]
+    certificate: Required[object]
