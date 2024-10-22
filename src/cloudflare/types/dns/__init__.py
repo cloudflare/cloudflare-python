@@ -2,14 +2,32 @@
 
 from __future__ import annotations
 
-from .ttl import TTL as TTL
-from .ttl_param import TTLParam as TTLParam
+from .a_record import ARecord as ARecord
+from .ds_record import DSRecord as DSRecord
+from .mx_record import MXRecord as MXRecord
+from .ns_record import NSRecord as NSRecord
+from .caa_record import CAARecord as CAARecord
+from .loc_record import LOCRecord as LOCRecord
 from .nameserver import Nameserver as Nameserver
+from .ptr_record import PTRRecord as PTRRecord
+from .srv_record import SRVRecord as SRVRecord
+from .txt_record import TXTRecord as TXTRecord
+from .uri_record import URIRecord as URIRecord
+from .aaaa_record import AAAARecord as AAAARecord
+from .cert_record import CERTRecord as CERTRecord
 from .dns_setting import DNSSetting as DNSSetting
 from .record_tags import RecordTags as RecordTags
+from .svcb_record import SVCBRecord as SVCBRecord
+from .tlsa_record import TLSARecord as TLSARecord
+from .cname_record import CNAMERecord as CNAMERecord
 from .firewall_ips import FirewallIPs as FirewallIPs
+from .https_record import HTTPSRecord as HTTPSRecord
+from .naptr_record import NAPTRRecord as NAPTRRecord
 from .record_param import RecordParam as RecordParam
+from .sshfp_record import SSHFPRecord as SSHFPRecord
 from .upstream_ips import UpstreamIPs as UpstreamIPs
+from .dnskey_record import DNSKEYRecord as DNSKEYRecord
+from .smimea_record import SMIMEARecord as SMIMEARecord
 from .a_record_param import ARecordParam as ARecordParam
 from .ds_record_param import DSRecordParam as DSRecordParam
 from .mx_record_param import MXRecordParam as MXRecordParam

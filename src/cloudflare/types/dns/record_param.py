@@ -2,40 +2,61 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import TypedDict
+from typing import Union
+from typing_extensions import Literal, TypeAlias, TypedDict
 
-from .ttl_param import TTLParam
-from .record_tags import RecordTags
+from .a_record_param import ARecordParam
+from .ds_record_param import DSRecordParam
+from .mx_record_param import MXRecordParam
+from .ns_record_param import NSRecordParam
+from .caa_record_param import CAARecordParam
+from .loc_record_param import LOCRecordParam
+from .ptr_record_param import PTRRecordParam
+from .srv_record_param import SRVRecordParam
+from .txt_record_param import TXTRecordParam
+from .uri_record_param import URIRecordParam
+from .aaaa_record_param import AAAARecordParam
+from .cert_record_param import CERTRecordParam
+from .svcb_record_param import SVCBRecordParam
+from .tlsa_record_param import TLSARecordParam
+from .cname_record_param import CNAMERecordParam
+from .https_record_param import HTTPSRecordParam
+from .naptr_record_param import NAPTRRecordParam
+from .sshfp_record_param import SSHFPRecordParam
+from .dnskey_record_param import DNSKEYRecordParam
+from .smimea_record_param import SMIMEARecordParam
 
-__all__ = ["RecordParam"]
+__all__ = ["RecordParam", "Openpgpkey"]
 
 
-class RecordParam(TypedDict, total=False):
-    comment: str
-    """Comments or notes about the DNS record.
+class Openpgpkey(TypedDict, total=False):
+    content: str
+    """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
 
-    This field has no effect on DNS responses.
-    """
+    type: Literal["OPENPGPKEY"]
+    """Record type."""
 
-    name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
 
-    proxied: bool
-    """
-    Whether the record is receiving the performance and security benefits of
-    Cloudflare.
-    """
-
-    settings: object
-    """Settings for the DNS record."""
-
-    tags: List[RecordTags]
-    """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: TTLParam
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
+RecordParam: TypeAlias = Union[
+    ARecordParam,
+    AAAARecordParam,
+    CAARecordParam,
+    CERTRecordParam,
+    CNAMERecordParam,
+    DNSKEYRecordParam,
+    DSRecordParam,
+    HTTPSRecordParam,
+    LOCRecordParam,
+    MXRecordParam,
+    NAPTRRecordParam,
+    NSRecordParam,
+    Openpgpkey,
+    PTRRecordParam,
+    SMIMEARecordParam,
+    SRVRecordParam,
+    SSHFPRecordParam,
+    SVCBRecordParam,
+    TLSARecordParam,
+    TXTRecordParam,
+    URIRecordParam,
+]

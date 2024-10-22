@@ -19,9 +19,17 @@ class VersionCreateParams(TypedDict, total=False):
 class BodyExistingColumn(TypedDict, total=False):
     entry_id: Required[str]
 
+    header_name: str
+
+    num_cells: int
+
 
 class BodyNewColumn(TypedDict, total=False):
     entry_name: Required[str]
+
+    header_name: str
+
+    num_cells: int
 
 
 Body: TypeAlias = Union[BodyExistingColumn, BodyNewColumn]
