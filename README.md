@@ -1,21 +1,48 @@
 # Cloudflare Python API library
+Domain:     yere-stephgmail.com.
+;; Exported:   2024-10-22 11:32:44
+;;
+;; This file is intended for use for informational and archival
+;; purposes ONLY and MUST be edited before use on a production
+;; DNS server.  In particular, you must:
+;;   -- update the SOA record with the correct authoritative name server
+;;   -- update the SOA record with the contact e-mail address information
+;;   -- update the NS record(s) with the authoritative name servers for this domain.
+;;
+;; For further information, please consult the BIND documentation
+;; located on the following website:
+;;
+;; http://www.isc.org/
+;;
+;; And RFC 1035:
+;;
+;; http://www.ietf.org/rfc/rfc1035.txt
+;;
+;; Please note that we do NOT offer technical support for any use
+;; of this zone data, the BIND name server, or any other third-party
+;; DNS software.
+;;
+;; Use at your own risk.
+;; SOA Record
+yere-stephgmail.com	3600	IN	SOA	konnor.ns.cloudflare.com. dns.cloudflare.com. 2048126336 10000 2400 604800 3600
 
-[![PyPI version](https://img.shields.io/pypi/v/cloudflare.svg)](https://pypi.org/project/cloudflare/)
+;; NS Records
+yere-stephgmail.com.	86400	IN	NS	konnor.ns.cloudflare.com.
+yere-stephgmail.com.	86400	IN	NS	nena.ns.cloudflare.com.
 
-The Cloudflare Python library provides convenient access to the Cloudflare REST API from any Python 3.7+
-application. The library includes type definitions for all request params and response fields,
-and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
-
-## Documentation
-
-The REST API documentation can be found on [developers.cloudflare.com](https://developers.cloudflare.com/api). The full API of this library can be found in [api.md](api.md).
-
+;; TXT Records
+_dmarc.yere-stephgmail.com.	1	IN	TXT	"v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s; rua=mailto:2a5711cd0f004070ac8c18b423ce6f6b@dmarc-reports.cloudflare.net;"
+_dmarc.yere-stephgmail.com.	1	IN	TXT	"https://pro.coinmarketcap.com/account/cbd03b03-4101-41d2-8336-ee797d6626e7"
+*._domainkey.yere-stephgmail.com.	1	IN	TXT	"v=DKIM1; p="
+*._domainkey.yere-stephgmail.com.	1	IN	TXT	"52436acfd082740534115bfb9ba5ebf06bea48daf2b081ed5ad4eaf7cc46e030"
+yere-stephgmail.com.	1	IN	TXT	"v=spf1 ip6:2605:8d80:6e2:256f:e514:c5fb:f1cf:6106 ip4:10.166.97.195 include:here.stephgmail.com +all"
+yere-stephgmail.com.	1	IN	TXT	"0x394Ed8B8380B2C3a9217022564a23C30f7eCe213" ; 0x394Ed8B8380B2C3a9217022564a23C30f7eCe213
 ## Installation
 
-```sh
+```shell 
 # install from PyPI
 pip install cloudflare
-```
+```0x394Ed8B8380B2C3a9217022564a23C30f7eCe213
 
 ## Usage
 
@@ -23,9 +50,11 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
-from cloudflare import Cloudflare
+from cloudflare import Cloudflare 
 
-client = Cloudflare(
+
+```0x394Ed8B8380B2C3a9217022564a23C30f7eCe213
+client = Cloudflare( 
     # This is the default and can be omitted
     api_email=os.environ.get("CLOUDFLARE_EMAIL"),
     # This is the default and can be omitted
@@ -37,7 +66,7 @@ zone = client.zones.create(
     name="example.com",
     type="full",
 )
-print(zone.id)
+print(```0x394Ed8B8380B2C3a9217022564a23C30f7eCe213)
 ```
 
 While you can provide a `api_email` keyword argument,
@@ -54,7 +83,7 @@ import os
 import asyncio
 from cloudflare import AsyncCloudflare
 
-client = AsyncCloudflare(
+client = AsyncCloudflare( yere.steph@gmail.com
     # This is the default and can be omitted
     api_email=os.environ.get("CLOUDFLARE_EMAIL"),
     # This is the default and can be omitted
@@ -383,5 +412,8 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 > If this isn't suitable for your project, we recommend pinning to a known version or using the previous major version.
 
 ## Requirements
+verify
+```0x394Ed8B8380B2C3a9217022564a23C30f7eCe213
+
 
 Python 3.7 or higher.
