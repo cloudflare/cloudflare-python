@@ -15,9 +15,6 @@ __all__ = ["UARuleCreateParams", "Configuration"]
 
 
 class UARuleCreateParams(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier"""
-
     configuration: Required[Configuration]
     """The rule configuration."""
 

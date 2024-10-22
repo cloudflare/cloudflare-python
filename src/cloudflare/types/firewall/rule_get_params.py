@@ -2,14 +2,16 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["RuleGetParams"]
 
 
 class RuleGetParams(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier"""
+    path_id: Required[Annotated[str, PropertyInfo(alias="id")]]
+    """The unique identifier of the firewall rule."""
 
-    id: str
+    query_id: Annotated[str, PropertyInfo(alias="id")]
     """The unique identifier of the firewall rule."""

@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["PackageListParams"]
 
 
 class PackageListParams(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier"""
-
     direction: Literal["asc", "desc"]
     """The direction used to sort returned packages."""
 

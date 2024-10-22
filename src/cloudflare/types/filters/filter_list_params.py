@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["FilterListParams"]
 
 
 class FilterListParams(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier"""
-
     id: str
     """The unique identifier of the filter."""
 
