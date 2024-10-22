@@ -12,6 +12,9 @@ __all__ = ["LockdownCreateParams"]
 
 
 class LockdownCreateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     configurations: Required[ConfigurationParam]
     """
     A list of IP addresses or CIDR ranges that will be allowed to access the URLs

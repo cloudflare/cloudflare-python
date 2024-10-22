@@ -58,8 +58,8 @@ class OverridesResource(SyncAPIResource):
 
     def create(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         urls: List[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -75,7 +75,7 @@ class OverridesResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           urls: The URLs to include in the current WAF override. You can use wildcards. Each
               entered URL will be escaped before use, which means you can only use simple
@@ -89,10 +89,10 @@ class OverridesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_identifier}/firewall/waf/overrides",
+            f"/zones/{zone_id}/firewall/waf/overrides",
             body=maybe_transform({"urls": urls}, override_create_params.OverrideCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -106,10 +106,10 @@ class OverridesResource(SyncAPIResource):
 
     def update(
         self,
-        zone_identifier: str,
+        overrides_id: str,
         *,
-        path_id: str,
-        body_id: str,
+        zone_id: str,
+        id: str,
         rewrite_action: RewriteActionParam,
         rules: WAFRuleParam,
         urls: List[OverrideURL],
@@ -127,11 +127,11 @@ class OverridesResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          path_id: The unique identifier of the WAF override.
+          zone_id: Identifier
 
-          zone_identifier: Identifier
+          overrides_id: The unique identifier of the WAF override.
 
-          body_id: Identifier
+          id: Identifier
 
           rewrite_action: Specifies that, when a WAF rule matches, its configured action will be replaced
               by the action configured in this object.
@@ -154,15 +154,15 @@ class OverridesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_id:
-            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not overrides_id:
+            raise ValueError(f"Expected a non-empty value for `overrides_id` but received {overrides_id!r}")
         return self._put(
-            f"/zones/{zone_identifier}/firewall/waf/overrides/{path_id}",
+            f"/zones/{zone_id}/firewall/waf/overrides/{overrides_id}",
             body=maybe_transform(
                 {
-                    "id": body_id,
+                    "id": id,
                     "rewrite_action": rewrite_action,
                     "rules": rules,
                     "urls": urls,
@@ -181,8 +181,8 @@ class OverridesResource(SyncAPIResource):
 
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -199,7 +199,7 @@ class OverridesResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           page: The page number of paginated results.
 
@@ -213,10 +213,10 @@ class OverridesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/firewall/waf/overrides",
+            f"/zones/{zone_id}/firewall/waf/overrides",
             page=SyncV4PagePaginationArray[Override],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -236,9 +236,9 @@ class OverridesResource(SyncAPIResource):
 
     def delete(
         self,
-        id: str,
+        overrides_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -253,9 +253,9 @@ class OverridesResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the WAF override.
+          overrides_id: The unique identifier of the WAF override.
 
           extra_headers: Send extra headers
 
@@ -265,12 +265,12 @@ class OverridesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not overrides_id:
+            raise ValueError(f"Expected a non-empty value for `overrides_id` but received {overrides_id!r}")
         return self._delete(
-            f"/zones/{zone_identifier}/firewall/waf/overrides/{id}",
+            f"/zones/{zone_id}/firewall/waf/overrides/{overrides_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -283,9 +283,9 @@ class OverridesResource(SyncAPIResource):
 
     def get(
         self,
-        id: str,
+        overrides_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -300,9 +300,9 @@ class OverridesResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the WAF override.
+          overrides_id: The unique identifier of the WAF override.
 
           extra_headers: Send extra headers
 
@@ -312,12 +312,12 @@ class OverridesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not overrides_id:
+            raise ValueError(f"Expected a non-empty value for `overrides_id` but received {overrides_id!r}")
         return self._get(
-            f"/zones/{zone_identifier}/firewall/waf/overrides/{id}",
+            f"/zones/{zone_id}/firewall/waf/overrides/{overrides_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -351,8 +351,8 @@ class AsyncOverridesResource(AsyncAPIResource):
 
     async def create(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         urls: List[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -368,7 +368,7 @@ class AsyncOverridesResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           urls: The URLs to include in the current WAF override. You can use wildcards. Each
               entered URL will be escaped before use, which means you can only use simple
@@ -382,10 +382,10 @@ class AsyncOverridesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_identifier}/firewall/waf/overrides",
+            f"/zones/{zone_id}/firewall/waf/overrides",
             body=await async_maybe_transform({"urls": urls}, override_create_params.OverrideCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -399,10 +399,10 @@ class AsyncOverridesResource(AsyncAPIResource):
 
     async def update(
         self,
-        zone_identifier: str,
+        overrides_id: str,
         *,
-        path_id: str,
-        body_id: str,
+        zone_id: str,
+        id: str,
         rewrite_action: RewriteActionParam,
         rules: WAFRuleParam,
         urls: List[OverrideURL],
@@ -420,11 +420,11 @@ class AsyncOverridesResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          path_id: The unique identifier of the WAF override.
+          zone_id: Identifier
 
-          zone_identifier: Identifier
+          overrides_id: The unique identifier of the WAF override.
 
-          body_id: Identifier
+          id: Identifier
 
           rewrite_action: Specifies that, when a WAF rule matches, its configured action will be replaced
               by the action configured in this object.
@@ -447,15 +447,15 @@ class AsyncOverridesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_id:
-            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not overrides_id:
+            raise ValueError(f"Expected a non-empty value for `overrides_id` but received {overrides_id!r}")
         return await self._put(
-            f"/zones/{zone_identifier}/firewall/waf/overrides/{path_id}",
+            f"/zones/{zone_id}/firewall/waf/overrides/{overrides_id}",
             body=await async_maybe_transform(
                 {
-                    "id": body_id,
+                    "id": id,
                     "rewrite_action": rewrite_action,
                     "rules": rules,
                     "urls": urls,
@@ -474,8 +474,8 @@ class AsyncOverridesResource(AsyncAPIResource):
 
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -492,7 +492,7 @@ class AsyncOverridesResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           page: The page number of paginated results.
 
@@ -506,10 +506,10 @@ class AsyncOverridesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/firewall/waf/overrides",
+            f"/zones/{zone_id}/firewall/waf/overrides",
             page=AsyncV4PagePaginationArray[Override],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -529,9 +529,9 @@ class AsyncOverridesResource(AsyncAPIResource):
 
     async def delete(
         self,
-        id: str,
+        overrides_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -546,9 +546,9 @@ class AsyncOverridesResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the WAF override.
+          overrides_id: The unique identifier of the WAF override.
 
           extra_headers: Send extra headers
 
@@ -558,12 +558,12 @@ class AsyncOverridesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not overrides_id:
+            raise ValueError(f"Expected a non-empty value for `overrides_id` but received {overrides_id!r}")
         return await self._delete(
-            f"/zones/{zone_identifier}/firewall/waf/overrides/{id}",
+            f"/zones/{zone_id}/firewall/waf/overrides/{overrides_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -576,9 +576,9 @@ class AsyncOverridesResource(AsyncAPIResource):
 
     async def get(
         self,
-        id: str,
+        overrides_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -593,9 +593,9 @@ class AsyncOverridesResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the WAF override.
+          overrides_id: The unique identifier of the WAF override.
 
           extra_headers: Send extra headers
 
@@ -605,12 +605,12 @@ class AsyncOverridesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not overrides_id:
+            raise ValueError(f"Expected a non-empty value for `overrides_id` but received {overrides_id!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/firewall/waf/overrides/{id}",
+            f"/zones/{zone_id}/firewall/waf/overrides/{overrides_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

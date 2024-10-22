@@ -8,7 +8,7 @@ __all__ = ["FilterUpdateParams"]
 
 
 class FilterUpdateParams(TypedDict, total=False):
-    zone_identifier: Required[str]
+    zone_id: Required[str]
     """Identifier"""
 
     body: Required[object]
