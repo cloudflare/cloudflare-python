@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Any, Type, Iterable, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -994,26 +994,31 @@ class RecordsResource(SyncAPIResource):
     ) -> Optional[RecordCreateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._post(
-            f"/zones/{zone_id}/dns_records",
-            body=maybe_transform(
-                {
-                    "content": content,
-                    "type": type,
-                    "data": data,
-                    "settings": settings,
-                    "priority": priority,
-                },
-                record_create_params.RecordCreateParams,
+        return cast(
+            Optional[RecordCreateResponse],
+            self._post(
+                f"/zones/{zone_id}/dns_records",
+                body=maybe_transform(
+                    {
+                        "content": content,
+                        "type": type,
+                        "data": data,
+                        "settings": settings,
+                        "priority": priority,
+                    },
+                    record_create_params.RecordCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[RecordCreateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RecordCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RecordCreateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[RecordCreateResponse]], ResultWrapper[RecordCreateResponse]),
         )
 
     @overload
@@ -2008,26 +2013,31 @@ class RecordsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
-        return self._put(
-            f"/zones/{zone_id}/dns_records/{dns_record_id}",
-            body=maybe_transform(
-                {
-                    "content": content,
-                    "type": type,
-                    "data": data,
-                    "settings": settings,
-                    "priority": priority,
-                },
-                record_update_params.RecordUpdateParams,
+        return cast(
+            Optional[RecordUpdateResponse],
+            self._put(
+                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                body=maybe_transform(
+                    {
+                        "content": content,
+                        "type": type,
+                        "data": data,
+                        "settings": settings,
+                        "priority": priority,
+                    },
+                    record_update_params.RecordUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[RecordUpdateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RecordUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RecordUpdateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[RecordUpdateResponse]], ResultWrapper[RecordUpdateResponse]),
         )
 
     def list(
@@ -2149,7 +2159,7 @@ class RecordsResource(SyncAPIResource):
                     record_list_params.RecordListParams,
                 ),
             ),
-            model=RecordListResponse,
+            model=cast(Any, RecordListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -3256,26 +3266,31 @@ class RecordsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
-        return self._patch(
-            f"/zones/{zone_id}/dns_records/{dns_record_id}",
-            body=maybe_transform(
-                {
-                    "content": content,
-                    "type": type,
-                    "data": data,
-                    "settings": settings,
-                    "priority": priority,
-                },
-                record_edit_params.RecordEditParams,
+        return cast(
+            Optional[RecordEditResponse],
+            self._patch(
+                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                body=maybe_transform(
+                    {
+                        "content": content,
+                        "type": type,
+                        "data": data,
+                        "settings": settings,
+                        "priority": priority,
+                    },
+                    record_edit_params.RecordEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[RecordEditResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RecordEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RecordEditResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[RecordEditResponse]], ResultWrapper[RecordEditResponse]),
         )
 
     def export(
@@ -3352,16 +3367,21 @@ class RecordsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
-        return self._get(
-            f"/zones/{zone_id}/dns_records/{dns_record_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RecordGetResponse]]._unwrapper,
+        return cast(
+            Optional[RecordGetResponse],
+            self._get(
+                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[RecordGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RecordGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Optional[RecordGetResponse]], ResultWrapper[RecordGetResponse]),
         )
 
     def import_(
@@ -4422,26 +4442,31 @@ class AsyncRecordsResource(AsyncAPIResource):
     ) -> Optional[RecordCreateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._post(
-            f"/zones/{zone_id}/dns_records",
-            body=await async_maybe_transform(
-                {
-                    "content": content,
-                    "type": type,
-                    "data": data,
-                    "settings": settings,
-                    "priority": priority,
-                },
-                record_create_params.RecordCreateParams,
+        return cast(
+            Optional[RecordCreateResponse],
+            await self._post(
+                f"/zones/{zone_id}/dns_records",
+                body=await async_maybe_transform(
+                    {
+                        "content": content,
+                        "type": type,
+                        "data": data,
+                        "settings": settings,
+                        "priority": priority,
+                    },
+                    record_create_params.RecordCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[RecordCreateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RecordCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RecordCreateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[RecordCreateResponse]], ResultWrapper[RecordCreateResponse]),
         )
 
     @overload
@@ -5436,26 +5461,31 @@ class AsyncRecordsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
-        return await self._put(
-            f"/zones/{zone_id}/dns_records/{dns_record_id}",
-            body=await async_maybe_transform(
-                {
-                    "content": content,
-                    "type": type,
-                    "data": data,
-                    "settings": settings,
-                    "priority": priority,
-                },
-                record_update_params.RecordUpdateParams,
+        return cast(
+            Optional[RecordUpdateResponse],
+            await self._put(
+                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                body=await async_maybe_transform(
+                    {
+                        "content": content,
+                        "type": type,
+                        "data": data,
+                        "settings": settings,
+                        "priority": priority,
+                    },
+                    record_update_params.RecordUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[RecordUpdateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RecordUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RecordUpdateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[RecordUpdateResponse]], ResultWrapper[RecordUpdateResponse]),
         )
 
     def list(
@@ -5577,7 +5607,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                     record_list_params.RecordListParams,
                 ),
             ),
-            model=RecordListResponse,
+            model=cast(Any, RecordListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -6684,26 +6714,31 @@ class AsyncRecordsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
-        return await self._patch(
-            f"/zones/{zone_id}/dns_records/{dns_record_id}",
-            body=await async_maybe_transform(
-                {
-                    "content": content,
-                    "type": type,
-                    "data": data,
-                    "settings": settings,
-                    "priority": priority,
-                },
-                record_edit_params.RecordEditParams,
+        return cast(
+            Optional[RecordEditResponse],
+            await self._patch(
+                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                body=await async_maybe_transform(
+                    {
+                        "content": content,
+                        "type": type,
+                        "data": data,
+                        "settings": settings,
+                        "priority": priority,
+                    },
+                    record_edit_params.RecordEditParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[RecordEditResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RecordEditResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RecordEditResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[RecordEditResponse]], ResultWrapper[RecordEditResponse]),
         )
 
     async def export(
@@ -6780,16 +6815,21 @@ class AsyncRecordsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
-        return await self._get(
-            f"/zones/{zone_id}/dns_records/{dns_record_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RecordGetResponse]]._unwrapper,
+        return cast(
+            Optional[RecordGetResponse],
+            await self._get(
+                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[RecordGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[RecordGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Optional[RecordGetResponse]], ResultWrapper[RecordGetResponse]),
         )
 
     async def import_(
