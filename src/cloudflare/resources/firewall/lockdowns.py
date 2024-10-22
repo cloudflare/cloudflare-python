@@ -54,8 +54,8 @@ class LockdownsResource(SyncAPIResource):
 
     def create(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         configurations: ConfigurationParam,
         urls: List[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -69,7 +69,7 @@ class LockdownsResource(SyncAPIResource):
         Creates a new Zone Lockdown rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           configurations: A list of IP addresses or CIDR ranges that will be allowed to access the URLs
               specified in the Zone Lockdown rule. You can include any number of `ip` or
@@ -87,10 +87,10 @@ class LockdownsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_identifier}/firewall/lockdowns",
+            f"/zones/{zone_id}/firewall/lockdowns",
             body=maybe_transform(
                 {
                     "configurations": configurations,
@@ -110,9 +110,9 @@ class LockdownsResource(SyncAPIResource):
 
     def update(
         self,
-        id: str,
+        lock_downs_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         configurations: ConfigurationParam,
         urls: List[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -126,9 +126,9 @@ class LockdownsResource(SyncAPIResource):
         Updates an existing Zone Lockdown rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the Zone Lockdown rule.
+          lock_downs_id: The unique identifier of the Zone Lockdown rule.
 
           configurations: A list of IP addresses or CIDR ranges that will be allowed to access the URLs
               specified in the Zone Lockdown rule. You can include any number of `ip` or
@@ -146,12 +146,12 @@ class LockdownsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not lock_downs_id:
+            raise ValueError(f"Expected a non-empty value for `lock_downs_id` but received {lock_downs_id!r}")
         return self._put(
-            f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
+            f"/zones/{zone_id}/firewall/lockdowns/{lock_downs_id}",
             body=maybe_transform(
                 {
                     "configurations": configurations,
@@ -171,8 +171,8 @@ class LockdownsResource(SyncAPIResource):
 
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         created_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         description_search: str | NotGiven = NOT_GIVEN,
@@ -197,7 +197,7 @@ class LockdownsResource(SyncAPIResource):
         parameters.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           created_on: The timestamp of when the rule was created.
 
@@ -232,10 +232,10 @@ class LockdownsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/firewall/lockdowns",
+            f"/zones/{zone_id}/firewall/lockdowns",
             page=SyncV4PagePaginationArray[Lockdown],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -264,9 +264,9 @@ class LockdownsResource(SyncAPIResource):
 
     def delete(
         self,
-        id: str,
+        lock_downs_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -278,9 +278,9 @@ class LockdownsResource(SyncAPIResource):
         Deletes an existing Zone Lockdown rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the Zone Lockdown rule.
+          lock_downs_id: The unique identifier of the Zone Lockdown rule.
 
           extra_headers: Send extra headers
 
@@ -290,12 +290,12 @@ class LockdownsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not lock_downs_id:
+            raise ValueError(f"Expected a non-empty value for `lock_downs_id` but received {lock_downs_id!r}")
         return self._delete(
-            f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
+            f"/zones/{zone_id}/firewall/lockdowns/{lock_downs_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -308,9 +308,9 @@ class LockdownsResource(SyncAPIResource):
 
     def get(
         self,
-        id: str,
+        lock_downs_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -322,9 +322,9 @@ class LockdownsResource(SyncAPIResource):
         Fetches the details of a Zone Lockdown rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the Zone Lockdown rule.
+          lock_downs_id: The unique identifier of the Zone Lockdown rule.
 
           extra_headers: Send extra headers
 
@@ -334,12 +334,12 @@ class LockdownsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not lock_downs_id:
+            raise ValueError(f"Expected a non-empty value for `lock_downs_id` but received {lock_downs_id!r}")
         return self._get(
-            f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
+            f"/zones/{zone_id}/firewall/lockdowns/{lock_downs_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -373,8 +373,8 @@ class AsyncLockdownsResource(AsyncAPIResource):
 
     async def create(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         configurations: ConfigurationParam,
         urls: List[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -388,7 +388,7 @@ class AsyncLockdownsResource(AsyncAPIResource):
         Creates a new Zone Lockdown rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           configurations: A list of IP addresses or CIDR ranges that will be allowed to access the URLs
               specified in the Zone Lockdown rule. You can include any number of `ip` or
@@ -406,10 +406,10 @@ class AsyncLockdownsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_identifier}/firewall/lockdowns",
+            f"/zones/{zone_id}/firewall/lockdowns",
             body=await async_maybe_transform(
                 {
                     "configurations": configurations,
@@ -429,9 +429,9 @@ class AsyncLockdownsResource(AsyncAPIResource):
 
     async def update(
         self,
-        id: str,
+        lock_downs_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         configurations: ConfigurationParam,
         urls: List[OverrideURL],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -445,9 +445,9 @@ class AsyncLockdownsResource(AsyncAPIResource):
         Updates an existing Zone Lockdown rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the Zone Lockdown rule.
+          lock_downs_id: The unique identifier of the Zone Lockdown rule.
 
           configurations: A list of IP addresses or CIDR ranges that will be allowed to access the URLs
               specified in the Zone Lockdown rule. You can include any number of `ip` or
@@ -465,12 +465,12 @@ class AsyncLockdownsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not lock_downs_id:
+            raise ValueError(f"Expected a non-empty value for `lock_downs_id` but received {lock_downs_id!r}")
         return await self._put(
-            f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
+            f"/zones/{zone_id}/firewall/lockdowns/{lock_downs_id}",
             body=await async_maybe_transform(
                 {
                     "configurations": configurations,
@@ -490,8 +490,8 @@ class AsyncLockdownsResource(AsyncAPIResource):
 
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         created_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         description_search: str | NotGiven = NOT_GIVEN,
@@ -516,7 +516,7 @@ class AsyncLockdownsResource(AsyncAPIResource):
         parameters.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           created_on: The timestamp of when the rule was created.
 
@@ -551,10 +551,10 @@ class AsyncLockdownsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/firewall/lockdowns",
+            f"/zones/{zone_id}/firewall/lockdowns",
             page=AsyncV4PagePaginationArray[Lockdown],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -583,9 +583,9 @@ class AsyncLockdownsResource(AsyncAPIResource):
 
     async def delete(
         self,
-        id: str,
+        lock_downs_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -597,9 +597,9 @@ class AsyncLockdownsResource(AsyncAPIResource):
         Deletes an existing Zone Lockdown rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the Zone Lockdown rule.
+          lock_downs_id: The unique identifier of the Zone Lockdown rule.
 
           extra_headers: Send extra headers
 
@@ -609,12 +609,12 @@ class AsyncLockdownsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not lock_downs_id:
+            raise ValueError(f"Expected a non-empty value for `lock_downs_id` but received {lock_downs_id!r}")
         return await self._delete(
-            f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
+            f"/zones/{zone_id}/firewall/lockdowns/{lock_downs_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -627,9 +627,9 @@ class AsyncLockdownsResource(AsyncAPIResource):
 
     async def get(
         self,
-        id: str,
+        lock_downs_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -641,9 +641,9 @@ class AsyncLockdownsResource(AsyncAPIResource):
         Fetches the details of a Zone Lockdown rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the Zone Lockdown rule.
+          lock_downs_id: The unique identifier of the Zone Lockdown rule.
 
           extra_headers: Send extra headers
 
@@ -653,12 +653,12 @@ class AsyncLockdownsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not lock_downs_id:
+            raise ValueError(f"Expected a non-empty value for `lock_downs_id` but received {lock_downs_id!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
+            f"/zones/{zone_id}/firewall/lockdowns/{lock_downs_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
