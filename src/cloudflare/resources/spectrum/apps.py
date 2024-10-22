@@ -22,7 +22,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.spectrum import app_list_params, app_create_params, app_update_params
 from ...types.spectrum.dns_param import DNSParam
 from ...types.spectrum.edge_ips_param import EdgeIPsParam
@@ -436,7 +437,7 @@ class AppsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppListResponse]:
+    ) -> SyncV4PagePaginationArray[AppListResponse]:
         """
         Retrieves a list of currently existing Spectrum applications inside a zone.
 
@@ -463,30 +464,25 @@ class AppsResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[AppListResponse],
-            self._get(
-                f"/zones/{zone_id}/spectrum/apps",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "direction": direction,
-                            "order": order,
-                            "page": page,
-                            "per_page": per_page,
-                        },
-                        app_list_params.AppListParams,
-                    ),
-                    post_parser=ResultWrapper[Optional[AppListResponse]]._unwrapper,
+        return self._get_api_list(
+            f"/zones/{zone_id}/spectrum/apps",
+            page=SyncV4PagePaginationArray[AppListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "order": order,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    app_list_params.AppListParams,
                 ),
-                cast_to=cast(
-                    Any, ResultWrapper[AppListResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            model=AppListResponse,
         )
 
     def delete(
@@ -968,7 +964,7 @@ class AsyncAppsResource(AsyncAPIResource):
             ),
         )
 
-    async def list(
+    def list(
         self,
         *,
         zone_id: str,
@@ -982,7 +978,7 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppListResponse]:
+    ) -> AsyncPaginator[AppListResponse, AsyncV4PagePaginationArray[AppListResponse]]:
         """
         Retrieves a list of currently existing Spectrum applications inside a zone.
 
@@ -1009,30 +1005,25 @@ class AsyncAppsResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[AppListResponse],
-            await self._get(
-                f"/zones/{zone_id}/spectrum/apps",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "direction": direction,
-                            "order": order,
-                            "page": page,
-                            "per_page": per_page,
-                        },
-                        app_list_params.AppListParams,
-                    ),
-                    post_parser=ResultWrapper[Optional[AppListResponse]]._unwrapper,
+        return self._get_api_list(
+            f"/zones/{zone_id}/spectrum/apps",
+            page=AsyncV4PagePaginationArray[AppListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "order": order,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    app_list_params.AppListParams,
                 ),
-                cast_to=cast(
-                    Any, ResultWrapper[AppListResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            model=AppListResponse,
         )
 
     async def delete(
