@@ -55,8 +55,8 @@ class FiltersResource(SyncAPIResource):
     )
     def create(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         expression: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -69,7 +69,7 @@ class FiltersResource(SyncAPIResource):
         Creates one or more filters.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           expression: The filter expression. For more information, refer to
               [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
@@ -82,10 +82,10 @@ class FiltersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_identifier}/filters",
+            f"/zones/{zone_id}/filters",
             body=maybe_transform({"expression": expression}, filter_create_params.FilterCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -102,9 +102,9 @@ class FiltersResource(SyncAPIResource):
     )
     def update(
         self,
-        id: str,
+        filter_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -117,9 +117,9 @@ class FiltersResource(SyncAPIResource):
         Updates an existing filter.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the filter.
+          filter_id: The unique identifier of the filter.
 
           extra_headers: Send extra headers
 
@@ -129,12 +129,12 @@ class FiltersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not filter_id:
+            raise ValueError(f"Expected a non-empty value for `filter_id` but received {filter_id!r}")
         return self._put(
-            f"/zones/{zone_identifier}/filters/{id}",
+            f"/zones/{zone_id}/filters/{filter_id}",
             body=maybe_transform(body, filter_update_params.FilterUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -151,8 +151,8 @@ class FiltersResource(SyncAPIResource):
     )
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -173,7 +173,7 @@ class FiltersResource(SyncAPIResource):
         parameters.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           id: The unique identifier of the filter.
 
@@ -197,10 +197,10 @@ class FiltersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/filters",
+            f"/zones/{zone_id}/filters",
             page=SyncV4PagePaginationArray[FirewallFilter],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -228,9 +228,9 @@ class FiltersResource(SyncAPIResource):
     )
     def delete(
         self,
-        id: str,
+        filter_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -242,9 +242,9 @@ class FiltersResource(SyncAPIResource):
         Deletes an existing filter.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the filter.
+          filter_id: The unique identifier of the filter.
 
           extra_headers: Send extra headers
 
@@ -254,12 +254,12 @@ class FiltersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not filter_id:
+            raise ValueError(f"Expected a non-empty value for `filter_id` but received {filter_id!r}")
         return self._delete(
-            f"/zones/{zone_identifier}/filters/{id}",
+            f"/zones/{zone_id}/filters/{filter_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -275,9 +275,9 @@ class FiltersResource(SyncAPIResource):
     )
     def get(
         self,
-        id: str,
+        filter_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -289,9 +289,9 @@ class FiltersResource(SyncAPIResource):
         Fetches the details of a filter.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the filter.
+          filter_id: The unique identifier of the filter.
 
           extra_headers: Send extra headers
 
@@ -301,12 +301,12 @@ class FiltersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not filter_id:
+            raise ValueError(f"Expected a non-empty value for `filter_id` but received {filter_id!r}")
         return self._get(
-            f"/zones/{zone_identifier}/filters/{id}",
+            f"/zones/{zone_id}/filters/{filter_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -343,8 +343,8 @@ class AsyncFiltersResource(AsyncAPIResource):
     )
     async def create(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         expression: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -357,7 +357,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         Creates one or more filters.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           expression: The filter expression. For more information, refer to
               [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
@@ -370,10 +370,10 @@ class AsyncFiltersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_identifier}/filters",
+            f"/zones/{zone_id}/filters",
             body=await async_maybe_transform({"expression": expression}, filter_create_params.FilterCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -390,9 +390,9 @@ class AsyncFiltersResource(AsyncAPIResource):
     )
     async def update(
         self,
-        id: str,
+        filter_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -405,9 +405,9 @@ class AsyncFiltersResource(AsyncAPIResource):
         Updates an existing filter.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the filter.
+          filter_id: The unique identifier of the filter.
 
           extra_headers: Send extra headers
 
@@ -417,12 +417,12 @@ class AsyncFiltersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not filter_id:
+            raise ValueError(f"Expected a non-empty value for `filter_id` but received {filter_id!r}")
         return await self._put(
-            f"/zones/{zone_identifier}/filters/{id}",
+            f"/zones/{zone_id}/filters/{filter_id}",
             body=await async_maybe_transform(body, filter_update_params.FilterUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -439,8 +439,8 @@ class AsyncFiltersResource(AsyncAPIResource):
     )
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -461,7 +461,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         parameters.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           id: The unique identifier of the filter.
 
@@ -485,10 +485,10 @@ class AsyncFiltersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/filters",
+            f"/zones/{zone_id}/filters",
             page=AsyncV4PagePaginationArray[FirewallFilter],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -516,9 +516,9 @@ class AsyncFiltersResource(AsyncAPIResource):
     )
     async def delete(
         self,
-        id: str,
+        filter_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -530,9 +530,9 @@ class AsyncFiltersResource(AsyncAPIResource):
         Deletes an existing filter.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the filter.
+          filter_id: The unique identifier of the filter.
 
           extra_headers: Send extra headers
 
@@ -542,12 +542,12 @@ class AsyncFiltersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not filter_id:
+            raise ValueError(f"Expected a non-empty value for `filter_id` but received {filter_id!r}")
         return await self._delete(
-            f"/zones/{zone_identifier}/filters/{id}",
+            f"/zones/{zone_id}/filters/{filter_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -563,9 +563,9 @@ class AsyncFiltersResource(AsyncAPIResource):
     )
     async def get(
         self,
-        id: str,
+        filter_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -577,9 +577,9 @@ class AsyncFiltersResource(AsyncAPIResource):
         Fetches the details of a filter.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the filter.
+          filter_id: The unique identifier of the filter.
 
           extra_headers: Send extra headers
 
@@ -589,12 +589,12 @@ class AsyncFiltersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not filter_id:
+            raise ValueError(f"Expected a non-empty value for `filter_id` but received {filter_id!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/filters/{id}",
+            f"/zones/{zone_id}/filters/{filter_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

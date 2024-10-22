@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Any, Type, cast
+from typing import Type, cast
 
 import httpx
 
@@ -25,9 +25,6 @@ from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.rate_limits import rate_limit_edit_params, rate_limit_list_params, rate_limit_create_params
 from ..types.rate_limits.rate_limit import RateLimit
-from ..types.rate_limits.rate_limit_get_response import RateLimitGetResponse
-from ..types.rate_limits.rate_limit_edit_response import RateLimitEditResponse
-from ..types.rate_limits.rate_limit_create_response import RateLimitCreateResponse
 from ..types.rate_limits.rate_limit_delete_response import RateLimitDeleteResponse
 
 __all__ = ["RateLimitsResource", "AsyncRateLimitsResource"]
@@ -58,8 +55,8 @@ class RateLimitsResource(SyncAPIResource):
     )
     def create(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         action: rate_limit_create_params.Action,
         match: rate_limit_create_params.Match,
         period: float,
@@ -70,14 +67,14 @@ class RateLimitsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RateLimitCreateResponse:
+    ) -> RateLimit:
         """Creates a new rate limit for a zone.
 
         Refer to the object definition for a list
         of required attributes.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           action: The action to perform when the threshold of matched traffic within the
               configured period is exceeded.
@@ -99,32 +96,27 @@ class RateLimitsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return cast(
-            RateLimitCreateResponse,
-            self._post(
-                f"/zones/{zone_identifier}/rate_limits",
-                body=maybe_transform(
-                    {
-                        "action": action,
-                        "match": match,
-                        "period": period,
-                        "threshold": threshold,
-                    },
-                    rate_limit_create_params.RateLimitCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[RateLimitCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[RateLimitCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._post(
+            f"/zones/{zone_id}/rate_limits",
+            body=maybe_transform(
+                {
+                    "action": action,
+                    "match": match,
+                    "period": period,
+                    "threshold": threshold,
+                },
+                rate_limit_create_params.RateLimitCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RateLimit]._unwrapper,
+            ),
+            cast_to=cast(Type[RateLimit], ResultWrapper[RateLimit]),
         )
 
     @typing_extensions.deprecated(
@@ -132,8 +124,8 @@ class RateLimitsResource(SyncAPIResource):
     )
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -147,7 +139,7 @@ class RateLimitsResource(SyncAPIResource):
         Fetches the rate limits for a zone.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           page: The page number of paginated results.
 
@@ -162,10 +154,10 @@ class RateLimitsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/rate_limits",
+            f"/zones/{zone_id}/rate_limits",
             page=SyncV4PagePaginationArray[RateLimit],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -188,9 +180,9 @@ class RateLimitsResource(SyncAPIResource):
     )
     def delete(
         self,
-        id: str,
+        rate_limit_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -202,9 +194,9 @@ class RateLimitsResource(SyncAPIResource):
         Deletes an existing rate limit.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the rate limit.
+          rate_limit_id: The unique identifier of the rate limit.
 
           extra_headers: Send extra headers
 
@@ -214,12 +206,12 @@ class RateLimitsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not rate_limit_id:
+            raise ValueError(f"Expected a non-empty value for `rate_limit_id` but received {rate_limit_id!r}")
         return self._delete(
-            f"/zones/{zone_identifier}/rate_limits/{id}",
+            f"/zones/{zone_id}/rate_limits/{rate_limit_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -235,9 +227,9 @@ class RateLimitsResource(SyncAPIResource):
     )
     def edit(
         self,
-        id: str,
+        rate_limit_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         action: rate_limit_edit_params.Action,
         match: rate_limit_edit_params.Match,
         period: float,
@@ -248,14 +240,14 @@ class RateLimitsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RateLimitEditResponse:
+    ) -> RateLimit:
         """
         Updates an existing rate limit.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the rate limit.
+          rate_limit_id: The unique identifier of the rate limit.
 
           action: The action to perform when the threshold of matched traffic within the
               configured period is exceeded.
@@ -277,34 +269,29 @@ class RateLimitsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return cast(
-            RateLimitEditResponse,
-            self._put(
-                f"/zones/{zone_identifier}/rate_limits/{id}",
-                body=maybe_transform(
-                    {
-                        "action": action,
-                        "match": match,
-                        "period": period,
-                        "threshold": threshold,
-                    },
-                    rate_limit_edit_params.RateLimitEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[RateLimitEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[RateLimitEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not rate_limit_id:
+            raise ValueError(f"Expected a non-empty value for `rate_limit_id` but received {rate_limit_id!r}")
+        return self._put(
+            f"/zones/{zone_id}/rate_limits/{rate_limit_id}",
+            body=maybe_transform(
+                {
+                    "action": action,
+                    "match": match,
+                    "period": period,
+                    "threshold": threshold,
+                },
+                rate_limit_edit_params.RateLimitEditParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RateLimit]._unwrapper,
+            ),
+            cast_to=cast(Type[RateLimit], ResultWrapper[RateLimit]),
         )
 
     @typing_extensions.deprecated(
@@ -312,23 +299,23 @@ class RateLimitsResource(SyncAPIResource):
     )
     def get(
         self,
-        id: str,
+        rate_limit_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RateLimitGetResponse:
+    ) -> RateLimit:
         """
         Fetches the details of a rate limit.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the rate limit.
+          rate_limit_id: The unique identifier of the rate limit.
 
           extra_headers: Send extra headers
 
@@ -338,25 +325,20 @@ class RateLimitsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return cast(
-            RateLimitGetResponse,
-            self._get(
-                f"/zones/{zone_identifier}/rate_limits/{id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[RateLimitGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[RateLimitGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not rate_limit_id:
+            raise ValueError(f"Expected a non-empty value for `rate_limit_id` but received {rate_limit_id!r}")
+        return self._get(
+            f"/zones/{zone_id}/rate_limits/{rate_limit_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RateLimit]._unwrapper,
             ),
+            cast_to=cast(Type[RateLimit], ResultWrapper[RateLimit]),
         )
 
 
@@ -385,8 +367,8 @@ class AsyncRateLimitsResource(AsyncAPIResource):
     )
     async def create(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         action: rate_limit_create_params.Action,
         match: rate_limit_create_params.Match,
         period: float,
@@ -397,14 +379,14 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RateLimitCreateResponse:
+    ) -> RateLimit:
         """Creates a new rate limit for a zone.
 
         Refer to the object definition for a list
         of required attributes.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           action: The action to perform when the threshold of matched traffic within the
               configured period is exceeded.
@@ -426,32 +408,27 @@ class AsyncRateLimitsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        return cast(
-            RateLimitCreateResponse,
-            await self._post(
-                f"/zones/{zone_identifier}/rate_limits",
-                body=await async_maybe_transform(
-                    {
-                        "action": action,
-                        "match": match,
-                        "period": period,
-                        "threshold": threshold,
-                    },
-                    rate_limit_create_params.RateLimitCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[RateLimitCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[RateLimitCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._post(
+            f"/zones/{zone_id}/rate_limits",
+            body=await async_maybe_transform(
+                {
+                    "action": action,
+                    "match": match,
+                    "period": period,
+                    "threshold": threshold,
+                },
+                rate_limit_create_params.RateLimitCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RateLimit]._unwrapper,
+            ),
+            cast_to=cast(Type[RateLimit], ResultWrapper[RateLimit]),
         )
 
     @typing_extensions.deprecated(
@@ -459,8 +436,8 @@ class AsyncRateLimitsResource(AsyncAPIResource):
     )
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -474,7 +451,7 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         Fetches the rate limits for a zone.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           page: The page number of paginated results.
 
@@ -489,10 +466,10 @@ class AsyncRateLimitsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/rate_limits",
+            f"/zones/{zone_id}/rate_limits",
             page=AsyncV4PagePaginationArray[RateLimit],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -515,9 +492,9 @@ class AsyncRateLimitsResource(AsyncAPIResource):
     )
     async def delete(
         self,
-        id: str,
+        rate_limit_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -529,9 +506,9 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         Deletes an existing rate limit.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the rate limit.
+          rate_limit_id: The unique identifier of the rate limit.
 
           extra_headers: Send extra headers
 
@@ -541,12 +518,12 @@ class AsyncRateLimitsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not rate_limit_id:
+            raise ValueError(f"Expected a non-empty value for `rate_limit_id` but received {rate_limit_id!r}")
         return await self._delete(
-            f"/zones/{zone_identifier}/rate_limits/{id}",
+            f"/zones/{zone_id}/rate_limits/{rate_limit_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -562,9 +539,9 @@ class AsyncRateLimitsResource(AsyncAPIResource):
     )
     async def edit(
         self,
-        id: str,
+        rate_limit_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         action: rate_limit_edit_params.Action,
         match: rate_limit_edit_params.Match,
         period: float,
@@ -575,14 +552,14 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RateLimitEditResponse:
+    ) -> RateLimit:
         """
         Updates an existing rate limit.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the rate limit.
+          rate_limit_id: The unique identifier of the rate limit.
 
           action: The action to perform when the threshold of matched traffic within the
               configured period is exceeded.
@@ -604,34 +581,29 @@ class AsyncRateLimitsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return cast(
-            RateLimitEditResponse,
-            await self._put(
-                f"/zones/{zone_identifier}/rate_limits/{id}",
-                body=await async_maybe_transform(
-                    {
-                        "action": action,
-                        "match": match,
-                        "period": period,
-                        "threshold": threshold,
-                    },
-                    rate_limit_edit_params.RateLimitEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[RateLimitEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[RateLimitEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not rate_limit_id:
+            raise ValueError(f"Expected a non-empty value for `rate_limit_id` but received {rate_limit_id!r}")
+        return await self._put(
+            f"/zones/{zone_id}/rate_limits/{rate_limit_id}",
+            body=await async_maybe_transform(
+                {
+                    "action": action,
+                    "match": match,
+                    "period": period,
+                    "threshold": threshold,
+                },
+                rate_limit_edit_params.RateLimitEditParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RateLimit]._unwrapper,
+            ),
+            cast_to=cast(Type[RateLimit], ResultWrapper[RateLimit]),
         )
 
     @typing_extensions.deprecated(
@@ -639,23 +611,23 @@ class AsyncRateLimitsResource(AsyncAPIResource):
     )
     async def get(
         self,
-        id: str,
+        rate_limit_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RateLimitGetResponse:
+    ) -> RateLimit:
         """
         Fetches the details of a rate limit.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the rate limit.
+          rate_limit_id: The unique identifier of the rate limit.
 
           extra_headers: Send extra headers
 
@@ -665,25 +637,20 @@ class AsyncRateLimitsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return cast(
-            RateLimitGetResponse,
-            await self._get(
-                f"/zones/{zone_identifier}/rate_limits/{id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[RateLimitGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[RateLimitGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not rate_limit_id:
+            raise ValueError(f"Expected a non-empty value for `rate_limit_id` but received {rate_limit_id!r}")
+        return await self._get(
+            f"/zones/{zone_id}/rate_limits/{rate_limit_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RateLimit]._unwrapper,
             ),
+            cast_to=cast(Type[RateLimit], ResultWrapper[RateLimit]),
         )
 
 

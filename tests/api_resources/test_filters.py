@@ -28,7 +28,7 @@ class TestFilters:
     def test_method_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             filter = client.filters.create(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
             )
 
@@ -39,7 +39,7 @@ class TestFilters:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.filters.with_raw_response.create(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
             )
 
@@ -53,7 +53,7 @@ class TestFilters:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.filters.with_streaming_response.create(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
             ) as response:
                 assert not response.is_closed
@@ -68,9 +68,9 @@ class TestFilters:
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.filters.with_raw_response.create(
-                    zone_identifier="",
+                    zone_id="",
                     expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
                 )
 
@@ -79,8 +79,8 @@ class TestFilters:
     def test_method_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             filter = client.filters.update(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
 
@@ -91,8 +91,8 @@ class TestFilters:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.filters.with_raw_response.update(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
 
@@ -106,8 +106,8 @@ class TestFilters:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.filters.with_streaming_response.update(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             ) as response:
                 assert not response.is_closed
@@ -122,17 +122,17 @@ class TestFilters:
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.filters.with_raw_response.update(
-                    id="372e67954025e0ba6aaa6d586b9e0b61",
-                    zone_identifier="",
+                    filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                    zone_id="",
                     body={},
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `filter_id` but received ''"):
                 client.filters.with_raw_response.update(
-                    id="",
-                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                    filter_id="",
+                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                     body={},
                 )
 
@@ -140,7 +140,7 @@ class TestFilters:
     def test_method_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             filter = client.filters.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(SyncV4PagePaginationArray[FirewallFilter], filter, path=["response"])
@@ -149,7 +149,7 @@ class TestFilters:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             filter = client.filters.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="372e67954025e0ba6aaa6d586b9e0b61",
                 description="browsers",
                 expression="php",
@@ -165,7 +165,7 @@ class TestFilters:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.filters.with_raw_response.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -177,7 +177,7 @@ class TestFilters:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.filters.with_streaming_response.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -190,17 +190,17 @@ class TestFilters:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.filters.with_raw_response.list(
-                    zone_identifier="",
+                    zone_id="",
                 )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             filter = client.filters.delete(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(FirewallFilter, filter, path=["response"])
@@ -209,8 +209,8 @@ class TestFilters:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.filters.with_raw_response.delete(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -222,8 +222,8 @@ class TestFilters:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.filters.with_streaming_response.delete(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -236,24 +236,24 @@ class TestFilters:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.filters.with_raw_response.delete(
-                    id="372e67954025e0ba6aaa6d586b9e0b61",
-                    zone_identifier="",
+                    filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                    zone_id="",
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `filter_id` but received ''"):
                 client.filters.with_raw_response.delete(
-                    id="",
-                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                    filter_id="",
+                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             filter = client.filters.get(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(FirewallFilter, filter, path=["response"])
@@ -262,8 +262,8 @@ class TestFilters:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.filters.with_raw_response.get(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -275,8 +275,8 @@ class TestFilters:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.filters.with_streaming_response.get(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -289,16 +289,16 @@ class TestFilters:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.filters.with_raw_response.get(
-                    id="372e67954025e0ba6aaa6d586b9e0b61",
-                    zone_identifier="",
+                    filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                    zone_id="",
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `filter_id` but received ''"):
                 client.filters.with_raw_response.get(
-                    id="",
-                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                    filter_id="",
+                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
 
@@ -310,7 +310,7 @@ class TestAsyncFilters:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             filter = await async_client.filters.create(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
             )
 
@@ -321,7 +321,7 @@ class TestAsyncFilters:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.filters.with_raw_response.create(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
             )
 
@@ -335,7 +335,7 @@ class TestAsyncFilters:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.filters.with_streaming_response.create(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
             ) as response:
                 assert not response.is_closed
@@ -350,9 +350,9 @@ class TestAsyncFilters:
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.filters.with_raw_response.create(
-                    zone_identifier="",
+                    zone_id="",
                     expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
                 )
 
@@ -361,8 +361,8 @@ class TestAsyncFilters:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             filter = await async_client.filters.update(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
 
@@ -373,8 +373,8 @@ class TestAsyncFilters:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.filters.with_raw_response.update(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
 
@@ -388,8 +388,8 @@ class TestAsyncFilters:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.filters.with_streaming_response.update(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             ) as response:
                 assert not response.is_closed
@@ -404,17 +404,17 @@ class TestAsyncFilters:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.filters.with_raw_response.update(
-                    id="372e67954025e0ba6aaa6d586b9e0b61",
-                    zone_identifier="",
+                    filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                    zone_id="",
                     body={},
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `filter_id` but received ''"):
                 await async_client.filters.with_raw_response.update(
-                    id="",
-                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                    filter_id="",
+                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                     body={},
                 )
 
@@ -422,7 +422,7 @@ class TestAsyncFilters:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             filter = await async_client.filters.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(AsyncV4PagePaginationArray[FirewallFilter], filter, path=["response"])
@@ -431,7 +431,7 @@ class TestAsyncFilters:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             filter = await async_client.filters.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="372e67954025e0ba6aaa6d586b9e0b61",
                 description="browsers",
                 expression="php",
@@ -447,7 +447,7 @@ class TestAsyncFilters:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.filters.with_raw_response.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -459,7 +459,7 @@ class TestAsyncFilters:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.filters.with_streaming_response.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -472,17 +472,17 @@ class TestAsyncFilters:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.filters.with_raw_response.list(
-                    zone_identifier="",
+                    zone_id="",
                 )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             filter = await async_client.filters.delete(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(FirewallFilter, filter, path=["response"])
@@ -491,8 +491,8 @@ class TestAsyncFilters:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.filters.with_raw_response.delete(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -504,8 +504,8 @@ class TestAsyncFilters:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.filters.with_streaming_response.delete(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -518,24 +518,24 @@ class TestAsyncFilters:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.filters.with_raw_response.delete(
-                    id="372e67954025e0ba6aaa6d586b9e0b61",
-                    zone_identifier="",
+                    filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                    zone_id="",
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `filter_id` but received ''"):
                 await async_client.filters.with_raw_response.delete(
-                    id="",
-                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                    filter_id="",
+                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             filter = await async_client.filters.get(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(FirewallFilter, filter, path=["response"])
@@ -544,8 +544,8 @@ class TestAsyncFilters:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.filters.with_raw_response.get(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -557,8 +557,8 @@ class TestAsyncFilters:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.filters.with_streaming_response.get(
-                id="372e67954025e0ba6aaa6d586b9e0b61",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -571,14 +571,14 @@ class TestAsyncFilters:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.filters.with_raw_response.get(
-                    id="372e67954025e0ba6aaa6d586b9e0b61",
-                    zone_identifier="",
+                    filter_id="372e67954025e0ba6aaa6d586b9e0b61",
+                    zone_id="",
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `filter_id` but received ''"):
                 await async_client.filters.with_raw_response.get(
-                    id="",
-                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                    filter_id="",
+                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )
