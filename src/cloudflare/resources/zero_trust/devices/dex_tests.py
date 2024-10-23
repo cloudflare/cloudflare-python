@@ -238,7 +238,7 @@ class DEXTestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DEXTestDeleteResponse]:
+    ) -> DEXTestDeleteResponse:
         """Delete a Device DEX test.
 
         Returns the remaining device dex tests for the
@@ -266,9 +266,9 @@ class DEXTestsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DEXTestDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[DEXTestDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestDeleteResponse]], ResultWrapper[DEXTestDeleteResponse]),
+            cast_to=cast(Type[DEXTestDeleteResponse], ResultWrapper[DEXTestDeleteResponse]),
         )
 
     def get(
@@ -287,7 +287,7 @@ class DEXTestsResource(SyncAPIResource):
         Fetch a single DEX test.
 
         Args:
-          dex_test_id: API UUID.
+          dex_test_id: The unique identifier for the test.
 
           extra_headers: Send extra headers
 
@@ -522,7 +522,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DEXTestDeleteResponse]:
+    ) -> DEXTestDeleteResponse:
         """Delete a Device DEX test.
 
         Returns the remaining device dex tests for the
@@ -550,9 +550,9 @@ class AsyncDEXTestsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DEXTestDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[DEXTestDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestDeleteResponse]], ResultWrapper[DEXTestDeleteResponse]),
+            cast_to=cast(Type[DEXTestDeleteResponse], ResultWrapper[DEXTestDeleteResponse]),
         )
 
     async def get(
@@ -571,7 +571,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         Fetch a single DEX test.
 
         Args:
-          dex_test_id: API UUID.
+          dex_test_id: The unique identifier for the test.
 
           extra_headers: Send extra headers
 
