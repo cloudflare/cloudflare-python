@@ -11,7 +11,11 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.ai_gateway import LogListResponse, LogDeleteResponse
+from cloudflare.types.ai_gateway import (
+    LogGetResponse,
+    LogListResponse,
+    LogDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -195,6 +199,258 @@ class TestLogs:
                 account_id="0d37909e38d3e99c29fa2cd343ac421a",
             )
 
+    @parametrize
+    def test_method_edit(self, client: Cloudflare) -> None:
+        log = client.ai_gateway.logs.edit(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+        assert_matches_type(object, log, path=["response"])
+
+    @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        log = client.ai_gateway.logs.edit(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+            feedback=-1,
+            metadata={"foo": "string"},
+            score=0,
+        )
+        assert_matches_type(object, log, path=["response"])
+
+    @parametrize
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.ai_gateway.logs.with_raw_response.edit(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        log = response.parse()
+        assert_matches_type(object, log, path=["response"])
+
+    @parametrize
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.ai_gateway.logs.with_streaming_response.edit(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            log = response.parse()
+            assert_matches_type(object, log, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.ai_gateway.logs.with_raw_response.edit(
+                id="id",
+                account_id="",
+                gateway_id="my-gateway",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
+            client.ai_gateway.logs.with_raw_response.edit(
+                id="id",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.ai_gateway.logs.with_raw_response.edit(
+                id="",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="my-gateway",
+            )
+
+    @parametrize
+    def test_method_get(self, client: Cloudflare) -> None:
+        log = client.ai_gateway.logs.get(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+        assert_matches_type(LogGetResponse, log, path=["response"])
+
+    @parametrize
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.ai_gateway.logs.with_raw_response.get(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        log = response.parse()
+        assert_matches_type(LogGetResponse, log, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.ai_gateway.logs.with_streaming_response.get(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            log = response.parse()
+            assert_matches_type(LogGetResponse, log, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.ai_gateway.logs.with_raw_response.get(
+                id="id",
+                account_id="",
+                gateway_id="my-gateway",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
+            client.ai_gateway.logs.with_raw_response.get(
+                id="id",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.ai_gateway.logs.with_raw_response.get(
+                id="",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="my-gateway",
+            )
+
+    @parametrize
+    def test_method_request(self, client: Cloudflare) -> None:
+        log = client.ai_gateway.logs.request(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+        assert_matches_type(object, log, path=["response"])
+
+    @parametrize
+    def test_raw_response_request(self, client: Cloudflare) -> None:
+        response = client.ai_gateway.logs.with_raw_response.request(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        log = response.parse()
+        assert_matches_type(object, log, path=["response"])
+
+    @parametrize
+    def test_streaming_response_request(self, client: Cloudflare) -> None:
+        with client.ai_gateway.logs.with_streaming_response.request(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            log = response.parse()
+            assert_matches_type(object, log, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_request(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.ai_gateway.logs.with_raw_response.request(
+                id="id",
+                account_id="",
+                gateway_id="my-gateway",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
+            client.ai_gateway.logs.with_raw_response.request(
+                id="id",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.ai_gateway.logs.with_raw_response.request(
+                id="",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="my-gateway",
+            )
+
+    @parametrize
+    def test_method_response(self, client: Cloudflare) -> None:
+        log = client.ai_gateway.logs.response(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+        assert_matches_type(object, log, path=["response"])
+
+    @parametrize
+    def test_raw_response_response(self, client: Cloudflare) -> None:
+        response = client.ai_gateway.logs.with_raw_response.response(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        log = response.parse()
+        assert_matches_type(object, log, path=["response"])
+
+    @parametrize
+    def test_streaming_response_response(self, client: Cloudflare) -> None:
+        with client.ai_gateway.logs.with_streaming_response.response(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            log = response.parse()
+            assert_matches_type(object, log, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_response(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.ai_gateway.logs.with_raw_response.response(
+                id="id",
+                account_id="",
+                gateway_id="my-gateway",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
+            client.ai_gateway.logs.with_raw_response.response(
+                id="id",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.ai_gateway.logs.with_raw_response.response(
+                id="",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="my-gateway",
+            )
+
 
 class TestAsyncLogs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -373,4 +629,256 @@ class TestAsyncLogs:
             await async_client.ai_gateway.logs.with_raw_response.delete(
                 gateway_id="",
                 account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            )
+
+    @parametrize
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        log = await async_client.ai_gateway.logs.edit(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+        assert_matches_type(object, log, path=["response"])
+
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        log = await async_client.ai_gateway.logs.edit(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+            feedback=-1,
+            metadata={"foo": "string"},
+            score=0,
+        )
+        assert_matches_type(object, log, path=["response"])
+
+    @parametrize
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.ai_gateway.logs.with_raw_response.edit(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        log = await response.parse()
+        assert_matches_type(object, log, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.ai_gateway.logs.with_streaming_response.edit(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            log = await response.parse()
+            assert_matches_type(object, log, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.ai_gateway.logs.with_raw_response.edit(
+                id="id",
+                account_id="",
+                gateway_id="my-gateway",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
+            await async_client.ai_gateway.logs.with_raw_response.edit(
+                id="id",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.ai_gateway.logs.with_raw_response.edit(
+                id="",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="my-gateway",
+            )
+
+    @parametrize
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        log = await async_client.ai_gateway.logs.get(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+        assert_matches_type(LogGetResponse, log, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.ai_gateway.logs.with_raw_response.get(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        log = await response.parse()
+        assert_matches_type(LogGetResponse, log, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.ai_gateway.logs.with_streaming_response.get(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            log = await response.parse()
+            assert_matches_type(LogGetResponse, log, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.ai_gateway.logs.with_raw_response.get(
+                id="id",
+                account_id="",
+                gateway_id="my-gateway",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
+            await async_client.ai_gateway.logs.with_raw_response.get(
+                id="id",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.ai_gateway.logs.with_raw_response.get(
+                id="",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="my-gateway",
+            )
+
+    @parametrize
+    async def test_method_request(self, async_client: AsyncCloudflare) -> None:
+        log = await async_client.ai_gateway.logs.request(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+        assert_matches_type(object, log, path=["response"])
+
+    @parametrize
+    async def test_raw_response_request(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.ai_gateway.logs.with_raw_response.request(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        log = await response.parse()
+        assert_matches_type(object, log, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_request(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.ai_gateway.logs.with_streaming_response.request(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            log = await response.parse()
+            assert_matches_type(object, log, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_request(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.ai_gateway.logs.with_raw_response.request(
+                id="id",
+                account_id="",
+                gateway_id="my-gateway",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
+            await async_client.ai_gateway.logs.with_raw_response.request(
+                id="id",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.ai_gateway.logs.with_raw_response.request(
+                id="",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="my-gateway",
+            )
+
+    @parametrize
+    async def test_method_response(self, async_client: AsyncCloudflare) -> None:
+        log = await async_client.ai_gateway.logs.response(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+        assert_matches_type(object, log, path=["response"])
+
+    @parametrize
+    async def test_raw_response_response(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.ai_gateway.logs.with_raw_response.response(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        log = await response.parse()
+        assert_matches_type(object, log, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_response(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.ai_gateway.logs.with_streaming_response.response(
+            id="id",
+            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            gateway_id="my-gateway",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            log = await response.parse()
+            assert_matches_type(object, log, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_response(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.ai_gateway.logs.with_raw_response.response(
+                id="id",
+                account_id="",
+                gateway_id="my-gateway",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
+            await async_client.ai_gateway.logs.with_raw_response.response(
+                id="id",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.ai_gateway.logs.with_raw_response.response(
+                id="",
+                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                gateway_id="my-gateway",
             )
