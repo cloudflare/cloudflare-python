@@ -130,6 +130,44 @@ class AuditSSHSettingsResource(SyncAPIResource):
             cast_to=cast(Type[Optional[GatewaySettings]], ResultWrapper[GatewaySettings]),
         )
 
+    def rotate_seed(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[GatewaySettings]:
+        """
+        Rotates the SSH account seed that is used for generating the host key identity
+        when connecting through the Cloudflare SSH Proxy.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/gateway/audit_ssh_settings/rotate_seed",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[GatewaySettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[GatewaySettings]], ResultWrapper[GatewaySettings]),
+        )
+
 
 class AsyncAuditSSHSettingsResource(AsyncAPIResource):
     @cached_property
@@ -234,6 +272,44 @@ class AsyncAuditSSHSettingsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[GatewaySettings]], ResultWrapper[GatewaySettings]),
         )
 
+    async def rotate_seed(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[GatewaySettings]:
+        """
+        Rotates the SSH account seed that is used for generating the host key identity
+        when connecting through the Cloudflare SSH Proxy.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/gateway/audit_ssh_settings/rotate_seed",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[GatewaySettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[GatewaySettings]], ResultWrapper[GatewaySettings]),
+        )
+
 
 class AuditSSHSettingsResourceWithRawResponse:
     def __init__(self, audit_ssh_settings: AuditSSHSettingsResource) -> None:
@@ -244,6 +320,9 @@ class AuditSSHSettingsResourceWithRawResponse:
         )
         self.get = to_raw_response_wrapper(
             audit_ssh_settings.get,
+        )
+        self.rotate_seed = to_raw_response_wrapper(
+            audit_ssh_settings.rotate_seed,
         )
 
 
@@ -257,6 +336,9 @@ class AsyncAuditSSHSettingsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             audit_ssh_settings.get,
         )
+        self.rotate_seed = async_to_raw_response_wrapper(
+            audit_ssh_settings.rotate_seed,
+        )
 
 
 class AuditSSHSettingsResourceWithStreamingResponse:
@@ -269,6 +351,9 @@ class AuditSSHSettingsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             audit_ssh_settings.get,
         )
+        self.rotate_seed = to_streamed_response_wrapper(
+            audit_ssh_settings.rotate_seed,
+        )
 
 
 class AsyncAuditSSHSettingsResourceWithStreamingResponse:
@@ -280,4 +365,7 @@ class AsyncAuditSSHSettingsResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             audit_ssh_settings.get,
+        )
+        self.rotate_seed = async_to_streamed_response_wrapper(
+            audit_ssh_settings.rotate_seed,
         )
