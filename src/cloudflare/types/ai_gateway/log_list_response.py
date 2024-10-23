@@ -25,10 +25,6 @@ class LogListResponse(BaseModel):
 
     provider: str
 
-    request: str
-
-    response: str
-
     success: bool
 
     tokens_in: Optional[int] = None
