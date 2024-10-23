@@ -42,3 +42,6 @@ class SchemaHTTP(BaseModel):
     """Device settings profiles targeted by this test"""
 
     targeted: Optional[bool] = None
+
+    test_id: Optional[str] = None
+    """The unique identifier for the test."""
