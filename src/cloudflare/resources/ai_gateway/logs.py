@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Dict, Type, Union, Iterable, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -21,9 +21,11 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.ai_gateway import log_list_params, log_delete_params
+from ...types.ai_gateway import log_edit_params, log_list_params, log_delete_params
+from ...types.ai_gateway.log_get_response import LogGetResponse
 from ...types.ai_gateway.log_list_response import LogListResponse
 from ...types.ai_gateway.log_delete_response import LogDeleteResponse
 
@@ -220,6 +222,189 @@ class LogsResource(SyncAPIResource):
             cast_to=LogDeleteResponse,
         )
 
+    def edit(
+        self,
+        id: str,
+        *,
+        account_id: str,
+        gateway_id: str,
+        feedback: Optional[float] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, Union[str, float, bool]]] | NotGiven = NOT_GIVEN,
+        score: Optional[float] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Patch Gateway Log
+
+        Args:
+          gateway_id: gateway id
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not gateway_id:
+            raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._patch(
+            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}",
+            body=maybe_transform(
+                {
+                    "feedback": feedback,
+                    "metadata": metadata,
+                    "score": score,
+                },
+                log_edit_params.LogEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[object]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
+    def get(
+        self,
+        id: str,
+        *,
+        account_id: str,
+        gateway_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> LogGetResponse:
+        """
+        Get Gateway Log Detail
+
+        Args:
+          gateway_id: gateway id
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not gateway_id:
+            raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LogGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[LogGetResponse], ResultWrapper[LogGetResponse]),
+        )
+
+    def request(
+        self,
+        id: str,
+        *,
+        account_id: str,
+        gateway_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Get Gateway Log Request
+
+        Args:
+          gateway_id: gateway id
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not gateway_id:
+            raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}/request",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    def response(
+        self,
+        id: str,
+        *,
+        account_id: str,
+        gateway_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Get Gateway Log Response
+
+        Args:
+          gateway_id: gateway id
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not gateway_id:
+            raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}/response",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
 
 class AsyncLogsResource(AsyncAPIResource):
     @cached_property
@@ -411,6 +596,189 @@ class AsyncLogsResource(AsyncAPIResource):
             cast_to=LogDeleteResponse,
         )
 
+    async def edit(
+        self,
+        id: str,
+        *,
+        account_id: str,
+        gateway_id: str,
+        feedback: Optional[float] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, Union[str, float, bool]]] | NotGiven = NOT_GIVEN,
+        score: Optional[float] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Patch Gateway Log
+
+        Args:
+          gateway_id: gateway id
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not gateway_id:
+            raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._patch(
+            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}",
+            body=await async_maybe_transform(
+                {
+                    "feedback": feedback,
+                    "metadata": metadata,
+                    "score": score,
+                },
+                log_edit_params.LogEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[object]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
+    async def get(
+        self,
+        id: str,
+        *,
+        account_id: str,
+        gateway_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> LogGetResponse:
+        """
+        Get Gateway Log Detail
+
+        Args:
+          gateway_id: gateway id
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not gateway_id:
+            raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LogGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[LogGetResponse], ResultWrapper[LogGetResponse]),
+        )
+
+    async def request(
+        self,
+        id: str,
+        *,
+        account_id: str,
+        gateway_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Get Gateway Log Request
+
+        Args:
+          gateway_id: gateway id
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not gateway_id:
+            raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}/request",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
+    async def response(
+        self,
+        id: str,
+        *,
+        account_id: str,
+        gateway_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
+        """
+        Get Gateway Log Response
+
+        Args:
+          gateway_id: gateway id
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not gateway_id:
+            raise ValueError(f"Expected a non-empty value for `gateway_id` but received {gateway_id!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/logs/{id}/response",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=object,
+        )
+
 
 class LogsResourceWithRawResponse:
     def __init__(self, logs: LogsResource) -> None:
@@ -421,6 +789,18 @@ class LogsResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             logs.delete,
+        )
+        self.edit = to_raw_response_wrapper(
+            logs.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            logs.get,
+        )
+        self.request = to_raw_response_wrapper(
+            logs.request,
+        )
+        self.response = to_raw_response_wrapper(
+            logs.response,
         )
 
 
@@ -434,6 +814,18 @@ class AsyncLogsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             logs.delete,
         )
+        self.edit = async_to_raw_response_wrapper(
+            logs.edit,
+        )
+        self.get = async_to_raw_response_wrapper(
+            logs.get,
+        )
+        self.request = async_to_raw_response_wrapper(
+            logs.request,
+        )
+        self.response = async_to_raw_response_wrapper(
+            logs.response,
+        )
 
 
 class LogsResourceWithStreamingResponse:
@@ -446,6 +838,18 @@ class LogsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             logs.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            logs.edit,
+        )
+        self.get = to_streamed_response_wrapper(
+            logs.get,
+        )
+        self.request = to_streamed_response_wrapper(
+            logs.request,
+        )
+        self.response = to_streamed_response_wrapper(
+            logs.response,
+        )
 
 
 class AsyncLogsResourceWithStreamingResponse:
@@ -457,4 +861,16 @@ class AsyncLogsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             logs.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            logs.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            logs.get,
+        )
+        self.request = async_to_streamed_response_wrapper(
+            logs.request,
+        )
+        self.response = async_to_streamed_response_wrapper(
+            logs.response,
         )

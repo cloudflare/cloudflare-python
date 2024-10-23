@@ -77,6 +77,7 @@ if TYPE_CHECKING:
         registrar,
         turnstile,
         vectorize,
+        workflows,
         addressing,
         ai_gateway,
         audit_logs,
@@ -703,6 +704,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.security_txt import SecurityTXTResource
 
         return SecurityTXTResource(self)
+
+    @cached_property
+    def workflows(self) -> workflows.WorkflowsResource:
+        from .resources.workflows import WorkflowsResource
+
+        return WorkflowsResource(self)
 
     @cached_property
     def with_raw_response(self) -> CloudflareWithRawResponse:
@@ -1458,6 +1465,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncSecurityTXTResource(self)
 
     @cached_property
+    def workflows(self) -> workflows.AsyncWorkflowsResource:
+        from .resources.workflows import AsyncWorkflowsResource
+
+        return AsyncWorkflowsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCloudflareWithRawResponse:
         return AsyncCloudflareWithRawResponse(self)
 
@@ -2145,6 +2158,12 @@ class CloudflareWithRawResponse:
 
         return SecurityTXTResourceWithRawResponse(self._client.security_txt)
 
+    @cached_property
+    def workflows(self) -> workflows.WorkflowsResourceWithRawResponse:
+        from .resources.workflows import WorkflowsResourceWithRawResponse
+
+        return WorkflowsResourceWithRawResponse(self._client.workflows)
+
 
 class AsyncCloudflareWithRawResponse:
     _client: AsyncCloudflare
@@ -2652,6 +2671,12 @@ class AsyncCloudflareWithRawResponse:
 
         return AsyncSecurityTXTResourceWithRawResponse(self._client.security_txt)
 
+    @cached_property
+    def workflows(self) -> workflows.AsyncWorkflowsResourceWithRawResponse:
+        from .resources.workflows import AsyncWorkflowsResourceWithRawResponse
+
+        return AsyncWorkflowsResourceWithRawResponse(self._client.workflows)
+
 
 class CloudflareWithStreamedResponse:
     _client: Cloudflare
@@ -3158,6 +3183,12 @@ class CloudflareWithStreamedResponse:
         from .resources.security_txt import SecurityTXTResourceWithStreamingResponse
 
         return SecurityTXTResourceWithStreamingResponse(self._client.security_txt)
+
+    @cached_property
+    def workflows(self) -> workflows.WorkflowsResourceWithStreamingResponse:
+        from .resources.workflows import WorkflowsResourceWithStreamingResponse
+
+        return WorkflowsResourceWithStreamingResponse(self._client.workflows)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -3673,6 +3704,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.security_txt import AsyncSecurityTXTResourceWithStreamingResponse
 
         return AsyncSecurityTXTResourceWithStreamingResponse(self._client.security_txt)
+
+    @cached_property
+    def workflows(self) -> workflows.AsyncWorkflowsResourceWithStreamingResponse:
+        from .resources.workflows import AsyncWorkflowsResourceWithStreamingResponse
+
+        return AsyncWorkflowsResourceWithStreamingResponse(self._client.workflows)
 
 
 Client = Cloudflare

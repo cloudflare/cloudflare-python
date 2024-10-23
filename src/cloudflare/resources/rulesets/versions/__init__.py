@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .by_tag import (
-    ByTagResource,
-    AsyncByTagResource,
-    ByTagResourceWithRawResponse,
-    AsyncByTagResourceWithRawResponse,
-    ByTagResourceWithStreamingResponse,
-    AsyncByTagResourceWithStreamingResponse,
-)
 from .versions import (
     VersionsResource,
     AsyncVersionsResource,
@@ -18,12 +10,6 @@ from .versions import (
 )
 
 __all__ = [
-    "ByTagResource",
-    "AsyncByTagResource",
-    "ByTagResourceWithRawResponse",
-    "AsyncByTagResourceWithRawResponse",
-    "ByTagResourceWithStreamingResponse",
-    "AsyncByTagResourceWithStreamingResponse",
     "VersionsResource",
     "AsyncVersionsResource",
     "VersionsResourceWithRawResponse",

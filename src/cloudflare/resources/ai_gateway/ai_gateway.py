@@ -20,6 +20,14 @@ from ..._utils import (
     maybe_transform,
     async_maybe_transform,
 )
+from .datasets import (
+    DatasetsResource,
+    AsyncDatasetsResource,
+    DatasetsResourceWithRawResponse,
+    AsyncDatasetsResourceWithRawResponse,
+    DatasetsResourceWithStreamingResponse,
+    AsyncDatasetsResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -29,8 +37,24 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from .evaluations import (
+    EvaluationsResource,
+    AsyncEvaluationsResource,
+    EvaluationsResourceWithRawResponse,
+    AsyncEvaluationsResourceWithRawResponse,
+    EvaluationsResourceWithStreamingResponse,
+    AsyncEvaluationsResourceWithStreamingResponse,
+)
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
+from .evaluation_types import (
+    EvaluationTypesResource,
+    AsyncEvaluationTypesResource,
+    EvaluationTypesResourceWithRawResponse,
+    AsyncEvaluationTypesResourceWithRawResponse,
+    EvaluationTypesResourceWithStreamingResponse,
+    AsyncEvaluationTypesResourceWithStreamingResponse,
+)
 from ...types.ai_gateway import ai_gateway_list_params, ai_gateway_create_params, ai_gateway_update_params
 from ...types.ai_gateway.ai_gateway_get_response import AIGatewayGetResponse
 from ...types.ai_gateway.ai_gateway_list_response import AIGatewayListResponse
@@ -43,8 +67,20 @@ __all__ = ["AIGatewayResource", "AsyncAIGatewayResource"]
 
 class AIGatewayResource(SyncAPIResource):
     @cached_property
+    def evaluation_types(self) -> EvaluationTypesResource:
+        return EvaluationTypesResource(self._client)
+
+    @cached_property
     def logs(self) -> LogsResource:
         return LogsResource(self._client)
+
+    @cached_property
+    def datasets(self) -> DatasetsResource:
+        return DatasetsResource(self._client)
+
+    @cached_property
+    def evaluations(self) -> EvaluationsResource:
+        return EvaluationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIGatewayResourceWithRawResponse:
@@ -333,8 +369,20 @@ class AIGatewayResource(SyncAPIResource):
 
 class AsyncAIGatewayResource(AsyncAPIResource):
     @cached_property
+    def evaluation_types(self) -> AsyncEvaluationTypesResource:
+        return AsyncEvaluationTypesResource(self._client)
+
+    @cached_property
     def logs(self) -> AsyncLogsResource:
         return AsyncLogsResource(self._client)
+
+    @cached_property
+    def datasets(self) -> AsyncDatasetsResource:
+        return AsyncDatasetsResource(self._client)
+
+    @cached_property
+    def evaluations(self) -> AsyncEvaluationsResource:
+        return AsyncEvaluationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIGatewayResourceWithRawResponse:
@@ -642,8 +690,20 @@ class AIGatewayResourceWithRawResponse:
         )
 
     @cached_property
+    def evaluation_types(self) -> EvaluationTypesResourceWithRawResponse:
+        return EvaluationTypesResourceWithRawResponse(self._ai_gateway.evaluation_types)
+
+    @cached_property
     def logs(self) -> LogsResourceWithRawResponse:
         return LogsResourceWithRawResponse(self._ai_gateway.logs)
+
+    @cached_property
+    def datasets(self) -> DatasetsResourceWithRawResponse:
+        return DatasetsResourceWithRawResponse(self._ai_gateway.datasets)
+
+    @cached_property
+    def evaluations(self) -> EvaluationsResourceWithRawResponse:
+        return EvaluationsResourceWithRawResponse(self._ai_gateway.evaluations)
 
 
 class AsyncAIGatewayResourceWithRawResponse:
@@ -667,8 +727,20 @@ class AsyncAIGatewayResourceWithRawResponse:
         )
 
     @cached_property
+    def evaluation_types(self) -> AsyncEvaluationTypesResourceWithRawResponse:
+        return AsyncEvaluationTypesResourceWithRawResponse(self._ai_gateway.evaluation_types)
+
+    @cached_property
     def logs(self) -> AsyncLogsResourceWithRawResponse:
         return AsyncLogsResourceWithRawResponse(self._ai_gateway.logs)
+
+    @cached_property
+    def datasets(self) -> AsyncDatasetsResourceWithRawResponse:
+        return AsyncDatasetsResourceWithRawResponse(self._ai_gateway.datasets)
+
+    @cached_property
+    def evaluations(self) -> AsyncEvaluationsResourceWithRawResponse:
+        return AsyncEvaluationsResourceWithRawResponse(self._ai_gateway.evaluations)
 
 
 class AIGatewayResourceWithStreamingResponse:
@@ -692,8 +764,20 @@ class AIGatewayResourceWithStreamingResponse:
         )
 
     @cached_property
+    def evaluation_types(self) -> EvaluationTypesResourceWithStreamingResponse:
+        return EvaluationTypesResourceWithStreamingResponse(self._ai_gateway.evaluation_types)
+
+    @cached_property
     def logs(self) -> LogsResourceWithStreamingResponse:
         return LogsResourceWithStreamingResponse(self._ai_gateway.logs)
+
+    @cached_property
+    def datasets(self) -> DatasetsResourceWithStreamingResponse:
+        return DatasetsResourceWithStreamingResponse(self._ai_gateway.datasets)
+
+    @cached_property
+    def evaluations(self) -> EvaluationsResourceWithStreamingResponse:
+        return EvaluationsResourceWithStreamingResponse(self._ai_gateway.evaluations)
 
 
 class AsyncAIGatewayResourceWithStreamingResponse:
@@ -717,5 +801,17 @@ class AsyncAIGatewayResourceWithStreamingResponse:
         )
 
     @cached_property
+    def evaluation_types(self) -> AsyncEvaluationTypesResourceWithStreamingResponse:
+        return AsyncEvaluationTypesResourceWithStreamingResponse(self._ai_gateway.evaluation_types)
+
+    @cached_property
     def logs(self) -> AsyncLogsResourceWithStreamingResponse:
         return AsyncLogsResourceWithStreamingResponse(self._ai_gateway.logs)
+
+    @cached_property
+    def datasets(self) -> AsyncDatasetsResourceWithStreamingResponse:
+        return AsyncDatasetsResourceWithStreamingResponse(self._ai_gateway.datasets)
+
+    @cached_property
+    def evaluations(self) -> AsyncEvaluationsResourceWithStreamingResponse:
+        return AsyncEvaluationsResourceWithStreamingResponse(self._ai_gateway.evaluations)
