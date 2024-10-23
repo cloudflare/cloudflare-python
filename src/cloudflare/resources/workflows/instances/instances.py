@@ -123,7 +123,7 @@ class InstancesResource(SyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         status: Literal[
-            "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "unknown"
+            "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting", "unknown"
         ]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -302,7 +302,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         status: Literal[
-            "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "unknown"
+            "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting", "unknown"
         ]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
