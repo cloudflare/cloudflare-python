@@ -129,7 +129,9 @@ class InstanceGetResponse(BaseModel):
 
     start: Optional[datetime] = None
 
-    status: Literal["queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "unknown"]
+    status: Literal[
+        "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting", "unknown"
+    ]
 
     steps: List[Step]
 
