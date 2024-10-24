@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -53,7 +53,7 @@ class BulkOperationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BulkOperationGetResponse]:
+    ) -> BulkOperationGetResponse:
         """
         Gets the current status of an asynchronous operation on a list.
 
@@ -85,9 +85,9 @@ class BulkOperationsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[BulkOperationGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[BulkOperationGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BulkOperationGetResponse]], ResultWrapper[BulkOperationGetResponse]),
+            cast_to=cast(Type[BulkOperationGetResponse], ResultWrapper[BulkOperationGetResponse]),
         )
 
 
@@ -122,7 +122,7 @@ class AsyncBulkOperationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BulkOperationGetResponse]:
+    ) -> BulkOperationGetResponse:
         """
         Gets the current status of an asynchronous operation on a list.
 
@@ -154,9 +154,9 @@ class AsyncBulkOperationsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[BulkOperationGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[BulkOperationGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BulkOperationGetResponse]], ResultWrapper[BulkOperationGetResponse]),
+            cast_to=cast(Type[BulkOperationGetResponse], ResultWrapper[BulkOperationGetResponse]),
         )
 
 

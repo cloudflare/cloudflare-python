@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -23,7 +23,7 @@ class TestBulkOperations:
             operation_id="4da8780eeb215e6cb7f48dd981c4ea02",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[BulkOperationGetResponse], bulk_operation, path=["response"])
+        assert_matches_type(BulkOperationGetResponse, bulk_operation, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -35,7 +35,7 @@ class TestBulkOperations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk_operation = response.parse()
-        assert_matches_type(Optional[BulkOperationGetResponse], bulk_operation, path=["response"])
+        assert_matches_type(BulkOperationGetResponse, bulk_operation, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -47,7 +47,7 @@ class TestBulkOperations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bulk_operation = response.parse()
-            assert_matches_type(Optional[BulkOperationGetResponse], bulk_operation, path=["response"])
+            assert_matches_type(BulkOperationGetResponse, bulk_operation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -75,7 +75,7 @@ class TestAsyncBulkOperations:
             operation_id="4da8780eeb215e6cb7f48dd981c4ea02",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[BulkOperationGetResponse], bulk_operation, path=["response"])
+        assert_matches_type(BulkOperationGetResponse, bulk_operation, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -87,7 +87,7 @@ class TestAsyncBulkOperations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bulk_operation = await response.parse()
-        assert_matches_type(Optional[BulkOperationGetResponse], bulk_operation, path=["response"])
+        assert_matches_type(BulkOperationGetResponse, bulk_operation, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -99,7 +99,7 @@ class TestAsyncBulkOperations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bulk_operation = await response.parse()
-            assert_matches_type(Optional[BulkOperationGetResponse], bulk_operation, path=["response"])
+            assert_matches_type(BulkOperationGetResponse, bulk_operation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

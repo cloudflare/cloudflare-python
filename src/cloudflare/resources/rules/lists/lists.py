@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -87,7 +87,7 @@ class ListsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListsList]:
+    ) -> ListsList:
         """
         Creates a new list of the specified type.
 
@@ -126,9 +126,9 @@ class ListsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ListsList]]._unwrapper,
+                post_parser=ResultWrapper[ListsList]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
+            cast_to=cast(Type[ListsList], ResultWrapper[ListsList]),
         )
 
     def update(
@@ -143,7 +143,7 @@ class ListsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListsList]:
+    ) -> ListsList:
         """
         Updates the description of a list.
 
@@ -174,9 +174,9 @@ class ListsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ListsList]]._unwrapper,
+                post_parser=ResultWrapper[ListsList]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
+            cast_to=cast(Type[ListsList], ResultWrapper[ListsList]),
         )
 
     def list(
@@ -226,7 +226,7 @@ class ListsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListDeleteResponse]:
+    ) -> ListDeleteResponse:
         """
         Deletes a specific list and all its items.
 
@@ -254,9 +254,9 @@ class ListsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ListDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[ListDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ListDeleteResponse]], ResultWrapper[ListDeleteResponse]),
+            cast_to=cast(Type[ListDeleteResponse], ResultWrapper[ListDeleteResponse]),
         )
 
     def get(
@@ -270,7 +270,7 @@ class ListsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListsList]:
+    ) -> ListsList:
         """
         Fetches the details of a list.
 
@@ -298,9 +298,9 @@ class ListsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ListsList]]._unwrapper,
+                post_parser=ResultWrapper[ListsList]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
+            cast_to=cast(Type[ListsList], ResultWrapper[ListsList]),
         )
 
 
@@ -345,7 +345,7 @@ class AsyncListsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListsList]:
+    ) -> ListsList:
         """
         Creates a new list of the specified type.
 
@@ -384,9 +384,9 @@ class AsyncListsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ListsList]]._unwrapper,
+                post_parser=ResultWrapper[ListsList]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
+            cast_to=cast(Type[ListsList], ResultWrapper[ListsList]),
         )
 
     async def update(
@@ -401,7 +401,7 @@ class AsyncListsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListsList]:
+    ) -> ListsList:
         """
         Updates the description of a list.
 
@@ -432,9 +432,9 @@ class AsyncListsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ListsList]]._unwrapper,
+                post_parser=ResultWrapper[ListsList]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
+            cast_to=cast(Type[ListsList], ResultWrapper[ListsList]),
         )
 
     def list(
@@ -484,7 +484,7 @@ class AsyncListsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListDeleteResponse]:
+    ) -> ListDeleteResponse:
         """
         Deletes a specific list and all its items.
 
@@ -512,9 +512,9 @@ class AsyncListsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ListDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[ListDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ListDeleteResponse]], ResultWrapper[ListDeleteResponse]),
+            cast_to=cast(Type[ListDeleteResponse], ResultWrapper[ListDeleteResponse]),
         )
 
     async def get(
@@ -528,7 +528,7 @@ class AsyncListsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListsList]:
+    ) -> ListsList:
         """
         Fetches the details of a list.
 
@@ -556,9 +556,9 @@ class AsyncListsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ListsList]]._unwrapper,
+                post_parser=ResultWrapper[ListsList]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ListsList]], ResultWrapper[ListsList]),
+            cast_to=cast(Type[ListsList], ResultWrapper[ListsList]),
         )
 
 
