@@ -24,4 +24,6 @@ class InstanceListParams(TypedDict, total=False):
 
     per_page: float
 
-    status: Literal["queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "unknown"]
+    status: Literal[
+        "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting", "unknown"
+    ]
