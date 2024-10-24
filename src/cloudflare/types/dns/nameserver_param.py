@@ -8,5 +8,7 @@ __all__ = ["NameserverParam"]
 
 
 class NameserverParam(TypedDict, total=False):
-    type: Required[Literal["cloudflare.standard"]]
+    type: Required[
+        Literal["cloudflare.standard", "cloudflare.standard.random", "custom.account", "custom.tenant", "custom.zone"]
+    ]
     """Nameserver type"""

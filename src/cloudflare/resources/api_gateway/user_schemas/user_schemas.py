@@ -2,11 +2,19 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Mapping, Optional, cast
+from typing import Type, Mapping, cast
 from typing_extensions import Literal
 
 import httpx
 
+from .hosts import (
+    HostsResource,
+    AsyncHostsResource,
+    HostsResourceWithRawResponse,
+    AsyncHostsResourceWithRawResponse,
+    HostsResourceWithStreamingResponse,
+    AsyncHostsResourceWithStreamingResponse,
+)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from ...._utils import (
     extract_files,
@@ -52,11 +60,26 @@ class UserSchemasResource(SyncAPIResource):
         return OperationsResource(self._client)
 
     @cached_property
+    def hosts(self) -> HostsResource:
+        return HostsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> UserSchemasResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return UserSchemasResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> UserSchemasResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return UserSchemasResourceWithStreamingResponse(self)
 
     def create(
@@ -196,7 +219,7 @@ class UserSchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UserSchemaDeleteResponse]:
+    ) -> UserSchemaDeleteResponse:
         """
         Delete a schema
 
@@ -215,21 +238,12 @@ class UserSchemasResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
-        return cast(
-            Optional[UserSchemaDeleteResponse],
-            self._delete(
-                f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[UserSchemaDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UserSchemaDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=UserSchemaDeleteResponse,
         )
 
     def edit(
@@ -333,11 +347,26 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         return AsyncOperationsResource(self._client)
 
     @cached_property
+    def hosts(self) -> AsyncHostsResource:
+        return AsyncHostsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncUserSchemasResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncUserSchemasResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncUserSchemasResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncUserSchemasResourceWithStreamingResponse(self)
 
     async def create(
@@ -477,7 +506,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UserSchemaDeleteResponse]:
+    ) -> UserSchemaDeleteResponse:
         """
         Delete a schema
 
@@ -496,21 +525,12 @@ class AsyncUserSchemasResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
-        return cast(
-            Optional[UserSchemaDeleteResponse],
-            await self._delete(
-                f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[UserSchemaDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UserSchemaDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=UserSchemaDeleteResponse,
         )
 
     async def edit(
@@ -634,6 +654,10 @@ class UserSchemasResourceWithRawResponse:
     def operations(self) -> OperationsResourceWithRawResponse:
         return OperationsResourceWithRawResponse(self._user_schemas.operations)
 
+    @cached_property
+    def hosts(self) -> HostsResourceWithRawResponse:
+        return HostsResourceWithRawResponse(self._user_schemas.hosts)
+
 
 class AsyncUserSchemasResourceWithRawResponse:
     def __init__(self, user_schemas: AsyncUserSchemasResource) -> None:
@@ -658,6 +682,10 @@ class AsyncUserSchemasResourceWithRawResponse:
     @cached_property
     def operations(self) -> AsyncOperationsResourceWithRawResponse:
         return AsyncOperationsResourceWithRawResponse(self._user_schemas.operations)
+
+    @cached_property
+    def hosts(self) -> AsyncHostsResourceWithRawResponse:
+        return AsyncHostsResourceWithRawResponse(self._user_schemas.hosts)
 
 
 class UserSchemasResourceWithStreamingResponse:
@@ -684,6 +712,10 @@ class UserSchemasResourceWithStreamingResponse:
     def operations(self) -> OperationsResourceWithStreamingResponse:
         return OperationsResourceWithStreamingResponse(self._user_schemas.operations)
 
+    @cached_property
+    def hosts(self) -> HostsResourceWithStreamingResponse:
+        return HostsResourceWithStreamingResponse(self._user_schemas.hosts)
+
 
 class AsyncUserSchemasResourceWithStreamingResponse:
     def __init__(self, user_schemas: AsyncUserSchemasResource) -> None:
@@ -708,3 +740,7 @@ class AsyncUserSchemasResourceWithStreamingResponse:
     @cached_property
     def operations(self) -> AsyncOperationsResourceWithStreamingResponse:
         return AsyncOperationsResourceWithStreamingResponse(self._user_schemas.operations)
+
+    @cached_property
+    def hosts(self) -> AsyncHostsResourceWithStreamingResponse:
+        return AsyncHostsResourceWithStreamingResponse(self._user_schemas.hosts)

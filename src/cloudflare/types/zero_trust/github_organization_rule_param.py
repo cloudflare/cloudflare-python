@@ -10,7 +10,7 @@ __all__ = ["GitHubOrganizationRuleParam", "GitHubOrganization"]
 
 
 class GitHubOrganization(TypedDict, total=False):
-    connection_id: Required[str]
+    identity_provider_id: Required[str]
     """The ID of your Github identity provider."""
 
     name: Required[str]

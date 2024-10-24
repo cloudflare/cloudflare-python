@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .limits import (
+    LimitsResource,
+    AsyncLimitsResource,
+    LimitsResourceWithRawResponse,
+    AsyncLimitsResourceWithRawResponse,
+    LimitsResourceWithStreamingResponse,
+    AsyncLimitsResourceWithStreamingResponse,
+)
 from .datasets import (
     DatasetsResource,
     AsyncDatasetsResource,
@@ -60,11 +68,26 @@ class DLPResource(SyncAPIResource):
         return ProfilesResource(self._client)
 
     @cached_property
+    def limits(self) -> LimitsResource:
+        return LimitsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> DLPResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DLPResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DLPResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DLPResourceWithStreamingResponse(self)
 
 
@@ -86,11 +109,26 @@ class AsyncDLPResource(AsyncAPIResource):
         return AsyncProfilesResource(self._client)
 
     @cached_property
+    def limits(self) -> AsyncLimitsResource:
+        return AsyncLimitsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncDLPResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDLPResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDLPResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDLPResourceWithStreamingResponse(self)
 
 
@@ -114,6 +152,10 @@ class DLPResourceWithRawResponse:
     def profiles(self) -> ProfilesResourceWithRawResponse:
         return ProfilesResourceWithRawResponse(self._dlp.profiles)
 
+    @cached_property
+    def limits(self) -> LimitsResourceWithRawResponse:
+        return LimitsResourceWithRawResponse(self._dlp.limits)
+
 
 class AsyncDLPResourceWithRawResponse:
     def __init__(self, dlp: AsyncDLPResource) -> None:
@@ -134,6 +176,10 @@ class AsyncDLPResourceWithRawResponse:
     @cached_property
     def profiles(self) -> AsyncProfilesResourceWithRawResponse:
         return AsyncProfilesResourceWithRawResponse(self._dlp.profiles)
+
+    @cached_property
+    def limits(self) -> AsyncLimitsResourceWithRawResponse:
+        return AsyncLimitsResourceWithRawResponse(self._dlp.limits)
 
 
 class DLPResourceWithStreamingResponse:
@@ -156,6 +202,10 @@ class DLPResourceWithStreamingResponse:
     def profiles(self) -> ProfilesResourceWithStreamingResponse:
         return ProfilesResourceWithStreamingResponse(self._dlp.profiles)
 
+    @cached_property
+    def limits(self) -> LimitsResourceWithStreamingResponse:
+        return LimitsResourceWithStreamingResponse(self._dlp.limits)
+
 
 class AsyncDLPResourceWithStreamingResponse:
     def __init__(self, dlp: AsyncDLPResource) -> None:
@@ -176,3 +226,7 @@ class AsyncDLPResourceWithStreamingResponse:
     @cached_property
     def profiles(self) -> AsyncProfilesResourceWithStreamingResponse:
         return AsyncProfilesResourceWithStreamingResponse(self._dlp.profiles)
+
+    @cached_property
+    def limits(self) -> AsyncLimitsResourceWithStreamingResponse:
+        return AsyncLimitsResourceWithStreamingResponse(self._dlp.limits)

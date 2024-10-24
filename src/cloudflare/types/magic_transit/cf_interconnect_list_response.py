@@ -4,10 +4,9 @@ from typing import List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
-from .health_check_rate import HealthCheckRate
-from .health_check_type import HealthCheckType
+from .health_check import HealthCheck
 
-__all__ = ["CfInterconnectListResponse", "Interconnect", "InterconnectGRE", "InterconnectHealthCheck"]
+__all__ = ["CfInterconnectListResponse", "Interconnect", "InterconnectGRE"]
 
 
 class InterconnectGRE(BaseModel):
@@ -16,25 +15,6 @@ class InterconnectGRE(BaseModel):
     The IP address assigned to the Cloudflare side of the GRE tunnel created as part
     of the Interconnect.
     """
-
-
-class InterconnectHealthCheck(BaseModel):
-    enabled: Optional[bool] = None
-    """Determines whether to run healthchecks for a tunnel."""
-
-    rate: Optional[HealthCheckRate] = None
-    """How frequent the health check is run. The default value is `mid`."""
-
-    target: Optional[str] = None
-    """The destination address in a request type health check.
-
-    After the healthcheck is decapsulated at the customer end of the tunnel, the
-    ICMP echo will be forwarded to this address. This field defaults to
-    `customer_gre_endpoint address`.
-    """
-
-    type: Optional[HealthCheckType] = None
-    """The type of healthcheck to run, reply or request. The default value is `reply`."""
 
 
 class Interconnect(BaseModel):
@@ -53,7 +33,7 @@ class Interconnect(BaseModel):
     gre: Optional[InterconnectGRE] = None
     """The configuration specific to GRE interconnects."""
 
-    health_check: Optional[InterconnectHealthCheck] = None
+    health_check: Optional[HealthCheck] = None
 
     interface_address: Optional[str] = None
     """

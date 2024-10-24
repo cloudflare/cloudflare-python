@@ -27,10 +27,21 @@ __all__ = ["DevicesResource", "AsyncDevicesResource"]
 class DevicesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DevicesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DevicesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DevicesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DevicesResourceWithStreamingResponse(self)
 
     def list(
@@ -40,7 +51,6 @@ class DevicesResource(SyncAPIResource):
         from_: str,
         page: float,
         per_page: float,
-        source: Literal["last_seen", "hourly", "raw"],
         to: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: str | NotGiven = NOT_GIVEN,
@@ -48,6 +58,7 @@ class DevicesResource(SyncAPIResource):
         platform: str | NotGiven = NOT_GIVEN,
         sort_by: Literal["colo", "device_id", "mode", "platform", "status", "timestamp", "version"]
         | NotGiven = NOT_GIVEN,
+        source: Literal["last_seen", "hourly", "raw"] | NotGiven = NOT_GIVEN,
         status: str | NotGiven = NOT_GIVEN,
         version: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -61,20 +72,13 @@ class DevicesResource(SyncAPIResource):
         List details for devices using WARP
 
         Args:
-          from_: Timestamp in ISO format
+          from_: Time range beginning in ISO format
 
-          page: Page number of paginated results
+          page: Page number
 
-          per_page: Number of items per page
+          per_page: Number of results per page
 
-          source:
-              Source:
-
-              - `hourly` - device details aggregated hourly, up to 7 days prior
-              - `last_seen` - device details, up to 24 hours prior
-              - `raw` - device details, up to 7 days prior
-
-          to: Timestamp in ISO format
+          to: Time range end in ISO format
 
           colo: Cloudflare colo
 
@@ -85,6 +89,13 @@ class DevicesResource(SyncAPIResource):
           platform: Operating system
 
           sort_by: Dimension to sort results by
+
+          source:
+              Source:
+
+              - `hourly` - device details aggregated hourly, up to 7 days prior
+              - `last_seen` - device details, up to 24 hours prior
+              - `raw` - device details, up to 7 days prior
 
           status: Network status
 
@@ -113,13 +124,13 @@ class DevicesResource(SyncAPIResource):
                         "from_": from_,
                         "page": page,
                         "per_page": per_page,
-                        "source": source,
                         "to": to,
                         "colo": colo,
                         "device_id": device_id,
                         "mode": mode,
                         "platform": platform,
                         "sort_by": sort_by,
+                        "source": source,
                         "status": status,
                         "version": version,
                     },
@@ -133,10 +144,21 @@ class DevicesResource(SyncAPIResource):
 class AsyncDevicesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDevicesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDevicesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDevicesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDevicesResourceWithStreamingResponse(self)
 
     def list(
@@ -146,7 +168,6 @@ class AsyncDevicesResource(AsyncAPIResource):
         from_: str,
         page: float,
         per_page: float,
-        source: Literal["last_seen", "hourly", "raw"],
         to: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: str | NotGiven = NOT_GIVEN,
@@ -154,6 +175,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         platform: str | NotGiven = NOT_GIVEN,
         sort_by: Literal["colo", "device_id", "mode", "platform", "status", "timestamp", "version"]
         | NotGiven = NOT_GIVEN,
+        source: Literal["last_seen", "hourly", "raw"] | NotGiven = NOT_GIVEN,
         status: str | NotGiven = NOT_GIVEN,
         version: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -167,20 +189,13 @@ class AsyncDevicesResource(AsyncAPIResource):
         List details for devices using WARP
 
         Args:
-          from_: Timestamp in ISO format
+          from_: Time range beginning in ISO format
 
-          page: Page number of paginated results
+          page: Page number
 
-          per_page: Number of items per page
+          per_page: Number of results per page
 
-          source:
-              Source:
-
-              - `hourly` - device details aggregated hourly, up to 7 days prior
-              - `last_seen` - device details, up to 24 hours prior
-              - `raw` - device details, up to 7 days prior
-
-          to: Timestamp in ISO format
+          to: Time range end in ISO format
 
           colo: Cloudflare colo
 
@@ -191,6 +206,13 @@ class AsyncDevicesResource(AsyncAPIResource):
           platform: Operating system
 
           sort_by: Dimension to sort results by
+
+          source:
+              Source:
+
+              - `hourly` - device details aggregated hourly, up to 7 days prior
+              - `last_seen` - device details, up to 24 hours prior
+              - `raw` - device details, up to 7 days prior
 
           status: Network status
 
@@ -219,13 +241,13 @@ class AsyncDevicesResource(AsyncAPIResource):
                         "from_": from_,
                         "page": page,
                         "per_page": per_page,
-                        "source": source,
                         "to": to,
                         "colo": colo,
                         "device_id": device_id,
                         "mode": mode,
                         "platform": platform,
                         "sort_by": sort_by,
+                        "source": source,
                         "status": status,
                         "version": version,
                     },

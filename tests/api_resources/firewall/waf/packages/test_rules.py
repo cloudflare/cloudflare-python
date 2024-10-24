@@ -36,10 +36,10 @@ class TestRules:
             package_id="a25a9a7e9c00afc1fb2e0245519d725b",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="SQL injection prevention for SELECT statements",
-            direction="desc",
+            direction="asc",
             group_id="de677e5818985db1285d0e80225f06e5",
             match="any",
-            mode="CHL",
+            mode="DIS",
             order="priority",
             page=1,
             per_page=5,
@@ -102,7 +102,7 @@ class TestRules:
             rule_id="a25a9a7e9c00afc1fb2e0245519d725b",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             package_id="a25a9a7e9c00afc1fb2e0245519d725b",
-            mode="on",
+            mode="default",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 
@@ -235,10 +235,10 @@ class TestAsyncRules:
             package_id="a25a9a7e9c00afc1fb2e0245519d725b",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="SQL injection prevention for SELECT statements",
-            direction="desc",
+            direction="asc",
             group_id="de677e5818985db1285d0e80225f06e5",
             match="any",
-            mode="CHL",
+            mode="DIS",
             order="priority",
             page=1,
             per_page=5,
@@ -301,7 +301,7 @@ class TestAsyncRules:
             rule_id="a25a9a7e9c00afc1fb2e0245519d725b",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             package_id="a25a9a7e9c00afc1fb2e0245519d725b",
-            mode="on",
+            mode="default",
         )
         assert_matches_type(RuleEditResponse, rule, path=["response"])
 

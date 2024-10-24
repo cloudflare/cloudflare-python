@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import List, Type, Optional, cast
 
 import httpx
 
@@ -54,10 +54,21 @@ class OutgoingResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> OutgoingResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return OutgoingResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> OutgoingResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return OutgoingResourceWithStreamingResponse(self)
 
     def create(
@@ -65,7 +76,7 @@ class OutgoingResource(SyncAPIResource):
         *,
         zone_id: str,
         name: str,
-        peers: Iterable[object],
+        peers: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -115,7 +126,7 @@ class OutgoingResource(SyncAPIResource):
         *,
         zone_id: str,
         name: str,
-        peers: Iterable[object],
+        peers: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -360,10 +371,21 @@ class AsyncOutgoingResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncOutgoingResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncOutgoingResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncOutgoingResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncOutgoingResourceWithStreamingResponse(self)
 
     async def create(
@@ -371,7 +393,7 @@ class AsyncOutgoingResource(AsyncAPIResource):
         *,
         zone_id: str,
         name: str,
-        peers: Iterable[object],
+        peers: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -421,7 +443,7 @@ class AsyncOutgoingResource(AsyncAPIResource):
         *,
         zone_id: str,
         name: str,
-        peers: Iterable[object],
+        peers: List[str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

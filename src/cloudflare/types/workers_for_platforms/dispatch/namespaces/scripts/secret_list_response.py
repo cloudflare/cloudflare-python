@@ -10,7 +10,10 @@ __all__ = ["SecretListResponse"]
 
 class SecretListResponse(BaseModel):
     name: Optional[str] = None
-    """The name of this secret, this is what will be to access it inside the Worker."""
+    """
+    The name of this secret, this is what will be used to access it inside the
+    Worker.
+    """
 
     type: Optional[Literal["secret_text"]] = None
-    """The type of secret to put."""
+    """The type of secret."""

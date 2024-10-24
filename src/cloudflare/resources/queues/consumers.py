@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -33,10 +33,21 @@ __all__ = ["ConsumersResource", "AsyncConsumersResource"]
 class ConsumersResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ConsumersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ConsumersResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ConsumersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ConsumersResourceWithStreamingResponse(self)
 
     def create(
@@ -56,9 +67,9 @@ class ConsumersResource(SyncAPIResource):
         Creates a new consumer for a queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -103,11 +114,11 @@ class ConsumersResource(SyncAPIResource):
         Updates the consumer for a queue, or creates one if it does not exist.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
-          consumer_id: Identifier
+          consumer_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -153,11 +164,11 @@ class ConsumersResource(SyncAPIResource):
         Deletes the consumer for a queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
-          consumer_id: Identifier
+          consumer_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -173,21 +184,16 @@ class ConsumersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         if not consumer_id:
             raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
-        return cast(
-            Optional[ConsumerDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ConsumerDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ConsumerDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ConsumerDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[ConsumerDeleteResponse]], ResultWrapper[ConsumerDeleteResponse]),
         )
 
     def get(
@@ -206,9 +212,9 @@ class ConsumersResource(SyncAPIResource):
         Returns the consumers for a queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -238,10 +244,21 @@ class ConsumersResource(SyncAPIResource):
 class AsyncConsumersResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncConsumersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncConsumersResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncConsumersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncConsumersResourceWithStreamingResponse(self)
 
     async def create(
@@ -261,9 +278,9 @@ class AsyncConsumersResource(AsyncAPIResource):
         Creates a new consumer for a queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -308,11 +325,11 @@ class AsyncConsumersResource(AsyncAPIResource):
         Updates the consumer for a queue, or creates one if it does not exist.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
-          consumer_id: Identifier
+          consumer_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -358,11 +375,11 @@ class AsyncConsumersResource(AsyncAPIResource):
         Deletes the consumer for a queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
-          consumer_id: Identifier
+          consumer_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -378,21 +395,16 @@ class AsyncConsumersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         if not consumer_id:
             raise ValueError(f"Expected a non-empty value for `consumer_id` but received {consumer_id!r}")
-        return cast(
-            Optional[ConsumerDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ConsumerDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ConsumerDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ConsumerDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[ConsumerDeleteResponse]], ResultWrapper[ConsumerDeleteResponse]),
         )
 
     async def get(
@@ -411,9 +423,9 @@ class AsyncConsumersResource(AsyncAPIResource):
         Returns the consumers for a queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 

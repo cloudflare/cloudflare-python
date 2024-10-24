@@ -92,7 +92,7 @@ List methods in the Cloudflare API are paginated.
 This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
 
 ```python
-import cloudflare
+from cloudflare import Cloudflare
 
 client = Cloudflare()
 
@@ -108,7 +108,7 @@ Or, asynchronously:
 
 ```python
 import asyncio
-import cloudflare
+from cloudflare import AsyncCloudflare
 
 client = AsyncCloudflare()
 
@@ -141,7 +141,7 @@ Or just work directly with the returned data:
 ```python
 first_page = await client.accounts.list()
 for account in first_page.result:
-    print(account)
+    print(account.id)
 
 # Remove `await` for non-async usage.
 ```
@@ -366,6 +366,12 @@ client = Cloudflare(
 )
 ```
 
+You can also customize the client on a per-request basis by using `with_options()`:
+
+```python
+client.with_options(http_client=DefaultHttpxClient(...))
+```
+
 ### Managing HTTP resources
 
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
@@ -382,6 +388,21 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 > In addition to the above, changes to type names, structure or methods _may_ occur as we stabilise the automated codegen pipeline. This will be removed in the future once we are further along and the service owner OpenAPI schemas have reached a higher maturity level where changes are not as constant.
 > If this isn't suitable for your project, we recommend pinning to a known version or using the previous major version.
 
+### Determining the installed version
+
+If you've upgraded to the latest version but aren't seeing any new features you were expecting then your python environment is likely still using an older version.
+
+You can determine the version that is being used at runtime with:
+
+```py
+import cloudflare
+print(cloudflare.__version__)
+```
+
 ## Requirements
 
 Python 3.7 or higher.
+
+## Contributing
+
+See [the contributing documentation](./CONTRIBUTING.md).

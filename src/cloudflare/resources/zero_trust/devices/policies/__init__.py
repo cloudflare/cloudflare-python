@@ -24,6 +24,14 @@ from .policies import (
     PoliciesResourceWithStreamingResponse,
     AsyncPoliciesResourceWithStreamingResponse,
 )
+from .certificates import (
+    CertificatesResource,
+    AsyncCertificatesResource,
+    CertificatesResourceWithRawResponse,
+    AsyncCertificatesResourceWithRawResponse,
+    CertificatesResourceWithStreamingResponse,
+    AsyncCertificatesResourceWithStreamingResponse,
+)
 from .default_policy import (
     DefaultPolicyResource,
     AsyncDefaultPolicyResource,
@@ -42,6 +50,12 @@ from .fallback_domains import (
 )
 
 __all__ = [
+    "CertificatesResource",
+    "AsyncCertificatesResource",
+    "CertificatesResourceWithRawResponse",
+    "AsyncCertificatesResourceWithRawResponse",
+    "CertificatesResourceWithStreamingResponse",
+    "AsyncCertificatesResourceWithStreamingResponse",
     "DefaultPolicyResource",
     "AsyncDefaultPolicyResource",
     "DefaultPolicyResourceWithRawResponse",

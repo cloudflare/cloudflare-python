@@ -76,7 +76,7 @@ class TestTCPResetsTimeouts:
     @parametrize
     def test_method_timeseries_groups_with_all_params(self, client: Cloudflare) -> None:
         tcp_resets_timeout = client.radar.tcp_resets_timeouts.timeseries_groups(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -175,7 +175,7 @@ class TestAsyncTCPResetsTimeouts:
     @parametrize
     async def test_method_timeseries_groups_with_all_params(self, async_client: AsyncCloudflare) -> None:
         tcp_resets_timeout = await async_client.radar.tcp_resets_timeouts.timeseries_groups(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[

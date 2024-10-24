@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Union, cast
+from typing import Any, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -38,10 +38,21 @@ __all__ = ["WARPConnectorResource", "AsyncWARPConnectorResource"]
 class WARPConnectorResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> WARPConnectorResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return WARPConnectorResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> WARPConnectorResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return WARPConnectorResourceWithStreamingResponse(self)
 
     def create(
@@ -351,7 +362,7 @@ class WARPConnectorResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WARPConnectorTokenResponse:
+    ) -> str:
         """
         Gets the token used to associate warp device with a specific Warp Connector
         tunnel.
@@ -373,31 +384,37 @@ class WARPConnectorResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            WARPConnectorTokenResponse,
-            self._get(
-                f"/accounts/{account_id}/warp_connector/{tunnel_id}/token",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[WARPConnectorTokenResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WARPConnectorTokenResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/warp_connector/{tunnel_id}/token",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WARPConnectorTokenResponse]._unwrapper,
             ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
 
 class AsyncWARPConnectorResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncWARPConnectorResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncWARPConnectorResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncWARPConnectorResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncWARPConnectorResourceWithStreamingResponse(self)
 
     async def create(
@@ -709,7 +726,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WARPConnectorTokenResponse:
+    ) -> str:
         """
         Gets the token used to associate warp device with a specific Warp Connector
         tunnel.
@@ -731,21 +748,16 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            WARPConnectorTokenResponse,
-            await self._get(
-                f"/accounts/{account_id}/warp_connector/{tunnel_id}/token",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[WARPConnectorTokenResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WARPConnectorTokenResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/warp_connector/{tunnel_id}/token",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[WARPConnectorTokenResponse]._unwrapper,
             ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
 

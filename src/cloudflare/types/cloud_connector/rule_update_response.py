@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
@@ -29,4 +29,4 @@ class RuleUpdateResponseItem(BaseModel):
     """Cloud Provider type"""
 
 
-RuleUpdateResponse = List[RuleUpdateResponseItem]
+RuleUpdateResponse: TypeAlias = List[RuleUpdateResponseItem]

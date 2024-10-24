@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -40,7 +40,6 @@ from ...._wrappers import ResultWrapper
 from ....types.ssl import certificate_pack_edit_params, certificate_pack_list_params
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.ssl.certificate_pack_get_response import CertificatePackGetResponse
 from ....types.ssl.certificate_pack_edit_response import CertificatePackEditResponse
 from ....types.ssl.certificate_pack_delete_response import CertificatePackDeleteResponse
 
@@ -58,10 +57,21 @@ class CertificatePacksResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> CertificatePacksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return CertificatePacksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> CertificatePacksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return CertificatePacksResourceWithStreamingResponse(self)
 
     def list(
@@ -215,7 +225,7 @@ class CertificatePacksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CertificatePackGetResponse]:
+    ) -> object:
         """
         For a given zone, get a certificate pack.
 
@@ -238,21 +248,16 @@ class CertificatePacksResource(SyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
             )
-        return cast(
-            Optional[CertificatePackGetResponse],
-            self._get(
-                f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CertificatePackGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CertificatePackGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -267,10 +272,21 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncCertificatePacksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncCertificatePacksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncCertificatePacksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncCertificatePacksResourceWithStreamingResponse(self)
 
     def list(
@@ -424,7 +440,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CertificatePackGetResponse]:
+    ) -> object:
         """
         For a given zone, get a certificate pack.
 
@@ -447,21 +463,16 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
             )
-        return cast(
-            Optional[CertificatePackGetResponse],
-            await self._get(
-                f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CertificatePackGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CertificatePackGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

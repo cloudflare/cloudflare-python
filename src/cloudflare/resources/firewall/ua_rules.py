@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Any, Type, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -35,17 +36,29 @@ __all__ = ["UARulesResource", "AsyncUARulesResource"]
 class UARulesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> UARulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return UARulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> UARulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return UARulesResourceWithStreamingResponse(self)
 
     def create(
         self,
-        zone_identifier: str,
         *,
-        body: object,
+        zone_id: str,
+        configuration: ua_rule_create_params.Configuration,
+        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -57,7 +70,11 @@ class UARulesResource(SyncAPIResource):
         Creates a new User Agent Blocking rule in a zone.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
+
+          configuration: The rule configuration.
+
+          mode: The action to apply to a matched request.
 
           extra_headers: Send extra headers
 
@@ -67,13 +84,19 @@ class UARulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             UARuleCreateResponse,
             self._post(
-                f"/zones/{zone_identifier}/firewall/ua_rules",
-                body=maybe_transform(body, ua_rule_create_params.UARuleCreateParams),
+                f"/zones/{zone_id}/firewall/ua_rules",
+                body=maybe_transform(
+                    {
+                        "configuration": configuration,
+                        "mode": mode,
+                    },
+                    ua_rule_create_params.UARuleCreateParams,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -89,10 +112,11 @@ class UARulesResource(SyncAPIResource):
 
     def update(
         self,
-        id: str,
+        ua_rule_id: str,
         *,
-        zone_identifier: str,
-        body: object,
+        zone_id: str,
+        configuration: ua_rule_update_params.Configuration,
+        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -104,9 +128,13 @@ class UARulesResource(SyncAPIResource):
         Updates an existing User Agent Blocking rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the User Agent Blocking rule.
+          ua_rule_id: The unique identifier of the User Agent Blocking rule.
+
+          configuration: The rule configuration.
+
+          mode: The action to apply to a matched request.
 
           extra_headers: Send extra headers
 
@@ -116,15 +144,21 @@ class UARulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not ua_rule_id:
+            raise ValueError(f"Expected a non-empty value for `ua_rule_id` but received {ua_rule_id!r}")
         return cast(
             UARuleUpdateResponse,
             self._put(
-                f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
-                body=maybe_transform(body, ua_rule_update_params.UARuleUpdateParams),
+                f"/zones/{zone_id}/firewall/ua_rules/{ua_rule_id}",
+                body=maybe_transform(
+                    {
+                        "configuration": configuration,
+                        "mode": mode,
+                    },
+                    ua_rule_update_params.UARuleUpdateParams,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -140,8 +174,8 @@ class UARulesResource(SyncAPIResource):
 
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         description: str | NotGiven = NOT_GIVEN,
         description_search: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -160,7 +194,7 @@ class UARulesResource(SyncAPIResource):
         several optional parameters.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           description: A string to search for in the description of existing rules.
 
@@ -181,10 +215,10 @@ class UARulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/firewall/ua_rules",
+            f"/zones/{zone_id}/firewall/ua_rules",
             page=SyncV4PagePaginationArray[UARuleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -207,9 +241,9 @@ class UARulesResource(SyncAPIResource):
 
     def delete(
         self,
-        id: str,
+        ua_rule_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -221,9 +255,9 @@ class UARulesResource(SyncAPIResource):
         Deletes an existing User Agent Blocking rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the User Agent Blocking rule.
+          ua_rule_id: The unique identifier of the User Agent Blocking rule.
 
           extra_headers: Send extra headers
 
@@ -233,12 +267,12 @@ class UARulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not ua_rule_id:
+            raise ValueError(f"Expected a non-empty value for `ua_rule_id` but received {ua_rule_id!r}")
         return self._delete(
-            f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
+            f"/zones/{zone_id}/firewall/ua_rules/{ua_rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -251,9 +285,9 @@ class UARulesResource(SyncAPIResource):
 
     def get(
         self,
-        id: str,
+        ua_rule_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -265,9 +299,9 @@ class UARulesResource(SyncAPIResource):
         Fetches the details of a User Agent Blocking rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the User Agent Blocking rule.
+          ua_rule_id: The unique identifier of the User Agent Blocking rule.
 
           extra_headers: Send extra headers
 
@@ -277,14 +311,14 @@ class UARulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not ua_rule_id:
+            raise ValueError(f"Expected a non-empty value for `ua_rule_id` but received {ua_rule_id!r}")
         return cast(
             UARuleGetResponse,
             self._get(
-                f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
+                f"/zones/{zone_id}/firewall/ua_rules/{ua_rule_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -302,17 +336,29 @@ class UARulesResource(SyncAPIResource):
 class AsyncUARulesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncUARulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncUARulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncUARulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncUARulesResourceWithStreamingResponse(self)
 
     async def create(
         self,
-        zone_identifier: str,
         *,
-        body: object,
+        zone_id: str,
+        configuration: ua_rule_create_params.Configuration,
+        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -324,7 +370,11 @@ class AsyncUARulesResource(AsyncAPIResource):
         Creates a new User Agent Blocking rule in a zone.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
+
+          configuration: The rule configuration.
+
+          mode: The action to apply to a matched request.
 
           extra_headers: Send extra headers
 
@@ -334,13 +384,19 @@ class AsyncUARulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             UARuleCreateResponse,
             await self._post(
-                f"/zones/{zone_identifier}/firewall/ua_rules",
-                body=await async_maybe_transform(body, ua_rule_create_params.UARuleCreateParams),
+                f"/zones/{zone_id}/firewall/ua_rules",
+                body=await async_maybe_transform(
+                    {
+                        "configuration": configuration,
+                        "mode": mode,
+                    },
+                    ua_rule_create_params.UARuleCreateParams,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -356,10 +412,11 @@ class AsyncUARulesResource(AsyncAPIResource):
 
     async def update(
         self,
-        id: str,
+        ua_rule_id: str,
         *,
-        zone_identifier: str,
-        body: object,
+        zone_id: str,
+        configuration: ua_rule_update_params.Configuration,
+        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -371,9 +428,13 @@ class AsyncUARulesResource(AsyncAPIResource):
         Updates an existing User Agent Blocking rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the User Agent Blocking rule.
+          ua_rule_id: The unique identifier of the User Agent Blocking rule.
+
+          configuration: The rule configuration.
+
+          mode: The action to apply to a matched request.
 
           extra_headers: Send extra headers
 
@@ -383,15 +444,21 @@ class AsyncUARulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not ua_rule_id:
+            raise ValueError(f"Expected a non-empty value for `ua_rule_id` but received {ua_rule_id!r}")
         return cast(
             UARuleUpdateResponse,
             await self._put(
-                f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
-                body=await async_maybe_transform(body, ua_rule_update_params.UARuleUpdateParams),
+                f"/zones/{zone_id}/firewall/ua_rules/{ua_rule_id}",
+                body=await async_maybe_transform(
+                    {
+                        "configuration": configuration,
+                        "mode": mode,
+                    },
+                    ua_rule_update_params.UARuleUpdateParams,
+                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -407,8 +474,8 @@ class AsyncUARulesResource(AsyncAPIResource):
 
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         description: str | NotGiven = NOT_GIVEN,
         description_search: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
@@ -427,7 +494,7 @@ class AsyncUARulesResource(AsyncAPIResource):
         several optional parameters.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           description: A string to search for in the description of existing rules.
 
@@ -448,10 +515,10 @@ class AsyncUARulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/firewall/ua_rules",
+            f"/zones/{zone_id}/firewall/ua_rules",
             page=AsyncV4PagePaginationArray[UARuleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -474,9 +541,9 @@ class AsyncUARulesResource(AsyncAPIResource):
 
     async def delete(
         self,
-        id: str,
+        ua_rule_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -488,9 +555,9 @@ class AsyncUARulesResource(AsyncAPIResource):
         Deletes an existing User Agent Blocking rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the User Agent Blocking rule.
+          ua_rule_id: The unique identifier of the User Agent Blocking rule.
 
           extra_headers: Send extra headers
 
@@ -500,12 +567,12 @@ class AsyncUARulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not ua_rule_id:
+            raise ValueError(f"Expected a non-empty value for `ua_rule_id` but received {ua_rule_id!r}")
         return await self._delete(
-            f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
+            f"/zones/{zone_id}/firewall/ua_rules/{ua_rule_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -518,9 +585,9 @@ class AsyncUARulesResource(AsyncAPIResource):
 
     async def get(
         self,
-        id: str,
+        ua_rule_id: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -532,9 +599,9 @@ class AsyncUARulesResource(AsyncAPIResource):
         Fetches the details of a User Agent Blocking rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          id: The unique identifier of the User Agent Blocking rule.
+          ua_rule_id: The unique identifier of the User Agent Blocking rule.
 
           extra_headers: Send extra headers
 
@@ -544,14 +611,14 @@ class AsyncUARulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not ua_rule_id:
+            raise ValueError(f"Expected a non-empty value for `ua_rule_id` but received {ua_rule_id!r}")
         return cast(
             UARuleGetResponse,
             await self._get(
-                f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
+                f"/zones/{zone_id}/firewall/ua_rules/{ua_rule_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

@@ -33,10 +33,21 @@ __all__ = ["ConfigsResource", "AsyncConfigsResource"]
 class ConfigsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ConfigsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ConfigsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ConfigsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ConfigsResourceWithStreamingResponse(self)
 
     def create(
@@ -191,7 +202,7 @@ class ConfigsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigDeleteResponse:
+    ) -> Optional[ConfigDeleteResponse]:
         """
         Deletes the specified Hyperdrive.
 
@@ -213,7 +224,7 @@ class ConfigsResource(SyncAPIResource):
         if not hyperdrive_id:
             raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
         return cast(
-            ConfigDeleteResponse,
+            Optional[ConfigDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
                 options=make_request_options(
@@ -221,7 +232,7 @@ class ConfigsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[ConfigDeleteResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[ConfigDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ConfigDeleteResponse]
@@ -334,10 +345,21 @@ class ConfigsResource(SyncAPIResource):
 class AsyncConfigsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncConfigsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncConfigsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncConfigsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncConfigsResourceWithStreamingResponse(self)
 
     async def create(
@@ -492,7 +514,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigDeleteResponse:
+    ) -> Optional[ConfigDeleteResponse]:
         """
         Deletes the specified Hyperdrive.
 
@@ -514,7 +536,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         if not hyperdrive_id:
             raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
         return cast(
-            ConfigDeleteResponse,
+            Optional[ConfigDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
                 options=make_request_options(
@@ -522,7 +544,7 @@ class AsyncConfigsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[ConfigDeleteResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[ConfigDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ConfigDeleteResponse]

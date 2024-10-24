@@ -27,6 +27,8 @@ class ServiceToken(BaseModel):
     ms, s, m, h. The default is 1 year in hours (8760h).
     """
 
+    expires_at: Optional[datetime] = None
+
     name: Optional[str] = None
     """The name of the service token."""
 

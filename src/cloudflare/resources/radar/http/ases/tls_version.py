@@ -32,10 +32,21 @@ __all__ = ["TLSVersionResource", "AsyncTLSVersionResource"]
 class TLSVersionResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TLSVersionResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TLSVersionResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TLSVersionResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TLSVersionResourceWithStreamingResponse(self)
 
     def get(
@@ -161,10 +172,21 @@ class TLSVersionResource(SyncAPIResource):
 class AsyncTLSVersionResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTLSVersionResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTLSVersionResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTLSVersionResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTLSVersionResourceWithStreamingResponse(self)
 
     async def get(

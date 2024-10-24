@@ -90,10 +90,21 @@ class DEXResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> DEXResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DEXResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DEXResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DEXResourceWithStreamingResponse(self)
 
 
@@ -124,10 +135,21 @@ class AsyncDEXResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncDEXResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDEXResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDEXResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDEXResourceWithStreamingResponse(self)
 
 

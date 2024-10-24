@@ -26,12 +26,9 @@ from .....types.zero_trust.access import Decision
 from .....types.zero_trust.access.decision import Decision
 from .....types.zero_trust.access_rule_param import AccessRuleParam
 from .....types.zero_trust.access.applications import policy_create_params, policy_update_params
-from .....types.zero_trust.access.applications.policy_get_response import PolicyGetResponse
-from .....types.zero_trust.access.applications.approval_group_param import ApprovalGroupParam
-from .....types.zero_trust.access.applications.policy_list_response import PolicyListResponse
-from .....types.zero_trust.access.applications.policy_create_response import PolicyCreateResponse
+from .....types.zero_trust.access.application_policy import ApplicationPolicy
+from .....types.zero_trust.access.approval_group_param import ApprovalGroupParam
 from .....types.zero_trust.access.applications.policy_delete_response import PolicyDeleteResponse
-from .....types.zero_trust.access.applications.policy_update_response import PolicyUpdateResponse
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
@@ -39,10 +36,21 @@ __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 class PoliciesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PoliciesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PoliciesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PoliciesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PoliciesResourceWithStreamingResponse(self)
 
     def create(
@@ -56,6 +64,7 @@ class PoliciesResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
+        connection_rules: policy_create_params.ConnectionRules | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
@@ -69,7 +78,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyCreateResponse]:
+    ) -> Optional[ApplicationPolicy]:
         """
         Creates a policy applying exclusive to a single application that defines the
         users or groups who can reach it. We recommend creating a reusable policy
@@ -94,6 +103,9 @@ class PoliciesResource(SyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -147,6 +159,7 @@ class PoliciesResource(SyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "precedence": precedence,
@@ -162,9 +175,9 @@ class PoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
+            cast_to=cast(Type[Optional[ApplicationPolicy]], ResultWrapper[ApplicationPolicy]),
         )
 
     def update(
@@ -179,6 +192,7 @@ class PoliciesResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
+        connection_rules: policy_update_params.ConnectionRules | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
@@ -192,7 +206,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyUpdateResponse]:
+    ) -> Optional[ApplicationPolicy]:
         """Updates an Access policy specific to an application.
 
         To update a reusable
@@ -218,6 +232,9 @@ class PoliciesResource(SyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -273,6 +290,7 @@ class PoliciesResource(SyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "precedence": precedence,
@@ -288,9 +306,9 @@ class PoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
+            cast_to=cast(Type[Optional[ApplicationPolicy]], ResultWrapper[ApplicationPolicy]),
         )
 
     def list(
@@ -305,7 +323,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[PolicyListResponse]:
+    ) -> SyncSinglePage[ApplicationPolicy]:
         """Lists Access policies configured for an application.
 
         Returns both exclusively
@@ -342,11 +360,11 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
-            page=SyncSinglePage[PolicyListResponse],
+            page=SyncSinglePage[ApplicationPolicy],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=PolicyListResponse,
+            model=ApplicationPolicy,
         )
 
     def delete(
@@ -426,7 +444,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyGetResponse]:
+    ) -> Optional[ApplicationPolicy]:
         """Fetches a single Access policy configured for an application.
 
         Returns both
@@ -472,19 +490,30 @@ class PoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PolicyGetResponse]], ResultWrapper[PolicyGetResponse]),
+            cast_to=cast(Type[Optional[ApplicationPolicy]], ResultWrapper[ApplicationPolicy]),
         )
 
 
 class AsyncPoliciesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPoliciesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPoliciesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPoliciesResourceWithStreamingResponse(self)
 
     async def create(
@@ -498,6 +527,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
+        connection_rules: policy_create_params.ConnectionRules | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
@@ -511,7 +541,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyCreateResponse]:
+    ) -> Optional[ApplicationPolicy]:
         """
         Creates a policy applying exclusive to a single application that defines the
         users or groups who can reach it. We recommend creating a reusable policy
@@ -536,6 +566,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -589,6 +622,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "precedence": precedence,
@@ -604,9 +638,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
+            cast_to=cast(Type[Optional[ApplicationPolicy]], ResultWrapper[ApplicationPolicy]),
         )
 
     async def update(
@@ -621,6 +655,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
+        connection_rules: policy_update_params.ConnectionRules | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
@@ -634,7 +669,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyUpdateResponse]:
+    ) -> Optional[ApplicationPolicy]:
         """Updates an Access policy specific to an application.
 
         To update a reusable
@@ -660,6 +695,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
+
+          connection_rules: The rules that define how users may connect to the targets secured by your
+              application.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -715,6 +753,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
+                    "connection_rules": connection_rules,
                     "exclude": exclude,
                     "isolation_required": isolation_required,
                     "precedence": precedence,
@@ -730,9 +769,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
+            cast_to=cast(Type[Optional[ApplicationPolicy]], ResultWrapper[ApplicationPolicy]),
         )
 
     def list(
@@ -747,7 +786,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PolicyListResponse, AsyncSinglePage[PolicyListResponse]]:
+    ) -> AsyncPaginator[ApplicationPolicy, AsyncSinglePage[ApplicationPolicy]]:
         """Lists Access policies configured for an application.
 
         Returns both exclusively
@@ -784,11 +823,11 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
-            page=AsyncSinglePage[PolicyListResponse],
+            page=AsyncSinglePage[ApplicationPolicy],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=PolicyListResponse,
+            model=ApplicationPolicy,
         )
 
     async def delete(
@@ -868,7 +907,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyGetResponse]:
+    ) -> Optional[ApplicationPolicy]:
         """Fetches a single Access policy configured for an application.
 
         Returns both
@@ -914,9 +953,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ApplicationPolicy]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PolicyGetResponse]], ResultWrapper[PolicyGetResponse]),
+            cast_to=cast(Type[Optional[ApplicationPolicy]], ResultWrapper[ApplicationPolicy]),
         )
 
 

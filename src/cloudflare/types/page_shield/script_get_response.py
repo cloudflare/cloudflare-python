@@ -9,6 +9,9 @@ __all__ = ["ScriptGetResponse", "Version"]
 
 
 class Version(BaseModel):
+    cryptomining_score: Optional[int] = None
+    """The cryptomining score of the JavaScript content."""
+
     dataflow_score: Optional[int] = None
     """The dataflow score of the JavaScript content."""
 
@@ -20,6 +23,12 @@ class Version(BaseModel):
 
     js_integrity_score: Optional[int] = None
     """The integrity score of the JavaScript content."""
+
+    magecart_score: Optional[int] = None
+    """The magecart score of the JavaScript content."""
+
+    malware_score: Optional[int] = None
+    """The malware score of the JavaScript content."""
 
     obfuscation_score: Optional[int] = None
     """The obfuscation score of the JavaScript content."""
@@ -41,6 +50,9 @@ class ScriptGetResponse(BaseModel):
 
     url_contains_cdn_cgi_path: bool
 
+    cryptomining_score: Optional[int] = None
+    """The cryptomining score of the JavaScript content."""
+
     dataflow_score: Optional[int] = None
     """The dataflow score of the JavaScript content."""
 
@@ -57,9 +69,15 @@ class ScriptGetResponse(BaseModel):
     js_integrity_score: Optional[int] = None
     """The integrity score of the JavaScript content."""
 
+    magecart_score: Optional[int] = None
+    """The magecart score of the JavaScript content."""
+
     malicious_domain_categories: Optional[List[str]] = None
 
     malicious_url_categories: Optional[List[str]] = None
+
+    malware_score: Optional[int] = None
+    """The malware score of the JavaScript content."""
 
     obfuscation_score: Optional[int] = None
     """The obfuscation score of the JavaScript content."""

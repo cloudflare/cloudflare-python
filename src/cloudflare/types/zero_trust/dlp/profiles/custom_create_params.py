@@ -2,36 +2,97 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing import List, Union, Iterable, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .pattern_param import PatternParam
 from ..context_awareness_param import ContextAwarenessParam
 
-__all__ = ["CustomCreateParams", "Profile", "ProfileEntry"]
+__all__ = [
+    "CustomCreateParams",
+    "Profile",
+    "ProfileEntry",
+    "ProfileEntryDLPNewCustomEntry",
+    "ProfileEntryDLPNewWordListEntry",
+    "ProfileSharedEntry",
+    "ProfileSharedEntryCustom",
+    "ProfileSharedEntryPredefined",
+    "ProfileSharedEntryIntegration",
+    "ProfileSharedEntryExactData",
+]
 
 
 class CustomCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
 
     profiles: Required[Iterable[Profile]]
 
 
-class ProfileEntry(TypedDict, total=False):
+class ProfileEntryDLPNewCustomEntry(TypedDict, total=False):
     enabled: Required[bool]
-    """Whether the entry is enabled or not."""
 
     name: Required[str]
-    """The name of the entry."""
 
     pattern: Required[PatternParam]
-    """A pattern that matches an entry"""
+
+
+class ProfileEntryDLPNewWordListEntry(TypedDict, total=False):
+    enabled: Required[bool]
+
+    name: Required[str]
+
+    words: Required[List[str]]
+
+
+ProfileEntry: TypeAlias = Union[ProfileEntryDLPNewCustomEntry, ProfileEntryDLPNewWordListEntry]
+
+
+class ProfileSharedEntryCustom(TypedDict, total=False):
+    enabled: Required[bool]
+
+    entry_id: Required[str]
+
+    entry_type: Required[Literal["custom"]]
+
+
+class ProfileSharedEntryPredefined(TypedDict, total=False):
+    enabled: Required[bool]
+
+    entry_id: Required[str]
+
+    entry_type: Required[Literal["predefined"]]
+
+
+class ProfileSharedEntryIntegration(TypedDict, total=False):
+    enabled: Required[bool]
+
+    entry_id: Required[str]
+
+    entry_type: Required[Literal["integration"]]
+
+
+class ProfileSharedEntryExactData(TypedDict, total=False):
+    enabled: Required[bool]
+
+    entry_id: Required[str]
+
+    entry_type: Required[Literal["exact_data"]]
+
+
+ProfileSharedEntry: TypeAlias = Union[
+    ProfileSharedEntryCustom, ProfileSharedEntryPredefined, ProfileSharedEntryIntegration, ProfileSharedEntryExactData
+]
 
 
 class Profile(TypedDict, total=False):
-    allowed_match_count: float
+    entries: Required[Iterable[ProfileEntry]]
+
+    name: Required[str]
+
+    allowed_match_count: int
     """Related DLP policies will trigger when the match count exceeds the number set."""
+
+    confidence_threshold: Optional[str]
 
     context_awareness: ContextAwarenessParam
     """
@@ -39,14 +100,14 @@ class Profile(TypedDict, total=False):
     keywords.
     """
 
-    description: str
-    """The description of the profile."""
-
-    entries: Iterable[ProfileEntry]
-    """The entries for this profile."""
-
-    name: str
-    """The name of the profile."""
+    description: Optional[str]
+    """The description of the profile"""
 
     ocr_enabled: bool
-    """If true, scan images via OCR to determine if any text present matches filters."""
+
+    shared_entries: Iterable[ProfileSharedEntry]
+    """Entries from other profiles (e.g.
+
+    pre-defined Cloudflare profiles, or your Microsoft Information Protection
+    profiles).
+    """

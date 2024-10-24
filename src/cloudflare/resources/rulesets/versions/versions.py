@@ -6,14 +6,6 @@ from typing import Type, cast
 
 import httpx
 
-from .by_tag import (
-    ByTagResource,
-    AsyncByTagResource,
-    ByTagResourceWithRawResponse,
-    AsyncByTagResourceWithRawResponse,
-    ByTagResourceWithStreamingResponse,
-    AsyncByTagResourceWithStreamingResponse,
-)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -34,15 +26,22 @@ __all__ = ["VersionsResource", "AsyncVersionsResource"]
 
 class VersionsResource(SyncAPIResource):
     @cached_property
-    def by_tag(self) -> ByTagResource:
-        return ByTagResource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> VersionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return VersionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> VersionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return VersionsResourceWithStreamingResponse(self)
 
     def list(
@@ -223,15 +222,22 @@ class VersionsResource(SyncAPIResource):
 
 class AsyncVersionsResource(AsyncAPIResource):
     @cached_property
-    def by_tag(self) -> AsyncByTagResource:
-        return AsyncByTagResource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> AsyncVersionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncVersionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncVersionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncVersionsResourceWithStreamingResponse(self)
 
     def list(
@@ -424,10 +430,6 @@ class VersionsResourceWithRawResponse:
             versions.get,
         )
 
-    @cached_property
-    def by_tag(self) -> ByTagResourceWithRawResponse:
-        return ByTagResourceWithRawResponse(self._versions.by_tag)
-
 
 class AsyncVersionsResourceWithRawResponse:
     def __init__(self, versions: AsyncVersionsResource) -> None:
@@ -442,10 +444,6 @@ class AsyncVersionsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             versions.get,
         )
-
-    @cached_property
-    def by_tag(self) -> AsyncByTagResourceWithRawResponse:
-        return AsyncByTagResourceWithRawResponse(self._versions.by_tag)
 
 
 class VersionsResourceWithStreamingResponse:
@@ -462,10 +460,6 @@ class VersionsResourceWithStreamingResponse:
             versions.get,
         )
 
-    @cached_property
-    def by_tag(self) -> ByTagResourceWithStreamingResponse:
-        return ByTagResourceWithStreamingResponse(self._versions.by_tag)
-
 
 class AsyncVersionsResourceWithStreamingResponse:
     def __init__(self, versions: AsyncVersionsResource) -> None:
@@ -480,7 +474,3 @@ class AsyncVersionsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             versions.get,
         )
-
-    @cached_property
-    def by_tag(self) -> AsyncByTagResourceWithStreamingResponse:
-        return AsyncByTagResourceWithStreamingResponse(self._versions.by_tag)

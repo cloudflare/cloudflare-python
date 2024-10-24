@@ -86,17 +86,15 @@ class TestAI:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
             guidance=0,
-            height=0,
+            height=256,
             image=[0, 0, 0],
             image_b64="image_b64",
-            lora_weights=[0, 0, 0],
-            loras=["string", "string", "string"],
             mask=[0, 0, 0],
             negative_prompt="negative_prompt",
             num_steps=0,
             seed=0,
             strength=0,
-            width=0,
+            width=256,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -203,6 +201,17 @@ class TestAI:
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             audio=[0, 0, 0],
+        )
+        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
+
+    @parametrize
+    def test_method_run_with_all_params_overload_4(self, client: Cloudflare) -> None:
+        ai = client.workers.ai.run(
+            model_name="model_name",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            audio=[0, 0, 0],
+            source_lang="source_lang",
+            target_lang="target_lang",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -475,6 +484,20 @@ class TestAI:
                 },
             ],
             frequency_penalty=0,
+            functions=[
+                {
+                    "code": "code",
+                    "name": "name",
+                },
+                {
+                    "code": "code",
+                    "name": "name",
+                },
+                {
+                    "code": "code",
+                    "name": "name",
+                },
+            ],
             max_tokens=0,
             presence_penalty=0,
             repetition_penalty=0,
@@ -483,55 +506,46 @@ class TestAI:
             temperature=0,
             tools=[
                 {
-                    "function": {
-                        "description": "description",
-                        "name": "name",
-                        "parameters": {
-                            "properties": {
-                                "foo": {
-                                    "description": "description",
-                                    "type": "type",
-                                }
-                            },
-                            "required": ["string", "string", "string"],
-                            "type": "type",
+                    "description": "description",
+                    "name": "name",
+                    "parameters": {
+                        "properties": {
+                            "foo": {
+                                "description": "description",
+                                "type": "type",
+                            }
                         },
+                        "type": "type",
+                        "required": ["string", "string", "string"],
                     },
-                    "type": "type",
                 },
                 {
-                    "function": {
-                        "description": "description",
-                        "name": "name",
-                        "parameters": {
-                            "properties": {
-                                "foo": {
-                                    "description": "description",
-                                    "type": "type",
-                                }
-                            },
-                            "required": ["string", "string", "string"],
-                            "type": "type",
+                    "description": "description",
+                    "name": "name",
+                    "parameters": {
+                        "properties": {
+                            "foo": {
+                                "description": "description",
+                                "type": "type",
+                            }
                         },
+                        "type": "type",
+                        "required": ["string", "string", "string"],
                     },
-                    "type": "type",
                 },
                 {
-                    "function": {
-                        "description": "description",
-                        "name": "name",
-                        "parameters": {
-                            "properties": {
-                                "foo": {
-                                    "description": "description",
-                                    "type": "type",
-                                }
-                            },
-                            "required": ["string", "string", "string"],
-                            "type": "type",
+                    "description": "description",
+                    "name": "name",
+                    "parameters": {
+                        "properties": {
+                            "foo": {
+                                "description": "description",
+                                "type": "type",
+                            }
                         },
+                        "type": "type",
+                        "required": ["string", "string", "string"],
                     },
-                    "type": "type",
                 },
             ],
             top_k=1,
@@ -783,20 +797,6 @@ class TestAI:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0, 0, 0],
             max_tokens=0,
-            messages=[
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-            ],
             prompt="prompt",
             raw=True,
             temperature=0,
@@ -920,17 +920,15 @@ class TestAsyncAI:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
             guidance=0,
-            height=0,
+            height=256,
             image=[0, 0, 0],
             image_b64="image_b64",
-            lora_weights=[0, 0, 0],
-            loras=["string", "string", "string"],
             mask=[0, 0, 0],
             negative_prompt="negative_prompt",
             num_steps=0,
             seed=0,
             strength=0,
-            width=0,
+            width=256,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1037,6 +1035,17 @@ class TestAsyncAI:
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             audio=[0, 0, 0],
+        )
+        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
+
+    @parametrize
+    async def test_method_run_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
+        ai = await async_client.workers.ai.run(
+            model_name="model_name",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            audio=[0, 0, 0],
+            source_lang="source_lang",
+            target_lang="target_lang",
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1309,6 +1318,20 @@ class TestAsyncAI:
                 },
             ],
             frequency_penalty=0,
+            functions=[
+                {
+                    "code": "code",
+                    "name": "name",
+                },
+                {
+                    "code": "code",
+                    "name": "name",
+                },
+                {
+                    "code": "code",
+                    "name": "name",
+                },
+            ],
             max_tokens=0,
             presence_penalty=0,
             repetition_penalty=0,
@@ -1317,55 +1340,46 @@ class TestAsyncAI:
             temperature=0,
             tools=[
                 {
-                    "function": {
-                        "description": "description",
-                        "name": "name",
-                        "parameters": {
-                            "properties": {
-                                "foo": {
-                                    "description": "description",
-                                    "type": "type",
-                                }
-                            },
-                            "required": ["string", "string", "string"],
-                            "type": "type",
+                    "description": "description",
+                    "name": "name",
+                    "parameters": {
+                        "properties": {
+                            "foo": {
+                                "description": "description",
+                                "type": "type",
+                            }
                         },
+                        "type": "type",
+                        "required": ["string", "string", "string"],
                     },
-                    "type": "type",
                 },
                 {
-                    "function": {
-                        "description": "description",
-                        "name": "name",
-                        "parameters": {
-                            "properties": {
-                                "foo": {
-                                    "description": "description",
-                                    "type": "type",
-                                }
-                            },
-                            "required": ["string", "string", "string"],
-                            "type": "type",
+                    "description": "description",
+                    "name": "name",
+                    "parameters": {
+                        "properties": {
+                            "foo": {
+                                "description": "description",
+                                "type": "type",
+                            }
                         },
+                        "type": "type",
+                        "required": ["string", "string", "string"],
                     },
-                    "type": "type",
                 },
                 {
-                    "function": {
-                        "description": "description",
-                        "name": "name",
-                        "parameters": {
-                            "properties": {
-                                "foo": {
-                                    "description": "description",
-                                    "type": "type",
-                                }
-                            },
-                            "required": ["string", "string", "string"],
-                            "type": "type",
+                    "description": "description",
+                    "name": "name",
+                    "parameters": {
+                        "properties": {
+                            "foo": {
+                                "description": "description",
+                                "type": "type",
+                            }
                         },
+                        "type": "type",
+                        "required": ["string", "string", "string"],
                     },
-                    "type": "type",
                 },
             ],
             top_k=1,
@@ -1617,20 +1631,6 @@ class TestAsyncAI:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0, 0, 0],
             max_tokens=0,
-            messages=[
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-            ],
             prompt="prompt",
             raw=True,
             temperature=0,

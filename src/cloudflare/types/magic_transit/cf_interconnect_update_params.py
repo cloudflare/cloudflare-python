@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
-from .health_check_rate import HealthCheckRate
-from .health_check_type import HealthCheckType
+from ..._utils import PropertyInfo
+from .health_check_param import HealthCheckParam
 
-__all__ = ["CfInterconnectUpdateParams", "GRE", "HealthCheck"]
+__all__ = ["CfInterconnectUpdateParams", "GRE"]
 
 
 class CfInterconnectUpdateParams(TypedDict, total=False):
@@ -20,7 +20,7 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
     gre: GRE
     """The configuration specific to GRE interconnects."""
 
-    health_check: HealthCheck
+    health_check: HealthCheckParam
 
     interface_address: str
     """
@@ -35,6 +35,8 @@ class CfInterconnectUpdateParams(TypedDict, total=False):
     The minimum value is 576.
     """
 
+    x_magic_new_hc_target: Annotated[bool, PropertyInfo(alias="x-magic-new-hc-target")]
+
 
 class GRE(TypedDict, total=False):
     cloudflare_endpoint: str
@@ -42,22 +44,3 @@ class GRE(TypedDict, total=False):
     The IP address assigned to the Cloudflare side of the GRE tunnel created as part
     of the Interconnect.
     """
-
-
-class HealthCheck(TypedDict, total=False):
-    enabled: bool
-    """Determines whether to run healthchecks for a tunnel."""
-
-    rate: HealthCheckRate
-    """How frequent the health check is run. The default value is `mid`."""
-
-    target: str
-    """The destination address in a request type health check.
-
-    After the healthcheck is decapsulated at the customer end of the tunnel, the
-    ICMP echo will be forwarded to this address. This field defaults to
-    `customer_gre_endpoint address`.
-    """
-
-    type: HealthCheckType
-    """The type of healthcheck to run, reply or request. The default value is `reply`."""

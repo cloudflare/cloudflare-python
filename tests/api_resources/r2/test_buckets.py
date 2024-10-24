@@ -9,8 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.r2 import Bucket
-from cloudflare.pagination import SyncCursorPagination, AsyncCursorPagination
+from cloudflare.types.r2 import Bucket, BucketListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -33,6 +32,7 @@ class TestBuckets:
             name="example-bucket",
             location_hint="apac",
             storage_class="Standard",
+            cf_r2_jurisdiction="default",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 
@@ -75,20 +75,21 @@ class TestBuckets:
         bucket = client.r2.buckets.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncCursorPagination[Bucket], bucket, path=["response"])
+        assert_matches_type(BucketListResponse, bucket, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         bucket = client.r2.buckets.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cursor="cursor",
-            direction="desc",
+            direction="asc",
             name_contains="my-bucket",
             order="name",
             per_page=1,
             start_after="my-bucket",
+            cf_r2_jurisdiction="default",
         )
-        assert_matches_type(SyncCursorPagination[Bucket], bucket, path=["response"])
+        assert_matches_type(BucketListResponse, bucket, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -99,7 +100,7 @@ class TestBuckets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bucket = response.parse()
-        assert_matches_type(SyncCursorPagination[Bucket], bucket, path=["response"])
+        assert_matches_type(BucketListResponse, bucket, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -110,7 +111,7 @@ class TestBuckets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bucket = response.parse()
-            assert_matches_type(SyncCursorPagination[Bucket], bucket, path=["response"])
+            assert_matches_type(BucketListResponse, bucket, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -126,6 +127,15 @@ class TestBuckets:
         bucket = client.r2.buckets.delete(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(object, bucket, path=["response"])
+
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        bucket = client.r2.buckets.delete(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            cf_r2_jurisdiction="default",
         )
         assert_matches_type(object, bucket, path=["response"])
 
@@ -174,6 +184,15 @@ class TestBuckets:
         bucket = client.r2.buckets.get(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Bucket, bucket, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        bucket = client.r2.buckets.get(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            cf_r2_jurisdiction="default",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 
@@ -236,6 +255,7 @@ class TestAsyncBuckets:
             name="example-bucket",
             location_hint="apac",
             storage_class="Standard",
+            cf_r2_jurisdiction="default",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 
@@ -278,20 +298,21 @@ class TestAsyncBuckets:
         bucket = await async_client.r2.buckets.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncCursorPagination[Bucket], bucket, path=["response"])
+        assert_matches_type(BucketListResponse, bucket, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         bucket = await async_client.r2.buckets.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cursor="cursor",
-            direction="desc",
+            direction="asc",
             name_contains="my-bucket",
             order="name",
             per_page=1,
             start_after="my-bucket",
+            cf_r2_jurisdiction="default",
         )
-        assert_matches_type(AsyncCursorPagination[Bucket], bucket, path=["response"])
+        assert_matches_type(BucketListResponse, bucket, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -302,7 +323,7 @@ class TestAsyncBuckets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bucket = await response.parse()
-        assert_matches_type(AsyncCursorPagination[Bucket], bucket, path=["response"])
+        assert_matches_type(BucketListResponse, bucket, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -313,7 +334,7 @@ class TestAsyncBuckets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bucket = await response.parse()
-            assert_matches_type(AsyncCursorPagination[Bucket], bucket, path=["response"])
+            assert_matches_type(BucketListResponse, bucket, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -329,6 +350,15 @@ class TestAsyncBuckets:
         bucket = await async_client.r2.buckets.delete(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(object, bucket, path=["response"])
+
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        bucket = await async_client.r2.buckets.delete(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            cf_r2_jurisdiction="default",
         )
         assert_matches_type(object, bucket, path=["response"])
 
@@ -377,6 +407,15 @@ class TestAsyncBuckets:
         bucket = await async_client.r2.buckets.get(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Bucket, bucket, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        bucket = await async_client.r2.buckets.get(
+            bucket_name="example-bucket",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            cf_r2_jurisdiction="default",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 

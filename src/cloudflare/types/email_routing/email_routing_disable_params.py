@@ -8,4 +8,7 @@ __all__ = ["EmailRoutingDisableParams"]
 
 
 class EmailRoutingDisableParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     body: Required[object]

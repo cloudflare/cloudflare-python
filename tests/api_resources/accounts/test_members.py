@@ -670,8 +670,8 @@ class TestMembers:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         member = client.accounts.members.list(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            direction="desc",
-            order="status",
+            direction="asc",
+            order="user.first_name",
             page=1,
             per_page=5,
             status="accepted",
@@ -1463,8 +1463,8 @@ class TestAsyncMembers:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.list(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            direction="desc",
-            order="status",
+            direction="asc",
+            order="user.first_name",
             page=1,
             per_page=5,
             status="accepted",

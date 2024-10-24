@@ -2,52 +2,421 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, Annotated, TypeAlias
 
+from ...._utils import PropertyInfo
 from ...._models import BaseModel
-from .profiles.custom_profile import CustomProfile
-from .profiles.predefined_profile import PredefinedProfile
+from .profiles.pattern import Pattern
+from .context_awareness import ContextAwareness
 
-__all__ = ["Profile", "DLPIntegrationProfile", "DLPIntegrationProfileEntry"]
+__all__ = [
+    "Profile",
+    "Custom",
+    "CustomEntry",
+    "CustomEntryCustom",
+    "CustomEntryPredefined",
+    "CustomEntryPredefinedConfidence",
+    "CustomEntryIntegration",
+    "CustomEntryExactData",
+    "CustomEntryWordList",
+    "Predefined",
+    "PredefinedEntry",
+    "PredefinedEntryCustom",
+    "PredefinedEntryPredefined",
+    "PredefinedEntryPredefinedConfidence",
+    "PredefinedEntryIntegration",
+    "PredefinedEntryExactData",
+    "PredefinedEntryWordList",
+    "Integration",
+    "IntegrationEntry",
+    "IntegrationEntryCustom",
+    "IntegrationEntryPredefined",
+    "IntegrationEntryPredefinedConfidence",
+    "IntegrationEntryIntegration",
+    "IntegrationEntryExactData",
+    "IntegrationEntryWordList",
+]
 
 
-class DLPIntegrationProfileEntry(BaseModel):
-    id: Optional[str] = None
-    """The ID for this entry"""
+class CustomEntryCustom(BaseModel):
+    id: str
 
-    created_at: Optional[datetime] = None
+    created_at: datetime
 
-    enabled: Optional[bool] = None
-    """Whether the entry is enabled or not."""
+    enabled: bool
 
-    name: Optional[str] = None
-    """The name of the entry."""
+    name: str
 
-    profile_id: Optional[object] = None
-    """ID of the parent profile"""
+    pattern: Pattern
 
-    updated_at: Optional[datetime] = None
+    type: Literal["custom"]
+
+    updated_at: datetime
+
+    profile_id: Optional[str] = None
 
 
-class DLPIntegrationProfile(BaseModel):
-    id: Optional[str] = None
-    """The ID for this profile"""
+class CustomEntryPredefinedConfidence(BaseModel):
+    available: bool
+    """
+    Indicates whether this entry can be made more or less sensitive by setting a
+    confidence threshold. Profiles that use an entry with `available` set to true
+    can use confidence thresholds
+    """
 
-    created_at: Optional[datetime] = None
+
+class CustomEntryPredefined(BaseModel):
+    id: str
+
+    confidence: CustomEntryPredefinedConfidence
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["predefined"]
+
+    profile_id: Optional[str] = None
+
+
+class CustomEntryIntegration(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["integration"]
+
+    updated_at: datetime
+
+    profile_id: Optional[str] = None
+
+
+class CustomEntryExactData(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    secret: bool
+
+    type: Literal["exact_data"]
+
+    updated_at: datetime
+
+
+class CustomEntryWordList(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["word_list"]
+
+    updated_at: datetime
+
+    word_list: object
+
+    profile_id: Optional[str] = None
+
+
+CustomEntry: TypeAlias = Annotated[
+    Union[CustomEntryCustom, CustomEntryPredefined, CustomEntryIntegration, CustomEntryExactData, CustomEntryWordList],
+    PropertyInfo(discriminator="type"),
+]
+
+
+class Custom(BaseModel):
+    id: str
+    """The id of the profile (uuid)"""
+
+    allowed_match_count: int
+    """Related DLP policies will trigger when the match count exceeds the number set."""
+
+    context_awareness: ContextAwareness
+    """
+    Scan the context of predefined entries to only return matches surrounded by
+    keywords.
+    """
+
+    created_at: datetime
+    """When the profile was created"""
+
+    entries: List[CustomEntry]
+
+    name: str
+    """The name of the profile"""
+
+    ocr_enabled: bool
+
+    type: Literal["custom"]
+
+    updated_at: datetime
+    """When the profile was lasted updated"""
+
+    confidence_threshold: Optional[Literal["low", "medium", "high", "very_high"]] = None
 
     description: Optional[str] = None
-    """The description of the profile."""
-
-    entries: Optional[List[DLPIntegrationProfileEntry]] = None
-    """The entries for this profile."""
-
-    name: Optional[str] = None
-    """The name of the profile."""
-
-    type: Optional[Literal["integration"]] = None
-    """The type of the profile."""
-
-    updated_at: Optional[datetime] = None
+    """The description of the profile"""
 
 
-Profile = Union[PredefinedProfile, CustomProfile, DLPIntegrationProfile]
+class PredefinedEntryCustom(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    pattern: Pattern
+
+    type: Literal["custom"]
+
+    updated_at: datetime
+
+    profile_id: Optional[str] = None
+
+
+class PredefinedEntryPredefinedConfidence(BaseModel):
+    available: bool
+    """
+    Indicates whether this entry can be made more or less sensitive by setting a
+    confidence threshold. Profiles that use an entry with `available` set to true
+    can use confidence thresholds
+    """
+
+
+class PredefinedEntryPredefined(BaseModel):
+    id: str
+
+    confidence: PredefinedEntryPredefinedConfidence
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["predefined"]
+
+    profile_id: Optional[str] = None
+
+
+class PredefinedEntryIntegration(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["integration"]
+
+    updated_at: datetime
+
+    profile_id: Optional[str] = None
+
+
+class PredefinedEntryExactData(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    secret: bool
+
+    type: Literal["exact_data"]
+
+    updated_at: datetime
+
+
+class PredefinedEntryWordList(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["word_list"]
+
+    updated_at: datetime
+
+    word_list: object
+
+    profile_id: Optional[str] = None
+
+
+PredefinedEntry: TypeAlias = Annotated[
+    Union[
+        PredefinedEntryCustom,
+        PredefinedEntryPredefined,
+        PredefinedEntryIntegration,
+        PredefinedEntryExactData,
+        PredefinedEntryWordList,
+    ],
+    PropertyInfo(discriminator="type"),
+]
+
+
+class Predefined(BaseModel):
+    id: str
+    """The id of the predefined profile (uuid)"""
+
+    allowed_match_count: int
+
+    entries: List[PredefinedEntry]
+
+    name: str
+    """The name of the predefined profile"""
+
+    type: Literal["predefined"]
+
+    confidence_threshold: Optional[Literal["low", "medium", "high", "very_high"]] = None
+
+    context_awareness: Optional[ContextAwareness] = None
+    """
+    Scan the context of predefined entries to only return matches surrounded by
+    keywords.
+    """
+
+    ocr_enabled: Optional[bool] = None
+
+    open_access: Optional[bool] = None
+    """Whether this profile can be accessed by anyone"""
+
+
+class IntegrationEntryCustom(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    pattern: Pattern
+
+    type: Literal["custom"]
+
+    updated_at: datetime
+
+    profile_id: Optional[str] = None
+
+
+class IntegrationEntryPredefinedConfidence(BaseModel):
+    available: bool
+    """
+    Indicates whether this entry can be made more or less sensitive by setting a
+    confidence threshold. Profiles that use an entry with `available` set to true
+    can use confidence thresholds
+    """
+
+
+class IntegrationEntryPredefined(BaseModel):
+    id: str
+
+    confidence: IntegrationEntryPredefinedConfidence
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["predefined"]
+
+    profile_id: Optional[str] = None
+
+
+class IntegrationEntryIntegration(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["integration"]
+
+    updated_at: datetime
+
+    profile_id: Optional[str] = None
+
+
+class IntegrationEntryExactData(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    secret: bool
+
+    type: Literal["exact_data"]
+
+    updated_at: datetime
+
+
+class IntegrationEntryWordList(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    enabled: bool
+
+    name: str
+
+    type: Literal["word_list"]
+
+    updated_at: datetime
+
+    word_list: object
+
+    profile_id: Optional[str] = None
+
+
+IntegrationEntry: TypeAlias = Annotated[
+    Union[
+        IntegrationEntryCustom,
+        IntegrationEntryPredefined,
+        IntegrationEntryIntegration,
+        IntegrationEntryExactData,
+        IntegrationEntryWordList,
+    ],
+    PropertyInfo(discriminator="type"),
+]
+
+
+class Integration(BaseModel):
+    id: str
+
+    created_at: datetime
+
+    entries: List[IntegrationEntry]
+
+    name: str
+
+    type: Literal["integration"]
+
+    updated_at: datetime
+
+    description: Optional[str] = None
+    """The description of the profile"""
+
+
+Profile: TypeAlias = Annotated[Union[Custom, Predefined, Integration], PropertyInfo(discriminator="type")]

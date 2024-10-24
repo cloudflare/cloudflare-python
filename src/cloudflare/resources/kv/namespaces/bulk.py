@@ -22,8 +22,6 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.kv.namespaces import bulk_update_params
-from ....types.kv.namespaces.bulk_delete_response import BulkDeleteResponse
-from ....types.kv.namespaces.bulk_update_response import BulkUpdateResponse
 
 __all__ = ["BulkResource", "AsyncBulkResource"]
 
@@ -31,10 +29,21 @@ __all__ = ["BulkResource", "AsyncBulkResource"]
 class BulkResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BulkResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return BulkResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> BulkResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return BulkResourceWithStreamingResponse(self)
 
     def update(
@@ -49,7 +58,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BulkUpdateResponse]:
+    ) -> object:
         """Write multiple keys and values at once.
 
         Body should be an array of up to 10,000
@@ -78,15 +87,15 @@ class BulkResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
-            body=maybe_transform(body, bulk_update_params.BulkUpdateParams),
+            body=maybe_transform(body, Iterable[bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[BulkUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BulkUpdateResponse]], ResultWrapper[BulkUpdateResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def delete(
@@ -100,7 +109,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BulkDeleteResponse]:
+    ) -> object:
         """Remove multiple KV pairs from the namespace.
 
         Body should be an array of up to
@@ -130,19 +139,30 @@ class BulkResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[BulkDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BulkDeleteResponse]], ResultWrapper[BulkDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
 class AsyncBulkResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBulkResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncBulkResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncBulkResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncBulkResourceWithStreamingResponse(self)
 
     async def update(
@@ -157,7 +177,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BulkUpdateResponse]:
+    ) -> object:
         """Write multiple keys and values at once.
 
         Body should be an array of up to 10,000
@@ -186,15 +206,15 @@ class AsyncBulkResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
-            body=await async_maybe_transform(body, bulk_update_params.BulkUpdateParams),
+            body=await async_maybe_transform(body, Iterable[bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[BulkUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BulkUpdateResponse]], ResultWrapper[BulkUpdateResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def delete(
@@ -208,7 +228,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BulkDeleteResponse]:
+    ) -> object:
         """Remove multiple KV pairs from the namespace.
 
         Body should be an array of up to
@@ -238,9 +258,9 @@ class AsyncBulkResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[BulkDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[BulkDeleteResponse]], ResultWrapper[BulkDeleteResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

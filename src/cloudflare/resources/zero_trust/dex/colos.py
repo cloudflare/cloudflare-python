@@ -26,10 +26,21 @@ __all__ = ["ColosResource", "AsyncColosResource"]
 class ColosResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ColosResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ColosResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ColosResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ColosResourceWithStreamingResponse(self)
 
     def list(
@@ -93,10 +104,21 @@ class ColosResource(SyncAPIResource):
 class AsyncColosResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncColosResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncColosResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncColosResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncColosResourceWithStreamingResponse(self)
 
     def list(

@@ -26,7 +26,7 @@ class TestBGP:
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         bgp = client.radar.bgp.timeseries(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -41,26 +41,7 @@ class TestBGP:
             ],
             format="JSON",
             name=["string", "string", "string"],
-            prefix=[
-                {
-                    "in": "query",
-                    "name": "prefix",
-                    "test": 12,
-                    "type": "1.1.1.0/24",
-                },
-                {
-                    "in": "query",
-                    "name": "prefix",
-                    "test": 12,
-                    "type": "1.1.1.0/24",
-                },
-                {
-                    "in": "query",
-                    "name": "prefix",
-                    "test": 12,
-                    "type": "1.1.1.0/24",
-                },
-            ],
+            prefix=["1.1.1.0/24", "1.1.1.0/24", "1.1.1.0/24"],
             update_type=["ANNOUNCEMENT", "WITHDRAWAL"],
         )
         assert_matches_type(BGPTimeseriesResponse, bgp, path=["response"])
@@ -97,7 +78,7 @@ class TestAsyncBGP:
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         bgp = await async_client.radar.bgp.timeseries(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -112,26 +93,7 @@ class TestAsyncBGP:
             ],
             format="JSON",
             name=["string", "string", "string"],
-            prefix=[
-                {
-                    "in": "query",
-                    "name": "prefix",
-                    "test": 12,
-                    "type": "1.1.1.0/24",
-                },
-                {
-                    "in": "query",
-                    "name": "prefix",
-                    "test": 12,
-                    "type": "1.1.1.0/24",
-                },
-                {
-                    "in": "query",
-                    "name": "prefix",
-                    "test": 12,
-                    "type": "1.1.1.0/24",
-                },
-            ],
+            prefix=["1.1.1.0/24", "1.1.1.0/24", "1.1.1.0/24"],
             update_type=["ANNOUNCEMENT", "WITHDRAWAL"],
         )
         assert_matches_type(BGPTimeseriesResponse, bgp, path=["response"])

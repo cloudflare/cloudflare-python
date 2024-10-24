@@ -49,6 +49,12 @@ class Recording(TypedDict, total=False):
     empty array allows videos to be viewed on any origin.
     """
 
+    hide_live_viewer_count: Annotated[bool, PropertyInfo(alias="hideLiveViewerCount")]
+    """
+    Disables reporting the number of live viewers when this property is set to
+    `true`.
+    """
+
     mode: Literal["off", "automatic"]
     """Specifies the recording behavior for the live input.
 
