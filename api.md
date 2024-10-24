@@ -3555,7 +3555,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.magic_transit import HealthCheckRate, HealthCheckType
+from cloudflare.types.magic_transit import HealthCheck, HealthCheckRate, HealthCheckType
 ```
 
 ## Apps
@@ -5126,11 +5126,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access.applications import (
-    ApprovalGroup,
-    Policy,
-    PolicyDeleteResponse,
-)
+from cloudflare.types.zero_trust.access.applications import PolicyDeleteResponse
 ```
 
 Methods:
