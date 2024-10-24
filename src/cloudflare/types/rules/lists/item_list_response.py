@@ -6,6 +6,6 @@ from typing_extensions import TypeAlias
 from ..hostname import Hostname
 from ..redirect import Redirect
 
-__all__ = ["ItemGetResponse"]
+__all__ = ["ItemListResponse"]
 
-ItemGetResponse: TypeAlias = Union[str, Redirect, Hostname, int]
+ItemListResponse: TypeAlias = Union[str, Redirect, Hostname, int]
