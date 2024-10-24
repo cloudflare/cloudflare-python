@@ -15,7 +15,9 @@ class InstanceListResponse(BaseModel):
 
     modified_on: datetime
 
-    status: Literal["queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "unknown"]
+    status: Literal[
+        "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting", "unknown"
+    ]
 
     version_id: str
 
