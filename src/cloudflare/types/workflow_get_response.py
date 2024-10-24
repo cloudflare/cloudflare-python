@@ -25,8 +25,6 @@ class Instances(BaseModel):
 
     unknown: Optional[float] = None
 
-    waiting: Optional[float] = None
-
     waiting_for_pause: Optional[float] = FieldInfo(alias="waitingForPause", default=None)
 
 
