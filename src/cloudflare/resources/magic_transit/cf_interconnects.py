@@ -24,6 +24,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
 from ...types.magic_transit import cf_interconnect_update_params
+from ...types.magic_transit.health_check_param import HealthCheckParam
 from ...types.magic_transit.cf_interconnect_get_response import CfInterconnectGetResponse
 from ...types.magic_transit.cf_interconnect_list_response import CfInterconnectListResponse
 from ...types.magic_transit.cf_interconnect_update_response import CfInterconnectUpdateResponse
@@ -58,7 +59,7 @@ class CfInterconnectsResource(SyncAPIResource):
         account_id: str,
         description: str | NotGiven = NOT_GIVEN,
         gre: cf_interconnect_update_params.GRE | NotGiven = NOT_GIVEN,
-        health_check: cf_interconnect_update_params.HealthCheck | NotGiven = NOT_GIVEN,
+        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
         interface_address: str | NotGiven = NOT_GIVEN,
         mtu: int | NotGiven = NOT_GIVEN,
         x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
@@ -268,7 +269,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         account_id: str,
         description: str | NotGiven = NOT_GIVEN,
         gre: cf_interconnect_update_params.GRE | NotGiven = NOT_GIVEN,
-        health_check: cf_interconnect_update_params.HealthCheck | NotGiven = NOT_GIVEN,
+        health_check: HealthCheckParam | NotGiven = NOT_GIVEN,
         interface_address: str | NotGiven = NOT_GIVEN,
         mtu: int | NotGiven = NOT_GIVEN,
         x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
