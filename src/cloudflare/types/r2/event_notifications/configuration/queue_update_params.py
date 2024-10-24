@@ -30,6 +30,12 @@ class Rule(TypedDict, total=False):
     ]
     """Array of R2 object actions that will trigger notifications"""
 
+    description: str
+    """
+    A description that can be used to identify the event notification rule after
+    creation
+    """
+
     prefix: str
     """Notifications will be sent only for objects with this prefix"""
 
