@@ -34,16 +34,19 @@ class TestQueues:
             rules=[
                 {
                     "actions": ["PutObject", "CopyObject"],
+                    "description": "Notifications from source bucket to queue",
                     "prefix": "img/",
                     "suffix": ".jpeg",
                 },
                 {
                     "actions": ["PutObject", "CopyObject"],
+                    "description": "Notifications from source bucket to queue",
                     "prefix": "img/",
                     "suffix": ".jpeg",
                 },
                 {
                     "actions": ["PutObject", "CopyObject"],
+                    "description": "Notifications from source bucket to queue",
                     "prefix": "img/",
                     "suffix": ".jpeg",
                 },
@@ -195,16 +198,19 @@ class TestAsyncQueues:
             rules=[
                 {
                     "actions": ["PutObject", "CopyObject"],
+                    "description": "Notifications from source bucket to queue",
                     "prefix": "img/",
                     "suffix": ".jpeg",
                 },
                 {
                     "actions": ["PutObject", "CopyObject"],
+                    "description": "Notifications from source bucket to queue",
                     "prefix": "img/",
                     "suffix": ".jpeg",
                 },
                 {
                     "actions": ["PutObject", "CopyObject"],
+                    "description": "Notifications from source bucket to queue",
                     "prefix": "img/",
                     "suffix": ".jpeg",
                 },

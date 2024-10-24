@@ -17,6 +17,12 @@ class QueueRule(BaseModel):
     created_at: Optional[str] = FieldInfo(alias="createdAt", default=None)
     """Timestamp when the rule was created"""
 
+    description: Optional[str] = None
+    """
+    A description that can be used to identify the event notification rule after
+    creation
+    """
+
     prefix: Optional[str] = None
     """Notifications will be sent only for objects with this prefix"""
 
