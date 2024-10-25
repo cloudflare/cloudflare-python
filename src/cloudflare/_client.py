@@ -62,7 +62,6 @@ if TYPE_CHECKING:
         queues,
         stream,
         billing,
-        filters,
         logpush,
         storage,
         workers,
@@ -88,7 +87,6 @@ if TYPE_CHECKING:
         diagnostics,
         memberships,
         page_shield,
-        rate_limits,
         url_scanner,
         healthchecks,
         security_txt,
@@ -328,12 +326,6 @@ class Cloudflare(SyncAPIClient):
         return EmailRoutingResource(self)
 
     @cached_property
-    def filters(self) -> filters.FiltersResource:
-        from .resources.filters import FiltersResource
-
-        return FiltersResource(self)
-
-    @cached_property
     def firewall(self) -> firewall.FirewallResource:
         from .resources.firewall import FirewallResource
 
@@ -374,12 +366,6 @@ class Cloudflare(SyncAPIClient):
         from .resources.pagerules import PagerulesResource
 
         return PagerulesResource(self)
-
-    @cached_property
-    def rate_limits(self) -> rate_limits.RateLimitsResource:
-        from .resources.rate_limits import RateLimitsResource
-
-        return RateLimitsResource(self)
 
     @cached_property
     def secondary_dns(self) -> secondary_dns.SecondaryDNSResource:
@@ -1087,12 +1073,6 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncEmailRoutingResource(self)
 
     @cached_property
-    def filters(self) -> filters.AsyncFiltersResource:
-        from .resources.filters import AsyncFiltersResource
-
-        return AsyncFiltersResource(self)
-
-    @cached_property
     def firewall(self) -> firewall.AsyncFirewallResource:
         from .resources.firewall import AsyncFirewallResource
 
@@ -1133,12 +1113,6 @@ class AsyncCloudflare(AsyncAPIClient):
         from .resources.pagerules import AsyncPagerulesResource
 
         return AsyncPagerulesResource(self)
-
-    @cached_property
-    def rate_limits(self) -> rate_limits.AsyncRateLimitsResource:
-        from .resources.rate_limits import AsyncRateLimitsResource
-
-        return AsyncRateLimitsResource(self)
 
     @cached_property
     def secondary_dns(self) -> secondary_dns.AsyncSecondaryDNSResource:
@@ -1779,12 +1753,6 @@ class CloudflareWithRawResponse:
         return EmailRoutingResourceWithRawResponse(self._client.email_routing)
 
     @cached_property
-    def filters(self) -> filters.FiltersResourceWithRawResponse:
-        from .resources.filters import FiltersResourceWithRawResponse
-
-        return FiltersResourceWithRawResponse(self._client.filters)
-
-    @cached_property
     def firewall(self) -> firewall.FirewallResourceWithRawResponse:
         from .resources.firewall import FirewallResourceWithRawResponse
 
@@ -1825,12 +1793,6 @@ class CloudflareWithRawResponse:
         from .resources.pagerules import PagerulesResourceWithRawResponse
 
         return PagerulesResourceWithRawResponse(self._client.pagerules)
-
-    @cached_property
-    def rate_limits(self) -> rate_limits.RateLimitsResourceWithRawResponse:
-        from .resources.rate_limits import RateLimitsResourceWithRawResponse
-
-        return RateLimitsResourceWithRawResponse(self._client.rate_limits)
 
     @cached_property
     def secondary_dns(self) -> secondary_dns.SecondaryDNSResourceWithRawResponse:
@@ -2292,12 +2254,6 @@ class AsyncCloudflareWithRawResponse:
         return AsyncEmailRoutingResourceWithRawResponse(self._client.email_routing)
 
     @cached_property
-    def filters(self) -> filters.AsyncFiltersResourceWithRawResponse:
-        from .resources.filters import AsyncFiltersResourceWithRawResponse
-
-        return AsyncFiltersResourceWithRawResponse(self._client.filters)
-
-    @cached_property
     def firewall(self) -> firewall.AsyncFirewallResourceWithRawResponse:
         from .resources.firewall import AsyncFirewallResourceWithRawResponse
 
@@ -2338,12 +2294,6 @@ class AsyncCloudflareWithRawResponse:
         from .resources.pagerules import AsyncPagerulesResourceWithRawResponse
 
         return AsyncPagerulesResourceWithRawResponse(self._client.pagerules)
-
-    @cached_property
-    def rate_limits(self) -> rate_limits.AsyncRateLimitsResourceWithRawResponse:
-        from .resources.rate_limits import AsyncRateLimitsResourceWithRawResponse
-
-        return AsyncRateLimitsResourceWithRawResponse(self._client.rate_limits)
 
     @cached_property
     def secondary_dns(self) -> secondary_dns.AsyncSecondaryDNSResourceWithRawResponse:
@@ -2805,12 +2755,6 @@ class CloudflareWithStreamedResponse:
         return EmailRoutingResourceWithStreamingResponse(self._client.email_routing)
 
     @cached_property
-    def filters(self) -> filters.FiltersResourceWithStreamingResponse:
-        from .resources.filters import FiltersResourceWithStreamingResponse
-
-        return FiltersResourceWithStreamingResponse(self._client.filters)
-
-    @cached_property
     def firewall(self) -> firewall.FirewallResourceWithStreamingResponse:
         from .resources.firewall import FirewallResourceWithStreamingResponse
 
@@ -2851,12 +2795,6 @@ class CloudflareWithStreamedResponse:
         from .resources.pagerules import PagerulesResourceWithStreamingResponse
 
         return PagerulesResourceWithStreamingResponse(self._client.pagerules)
-
-    @cached_property
-    def rate_limits(self) -> rate_limits.RateLimitsResourceWithStreamingResponse:
-        from .resources.rate_limits import RateLimitsResourceWithStreamingResponse
-
-        return RateLimitsResourceWithStreamingResponse(self._client.rate_limits)
 
     @cached_property
     def secondary_dns(self) -> secondary_dns.SecondaryDNSResourceWithStreamingResponse:
@@ -3320,12 +3258,6 @@ class AsyncCloudflareWithStreamedResponse:
         return AsyncEmailRoutingResourceWithStreamingResponse(self._client.email_routing)
 
     @cached_property
-    def filters(self) -> filters.AsyncFiltersResourceWithStreamingResponse:
-        from .resources.filters import AsyncFiltersResourceWithStreamingResponse
-
-        return AsyncFiltersResourceWithStreamingResponse(self._client.filters)
-
-    @cached_property
     def firewall(self) -> firewall.AsyncFirewallResourceWithStreamingResponse:
         from .resources.firewall import AsyncFirewallResourceWithStreamingResponse
 
@@ -3366,12 +3298,6 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.pagerules import AsyncPagerulesResourceWithStreamingResponse
 
         return AsyncPagerulesResourceWithStreamingResponse(self._client.pagerules)
-
-    @cached_property
-    def rate_limits(self) -> rate_limits.AsyncRateLimitsResourceWithStreamingResponse:
-        from .resources.rate_limits import AsyncRateLimitsResourceWithStreamingResponse
-
-        return AsyncRateLimitsResourceWithStreamingResponse(self._client.rate_limits)
 
     @cached_property
     def secondary_dns(self) -> secondary_dns.AsyncSecondaryDNSResourceWithStreamingResponse:
