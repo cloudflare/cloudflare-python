@@ -16,8 +16,22 @@ from .packages import (
     PackagesResourceWithStreamingResponse,
     AsyncPackagesResourceWithStreamingResponse,
 )
+from .overrides import (
+    OverridesResource,
+    AsyncOverridesResource,
+    OverridesResourceWithRawResponse,
+    AsyncOverridesResourceWithRawResponse,
+    OverridesResourceWithStreamingResponse,
+    AsyncOverridesResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "OverridesResource",
+    "AsyncOverridesResource",
+    "OverridesResourceWithRawResponse",
+    "AsyncOverridesResourceWithRawResponse",
+    "OverridesResourceWithStreamingResponse",
+    "AsyncOverridesResourceWithStreamingResponse",
     "PackagesResource",
     "AsyncPackagesResource",
     "PackagesResourceWithRawResponse",
