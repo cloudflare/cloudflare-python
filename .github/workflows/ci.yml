@@ -1,4 +1,5 @@
 name: CI
+
 on:
   push:
     branches:
@@ -8,11 +9,15 @@ on:
       - main
       - next
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     name: lint
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 5
 
     steps:
       - uses: actions/checkout@v4
@@ -33,6 +38,7 @@ jobs:
   test:
     name: test
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - uses: actions/checkout@v4
@@ -53,6 +59,7 @@ jobs:
   examples:
     name: examples
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
       - uses: actions/checkout@v4
@@ -68,7 +75,7 @@ jobs:
         run: |
           rye sync --all-features
 
-      - env: 
+      - env:
           CLOUDFLARE_ACCOUNT_ID: f037e56e89293a057740de681ac9abbe
           CLOUDFLARE_EMAIL: terraform-acceptance-test@cfapi.net
           CLOUDFLARE_ZONE_ID: 0da42c8d2132a9ddaf714f9e7c92011
