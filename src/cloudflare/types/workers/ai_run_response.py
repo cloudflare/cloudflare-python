@@ -8,14 +8,15 @@ from ..._models import BaseModel
 __all__ = [
     "AIRunResponse",
     "TextClassification",
+    "Audio",
     "TextEmbeddings",
     "AutomaticSpeechRecognition",
     "AutomaticSpeechRecognitionWord",
     "ImageClassification",
     "ObjectDetection",
     "ObjectDetectionBox",
-    "UnionMember6",
-    "UnionMember6ToolCall",
+    "UnionMember7",
+    "UnionMember7ToolCall",
     "Translation",
     "Summarization",
     "ImageToText",
@@ -31,6 +32,11 @@ class TextClassification(BaseModel):
     Confidence score indicating the likelihood that the text belongs to the
     specified label
     """
+
+
+class Audio(BaseModel):
+    audio: Optional[str] = None
+    """The generated audio in MP3 format, base64-encoded"""
 
 
 class TextEmbeddings(BaseModel):
@@ -97,7 +103,7 @@ class ObjectDetection(BaseModel):
     """Confidence score indicating the likelihood that the detection is correct"""
 
 
-class UnionMember6ToolCall(BaseModel):
+class UnionMember7ToolCall(BaseModel):
     arguments: Optional[object] = None
     """The arguments passed to be passed to the tool call request"""
 
@@ -105,11 +111,11 @@ class UnionMember6ToolCall(BaseModel):
     """The name of the tool to be called"""
 
 
-class UnionMember6(BaseModel):
+class UnionMember7(BaseModel):
     response: Optional[str] = None
     """The generated text response from the model"""
 
-    tool_calls: Optional[List[UnionMember6ToolCall]] = None
+    tool_calls: Optional[List[UnionMember7ToolCall]] = None
     """An array of tool calls requests made during the response generation"""
 
 
@@ -130,11 +136,12 @@ class ImageToText(BaseModel):
 AIRunResponse: TypeAlias = Union[
     List[TextClassification],
     object,
+    Audio,
     TextEmbeddings,
     AutomaticSpeechRecognition,
     List[ImageClassification],
     List[ObjectDetection],
-    UnionMember6,
+    UnionMember7,
     Translation,
     Summarization,
     ImageToText,

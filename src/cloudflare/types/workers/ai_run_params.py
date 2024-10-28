@@ -9,6 +9,7 @@ __all__ = [
     "AIRunParams",
     "TextClassification",
     "TextToImage",
+    "TextToSpeech",
     "TextEmbeddings",
     "AutomaticSpeechRecognition",
     "ImageClassification",
@@ -88,6 +89,19 @@ class TextToImage(TypedDict, total=False):
 
     width: int
     """The width of the generated image in pixels"""
+
+
+class TextToSpeech(TypedDict, total=False):
+    account_id: Required[str]
+
+    prompt: Required[str]
+    """A text description of the image you want to generate"""
+
+    lang: str
+    """The speech language (e.g., 'en' for English, 'fr' for French).
+
+    Defaults to 'en' if not specified
+    """
 
 
 class TextEmbeddings(TypedDict, total=False):
@@ -385,6 +399,7 @@ class ImageToText(TypedDict, total=False):
 AIRunParams: TypeAlias = Union[
     TextClassification,
     TextToImage,
+    TextToSpeech,
     TextEmbeddings,
     AutomaticSpeechRecognition,
     ImageClassification,
