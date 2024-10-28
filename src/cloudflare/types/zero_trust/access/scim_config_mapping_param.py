@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["SCIMConfigMappingParam", "Operations"]
 
@@ -34,6 +34,13 @@ class SCIMConfigMappingParam(TypedDict, total=False):
 
     operations: Operations
     """Whether or not this mapping applies to creates, updates, or deletes."""
+
+    strictness: Literal["strict", "passthrough"]
+    """
+    The level of adherence to outbound resource schemas when provisioning to this
+    mapping. ‘Strict’ removes unknown values, while ‘passthrough’ passes unknown
+    values to the target.
+    """
 
     transform_jsonata: str
     """

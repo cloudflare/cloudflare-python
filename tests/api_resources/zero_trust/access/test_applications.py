@@ -108,6 +108,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -119,6 +120,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -130,6 +132,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -275,6 +278,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -286,6 +290,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -297,6 +302,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -429,6 +435,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -440,6 +447,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -451,6 +459,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -594,6 +603,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -605,6 +615,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -616,6 +627,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -746,6 +758,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -757,6 +770,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -768,6 +782,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -891,6 +906,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -902,6 +918,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -913,6 +930,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -1036,6 +1054,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -1047,6 +1066,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -1058,6 +1078,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -1147,6 +1168,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -1158,6 +1180,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -1169,6 +1192,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -1583,6 +1607,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -1594,6 +1619,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -1605,6 +1631,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -1764,6 +1791,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -1775,6 +1803,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -1786,6 +1815,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -1930,6 +1960,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -1941,6 +1972,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -1952,6 +1984,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -2109,6 +2142,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -2120,6 +2154,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -2131,6 +2166,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -2275,6 +2311,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -2286,6 +2323,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -2297,6 +2335,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -2433,6 +2472,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -2444,6 +2484,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -2455,6 +2496,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -2591,6 +2633,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -2602,6 +2645,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -2613,6 +2657,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -2715,6 +2760,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -2726,6 +2772,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -2737,6 +2784,7 @@ class TestApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -3449,6 +3497,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -3460,6 +3509,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -3471,6 +3521,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -3616,6 +3667,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -3627,6 +3679,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -3638,6 +3691,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -3770,6 +3824,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -3781,6 +3836,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -3792,6 +3848,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -3935,6 +3992,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -3946,6 +4004,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -3957,6 +4016,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -4087,6 +4147,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -4098,6 +4159,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -4109,6 +4171,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -4232,6 +4295,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -4243,6 +4307,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -4254,6 +4319,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -4377,6 +4443,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -4388,6 +4455,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -4399,6 +4467,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -4488,6 +4557,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -4499,6 +4569,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -4510,6 +4581,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -4924,6 +4996,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -4935,6 +5008,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -4946,6 +5020,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -5105,6 +5180,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -5116,6 +5192,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -5127,6 +5204,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -5271,6 +5349,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -5282,6 +5361,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -5293,6 +5373,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -5450,6 +5531,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -5461,6 +5543,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -5472,6 +5555,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -5616,6 +5700,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -5627,6 +5712,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -5638,6 +5724,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -5774,6 +5861,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -5785,6 +5873,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -5796,6 +5885,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -5932,6 +6022,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -5943,6 +6034,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -5954,6 +6046,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
@@ -6056,6 +6149,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -6067,6 +6161,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                     {
@@ -6078,6 +6173,7 @@ class TestAsyncApplications:
                             "delete": True,
                             "update": True,
                         },
+                        "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
