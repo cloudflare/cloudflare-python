@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -27,7 +27,7 @@ class TestUnrevoke:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             ],
         )
-        assert_matches_type(Optional[UnrevokeCreateResponse], unrevoke, path=["response"])
+        assert_matches_type(UnrevokeCreateResponse, unrevoke, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -43,7 +43,7 @@ class TestUnrevoke:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         unrevoke = response.parse()
-        assert_matches_type(Optional[UnrevokeCreateResponse], unrevoke, path=["response"])
+        assert_matches_type(UnrevokeCreateResponse, unrevoke, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -59,7 +59,7 @@ class TestUnrevoke:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             unrevoke = response.parse()
-            assert_matches_type(Optional[UnrevokeCreateResponse], unrevoke, path=["response"])
+            assert_matches_type(UnrevokeCreateResponse, unrevoke, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -89,7 +89,7 @@ class TestAsyncUnrevoke:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             ],
         )
-        assert_matches_type(Optional[UnrevokeCreateResponse], unrevoke, path=["response"])
+        assert_matches_type(UnrevokeCreateResponse, unrevoke, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -105,7 +105,7 @@ class TestAsyncUnrevoke:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         unrevoke = await response.parse()
-        assert_matches_type(Optional[UnrevokeCreateResponse], unrevoke, path=["response"])
+        assert_matches_type(UnrevokeCreateResponse, unrevoke, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -121,7 +121,7 @@ class TestAsyncUnrevoke:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             unrevoke = await response.parse()
-            assert_matches_type(Optional[UnrevokeCreateResponse], unrevoke, path=["response"])
+            assert_matches_type(UnrevokeCreateResponse, unrevoke, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
