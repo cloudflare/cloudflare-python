@@ -629,7 +629,6 @@ Types:
 from cloudflare.types.cache import (
     CacheReserve,
     CacheReserveClear,
-    State,
     CacheReserveClearResponse,
     CacheReserveEditResponse,
     CacheReserveGetResponse,
@@ -668,8 +667,8 @@ Types:
 
 ```python
 from cloudflare.types.cache import (
-    CacheVariant,
     CacheVariantIdentifier,
+    VariantDeleteResponse,
     VariantEditResponse,
     VariantGetResponse,
 )
@@ -677,7 +676,7 @@ from cloudflare.types.cache import (
 
 Methods:
 
-- <code title="delete /zones/{zone_id}/cache/variants">client.cache.variants.<a href="./src/cloudflare/resources/cache/variants.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/cache_variant.py">CacheVariant</a></code>
+- <code title="delete /zones/{zone_id}/cache/variants">client.cache.variants.<a href="./src/cloudflare/resources/cache/variants.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/variant_delete_response.py">VariantDeleteResponse</a></code>
 - <code title="patch /zones/{zone_id}/cache/variants">client.cache.variants.<a href="./src/cloudflare/resources/cache/variants.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cache/variant_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cache/variant_edit_response.py">VariantEditResponse</a></code>
 - <code title="get /zones/{zone_id}/cache/variants">client.cache.variants.<a href="./src/cloudflare/resources/cache/variants.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cache/variant_get_response.py">VariantGetResponse</a></code>
 
