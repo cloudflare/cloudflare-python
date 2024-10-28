@@ -22,9 +22,9 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...types.cache import variant_edit_params
 from ..._base_client import make_request_options
-from ...types.cache.cache_variant import CacheVariant
 from ...types.cache.variant_get_response import VariantGetResponse
 from ...types.cache.variant_edit_response import VariantEditResponse
+from ...types.cache.variant_delete_response import VariantDeleteResponse
 
 __all__ = ["VariantsResource", "AsyncVariantsResource"]
 
@@ -59,7 +59,7 @@ class VariantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CacheVariant:
+    ) -> VariantDeleteResponse:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -87,9 +87,9 @@ class VariantsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CacheVariant]._unwrapper,
+                post_parser=ResultWrapper[VariantDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[CacheVariant], ResultWrapper[CacheVariant]),
+            cast_to=cast(Type[VariantDeleteResponse], ResultWrapper[VariantDeleteResponse]),
         )
 
     def edit(
@@ -213,7 +213,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CacheVariant:
+    ) -> VariantDeleteResponse:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -241,9 +241,9 @@ class AsyncVariantsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CacheVariant]._unwrapper,
+                post_parser=ResultWrapper[VariantDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[CacheVariant], ResultWrapper[CacheVariant]),
+            cast_to=cast(Type[VariantDeleteResponse], ResultWrapper[VariantDeleteResponse]),
         )
 
     async def edit(
