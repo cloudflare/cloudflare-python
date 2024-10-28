@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
@@ -36,6 +37,13 @@ class SCIMConfigMapping(BaseModel):
 
     operations: Optional[Operations] = None
     """Whether or not this mapping applies to creates, updates, or deletes."""
+
+    strictness: Optional[Literal["strict", "passthrough"]] = None
+    """
+    The level of adherence to outbound resource schemas when provisioning to this
+    mapping. ‘Strict’ removes unknown values, while ‘passthrough’ passes unknown
+    values to the target.
+    """
 
     transform_jsonata: Optional[str] = None
     """
