@@ -4484,6 +4484,7 @@ from cloudflare.types.r2.domains import (
     CustomUpdateResponse,
     CustomListResponse,
     CustomDeleteResponse,
+    CustomGetResponse,
 )
 ```
 
@@ -4493,6 +4494,7 @@ Methods:
 - <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}">client.r2.domains.custom.<a href="./src/cloudflare/resources/r2/domains/custom.py">update</a>(domain_name, \*, account_id, bucket_name, \*\*<a href="src/cloudflare/types/r2/domains/custom_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/domains/custom_update_response.py">CustomUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom">client.r2.domains.custom.<a href="./src/cloudflare/resources/r2/domains/custom.py">list</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/domains/custom_list_response.py">CustomListResponse</a></code>
 - <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}">client.r2.domains.custom.<a href="./src/cloudflare/resources/r2/domains/custom.py">delete</a>(domain_name, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/domains/custom_delete_response.py">CustomDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}">client.r2.domains.custom.<a href="./src/cloudflare/resources/r2/domains/custom.py">get</a>(domain_name, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/domains/custom_get_response.py">CustomGetResponse</a></code>
 
 ### Managed
 
