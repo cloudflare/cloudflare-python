@@ -1,14 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["InstanceCreateResponse", "InstanceCreateResponseItem"]
+__all__ = ["InstanceCreateResponse"]
 
 
-class InstanceCreateResponseItem(BaseModel):
+class InstanceCreateResponse(BaseModel):
     id: str
 
     status: Literal[
@@ -18,6 +17,3 @@ class InstanceCreateResponseItem(BaseModel):
     version_id: str
 
     workflow_id: str
-
-
-InstanceCreateResponse: TypeAlias = List[InstanceCreateResponseItem]
