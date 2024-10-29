@@ -16,6 +16,14 @@ from .security_txt import (
     SecurityTXTResourceWithStreamingResponse,
     AsyncSecurityTXTResourceWithStreamingResponse,
 )
+from .resource_sharing import (
+    ResourceSharingResource,
+    AsyncResourceSharingResource,
+    ResourceSharingResourceWithRawResponse,
+    AsyncResourceSharingResourceWithRawResponse,
+    ResourceSharingResourceWithStreamingResponse,
+    AsyncResourceSharingResourceWithStreamingResponse,
+)
 
 __all__ = [
     "SecurityTXTResource",
@@ -30,4 +38,10 @@ __all__ = [
     "AsyncWorkflowsResourceWithRawResponse",
     "WorkflowsResourceWithStreamingResponse",
     "AsyncWorkflowsResourceWithStreamingResponse",
+    "ResourceSharingResource",
+    "AsyncResourceSharingResource",
+    "ResourceSharingResourceWithRawResponse",
+    "AsyncResourceSharingResourceWithRawResponse",
+    "ResourceSharingResourceWithStreamingResponse",
+    "AsyncResourceSharingResourceWithStreamingResponse",
 ]
