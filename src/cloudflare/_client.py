@@ -107,6 +107,7 @@ if TYPE_CHECKING:
         request_tracers,
         brand_protection,
         custom_hostnames,
+        resource_sharing,
         mtls_certificates,
         url_normalization,
         custom_nameservers,
@@ -710,6 +711,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.workflows import WorkflowsResource
 
         return WorkflowsResource(self)
+
+    @cached_property
+    def resource_sharing(self) -> resource_sharing.ResourceSharingResource:
+        from .resources.resource_sharing import ResourceSharingResource
+
+        return ResourceSharingResource(self)
 
     @cached_property
     def with_raw_response(self) -> CloudflareWithRawResponse:
@@ -1471,6 +1478,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncWorkflowsResource(self)
 
     @cached_property
+    def resource_sharing(self) -> resource_sharing.AsyncResourceSharingResource:
+        from .resources.resource_sharing import AsyncResourceSharingResource
+
+        return AsyncResourceSharingResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCloudflareWithRawResponse:
         return AsyncCloudflareWithRawResponse(self)
 
@@ -2164,6 +2177,12 @@ class CloudflareWithRawResponse:
 
         return WorkflowsResourceWithRawResponse(self._client.workflows)
 
+    @cached_property
+    def resource_sharing(self) -> resource_sharing.ResourceSharingResourceWithRawResponse:
+        from .resources.resource_sharing import ResourceSharingResourceWithRawResponse
+
+        return ResourceSharingResourceWithRawResponse(self._client.resource_sharing)
+
 
 class AsyncCloudflareWithRawResponse:
     _client: AsyncCloudflare
@@ -2677,6 +2696,12 @@ class AsyncCloudflareWithRawResponse:
 
         return AsyncWorkflowsResourceWithRawResponse(self._client.workflows)
 
+    @cached_property
+    def resource_sharing(self) -> resource_sharing.AsyncResourceSharingResourceWithRawResponse:
+        from .resources.resource_sharing import AsyncResourceSharingResourceWithRawResponse
+
+        return AsyncResourceSharingResourceWithRawResponse(self._client.resource_sharing)
+
 
 class CloudflareWithStreamedResponse:
     _client: Cloudflare
@@ -3189,6 +3214,12 @@ class CloudflareWithStreamedResponse:
         from .resources.workflows import WorkflowsResourceWithStreamingResponse
 
         return WorkflowsResourceWithStreamingResponse(self._client.workflows)
+
+    @cached_property
+    def resource_sharing(self) -> resource_sharing.ResourceSharingResourceWithStreamingResponse:
+        from .resources.resource_sharing import ResourceSharingResourceWithStreamingResponse
+
+        return ResourceSharingResourceWithStreamingResponse(self._client.resource_sharing)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -3710,6 +3741,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.workflows import AsyncWorkflowsResourceWithStreamingResponse
 
         return AsyncWorkflowsResourceWithStreamingResponse(self._client.workflows)
+
+    @cached_property
+    def resource_sharing(self) -> resource_sharing.AsyncResourceSharingResourceWithStreamingResponse:
+        from .resources.resource_sharing import AsyncResourceSharingResourceWithStreamingResponse
+
+        return AsyncResourceSharingResourceWithStreamingResponse(self._client.resource_sharing)
 
 
 Client = Cloudflare

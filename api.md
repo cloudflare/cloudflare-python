@@ -4442,10 +4442,23 @@ from cloudflare.types.r2 import Bucket, BucketListResponse, BucketDeleteResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/r2/buckets">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/bucket_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/bucket.py">Bucket</a></code>
-- <code title="get /accounts/{account_id}/r2/buckets">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/bucket_list_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/bucket_list_response.py">BucketListResponse</a></code>
-- <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets.py">delete</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/bucket_delete_response.py">object</a></code>
-- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/bucket.py">Bucket</a></code>
+- <code title="post /accounts/{account_id}/r2/buckets">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets/buckets.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/bucket_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/bucket.py">Bucket</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets/buckets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/bucket_list_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/bucket_list_response.py">BucketListResponse</a></code>
+- <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets/buckets.py">delete</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/bucket_delete_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets/buckets.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/bucket.py">Bucket</a></code>
+
+### Lifecycle
+
+Types:
+
+```python
+from cloudflare.types.r2.buckets import LifecycleUpdateResponse, LifecycleGetResponse
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/lifecycle">client.r2.buckets.lifecycle.<a href="./src/cloudflare/resources/r2/buckets/lifecycle.py">update</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/buckets/lifecycle_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/lifecycle_update_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/lifecycle">client.r2.buckets.lifecycle.<a href="./src/cloudflare/resources/r2/buckets/lifecycle.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/lifecycle_get_response.py">LifecycleGetResponse</a></code>
 
 ## Sippy
 
@@ -8021,3 +8034,67 @@ Methods:
 
 - <code title="get /accounts/{account_id}/workflows/{workflow_name}/versions">client.workflows.versions.<a href="./src/cloudflare/resources/workflows/versions.py">list</a>(workflow_name, \*, account_id, \*\*<a href="src/cloudflare/types/workflows/version_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/version_list_response.py">SyncV4PagePagination[VersionListResponse]</a></code>
 - <code title="get /accounts/{account_id}/workflows/{workflow_name}/versions/{version_id}">client.workflows.versions.<a href="./src/cloudflare/resources/workflows/versions.py">get</a>(version_id, \*, account_id, workflow_name) -> <a href="./src/cloudflare/types/workflows/version_get_response.py">VersionGetResponse</a></code>
+
+# ResourceSharing
+
+Types:
+
+```python
+from cloudflare.types import (
+    ResourceSharingCreateResponse,
+    ResourceSharingUpdateResponse,
+    ResourceSharingListResponse,
+    ResourceSharingDeleteResponse,
+    ResourceSharingGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/shares">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing_create_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing_create_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/shares/{share_identifier}">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">update</a>(share_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing_update_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/shares">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing_list_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing_list_response.py">SyncV4PagePaginationArray[ResourceSharingListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/shares/{share_identifier}">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">delete</a>(share_identifier, \*, account_id) -> <a href="./src/cloudflare/types/resource_sharing_delete_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/shares/{share_identifier}">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">get</a>(share_identifier, \*, account_id) -> <a href="./src/cloudflare/types/resource_sharing_get_response.py">Optional</a></code>
+
+## Recipients
+
+Types:
+
+```python
+from cloudflare.types.resource_sharing import (
+    RecipientCreateResponse,
+    RecipientListResponse,
+    RecipientDeleteResponse,
+    RecipientGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/shares/{share_identifier}/recipients">client.resource_sharing.recipients.<a href="./src/cloudflare/resources/resource_sharing/recipients.py">create</a>(share_identifier, \*, path_account_id, \*\*<a href="src/cloudflare/types/resource_sharing/recipient_create_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/recipient_create_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/shares/{share_identifier}/recipients">client.resource_sharing.recipients.<a href="./src/cloudflare/resources/resource_sharing/recipients.py">list</a>(share_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing/recipient_list_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/recipient_list_response.py">SyncV4PagePaginationArray[RecipientListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/shares/{share_identifier}/recipients/{recipient_identifier}">client.resource_sharing.recipients.<a href="./src/cloudflare/resources/resource_sharing/recipients.py">delete</a>(recipient_identifier, \*, account_id, share_identifier) -> <a href="./src/cloudflare/types/resource_sharing/recipient_delete_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/shares/{share_identifier}/recipients/{recipient_identifier}">client.resource_sharing.recipients.<a href="./src/cloudflare/resources/resource_sharing/recipients.py">get</a>(recipient_identifier, \*, account_id, share_identifier) -> <a href="./src/cloudflare/types/resource_sharing/recipient_get_response.py">Optional</a></code>
+
+## Resources
+
+Types:
+
+```python
+from cloudflare.types.resource_sharing import (
+    ResourceCreateResponse,
+    ResourceUpdateResponse,
+    ResourceListResponse,
+    ResourceDeleteResponse,
+    ResourceGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/shares/{share_identifier}/resources">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">create</a>(share_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing/resource_create_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/resource_create_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/shares/{share_identifier}/resources/{resource_identifier}">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">update</a>(resource_identifier, \*, account_id, share_identifier, \*\*<a href="src/cloudflare/types/resource_sharing/resource_update_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/resource_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/shares/{share_identifier}/resources">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">list</a>(share_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing/resource_list_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/resource_list_response.py">SyncV4PagePaginationArray[ResourceListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/shares/{share_identifier}/resources/{resource_identifier}">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">delete</a>(resource_identifier, \*, account_id, share_identifier) -> <a href="./src/cloudflare/types/resource_sharing/resource_delete_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/shares/{share_identifier}/resources/{resource_identifier}">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">get</a>(resource_identifier, \*, account_id, share_identifier) -> <a href="./src/cloudflare/types/resource_sharing/resource_get_response.py">Optional</a></code>
