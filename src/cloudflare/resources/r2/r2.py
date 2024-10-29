@@ -28,6 +28,7 @@ from .domains import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .buckets.buckets import BucketsResource, AsyncBucketsResource
 from .domains.domains import DomainsResource, AsyncDomainsResource
 from .event_notifications import (
     EventNotificationsResource,
