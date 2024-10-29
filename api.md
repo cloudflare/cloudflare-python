@@ -629,6 +629,7 @@ Types:
 from cloudflare.types.cache import (
     CacheReserve,
     CacheReserveClear,
+    State,
     CacheReserveClearResponse,
     CacheReserveEditResponse,
     CacheReserveGetResponse,
