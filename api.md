@@ -4460,19 +4460,86 @@ Methods:
 - <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/lifecycle">client.r2.buckets.lifecycle.<a href="./src/cloudflare/resources/r2/buckets/lifecycle.py">update</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/buckets/lifecycle_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/lifecycle_update_response.py">object</a></code>
 - <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/lifecycle">client.r2.buckets.lifecycle.<a href="./src/cloudflare/resources/r2/buckets/lifecycle.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/lifecycle_get_response.py">LifecycleGetResponse</a></code>
 
-## Sippy
+### Domains
+
+#### Custom
 
 Types:
 
 ```python
-from cloudflare.types.r2 import Provider, Sippy, SippyDeleteResponse
+from cloudflare.types.r2.buckets.domains import (
+    CustomCreateResponse,
+    CustomUpdateResponse,
+    CustomListResponse,
+    CustomDeleteResponse,
+    CustomGetResponse,
+)
 ```
 
 Methods:
 
-- <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/sippy">client.r2.sippy.<a href="./src/cloudflare/resources/r2/sippy.py">update</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/sippy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/sippy.py">Sippy</a></code>
-- <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}/sippy">client.r2.sippy.<a href="./src/cloudflare/resources/r2/sippy.py">delete</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/sippy_delete_response.py">SippyDeleteResponse</a></code>
-- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/sippy">client.r2.sippy.<a href="./src/cloudflare/resources/r2/sippy.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/sippy.py">Sippy</a></code>
+- <code title="post /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom">client.r2.buckets.domains.custom.<a href="./src/cloudflare/resources/r2/buckets/domains/custom.py">create</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/buckets/domains/custom_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/domains/custom_create_response.py">CustomCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}">client.r2.buckets.domains.custom.<a href="./src/cloudflare/resources/r2/buckets/domains/custom.py">update</a>(domain_name, \*, account_id, bucket_name, \*\*<a href="src/cloudflare/types/r2/buckets/domains/custom_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/domains/custom_update_response.py">CustomUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom">client.r2.buckets.domains.custom.<a href="./src/cloudflare/resources/r2/buckets/domains/custom.py">list</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/domains/custom_list_response.py">CustomListResponse</a></code>
+- <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}">client.r2.buckets.domains.custom.<a href="./src/cloudflare/resources/r2/buckets/domains/custom.py">delete</a>(domain_name, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/buckets/domains/custom_delete_response.py">CustomDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}">client.r2.buckets.domains.custom.<a href="./src/cloudflare/resources/r2/buckets/domains/custom.py">get</a>(domain_name, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/buckets/domains/custom_get_response.py">CustomGetResponse</a></code>
+
+#### Managed
+
+Types:
+
+```python
+from cloudflare.types.r2.buckets.domains import ManagedUpdateResponse, ManagedListResponse
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed">client.r2.buckets.domains.managed.<a href="./src/cloudflare/resources/r2/buckets/domains/managed.py">update</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/buckets/domains/managed_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/domains/managed_update_response.py">ManagedUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed">client.r2.buckets.domains.managed.<a href="./src/cloudflare/resources/r2/buckets/domains/managed.py">list</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/domains/managed_list_response.py">ManagedListResponse</a></code>
+
+### EventNotifications
+
+#### Configuration
+
+Types:
+
+```python
+from cloudflare.types.r2.buckets.event_notifications import ConfigurationGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration">client.r2.buckets.event_notifications.configuration.<a href="./src/cloudflare/resources/r2/buckets/event_notifications/configuration/configuration.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/event_notifications/configuration_get_response.py">ConfigurationGetResponse</a></code>
+
+##### Queues
+
+Types:
+
+```python
+from cloudflare.types.r2.buckets.event_notifications.configuration import (
+    QueueUpdateResponse,
+    QueueDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.r2.buckets.event_notifications.configuration.queues.<a href="./src/cloudflare/resources/r2/buckets/event_notifications/configuration/queues.py">update</a>(queue_id, \*, account_id, bucket_name, \*\*<a href="src/cloudflare/types/r2/buckets/event_notifications/configuration/queue_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/event_notifications/configuration/queue_update_response.py">object</a></code>
+- <code title="delete /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.r2.buckets.event_notifications.configuration.queues.<a href="./src/cloudflare/resources/r2/buckets/event_notifications/configuration/queues.py">delete</a>(queue_id, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/buckets/event_notifications/configuration/queue_delete_response.py">object</a></code>
+
+### Sippy
+
+Types:
+
+```python
+from cloudflare.types.r2.buckets import Provider, Sippy, SippyDeleteResponse
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/sippy">client.r2.buckets.sippy.<a href="./src/cloudflare/resources/r2/buckets/sippy.py">update</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/buckets/sippy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/sippy.py">Sippy</a></code>
+- <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}/sippy">client.r2.buckets.sippy.<a href="./src/cloudflare/resources/r2/buckets/sippy.py">delete</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/sippy_delete_response.py">SippyDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/sippy">client.r2.buckets.sippy.<a href="./src/cloudflare/resources/r2/buckets/sippy.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/sippy.py">Sippy</a></code>
 
 ## TemporaryCredentials
 
@@ -4485,73 +4552,6 @@ from cloudflare.types.r2 import TemporaryCredential, TemporaryCredentialCreateRe
 Methods:
 
 - <code title="post /accounts/{account_id}/r2/temp-access-credentials">client.r2.temporary_credentials.<a href="./src/cloudflare/resources/r2/temporary_credentials.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/temporary_credential_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/temporary_credential_create_response.py">TemporaryCredentialCreateResponse</a></code>
-
-## Domains
-
-### Custom
-
-Types:
-
-```python
-from cloudflare.types.r2.domains import (
-    CustomCreateResponse,
-    CustomUpdateResponse,
-    CustomListResponse,
-    CustomDeleteResponse,
-    CustomGetResponse,
-)
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom">client.r2.domains.custom.<a href="./src/cloudflare/resources/r2/domains/custom.py">create</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/domains/custom_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/domains/custom_create_response.py">CustomCreateResponse</a></code>
-- <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}">client.r2.domains.custom.<a href="./src/cloudflare/resources/r2/domains/custom.py">update</a>(domain_name, \*, account_id, bucket_name, \*\*<a href="src/cloudflare/types/r2/domains/custom_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/domains/custom_update_response.py">CustomUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom">client.r2.domains.custom.<a href="./src/cloudflare/resources/r2/domains/custom.py">list</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/domains/custom_list_response.py">CustomListResponse</a></code>
-- <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}">client.r2.domains.custom.<a href="./src/cloudflare/resources/r2/domains/custom.py">delete</a>(domain_name, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/domains/custom_delete_response.py">CustomDeleteResponse</a></code>
-- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}">client.r2.domains.custom.<a href="./src/cloudflare/resources/r2/domains/custom.py">get</a>(domain_name, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/domains/custom_get_response.py">CustomGetResponse</a></code>
-
-### Managed
-
-Types:
-
-```python
-from cloudflare.types.r2.domains import ManagedUpdateResponse, ManagedListResponse
-```
-
-Methods:
-
-- <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed">client.r2.domains.managed.<a href="./src/cloudflare/resources/r2/domains/managed.py">update</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/domains/managed_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/domains/managed_update_response.py">ManagedUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/managed">client.r2.domains.managed.<a href="./src/cloudflare/resources/r2/domains/managed.py">list</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/domains/managed_list_response.py">ManagedListResponse</a></code>
-
-## EventNotifications
-
-### Configuration
-
-Types:
-
-```python
-from cloudflare.types.r2.event_notifications import ConfigurationGetResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration">client.r2.event_notifications.configuration.<a href="./src/cloudflare/resources/r2/event_notifications/configuration/configuration.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/event_notifications/configuration_get_response.py">ConfigurationGetResponse</a></code>
-
-#### Queues
-
-Types:
-
-```python
-from cloudflare.types.r2.event_notifications.configuration import (
-    QueueUpdateResponse,
-    QueueDeleteResponse,
-)
-```
-
-Methods:
-
-- <code title="put /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.r2.event_notifications.configuration.queues.<a href="./src/cloudflare/resources/r2/event_notifications/configuration/queues.py">update</a>(queue_id, \*, account_id, bucket_name, \*\*<a href="src/cloudflare/types/r2/event_notifications/configuration/queue_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/event_notifications/configuration/queue_update_response.py">object</a></code>
-- <code title="delete /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.r2.event_notifications.configuration.queues.<a href="./src/cloudflare/resources/r2/event_notifications/configuration/queues.py">delete</a>(queue_id, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/event_notifications/configuration/queue_delete_response.py">object</a></code>
 
 # WARPConnector
 
