@@ -1,15 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
-from typing_extensions import TypeAlias
 
 from ...._models import BaseModel
 
-__all__ = ["MessageGetResponse", "MessageGetResponseItem"]
+__all__ = ["MessageCreateResponse"]
 
 
-class MessageGetResponseItem(BaseModel):
+class MessageCreateResponse(BaseModel):
     id: int
     """Message ID"""
 
@@ -27,6 +26,3 @@ class MessageGetResponseItem(BaseModel):
 
     created: Optional[datetime] = None
     """Message creation time"""
-
-
-MessageGetResponse: TypeAlias = List[MessageGetResponseItem]

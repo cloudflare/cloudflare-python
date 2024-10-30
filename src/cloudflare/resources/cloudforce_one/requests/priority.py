@@ -22,12 +22,12 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.cloudforce_one.item import Item
-from ....types.cloudforce_one.quota import Quota
 from ....types.cloudforce_one.requests import priority_create_params, priority_update_params
-from ....types.cloudforce_one.requests.label import Label
-from ....types.cloudforce_one.requests.priority import Priority
+from ....types.cloudforce_one.requests.priority_get_response import PriorityGetResponse
+from ....types.cloudforce_one.requests.priority_quota_response import PriorityQuotaResponse
+from ....types.cloudforce_one.requests.priority_create_response import PriorityCreateResponse
 from ....types.cloudforce_one.requests.priority_delete_response import PriorityDeleteResponse
+from ....types.cloudforce_one.requests.priority_update_response import PriorityUpdateResponse
 
 __all__ = ["PriorityResource", "AsyncPriorityResource"]
 
@@ -56,7 +56,7 @@ class PriorityResource(SyncAPIResource):
         self,
         account_identifier: str,
         *,
-        labels: List[Label],
+        labels: List[str],
         priority: int,
         requirement: str,
         tlp: Literal["clear", "amber", "amber-strict", "green", "red"],
@@ -66,7 +66,7 @@ class PriorityResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Priority]:
+    ) -> Optional[PriorityCreateResponse]:
         """
         Create a New Priority Intelligence Requirement
 
@@ -107,9 +107,9 @@ class PriorityResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Priority]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PriorityCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Priority]], ResultWrapper[Priority]),
+            cast_to=cast(Type[Optional[PriorityCreateResponse]], ResultWrapper[PriorityCreateResponse]),
         )
 
     def update(
@@ -117,7 +117,7 @@ class PriorityResource(SyncAPIResource):
         priority_identifer: str,
         *,
         account_identifier: str,
-        labels: List[Label],
+        labels: List[str],
         priority: int,
         requirement: str,
         tlp: Literal["clear", "amber", "amber-strict", "green", "red"],
@@ -127,7 +127,7 @@ class PriorityResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Item]:
+    ) -> Optional[PriorityUpdateResponse]:
         """
         Update a Priority Intelligence Requirement
 
@@ -172,9 +172,9 @@ class PriorityResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Item]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PriorityUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Item]], ResultWrapper[Item]),
+            cast_to=cast(Type[Optional[PriorityUpdateResponse]], ResultWrapper[PriorityUpdateResponse]),
         )
 
     def delete(
@@ -228,7 +228,7 @@ class PriorityResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Item]:
+    ) -> Optional[PriorityGetResponse]:
         """
         Get a Priority Intelligence Requirement
 
@@ -256,9 +256,9 @@ class PriorityResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Item]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PriorityGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Item]], ResultWrapper[Item]),
+            cast_to=cast(Type[Optional[PriorityGetResponse]], ResultWrapper[PriorityGetResponse]),
         )
 
     def quota(
@@ -271,7 +271,7 @@ class PriorityResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Quota]:
+    ) -> Optional[PriorityQuotaResponse]:
         """
         Get Priority Intelligence Requirement Quota
 
@@ -295,9 +295,9 @@ class PriorityResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Quota]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PriorityQuotaResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Quota]], ResultWrapper[Quota]),
+            cast_to=cast(Type[Optional[PriorityQuotaResponse]], ResultWrapper[PriorityQuotaResponse]),
         )
 
 
@@ -325,7 +325,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         self,
         account_identifier: str,
         *,
-        labels: List[Label],
+        labels: List[str],
         priority: int,
         requirement: str,
         tlp: Literal["clear", "amber", "amber-strict", "green", "red"],
@@ -335,7 +335,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Priority]:
+    ) -> Optional[PriorityCreateResponse]:
         """
         Create a New Priority Intelligence Requirement
 
@@ -376,9 +376,9 @@ class AsyncPriorityResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Priority]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PriorityCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Priority]], ResultWrapper[Priority]),
+            cast_to=cast(Type[Optional[PriorityCreateResponse]], ResultWrapper[PriorityCreateResponse]),
         )
 
     async def update(
@@ -386,7 +386,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         priority_identifer: str,
         *,
         account_identifier: str,
-        labels: List[Label],
+        labels: List[str],
         priority: int,
         requirement: str,
         tlp: Literal["clear", "amber", "amber-strict", "green", "red"],
@@ -396,7 +396,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Item]:
+    ) -> Optional[PriorityUpdateResponse]:
         """
         Update a Priority Intelligence Requirement
 
@@ -441,9 +441,9 @@ class AsyncPriorityResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Item]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PriorityUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Item]], ResultWrapper[Item]),
+            cast_to=cast(Type[Optional[PriorityUpdateResponse]], ResultWrapper[PriorityUpdateResponse]),
         )
 
     async def delete(
@@ -497,7 +497,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Item]:
+    ) -> Optional[PriorityGetResponse]:
         """
         Get a Priority Intelligence Requirement
 
@@ -525,9 +525,9 @@ class AsyncPriorityResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Item]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PriorityGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Item]], ResultWrapper[Item]),
+            cast_to=cast(Type[Optional[PriorityGetResponse]], ResultWrapper[PriorityGetResponse]),
         )
 
     async def quota(
@@ -540,7 +540,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Quota]:
+    ) -> Optional[PriorityQuotaResponse]:
         """
         Get Priority Intelligence Requirement Quota
 
@@ -564,9 +564,9 @@ class AsyncPriorityResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Quota]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PriorityQuotaResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Quota]], ResultWrapper[Quota]),
+            cast_to=cast(Type[Optional[PriorityQuotaResponse]], ResultWrapper[PriorityQuotaResponse]),
         )
 
 
