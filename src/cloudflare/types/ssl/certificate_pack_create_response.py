@@ -3,14 +3,14 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from ..host import Host
-from ..status import Status
-from ...._models import BaseModel
+from .host import Host
+from .status import Status
+from ..._models import BaseModel
 
-__all__ = ["OrderCreateResponse"]
+__all__ = ["CertificatePackCreateResponse"]
 
 
-class OrderCreateResponse(BaseModel):
+class CertificatePackCreateResponse(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
