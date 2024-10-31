@@ -5,12 +5,12 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
-from ..host import Host
+from .host import Host
 
-__all__ = ["OrderCreateParams"]
+__all__ = ["CertificatePackCreateParams"]
 
 
-class OrderCreateParams(TypedDict, total=False):
+class CertificatePackCreateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
