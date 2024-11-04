@@ -4,10 +4,10 @@ from typing import List, Optional
 
 from ...._models import BaseModel
 
-__all__ = ["HealthGetResponse", "PopHealth", "PopHealthOrigin", "PopHealthOriginIP"]
+__all__ = ["HealthGetResponse", "POPHealth", "POPHealthOrigin", "POPHealthOriginIP"]
 
 
-class PopHealthOriginIP(BaseModel):
+class POPHealthOriginIP(BaseModel):
     failure_reason: Optional[str] = None
     """Failure reason."""
 
@@ -21,20 +21,20 @@ class PopHealthOriginIP(BaseModel):
     """Origin RTT (Round Trip Time) response."""
 
 
-class PopHealthOrigin(BaseModel):
-    ip: Optional[PopHealthOriginIP] = None
+class POPHealthOrigin(BaseModel):
+    ip: Optional[POPHealthOriginIP] = None
 
 
-class PopHealth(BaseModel):
+class POPHealth(BaseModel):
     healthy: Optional[bool] = None
     """Whether health check in region is healthy."""
 
-    origins: Optional[List[PopHealthOrigin]] = None
+    origins: Optional[List[POPHealthOrigin]] = None
 
 
 class HealthGetResponse(BaseModel):
     pool_id: Optional[str] = None
     """Pool ID"""
 
-    pop_health: Optional[PopHealth] = None
+    pop_health: Optional[POPHealth] = None
     """List of regions and associated health status."""
