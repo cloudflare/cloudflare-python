@@ -4,13 +4,11 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-from .cache_variant_identifier import CacheVariantIdentifier
-
 __all__ = ["RegionalTieredCacheEditParams"]
 
 
 class RegionalTieredCacheEditParams(TypedDict, total=False):
-    zone_id: Required[CacheVariantIdentifier]
+    zone_id: Required[str]
     """Identifier"""
 
     value: Required[Literal["on", "off"]]

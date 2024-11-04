@@ -21,9 +21,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._wrappers import ResultWrapper
-from ..types.cache import CacheVariantIdentifier
 from .._base_client import make_request_options
-from ..types.cache.cache_variant_identifier import CacheVariantIdentifier
 from ..types.origin_post_quantum_encryption import origin_post_quantum_encryption_update_params
 from ..types.origin_post_quantum_encryption.origin_post_quantum_encryption_get_response import (
     OriginPostQuantumEncryptionGetResponse,
@@ -58,7 +56,7 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
     def update(
         self,
         *,
-        zone_id: CacheVariantIdentifier,
+        zone_id: str,
         value: Literal["preferred", "supported", "off"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -114,7 +112,7 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: CacheVariantIdentifier,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -184,7 +182,7 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        zone_id: CacheVariantIdentifier,
+        zone_id: str,
         value: Literal["preferred", "supported", "off"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -240,7 +238,7 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: CacheVariantIdentifier,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
