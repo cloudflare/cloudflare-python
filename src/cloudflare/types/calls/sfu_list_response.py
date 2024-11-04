@@ -3,12 +3,12 @@
 from typing import Optional
 from datetime import datetime
 
-from ...._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["KeyGetResponse"]
+__all__ = ["SfuListResponse"]
 
 
-class KeyGetResponse(BaseModel):
+class SfuListResponse(BaseModel):
     created: Optional[datetime] = None
     """The date and time the item was created."""
 
