@@ -6,51 +6,51 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.calls.turn import key_create_params, key_update_params
-from ....types.calls.turn.key_get_response import KeyGetResponse
-from ....types.calls.turn.key_list_response import KeyListResponse
-from ....types.calls.turn.key_create_response import KeyCreateResponse
-from ....types.calls.turn.key_delete_response import KeyDeleteResponse
-from ....types.calls.turn.key_update_response import KeyUpdateResponse
+from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ...types.calls import sfu_create_params, sfu_update_params
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.calls.sfu_get_response import SfuGetResponse
+from ...types.calls.sfu_list_response import SfuListResponse
+from ...types.calls.sfu_create_response import SfuCreateResponse
+from ...types.calls.sfu_delete_response import SfuDeleteResponse
+from ...types.calls.sfu_update_response import SfuUpdateResponse
 
-__all__ = ["KeysResource", "AsyncKeysResource"]
+__all__ = ["SfuResource", "AsyncSfuResource"]
 
 
-class KeysResource(SyncAPIResource):
+class SfuResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> KeysResourceWithRawResponse:
+    def with_raw_response(self) -> SfuResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return KeysResourceWithRawResponse(self)
+        return SfuResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> KeysResourceWithStreamingResponse:
+    def with_streaming_response(self) -> SfuResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return KeysResourceWithStreamingResponse(self)
+        return SfuResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -63,14 +63,16 @@ class KeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyCreateResponse:
-        """
-        Creates a new Cloudflare Calls TURN key.
+    ) -> Optional[SfuCreateResponse]:
+        """Creates a new Cloudflare calls app.
+
+        An app is an unique enviroment where each
+        Session can access all Tracks within the app.
 
         Args:
           account_id: The account identifier tag.
 
-          name: A short description of a TURN key, not shown to end users.
+          name: A short description of Calls app, not shown to end users.
 
           extra_headers: Send extra headers
 
@@ -83,17 +85,21 @@ class KeysResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/calls/turn_keys",
-            body=maybe_transform({"name": name}, key_create_params.KeyCreateParams),
+            f"/accounts/{account_id}/calls/apps",
+            body=maybe_transform({"name": name}, sfu_create_params.SfuCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SfuCreateResponse]]._unwrapper,
             ),
-            cast_to=KeyCreateResponse,
+            cast_to=cast(Type[Optional[SfuCreateResponse]], ResultWrapper[SfuCreateResponse]),
         )
 
     def update(
         self,
-        key_id: str,
+        app_id: str,
         *,
         account_id: str,
         name: str | NotGiven = NOT_GIVEN,
@@ -103,16 +109,16 @@ class KeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyUpdateResponse]:
+    ) -> Optional[SfuUpdateResponse]:
         """
-        Edit details for a single TURN key.
+        Edit details for a single app.
 
         Args:
           account_id: The account identifier tag.
 
-          key_id: A Cloudflare-generated unique identifier for a item.
+          app_id: A Cloudflare-generated unique identifier for a item.
 
-          name: A short description of a TURN key, not shown to end users.
+          name: A short description of Calls app, not shown to end users.
 
           extra_headers: Send extra headers
 
@@ -124,19 +130,19 @@ class KeysResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not key_id:
-            raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._put(
-            f"/accounts/{account_id}/calls/turn_keys/{key_id}",
-            body=maybe_transform({"name": name}, key_update_params.KeyUpdateParams),
+            f"/accounts/{account_id}/calls/apps/{app_id}",
+            body=maybe_transform({"name": name}, sfu_update_params.SfuUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[KeyUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SfuUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[KeyUpdateResponse]], ResultWrapper[KeyUpdateResponse]),
+            cast_to=cast(Type[Optional[SfuUpdateResponse]], ResultWrapper[SfuUpdateResponse]),
         )
 
     def list(
@@ -149,9 +155,9 @@ class KeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[KeyListResponse]:
+    ) -> SyncSinglePage[SfuListResponse]:
         """
-        Lists all TURN keys in the Cloudflare account
+        Lists all apps in the Cloudflare account
 
         Args:
           account_id: The account identifier tag.
@@ -167,17 +173,17 @@ class KeysResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/calls/turn_keys",
-            page=SyncSinglePage[KeyListResponse],
+            f"/accounts/{account_id}/calls/apps",
+            page=SyncSinglePage[SfuListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=KeyListResponse,
+            model=SfuListResponse,
         )
 
     def delete(
         self,
-        key_id: str,
+        app_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -186,14 +192,14 @@ class KeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyDeleteResponse]:
+    ) -> Optional[SfuDeleteResponse]:
         """
-        Deletes a TURN key from Cloudflare Calls
+        Deletes an app from Cloudflare Calls
 
         Args:
           account_id: The account identifier tag.
 
-          key_id: A Cloudflare-generated unique identifier for a item.
+          app_id: A Cloudflare-generated unique identifier for a item.
 
           extra_headers: Send extra headers
 
@@ -205,23 +211,23 @@ class KeysResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not key_id:
-            raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/calls/turn_keys/{key_id}",
+            f"/accounts/{account_id}/calls/apps/{app_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[KeyDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SfuDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[KeyDeleteResponse]], ResultWrapper[KeyDeleteResponse]),
+            cast_to=cast(Type[Optional[SfuDeleteResponse]], ResultWrapper[SfuDeleteResponse]),
         )
 
     def get(
         self,
-        key_id: str,
+        app_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -230,14 +236,14 @@ class KeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyGetResponse]:
+    ) -> Optional[SfuGetResponse]:
         """
-        Fetches details for a single TURN key.
+        Fetches details for a single Calls app.
 
         Args:
           account_id: The account identifier tag.
 
-          key_id: A Cloudflare-generated unique identifier for a item.
+          app_id: A Cloudflare-generated unique identifier for a item.
 
           extra_headers: Send extra headers
 
@@ -249,40 +255,40 @@ class KeysResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not key_id:
-            raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._get(
-            f"/accounts/{account_id}/calls/turn_keys/{key_id}",
+            f"/accounts/{account_id}/calls/apps/{app_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SfuGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[KeyGetResponse]], ResultWrapper[KeyGetResponse]),
+            cast_to=cast(Type[Optional[SfuGetResponse]], ResultWrapper[SfuGetResponse]),
         )
 
 
-class AsyncKeysResource(AsyncAPIResource):
+class AsyncSfuResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncKeysResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncSfuResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncKeysResourceWithRawResponse(self)
+        return AsyncSfuResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncKeysResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncSfuResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncKeysResourceWithStreamingResponse(self)
+        return AsyncSfuResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -295,14 +301,16 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> KeyCreateResponse:
-        """
-        Creates a new Cloudflare Calls TURN key.
+    ) -> Optional[SfuCreateResponse]:
+        """Creates a new Cloudflare calls app.
+
+        An app is an unique enviroment where each
+        Session can access all Tracks within the app.
 
         Args:
           account_id: The account identifier tag.
 
-          name: A short description of a TURN key, not shown to end users.
+          name: A short description of Calls app, not shown to end users.
 
           extra_headers: Send extra headers
 
@@ -315,17 +323,21 @@ class AsyncKeysResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/calls/turn_keys",
-            body=await async_maybe_transform({"name": name}, key_create_params.KeyCreateParams),
+            f"/accounts/{account_id}/calls/apps",
+            body=await async_maybe_transform({"name": name}, sfu_create_params.SfuCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SfuCreateResponse]]._unwrapper,
             ),
-            cast_to=KeyCreateResponse,
+            cast_to=cast(Type[Optional[SfuCreateResponse]], ResultWrapper[SfuCreateResponse]),
         )
 
     async def update(
         self,
-        key_id: str,
+        app_id: str,
         *,
         account_id: str,
         name: str | NotGiven = NOT_GIVEN,
@@ -335,16 +347,16 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyUpdateResponse]:
+    ) -> Optional[SfuUpdateResponse]:
         """
-        Edit details for a single TURN key.
+        Edit details for a single app.
 
         Args:
           account_id: The account identifier tag.
 
-          key_id: A Cloudflare-generated unique identifier for a item.
+          app_id: A Cloudflare-generated unique identifier for a item.
 
-          name: A short description of a TURN key, not shown to end users.
+          name: A short description of Calls app, not shown to end users.
 
           extra_headers: Send extra headers
 
@@ -356,19 +368,19 @@ class AsyncKeysResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not key_id:
-            raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/calls/turn_keys/{key_id}",
-            body=await async_maybe_transform({"name": name}, key_update_params.KeyUpdateParams),
+            f"/accounts/{account_id}/calls/apps/{app_id}",
+            body=await async_maybe_transform({"name": name}, sfu_update_params.SfuUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[KeyUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SfuUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[KeyUpdateResponse]], ResultWrapper[KeyUpdateResponse]),
+            cast_to=cast(Type[Optional[SfuUpdateResponse]], ResultWrapper[SfuUpdateResponse]),
         )
 
     def list(
@@ -381,9 +393,9 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[KeyListResponse, AsyncSinglePage[KeyListResponse]]:
+    ) -> AsyncPaginator[SfuListResponse, AsyncSinglePage[SfuListResponse]]:
         """
-        Lists all TURN keys in the Cloudflare account
+        Lists all apps in the Cloudflare account
 
         Args:
           account_id: The account identifier tag.
@@ -399,17 +411,17 @@ class AsyncKeysResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/calls/turn_keys",
-            page=AsyncSinglePage[KeyListResponse],
+            f"/accounts/{account_id}/calls/apps",
+            page=AsyncSinglePage[SfuListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=KeyListResponse,
+            model=SfuListResponse,
         )
 
     async def delete(
         self,
-        key_id: str,
+        app_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -418,14 +430,14 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyDeleteResponse]:
+    ) -> Optional[SfuDeleteResponse]:
         """
-        Deletes a TURN key from Cloudflare Calls
+        Deletes an app from Cloudflare Calls
 
         Args:
           account_id: The account identifier tag.
 
-          key_id: A Cloudflare-generated unique identifier for a item.
+          app_id: A Cloudflare-generated unique identifier for a item.
 
           extra_headers: Send extra headers
 
@@ -437,23 +449,23 @@ class AsyncKeysResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not key_id:
-            raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/calls/turn_keys/{key_id}",
+            f"/accounts/{account_id}/calls/apps/{app_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[KeyDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SfuDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[KeyDeleteResponse]], ResultWrapper[KeyDeleteResponse]),
+            cast_to=cast(Type[Optional[SfuDeleteResponse]], ResultWrapper[SfuDeleteResponse]),
         )
 
     async def get(
         self,
-        key_id: str,
+        app_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -462,14 +474,14 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyGetResponse]:
+    ) -> Optional[SfuGetResponse]:
         """
-        Fetches details for a single TURN key.
+        Fetches details for a single Calls app.
 
         Args:
           account_id: The account identifier tag.
 
-          key_id: A Cloudflare-generated unique identifier for a item.
+          app_id: A Cloudflare-generated unique identifier for a item.
 
           extra_headers: Send extra headers
 
@@ -481,100 +493,100 @@ class AsyncKeysResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not key_id:
-            raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/calls/turn_keys/{key_id}",
+            f"/accounts/{account_id}/calls/apps/{app_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SfuGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[KeyGetResponse]], ResultWrapper[KeyGetResponse]),
+            cast_to=cast(Type[Optional[SfuGetResponse]], ResultWrapper[SfuGetResponse]),
         )
 
 
-class KeysResourceWithRawResponse:
-    def __init__(self, keys: KeysResource) -> None:
-        self._keys = keys
+class SfuResourceWithRawResponse:
+    def __init__(self, sfu: SfuResource) -> None:
+        self._sfu = sfu
 
         self.create = to_raw_response_wrapper(
-            keys.create,
+            sfu.create,
         )
         self.update = to_raw_response_wrapper(
-            keys.update,
+            sfu.update,
         )
         self.list = to_raw_response_wrapper(
-            keys.list,
+            sfu.list,
         )
         self.delete = to_raw_response_wrapper(
-            keys.delete,
+            sfu.delete,
         )
         self.get = to_raw_response_wrapper(
-            keys.get,
+            sfu.get,
         )
 
 
-class AsyncKeysResourceWithRawResponse:
-    def __init__(self, keys: AsyncKeysResource) -> None:
-        self._keys = keys
+class AsyncSfuResourceWithRawResponse:
+    def __init__(self, sfu: AsyncSfuResource) -> None:
+        self._sfu = sfu
 
         self.create = async_to_raw_response_wrapper(
-            keys.create,
+            sfu.create,
         )
         self.update = async_to_raw_response_wrapper(
-            keys.update,
+            sfu.update,
         )
         self.list = async_to_raw_response_wrapper(
-            keys.list,
+            sfu.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            keys.delete,
+            sfu.delete,
         )
         self.get = async_to_raw_response_wrapper(
-            keys.get,
+            sfu.get,
         )
 
 
-class KeysResourceWithStreamingResponse:
-    def __init__(self, keys: KeysResource) -> None:
-        self._keys = keys
+class SfuResourceWithStreamingResponse:
+    def __init__(self, sfu: SfuResource) -> None:
+        self._sfu = sfu
 
         self.create = to_streamed_response_wrapper(
-            keys.create,
+            sfu.create,
         )
         self.update = to_streamed_response_wrapper(
-            keys.update,
+            sfu.update,
         )
         self.list = to_streamed_response_wrapper(
-            keys.list,
+            sfu.list,
         )
         self.delete = to_streamed_response_wrapper(
-            keys.delete,
+            sfu.delete,
         )
         self.get = to_streamed_response_wrapper(
-            keys.get,
+            sfu.get,
         )
 
 
-class AsyncKeysResourceWithStreamingResponse:
-    def __init__(self, keys: AsyncKeysResource) -> None:
-        self._keys = keys
+class AsyncSfuResourceWithStreamingResponse:
+    def __init__(self, sfu: AsyncSfuResource) -> None:
+        self._sfu = sfu
 
         self.create = async_to_streamed_response_wrapper(
-            keys.create,
+            sfu.create,
         )
         self.update = async_to_streamed_response_wrapper(
-            keys.update,
+            sfu.update,
         )
         self.list = async_to_streamed_response_wrapper(
-            keys.list,
+            sfu.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            keys.delete,
+            sfu.delete,
         )
         self.get = async_to_streamed_response_wrapper(
-            keys.get,
+            sfu.get,
         )

@@ -3,12 +3,12 @@
 from typing import Optional
 from datetime import datetime
 
-from ...._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["KeyListResponse"]
+__all__ = ["TURNDeleteResponse"]
 
 
-class KeyListResponse(BaseModel):
+class TURNDeleteResponse(BaseModel):
     created: Optional[datetime] = None
     """The date and time the item was created."""
 

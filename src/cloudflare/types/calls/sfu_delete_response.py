@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["CallsApp"]
+__all__ = ["SfuDeleteResponse"]
 
 
-class CallsApp(BaseModel):
+class SfuDeleteResponse(BaseModel):
     created: Optional[datetime] = None
     """The date and time the item was created."""
 

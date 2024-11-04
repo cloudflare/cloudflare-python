@@ -10,494 +10,494 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.calls.turn import (
-    KeyGetResponse,
-    KeyListResponse,
-    KeyCreateResponse,
-    KeyDeleteResponse,
-    KeyUpdateResponse,
+from cloudflare.types.calls import (
+    SfuGetResponse,
+    SfuListResponse,
+    SfuCreateResponse,
+    SfuDeleteResponse,
+    SfuUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestKeys:
+class TestSfu:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
-        key = client.calls.turn.keys.create(
+        sfu = client.calls.sfu.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(KeyCreateResponse, key, path=["response"])
+        assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        key = client.calls.turn.keys.create(
+        sfu = client.calls.sfu.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="my-turn-key",
+            name="production-realtime-app",
         )
-        assert_matches_type(KeyCreateResponse, key, path=["response"])
+        assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.calls.turn.keys.with_raw_response.create(
+        response = client.calls.sfu.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        key = response.parse()
-        assert_matches_type(KeyCreateResponse, key, path=["response"])
+        sfu = response.parse()
+        assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
-        with client.calls.turn.keys.with_streaming_response.create(
+        with client.calls.sfu.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            key = response.parse()
-            assert_matches_type(KeyCreateResponse, key, path=["response"])
+            sfu = response.parse()
+            assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.calls.turn.keys.with_raw_response.create(
+            client.calls.sfu.with_raw_response.create(
                 account_id="",
             )
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
-        key = client.calls.turn.keys.update(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        sfu = client.calls.sfu.update(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[KeyUpdateResponse], key, path=["response"])
+        assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        key = client.calls.turn.keys.update(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        sfu = client.calls.sfu.update(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="my-turn-key",
+            name="production-realtime-app",
         )
-        assert_matches_type(Optional[KeyUpdateResponse], key, path=["response"])
+        assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.calls.turn.keys.with_raw_response.update(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        response = client.calls.sfu.with_raw_response.update(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        key = response.parse()
-        assert_matches_type(Optional[KeyUpdateResponse], key, path=["response"])
+        sfu = response.parse()
+        assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.calls.turn.keys.with_streaming_response.update(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        with client.calls.sfu.with_streaming_response.update(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            key = response.parse()
-            assert_matches_type(Optional[KeyUpdateResponse], key, path=["response"])
+            sfu = response.parse()
+            assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.calls.turn.keys.with_raw_response.update(
-                key_id="2a95132c15732412d22c1476fa83f27a",
+            client.calls.sfu.with_raw_response.update(
+                app_id="2a95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_id` but received ''"):
-            client.calls.turn.keys.with_raw_response.update(
-                key_id="",
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.calls.sfu.with_raw_response.update(
+                app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        key = client.calls.turn.keys.list(
+        sfu = client.calls.sfu.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[KeyListResponse], key, path=["response"])
+        assert_matches_type(SyncSinglePage[SfuListResponse], sfu, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.calls.turn.keys.with_raw_response.list(
+        response = client.calls.sfu.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        key = response.parse()
-        assert_matches_type(SyncSinglePage[KeyListResponse], key, path=["response"])
+        sfu = response.parse()
+        assert_matches_type(SyncSinglePage[SfuListResponse], sfu, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.calls.turn.keys.with_streaming_response.list(
+        with client.calls.sfu.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            key = response.parse()
-            assert_matches_type(SyncSinglePage[KeyListResponse], key, path=["response"])
+            sfu = response.parse()
+            assert_matches_type(SyncSinglePage[SfuListResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.calls.turn.keys.with_raw_response.list(
+            client.calls.sfu.with_raw_response.list(
                 account_id="",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
-        key = client.calls.turn.keys.delete(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        sfu = client.calls.sfu.delete(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[KeyDeleteResponse], key, path=["response"])
+        assert_matches_type(Optional[SfuDeleteResponse], sfu, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.calls.turn.keys.with_raw_response.delete(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        response = client.calls.sfu.with_raw_response.delete(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        key = response.parse()
-        assert_matches_type(Optional[KeyDeleteResponse], key, path=["response"])
+        sfu = response.parse()
+        assert_matches_type(Optional[SfuDeleteResponse], sfu, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.calls.turn.keys.with_streaming_response.delete(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        with client.calls.sfu.with_streaming_response.delete(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            key = response.parse()
-            assert_matches_type(Optional[KeyDeleteResponse], key, path=["response"])
+            sfu = response.parse()
+            assert_matches_type(Optional[SfuDeleteResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.calls.turn.keys.with_raw_response.delete(
-                key_id="2a95132c15732412d22c1476fa83f27a",
+            client.calls.sfu.with_raw_response.delete(
+                app_id="2a95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_id` but received ''"):
-            client.calls.turn.keys.with_raw_response.delete(
-                key_id="",
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.calls.sfu.with_raw_response.delete(
+                app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        key = client.calls.turn.keys.get(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        sfu = client.calls.sfu.get(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[KeyGetResponse], key, path=["response"])
+        assert_matches_type(Optional[SfuGetResponse], sfu, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.calls.turn.keys.with_raw_response.get(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        response = client.calls.sfu.with_raw_response.get(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        key = response.parse()
-        assert_matches_type(Optional[KeyGetResponse], key, path=["response"])
+        sfu = response.parse()
+        assert_matches_type(Optional[SfuGetResponse], sfu, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.calls.turn.keys.with_streaming_response.get(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        with client.calls.sfu.with_streaming_response.get(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            key = response.parse()
-            assert_matches_type(Optional[KeyGetResponse], key, path=["response"])
+            sfu = response.parse()
+            assert_matches_type(Optional[SfuGetResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.calls.turn.keys.with_raw_response.get(
-                key_id="2a95132c15732412d22c1476fa83f27a",
+            client.calls.sfu.with_raw_response.get(
+                app_id="2a95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_id` but received ''"):
-            client.calls.turn.keys.with_raw_response.get(
-                key_id="",
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.calls.sfu.with_raw_response.get(
+                app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
-class TestAsyncKeys:
+class TestAsyncSfu:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        key = await async_client.calls.turn.keys.create(
+        sfu = await async_client.calls.sfu.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(KeyCreateResponse, key, path=["response"])
+        assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        key = await async_client.calls.turn.keys.create(
+        sfu = await async_client.calls.sfu.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="my-turn-key",
+            name="production-realtime-app",
         )
-        assert_matches_type(KeyCreateResponse, key, path=["response"])
+        assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.calls.turn.keys.with_raw_response.create(
+        response = await async_client.calls.sfu.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        key = await response.parse()
-        assert_matches_type(KeyCreateResponse, key, path=["response"])
+        sfu = await response.parse()
+        assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.calls.turn.keys.with_streaming_response.create(
+        async with async_client.calls.sfu.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            key = await response.parse()
-            assert_matches_type(KeyCreateResponse, key, path=["response"])
+            sfu = await response.parse()
+            assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.calls.turn.keys.with_raw_response.create(
+            await async_client.calls.sfu.with_raw_response.create(
                 account_id="",
             )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        key = await async_client.calls.turn.keys.update(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        sfu = await async_client.calls.sfu.update(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[KeyUpdateResponse], key, path=["response"])
+        assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        key = await async_client.calls.turn.keys.update(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        sfu = await async_client.calls.sfu.update(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="my-turn-key",
+            name="production-realtime-app",
         )
-        assert_matches_type(Optional[KeyUpdateResponse], key, path=["response"])
+        assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.calls.turn.keys.with_raw_response.update(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        response = await async_client.calls.sfu.with_raw_response.update(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        key = await response.parse()
-        assert_matches_type(Optional[KeyUpdateResponse], key, path=["response"])
+        sfu = await response.parse()
+        assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.calls.turn.keys.with_streaming_response.update(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        async with async_client.calls.sfu.with_streaming_response.update(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            key = await response.parse()
-            assert_matches_type(Optional[KeyUpdateResponse], key, path=["response"])
+            sfu = await response.parse()
+            assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.calls.turn.keys.with_raw_response.update(
-                key_id="2a95132c15732412d22c1476fa83f27a",
+            await async_client.calls.sfu.with_raw_response.update(
+                app_id="2a95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_id` but received ''"):
-            await async_client.calls.turn.keys.with_raw_response.update(
-                key_id="",
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.calls.sfu.with_raw_response.update(
+                app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        key = await async_client.calls.turn.keys.list(
+        sfu = await async_client.calls.sfu.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[KeyListResponse], key, path=["response"])
+        assert_matches_type(AsyncSinglePage[SfuListResponse], sfu, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.calls.turn.keys.with_raw_response.list(
+        response = await async_client.calls.sfu.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        key = await response.parse()
-        assert_matches_type(AsyncSinglePage[KeyListResponse], key, path=["response"])
+        sfu = await response.parse()
+        assert_matches_type(AsyncSinglePage[SfuListResponse], sfu, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.calls.turn.keys.with_streaming_response.list(
+        async with async_client.calls.sfu.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            key = await response.parse()
-            assert_matches_type(AsyncSinglePage[KeyListResponse], key, path=["response"])
+            sfu = await response.parse()
+            assert_matches_type(AsyncSinglePage[SfuListResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.calls.turn.keys.with_raw_response.list(
+            await async_client.calls.sfu.with_raw_response.list(
                 account_id="",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        key = await async_client.calls.turn.keys.delete(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        sfu = await async_client.calls.sfu.delete(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[KeyDeleteResponse], key, path=["response"])
+        assert_matches_type(Optional[SfuDeleteResponse], sfu, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.calls.turn.keys.with_raw_response.delete(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        response = await async_client.calls.sfu.with_raw_response.delete(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        key = await response.parse()
-        assert_matches_type(Optional[KeyDeleteResponse], key, path=["response"])
+        sfu = await response.parse()
+        assert_matches_type(Optional[SfuDeleteResponse], sfu, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.calls.turn.keys.with_streaming_response.delete(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        async with async_client.calls.sfu.with_streaming_response.delete(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            key = await response.parse()
-            assert_matches_type(Optional[KeyDeleteResponse], key, path=["response"])
+            sfu = await response.parse()
+            assert_matches_type(Optional[SfuDeleteResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.calls.turn.keys.with_raw_response.delete(
-                key_id="2a95132c15732412d22c1476fa83f27a",
+            await async_client.calls.sfu.with_raw_response.delete(
+                app_id="2a95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_id` but received ''"):
-            await async_client.calls.turn.keys.with_raw_response.delete(
-                key_id="",
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.calls.sfu.with_raw_response.delete(
+                app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        key = await async_client.calls.turn.keys.get(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        sfu = await async_client.calls.sfu.get(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[KeyGetResponse], key, path=["response"])
+        assert_matches_type(Optional[SfuGetResponse], sfu, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.calls.turn.keys.with_raw_response.get(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        response = await async_client.calls.sfu.with_raw_response.get(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        key = await response.parse()
-        assert_matches_type(Optional[KeyGetResponse], key, path=["response"])
+        sfu = await response.parse()
+        assert_matches_type(Optional[SfuGetResponse], sfu, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.calls.turn.keys.with_streaming_response.get(
-            key_id="2a95132c15732412d22c1476fa83f27a",
+        async with async_client.calls.sfu.with_streaming_response.get(
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            key = await response.parse()
-            assert_matches_type(Optional[KeyGetResponse], key, path=["response"])
+            sfu = await response.parse()
+            assert_matches_type(Optional[SfuGetResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.calls.turn.keys.with_raw_response.get(
-                key_id="2a95132c15732412d22c1476fa83f27a",
+            await async_client.calls.sfu.with_raw_response.get(
+                app_id="2a95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_id` but received ''"):
-            await async_client.calls.turn.keys.with_raw_response.get(
-                key_id="",
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.calls.sfu.with_raw_response.get(
+                app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
