@@ -7640,14 +7640,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.calls import CallsApp, CallsAppWithSecret, CallListResponse
+from cloudflare.types.calls import CallsApp, CallsAppWithSecret
 ```
 
 Methods:
 
 - <code title="post /accounts/{account_id}/calls/apps">client.calls.<a href="./src/cloudflare/resources/calls/calls.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/calls/call_create_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/calls_app_with_secret.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/calls/apps/{app_id}">client.calls.<a href="./src/cloudflare/resources/calls/calls.py">update</a>(app_id, \*, account_id, \*\*<a href="src/cloudflare/types/calls/call_update_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/calls_app.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/calls/apps">client.calls.<a href="./src/cloudflare/resources/calls/calls.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/calls/call_list_response.py">SyncSinglePage[CallListResponse]</a></code>
+- <code title="get /accounts/{account_id}/calls/apps">client.calls.<a href="./src/cloudflare/resources/calls/calls.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/calls/calls_app.py">SyncSinglePage[CallsApp]</a></code>
 - <code title="delete /accounts/{account_id}/calls/apps/{app_id}">client.calls.<a href="./src/cloudflare/resources/calls/calls.py">delete</a>(app_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/calls_app.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/calls/apps/{app_id}">client.calls.<a href="./src/cloudflare/resources/calls/calls.py">get</a>(app_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/calls_app.py">Optional</a></code>
 
@@ -7670,10 +7670,10 @@ from cloudflare.types.calls.turn import (
 Methods:
 
 - <code title="post /accounts/{account_id}/calls/turn_keys">client.calls.turn.keys.<a href="./src/cloudflare/resources/calls/turn/keys.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/calls/turn/key_create_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/turn/key_create_response.py">KeyCreateResponse</a></code>
-- <code title="put /accounts/{account_id}/calls/turn_keys/{key_id}">client.calls.turn.keys.<a href="./src/cloudflare/resources/calls/turn/keys.py">update</a>(key_id, \*, account_id, \*\*<a href="src/cloudflare/types/calls/turn/key_update_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/turn/key_update_response.py">str</a></code>
+- <code title="put /accounts/{account_id}/calls/turn_keys/{key_id}">client.calls.turn.keys.<a href="./src/cloudflare/resources/calls/turn/keys.py">update</a>(key_id, \*, account_id, \*\*<a href="src/cloudflare/types/calls/turn/key_update_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/turn/key_update_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/calls/turn_keys">client.calls.turn.keys.<a href="./src/cloudflare/resources/calls/turn/keys.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/calls/turn/key_list_response.py">SyncSinglePage[KeyListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/calls/turn_keys/{key_id}">client.calls.turn.keys.<a href="./src/cloudflare/resources/calls/turn/keys.py">delete</a>(key_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/turn/key_delete_response.py">str</a></code>
-- <code title="get /accounts/{account_id}/calls/turn_keys/{key_id}">client.calls.turn.keys.<a href="./src/cloudflare/resources/calls/turn/keys.py">get</a>(key_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/turn/key_get_response.py">str</a></code>
+- <code title="delete /accounts/{account_id}/calls/turn_keys/{key_id}">client.calls.turn.keys.<a href="./src/cloudflare/resources/calls/turn/keys.py">delete</a>(key_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/turn/key_delete_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/calls/turn_keys/{key_id}">client.calls.turn.keys.<a href="./src/cloudflare/resources/calls/turn/keys.py">get</a>(key_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/turn/key_get_response.py">Optional</a></code>
 
 # CloudforceOne
 
