@@ -24,10 +24,9 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.cloudforce_one.requests import message_get_params, message_create_params, message_update_params
+from ....types.cloudforce_one.requests.message import Message
 from ....types.cloudforce_one.requests.message_get_response import MessageGetResponse
-from ....types.cloudforce_one.requests.message_create_response import MessageCreateResponse
 from ....types.cloudforce_one.requests.message_delete_response import MessageDeleteResponse
-from ....types.cloudforce_one.requests.message_update_response import MessageUpdateResponse
 
 __all__ = ["MessageResource", "AsyncMessageResource"]
 
@@ -64,7 +63,7 @@ class MessageResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessageCreateResponse]:
+    ) -> Optional[Message]:
         """
         Create a New Request Message
 
@@ -95,9 +94,9 @@ class MessageResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MessageCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Message]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MessageCreateResponse]], ResultWrapper[MessageCreateResponse]),
+            cast_to=cast(Type[Optional[Message]], ResultWrapper[Message]),
         )
 
     def update(
@@ -113,7 +112,7 @@ class MessageResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessageUpdateResponse]:
+    ) -> Optional[Message]:
         """
         Update a Request Message
 
@@ -144,9 +143,9 @@ class MessageResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MessageUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Message]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MessageUpdateResponse]], ResultWrapper[MessageUpdateResponse]),
+            cast_to=cast(Type[Optional[Message]], ResultWrapper[Message]),
         )
 
     def delete(
@@ -296,7 +295,7 @@ class AsyncMessageResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessageCreateResponse]:
+    ) -> Optional[Message]:
         """
         Create a New Request Message
 
@@ -327,9 +326,9 @@ class AsyncMessageResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MessageCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Message]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MessageCreateResponse]], ResultWrapper[MessageCreateResponse]),
+            cast_to=cast(Type[Optional[Message]], ResultWrapper[Message]),
         )
 
     async def update(
@@ -345,7 +344,7 @@ class AsyncMessageResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessageUpdateResponse]:
+    ) -> Optional[Message]:
         """
         Update a Request Message
 
@@ -376,9 +375,9 @@ class AsyncMessageResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MessageUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Message]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MessageUpdateResponse]], ResultWrapper[MessageUpdateResponse]),
+            cast_to=cast(Type[Optional[Message]], ResultWrapper[Message]),
         )
 
     async def delete(

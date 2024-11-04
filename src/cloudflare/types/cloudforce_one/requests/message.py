@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ...._models import BaseModel
 
-__all__ = ["MessageUpdateResponse"]
+__all__ = ["Message"]
 
 
-class MessageUpdateResponse(BaseModel):
+class Message(BaseModel):
     id: int
     """Message ID"""
 

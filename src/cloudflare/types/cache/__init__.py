@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .state import State as State
 from .cache_reserve import CacheReserve as CacheReserve
+from .cache_variant import CacheVariant as CacheVariant
 from .cache_purge_params import CachePurgeParams as CachePurgeParams
 from .cache_reserve_clear import CacheReserveClear as CacheReserveClear
 from .variant_edit_params import VariantEditParams as VariantEditParams
@@ -11,7 +12,6 @@ from .cache_purge_response import CachePurgeResponse as CachePurgeResponse
 from .variant_get_response import VariantGetResponse as VariantGetResponse
 from .regional_tiered_cache import RegionalTieredCache as RegionalTieredCache
 from .variant_edit_response import VariantEditResponse as VariantEditResponse
-from .variant_delete_response import VariantDeleteResponse as VariantDeleteResponse
 from .cache_variant_identifier import CacheVariantIdentifier as CacheVariantIdentifier
 from .cache_reserve_edit_params import CacheReserveEditParams as CacheReserveEditParams
 from .cache_reserve_clear_params import CacheReserveClearParams as CacheReserveClearParams
