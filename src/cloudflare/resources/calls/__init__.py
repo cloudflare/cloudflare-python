@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .sfu import (
-    SfuResource,
-    AsyncSfuResource,
-    SfuResourceWithRawResponse,
-    AsyncSfuResourceWithRawResponse,
-    SfuResourceWithStreamingResponse,
-    AsyncSfuResourceWithStreamingResponse,
+    SFUResource,
+    AsyncSFUResource,
+    SFUResourceWithRawResponse,
+    AsyncSFUResourceWithRawResponse,
+    SFUResourceWithStreamingResponse,
+    AsyncSFUResourceWithStreamingResponse,
 )
 from .turn import (
     TURNResource,
@@ -26,12 +26,12 @@ from .calls import (
 )
 
 __all__ = [
-    "SfuResource",
-    "AsyncSfuResource",
-    "SfuResourceWithRawResponse",
-    "AsyncSfuResourceWithRawResponse",
-    "SfuResourceWithStreamingResponse",
-    "AsyncSfuResourceWithStreamingResponse",
+    "SFUResource",
+    "AsyncSFUResource",
+    "SFUResourceWithRawResponse",
+    "AsyncSFUResourceWithRawResponse",
+    "SFUResourceWithStreamingResponse",
+    "AsyncSFUResourceWithStreamingResponse",
     "TURNResource",
     "AsyncTURNResource",
     "TURNResourceWithRawResponse",

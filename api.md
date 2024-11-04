@@ -7637,17 +7637,17 @@ Methods:
 
 # Calls
 
-## Sfu
+## SFU
 
 Types:
 
 ```python
 from cloudflare.types.calls import (
-    SfuCreateResponse,
-    SfuUpdateResponse,
-    SfuListResponse,
-    SfuDeleteResponse,
-    SfuGetResponse,
+    SFUCreateResponse,
+    SFUUpdateResponse,
+    SFUListResponse,
+    SFUDeleteResponse,
+    SFUGetResponse,
 )
 ```
 
@@ -7655,7 +7655,7 @@ Methods:
 
 - <code title="post /accounts/{account_id}/calls/apps">client.calls.sfu.<a href="./src/cloudflare/resources/calls/sfu.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/calls/sfu_create_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/sfu_create_response.py">Optional</a></code>
 - <code title="put /accounts/{account_id}/calls/apps/{app_id}">client.calls.sfu.<a href="./src/cloudflare/resources/calls/sfu.py">update</a>(app_id, \*, account_id, \*\*<a href="src/cloudflare/types/calls/sfu_update_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/sfu_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/calls/apps">client.calls.sfu.<a href="./src/cloudflare/resources/calls/sfu.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/calls/sfu_list_response.py">SyncSinglePage[SfuListResponse]</a></code>
+- <code title="get /accounts/{account_id}/calls/apps">client.calls.sfu.<a href="./src/cloudflare/resources/calls/sfu.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/calls/sfu_list_response.py">SyncSinglePage[SFUListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/calls/apps/{app_id}">client.calls.sfu.<a href="./src/cloudflare/resources/calls/sfu.py">delete</a>(app_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/sfu_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/calls/apps/{app_id}">client.calls.sfu.<a href="./src/cloudflare/resources/calls/sfu.py">get</a>(app_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/sfu_get_response.py">Optional</a></code>
 
