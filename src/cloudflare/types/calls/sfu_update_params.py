@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["SfuUpdateParams"]
+__all__ = ["SFUUpdateParams"]
 
 
-class SfuUpdateParams(TypedDict, total=False):
+class SFUUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """The account identifier tag."""
 

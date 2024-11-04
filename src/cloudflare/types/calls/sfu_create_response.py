@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["SfuCreateResponse"]
+__all__ = ["SFUCreateResponse"]
 
 
-class SfuCreateResponse(BaseModel):
+class SFUCreateResponse(BaseModel):
     created: Optional[datetime] = None
     """The date and time the item was created."""
 

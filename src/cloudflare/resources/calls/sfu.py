@@ -23,34 +23,34 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ...types.calls import sfu_create_params, sfu_update_params
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.calls.sfu_get_response import SfuGetResponse
-from ...types.calls.sfu_list_response import SfuListResponse
-from ...types.calls.sfu_create_response import SfuCreateResponse
-from ...types.calls.sfu_delete_response import SfuDeleteResponse
-from ...types.calls.sfu_update_response import SfuUpdateResponse
+from ...types.calls.sfu_get_response import SFUGetResponse
+from ...types.calls.sfu_list_response import SFUListResponse
+from ...types.calls.sfu_create_response import SFUCreateResponse
+from ...types.calls.sfu_delete_response import SFUDeleteResponse
+from ...types.calls.sfu_update_response import SFUUpdateResponse
 
-__all__ = ["SfuResource", "AsyncSfuResource"]
+__all__ = ["SFUResource", "AsyncSFUResource"]
 
 
-class SfuResource(SyncAPIResource):
+class SFUResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SfuResourceWithRawResponse:
+    def with_raw_response(self) -> SFUResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return SfuResourceWithRawResponse(self)
+        return SFUResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SfuResourceWithStreamingResponse:
+    def with_streaming_response(self) -> SFUResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return SfuResourceWithStreamingResponse(self)
+        return SFUResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -63,7 +63,7 @@ class SfuResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SfuCreateResponse]:
+    ) -> Optional[SFUCreateResponse]:
         """Creates a new Cloudflare calls app.
 
         An app is an unique enviroment where each
@@ -86,15 +86,15 @@ class SfuResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/calls/apps",
-            body=maybe_transform({"name": name}, sfu_create_params.SfuCreateParams),
+            body=maybe_transform({"name": name}, sfu_create_params.SFUCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SfuCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SFUCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SfuCreateResponse]], ResultWrapper[SfuCreateResponse]),
+            cast_to=cast(Type[Optional[SFUCreateResponse]], ResultWrapper[SFUCreateResponse]),
         )
 
     def update(
@@ -109,7 +109,7 @@ class SfuResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SfuUpdateResponse]:
+    ) -> Optional[SFUUpdateResponse]:
         """
         Edit details for a single app.
 
@@ -134,15 +134,15 @@ class SfuResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return self._put(
             f"/accounts/{account_id}/calls/apps/{app_id}",
-            body=maybe_transform({"name": name}, sfu_update_params.SfuUpdateParams),
+            body=maybe_transform({"name": name}, sfu_update_params.SFUUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SfuUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SFUUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SfuUpdateResponse]], ResultWrapper[SfuUpdateResponse]),
+            cast_to=cast(Type[Optional[SFUUpdateResponse]], ResultWrapper[SFUUpdateResponse]),
         )
 
     def list(
@@ -155,7 +155,7 @@ class SfuResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[SfuListResponse]:
+    ) -> SyncSinglePage[SFUListResponse]:
         """
         Lists all apps in the Cloudflare account
 
@@ -174,11 +174,11 @@ class SfuResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/calls/apps",
-            page=SyncSinglePage[SfuListResponse],
+            page=SyncSinglePage[SFUListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SfuListResponse,
+            model=SFUListResponse,
         )
 
     def delete(
@@ -192,7 +192,7 @@ class SfuResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SfuDeleteResponse]:
+    ) -> Optional[SFUDeleteResponse]:
         """
         Deletes an app from Cloudflare Calls
 
@@ -220,9 +220,9 @@ class SfuResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SfuDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SFUDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SfuDeleteResponse]], ResultWrapper[SfuDeleteResponse]),
+            cast_to=cast(Type[Optional[SFUDeleteResponse]], ResultWrapper[SFUDeleteResponse]),
         )
 
     def get(
@@ -236,7 +236,7 @@ class SfuResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SfuGetResponse]:
+    ) -> Optional[SFUGetResponse]:
         """
         Fetches details for a single Calls app.
 
@@ -264,31 +264,31 @@ class SfuResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SfuGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SFUGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SfuGetResponse]], ResultWrapper[SfuGetResponse]),
+            cast_to=cast(Type[Optional[SFUGetResponse]], ResultWrapper[SFUGetResponse]),
         )
 
 
-class AsyncSfuResource(AsyncAPIResource):
+class AsyncSFUResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSfuResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncSFUResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncSfuResourceWithRawResponse(self)
+        return AsyncSFUResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSfuResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncSFUResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncSfuResourceWithStreamingResponse(self)
+        return AsyncSFUResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -301,7 +301,7 @@ class AsyncSfuResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SfuCreateResponse]:
+    ) -> Optional[SFUCreateResponse]:
         """Creates a new Cloudflare calls app.
 
         An app is an unique enviroment where each
@@ -324,15 +324,15 @@ class AsyncSfuResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/calls/apps",
-            body=await async_maybe_transform({"name": name}, sfu_create_params.SfuCreateParams),
+            body=await async_maybe_transform({"name": name}, sfu_create_params.SFUCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SfuCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SFUCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SfuCreateResponse]], ResultWrapper[SfuCreateResponse]),
+            cast_to=cast(Type[Optional[SFUCreateResponse]], ResultWrapper[SFUCreateResponse]),
         )
 
     async def update(
@@ -347,7 +347,7 @@ class AsyncSfuResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SfuUpdateResponse]:
+    ) -> Optional[SFUUpdateResponse]:
         """
         Edit details for a single app.
 
@@ -372,15 +372,15 @@ class AsyncSfuResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         return await self._put(
             f"/accounts/{account_id}/calls/apps/{app_id}",
-            body=await async_maybe_transform({"name": name}, sfu_update_params.SfuUpdateParams),
+            body=await async_maybe_transform({"name": name}, sfu_update_params.SFUUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SfuUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SFUUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SfuUpdateResponse]], ResultWrapper[SfuUpdateResponse]),
+            cast_to=cast(Type[Optional[SFUUpdateResponse]], ResultWrapper[SFUUpdateResponse]),
         )
 
     def list(
@@ -393,7 +393,7 @@ class AsyncSfuResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[SfuListResponse, AsyncSinglePage[SfuListResponse]]:
+    ) -> AsyncPaginator[SFUListResponse, AsyncSinglePage[SFUListResponse]]:
         """
         Lists all apps in the Cloudflare account
 
@@ -412,11 +412,11 @@ class AsyncSfuResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/calls/apps",
-            page=AsyncSinglePage[SfuListResponse],
+            page=AsyncSinglePage[SFUListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=SfuListResponse,
+            model=SFUListResponse,
         )
 
     async def delete(
@@ -430,7 +430,7 @@ class AsyncSfuResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SfuDeleteResponse]:
+    ) -> Optional[SFUDeleteResponse]:
         """
         Deletes an app from Cloudflare Calls
 
@@ -458,9 +458,9 @@ class AsyncSfuResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SfuDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SFUDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SfuDeleteResponse]], ResultWrapper[SfuDeleteResponse]),
+            cast_to=cast(Type[Optional[SFUDeleteResponse]], ResultWrapper[SFUDeleteResponse]),
         )
 
     async def get(
@@ -474,7 +474,7 @@ class AsyncSfuResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SfuGetResponse]:
+    ) -> Optional[SFUGetResponse]:
         """
         Fetches details for a single Calls app.
 
@@ -502,14 +502,14 @@ class AsyncSfuResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SfuGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[SFUGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SfuGetResponse]], ResultWrapper[SfuGetResponse]),
+            cast_to=cast(Type[Optional[SFUGetResponse]], ResultWrapper[SFUGetResponse]),
         )
 
 
-class SfuResourceWithRawResponse:
-    def __init__(self, sfu: SfuResource) -> None:
+class SFUResourceWithRawResponse:
+    def __init__(self, sfu: SFUResource) -> None:
         self._sfu = sfu
 
         self.create = to_raw_response_wrapper(
@@ -529,8 +529,8 @@ class SfuResourceWithRawResponse:
         )
 
 
-class AsyncSfuResourceWithRawResponse:
-    def __init__(self, sfu: AsyncSfuResource) -> None:
+class AsyncSFUResourceWithRawResponse:
+    def __init__(self, sfu: AsyncSFUResource) -> None:
         self._sfu = sfu
 
         self.create = async_to_raw_response_wrapper(
@@ -550,8 +550,8 @@ class AsyncSfuResourceWithRawResponse:
         )
 
 
-class SfuResourceWithStreamingResponse:
-    def __init__(self, sfu: SfuResource) -> None:
+class SFUResourceWithStreamingResponse:
+    def __init__(self, sfu: SFUResource) -> None:
         self._sfu = sfu
 
         self.create = to_streamed_response_wrapper(
@@ -571,8 +571,8 @@ class SfuResourceWithStreamingResponse:
         )
 
 
-class AsyncSfuResourceWithStreamingResponse:
-    def __init__(self, sfu: AsyncSfuResource) -> None:
+class AsyncSFUResourceWithStreamingResponse:
+    def __init__(self, sfu: AsyncSFUResource) -> None:
         self._sfu = sfu
 
         self.create = async_to_streamed_response_wrapper(
