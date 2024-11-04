@@ -21,8 +21,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.cache import regional_tiered_cache_edit_params
+from ...types.cache import CacheVariantIdentifier, regional_tiered_cache_edit_params
 from ..._base_client import make_request_options
+from ...types.cache.cache_variant_identifier import CacheVariantIdentifier
 from ...types.cache.regional_tiered_cache_get_response import RegionalTieredCacheGetResponse
 from ...types.cache.regional_tiered_cache_edit_response import RegionalTieredCacheEditResponse
 
@@ -52,7 +53,7 @@ class RegionalTieredCacheResource(SyncAPIResource):
     def edit(
         self,
         *,
-        zone_id: str,
+        zone_id: CacheVariantIdentifier,
         value: Literal["on", "off"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -97,7 +98,7 @@ class RegionalTieredCacheResource(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: str,
+        zone_id: CacheVariantIdentifier,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -159,7 +160,7 @@ class AsyncRegionalTieredCacheResource(AsyncAPIResource):
     async def edit(
         self,
         *,
-        zone_id: str,
+        zone_id: CacheVariantIdentifier,
         value: Literal["on", "off"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -206,7 +207,7 @@ class AsyncRegionalTieredCacheResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: str,
+        zone_id: CacheVariantIdentifier,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

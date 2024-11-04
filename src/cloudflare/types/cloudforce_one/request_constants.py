@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["RequestConstantsResponse"]
+__all__ = ["RequestConstants"]
 
 
-class RequestConstantsResponse(BaseModel):
+class RequestConstants(BaseModel):
     priority: Optional[List[Literal["routine", "high", "urgent"]]] = None
 
     status: Optional[List[Literal["open", "accepted", "reported", "approved", "completed", "declined"]]] = None

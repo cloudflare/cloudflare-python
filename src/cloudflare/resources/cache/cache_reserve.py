@@ -21,8 +21,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.cache import cache_reserve_edit_params, cache_reserve_clear_params
+from ...types.cache import CacheVariantIdentifier, cache_reserve_edit_params, cache_reserve_clear_params
 from ..._base_client import make_request_options
+from ...types.cache.cache_variant_identifier import CacheVariantIdentifier
 from ...types.cache.cache_reserve_get_response import CacheReserveGetResponse
 from ...types.cache.cache_reserve_edit_response import CacheReserveEditResponse
 from ...types.cache.cache_reserve_clear_response import CacheReserveClearResponse
@@ -54,7 +55,7 @@ class CacheReserveResource(SyncAPIResource):
     def clear(
         self,
         *,
-        zone_id: str,
+        zone_id: CacheVariantIdentifier,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -98,7 +99,7 @@ class CacheReserveResource(SyncAPIResource):
     def edit(
         self,
         *,
-        zone_id: str,
+        zone_id: CacheVariantIdentifier,
         value: Literal["on", "off"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -146,7 +147,7 @@ class CacheReserveResource(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: str,
+        zone_id: CacheVariantIdentifier,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -190,7 +191,7 @@ class CacheReserveResource(SyncAPIResource):
     def status(
         self,
         *,
-        zone_id: str,
+        zone_id: CacheVariantIdentifier,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -253,7 +254,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
     async def clear(
         self,
         *,
-        zone_id: str,
+        zone_id: CacheVariantIdentifier,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -297,7 +298,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
     async def edit(
         self,
         *,
-        zone_id: str,
+        zone_id: CacheVariantIdentifier,
         value: Literal["on", "off"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -345,7 +346,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: str,
+        zone_id: CacheVariantIdentifier,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -389,7 +390,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
     async def status(
         self,
         *,
-        zone_id: str,
+        zone_id: CacheVariantIdentifier,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
