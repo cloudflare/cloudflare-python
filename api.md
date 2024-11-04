@@ -667,12 +667,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.cache import (
-    CacheVariant,
-    CacheVariantIdentifier,
-    VariantEditResponse,
-    VariantGetResponse,
-)
+from cloudflare.types.cache import CacheVariant, VariantEditResponse, VariantGetResponse
 ```
 
 Methods:

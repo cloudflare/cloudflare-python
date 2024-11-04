@@ -21,9 +21,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.cache import CacheVariantIdentifier, smart_tiered_cache_edit_params
+from ...types.cache import smart_tiered_cache_edit_params
 from ..._base_client import make_request_options
-from ...types.cache.cache_variant_identifier import CacheVariantIdentifier
 from ...types.cache.smart_tiered_cache_get_response import SmartTieredCacheGetResponse
 from ...types.cache.smart_tiered_cache_edit_response import SmartTieredCacheEditResponse
 from ...types.cache.smart_tiered_cache_delete_response import SmartTieredCacheDeleteResponse
@@ -54,7 +53,7 @@ class SmartTieredCacheResource(SyncAPIResource):
     def delete(
         self,
         *,
-        zone_id: CacheVariantIdentifier,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -93,7 +92,7 @@ class SmartTieredCacheResource(SyncAPIResource):
     def edit(
         self,
         *,
-        zone_id: CacheVariantIdentifier,
+        zone_id: str,
         value: Literal["on", "off"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -136,7 +135,7 @@ class SmartTieredCacheResource(SyncAPIResource):
     def get(
         self,
         *,
-        zone_id: CacheVariantIdentifier,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -196,7 +195,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
     async def delete(
         self,
         *,
-        zone_id: CacheVariantIdentifier,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -235,7 +234,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
     async def edit(
         self,
         *,
-        zone_id: CacheVariantIdentifier,
+        zone_id: str,
         value: Literal["on", "off"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -280,7 +279,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        zone_id: CacheVariantIdentifier,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
