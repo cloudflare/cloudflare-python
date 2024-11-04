@@ -103,7 +103,7 @@ class KeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> Optional[KeyUpdateResponse]:
         """
         Edit details for a single TURN key.
 
@@ -136,7 +136,7 @@ class KeysResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Optional[KeyUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
+            cast_to=cast(Type[Optional[KeyUpdateResponse]], ResultWrapper[KeyUpdateResponse]),
         )
 
     def list(
@@ -172,7 +172,7 @@ class KeysResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=str,
+            model=KeyListResponse,
         )
 
     def delete(
@@ -186,7 +186,7 @@ class KeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> Optional[KeyDeleteResponse]:
         """
         Deletes a TURN key from Cloudflare Calls
 
@@ -216,7 +216,7 @@ class KeysResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Optional[KeyDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
+            cast_to=cast(Type[Optional[KeyDeleteResponse]], ResultWrapper[KeyDeleteResponse]),
         )
 
     def get(
@@ -230,7 +230,7 @@ class KeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> Optional[KeyGetResponse]:
         """
         Fetches details for a single TURN key.
 
@@ -260,7 +260,7 @@ class KeysResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
+            cast_to=cast(Type[Optional[KeyGetResponse]], ResultWrapper[KeyGetResponse]),
         )
 
 
@@ -335,7 +335,7 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> Optional[KeyUpdateResponse]:
         """
         Edit details for a single TURN key.
 
@@ -368,7 +368,7 @@ class AsyncKeysResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Optional[KeyUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
+            cast_to=cast(Type[Optional[KeyUpdateResponse]], ResultWrapper[KeyUpdateResponse]),
         )
 
     def list(
@@ -404,7 +404,7 @@ class AsyncKeysResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=str,
+            model=KeyListResponse,
         )
 
     async def delete(
@@ -418,7 +418,7 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> Optional[KeyDeleteResponse]:
         """
         Deletes a TURN key from Cloudflare Calls
 
@@ -448,7 +448,7 @@ class AsyncKeysResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Optional[KeyDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
+            cast_to=cast(Type[Optional[KeyDeleteResponse]], ResultWrapper[KeyDeleteResponse]),
         )
 
     async def get(
@@ -462,7 +462,7 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> Optional[KeyGetResponse]:
         """
         Fetches details for a single TURN key.
 
@@ -492,7 +492,7 @@ class AsyncKeysResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
+            cast_to=cast(Type[Optional[KeyGetResponse]], ResultWrapper[KeyGetResponse]),
         )
 
 

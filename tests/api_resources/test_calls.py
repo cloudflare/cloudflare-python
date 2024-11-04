@@ -10,11 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.calls import (
-    CallsApp,
-    CallListResponse,
-    CallsAppWithSecret,
-)
+from cloudflare.types.calls import CallsApp, CallsAppWithSecret
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -130,7 +126,7 @@ class TestCalls:
         call = client.calls.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[CallListResponse], call, path=["response"])
+        assert_matches_type(SyncSinglePage[CallsApp], call, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -141,7 +137,7 @@ class TestCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = response.parse()
-        assert_matches_type(SyncSinglePage[CallListResponse], call, path=["response"])
+        assert_matches_type(SyncSinglePage[CallsApp], call, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -152,7 +148,7 @@ class TestCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = response.parse()
-            assert_matches_type(SyncSinglePage[CallListResponse], call, path=["response"])
+            assert_matches_type(SyncSinglePage[CallsApp], call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -371,7 +367,7 @@ class TestAsyncCalls:
         call = await async_client.calls.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[CallListResponse], call, path=["response"])
+        assert_matches_type(AsyncSinglePage[CallsApp], call, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -382,7 +378,7 @@ class TestAsyncCalls:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         call = await response.parse()
-        assert_matches_type(AsyncSinglePage[CallListResponse], call, path=["response"])
+        assert_matches_type(AsyncSinglePage[CallsApp], call, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -393,7 +389,7 @@ class TestAsyncCalls:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             call = await response.parse()
-            assert_matches_type(AsyncSinglePage[CallListResponse], call, path=["response"])
+            assert_matches_type(AsyncSinglePage[CallsApp], call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
