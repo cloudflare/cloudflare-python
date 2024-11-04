@@ -11,17 +11,17 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.calls import (
-    SfuGetResponse,
-    SfuListResponse,
-    SfuCreateResponse,
-    SfuDeleteResponse,
-    SfuUpdateResponse,
+    SFUGetResponse,
+    SFUListResponse,
+    SFUCreateResponse,
+    SFUDeleteResponse,
+    SFUUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestSfu:
+class TestSFU:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
@@ -29,7 +29,7 @@ class TestSfu:
         sfu = client.calls.sfu.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUCreateResponse], sfu, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -37,7 +37,7 @@ class TestSfu:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="production-realtime-app",
         )
-        assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUCreateResponse], sfu, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -48,7 +48,7 @@ class TestSfu:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sfu = response.parse()
-        assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUCreateResponse], sfu, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -59,7 +59,7 @@ class TestSfu:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sfu = response.parse()
-            assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
+            assert_matches_type(Optional[SFUCreateResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -76,7 +76,7 @@ class TestSfu:
             app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUUpdateResponse], sfu, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -85,7 +85,7 @@ class TestSfu:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="production-realtime-app",
         )
-        assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUUpdateResponse], sfu, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -97,7 +97,7 @@ class TestSfu:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sfu = response.parse()
-        assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUUpdateResponse], sfu, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -109,7 +109,7 @@ class TestSfu:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sfu = response.parse()
-            assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
+            assert_matches_type(Optional[SFUUpdateResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -132,7 +132,7 @@ class TestSfu:
         sfu = client.calls.sfu.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[SfuListResponse], sfu, path=["response"])
+        assert_matches_type(SyncSinglePage[SFUListResponse], sfu, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -143,7 +143,7 @@ class TestSfu:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sfu = response.parse()
-        assert_matches_type(SyncSinglePage[SfuListResponse], sfu, path=["response"])
+        assert_matches_type(SyncSinglePage[SFUListResponse], sfu, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -154,7 +154,7 @@ class TestSfu:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sfu = response.parse()
-            assert_matches_type(SyncSinglePage[SfuListResponse], sfu, path=["response"])
+            assert_matches_type(SyncSinglePage[SFUListResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -171,7 +171,7 @@ class TestSfu:
             app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SfuDeleteResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUDeleteResponse], sfu, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -183,7 +183,7 @@ class TestSfu:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sfu = response.parse()
-        assert_matches_type(Optional[SfuDeleteResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUDeleteResponse], sfu, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -195,7 +195,7 @@ class TestSfu:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sfu = response.parse()
-            assert_matches_type(Optional[SfuDeleteResponse], sfu, path=["response"])
+            assert_matches_type(Optional[SFUDeleteResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -219,7 +219,7 @@ class TestSfu:
             app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SfuGetResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUGetResponse], sfu, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -231,7 +231,7 @@ class TestSfu:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sfu = response.parse()
-        assert_matches_type(Optional[SfuGetResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUGetResponse], sfu, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -243,7 +243,7 @@ class TestSfu:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sfu = response.parse()
-            assert_matches_type(Optional[SfuGetResponse], sfu, path=["response"])
+            assert_matches_type(Optional[SFUGetResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -262,7 +262,7 @@ class TestSfu:
             )
 
 
-class TestAsyncSfu:
+class TestAsyncSFU:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
@@ -270,7 +270,7 @@ class TestAsyncSfu:
         sfu = await async_client.calls.sfu.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUCreateResponse], sfu, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -278,7 +278,7 @@ class TestAsyncSfu:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="production-realtime-app",
         )
-        assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUCreateResponse], sfu, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -289,7 +289,7 @@ class TestAsyncSfu:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sfu = await response.parse()
-        assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUCreateResponse], sfu, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -300,7 +300,7 @@ class TestAsyncSfu:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sfu = await response.parse()
-            assert_matches_type(Optional[SfuCreateResponse], sfu, path=["response"])
+            assert_matches_type(Optional[SFUCreateResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -317,7 +317,7 @@ class TestAsyncSfu:
             app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUUpdateResponse], sfu, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -326,7 +326,7 @@ class TestAsyncSfu:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="production-realtime-app",
         )
-        assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUUpdateResponse], sfu, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -338,7 +338,7 @@ class TestAsyncSfu:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sfu = await response.parse()
-        assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUUpdateResponse], sfu, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -350,7 +350,7 @@ class TestAsyncSfu:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sfu = await response.parse()
-            assert_matches_type(Optional[SfuUpdateResponse], sfu, path=["response"])
+            assert_matches_type(Optional[SFUUpdateResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -373,7 +373,7 @@ class TestAsyncSfu:
         sfu = await async_client.calls.sfu.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[SfuListResponse], sfu, path=["response"])
+        assert_matches_type(AsyncSinglePage[SFUListResponse], sfu, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -384,7 +384,7 @@ class TestAsyncSfu:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sfu = await response.parse()
-        assert_matches_type(AsyncSinglePage[SfuListResponse], sfu, path=["response"])
+        assert_matches_type(AsyncSinglePage[SFUListResponse], sfu, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -395,7 +395,7 @@ class TestAsyncSfu:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sfu = await response.parse()
-            assert_matches_type(AsyncSinglePage[SfuListResponse], sfu, path=["response"])
+            assert_matches_type(AsyncSinglePage[SFUListResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -412,7 +412,7 @@ class TestAsyncSfu:
             app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SfuDeleteResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUDeleteResponse], sfu, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -424,7 +424,7 @@ class TestAsyncSfu:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sfu = await response.parse()
-        assert_matches_type(Optional[SfuDeleteResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUDeleteResponse], sfu, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -436,7 +436,7 @@ class TestAsyncSfu:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sfu = await response.parse()
-            assert_matches_type(Optional[SfuDeleteResponse], sfu, path=["response"])
+            assert_matches_type(Optional[SFUDeleteResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -460,7 +460,7 @@ class TestAsyncSfu:
             app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SfuGetResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUGetResponse], sfu, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -472,7 +472,7 @@ class TestAsyncSfu:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         sfu = await response.parse()
-        assert_matches_type(Optional[SfuGetResponse], sfu, path=["response"])
+        assert_matches_type(Optional[SFUGetResponse], sfu, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -484,7 +484,7 @@ class TestAsyncSfu:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             sfu = await response.parse()
-            assert_matches_type(Optional[SfuGetResponse], sfu, path=["response"])
+            assert_matches_type(Optional[SFUGetResponse], sfu, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from .sfu import (
-    SfuResource,
-    AsyncSfuResource,
-    SfuResourceWithRawResponse,
-    AsyncSfuResourceWithRawResponse,
-    SfuResourceWithStreamingResponse,
-    AsyncSfuResourceWithStreamingResponse,
+    SFUResource,
+    AsyncSFUResource,
+    SFUResourceWithRawResponse,
+    AsyncSFUResourceWithRawResponse,
+    SFUResourceWithStreamingResponse,
+    AsyncSFUResourceWithStreamingResponse,
 )
 from .turn import (
     TURNResource,
@@ -26,8 +26,8 @@ __all__ = ["CallsResource", "AsyncCallsResource"]
 
 class CallsResource(SyncAPIResource):
     @cached_property
-    def sfu(self) -> SfuResource:
-        return SfuResource(self._client)
+    def sfu(self) -> SFUResource:
+        return SFUResource(self._client)
 
     @cached_property
     def turn(self) -> TURNResource:
@@ -55,8 +55,8 @@ class CallsResource(SyncAPIResource):
 
 class AsyncCallsResource(AsyncAPIResource):
     @cached_property
-    def sfu(self) -> AsyncSfuResource:
-        return AsyncSfuResource(self._client)
+    def sfu(self) -> AsyncSFUResource:
+        return AsyncSFUResource(self._client)
 
     @cached_property
     def turn(self) -> AsyncTURNResource:
@@ -87,8 +87,8 @@ class CallsResourceWithRawResponse:
         self._calls = calls
 
     @cached_property
-    def sfu(self) -> SfuResourceWithRawResponse:
-        return SfuResourceWithRawResponse(self._calls.sfu)
+    def sfu(self) -> SFUResourceWithRawResponse:
+        return SFUResourceWithRawResponse(self._calls.sfu)
 
     @cached_property
     def turn(self) -> TURNResourceWithRawResponse:
@@ -100,8 +100,8 @@ class AsyncCallsResourceWithRawResponse:
         self._calls = calls
 
     @cached_property
-    def sfu(self) -> AsyncSfuResourceWithRawResponse:
-        return AsyncSfuResourceWithRawResponse(self._calls.sfu)
+    def sfu(self) -> AsyncSFUResourceWithRawResponse:
+        return AsyncSFUResourceWithRawResponse(self._calls.sfu)
 
     @cached_property
     def turn(self) -> AsyncTURNResourceWithRawResponse:
@@ -113,8 +113,8 @@ class CallsResourceWithStreamingResponse:
         self._calls = calls
 
     @cached_property
-    def sfu(self) -> SfuResourceWithStreamingResponse:
-        return SfuResourceWithStreamingResponse(self._calls.sfu)
+    def sfu(self) -> SFUResourceWithStreamingResponse:
+        return SFUResourceWithStreamingResponse(self._calls.sfu)
 
     @cached_property
     def turn(self) -> TURNResourceWithStreamingResponse:
@@ -126,8 +126,8 @@ class AsyncCallsResourceWithStreamingResponse:
         self._calls = calls
 
     @cached_property
-    def sfu(self) -> AsyncSfuResourceWithStreamingResponse:
-        return AsyncSfuResourceWithStreamingResponse(self._calls.sfu)
+    def sfu(self) -> AsyncSFUResourceWithStreamingResponse:
+        return AsyncSFUResourceWithStreamingResponse(self._calls.sfu)
 
     @cached_property
     def turn(self) -> AsyncTURNResourceWithStreamingResponse:
