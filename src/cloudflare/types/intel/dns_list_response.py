@@ -7,7 +7,21 @@ from .dns import DNS
 from ..._models import BaseModel
 from ..shared.response_info import ResponseInfo
 
-__all__ = ["DNSListResponse"]
+__all__ = ["DNSListResponse", "ResultInfo"]
+
+
+class ResultInfo(BaseModel):
+    count: Optional[float] = None
+    """Total number of results for the requested service"""
+
+    page: Optional[float] = None
+    """Current page within paginated list of results"""
+
+    per_page: Optional[float] = None
+    """Number of results per page of results"""
+
+    total_count: Optional[float] = None
+    """Total results available without any search parameters"""
 
 
 class DNSListResponse(BaseModel):
@@ -19,3 +33,5 @@ class DNSListResponse(BaseModel):
     """Whether the API call was successful"""
 
     result: Optional[DNS] = None
+
+    result_info: Optional[ResultInfo] = None
