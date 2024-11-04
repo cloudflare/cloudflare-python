@@ -26,13 +26,6 @@ class TestPolicies:
     def test_method_create(self, client: Cloudflare) -> None:
         policy = client.zero_trust.access.applications.policies.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
@@ -42,13 +35,6 @@ class TestPolicies:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         policy = client.zero_trust.access.applications.policies.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
             approval_groups=[
                 {
@@ -63,21 +49,10 @@ class TestPolicies:
                 },
             ],
             approval_required=True,
-            connection_rules={"ssh": {"usernames": ["root", "ubuntu"]}},
-            exclude=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             isolation_required=False,
             precedence=0,
             purpose_justification_prompt="Please enter a justification for entering this protected domain.",
             purpose_justification_required=True,
-            require=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
@@ -87,13 +62,6 @@ class TestPolicies:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.policies.with_raw_response.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
 
@@ -107,13 +75,6 @@ class TestPolicies:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.policies.with_streaming_response.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -130,39 +91,18 @@ class TestPolicies:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -172,13 +112,6 @@ class TestPolicies:
         policy = client.zero_trust.access.applications.policies.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
@@ -189,13 +122,6 @@ class TestPolicies:
         policy = client.zero_trust.access.applications.policies.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
             approval_groups=[
                 {
@@ -210,21 +136,10 @@ class TestPolicies:
                 },
             ],
             approval_required=True,
-            connection_rules={"ssh": {"usernames": ["root", "ubuntu"]}},
-            exclude=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             isolation_required=False,
             precedence=0,
             purpose_justification_prompt="Please enter a justification for entering this protected domain.",
             purpose_justification_required=True,
-            require=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
@@ -235,13 +150,6 @@ class TestPolicies:
         response = client.zero_trust.access.applications.policies.with_raw_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
 
@@ -256,13 +164,6 @@ class TestPolicies:
         with client.zero_trust.access.applications.policies.with_streaming_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -280,13 +181,6 @@ class TestPolicies:
             client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -294,13 +188,6 @@ class TestPolicies:
             client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -308,13 +195,6 @@ class TestPolicies:
             client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="",
             )
 
@@ -322,13 +202,6 @@ class TestPolicies:
             client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -570,13 +443,6 @@ class TestAsyncPolicies:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.zero_trust.access.applications.policies.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
@@ -586,13 +452,6 @@ class TestAsyncPolicies:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.zero_trust.access.applications.policies.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
             approval_groups=[
                 {
@@ -607,21 +466,10 @@ class TestAsyncPolicies:
                 },
             ],
             approval_required=True,
-            connection_rules={"ssh": {"usernames": ["root", "ubuntu"]}},
-            exclude=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             isolation_required=False,
             precedence=0,
             purpose_justification_prompt="Please enter a justification for entering this protected domain.",
             purpose_justification_required=True,
-            require=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
@@ -631,13 +479,6 @@ class TestAsyncPolicies:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.policies.with_raw_response.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
 
@@ -651,13 +492,6 @@ class TestAsyncPolicies:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.policies.with_streaming_response.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -674,39 +508,18 @@ class TestAsyncPolicies:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -716,13 +529,6 @@ class TestAsyncPolicies:
         policy = await async_client.zero_trust.access.applications.policies.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
@@ -733,13 +539,6 @@ class TestAsyncPolicies:
         policy = await async_client.zero_trust.access.applications.policies.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
             approval_groups=[
                 {
@@ -754,21 +553,10 @@ class TestAsyncPolicies:
                 },
             ],
             approval_required=True,
-            connection_rules={"ssh": {"usernames": ["root", "ubuntu"]}},
-            exclude=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             isolation_required=False,
             precedence=0,
             purpose_justification_prompt="Please enter a justification for entering this protected domain.",
             purpose_justification_required=True,
-            require=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
@@ -779,13 +567,6 @@ class TestAsyncPolicies:
         response = await async_client.zero_trust.access.applications.policies.with_raw_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
 
@@ -800,13 +581,6 @@ class TestAsyncPolicies:
         async with async_client.zero_trust.access.applications.policies.with_streaming_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -824,13 +598,6 @@ class TestAsyncPolicies:
             await async_client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -838,13 +605,6 @@ class TestAsyncPolicies:
             await async_client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -852,13 +612,6 @@ class TestAsyncPolicies:
             await async_client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="",
             )
 
@@ -866,13 +619,6 @@ class TestAsyncPolicies:
             await async_client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
