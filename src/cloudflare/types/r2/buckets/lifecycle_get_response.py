@@ -44,7 +44,7 @@ class RuleAbortMultipartUploadsTransition(BaseModel):
     condition: Optional[RuleAbortMultipartUploadsTransitionCondition] = None
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
-    days
+    seconds
     """
 
 
@@ -70,7 +70,7 @@ class RuleDeleteObjectsTransition(BaseModel):
     condition: Optional[RuleDeleteObjectsTransitionCondition] = None
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
-    days
+    seconds
     """
 
 
@@ -96,7 +96,7 @@ class RuleStorageClassTransition(BaseModel):
     condition: RuleStorageClassTransitionCondition
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
-    days
+    seconds
     """
 
     storage_class: Literal["InfrequentAccess"] = FieldInfo(alias="storageClass")

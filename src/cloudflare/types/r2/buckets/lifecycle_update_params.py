@@ -54,7 +54,7 @@ class RuleAbortMultipartUploadsTransition(TypedDict, total=False):
     condition: RuleAbortMultipartUploadsTransitionCondition
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
-    days
+    seconds
     """
 
 
@@ -80,7 +80,7 @@ class RuleDeleteObjectsTransition(TypedDict, total=False):
     condition: RuleDeleteObjectsTransitionCondition
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
-    days
+    seconds
     """
 
 
@@ -106,7 +106,7 @@ class RuleStorageClassTransition(TypedDict, total=False):
     condition: Required[RuleStorageClassTransitionCondition]
     """
     Condition for lifecycle transitions to apply after an object reaches an age in
-    days
+    seconds
     """
 
     storage_class: Required[Annotated[Literal["InfrequentAccess"], PropertyInfo(alias="storageClass")]]
