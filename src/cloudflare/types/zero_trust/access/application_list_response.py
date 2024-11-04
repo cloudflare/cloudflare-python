@@ -4,7 +4,9 @@ from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
+from .decision import Decision
 from ...._models import BaseModel
+from ..access_rule import AccessRule
 from .allowed_idps import AllowedIdPs
 from .cors_headers import CORSHeaders
 from .oidc_saas_app import OIDCSaaSApp
@@ -52,6 +54,7 @@ __all__ = [
     "BookmarkApplicationSCIMConfigAuthentication",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
+    "InfrastructureApplicationPolicy",
     "InfrastructureApplicationSCIMConfig",
     "InfrastructureApplicationSCIMConfigAuthentication",
 ]
@@ -1171,6 +1174,42 @@ class InfrastructureApplicationTargetCriterion(BaseModel):
     """Contains a map of target attribute keys to target attribute values."""
 
 
+class InfrastructureApplicationPolicy(BaseModel):
+    id: Optional[str] = None
+    """The UUID of the policy"""
+
+    created_at: Optional[datetime] = None
+
+    decision: Optional[Decision] = None
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
+
+    exclude: Optional[List[AccessRule]] = None
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    include: Optional[List[AccessRule]] = None
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    name: Optional[str] = None
+    """The name of the Access policy."""
+
+    require: Optional[List[AccessRule]] = None
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    updated_at: Optional[datetime] = None
+
+
 InfrastructureApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
@@ -1226,7 +1265,7 @@ class InfrastructureApplication(BaseModel):
     name: Optional[str] = None
     """The name of the application."""
 
-    policies: Optional[List[ApplicationPolicy]] = None
+    policies: Optional[List[InfrastructureApplicationPolicy]] = None
 
     scim_config: Optional[InfrastructureApplicationSCIMConfig] = None
     """Configuration for provisioning to this application via SCIM.

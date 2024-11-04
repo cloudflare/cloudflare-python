@@ -68,7 +68,6 @@ from .....types.zero_trust.access.application_type import ApplicationType
 from .....types.zero_trust.access.cors_headers_param import CORSHeadersParam
 from .....types.zero_trust.access.self_hosted_domains import SelfHostedDomains
 from .....types.zero_trust.access.application_get_response import ApplicationGetResponse
-from .....types.zero_trust.access.application_policy_param import ApplicationPolicyParam
 from .....types.zero_trust.access.application_list_response import ApplicationListResponse
 from .....types.zero_trust.access.application_create_response import ApplicationCreateResponse
 from .....types.zero_trust.access.application_delete_response import ApplicationDeleteResponse
@@ -204,7 +203,7 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -283,7 +282,7 @@ class ApplicationsResource(SyncAPIResource):
 
           name: The name of the application.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -396,7 +395,7 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -520,7 +519,7 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -604,7 +603,7 @@ class ApplicationsResource(SyncAPIResource):
 
           landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -680,7 +679,7 @@ class ApplicationsResource(SyncAPIResource):
 
           landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -756,7 +755,7 @@ class ApplicationsResource(SyncAPIResource):
 
           landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -842,7 +841,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[ApplicationPolicyParam] | NotGiven = NOT_GIVEN,
+        policies: Iterable[application_create_params.InfrastructureApplicationPolicy] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -861,6 +860,8 @@ class ApplicationsResource(SyncAPIResource):
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           name: The name of the application.
+
+          policies: The policies that Access applies to the application.
 
           extra_headers: Send extra headers
 
@@ -895,7 +896,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SelfHostedApplicationPolicy]
-        | Iterable[ApplicationPolicyParam]
+        | Iterable[application_create_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
@@ -1081,7 +1082,7 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -1163,7 +1164,7 @@ class ApplicationsResource(SyncAPIResource):
 
           name: The name of the application.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -1279,7 +1280,7 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -1406,7 +1407,7 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -1493,7 +1494,7 @@ class ApplicationsResource(SyncAPIResource):
 
           landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -1572,7 +1573,7 @@ class ApplicationsResource(SyncAPIResource):
 
           landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -1651,7 +1652,7 @@ class ApplicationsResource(SyncAPIResource):
 
           landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -1741,7 +1742,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[ApplicationPolicyParam] | NotGiven = NOT_GIVEN,
+        policies: Iterable[application_update_params.InfrastructureApplicationPolicy] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1762,6 +1763,8 @@ class ApplicationsResource(SyncAPIResource):
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           name: The name of the application.
+
+          policies: The policies that Access applies to the application.
 
           extra_headers: Send extra headers
 
@@ -1797,7 +1800,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SelfHostedApplicationPolicy]
-        | Iterable[ApplicationPolicyParam]
+        | Iterable[application_update_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
@@ -2244,7 +2247,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2323,7 +2326,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           name: The name of the application.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2436,7 +2439,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2560,7 +2563,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2644,7 +2647,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2720,7 +2723,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2796,7 +2799,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2882,7 +2885,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[ApplicationPolicyParam] | NotGiven = NOT_GIVEN,
+        policies: Iterable[application_create_params.InfrastructureApplicationPolicy] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2901,6 +2904,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           name: The name of the application.
+
+          policies: The policies that Access applies to the application.
 
           extra_headers: Send extra headers
 
@@ -2935,7 +2940,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SelfHostedApplicationPolicy]
-        | Iterable[ApplicationPolicyParam]
+        | Iterable[application_create_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
@@ -3121,7 +3126,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -3203,7 +3208,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           name: The name of the application.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -3319,7 +3324,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -3446,7 +3451,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -3533,7 +3538,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -3612,7 +3617,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -3691,7 +3696,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -3781,7 +3786,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[ApplicationPolicyParam] | NotGiven = NOT_GIVEN,
+        policies: Iterable[application_update_params.InfrastructureApplicationPolicy] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3802,6 +3807,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           name: The name of the application.
+
+          policies: The policies that Access applies to the application.
 
           extra_headers: Send extra headers
 
@@ -3837,7 +3844,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SelfHostedApplicationPolicy]
-        | Iterable[ApplicationPolicyParam]
+        | Iterable[application_update_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,

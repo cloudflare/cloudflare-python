@@ -32,7 +32,6 @@ from ......types.zero_trust.access import Decision
 from ......types.zero_trust.access.decision import Decision
 from ......types.zero_trust.access_rule_param import AccessRuleParam
 from ......types.zero_trust.access.applications import policy_test_create_params
-from ......types.zero_trust.access.approval_group_param import ApprovalGroupParam
 from ......types.zero_trust.access.applications.policy_test_get_response import PolicyTestGetResponse
 from ......types.zero_trust.access.applications.policy_test_create_response import PolicyTestCreateResponse
 
@@ -68,18 +67,11 @@ class PolicyTestsResource(SyncAPIResource):
         *,
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
-        approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
-        approval_required: bool | NotGiven = NOT_GIVEN,
-        connection_rules: policy_test_create_params.ConnectionRules | NotGiven = NOT_GIVEN,
         decision: Decision | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         include: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-        isolation_required: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
-        purpose_justification_required: bool | NotGiven = NOT_GIVEN,
         require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -95,15 +87,8 @@ class PolicyTestsResource(SyncAPIResource):
 
           id: The UUID of the policy
 
-          approval_groups: Administrators who can approve a temporary authentication request.
-
-          approval_required: Requires the user to request access from an administrator at the start of each
-              session.
-
-          connection_rules: The rules that define how users may connect to the targets secured by your
-              application.
-
-          decision: The action Access will take if a user matches this policy.
+          decision: The action Access will take if a user matches this policy. Infrastructure
+              application policies can only use the Allow action.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -111,22 +96,10 @@ class PolicyTestsResource(SyncAPIResource):
           include: Rules evaluated with an OR logical operator. A user needs to meet only one of
               the Include rules.
 
-          isolation_required: Require this application to be served in an isolated browser for users matching
-              this policy. 'Client Web Isolation' must be on for the account in order to use
-              this feature.
-
           name: The name of the Access policy.
-
-          purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
-
-          purpose_justification_required: Require users to enter a justification when they log in to the application.
 
           require: Rules evaluated with an AND logical operator. To match the policy, a user must
               meet all of the Require rules.
-
-          session_duration: The amount of time that tokens issued for the application will be valid. Must be
-              in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s,
-              m, h.
 
           extra_headers: Send extra headers
 
@@ -143,18 +116,11 @@ class PolicyTestsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "id": id,
-                    "approval_groups": approval_groups,
-                    "approval_required": approval_required,
-                    "connection_rules": connection_rules,
                     "decision": decision,
                     "exclude": exclude,
                     "include": include,
-                    "isolation_required": isolation_required,
                     "name": name,
-                    "purpose_justification_prompt": purpose_justification_prompt,
-                    "purpose_justification_required": purpose_justification_required,
                     "require": require,
-                    "session_duration": session_duration,
                 },
                 policy_test_create_params.PolicyTestCreateParams,
             ),
@@ -234,18 +200,11 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
         *,
         account_id: str,
         id: str | NotGiven = NOT_GIVEN,
-        approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
-        approval_required: bool | NotGiven = NOT_GIVEN,
-        connection_rules: policy_test_create_params.ConnectionRules | NotGiven = NOT_GIVEN,
         decision: Decision | NotGiven = NOT_GIVEN,
         exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         include: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-        isolation_required: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
-        purpose_justification_required: bool | NotGiven = NOT_GIVEN,
         require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
-        session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -261,15 +220,8 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
 
           id: The UUID of the policy
 
-          approval_groups: Administrators who can approve a temporary authentication request.
-
-          approval_required: Requires the user to request access from an administrator at the start of each
-              session.
-
-          connection_rules: The rules that define how users may connect to the targets secured by your
-              application.
-
-          decision: The action Access will take if a user matches this policy.
+          decision: The action Access will take if a user matches this policy. Infrastructure
+              application policies can only use the Allow action.
 
           exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
               meet any of the Exclude rules.
@@ -277,22 +229,10 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
           include: Rules evaluated with an OR logical operator. A user needs to meet only one of
               the Include rules.
 
-          isolation_required: Require this application to be served in an isolated browser for users matching
-              this policy. 'Client Web Isolation' must be on for the account in order to use
-              this feature.
-
           name: The name of the Access policy.
-
-          purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
-
-          purpose_justification_required: Require users to enter a justification when they log in to the application.
 
           require: Rules evaluated with an AND logical operator. To match the policy, a user must
               meet all of the Require rules.
-
-          session_duration: The amount of time that tokens issued for the application will be valid. Must be
-              in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s,
-              m, h.
 
           extra_headers: Send extra headers
 
@@ -309,18 +249,11 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "id": id,
-                    "approval_groups": approval_groups,
-                    "approval_required": approval_required,
-                    "connection_rules": connection_rules,
                     "decision": decision,
                     "exclude": exclude,
                     "include": include,
-                    "isolation_required": isolation_required,
                     "name": name,
-                    "purpose_justification_prompt": purpose_justification_prompt,
-                    "purpose_justification_required": purpose_justification_required,
                     "require": require,
-                    "session_duration": session_duration,
                 },
                 policy_test_create_params.PolicyTestCreateParams,
             ),
