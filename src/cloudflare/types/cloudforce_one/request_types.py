@@ -3,8 +3,6 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .message import Message
+__all__ = ["RequestTypes"]
 
-__all__ = ["MessageGetResponse"]
-
-MessageGetResponse: TypeAlias = List[Message]
+RequestTypes: TypeAlias = List[str]

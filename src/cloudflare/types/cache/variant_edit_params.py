@@ -5,11 +5,13 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Required, TypedDict
 
+from .cache_variant_identifier import CacheVariantIdentifier
+
 __all__ = ["VariantEditParams", "Value"]
 
 
 class VariantEditParams(TypedDict, total=False):
-    zone_id: Required[str]
+    zone_id: Required[CacheVariantIdentifier]
     """Identifier"""
 
     value: Required[Value]

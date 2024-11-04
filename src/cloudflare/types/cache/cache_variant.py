@@ -2,15 +2,15 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .cache_variant_identifier import CacheVariantIdentifier
 
-__all__ = ["VariantDeleteResponse"]
+__all__ = ["CacheVariant"]
 
 
-class VariantDeleteResponse(BaseModel):
-    id: CacheVariantIdentifier
+class CacheVariant(BaseModel):
+    id: Literal["variants"]
     """ID of the zone setting."""
 
     modified_on: Optional[datetime] = None

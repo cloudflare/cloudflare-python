@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import TypeAlias
 
 __all__ = ["CacheVariantIdentifier"]
 
-CacheVariantIdentifier: TypeAlias = Literal["variants"]
+CacheVariantIdentifier: TypeAlias = str

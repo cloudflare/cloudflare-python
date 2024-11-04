@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["RequestQuotaResponse"]
+__all__ = ["Quota"]
 
 
-class RequestQuotaResponse(BaseModel):
+class Quota(BaseModel):
     anniversary_date: Optional[datetime] = None
     """Anniversary date is when annual quota limit is refresh"""
 

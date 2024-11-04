@@ -6,17 +6,19 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["RequestListResponse"]
+__all__ = ["Item"]
 
 
-class RequestListResponse(BaseModel):
+class Item(BaseModel):
     id: str
     """UUID"""
 
-    created: datetime
-    """Request creation time"""
+    content: str
+    """Request content"""
 
-    priority: Literal["routine", "high", "urgent"]
+    created: datetime
+
+    priority: datetime
 
     request: str
     """Requested information from request"""
@@ -28,10 +30,8 @@ class RequestListResponse(BaseModel):
     """The CISA defined Traffic Light Protocol (TLP)"""
 
     updated: datetime
-    """Request last updated time"""
 
     completed: Optional[datetime] = None
-    """Request completion time"""
 
     message_tokens: Optional[int] = None
     """Tokens for the request messages"""
