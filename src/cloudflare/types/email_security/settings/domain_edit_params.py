@@ -14,4 +14,6 @@ class DomainEditParams(TypedDict, total=False):
 
     domain: Optional[str]
 
+    integration_id: Optional[str]
+
     lookback_hops: Optional[int]

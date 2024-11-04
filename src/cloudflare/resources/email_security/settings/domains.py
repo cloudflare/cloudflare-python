@@ -174,6 +174,7 @@ class DomainsResource(SyncAPIResource):
         *,
         account_id: str,
         domain: Optional[str] | NotGiven = NOT_GIVEN,
+        integration_id: Optional[str] | NotGiven = NOT_GIVEN,
         lookback_hops: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -205,6 +206,7 @@ class DomainsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "domain": domain,
+                    "integration_id": integration_id,
                     "lookback_hops": lookback_hops,
                 },
                 domain_edit_params.DomainEditParams,
@@ -363,6 +365,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         *,
         account_id: str,
         domain: Optional[str] | NotGiven = NOT_GIVEN,
+        integration_id: Optional[str] | NotGiven = NOT_GIVEN,
         lookback_hops: Optional[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -394,6 +397,7 @@ class AsyncDomainsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "domain": domain,
+                    "integration_id": integration_id,
                     "lookback_hops": lookback_hops,
                 },
                 domain_edit_params.DomainEditParams,
