@@ -13,4 +13,4 @@ __all__ = ["FallbackDomainUpdateParams"]
 class FallbackDomainUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    body: Required[Iterable[FallbackDomainParam]]
+    domains: Required[Iterable[FallbackDomainParam]]
