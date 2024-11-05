@@ -55,7 +55,7 @@ class FallbackDomainsResource(SyncAPIResource):
         policy_id: str,
         *,
         account_id: str,
-        body: Iterable[FallbackDomainParam],
+        domains: Iterable[FallbackDomainParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -86,7 +86,7 @@ class FallbackDomainsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._put(
             f"/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
-            body=maybe_transform(body, Iterable[FallbackDomainParam]),
+            body=maybe_transform(domains, Iterable[FallbackDomainParam]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -203,7 +203,7 @@ class AsyncFallbackDomainsResource(AsyncAPIResource):
         policy_id: str,
         *,
         account_id: str,
-        body: Iterable[FallbackDomainParam],
+        domains: Iterable[FallbackDomainParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -234,7 +234,7 @@ class AsyncFallbackDomainsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._put(
             f"/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
-            body=await async_maybe_transform(body, Iterable[FallbackDomainParam]),
+            body=await async_maybe_transform(domains, Iterable[FallbackDomainParam]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
