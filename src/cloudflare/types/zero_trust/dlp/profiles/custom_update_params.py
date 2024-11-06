@@ -23,9 +23,6 @@ __all__ = [
 class CustomUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    entries: Required[Iterable[Entry]]
-    """Custom entries from this profile"""
-
     name: Required[str]
 
     allowed_match_count: Optional[int]
@@ -40,6 +37,12 @@ class CustomUpdateParams(TypedDict, total=False):
 
     description: Optional[str]
     """The description of the profile"""
+
+    entries: Optional[Iterable[Entry]]
+    """
+    Custom entries from this profile. If this field is omitted, entries owned by
+    this profile will not be changed.
+    """
 
     ocr_enabled: bool
 
