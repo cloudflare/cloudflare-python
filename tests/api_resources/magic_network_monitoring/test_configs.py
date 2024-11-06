@@ -10,7 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.magic_network_monitoring import (
-    Configuration,
+    ConfigGetResponse,
+    ConfigEditResponse,
+    ConfigCreateResponse,
+    ConfigDeleteResponse,
+    ConfigUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -26,7 +30,7 @@ class TestConfigs:
             default_sampling=1,
             name="cloudflare user's account",
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigCreateResponse, config, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -53,7 +57,7 @@ class TestConfigs:
                 },
             ],
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigCreateResponse, config, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -66,7 +70,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigCreateResponse, config, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -79,7 +83,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(Configuration, config, path=["response"])
+            assert_matches_type(ConfigCreateResponse, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -99,7 +103,7 @@ class TestConfigs:
             default_sampling=1,
             name="cloudflare user's account",
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigUpdateResponse, config, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -126,7 +130,7 @@ class TestConfigs:
                 },
             ],
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigUpdateResponse, config, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -139,7 +143,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigUpdateResponse, config, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -152,7 +156,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(Configuration, config, path=["response"])
+            assert_matches_type(ConfigUpdateResponse, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -170,7 +174,7 @@ class TestConfigs:
         config = client.magic_network_monitoring.configs.delete(
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigDeleteResponse, config, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -181,7 +185,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigDeleteResponse, config, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -192,7 +196,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(Configuration, config, path=["response"])
+            assert_matches_type(ConfigDeleteResponse, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -208,7 +212,7 @@ class TestConfigs:
         config = client.magic_network_monitoring.configs.edit(
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigEditResponse, config, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -235,7 +239,7 @@ class TestConfigs:
                 },
             ],
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigEditResponse, config, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -246,7 +250,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigEditResponse, config, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -257,7 +261,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(Configuration, config, path=["response"])
+            assert_matches_type(ConfigEditResponse, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -273,7 +277,7 @@ class TestConfigs:
         config = client.magic_network_monitoring.configs.get(
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigGetResponse, config, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -284,7 +288,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigGetResponse, config, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -295,7 +299,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(Configuration, config, path=["response"])
+            assert_matches_type(ConfigGetResponse, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -317,7 +321,7 @@ class TestAsyncConfigs:
             default_sampling=1,
             name="cloudflare user's account",
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigCreateResponse, config, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -344,7 +348,7 @@ class TestAsyncConfigs:
                 },
             ],
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigCreateResponse, config, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -357,7 +361,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigCreateResponse, config, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -370,7 +374,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(Configuration, config, path=["response"])
+            assert_matches_type(ConfigCreateResponse, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -390,7 +394,7 @@ class TestAsyncConfigs:
             default_sampling=1,
             name="cloudflare user's account",
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigUpdateResponse, config, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -417,7 +421,7 @@ class TestAsyncConfigs:
                 },
             ],
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigUpdateResponse, config, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -430,7 +434,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigUpdateResponse, config, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -443,7 +447,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(Configuration, config, path=["response"])
+            assert_matches_type(ConfigUpdateResponse, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -461,7 +465,7 @@ class TestAsyncConfigs:
         config = await async_client.magic_network_monitoring.configs.delete(
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigDeleteResponse, config, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -472,7 +476,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigDeleteResponse, config, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -483,7 +487,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(Configuration, config, path=["response"])
+            assert_matches_type(ConfigDeleteResponse, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -499,7 +503,7 @@ class TestAsyncConfigs:
         config = await async_client.magic_network_monitoring.configs.edit(
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigEditResponse, config, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -526,7 +530,7 @@ class TestAsyncConfigs:
                 },
             ],
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigEditResponse, config, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -537,7 +541,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigEditResponse, config, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -548,7 +552,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(Configuration, config, path=["response"])
+            assert_matches_type(ConfigEditResponse, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -564,7 +568,7 @@ class TestAsyncConfigs:
         config = await async_client.magic_network_monitoring.configs.get(
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigGetResponse, config, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -575,7 +579,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(Configuration, config, path=["response"])
+        assert_matches_type(ConfigGetResponse, config, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -586,7 +590,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(Configuration, config, path=["response"])
+            assert_matches_type(ConfigGetResponse, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
