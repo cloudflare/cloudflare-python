@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 from typing import Any, Type, Iterable, Optional, cast
+from typing_extensions import overload
 
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
+    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -49,11 +51,12 @@ class CustomResource(SyncAPIResource):
         """
         return CustomResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
         account_id: str,
-        profiles: Iterable[custom_create_params.Profile],
+        profiles: Iterable[custom_create_params.Variant0Profile],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -62,7 +65,7 @@ class CustomResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CustomCreateResponse]:
         """
-        Creates a set of DLP custom profiles.
+        Creates a DLP custom profile.
 
         Args:
           extra_headers: Send extra headers
@@ -73,19 +76,104 @@ class CustomResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        account_id: str,
+        entries: Iterable[custom_create_params.DLPNewCustomProfileEntry],
+        name: str,
+        allowed_match_count: int | NotGiven = NOT_GIVEN,
+        confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
+        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        ocr_enabled: bool | NotGiven = NOT_GIVEN,
+        shared_entries: Iterable[custom_create_params.DLPNewCustomProfileSharedEntry] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CustomCreateResponse]:
+        """
+        Creates a DLP custom profile.
+
+        Args:
+          allowed_match_count: Related DLP policies will trigger when the match count exceeds the number set.
+
+          context_awareness: Scan the context of predefined entries to only return matches surrounded by
+              keywords.
+
+          description: The description of the profile
+
+          shared_entries: Entries from other profiles (e.g. pre-defined Cloudflare profiles, or your
+              Microsoft Information Protection profiles).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id", "profiles"], ["account_id", "entries", "name"])
+    def create(
+        self,
+        *,
+        account_id: str,
+        profiles: Iterable[custom_create_params.Variant0Profile] | NotGiven = NOT_GIVEN,
+        entries: Iterable[custom_create_params.DLPNewCustomProfileEntry] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        allowed_match_count: int | NotGiven = NOT_GIVEN,
+        confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
+        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        ocr_enabled: bool | NotGiven = NOT_GIVEN,
+        shared_entries: Iterable[custom_create_params.DLPNewCustomProfileSharedEntry] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CustomCreateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/dlp/profiles/custom",
-            body=maybe_transform({"profiles": profiles}, custom_create_params.CustomCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomCreateResponse]]._unwrapper,
+        return cast(
+            Optional[CustomCreateResponse],
+            self._post(
+                f"/accounts/{account_id}/dlp/profiles/custom",
+                body=maybe_transform(
+                    {
+                        "profiles": profiles,
+                        "entries": entries,
+                        "name": name,
+                        "allowed_match_count": allowed_match_count,
+                        "confidence_threshold": confidence_threshold,
+                        "context_awareness": context_awareness,
+                        "description": description,
+                        "ocr_enabled": ocr_enabled,
+                        "shared_entries": shared_entries,
+                    },
+                    custom_create_params.CustomCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[CustomCreateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[CustomCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Optional[CustomCreateResponse]], ResultWrapper[CustomCreateResponse]),
         )
 
     def update(
@@ -93,12 +181,12 @@ class CustomResource(SyncAPIResource):
         profile_id: str,
         *,
         account_id: str,
-        entries: Iterable[custom_update_params.Entry],
         name: str,
         allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
         confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        entries: Optional[Iterable[custom_update_params.Entry]] | NotGiven = NOT_GIVEN,
         ocr_enabled: bool | NotGiven = NOT_GIVEN,
         shared_entries: Iterable[custom_update_params.SharedEntry] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -112,12 +200,13 @@ class CustomResource(SyncAPIResource):
         Updates a DLP custom profile.
 
         Args:
-          entries: Custom entries from this profile
-
           context_awareness: Scan the context of predefined entries to only return matches surrounded by
               keywords.
 
           description: The description of the profile
+
+          entries: Custom entries from this profile. If this field is omitted, entries owned by
+              this profile will not be changed.
 
           shared_entries: Other entries, e.g. predefined or integration.
 
@@ -139,12 +228,12 @@ class CustomResource(SyncAPIResource):
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
                 body=maybe_transform(
                     {
-                        "entries": entries,
                         "name": name,
                         "allowed_match_count": allowed_match_count,
                         "confidence_threshold": confidence_threshold,
                         "context_awareness": context_awareness,
                         "description": description,
+                        "entries": entries,
                         "ocr_enabled": ocr_enabled,
                         "shared_entries": shared_entries,
                     },
@@ -269,11 +358,12 @@ class AsyncCustomResource(AsyncAPIResource):
         """
         return AsyncCustomResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
         account_id: str,
-        profiles: Iterable[custom_create_params.Profile],
+        profiles: Iterable[custom_create_params.Variant0Profile],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -282,7 +372,7 @@ class AsyncCustomResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CustomCreateResponse]:
         """
-        Creates a set of DLP custom profiles.
+        Creates a DLP custom profile.
 
         Args:
           extra_headers: Send extra headers
@@ -293,19 +383,104 @@ class AsyncCustomResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        account_id: str,
+        entries: Iterable[custom_create_params.DLPNewCustomProfileEntry],
+        name: str,
+        allowed_match_count: int | NotGiven = NOT_GIVEN,
+        confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
+        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        ocr_enabled: bool | NotGiven = NOT_GIVEN,
+        shared_entries: Iterable[custom_create_params.DLPNewCustomProfileSharedEntry] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CustomCreateResponse]:
+        """
+        Creates a DLP custom profile.
+
+        Args:
+          allowed_match_count: Related DLP policies will trigger when the match count exceeds the number set.
+
+          context_awareness: Scan the context of predefined entries to only return matches surrounded by
+              keywords.
+
+          description: The description of the profile
+
+          shared_entries: Entries from other profiles (e.g. pre-defined Cloudflare profiles, or your
+              Microsoft Information Protection profiles).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id", "profiles"], ["account_id", "entries", "name"])
+    async def create(
+        self,
+        *,
+        account_id: str,
+        profiles: Iterable[custom_create_params.Variant0Profile] | NotGiven = NOT_GIVEN,
+        entries: Iterable[custom_create_params.DLPNewCustomProfileEntry] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        allowed_match_count: int | NotGiven = NOT_GIVEN,
+        confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
+        context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
+        ocr_enabled: bool | NotGiven = NOT_GIVEN,
+        shared_entries: Iterable[custom_create_params.DLPNewCustomProfileSharedEntry] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CustomCreateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/dlp/profiles/custom",
-            body=await async_maybe_transform({"profiles": profiles}, custom_create_params.CustomCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomCreateResponse]]._unwrapper,
+        return cast(
+            Optional[CustomCreateResponse],
+            await self._post(
+                f"/accounts/{account_id}/dlp/profiles/custom",
+                body=await async_maybe_transform(
+                    {
+                        "profiles": profiles,
+                        "entries": entries,
+                        "name": name,
+                        "allowed_match_count": allowed_match_count,
+                        "confidence_threshold": confidence_threshold,
+                        "context_awareness": context_awareness,
+                        "description": description,
+                        "ocr_enabled": ocr_enabled,
+                        "shared_entries": shared_entries,
+                    },
+                    custom_create_params.CustomCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[CustomCreateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[CustomCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Optional[CustomCreateResponse]], ResultWrapper[CustomCreateResponse]),
         )
 
     async def update(
@@ -313,12 +488,12 @@ class AsyncCustomResource(AsyncAPIResource):
         profile_id: str,
         *,
         account_id: str,
-        entries: Iterable[custom_update_params.Entry],
         name: str,
         allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
         confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        entries: Optional[Iterable[custom_update_params.Entry]] | NotGiven = NOT_GIVEN,
         ocr_enabled: bool | NotGiven = NOT_GIVEN,
         shared_entries: Iterable[custom_update_params.SharedEntry] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -332,12 +507,13 @@ class AsyncCustomResource(AsyncAPIResource):
         Updates a DLP custom profile.
 
         Args:
-          entries: Custom entries from this profile
-
           context_awareness: Scan the context of predefined entries to only return matches surrounded by
               keywords.
 
           description: The description of the profile
+
+          entries: Custom entries from this profile. If this field is omitted, entries owned by
+              this profile will not be changed.
 
           shared_entries: Other entries, e.g. predefined or integration.
 
@@ -359,12 +535,12 @@ class AsyncCustomResource(AsyncAPIResource):
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
                 body=await async_maybe_transform(
                     {
-                        "entries": entries,
                         "name": name,
                         "allowed_match_count": allowed_match_count,
                         "confidence_threshold": confidence_threshold,
                         "context_awareness": context_awareness,
                         "description": description,
+                        "entries": entries,
                         "ocr_enabled": ocr_enabled,
                         "shared_entries": shared_entries,
                     },
