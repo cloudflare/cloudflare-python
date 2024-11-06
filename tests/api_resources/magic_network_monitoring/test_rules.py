@@ -11,7 +11,12 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.magic_network_monitoring import (
-    MagicNetworkMonitoringRule,
+    RuleGetResponse,
+    RuleEditResponse,
+    RuleListResponse,
+    RuleCreateResponse,
+    RuleDeleteResponse,
+    RuleUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -27,7 +32,7 @@ class TestRules:
             duration="300s",
             name="my_rule_1",
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -40,7 +45,7 @@ class TestRules:
             packet_threshold=10000,
             prefixes=["203.0.113.1/32", "203.0.113.1/32", "203.0.113.1/32"],
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -53,7 +58,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -66,7 +71,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -86,7 +91,7 @@ class TestRules:
             duration="300s",
             name="my_rule_1",
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -100,7 +105,7 @@ class TestRules:
             packet_threshold=10000,
             prefixes=["203.0.113.1/32", "203.0.113.1/32", "203.0.113.1/32"],
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -113,7 +118,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -126,7 +131,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -144,7 +149,7 @@ class TestRules:
         rule = client.magic_network_monitoring.rules.list(
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(SyncSinglePage[Optional[MagicNetworkMonitoringRule]], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[Optional[RuleListResponse]], rule, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -155,7 +160,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(SyncSinglePage[Optional[MagicNetworkMonitoringRule]], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[Optional[RuleListResponse]], rule, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -166,7 +171,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(SyncSinglePage[Optional[MagicNetworkMonitoringRule]], rule, path=["response"])
+            assert_matches_type(SyncSinglePage[Optional[RuleListResponse]], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -183,7 +188,7 @@ class TestRules:
             rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -195,7 +200,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -207,7 +212,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -231,7 +236,7 @@ class TestRules:
             rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -245,7 +250,7 @@ class TestRules:
             packet_threshold=10000,
             prefixes=["203.0.113.1/32", "203.0.113.1/32", "203.0.113.1/32"],
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -257,7 +262,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -269,7 +274,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -293,7 +298,7 @@ class TestRules:
             rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleGetResponse], rule, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -305,7 +310,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleGetResponse], rule, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -317,7 +322,7 @@ class TestRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleGetResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -346,7 +351,7 @@ class TestAsyncRules:
             duration="300s",
             name="my_rule_1",
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -359,7 +364,7 @@ class TestAsyncRules:
             packet_threshold=10000,
             prefixes=["203.0.113.1/32", "203.0.113.1/32", "203.0.113.1/32"],
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -372,7 +377,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -385,7 +390,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -405,7 +410,7 @@ class TestAsyncRules:
             duration="300s",
             name="my_rule_1",
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -419,7 +424,7 @@ class TestAsyncRules:
             packet_threshold=10000,
             prefixes=["203.0.113.1/32", "203.0.113.1/32", "203.0.113.1/32"],
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -432,7 +437,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -445,7 +450,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -463,7 +468,7 @@ class TestAsyncRules:
         rule = await async_client.magic_network_monitoring.rules.list(
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(AsyncSinglePage[Optional[MagicNetworkMonitoringRule]], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[Optional[RuleListResponse]], rule, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -474,7 +479,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(AsyncSinglePage[Optional[MagicNetworkMonitoringRule]], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[Optional[RuleListResponse]], rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -485,7 +490,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(AsyncSinglePage[Optional[MagicNetworkMonitoringRule]], rule, path=["response"])
+            assert_matches_type(AsyncSinglePage[Optional[RuleListResponse]], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -502,7 +507,7 @@ class TestAsyncRules:
             rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -514,7 +519,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -526,7 +531,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -550,7 +555,7 @@ class TestAsyncRules:
             rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -564,7 +569,7 @@ class TestAsyncRules:
             packet_threshold=10000,
             prefixes=["203.0.113.1/32", "203.0.113.1/32", "203.0.113.1/32"],
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -576,7 +581,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -588,7 +593,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -612,7 +617,7 @@ class TestAsyncRules:
             rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleGetResponse], rule, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -624,7 +629,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+        assert_matches_type(Optional[RuleGetResponse], rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -636,7 +641,7 @@ class TestAsyncRules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
+            assert_matches_type(Optional[RuleGetResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

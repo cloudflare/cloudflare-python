@@ -22,7 +22,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.magic_network_monitoring.rules import advertisement_edit_params
-from ....types.magic_network_monitoring.rules.advertisement import Advertisement
+from ....types.magic_network_monitoring.rules.advertisement_edit_response import AdvertisementEditResponse
 
 __all__ = ["AdvertisementsResource", "AsyncAdvertisementsResource"]
 
@@ -59,7 +59,7 @@ class AdvertisementsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Advertisement]:
+    ) -> Optional[AdvertisementEditResponse]:
         """Update advertisement for rule.
 
         Args:
@@ -87,9 +87,9 @@ class AdvertisementsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Advertisement]]._unwrapper,
+                post_parser=ResultWrapper[Optional[AdvertisementEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Advertisement]], ResultWrapper[Advertisement]),
+            cast_to=cast(Type[Optional[AdvertisementEditResponse]], ResultWrapper[AdvertisementEditResponse]),
         )
 
 
@@ -125,7 +125,7 @@ class AsyncAdvertisementsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Advertisement]:
+    ) -> Optional[AdvertisementEditResponse]:
         """Update advertisement for rule.
 
         Args:
@@ -153,9 +153,9 @@ class AsyncAdvertisementsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Advertisement]]._unwrapper,
+                post_parser=ResultWrapper[Optional[AdvertisementEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Advertisement]], ResultWrapper[Advertisement]),
+            cast_to=cast(Type[Optional[AdvertisementEditResponse]], ResultWrapper[AdvertisementEditResponse]),
         )
 
 

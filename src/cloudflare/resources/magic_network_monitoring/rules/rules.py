@@ -31,7 +31,12 @@ from .advertisements import (
 )
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.magic_network_monitoring import rule_edit_params, rule_create_params, rule_update_params
-from ....types.magic_network_monitoring.magic_network_monitoring_rule import MagicNetworkMonitoringRule
+from ....types.magic_network_monitoring.rule_get_response import RuleGetResponse
+from ....types.magic_network_monitoring.rule_edit_response import RuleEditResponse
+from ....types.magic_network_monitoring.rule_list_response import RuleListResponse
+from ....types.magic_network_monitoring.rule_create_response import RuleCreateResponse
+from ....types.magic_network_monitoring.rule_delete_response import RuleDeleteResponse
+from ....types.magic_network_monitoring.rule_update_response import RuleUpdateResponse
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 
@@ -76,7 +81,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MagicNetworkMonitoringRule]:
+    ) -> Optional[RuleCreateResponse]:
         """Create network monitoring rules for account.
 
         Currently only supports creating a
@@ -131,9 +136,9 @@ class RulesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MagicNetworkMonitoringRule]]._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MagicNetworkMonitoringRule]], ResultWrapper[MagicNetworkMonitoringRule]),
+            cast_to=cast(Type[Optional[RuleCreateResponse]], ResultWrapper[RuleCreateResponse]),
         )
 
     def update(
@@ -153,7 +158,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MagicNetworkMonitoringRule]:
+    ) -> Optional[RuleUpdateResponse]:
         """
         Update network monitoring rules for account.
 
@@ -209,9 +214,9 @@ class RulesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MagicNetworkMonitoringRule]]._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MagicNetworkMonitoringRule]], ResultWrapper[MagicNetworkMonitoringRule]),
+            cast_to=cast(Type[Optional[RuleUpdateResponse]], ResultWrapper[RuleUpdateResponse]),
         )
 
     def list(
@@ -224,7 +229,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Optional[MagicNetworkMonitoringRule]]:
+    ) -> SyncSinglePage[Optional[RuleListResponse]]:
         """
         Lists network monitoring rules for account.
 
@@ -241,11 +246,11 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/mnm/rules",
-            page=SyncSinglePage[Optional[MagicNetworkMonitoringRule]],
+            page=SyncSinglePage[Optional[RuleListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=MagicNetworkMonitoringRule,
+            model=RuleListResponse,
         )
 
     def delete(
@@ -259,7 +264,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MagicNetworkMonitoringRule]:
+    ) -> Optional[RuleDeleteResponse]:
         """
         Delete a network monitoring rule for account.
 
@@ -285,9 +290,9 @@ class RulesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MagicNetworkMonitoringRule]]._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MagicNetworkMonitoringRule]], ResultWrapper[MagicNetworkMonitoringRule]),
+            cast_to=cast(Type[Optional[RuleDeleteResponse]], ResultWrapper[RuleDeleteResponse]),
         )
 
     def edit(
@@ -307,7 +312,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MagicNetworkMonitoringRule]:
+    ) -> Optional[RuleEditResponse]:
         """
         Update a network monitoring rule for account.
 
@@ -364,9 +369,9 @@ class RulesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MagicNetworkMonitoringRule]]._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MagicNetworkMonitoringRule]], ResultWrapper[MagicNetworkMonitoringRule]),
+            cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
         )
 
     def get(
@@ -380,7 +385,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MagicNetworkMonitoringRule]:
+    ) -> Optional[RuleGetResponse]:
         """
         List a single network monitoring rule for account.
 
@@ -406,9 +411,9 @@ class RulesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MagicNetworkMonitoringRule]]._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MagicNetworkMonitoringRule]], ResultWrapper[MagicNetworkMonitoringRule]),
+            cast_to=cast(Type[Optional[RuleGetResponse]], ResultWrapper[RuleGetResponse]),
         )
 
 
@@ -452,7 +457,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MagicNetworkMonitoringRule]:
+    ) -> Optional[RuleCreateResponse]:
         """Create network monitoring rules for account.
 
         Currently only supports creating a
@@ -507,9 +512,9 @@ class AsyncRulesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MagicNetworkMonitoringRule]]._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MagicNetworkMonitoringRule]], ResultWrapper[MagicNetworkMonitoringRule]),
+            cast_to=cast(Type[Optional[RuleCreateResponse]], ResultWrapper[RuleCreateResponse]),
         )
 
     async def update(
@@ -529,7 +534,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MagicNetworkMonitoringRule]:
+    ) -> Optional[RuleUpdateResponse]:
         """
         Update network monitoring rules for account.
 
@@ -585,9 +590,9 @@ class AsyncRulesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MagicNetworkMonitoringRule]]._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MagicNetworkMonitoringRule]], ResultWrapper[MagicNetworkMonitoringRule]),
+            cast_to=cast(Type[Optional[RuleUpdateResponse]], ResultWrapper[RuleUpdateResponse]),
         )
 
     def list(
@@ -600,7 +605,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Optional[MagicNetworkMonitoringRule], AsyncSinglePage[Optional[MagicNetworkMonitoringRule]]]:
+    ) -> AsyncPaginator[Optional[RuleListResponse], AsyncSinglePage[Optional[RuleListResponse]]]:
         """
         Lists network monitoring rules for account.
 
@@ -617,11 +622,11 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/mnm/rules",
-            page=AsyncSinglePage[Optional[MagicNetworkMonitoringRule]],
+            page=AsyncSinglePage[Optional[RuleListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=MagicNetworkMonitoringRule,
+            model=RuleListResponse,
         )
 
     async def delete(
@@ -635,7 +640,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MagicNetworkMonitoringRule]:
+    ) -> Optional[RuleDeleteResponse]:
         """
         Delete a network monitoring rule for account.
 
@@ -661,9 +666,9 @@ class AsyncRulesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MagicNetworkMonitoringRule]]._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MagicNetworkMonitoringRule]], ResultWrapper[MagicNetworkMonitoringRule]),
+            cast_to=cast(Type[Optional[RuleDeleteResponse]], ResultWrapper[RuleDeleteResponse]),
         )
 
     async def edit(
@@ -683,7 +688,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MagicNetworkMonitoringRule]:
+    ) -> Optional[RuleEditResponse]:
         """
         Update a network monitoring rule for account.
 
@@ -740,9 +745,9 @@ class AsyncRulesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MagicNetworkMonitoringRule]]._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MagicNetworkMonitoringRule]], ResultWrapper[MagicNetworkMonitoringRule]),
+            cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
         )
 
     async def get(
@@ -756,7 +761,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MagicNetworkMonitoringRule]:
+    ) -> Optional[RuleGetResponse]:
         """
         List a single network monitoring rule for account.
 
@@ -782,9 +787,9 @@ class AsyncRulesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MagicNetworkMonitoringRule]]._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MagicNetworkMonitoringRule]], ResultWrapper[MagicNetworkMonitoringRule]),
+            cast_to=cast(Type[Optional[RuleGetResponse]], ResultWrapper[RuleGetResponse]),
         )
 
 
