@@ -4,7 +4,7 @@ from typing import List
 
 from ..._models import BaseModel
 
-__all__ = ["ConfigCreateResponse", "WARPDevice"]
+__all__ = ["Configuration", "WARPDevice"]
 
 
 class WARPDevice(BaseModel):
@@ -21,7 +21,7 @@ class WARPDevice(BaseModel):
     """
 
 
-class ConfigCreateResponse(BaseModel):
+class Configuration(BaseModel):
     default_sampling: float
     """Fallback sampling rate of flow messages being sent in packets per second.
 

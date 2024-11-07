@@ -30,11 +30,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.magic_network_monitoring import config_edit_params, config_create_params, config_update_params
-from ....types.magic_network_monitoring.config_get_response import ConfigGetResponse
-from ....types.magic_network_monitoring.config_edit_response import ConfigEditResponse
-from ....types.magic_network_monitoring.config_create_response import ConfigCreateResponse
-from ....types.magic_network_monitoring.config_delete_response import ConfigDeleteResponse
-from ....types.magic_network_monitoring.config_update_response import ConfigUpdateResponse
+from ....types.magic_network_monitoring.configuration import Configuration
 
 __all__ = ["ConfigsResource", "AsyncConfigsResource"]
 
@@ -77,7 +73,7 @@ class ConfigsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigCreateResponse:
+    ) -> Configuration:
         """
         Create a new network monitoring configuration.
 
@@ -113,9 +109,9 @@ class ConfigsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ConfigCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
-            cast_to=cast(Type[ConfigCreateResponse], ResultWrapper[ConfigCreateResponse]),
+            cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
 
     def update(
@@ -132,7 +128,7 @@ class ConfigsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigUpdateResponse:
+    ) -> Configuration:
         """
         Update an existing network monitoring configuration, requires the entire
         configuration to be updated at once.
@@ -169,9 +165,9 @@ class ConfigsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ConfigUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
-            cast_to=cast(Type[ConfigUpdateResponse], ResultWrapper[ConfigUpdateResponse]),
+            cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
 
     def delete(
@@ -184,7 +180,7 @@ class ConfigsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigDeleteResponse:
+    ) -> Configuration:
         """
         Delete an existing network monitoring configuration.
 
@@ -206,9 +202,9 @@ class ConfigsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ConfigDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
-            cast_to=cast(Type[ConfigDeleteResponse], ResultWrapper[ConfigDeleteResponse]),
+            cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
 
     def edit(
@@ -225,7 +221,7 @@ class ConfigsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigEditResponse:
+    ) -> Configuration:
         """
         Update fields in an existing network monitoring configuration.
 
@@ -261,9 +257,9 @@ class ConfigsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ConfigEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
-            cast_to=cast(Type[ConfigEditResponse], ResultWrapper[ConfigEditResponse]),
+            cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
 
     def get(
@@ -276,7 +272,7 @@ class ConfigsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigGetResponse:
+    ) -> Configuration:
         """
         Lists default sampling, router IPs and warp devices for account.
 
@@ -298,9 +294,9 @@ class ConfigsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ConfigGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
-            cast_to=cast(Type[ConfigGetResponse], ResultWrapper[ConfigGetResponse]),
+            cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
 
 
@@ -342,7 +338,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigCreateResponse:
+    ) -> Configuration:
         """
         Create a new network monitoring configuration.
 
@@ -378,9 +374,9 @@ class AsyncConfigsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ConfigCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
-            cast_to=cast(Type[ConfigCreateResponse], ResultWrapper[ConfigCreateResponse]),
+            cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
 
     async def update(
@@ -397,7 +393,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigUpdateResponse:
+    ) -> Configuration:
         """
         Update an existing network monitoring configuration, requires the entire
         configuration to be updated at once.
@@ -434,9 +430,9 @@ class AsyncConfigsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ConfigUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
-            cast_to=cast(Type[ConfigUpdateResponse], ResultWrapper[ConfigUpdateResponse]),
+            cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
 
     async def delete(
@@ -449,7 +445,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigDeleteResponse:
+    ) -> Configuration:
         """
         Delete an existing network monitoring configuration.
 
@@ -471,9 +467,9 @@ class AsyncConfigsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ConfigDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
-            cast_to=cast(Type[ConfigDeleteResponse], ResultWrapper[ConfigDeleteResponse]),
+            cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
 
     async def edit(
@@ -490,7 +486,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigEditResponse:
+    ) -> Configuration:
         """
         Update fields in an existing network monitoring configuration.
 
@@ -526,9 +522,9 @@ class AsyncConfigsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ConfigEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
-            cast_to=cast(Type[ConfigEditResponse], ResultWrapper[ConfigEditResponse]),
+            cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
 
     async def get(
@@ -541,7 +537,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigGetResponse:
+    ) -> Configuration:
         """
         Lists default sampling, router IPs and warp devices for account.
 
@@ -563,9 +559,9 @@ class AsyncConfigsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ConfigGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
-            cast_to=cast(Type[ConfigGetResponse], ResultWrapper[ConfigGetResponse]),
+            cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
 
 

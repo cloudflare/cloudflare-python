@@ -4,10 +4,10 @@ from typing import Optional
 
 from ...._models import BaseModel
 
-__all__ = ["AdvertisementEditResponse"]
+__all__ = ["Advertisement"]
 
 
-class AdvertisementEditResponse(BaseModel):
+class Advertisement(BaseModel):
     automatic_advertisement: Optional[bool] = None
     """
     Toggle on if you would like Cloudflare to automatically advertise the IP
