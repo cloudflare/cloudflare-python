@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magic_network_monitoring.rules import AdvertisementEditResponse
+from cloudflare.types.magic_network_monitoring.rules import Advertisement
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestAdvertisements:
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         )
-        assert_matches_type(Optional[AdvertisementEditResponse], advertisement, path=["response"])
+        assert_matches_type(Optional[Advertisement], advertisement, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -37,7 +37,7 @@ class TestAdvertisements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         advertisement = response.parse()
-        assert_matches_type(Optional[AdvertisementEditResponse], advertisement, path=["response"])
+        assert_matches_type(Optional[Advertisement], advertisement, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -50,7 +50,7 @@ class TestAdvertisements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             advertisement = response.parse()
-            assert_matches_type(Optional[AdvertisementEditResponse], advertisement, path=["response"])
+            assert_matches_type(Optional[Advertisement], advertisement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -81,7 +81,7 @@ class TestAsyncAdvertisements:
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         )
-        assert_matches_type(Optional[AdvertisementEditResponse], advertisement, path=["response"])
+        assert_matches_type(Optional[Advertisement], advertisement, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -94,7 +94,7 @@ class TestAsyncAdvertisements:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         advertisement = await response.parse()
-        assert_matches_type(Optional[AdvertisementEditResponse], advertisement, path=["response"])
+        assert_matches_type(Optional[Advertisement], advertisement, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -107,7 +107,7 @@ class TestAsyncAdvertisements:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             advertisement = await response.parse()
-            assert_matches_type(Optional[AdvertisementEditResponse], advertisement, path=["response"])
+            assert_matches_type(Optional[Advertisement], advertisement, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

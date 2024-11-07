@@ -17,7 +17,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.magic_network_monitoring.configs.full_get_response import FullGetResponse
+from ....types.magic_network_monitoring.configuration import Configuration
 
 __all__ = ["FullResource", "AsyncFullResource"]
 
@@ -52,7 +52,7 @@ class FullResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FullGetResponse:
+    ) -> Configuration:
         """
         Lists default sampling, router IPs, warp devices, and rules for account.
 
@@ -74,9 +74,9 @@ class FullResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[FullGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
-            cast_to=cast(Type[FullGetResponse], ResultWrapper[FullGetResponse]),
+            cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
 
 
@@ -110,7 +110,7 @@ class AsyncFullResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FullGetResponse:
+    ) -> Configuration:
         """
         Lists default sampling, router IPs, warp devices, and rules for account.
 
@@ -132,9 +132,9 @@ class AsyncFullResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[FullGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Configuration]._unwrapper,
             ),
-            cast_to=cast(Type[FullGetResponse], ResultWrapper[FullGetResponse]),
+            cast_to=cast(Type[Configuration], ResultWrapper[Configuration]),
         )
 
 
