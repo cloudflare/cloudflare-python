@@ -1,31 +1,43 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
-from .saas_app_source import SaaSAppSource
-from .saas_app_name_format import SaaSAppNameFormat
 from .saas_app_name_id_format import SaaSAppNameIDFormat
 
-__all__ = ["SAMLSaaSApp", "CustomAttributes"]
+__all__ = ["SAMLSaaSApp", "CustomAttribute", "CustomAttributeSource"]
 
 
-class CustomAttributes(BaseModel):
+class CustomAttributeSource(BaseModel):
+    name: Optional[str] = None
+    """The name of the IdP attribute."""
+
+    name_by_idp: Optional[Dict[str, str]] = None
+    """A mapping from IdP ID to attribute name."""
+
+
+class CustomAttribute(BaseModel):
     friendly_name: Optional[str] = None
     """The SAML FriendlyName of the attribute."""
 
     name: Optional[str] = None
     """The name of the attribute."""
 
-    name_format: Optional[SaaSAppNameFormat] = None
+    name_format: Optional[
+        Literal[
+            "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
+            "urn:oasis:names:tc:SAML:2.0:attrname-format:basic",
+            "urn:oasis:names:tc:SAML:2.0:attrname-format:uri",
+        ]
+    ] = None
     """A globally unique name for an identity or service provider."""
 
     required: Optional[bool] = None
     """If the attribute is required when building a SAML assertion."""
 
-    source: Optional[SaaSAppSource] = None
+    source: Optional[CustomAttributeSource] = None
 
 
 class SAMLSaaSApp(BaseModel):
@@ -44,7 +56,7 @@ class SAMLSaaSApp(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    custom_attributes: Optional[CustomAttributes] = None
+    custom_attributes: Optional[List[CustomAttribute]] = None
 
     default_relay_state: Optional[str] = None
     """
