@@ -17,7 +17,6 @@ from .service_token import ServiceToken as ServiceToken
 from .allowed_headers import AllowedHeaders as AllowedHeaders
 from .allowed_methods import AllowedMethods as AllowedMethods
 from .allowed_origins import AllowedOrigins as AllowedOrigins
-from .saas_app_source import SaaSAppSource as SaaSAppSource
 from .application_type import ApplicationType as ApplicationType
 from .key_get_response import KeyGetResponse as KeyGetResponse
 from .zero_trust_group import ZeroTrustGroup as ZeroTrustGroup
@@ -41,9 +40,7 @@ from .associated_hostnames import AssociatedHostnames as AssociatedHostnames
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_list_response import PolicyListResponse as PolicyListResponse
 from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams
-from .saas_app_name_format import SaaSAppNameFormat as SaaSAppNameFormat
 from .group_delete_response import GroupDeleteResponse as GroupDeleteResponse
-from .saas_app_source_param import SaaSAppSourceParam as SaaSAppSourceParam
 from .bookmark_create_params import BookmarkCreateParams as BookmarkCreateParams
 from .bookmark_update_params import BookmarkUpdateParams as BookmarkUpdateParams
 from .policy_create_response import PolicyCreateResponse as PolicyCreateResponse
