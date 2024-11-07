@@ -27,20 +27,7 @@ class TestLockdowns:
     def test_method_create(self, client: Cloudflare) -> None:
         lockdown = client.firewall.lockdowns.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={},
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
-        )
-        assert_matches_type(Lockdown, lockdown, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        lockdown = client.firewall.lockdowns.create(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={
-                "target": "ip",
-                "value": "198.51.100.4",
-            },
+            configurations=[{}, {}, {}],
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
         assert_matches_type(Lockdown, lockdown, path=["response"])
@@ -50,7 +37,7 @@ class TestLockdowns:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.firewall.lockdowns.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={},
+            configurations=[{}, {}, {}],
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
 
@@ -64,7 +51,7 @@ class TestLockdowns:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.firewall.lockdowns.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={},
+            configurations=[{}, {}, {}],
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         ) as response:
             assert not response.is_closed
@@ -81,7 +68,7 @@ class TestLockdowns:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.firewall.lockdowns.with_raw_response.create(
                 zone_id="",
-                configurations={},
+                configurations=[{}, {}, {}],
                 urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
             )
 
@@ -91,21 +78,7 @@ class TestLockdowns:
         lockdown = client.firewall.lockdowns.update(
             lock_downs_id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={},
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
-        )
-        assert_matches_type(Lockdown, lockdown, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        lockdown = client.firewall.lockdowns.update(
-            lock_downs_id="372e67954025e0ba6aaa6d586b9e0b59",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={
-                "target": "ip",
-                "value": "198.51.100.4",
-            },
+            configurations=[{}, {}, {}],
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
         assert_matches_type(Lockdown, lockdown, path=["response"])
@@ -116,7 +89,7 @@ class TestLockdowns:
         response = client.firewall.lockdowns.with_raw_response.update(
             lock_downs_id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={},
+            configurations=[{}, {}, {}],
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
 
@@ -131,7 +104,7 @@ class TestLockdowns:
         with client.firewall.lockdowns.with_streaming_response.update(
             lock_downs_id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={},
+            configurations=[{}, {}, {}],
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         ) as response:
             assert not response.is_closed
@@ -149,7 +122,7 @@ class TestLockdowns:
             client.firewall.lockdowns.with_raw_response.update(
                 lock_downs_id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_id="",
-                configurations={},
+                configurations=[{}, {}, {}],
                 urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
             )
 
@@ -157,7 +130,7 @@ class TestLockdowns:
             client.firewall.lockdowns.with_raw_response.update(
                 lock_downs_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                configurations={},
+                configurations=[{}, {}, {}],
                 urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
             )
 
@@ -322,20 +295,7 @@ class TestAsyncLockdowns:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         lockdown = await async_client.firewall.lockdowns.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={},
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
-        )
-        assert_matches_type(Lockdown, lockdown, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        lockdown = await async_client.firewall.lockdowns.create(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={
-                "target": "ip",
-                "value": "198.51.100.4",
-            },
+            configurations=[{}, {}, {}],
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
         assert_matches_type(Lockdown, lockdown, path=["response"])
@@ -345,7 +305,7 @@ class TestAsyncLockdowns:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.lockdowns.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={},
+            configurations=[{}, {}, {}],
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
 
@@ -359,7 +319,7 @@ class TestAsyncLockdowns:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.lockdowns.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={},
+            configurations=[{}, {}, {}],
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         ) as response:
             assert not response.is_closed
@@ -376,7 +336,7 @@ class TestAsyncLockdowns:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.firewall.lockdowns.with_raw_response.create(
                 zone_id="",
-                configurations={},
+                configurations=[{}, {}, {}],
                 urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
             )
 
@@ -386,21 +346,7 @@ class TestAsyncLockdowns:
         lockdown = await async_client.firewall.lockdowns.update(
             lock_downs_id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={},
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
-        )
-        assert_matches_type(Lockdown, lockdown, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        lockdown = await async_client.firewall.lockdowns.update(
-            lock_downs_id="372e67954025e0ba6aaa6d586b9e0b59",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={
-                "target": "ip",
-                "value": "198.51.100.4",
-            },
+            configurations=[{}, {}, {}],
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
         assert_matches_type(Lockdown, lockdown, path=["response"])
@@ -411,7 +357,7 @@ class TestAsyncLockdowns:
         response = await async_client.firewall.lockdowns.with_raw_response.update(
             lock_downs_id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={},
+            configurations=[{}, {}, {}],
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         )
 
@@ -426,7 +372,7 @@ class TestAsyncLockdowns:
         async with async_client.firewall.lockdowns.with_streaming_response.update(
             lock_downs_id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            configurations={},
+            configurations=[{}, {}, {}],
             urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
         ) as response:
             assert not response.is_closed
@@ -444,7 +390,7 @@ class TestAsyncLockdowns:
             await async_client.firewall.lockdowns.with_raw_response.update(
                 lock_downs_id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_id="",
-                configurations={},
+                configurations=[{}, {}, {}],
                 urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
             )
 
@@ -452,7 +398,7 @@ class TestAsyncLockdowns:
             await async_client.firewall.lockdowns.with_raw_response.update(
                 lock_downs_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                configurations={},
+                configurations=[{}, {}, {}],
                 urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
             )
 
