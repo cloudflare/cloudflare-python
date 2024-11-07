@@ -25,13 +25,6 @@ class IdentityProviderSCIMConfigParam(TypedDict, total=False):
     enabled.
     """
 
-    secret: str
-    """
-    A read-only token generated when the SCIM integration is enabled for the first
-    time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
-    """
-
     user_deprovision: bool
     """
     A flag to enable revoking a user's session in Access and Gateway when they have

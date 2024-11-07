@@ -25,7 +25,7 @@ class TestCAs:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(object, ca, path=["response"])
+        assert_matches_type(Optional[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -34,7 +34,7 @@ class TestCAs:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(object, ca, path=["response"])
+        assert_matches_type(Optional[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -47,7 +47,7 @@ class TestCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = response.parse()
-        assert_matches_type(object, ca, path=["response"])
+        assert_matches_type(Optional[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -60,7 +60,7 @@ class TestCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = response.parse()
-            assert_matches_type(object, ca, path=["response"])
+            assert_matches_type(Optional[CA], ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -214,7 +214,7 @@ class TestCAs:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(object, ca, path=["response"])
+        assert_matches_type(Optional[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -223,7 +223,7 @@ class TestCAs:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(object, ca, path=["response"])
+        assert_matches_type(Optional[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -236,7 +236,7 @@ class TestCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = response.parse()
-        assert_matches_type(object, ca, path=["response"])
+        assert_matches_type(Optional[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -249,7 +249,7 @@ class TestCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = response.parse()
-            assert_matches_type(object, ca, path=["response"])
+            assert_matches_type(Optional[CA], ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -285,7 +285,7 @@ class TestAsyncCAs:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(object, ca, path=["response"])
+        assert_matches_type(Optional[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -294,7 +294,7 @@ class TestAsyncCAs:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(object, ca, path=["response"])
+        assert_matches_type(Optional[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -307,7 +307,7 @@ class TestAsyncCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = await response.parse()
-        assert_matches_type(object, ca, path=["response"])
+        assert_matches_type(Optional[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -320,7 +320,7 @@ class TestAsyncCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = await response.parse()
-            assert_matches_type(object, ca, path=["response"])
+            assert_matches_type(Optional[CA], ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -474,7 +474,7 @@ class TestAsyncCAs:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(object, ca, path=["response"])
+        assert_matches_type(Optional[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -483,7 +483,7 @@ class TestAsyncCAs:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(object, ca, path=["response"])
+        assert_matches_type(Optional[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -496,7 +496,7 @@ class TestAsyncCAs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ca = await response.parse()
-        assert_matches_type(object, ca, path=["response"])
+        assert_matches_type(Optional[CA], ca, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -509,7 +509,7 @@ class TestAsyncCAs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ca = await response.parse()
-            assert_matches_type(object, ca, path=["response"])
+            assert_matches_type(Optional[CA], ca, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
