@@ -39,6 +39,13 @@ class TestScripts:
             dispatch_namespace="my-dispatch-namespace",
             any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
             metadata={
+                "assets": {
+                    "config": {
+                        "html_handling": "auto-trailing-slash",
+                        "not_found_handling": "none",
+                    },
+                    "jwt": "jwt",
+                },
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
@@ -48,6 +55,7 @@ class TestScripts:
                 "body_part": "worker.js",
                 "compatibility_date": "2023-07-25",
                 "compatibility_flags": ["string", "string", "string"],
+                "keep_assets": False,
                 "keep_bindings": ["string", "string", "string"],
                 "logpush": False,
                 "main_module": "worker.js",
@@ -400,6 +408,13 @@ class TestAsyncScripts:
             dispatch_namespace="my-dispatch-namespace",
             any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
             metadata={
+                "assets": {
+                    "config": {
+                        "html_handling": "auto-trailing-slash",
+                        "not_found_handling": "none",
+                    },
+                    "jwt": "jwt",
+                },
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
@@ -409,6 +424,7 @@ class TestAsyncScripts:
                 "body_part": "worker.js",
                 "compatibility_date": "2023-07-25",
                 "compatibility_flags": ["string", "string", "string"],
+                "keep_assets": False,
                 "keep_bindings": ["string", "string", "string"],
                 "logpush": False,
                 "main_module": "worker.js",

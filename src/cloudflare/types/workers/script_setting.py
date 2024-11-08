@@ -10,7 +10,7 @@ __all__ = ["ScriptSetting", "Observability"]
 
 class Observability(BaseModel):
     enabled: bool
-    """Whether observability is enabled for the Worker"""
+    """Whether observability is enabled for the Worker."""
 
     head_sampling_rate: Optional[float] = None
     """The sampling rate for incoming requests.
@@ -24,7 +24,7 @@ class ScriptSetting(BaseModel):
     """Whether Logpush is turned on for the Worker."""
 
     observability: Optional[Observability] = None
-    """Observability settings for the Worker"""
+    """Observability settings for the Worker."""
 
     tail_consumers: Optional[List[ConsumerScript]] = None
     """List of Workers that will consume logs from the attached Worker."""
