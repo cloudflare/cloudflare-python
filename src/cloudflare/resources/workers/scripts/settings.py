@@ -75,7 +75,7 @@ class SettingsResource(SyncAPIResource):
 
           logpush: Whether Logpush is turned on for the Worker.
 
-          observability: Observability settings for the Worker
+          observability: Observability settings for the Worker.
 
           tail_consumers: List of Workers that will consume logs from the attached Worker.
 
@@ -205,7 +205,7 @@ class AsyncSettingsResource(AsyncAPIResource):
 
           logpush: Whether Logpush is turned on for the Worker.
 
-          observability: Observability settings for the Worker
+          observability: Observability settings for the Worker.
 
           tail_consumers: List of Workers that will consume logs from the attached Worker.
 

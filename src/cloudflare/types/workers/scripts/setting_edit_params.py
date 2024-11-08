@@ -18,7 +18,7 @@ class SettingEditParams(TypedDict, total=False):
     """Whether Logpush is turned on for the Worker."""
 
     observability: Observability
-    """Observability settings for the Worker"""
+    """Observability settings for the Worker."""
 
     tail_consumers: Iterable[ConsumerScriptParam]
     """List of Workers that will consume logs from the attached Worker."""
@@ -26,7 +26,7 @@ class SettingEditParams(TypedDict, total=False):
 
 class Observability(TypedDict, total=False):
     enabled: Required[bool]
-    """Whether observability is enabled for the Worker"""
+    """Whether observability is enabled for the Worker."""
 
     head_sampling_rate: Optional[float]
     """The sampling rate for incoming requests.

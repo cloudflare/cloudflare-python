@@ -34,7 +34,7 @@ SettingsMigrations: TypeAlias = Union[SingleStepMigrationParam, SteppedMigration
 
 class SettingsObservability(TypedDict, total=False):
     enabled: Required[bool]
-    """Whether observability is enabled for the Worker"""
+    """Whether observability is enabled for the Worker."""
 
     head_sampling_rate: Optional[float]
     """The sampling rate for incoming requests.
@@ -63,7 +63,7 @@ class Settings(TypedDict, total=False):
     """Migrations to apply for Durable Objects associated with this Worker."""
 
     observability: SettingsObservability
-    """Observability settings for the Worker"""
+    """Observability settings for the Worker."""
 
     placement: PlacementConfigurationParam
 

@@ -23,7 +23,7 @@ Migrations: TypeAlias = Union[SingleStepMigration, SteppedMigration]
 
 class Observability(BaseModel):
     enabled: bool
-    """Whether observability is enabled for the Worker"""
+    """Whether observability is enabled for the Worker."""
 
     head_sampling_rate: Optional[float] = None
     """The sampling rate for incoming requests.
@@ -52,7 +52,7 @@ class SettingGetResponse(BaseModel):
     """Migrations to apply for Durable Objects associated with this Worker."""
 
     observability: Optional[Observability] = None
-    """Observability settings for the Worker"""
+    """Observability settings for the Worker."""
 
     placement: Optional[PlacementConfiguration] = None
 
