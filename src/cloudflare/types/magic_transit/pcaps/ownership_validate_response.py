@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["Ownership"]
+__all__ = ["OwnershipValidateResponse"]
 
 
-class Ownership(BaseModel):
+class OwnershipValidateResponse(BaseModel):
     id: str
     """The bucket ID associated with the packet captures API."""
 
