@@ -41,7 +41,6 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.magic_transit import pcap_create_params
-from ....types.magic_transit.pcap_filter_param import PCAPFilterParam
 from ....types.magic_transit.pcap_get_response import PCAPGetResponse
 from ....types.magic_transit.pcap_list_response import PCAPListResponse
 from ....types.magic_transit.pcap_create_response import PCAPCreateResponse
@@ -86,7 +85,7 @@ class PCAPsResource(SyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
+        filter_v1: pcap_create_params.MagicVisibilityPCAPsPCAPsRequestSimpleFilterV1 | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -132,7 +131,7 @@ class PCAPsResource(SyncAPIResource):
         time_limit: float,
         type: Literal["simple", "full"],
         byte_limit: float | NotGiven = NOT_GIVEN,
-        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
+        filter_v1: pcap_create_params.MagicVisibilityPCAPsPCAPsRequestFullFilterV1 | NotGiven = NOT_GIVEN,
         packet_limit: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -189,7 +188,7 @@ class PCAPsResource(SyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
+        filter_v1: pcap_create_params.MagicVisibilityPCAPsPCAPsRequestSimpleFilterV1 | NotGiven = NOT_GIVEN,
         colo_name: str | NotGiven = NOT_GIVEN,
         destination_conf: str | NotGiven = NOT_GIVEN,
         byte_limit: float | NotGiven = NOT_GIVEN,
@@ -355,7 +354,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
+        filter_v1: pcap_create_params.MagicVisibilityPCAPsPCAPsRequestSimpleFilterV1 | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -401,7 +400,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         time_limit: float,
         type: Literal["simple", "full"],
         byte_limit: float | NotGiven = NOT_GIVEN,
-        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
+        filter_v1: pcap_create_params.MagicVisibilityPCAPsPCAPsRequestFullFilterV1 | NotGiven = NOT_GIVEN,
         packet_limit: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -458,7 +457,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         system: Literal["magic-transit"],
         time_limit: float,
         type: Literal["simple", "full"],
-        filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
+        filter_v1: pcap_create_params.MagicVisibilityPCAPsPCAPsRequestSimpleFilterV1 | NotGiven = NOT_GIVEN,
         colo_name: str | NotGiven = NOT_GIVEN,
         destination_conf: str | NotGiven = NOT_GIVEN,
         byte_limit: float | NotGiven = NOT_GIVEN,

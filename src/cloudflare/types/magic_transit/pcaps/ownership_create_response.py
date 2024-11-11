@@ -1,14 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal, TypeAlias
+from typing import Optional
+from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["OwnershipGetResponse", "OwnershipGetResponseItem"]
+__all__ = ["OwnershipCreateResponse"]
 
 
-class OwnershipGetResponseItem(BaseModel):
+class OwnershipCreateResponse(BaseModel):
     id: str
     """The bucket ID associated with the packet captures API."""
 
@@ -26,6 +26,3 @@ class OwnershipGetResponseItem(BaseModel):
 
     validated: Optional[str] = None
     """The RFC 3339 timestamp when the bucket was validated."""
-
-
-OwnershipGetResponse: TypeAlias = List[OwnershipGetResponseItem]

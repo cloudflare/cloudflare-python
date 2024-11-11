@@ -3754,13 +3754,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.magic_transit import (
-    PCAP,
-    PCAPFilter,
-    PCAPCreateResponse,
-    PCAPListResponse,
-    PCAPGetResponse,
-)
+from cloudflare.types.magic_transit import PCAPCreateResponse, PCAPListResponse, PCAPGetResponse
 ```
 
 Methods:
@@ -3774,15 +3768,19 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.magic_transit.pcaps import Ownership, OwnershipGetResponse
+from cloudflare.types.magic_transit.pcaps import (
+    OwnershipCreateResponse,
+    OwnershipGetResponse,
+    OwnershipValidateResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/pcaps/ownership">client.magic_transit.pcaps.ownership.<a href="./src/cloudflare/resources/magic_transit/pcaps/ownership.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/pcaps/ownership_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/pcaps/ownership.py">Ownership</a></code>
+- <code title="post /accounts/{account_id}/pcaps/ownership">client.magic_transit.pcaps.ownership.<a href="./src/cloudflare/resources/magic_transit/pcaps/ownership.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/pcaps/ownership_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/pcaps/ownership_create_response.py">OwnershipCreateResponse</a></code>
 - <code title="delete /accounts/{account_id}/pcaps/ownership/{ownership_id}">client.magic_transit.pcaps.ownership.<a href="./src/cloudflare/resources/magic_transit/pcaps/ownership.py">delete</a>(ownership_id, \*, account_id) -> None</code>
 - <code title="get /accounts/{account_id}/pcaps/ownership">client.magic_transit.pcaps.ownership.<a href="./src/cloudflare/resources/magic_transit/pcaps/ownership.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_transit/pcaps/ownership_get_response.py">Optional</a></code>
-- <code title="post /accounts/{account_id}/pcaps/ownership/validate">client.magic_transit.pcaps.ownership.<a href="./src/cloudflare/resources/magic_transit/pcaps/ownership.py">validate</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/pcaps/ownership_validate_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/pcaps/ownership.py">Ownership</a></code>
+- <code title="post /accounts/{account_id}/pcaps/ownership/validate">client.magic_transit.pcaps.ownership.<a href="./src/cloudflare/resources/magic_transit/pcaps/ownership.py">validate</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/pcaps/ownership_validate_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/pcaps/ownership_validate_response.py">OwnershipValidateResponse</a></code>
 
 ### Download
 
