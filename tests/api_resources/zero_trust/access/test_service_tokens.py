@@ -166,6 +166,8 @@ class TestServiceTokens:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         service_token = client.zero_trust.access.service_tokens.list(
             account_id="account_id",
+            name="name",
+            search="search",
         )
         assert_matches_type(SyncSinglePage[ServiceToken], service_token, path=["response"])
 
@@ -586,6 +588,8 @@ class TestAsyncServiceTokens:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         service_token = await async_client.zero_trust.access.service_tokens.list(
             account_id="account_id",
+            name="name",
+            search="search",
         )
         assert_matches_type(AsyncSinglePage[ServiceToken], service_token, path=["response"])
 
