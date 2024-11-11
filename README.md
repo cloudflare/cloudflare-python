@@ -28,10 +28,8 @@ import os
 from cloudflare import Cloudflare
 
 client = Cloudflare(
-    # This is the default and can be omitted
-    api_email=os.environ.get("CLOUDFLARE_EMAIL"),
-    # This is the default and can be omitted
-    api_key=os.environ.get("CLOUDFLARE_API_KEY"),
+    api_email=os.environ.get("CLOUDFLARE_EMAIL"),  # This is the default and can be omitted
+    api_key=os.environ.get("CLOUDFLARE_API_KEY"),  # This is the default and can be omitted
 )
 
 zone = client.zones.create(
@@ -57,10 +55,8 @@ import asyncio
 from cloudflare import AsyncCloudflare
 
 client = AsyncCloudflare(
-    # This is the default and can be omitted
-    api_email=os.environ.get("CLOUDFLARE_EMAIL"),
-    # This is the default and can be omitted
-    api_key=os.environ.get("CLOUDFLARE_API_KEY"),
+    api_email=os.environ.get("CLOUDFLARE_EMAIL"),  # This is the default and can be omitted
+    api_key=os.environ.get("CLOUDFLARE_API_KEY"),  # This is the default and can be omitted
 )
 
 
