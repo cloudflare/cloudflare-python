@@ -93,7 +93,7 @@ class RecipientsResource(SyncAPIResource):
             f"/accounts/{path_account_id}/shares/{share_identifier}/recipients",
             body=maybe_transform(
                 {
-                    "account_id": body_account_id,
+                    "body_account_id": body_account_id,
                     "organization_id": organization_id,
                 },
                 recipient_create_params.RecipientCreateParams,
@@ -331,7 +331,7 @@ class AsyncRecipientsResource(AsyncAPIResource):
             f"/accounts/{path_account_id}/shares/{share_identifier}/recipients",
             body=await async_maybe_transform(
                 {
-                    "account_id": body_account_id,
+                    "body_account_id": body_account_id,
                     "organization_id": organization_id,
                 },
                 recipient_create_params.RecipientCreateParams,
