@@ -687,7 +687,7 @@ class IdentityProvidersResource(SyncAPIResource):
     def create(
         self,
         *,
-        config: object,
+        config: identity_provider_create_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -745,7 +745,7 @@ class IdentityProvidersResource(SyncAPIResource):
         | identity_provider_create_params.AccessOneloginConfig
         | identity_provider_create_params.AccessPingoneConfig
         | identity_provider_create_params.AccessSAMLConfig
-        | object,
+        | identity_provider_create_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -1464,7 +1464,7 @@ class IdentityProvidersResource(SyncAPIResource):
         self,
         identity_provider_id: str,
         *,
-        config: object,
+        config: identity_provider_update_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -1525,7 +1525,7 @@ class IdentityProvidersResource(SyncAPIResource):
         | identity_provider_update_params.AccessOneloginConfig
         | identity_provider_update_params.AccessPingoneConfig
         | identity_provider_update_params.AccessSAMLConfig
-        | object,
+        | identity_provider_update_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -2403,7 +2403,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        config: object,
+        config: identity_provider_create_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -2461,7 +2461,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         | identity_provider_create_params.AccessOneloginConfig
         | identity_provider_create_params.AccessPingoneConfig
         | identity_provider_create_params.AccessSAMLConfig
-        | object,
+        | identity_provider_create_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -3180,7 +3180,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         self,
         identity_provider_id: str,
         *,
-        config: object,
+        config: identity_provider_update_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -3241,7 +3241,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         | identity_provider_update_params.AccessOneloginConfig
         | identity_provider_update_params.AccessPingoneConfig
         | identity_provider_update_params.AccessSAMLConfig
-        | object,
+        | identity_provider_update_params.AccessOnetimepinConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,

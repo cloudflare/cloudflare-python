@@ -35,6 +35,7 @@ __all__ = [
     "AccessSAMLConfigHeaderAttribute",
     "AccessYandex",
     "AccessOnetimepin",
+    "AccessOnetimepinConfig",
 ]
 
 
@@ -649,7 +650,7 @@ class AccessYandex(TypedDict, total=False):
 
 
 class AccessOnetimepin(TypedDict, total=False):
-    config: Required[object]
+    config: Required[AccessOnetimepinConfig]
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -677,6 +678,10 @@ class AccessOnetimepin(TypedDict, total=False):
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
+
+
+class AccessOnetimepinConfig(TypedDict, total=False):
+    pass
 
 
 IdentityProviderUpdateParams: TypeAlias = Union[

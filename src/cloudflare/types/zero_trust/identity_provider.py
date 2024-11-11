@@ -33,6 +33,7 @@ __all__ = [
     "AccessSAMLConfigHeaderAttribute",
     "AccessYandex",
     "AccessOnetimepin",
+    "AccessOnetimepinConfig",
 ]
 
 
@@ -543,8 +544,12 @@ class AccessYandex(BaseModel):
     """
 
 
+class AccessOnetimepinConfig(BaseModel):
+    redirect_url: Optional[str] = None
+
+
 class AccessOnetimepin(BaseModel):
-    config: object
+    config: AccessOnetimepinConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
