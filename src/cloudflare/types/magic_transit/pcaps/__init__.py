@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from .ownership import Ownership as Ownership
 from .ownership_get_response import OwnershipGetResponse as OwnershipGetResponse
 from .ownership_create_params import OwnershipCreateParams as OwnershipCreateParams
+from .ownership_create_response import OwnershipCreateResponse as OwnershipCreateResponse
 from .ownership_validate_params import OwnershipValidateParams as OwnershipValidateParams
+from .ownership_validate_response import OwnershipValidateResponse as OwnershipValidateResponse

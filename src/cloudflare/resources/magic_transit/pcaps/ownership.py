@@ -22,8 +22,9 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.magic_transit.pcaps import ownership_create_params, ownership_validate_params
-from ....types.magic_transit.pcaps.ownership import Ownership
 from ....types.magic_transit.pcaps.ownership_get_response import OwnershipGetResponse
+from ....types.magic_transit.pcaps.ownership_create_response import OwnershipCreateResponse
+from ....types.magic_transit.pcaps.ownership_validate_response import OwnershipValidateResponse
 
 __all__ = ["OwnershipResource", "AsyncOwnershipResource"]
 
@@ -59,7 +60,7 @@ class OwnershipResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ownership:
+    ) -> OwnershipCreateResponse:
         """
         Adds an AWS or GCP bucket to use with full packet captures.
 
@@ -86,9 +87,9 @@ class OwnershipResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Ownership]._unwrapper,
+                post_parser=ResultWrapper[OwnershipCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Ownership], ResultWrapper[Ownership]),
+            cast_to=cast(Type[OwnershipCreateResponse], ResultWrapper[OwnershipCreateResponse]),
         )
 
     def delete(
@@ -183,7 +184,7 @@ class OwnershipResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ownership:
+    ) -> OwnershipValidateResponse:
         """
         Validates buckets added to the packet captures API.
 
@@ -218,9 +219,9 @@ class OwnershipResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Ownership]._unwrapper,
+                post_parser=ResultWrapper[OwnershipValidateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Ownership], ResultWrapper[Ownership]),
+            cast_to=cast(Type[OwnershipValidateResponse], ResultWrapper[OwnershipValidateResponse]),
         )
 
 
@@ -255,7 +256,7 @@ class AsyncOwnershipResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ownership:
+    ) -> OwnershipCreateResponse:
         """
         Adds an AWS or GCP bucket to use with full packet captures.
 
@@ -284,9 +285,9 @@ class AsyncOwnershipResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Ownership]._unwrapper,
+                post_parser=ResultWrapper[OwnershipCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Ownership], ResultWrapper[Ownership]),
+            cast_to=cast(Type[OwnershipCreateResponse], ResultWrapper[OwnershipCreateResponse]),
         )
 
     async def delete(
@@ -381,7 +382,7 @@ class AsyncOwnershipResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Ownership:
+    ) -> OwnershipValidateResponse:
         """
         Validates buckets added to the packet captures API.
 
@@ -416,9 +417,9 @@ class AsyncOwnershipResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Ownership]._unwrapper,
+                post_parser=ResultWrapper[OwnershipValidateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Ownership], ResultWrapper[Ownership]),
+            cast_to=cast(Type[OwnershipValidateResponse], ResultWrapper[OwnershipValidateResponse]),
         )
 
 
