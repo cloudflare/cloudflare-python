@@ -58,6 +58,7 @@ from .certificate_update_params import CertificateUpdateParams as CertificateUpd
 from .custom_page_create_params import CustomPageCreateParams as CustomPageCreateParams
 from .custom_page_update_params import CustomPageUpdateParams as CustomPageUpdateParams
 from .scim_config_mapping_param import SCIMConfigMappingParam as SCIMConfigMappingParam
+from .service_token_list_params import ServiceTokenListParams as ServiceTokenListParams
 from .application_create_response import ApplicationCreateResponse as ApplicationCreateResponse
 from .application_delete_response import ApplicationDeleteResponse as ApplicationDeleteResponse
 from .application_update_response import ApplicationUpdateResponse as ApplicationUpdateResponse

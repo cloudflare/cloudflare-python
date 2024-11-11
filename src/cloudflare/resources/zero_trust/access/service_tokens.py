@@ -22,7 +22,11 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.access import service_token_create_params, service_token_update_params
+from ....types.zero_trust.access import (
+    service_token_list_params,
+    service_token_create_params,
+    service_token_update_params,
+)
 from ....types.zero_trust.access.service_token import ServiceToken
 from ....types.zero_trust.access.service_token_create_response import ServiceTokenCreateResponse
 from ....types.zero_trust.access.service_token_rotate_response import ServiceTokenRotateResponse
@@ -197,6 +201,8 @@ class ServiceTokensResource(SyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -211,6 +217,10 @@ class ServiceTokensResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          name: The name of the service token.
+
+          search: Search for service tokens by other listed query parameters.
 
           extra_headers: Send extra headers
 
@@ -236,7 +246,17 @@ class ServiceTokensResource(SyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
             page=SyncSinglePage[ServiceToken],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "name": name,
+                        "search": search,
+                    },
+                    service_token_list_params.ServiceTokenListParams,
+                ),
             ),
             model=ServiceToken,
         )
@@ -611,6 +631,8 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -625,6 +647,10 @@ class AsyncServiceTokensResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          name: The name of the service token.
+
+          search: Search for service tokens by other listed query parameters.
 
           extra_headers: Send extra headers
 
@@ -650,7 +676,17 @@ class AsyncServiceTokensResource(AsyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens",
             page=AsyncSinglePage[ServiceToken],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "name": name,
+                        "search": search,
+                    },
+                    service_token_list_params.ServiceTokenListParams,
+                ),
             ),
             model=ServiceToken,
         )
