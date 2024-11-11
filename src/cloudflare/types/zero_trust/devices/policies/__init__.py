@@ -2,22 +2,9 @@
 
 from __future__ import annotations
 
-from .fallback_domain import FallbackDomain as FallbackDomain
-from .exclude_get_response import ExcludeGetResponse as ExcludeGetResponse
-from .include_get_response import IncludeGetResponse as IncludeGetResponse
-from .split_tunnel_exclude import SplitTunnelExclude as SplitTunnelExclude
-from .split_tunnel_include import SplitTunnelInclude as SplitTunnelInclude
-from .exclude_update_params import ExcludeUpdateParams as ExcludeUpdateParams
-from .fallback_domain_param import FallbackDomainParam as FallbackDomainParam
-from .include_update_params import IncludeUpdateParams as IncludeUpdateParams
-from .exclude_update_response import ExcludeUpdateResponse as ExcludeUpdateResponse
-from .include_update_response import IncludeUpdateResponse as IncludeUpdateResponse
-from .certificate_get_response import CertificateGetResponse as CertificateGetResponse
-from .certificate_update_params import CertificateUpdateParams as CertificateUpdateParams
-from .split_tunnel_exclude_param import SplitTunnelExcludeParam as SplitTunnelExcludeParam
-from .split_tunnel_include_param import SplitTunnelIncludeParam as SplitTunnelIncludeParam
-from .certificate_update_response import CertificateUpdateResponse as CertificateUpdateResponse
-from .default_policy_get_response import DefaultPolicyGetResponse as DefaultPolicyGetResponse
-from .fallback_domain_get_response import FallbackDomainGetResponse as FallbackDomainGetResponse
-from .fallback_domain_update_params import FallbackDomainUpdateParams as FallbackDomainUpdateParams
-from .fallback_domain_update_response import FallbackDomainUpdateResponse as FallbackDomainUpdateResponse
+from .custom_edit_params import CustomEditParams as CustomEditParams
+from .default_edit_params import DefaultEditParams as DefaultEditParams
+from .custom_create_params import CustomCreateParams as CustomCreateParams
+from .default_get_response import DefaultGetResponse as DefaultGetResponse
+from .default_edit_response import DefaultEditResponse as DefaultEditResponse
+from .custom_delete_response import CustomDeleteResponse as CustomDeleteResponse

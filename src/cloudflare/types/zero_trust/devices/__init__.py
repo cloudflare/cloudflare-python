@@ -13,6 +13,7 @@ from .tanium_input import TaniumInput as TaniumInput
 from .device_network import DeviceNetwork as DeviceNetwork
 from .firewall_input import FirewallInput as FirewallInput
 from .device_settings import DeviceSettings as DeviceSettings
+from .fallback_domain import FallbackDomain as FallbackDomain
 from .settings_policy import SettingsPolicy as SettingsPolicy
 from .file_input_param import FileInputParam as FileInputParam
 from .os_version_input import OSVersionInput as OSVersionInput
@@ -24,16 +25,17 @@ from .device_input_param import DeviceInputParam as DeviceInputParam
 from .device_match_param import DeviceMatchParam as DeviceMatchParam
 from .intune_input_param import IntuneInputParam as IntuneInputParam
 from .kolide_input_param import KolideInputParam as KolideInputParam
-from .policy_edit_params import PolicyEditParams as PolicyEditParams
 from .tanium_input_param import TaniumInputParam as TaniumInputParam
 from .device_posture_rule import DevicePostureRule as DevicePostureRule
 from .domain_joined_input import DomainJoinedInput as DomainJoinedInput
 from .setting_edit_params import SettingEditParams as SettingEditParams
 from .workspace_one_input import WorkspaceOneInput as WorkspaceOneInput
 from .firewall_input_param import FirewallInputParam as FirewallInputParam
-from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .revoke_create_params import RevokeCreateParams as RevokeCreateParams
+from .split_tunnel_exclude import SplitTunnelExclude as SplitTunnelExclude
+from .split_tunnel_include import SplitTunnelInclude as SplitTunnelInclude
 from .disk_encryption_input import DiskEncryptionInput as DiskEncryptionInput
+from .fallback_domain_param import FallbackDomainParam as FallbackDomainParam
 from .network_create_params import NetworkCreateParams as NetworkCreateParams
 from .network_update_params import NetworkUpdateParams as NetworkUpdateParams
 from .posture_create_params import PostureCreateParams as PostureCreateParams
@@ -43,7 +45,6 @@ from .setting_update_params import SettingUpdateParams as SettingUpdateParams
 from .dex_test_create_params import DEXTestCreateParams as DEXTestCreateParams
 from .dex_test_update_params import DEXTestUpdateParams as DEXTestUpdateParams
 from .os_version_input_param import OSVersionInputParam as OSVersionInputParam
-from .policy_delete_response import PolicyDeleteResponse as PolicyDeleteResponse
 from .revoke_create_response import RevokeCreateResponse as RevokeCreateResponse
 from .unique_client_id_input import UniqueClientIDInput as UniqueClientIDInput
 from .unrevoke_create_params import UnrevokeCreateParams as UnrevokeCreateParams
@@ -56,6 +57,8 @@ from .dex_test_delete_response import DEXTestDeleteResponse as DEXTestDeleteResp
 from .unrevoke_create_response import UnrevokeCreateResponse as UnrevokeCreateResponse
 from .domain_joined_input_param import DomainJoinedInputParam as DomainJoinedInputParam
 from .workspace_one_input_param import WorkspaceOneInputParam as WorkspaceOneInputParam
+from .split_tunnel_exclude_param import SplitTunnelExcludeParam as SplitTunnelExcludeParam
+from .split_tunnel_include_param import SplitTunnelIncludeParam as SplitTunnelIncludeParam
 from .disk_encryption_input_param import DiskEncryptionInputParam as DiskEncryptionInputParam
 from .override_code_list_response import OverrideCodeListResponse as OverrideCodeListResponse
 from .sentinelone_s2s_input_param import SentineloneS2sInputParam as SentineloneS2sInputParam
