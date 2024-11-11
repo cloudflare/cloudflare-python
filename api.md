@@ -4726,53 +4726,35 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices import SettingsPolicy, PolicyDeleteResponse
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/devices/policy">client.zero_trust.devices.policies.<a href="./src/cloudflare/resources/zero_trust/devices/policies/policies.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/settings_policy.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/policies">client.zero_trust.devices.policies.<a href="./src/cloudflare/resources/zero_trust/devices/policies/policies.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/settings_policy.py">SyncSinglePage[SettingsPolicy]</a></code>
-- <code title="delete /accounts/{account_id}/devices/policy/{policy_id}">client.zero_trust.devices.policies.<a href="./src/cloudflare/resources/zero_trust/devices/policies/policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policy_delete_response.py">Optional</a></code>
-- <code title="patch /accounts/{account_id}/devices/policy/{policy_id}">client.zero_trust.devices.policies.<a href="./src/cloudflare/resources/zero_trust/devices/policies/policies.py">edit</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policy_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/settings_policy.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/policy/{policy_id}">client.zero_trust.devices.policies.<a href="./src/cloudflare/resources/zero_trust/devices/policies/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/settings_policy.py">Optional</a></code>
-
-#### Certificates
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.devices.policies import (
+from cloudflare.types.zero_trust.devices import (
     DevicePolicyCertificates,
-    CertificateUpdateResponse,
-    CertificateGetResponse,
+    FallbackDomain,
+    FallbackDomainPolicy,
+    SettingsPolicy,
+    SplitTunnelExclude,
+    SplitTunnelInclude,
 )
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_tag}/devices/policy/certificates">client.zero_trust.devices.policies.certificates.<a href="./src/cloudflare/resources/zero_trust/devices/policies/certificates.py">update</a>(zone_tag, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/certificate_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/certificate_update_response.py">CertificateUpdateResponse</a></code>
-- <code title="get /zones/{zone_tag}/devices/policy/certificates">client.zero_trust.devices.policies.certificates.<a href="./src/cloudflare/resources/zero_trust/devices/policies/certificates.py">get</a>(zone_tag) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/certificate_get_response.py">CertificateGetResponse</a></code>
-
-#### DefaultPolicy
+#### Default
 
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices.policies import DefaultPolicyGetResponse
+from cloudflare.types.zero_trust.devices.policies import DefaultEditResponse, DefaultGetResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/devices/policy">client.zero_trust.devices.policies.default_policy.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default_policy.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default_policy_get_response.py">Optional</a></code>
+- <code title="patch /accounts/{account_id}/devices/policy">client.zero_trust.devices.policies.default.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/default.py">edit</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/default_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default_edit_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/policy">client.zero_trust.devices.policies.default.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/default.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default_get_response.py">Optional</a></code>
 
-#### Excludes
+##### Excludes
 
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices.policies import (
-    SplitTunnelExclude,
+from cloudflare.types.zero_trust.devices.policies.default import (
     ExcludeUpdateResponse,
     ExcludeGetResponse,
 )
@@ -4780,36 +4762,15 @@ from cloudflare.types.zero_trust.devices.policies import (
 
 Methods:
 
-- <code title="put /accounts/{account_id}/devices/policy/exclude">client.zero_trust.devices.policies.excludes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/excludes.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/exclude_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/exclude_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/policy/exclude">client.zero_trust.devices.policies.excludes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/excludes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/split_tunnel_exclude.py">SyncSinglePage[SplitTunnelExclude]</a></code>
-- <code title="get /accounts/{account_id}/devices/policy/{policy_id}/exclude">client.zero_trust.devices.policies.excludes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/excludes.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/exclude_get_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/devices/policy/exclude">client.zero_trust.devices.policies.default.excludes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/excludes.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/default/exclude_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default/exclude_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/policy/exclude">client.zero_trust.devices.policies.default.excludes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/excludes.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default/exclude_get_response.py">Optional</a></code>
 
-#### FallbackDomains
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.devices.policies import (
-    FallbackDomain,
-    FallbackDomainPolicy,
-    FallbackDomainUpdateResponse,
-    FallbackDomainGetResponse,
-)
-```
-
-Methods:
-
-- <code title="put /accounts/{account_id}/devices/policy/{policy_id}/fallback_domains">client.zero_trust.devices.policies.fallback_domains.<a href="./src/cloudflare/resources/zero_trust/devices/policies/fallback_domains.py">update</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/fallback_domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/fallback_domain_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/policy/fallback_domains">client.zero_trust.devices.policies.fallback_domains.<a href="./src/cloudflare/resources/zero_trust/devices/policies/fallback_domains.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/fallback_domain.py">SyncSinglePage[FallbackDomain]</a></code>
-- <code title="get /accounts/{account_id}/devices/policy/{policy_id}/fallback_domains">client.zero_trust.devices.policies.fallback_domains.<a href="./src/cloudflare/resources/zero_trust/devices/policies/fallback_domains.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/fallback_domain_get_response.py">Optional</a></code>
-
-#### Includes
+##### Includes
 
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices.policies import (
-    SplitTunnelInclude,
+from cloudflare.types.zero_trust.devices.policies.default import (
     IncludeUpdateResponse,
     IncludeGetResponse,
 )
@@ -4817,9 +4778,104 @@ from cloudflare.types.zero_trust.devices.policies import (
 
 Methods:
 
-- <code title="put /accounts/{account_id}/devices/policy/include">client.zero_trust.devices.policies.includes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/includes.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/include_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/include_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/devices/policy/include">client.zero_trust.devices.policies.includes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/includes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/split_tunnel_include.py">SyncSinglePage[SplitTunnelInclude]</a></code>
-- <code title="get /accounts/{account_id}/devices/policy/{policy_id}/include">client.zero_trust.devices.policies.includes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/includes.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/include_get_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/devices/policy/include">client.zero_trust.devices.policies.default.includes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/includes.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/default/include_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default/include_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/policy/include">client.zero_trust.devices.policies.default.includes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/includes.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default/include_get_response.py">Optional</a></code>
+
+##### FallbackDomains
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.devices.policies.default import (
+    FallbackDomainUpdateResponse,
+    FallbackDomainGetResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/devices/policy/fallback_domains">client.zero_trust.devices.policies.default.fallback_domains.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/fallback_domains.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/default/fallback_domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default/fallback_domain_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/policy/fallback_domains">client.zero_trust.devices.policies.default.fallback_domains.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/fallback_domains.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default/fallback_domain_get_response.py">Optional</a></code>
+
+##### Certificates
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.devices.policies.default import (
+    CertificateEditResponse,
+    CertificateGetResponse,
+)
+```
+
+Methods:
+
+- <code title="patch /zones/{zone_tag}/devices/policy/certificates">client.zero_trust.devices.policies.default.certificates.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/certificates.py">edit</a>(zone_tag, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/default/certificate_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default/certificate_edit_response.py">CertificateEditResponse</a></code>
+- <code title="get /zones/{zone_tag}/devices/policy/certificates">client.zero_trust.devices.policies.default.certificates.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/certificates.py">get</a>(zone_tag) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default/certificate_get_response.py">CertificateGetResponse</a></code>
+
+#### Custom
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.devices.policies import CustomDeleteResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/devices/policy">client.zero_trust.devices.policies.custom.<a href="./src/cloudflare/resources/zero_trust/devices/policies/custom/custom.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/custom_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/settings_policy.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/policies">client.zero_trust.devices.policies.custom.<a href="./src/cloudflare/resources/zero_trust/devices/policies/custom/custom.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/settings_policy.py">SyncSinglePage[SettingsPolicy]</a></code>
+- <code title="delete /accounts/{account_id}/devices/policy/{policy_id}">client.zero_trust.devices.policies.custom.<a href="./src/cloudflare/resources/zero_trust/devices/policies/custom/custom.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/custom_delete_response.py">Optional</a></code>
+- <code title="patch /accounts/{account_id}/devices/policy/{policy_id}">client.zero_trust.devices.policies.custom.<a href="./src/cloudflare/resources/zero_trust/devices/policies/custom/custom.py">edit</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/custom_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/settings_policy.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/policy/{policy_id}">client.zero_trust.devices.policies.custom.<a href="./src/cloudflare/resources/zero_trust/devices/policies/custom/custom.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/settings_policy.py">Optional</a></code>
+
+##### Excludes
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.devices.policies.custom import (
+    ExcludeUpdateResponse,
+    ExcludeGetResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/devices/policy/{policy_id}/exclude">client.zero_trust.devices.policies.custom.excludes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/custom/excludes.py">update</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/custom/exclude_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/custom/exclude_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/policy/{policy_id}/exclude">client.zero_trust.devices.policies.custom.excludes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/custom/excludes.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/custom/exclude_get_response.py">Optional</a></code>
+
+##### Includes
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.devices.policies.custom import (
+    IncludeUpdateResponse,
+    IncludeGetResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/devices/policy/{policy_id}/include">client.zero_trust.devices.policies.custom.includes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/custom/includes.py">update</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/custom/include_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/custom/include_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/policy/{policy_id}/include">client.zero_trust.devices.policies.custom.includes.<a href="./src/cloudflare/resources/zero_trust/devices/policies/custom/includes.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/custom/include_get_response.py">Optional</a></code>
+
+##### FallbackDomains
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.devices.policies.custom import (
+    FallbackDomainUpdateResponse,
+    FallbackDomainGetResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/devices/policy/{policy_id}/fallback_domains">client.zero_trust.devices.policies.custom.fallback_domains.<a href="./src/cloudflare/resources/zero_trust/devices/policies/custom/fallback_domains.py">update</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/custom/fallback_domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/custom/fallback_domain_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/devices/policy/{policy_id}/fallback_domains">client.zero_trust.devices.policies.custom.fallback_domains.<a href="./src/cloudflare/resources/zero_trust/devices/policies/custom/fallback_domains.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/custom/fallback_domain_get_response.py">Optional</a></code>
 
 ### Posture
 
