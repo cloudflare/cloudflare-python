@@ -10,9 +10,8 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.magic_transit.pcaps import (
+    Ownership,
     OwnershipGetResponse,
-    OwnershipCreateResponse,
-    OwnershipValidateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -27,7 +26,7 @@ class TestOwnership:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
         )
-        assert_matches_type(OwnershipCreateResponse, ownership, path=["response"])
+        assert_matches_type(Ownership, ownership, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -39,7 +38,7 @@ class TestOwnership:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ownership = response.parse()
-        assert_matches_type(OwnershipCreateResponse, ownership, path=["response"])
+        assert_matches_type(Ownership, ownership, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -51,7 +50,7 @@ class TestOwnership:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ownership = response.parse()
-            assert_matches_type(OwnershipCreateResponse, ownership, path=["response"])
+            assert_matches_type(Ownership, ownership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -156,7 +155,7 @@ class TestOwnership:
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             ownership_challenge="ownership-challenge-9883874ecac311ec8475433579a6bf5f.txt",
         )
-        assert_matches_type(OwnershipValidateResponse, ownership, path=["response"])
+        assert_matches_type(Ownership, ownership, path=["response"])
 
     @parametrize
     def test_raw_response_validate(self, client: Cloudflare) -> None:
@@ -169,7 +168,7 @@ class TestOwnership:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ownership = response.parse()
-        assert_matches_type(OwnershipValidateResponse, ownership, path=["response"])
+        assert_matches_type(Ownership, ownership, path=["response"])
 
     @parametrize
     def test_streaming_response_validate(self, client: Cloudflare) -> None:
@@ -182,7 +181,7 @@ class TestOwnership:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ownership = response.parse()
-            assert_matches_type(OwnershipValidateResponse, ownership, path=["response"])
+            assert_matches_type(Ownership, ownership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -205,7 +204,7 @@ class TestAsyncOwnership:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination_conf="s3://pcaps-bucket?region=us-east-1",
         )
-        assert_matches_type(OwnershipCreateResponse, ownership, path=["response"])
+        assert_matches_type(Ownership, ownership, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -217,7 +216,7 @@ class TestAsyncOwnership:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ownership = await response.parse()
-        assert_matches_type(OwnershipCreateResponse, ownership, path=["response"])
+        assert_matches_type(Ownership, ownership, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -229,7 +228,7 @@ class TestAsyncOwnership:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ownership = await response.parse()
-            assert_matches_type(OwnershipCreateResponse, ownership, path=["response"])
+            assert_matches_type(Ownership, ownership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -334,7 +333,7 @@ class TestAsyncOwnership:
             destination_conf="s3://pcaps-bucket?region=us-east-1",
             ownership_challenge="ownership-challenge-9883874ecac311ec8475433579a6bf5f.txt",
         )
-        assert_matches_type(OwnershipValidateResponse, ownership, path=["response"])
+        assert_matches_type(Ownership, ownership, path=["response"])
 
     @parametrize
     async def test_raw_response_validate(self, async_client: AsyncCloudflare) -> None:
@@ -347,7 +346,7 @@ class TestAsyncOwnership:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ownership = await response.parse()
-        assert_matches_type(OwnershipValidateResponse, ownership, path=["response"])
+        assert_matches_type(Ownership, ownership, path=["response"])
 
     @parametrize
     async def test_streaming_response_validate(self, async_client: AsyncCloudflare) -> None:
@@ -360,7 +359,7 @@ class TestAsyncOwnership:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ownership = await response.parse()
-            assert_matches_type(OwnershipValidateResponse, ownership, path=["response"])
+            assert_matches_type(Ownership, ownership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

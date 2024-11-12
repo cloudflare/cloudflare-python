@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+from .pcap import PCAP as PCAP
 from .site import Site as Site
 from .scope import Scope as Scope
+from .pcap_filter import PCAPFilter as PCAPFilter
 from .scope_param import ScopeParam as ScopeParam
 from .health_check import HealthCheck as HealthCheck
 from .psk_metadata import PSKMetadata as PSKMetadata
@@ -15,6 +17,7 @@ from .app_list_response import AppListResponse as AppListResponse
 from .app_update_params import AppUpdateParams as AppUpdateParams
 from .health_check_rate import HealthCheckRate as HealthCheckRate
 from .health_check_type import HealthCheckType as HealthCheckType
+from .pcap_filter_param import PCAPFilterParam as PCAPFilterParam
 from .pcap_get_response import PCAPGetResponse as PCAPGetResponse
 from .health_check_param import HealthCheckParam as HealthCheckParam
 from .pcap_create_params import PCAPCreateParams as PCAPCreateParams
