@@ -57,10 +57,7 @@ class RulesResource(SyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        action: Literal["bypass_waiting_room"],
-        expression: str,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
+        rules: rule_create_params.Rules,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,14 +73,6 @@ class RulesResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
-          action: The action to take when the expression matches.
-
-          expression: Criteria defining when there is a match for the current rule.
-
-          description: The description of the rule.
-
-          enabled: When set to true, the rule is enabled.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -98,15 +87,7 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._post(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            body=maybe_transform(
-                {
-                    "action": action,
-                    "expression": expression,
-                    "description": description,
-                    "enabled": enabled,
-                },
-                rule_create_params.RuleCreateParams,
-            ),
+            body=maybe_transform(rules, rule_create_params.RuleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -122,7 +103,7 @@ class RulesResource(SyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        body: Iterable[rule_update_params.Body],
+        rules: Iterable[rule_update_params.Rule],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -152,7 +133,7 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._put(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            body=maybe_transform(body, Iterable[rule_update_params.Body]),
+            body=maybe_transform(rules, Iterable[rule_update_params.Rule]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -350,10 +331,7 @@ class AsyncRulesResource(AsyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        action: Literal["bypass_waiting_room"],
-        expression: str,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
+        rules: rule_create_params.Rules,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -369,14 +347,6 @@ class AsyncRulesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
-          action: The action to take when the expression matches.
-
-          expression: Criteria defining when there is a match for the current rule.
-
-          description: The description of the rule.
-
-          enabled: When set to true, the rule is enabled.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -391,15 +361,7 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._post(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            body=await async_maybe_transform(
-                {
-                    "action": action,
-                    "expression": expression,
-                    "description": description,
-                    "enabled": enabled,
-                },
-                rule_create_params.RuleCreateParams,
-            ),
+            body=await async_maybe_transform(rules, rule_create_params.RuleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -415,7 +377,7 @@ class AsyncRulesResource(AsyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        body: Iterable[rule_update_params.Body],
+        rules: Iterable[rule_update_params.Rule],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -445,7 +407,7 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._put(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            body=await async_maybe_transform(body, Iterable[rule_update_params.Body]),
+            body=await async_maybe_transform(rules, Iterable[rule_update_params.Rule]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
