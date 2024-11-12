@@ -18,7 +18,8 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.shared.role import Role
+from ...types.accounts.role_get_response import RoleGetResponse
+from ...types.accounts.role_list_response import RoleListResponse
 
 __all__ = ["RolesResource", "AsyncRolesResource"]
 
@@ -53,7 +54,7 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Role]:
+    ) -> SyncSinglePage[RoleListResponse]:
         """
         Get all available roles for an account.
 
@@ -72,11 +73,11 @@ class RolesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/roles",
-            page=SyncSinglePage[Role],
+            page=SyncSinglePage[RoleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Role,
+            model=RoleListResponse,
         )
 
     def get(
@@ -90,7 +91,7 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[RoleGetResponse]:
         """
         Get information about a specific role for an account.
 
@@ -118,9 +119,9 @@ class RolesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[RoleGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[RoleGetResponse]], ResultWrapper[RoleGetResponse]),
         )
 
 
@@ -154,7 +155,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Role, AsyncSinglePage[Role]]:
+    ) -> AsyncPaginator[RoleListResponse, AsyncSinglePage[RoleListResponse]]:
         """
         Get all available roles for an account.
 
@@ -173,11 +174,11 @@ class AsyncRolesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/roles",
-            page=AsyncSinglePage[Role],
+            page=AsyncSinglePage[RoleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Role,
+            model=RoleListResponse,
         )
 
     async def get(
@@ -191,7 +192,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[RoleGetResponse]:
         """
         Get information about a specific role for an account.
 
@@ -219,9 +220,9 @@ class AsyncRolesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[RoleGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[RoleGetResponse]], ResultWrapper[RoleGetResponse]),
         )
 
 

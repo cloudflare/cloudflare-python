@@ -7,8 +7,8 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "MemberUpdateParams",
-    "Member",
-    "MemberRole",
+    "IAMUpdateMemberWithRoles",
+    "IAMUpdateMemberWithRolesRole",
     "IAMUpdateMemberWithPolicies",
     "IAMUpdateMemberWithPoliciesPolicy",
     "IAMUpdateMemberWithPoliciesPolicyPermissionGroup",
@@ -16,15 +16,15 @@ __all__ = [
 ]
 
 
-class Member(TypedDict, total=False):
+class IAMUpdateMemberWithRoles(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
-    roles: Iterable[MemberRole]
+    roles: Iterable[IAMUpdateMemberWithRolesRole]
     """Roles assigned to this member."""
 
 
-class MemberRole(TypedDict, total=False):
+class IAMUpdateMemberWithRolesRole(TypedDict, total=False):
     id: Required[str]
     """Role identifier tag."""
 
@@ -58,4 +58,4 @@ class IAMUpdateMemberWithPoliciesPolicy(TypedDict, total=False):
     """A list of resource groups that the policy applies to."""
 
 
-MemberUpdateParams: TypeAlias = Union[Member, IAMUpdateMemberWithPolicies]
+MemberUpdateParams: TypeAlias = Union[IAMUpdateMemberWithRoles, IAMUpdateMemberWithPolicies]
