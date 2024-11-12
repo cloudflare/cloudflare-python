@@ -3,14 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.shared import Role
+from cloudflare.types.accounts import RoleGetResponse, RoleListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestRoles:
         role = client.accounts.roles.list(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
-        assert_matches_type(SyncSinglePage[Role], role, path=["response"])
+        assert_matches_type(SyncSinglePage[RoleListResponse], role, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -34,7 +34,7 @@ class TestRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = response.parse()
-        assert_matches_type(SyncSinglePage[Role], role, path=["response"])
+        assert_matches_type(SyncSinglePage[RoleListResponse], role, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -45,7 +45,7 @@ class TestRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = response.parse()
-            assert_matches_type(SyncSinglePage[Role], role, path=["response"])
+            assert_matches_type(SyncSinglePage[RoleListResponse], role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -62,7 +62,7 @@ class TestRoles:
             role_id="3536bcfad5faccb999b47003c79917fb",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
-        assert_matches_type(object, role, path=["response"])
+        assert_matches_type(Optional[RoleGetResponse], role, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -74,7 +74,7 @@ class TestRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = response.parse()
-        assert_matches_type(object, role, path=["response"])
+        assert_matches_type(Optional[RoleGetResponse], role, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -86,7 +86,7 @@ class TestRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = response.parse()
-            assert_matches_type(object, role, path=["response"])
+            assert_matches_type(Optional[RoleGetResponse], role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -113,7 +113,7 @@ class TestAsyncRoles:
         role = await async_client.accounts.roles.list(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
-        assert_matches_type(AsyncSinglePage[Role], role, path=["response"])
+        assert_matches_type(AsyncSinglePage[RoleListResponse], role, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -124,7 +124,7 @@ class TestAsyncRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = await response.parse()
-        assert_matches_type(AsyncSinglePage[Role], role, path=["response"])
+        assert_matches_type(AsyncSinglePage[RoleListResponse], role, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -135,7 +135,7 @@ class TestAsyncRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = await response.parse()
-            assert_matches_type(AsyncSinglePage[Role], role, path=["response"])
+            assert_matches_type(AsyncSinglePage[RoleListResponse], role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -152,7 +152,7 @@ class TestAsyncRoles:
             role_id="3536bcfad5faccb999b47003c79917fb",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
-        assert_matches_type(object, role, path=["response"])
+        assert_matches_type(Optional[RoleGetResponse], role, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -164,7 +164,7 @@ class TestAsyncRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = await response.parse()
-        assert_matches_type(object, role, path=["response"])
+        assert_matches_type(Optional[RoleGetResponse], role, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -176,7 +176,7 @@ class TestAsyncRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = await response.parse()
-            assert_matches_type(object, role, path=["response"])
+            assert_matches_type(Optional[RoleGetResponse], role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

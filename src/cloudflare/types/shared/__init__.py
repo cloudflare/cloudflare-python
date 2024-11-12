@@ -1,8 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .asn import ASN as ASN
-from .role import Role as Role
-from .member import Member as Member
 from .result import Result as Result
 from .audit_log import AuditLog as AuditLog
 from .rate_plan import RatePlan as RatePlan
