@@ -80,7 +80,7 @@ class InvitesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Invite]:
         """
         Responds to an invitation.
 
@@ -107,9 +107,9 @@ class InvitesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Invite]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Invite]], ResultWrapper[Invite]),
         )
 
     def get(
@@ -122,7 +122,7 @@ class InvitesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Invite]:
         """
         Gets the details of an invitation.
 
@@ -146,9 +146,9 @@ class InvitesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Invite]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Invite]], ResultWrapper[Invite]),
         )
 
 
@@ -203,7 +203,7 @@ class AsyncInvitesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Invite]:
         """
         Responds to an invitation.
 
@@ -230,9 +230,9 @@ class AsyncInvitesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Invite]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Invite]], ResultWrapper[Invite]),
         )
 
     async def get(
@@ -245,7 +245,7 @@ class AsyncInvitesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Invite]:
         """
         Gets the details of an invitation.
 
@@ -269,9 +269,9 @@ class AsyncInvitesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Invite]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Invite]], ResultWrapper[Invite]),
         )
 
 

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -49,7 +49,7 @@ class TestInvites:
             invite_id="4f5f0c14a2a41d5063dd301b2f829f04",
             status="accepted",
         )
-        assert_matches_type(object, invite, path=["response"])
+        assert_matches_type(Optional[Invite], invite, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -61,7 +61,7 @@ class TestInvites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         invite = response.parse()
-        assert_matches_type(object, invite, path=["response"])
+        assert_matches_type(Optional[Invite], invite, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -73,7 +73,7 @@ class TestInvites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             invite = response.parse()
-            assert_matches_type(object, invite, path=["response"])
+            assert_matches_type(Optional[Invite], invite, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -90,7 +90,7 @@ class TestInvites:
         invite = client.user.invites.get(
             "4f5f0c14a2a41d5063dd301b2f829f04",
         )
-        assert_matches_type(object, invite, path=["response"])
+        assert_matches_type(Optional[Invite], invite, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -101,7 +101,7 @@ class TestInvites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         invite = response.parse()
-        assert_matches_type(object, invite, path=["response"])
+        assert_matches_type(Optional[Invite], invite, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -112,7 +112,7 @@ class TestInvites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             invite = response.parse()
-            assert_matches_type(object, invite, path=["response"])
+            assert_matches_type(Optional[Invite], invite, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -158,7 +158,7 @@ class TestAsyncInvites:
             invite_id="4f5f0c14a2a41d5063dd301b2f829f04",
             status="accepted",
         )
-        assert_matches_type(object, invite, path=["response"])
+        assert_matches_type(Optional[Invite], invite, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -170,7 +170,7 @@ class TestAsyncInvites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         invite = await response.parse()
-        assert_matches_type(object, invite, path=["response"])
+        assert_matches_type(Optional[Invite], invite, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -182,7 +182,7 @@ class TestAsyncInvites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             invite = await response.parse()
-            assert_matches_type(object, invite, path=["response"])
+            assert_matches_type(Optional[Invite], invite, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -199,7 +199,7 @@ class TestAsyncInvites:
         invite = await async_client.user.invites.get(
             "4f5f0c14a2a41d5063dd301b2f829f04",
         )
-        assert_matches_type(object, invite, path=["response"])
+        assert_matches_type(Optional[Invite], invite, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -210,7 +210,7 @@ class TestAsyncInvites:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         invite = await response.parse()
-        assert_matches_type(object, invite, path=["response"])
+        assert_matches_type(Optional[Invite], invite, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -221,7 +221,7 @@ class TestAsyncInvites:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             invite = await response.parse()
-            assert_matches_type(object, invite, path=["response"])
+            assert_matches_type(Optional[Invite], invite, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

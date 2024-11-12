@@ -10,14 +10,12 @@ from cloudflare.types import (
     ErrorData,
     Identifier,
     LoadBalancerPreview,
-    Member,
     PaginationInfo,
     Permission,
     PermissionGrant,
     RatePlan,
     ResponseInfo,
     Result,
-    Role,
     SortDirection,
     Subscription,
     SubscriptionComponent,
@@ -48,7 +46,6 @@ Types:
 ```python
 from cloudflare.types.accounts import (
     Status,
-    UserWithInviteCode,
     MemberCreateResponse,
     MemberUpdateResponse,
     MemberListResponse,
@@ -70,13 +67,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.accounts import RoleGetResponse
+from cloudflare.types.accounts import RoleListResponse, RoleGetResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/shared/role.py">SyncSinglePage[Role]</a></code>
-- <code title="get /accounts/{account_id}/roles/{role_id}">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">get</a>(role_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/role_get_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/role_list_response.py">SyncSinglePage[RoleListResponse]</a></code>
+- <code title="get /accounts/{account_id}/roles/{role_id}">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">get</a>(role_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/role_get_response.py">Optional</a></code>
 
 ## Subscriptions
 
@@ -198,14 +195,14 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.user import Invite, InviteEditResponse, InviteGetResponse
+from cloudflare.types.user import Invite
 ```
 
 Methods:
 
 - <code title="get /user/invites">client.user.invites.<a href="./src/cloudflare/resources/user/invites.py">list</a>() -> <a href="./src/cloudflare/types/user/invite.py">SyncSinglePage[Invite]</a></code>
-- <code title="patch /user/invites/{invite_id}">client.user.invites.<a href="./src/cloudflare/resources/user/invites.py">edit</a>(invite_id, \*\*<a href="src/cloudflare/types/user/invite_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/invite_edit_response.py">object</a></code>
-- <code title="get /user/invites/{invite_id}">client.user.invites.<a href="./src/cloudflare/resources/user/invites.py">get</a>(invite_id) -> <a href="./src/cloudflare/types/user/invite_get_response.py">object</a></code>
+- <code title="patch /user/invites/{invite_id}">client.user.invites.<a href="./src/cloudflare/resources/user/invites.py">edit</a>(invite_id, \*\*<a href="src/cloudflare/types/user/invite_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/invite.py">Optional</a></code>
+- <code title="get /user/invites/{invite_id}">client.user.invites.<a href="./src/cloudflare/resources/user/invites.py">get</a>(invite_id) -> <a href="./src/cloudflare/types/user/invite.py">Optional</a></code>
 
 ## Organizations
 
