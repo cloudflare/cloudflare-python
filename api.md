@@ -95,6 +95,48 @@ Methods:
 - <code title="delete /accounts/{account_id}/subscriptions/{subscription_identifier}">client.accounts.subscriptions.<a href="./src/cloudflare/resources/accounts/subscriptions.py">delete</a>(subscription_identifier, \*, account_id) -> <a href="./src/cloudflare/types/accounts/subscription_delete_response.py">SubscriptionDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/subscriptions">client.accounts.subscriptions.<a href="./src/cloudflare/resources/accounts/subscriptions.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/subscription_get_response.py">Optional</a></code>
 
+## Tokens
+
+Types:
+
+```python
+from cloudflare.types.accounts import (
+    TokenCreateResponse,
+    TokenUpdateResponse,
+    TokenListResponse,
+    TokenDeleteResponse,
+    TokenGetResponse,
+    TokenVerifyResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/tokens">client.accounts.tokens.<a href="./src/cloudflare/resources/accounts/tokens/tokens.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/token_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/token_create_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/tokens/{token_id}">client.accounts.tokens.<a href="./src/cloudflare/resources/accounts/tokens/tokens.py">update</a>(token_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/token_update_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/token_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/tokens">client.accounts.tokens.<a href="./src/cloudflare/resources/accounts/tokens/tokens.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/token_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/token_list_response.py">SyncV4PagePaginationArray[TokenListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/tokens/{token_id}">client.accounts.tokens.<a href="./src/cloudflare/resources/accounts/tokens/tokens.py">delete</a>(token_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/token_delete_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/tokens/{token_id}">client.accounts.tokens.<a href="./src/cloudflare/resources/accounts/tokens/tokens.py">get</a>(token_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/token_get_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/tokens/verify">client.accounts.tokens.<a href="./src/cloudflare/resources/accounts/tokens/tokens.py">verify</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/token_verify_response.py">Optional</a></code>
+
+### PermissionGroups
+
+Types:
+
+```python
+from cloudflare.types.accounts.tokens import PermissionGroupListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/tokens/permission_groups">client.accounts.tokens.permission_groups.<a href="./src/cloudflare/resources/accounts/tokens/permission_groups.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/tokens/permission_group_list_response.py">SyncSinglePage[object]</a></code>
+
+### Value
+
+Methods:
+
+- <code title="put /accounts/{account_id}/tokens/{token_id}/value">client.accounts.tokens.value.<a href="./src/cloudflare/resources/accounts/tokens/value.py">update</a>(token_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/tokens/value_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/tokens/value.py">str</a></code>
+
 # OriginCACertificates
 
 Types:
@@ -1032,8 +1074,30 @@ from cloudflare.types.dns import DNSSetting, Nameserver, SettingEditResponse, Se
 
 Methods:
 
-- <code title="patch /{account_or_zone}/{account_or_zone_id}/dns_settings">client.dns.settings.<a href="./src/cloudflare/resources/dns/settings.py">edit</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/dns/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/setting_edit_response.py">Optional</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/dns_settings">client.dns.settings.<a href="./src/cloudflare/resources/dns/settings.py">get</a>(\*, account_id, zone_id) -> <a href="./src/cloudflare/types/dns/setting_get_response.py">Optional</a></code>
+- <code title="patch /{account_or_zone}/{account_or_zone_id}/dns_settings">client.dns.settings.<a href="./src/cloudflare/resources/dns/settings/settings.py">edit</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/dns/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/setting_edit_response.py">Optional</a></code>
+- <code title="get /{account_or_zone}/{account_or_zone_id}/dns_settings">client.dns.settings.<a href="./src/cloudflare/resources/dns/settings/settings.py">get</a>(\*, account_id, zone_id) -> <a href="./src/cloudflare/types/dns/setting_get_response.py">Optional</a></code>
+
+### Views
+
+Types:
+
+```python
+from cloudflare.types.dns.settings import (
+    ViewCreateResponse,
+    ViewListResponse,
+    ViewDeleteResponse,
+    ViewEditResponse,
+    ViewGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dns_settings/views">client.dns.settings.views.<a href="./src/cloudflare/resources/dns/settings/views.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/view_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/view_create_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/dns_settings/views">client.dns.settings.views.<a href="./src/cloudflare/resources/dns/settings/views.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/view_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/view_list_response.py">SyncV4PagePaginationArray[ViewListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/dns_settings/views/{view_id}">client.dns.settings.views.<a href="./src/cloudflare/resources/dns/settings/views.py">delete</a>(view_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/settings/view_delete_response.py">Optional</a></code>
+- <code title="patch /accounts/{account_id}/dns_settings/views/{view_id}">client.dns.settings.views.<a href="./src/cloudflare/resources/dns/settings/views.py">edit</a>(view_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/view_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/view_edit_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/dns_settings/views/{view_id}">client.dns.settings.views.<a href="./src/cloudflare/resources/dns/settings/views.py">get</a>(view_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/settings/view_get_response.py">Optional</a></code>
 
 ## Analytics
 
@@ -2111,6 +2175,20 @@ from cloudflare.types.workers.ai.models import SchemaGetResponse
 Methods:
 
 - <code title="get /accounts/{account_id}/ai/models/schema">client.workers.ai.models.schema.<a href="./src/cloudflare/resources/workers/ai/models/schema.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/ai/models/schema_get_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/ai/models/schema_get_response.py">object</a></code>
+
+## Assets
+
+### Upload
+
+Types:
+
+```python
+from cloudflare.types.workers.assets import UploadCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/assets/upload">client.workers.assets.upload.<a href="./src/cloudflare/resources/workers/assets/upload.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/assets/upload_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/assets/upload_create_response.py">Optional</a></code>
 
 ## Scripts
 
@@ -4626,6 +4704,18 @@ Methods:
 - <code title="get /accounts/{account_id}/devices/networks">client.zero_trust.devices.networks.<a href="./src/cloudflare/resources/zero_trust/devices/networks.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/device_network.py">SyncSinglePage[DeviceNetwork]</a></code>
 - <code title="delete /accounts/{account_id}/devices/networks/{network_id}">client.zero_trust.devices.networks.<a href="./src/cloudflare/resources/zero_trust/devices/networks.py">delete</a>(network_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/network_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/networks/{network_id}">client.zero_trust.devices.networks.<a href="./src/cloudflare/resources/zero_trust/devices/networks.py">get</a>(network_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/device_network.py">Optional</a></code>
+
+### FleetStatus
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.devices import FleetStatusGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{accountTag}/devices/{deviceId}/fleet-status/live">client.zero_trust.devices.fleet_status.<a href="./src/cloudflare/resources/zero_trust/devices/fleet_status.py">get</a>(device_id, \*, account_tag, \*\*<a href="src/cloudflare/types/zero_trust/devices/fleet_status_get_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/fleet_status_get_response.py">FleetStatusGetResponse</a></code>
 
 ### Policies
 
