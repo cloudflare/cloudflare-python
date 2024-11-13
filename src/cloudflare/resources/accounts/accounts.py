@@ -15,6 +15,14 @@ from .roles import (
     RolesResourceWithStreamingResponse,
     AsyncRolesResourceWithStreamingResponse,
 )
+from .tokens import (
+    TokensResource,
+    AsyncTokensResource,
+    TokensResourceWithRawResponse,
+    AsyncTokensResourceWithRawResponse,
+    TokensResourceWithStreamingResponse,
+    AsyncTokensResourceWithStreamingResponse,
+)
 from .members import (
     MembersResource,
     AsyncMembersResource,
@@ -46,6 +54,7 @@ from .subscriptions import (
     SubscriptionsResourceWithStreamingResponse,
     AsyncSubscriptionsResourceWithStreamingResponse,
 )
+from .tokens.tokens import TokensResource, AsyncTokensResource
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.accounts import account_list_params, account_create_params, account_update_params
 from ...types.accounts.account import Account
@@ -66,6 +75,10 @@ class AccountsResource(SyncAPIResource):
     @cached_property
     def subscriptions(self) -> SubscriptionsResource:
         return SubscriptionsResource(self._client)
+
+    @cached_property
+    def tokens(self) -> TokensResource:
+        return TokensResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AccountsResourceWithRawResponse:
@@ -341,6 +354,10 @@ class AsyncAccountsResource(AsyncAPIResource):
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsResource:
         return AsyncSubscriptionsResource(self._client)
+
+    @cached_property
+    def tokens(self) -> AsyncTokensResource:
+        return AsyncTokensResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAccountsResourceWithRawResponse:
@@ -636,6 +653,10 @@ class AccountsResourceWithRawResponse:
     def subscriptions(self) -> SubscriptionsResourceWithRawResponse:
         return SubscriptionsResourceWithRawResponse(self._accounts.subscriptions)
 
+    @cached_property
+    def tokens(self) -> TokensResourceWithRawResponse:
+        return TokensResourceWithRawResponse(self._accounts.tokens)
+
 
 class AsyncAccountsResourceWithRawResponse:
     def __init__(self, accounts: AsyncAccountsResource) -> None:
@@ -668,6 +689,10 @@ class AsyncAccountsResourceWithRawResponse:
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsResourceWithRawResponse:
         return AsyncSubscriptionsResourceWithRawResponse(self._accounts.subscriptions)
+
+    @cached_property
+    def tokens(self) -> AsyncTokensResourceWithRawResponse:
+        return AsyncTokensResourceWithRawResponse(self._accounts.tokens)
 
 
 class AccountsResourceWithStreamingResponse:
@@ -702,6 +727,10 @@ class AccountsResourceWithStreamingResponse:
     def subscriptions(self) -> SubscriptionsResourceWithStreamingResponse:
         return SubscriptionsResourceWithStreamingResponse(self._accounts.subscriptions)
 
+    @cached_property
+    def tokens(self) -> TokensResourceWithStreamingResponse:
+        return TokensResourceWithStreamingResponse(self._accounts.tokens)
+
 
 class AsyncAccountsResourceWithStreamingResponse:
     def __init__(self, accounts: AsyncAccountsResource) -> None:
@@ -734,3 +763,7 @@ class AsyncAccountsResourceWithStreamingResponse:
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsResourceWithStreamingResponse:
         return AsyncSubscriptionsResourceWithStreamingResponse(self._accounts.subscriptions)
+
+    @cached_property
+    def tokens(self) -> AsyncTokensResourceWithStreamingResponse:
+        return AsyncTokensResourceWithStreamingResponse(self._accounts.tokens)

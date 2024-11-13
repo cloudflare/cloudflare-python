@@ -6,30 +6,42 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
+from .views import (
+    ViewsResource,
+    AsyncViewsResource,
+    ViewsResourceWithRawResponse,
+    AsyncViewsResourceWithRawResponse,
+    ViewsResourceWithStreamingResponse,
+    AsyncViewsResourceWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...types.dns import setting_edit_params
-from ..._base_client import make_request_options
-from ...types.dns.dns_setting_param import DNSSettingParam
-from ...types.dns.setting_get_response import SettingGetResponse
-from ...types.dns.setting_edit_response import SettingEditResponse
+from ...._wrappers import ResultWrapper
+from ....types.dns import setting_edit_params
+from ...._base_client import make_request_options
+from ....types.dns.dns_setting_param import DNSSettingParam
+from ....types.dns.setting_get_response import SettingGetResponse
+from ....types.dns.setting_edit_response import SettingEditResponse
 
 __all__ = ["SettingsResource", "AsyncSettingsResource"]
 
 
 class SettingsResource(SyncAPIResource):
+    @cached_property
+    def views(self) -> ViewsResource:
+        return ViewsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> SettingsResourceWithRawResponse:
         """
@@ -157,6 +169,10 @@ class SettingsResource(SyncAPIResource):
 
 
 class AsyncSettingsResource(AsyncAPIResource):
+    @cached_property
+    def views(self) -> AsyncViewsResource:
+        return AsyncViewsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncSettingsResourceWithRawResponse:
         """
@@ -294,6 +310,10 @@ class SettingsResourceWithRawResponse:
             settings.get,
         )
 
+    @cached_property
+    def views(self) -> ViewsResourceWithRawResponse:
+        return ViewsResourceWithRawResponse(self._settings.views)
+
 
 class AsyncSettingsResourceWithRawResponse:
     def __init__(self, settings: AsyncSettingsResource) -> None:
@@ -305,6 +325,10 @@ class AsyncSettingsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             settings.get,
         )
+
+    @cached_property
+    def views(self) -> AsyncViewsResourceWithRawResponse:
+        return AsyncViewsResourceWithRawResponse(self._settings.views)
 
 
 class SettingsResourceWithStreamingResponse:
@@ -318,6 +342,10 @@ class SettingsResourceWithStreamingResponse:
             settings.get,
         )
 
+    @cached_property
+    def views(self) -> ViewsResourceWithStreamingResponse:
+        return ViewsResourceWithStreamingResponse(self._settings.views)
+
 
 class AsyncSettingsResourceWithStreamingResponse:
     def __init__(self, settings: AsyncSettingsResource) -> None:
@@ -329,3 +357,7 @@ class AsyncSettingsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             settings.get,
         )
+
+    @cached_property
+    def views(self) -> AsyncViewsResourceWithStreamingResponse:
+        return AsyncViewsResourceWithStreamingResponse(self._settings.views)
