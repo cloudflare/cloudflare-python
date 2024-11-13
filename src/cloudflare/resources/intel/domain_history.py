@@ -60,7 +60,8 @@ class DomainHistoryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[DomainHistoryGetResponse]:
         """
-        Get Domain History
+        Gets historical security threat and content categories currently and previously
+        assigned to a domain.
 
         Args:
           account_id: Identifier
@@ -122,7 +123,8 @@ class AsyncDomainHistoryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[DomainHistoryGetResponse]:
         """
-        Get Domain History
+        Gets historical security threat and content categories currently and previously
+        assigned to a domain.
 
         Args:
           account_id: Identifier

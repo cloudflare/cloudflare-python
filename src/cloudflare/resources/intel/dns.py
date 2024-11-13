@@ -58,7 +58,7 @@ class DNSResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePagination[DNSListResponse]:
         """
-        Get Passive DNS by IP
+        Gets a list of all the domains that have resolved to a specific IP address.
 
         Args:
           account_id: Identifier
@@ -135,7 +135,7 @@ class AsyncDNSResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[DNSListResponse, AsyncV4PagePagination[DNSListResponse]]:
         """
-        Get Passive DNS by IP
+        Gets a list of all the domains that have resolved to a specific IP address.
 
         Args:
           account_id: Identifier
