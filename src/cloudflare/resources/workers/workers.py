@@ -11,6 +11,14 @@ from .ai import (
     AsyncAIResourceWithStreamingResponse,
 )
 from .ai.ai import AIResource, AsyncAIResource
+from .assets import (
+    AssetsResource,
+    AsyncAssetsResource,
+    AssetsResourceWithRawResponse,
+    AsyncAssetsResourceWithRawResponse,
+    AssetsResourceWithStreamingResponse,
+    AsyncAssetsResourceWithStreamingResponse,
+)
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -37,6 +45,7 @@ from .subdomains import (
     AsyncSubdomainsResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .assets.assets import AssetsResource, AsyncAssetsResource
 from .scripts.scripts import ScriptsResource, AsyncScriptsResource
 from .account_settings import (
     AccountSettingsResource,
@@ -54,6 +63,10 @@ class WorkersResource(SyncAPIResource):
     @cached_property
     def ai(self) -> AIResource:
         return AIResource(self._client)
+
+    @cached_property
+    def assets(self) -> AssetsResource:
+        return AssetsResource(self._client)
 
     @cached_property
     def scripts(self) -> ScriptsResource:
@@ -95,6 +108,10 @@ class AsyncWorkersResource(AsyncAPIResource):
     @cached_property
     def ai(self) -> AsyncAIResource:
         return AsyncAIResource(self._client)
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResource:
+        return AsyncAssetsResource(self._client)
 
     @cached_property
     def scripts(self) -> AsyncScriptsResource:
@@ -141,6 +158,10 @@ class WorkersResourceWithRawResponse:
         return AIResourceWithRawResponse(self._workers.ai)
 
     @cached_property
+    def assets(self) -> AssetsResourceWithRawResponse:
+        return AssetsResourceWithRawResponse(self._workers.assets)
+
+    @cached_property
     def scripts(self) -> ScriptsResourceWithRawResponse:
         return ScriptsResourceWithRawResponse(self._workers.scripts)
 
@@ -164,6 +185,10 @@ class AsyncWorkersResourceWithRawResponse:
     @cached_property
     def ai(self) -> AsyncAIResourceWithRawResponse:
         return AsyncAIResourceWithRawResponse(self._workers.ai)
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithRawResponse:
+        return AsyncAssetsResourceWithRawResponse(self._workers.assets)
 
     @cached_property
     def scripts(self) -> AsyncScriptsResourceWithRawResponse:
@@ -191,6 +216,10 @@ class WorkersResourceWithStreamingResponse:
         return AIResourceWithStreamingResponse(self._workers.ai)
 
     @cached_property
+    def assets(self) -> AssetsResourceWithStreamingResponse:
+        return AssetsResourceWithStreamingResponse(self._workers.assets)
+
+    @cached_property
     def scripts(self) -> ScriptsResourceWithStreamingResponse:
         return ScriptsResourceWithStreamingResponse(self._workers.scripts)
 
@@ -214,6 +243,10 @@ class AsyncWorkersResourceWithStreamingResponse:
     @cached_property
     def ai(self) -> AsyncAIResourceWithStreamingResponse:
         return AsyncAIResourceWithStreamingResponse(self._workers.ai)
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithStreamingResponse:
+        return AsyncAssetsResourceWithStreamingResponse(self._workers.assets)
 
     @cached_property
     def scripts(self) -> AsyncScriptsResourceWithStreamingResponse:

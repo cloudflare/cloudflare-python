@@ -37,6 +37,7 @@ from .analytics import (
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .firewall.firewall import FirewallResource, AsyncFirewallResource
+from .settings.settings import SettingsResource, AsyncSettingsResource
 from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
 
 __all__ = ["DNSResource", "AsyncDNSResource"]
