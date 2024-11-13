@@ -66,7 +66,7 @@ class MiscategorizationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MiscategorizationCreateResponse:
         """
-        Create Miscategorization
+        Allows you to submit requests to change a domain’s category.
 
         Args:
           account_id: Identifier
@@ -155,7 +155,7 @@ class AsyncMiscategorizationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MiscategorizationCreateResponse:
         """
-        Create Miscategorization
+        Allows you to submit requests to change a domain’s category.
 
         Args:
           account_id: Identifier

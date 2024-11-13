@@ -105,7 +105,7 @@ class BrandProtectionResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Info]:
         """
-        Get results for a URL scan
+        Gets phishing details about a URL.
 
         Args:
           account_id: Identifier
@@ -221,7 +221,7 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Info]:
         """
-        Get results for a URL scan
+        Gets phishing details about a URL.
 
         Args:
           account_id: Identifier
