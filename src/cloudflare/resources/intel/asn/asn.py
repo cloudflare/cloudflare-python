@@ -67,7 +67,8 @@ class ASNResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ASN]:
         """
-        Get ASN Overview
+        Gets an overview of the Autonomous System Number (ASN) and a list of subnets for
+        it.
 
         Args:
           account_id: Identifier
@@ -132,7 +133,8 @@ class AsyncASNResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ASN]:
         """
-        Get ASN Overview
+        Gets an overview of the Autonomous System Number (ASN) and a list of subnets for
+        it.
 
         Args:
           account_id: Identifier

@@ -61,7 +61,8 @@ class IPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IPGetResponse]:
         """
-        Same as summary
+        Gets the geolocation, ASN, infrastructure type of the ASN, and any security
+        threat categories of an IP address.
 
         Args:
           account_id: Identifier
@@ -130,7 +131,8 @@ class AsyncIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IPGetResponse]:
         """
-        Same as summary
+        Gets the geolocation, ASN, infrastructure type of the ASN, and any security
+        threat categories of an IP address.
 
         Args:
           account_id: Identifier

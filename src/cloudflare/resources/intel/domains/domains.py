@@ -72,7 +72,7 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Domain]:
         """
-        Get Domain Details
+        Gets security details and statistics about a domain.
 
         Args:
           account_id: Identifier
@@ -138,7 +138,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Domain]:
         """
-        Get Domain Details
+        Gets security details and statistics about a domain.
 
         Args:
           account_id: Identifier
