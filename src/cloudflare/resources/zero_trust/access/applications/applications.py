@@ -59,6 +59,7 @@ from .policy_tests.policy_tests import PolicyTestsResource, AsyncPolicyTestsReso
 from .....types.zero_trust.access import (
     AppID,
     ApplicationType,
+    application_list_params,
     application_create_params,
     application_update_params,
 )
@@ -1899,6 +1900,10 @@ class ApplicationsResource(SyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        aud: str | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1913,6 +1918,14 @@ class ApplicationsResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          aud: The aud of the app.
+
+          domain: The domain of the app.
+
+          name: The name of the app.
+
+          search: Search for apps by other listed query parameters.
 
           extra_headers: Send extra headers
 
@@ -1938,7 +1951,19 @@ class ApplicationsResource(SyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
             page=SyncSinglePage[ApplicationListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "aud": aud,
+                        "domain": domain,
+                        "name": name,
+                        "search": search,
+                    },
+                    application_list_params.ApplicationListParams,
+                ),
             ),
             model=cast(Any, ApplicationListResponse),  # Union types cannot be passed in as arguments in the type system
         )
@@ -3943,6 +3968,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        aud: str | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3957,6 +3986,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          aud: The aud of the app.
+
+          domain: The domain of the app.
+
+          name: The name of the app.
+
+          search: Search for apps by other listed query parameters.
 
           extra_headers: Send extra headers
 
@@ -3982,7 +4019,19 @@ class AsyncApplicationsResource(AsyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
             page=AsyncSinglePage[ApplicationListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "aud": aud,
+                        "domain": domain,
+                        "name": name,
+                        "search": search,
+                    },
+                    application_list_params.ApplicationListParams,
+                ),
             ),
             model=cast(Any, ApplicationListResponse),  # Union types cannot be passed in as arguments in the type system
         )
