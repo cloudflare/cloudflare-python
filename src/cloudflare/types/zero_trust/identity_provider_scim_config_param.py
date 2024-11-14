@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["IdentityProviderSCIMConfigParam"]
 
@@ -11,11 +11,13 @@ class IdentityProviderSCIMConfigParam(TypedDict, total=False):
     enabled: bool
     """A flag to enable or disable SCIM for the identity provider."""
 
-    group_member_deprovision: bool
-    """
-    A flag to revoke a user's session in Access and force a reauthentication on the
-    user's Gateway session when they have been added or removed from a group in the
-    Identity Provider.
+    identity_update_behavior: Literal["automatic", "reauth"]
+    """Indicates how a SCIM event updates an Access identity.
+
+    Use "automatic" to automatically update a user's Access identity and augment it
+    with fields from the SCIM user resource. Use "reauth" to force re-authentication
+    on group membership updates. With "reauth" Access identities will not contain
+    fields from the SCIM user resource.
     """
 
     seat_deprovision: bool

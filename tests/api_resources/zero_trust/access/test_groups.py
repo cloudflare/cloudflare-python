@@ -256,6 +256,8 @@ class TestGroups:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         group = client.zero_trust.access.groups.list(
             account_id="account_id",
+            name="name",
+            search="search",
         )
         assert_matches_type(SyncSinglePage[ZeroTrustGroup], group, path=["response"])
 
@@ -671,6 +673,8 @@ class TestAsyncGroups:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         group = await async_client.zero_trust.access.groups.list(
             account_id="account_id",
+            name="name",
+            search="search",
         )
         assert_matches_type(AsyncSinglePage[ZeroTrustGroup], group, path=["response"])
 

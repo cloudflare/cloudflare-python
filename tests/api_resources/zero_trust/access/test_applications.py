@@ -3108,6 +3108,10 @@ class TestApplications:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.list(
             account_id="account_id",
+            aud="aud",
+            domain="domain",
+            name="name",
+            search="search",
         )
         assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=["response"])
 
@@ -6439,6 +6443,10 @@ class TestAsyncApplications:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.list(
             account_id="account_id",
+            aud="aud",
+            domain="domain",
+            name="name",
+            search="search",
         )
         assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=["response"])
 
