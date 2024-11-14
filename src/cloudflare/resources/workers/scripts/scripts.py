@@ -15,6 +15,14 @@ from .tail import (
     TailResourceWithStreamingResponse,
     AsyncTailResourceWithStreamingResponse,
 )
+from .assets import (
+    AssetsResource,
+    AsyncAssetsResource,
+    AssetsResourceWithRawResponse,
+    AsyncAssetsResourceWithRawResponse,
+    AssetsResourceWithStreamingResponse,
+    AsyncAssetsResourceWithStreamingResponse,
+)
 from .content import (
     ContentResource,
     AsyncContentResource,
@@ -87,6 +95,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
+from .assets.assets import AssetsResource, AsyncAssetsResource
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.workers import script_delete_params, script_update_params
 from ....types.workers.script import Script
@@ -96,6 +105,10 @@ __all__ = ["ScriptsResource", "AsyncScriptsResource"]
 
 
 class ScriptsResource(SyncAPIResource):
+    @cached_property
+    def assets(self) -> AssetsResource:
+        return AssetsResource(self._client)
+
     @cached_property
     def subdomain(self) -> SubdomainResource:
         return SubdomainResource(self._client)
@@ -409,6 +422,10 @@ class ScriptsResource(SyncAPIResource):
 
 
 class AsyncScriptsResource(AsyncAPIResource):
+    @cached_property
+    def assets(self) -> AsyncAssetsResource:
+        return AsyncAssetsResource(self._client)
+
     @cached_property
     def subdomain(self) -> AsyncSubdomainResource:
         return AsyncSubdomainResource(self._client)
@@ -742,6 +759,10 @@ class ScriptsResourceWithRawResponse:
         )
 
     @cached_property
+    def assets(self) -> AssetsResourceWithRawResponse:
+        return AssetsResourceWithRawResponse(self._scripts.assets)
+
+    @cached_property
     def subdomain(self) -> SubdomainResourceWithRawResponse:
         return SubdomainResourceWithRawResponse(self._scripts.subdomain)
 
@@ -787,6 +808,10 @@ class AsyncScriptsResourceWithRawResponse:
             scripts.get,
             AsyncBinaryAPIResponse,
         )
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithRawResponse:
+        return AsyncAssetsResourceWithRawResponse(self._scripts.assets)
 
     @cached_property
     def subdomain(self) -> AsyncSubdomainResourceWithRawResponse:
@@ -836,6 +861,10 @@ class ScriptsResourceWithStreamingResponse:
         )
 
     @cached_property
+    def assets(self) -> AssetsResourceWithStreamingResponse:
+        return AssetsResourceWithStreamingResponse(self._scripts.assets)
+
+    @cached_property
     def subdomain(self) -> SubdomainResourceWithStreamingResponse:
         return SubdomainResourceWithStreamingResponse(self._scripts.subdomain)
 
@@ -881,6 +910,10 @@ class AsyncScriptsResourceWithStreamingResponse:
             scripts.get,
             AsyncStreamedBinaryAPIResponse,
         )
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithStreamingResponse:
+        return AsyncAssetsResourceWithStreamingResponse(self._scripts.assets)
 
     @cached_property
     def subdomain(self) -> AsyncSubdomainResourceWithStreamingResponse:
