@@ -72,14 +72,6 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from .fleet_status import (
-    FleetStatusResource,
-    AsyncFleetStatusResource,
-    FleetStatusResourceWithRawResponse,
-    AsyncFleetStatusResourceWithRawResponse,
-    FleetStatusResourceWithStreamingResponse,
-    AsyncFleetStatusResourceWithStreamingResponse,
-)
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from .override_codes import (
     OverrideCodesResource,
@@ -106,10 +98,6 @@ class DevicesResource(SyncAPIResource):
     @cached_property
     def networks(self) -> NetworksResource:
         return NetworksResource(self._client)
-
-    @cached_property
-    def fleet_status(self) -> FleetStatusResource:
-        return FleetStatusResource(self._client)
 
     @cached_property
     def policies(self) -> PoliciesResource:
@@ -244,10 +232,6 @@ class AsyncDevicesResource(AsyncAPIResource):
     @cached_property
     def networks(self) -> AsyncNetworksResource:
         return AsyncNetworksResource(self._client)
-
-    @cached_property
-    def fleet_status(self) -> AsyncFleetStatusResource:
-        return AsyncFleetStatusResource(self._client)
 
     @cached_property
     def policies(self) -> AsyncPoliciesResource:
@@ -394,10 +378,6 @@ class DevicesResourceWithRawResponse:
         return NetworksResourceWithRawResponse(self._devices.networks)
 
     @cached_property
-    def fleet_status(self) -> FleetStatusResourceWithRawResponse:
-        return FleetStatusResourceWithRawResponse(self._devices.fleet_status)
-
-    @cached_property
     def policies(self) -> PoliciesResourceWithRawResponse:
         return PoliciesResourceWithRawResponse(self._devices.policies)
 
@@ -440,10 +420,6 @@ class AsyncDevicesResourceWithRawResponse:
     @cached_property
     def networks(self) -> AsyncNetworksResourceWithRawResponse:
         return AsyncNetworksResourceWithRawResponse(self._devices.networks)
-
-    @cached_property
-    def fleet_status(self) -> AsyncFleetStatusResourceWithRawResponse:
-        return AsyncFleetStatusResourceWithRawResponse(self._devices.fleet_status)
 
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithRawResponse:
@@ -490,10 +466,6 @@ class DevicesResourceWithStreamingResponse:
         return NetworksResourceWithStreamingResponse(self._devices.networks)
 
     @cached_property
-    def fleet_status(self) -> FleetStatusResourceWithStreamingResponse:
-        return FleetStatusResourceWithStreamingResponse(self._devices.fleet_status)
-
-    @cached_property
     def policies(self) -> PoliciesResourceWithStreamingResponse:
         return PoliciesResourceWithStreamingResponse(self._devices.policies)
 
@@ -536,10 +508,6 @@ class AsyncDevicesResourceWithStreamingResponse:
     @cached_property
     def networks(self) -> AsyncNetworksResourceWithStreamingResponse:
         return AsyncNetworksResourceWithStreamingResponse(self._devices.networks)
-
-    @cached_property
-    def fleet_status(self) -> AsyncFleetStatusResourceWithStreamingResponse:
-        return AsyncFleetStatusResourceWithStreamingResponse(self._devices.fleet_status)
 
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:
