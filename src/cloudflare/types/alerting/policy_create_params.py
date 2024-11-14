@@ -47,6 +47,7 @@ class PolicyCreateParams(TypedDict, total=False):
             "http_alert_origin_error",
             "incident_alert",
             "image_notification",
+            "image_resizing_notification",
             "load_balancing_health_alert",
             "load_balancing_pool_enablement_alert",
             "logo_match_alert",
