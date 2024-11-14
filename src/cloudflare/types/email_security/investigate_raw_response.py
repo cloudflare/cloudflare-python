@@ -8,4 +8,4 @@ __all__ = ["InvestigateRawResponse"]
 
 class InvestigateRawResponse(BaseModel):
     raw: str
-    """UTF-8 encoded eml file"""
+    """A UTF-8 encoded eml file of the email."""

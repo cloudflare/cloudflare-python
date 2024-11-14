@@ -181,7 +181,7 @@ class ImpersonationRegistryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePaginationArray[ImpersonationRegistryListResponse]:
         """
-        List, search, and sort entries in impersonation registry.
+        Lists, searches, and sorts entries in the impersonation registry.
 
         Args:
           account_id: Account Identifier
@@ -190,9 +190,9 @@ class ImpersonationRegistryResource(SyncAPIResource):
 
           order: The field to sort by.
 
-          page: Page number of paginated results.
+          page: The page number of paginated results.
 
-          per_page: Number of results to display.
+          per_page: The number of results per page.
 
           search: Allows searching in multiple properties of a record simultaneously. This
               parameter is intended for human users, not automation. Its exact behavior is
@@ -508,7 +508,7 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         ImpersonationRegistryListResponse, AsyncV4PagePaginationArray[ImpersonationRegistryListResponse]
     ]:
         """
-        List, search, and sort entries in impersonation registry.
+        Lists, searches, and sorts entries in the impersonation registry.
 
         Args:
           account_id: Account Identifier
@@ -517,9 +517,9 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
 
           order: The field to sort by.
 
-          page: Page number of paginated results.
+          page: The page number of paginated results.
 
-          per_page: Number of results to display.
+          per_page: The number of results per page.
 
           search: Allows searching in multiple properties of a record simultaneously. This
               parameter is intended for human users, not automation. Its exact behavior is

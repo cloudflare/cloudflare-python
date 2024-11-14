@@ -13,25 +13,22 @@ class DomainListParams(TypedDict, total=False):
     """Account Identifier"""
 
     allowed_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]
-    """If present, the response contains only domains with the provided delivery mode."""
+    """Filters response to domains with the provided delivery mode."""
 
     direction: Literal["asc", "desc"]
     """The sorting direction."""
 
     domain: List[str]
-    """
-    Filter result by the provided domains. Allows for multiple occurrences, e.g.,
-    `domain=example.com&domain=example.xyz`.
-    """
+    """Filters results by the provided domains, allowing for multiple occurrences."""
 
     order: Literal["domain", "created_at"]
     """The field to sort by."""
 
     page: int
-    """Page number of paginated results."""
+    """The page number of paginated results."""
 
     per_page: int
-    """Number of results to display."""
+    """The number of results per page."""
 
     search: str
     """

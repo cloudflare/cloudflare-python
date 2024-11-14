@@ -187,7 +187,7 @@ class TrustedDomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePaginationArray[TrustedDomainListResponse]:
         """
-        List, search, and sort an account's trusted email domains.
+        Lists, searches, and sorts an account’s trusted email domains.
 
         Args:
           account_id: Account Identifier
@@ -196,9 +196,9 @@ class TrustedDomainsResource(SyncAPIResource):
 
           order: The field to sort by.
 
-          page: Page number of paginated results.
+          page: The page number of paginated results.
 
-          per_page: Number of results to display.
+          per_page: The number of results per page.
 
           search: Allows searching in multiple properties of a record simultaneously. This
               parameter is intended for human users, not automation. Its exact behavior is
@@ -523,7 +523,7 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[TrustedDomainListResponse, AsyncV4PagePaginationArray[TrustedDomainListResponse]]:
         """
-        List, search, and sort an account's trusted email domains.
+        Lists, searches, and sorts an account’s trusted email domains.
 
         Args:
           account_id: Account Identifier
@@ -532,9 +532,9 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
 
           order: The field to sort by.
 
-          page: Page number of paginated results.
+          page: The page number of paginated results.
 
-          per_page: Number of results to display.
+          per_page: The number of results per page.
 
           search: Allows searching in multiple properties of a record simultaneously. This
               parameter is intended for human users, not automation. Its exact behavior is

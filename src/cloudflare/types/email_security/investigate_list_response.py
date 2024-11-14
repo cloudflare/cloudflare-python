@@ -34,7 +34,7 @@ class InvestigateListResponse(BaseModel):
     is_quarantined: bool
 
     postfix_id: str
-    """Message identifier"""
+    """The identifier of the message."""
 
     ts: str
 

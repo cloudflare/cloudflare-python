@@ -8,4 +8,4 @@ __all__ = ["InvestigatePreviewResponse"]
 
 class InvestigatePreviewResponse(BaseModel):
     screenshot: str
-    """Base64 encoded PNG image"""
+    """A base64 encoded PNG image of the email."""
