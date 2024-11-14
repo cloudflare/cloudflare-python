@@ -192,9 +192,9 @@ class BlockSendersResource(SyncAPIResource):
 
           order: The field to sort by.
 
-          page: Page number of paginated results.
+          page: The page number of paginated results.
 
-          per_page: Number of results to display.
+          per_page: The number of results per page.
 
           search: Allows searching in multiple properties of a record simultaneously. This
               parameter is intended for human users, not automation. Its exact behavior is
@@ -521,9 +521,9 @@ class AsyncBlockSendersResource(AsyncAPIResource):
 
           order: The field to sort by.
 
-          page: Page number of paginated results.
+          page: The page number of paginated results.
 
-          per_page: Number of results to display.
+          per_page: The number of results per page.
 
           search: Allows searching in multiple properties of a record simultaneously. This
               parameter is intended for human users, not automation. Its exact behavior is

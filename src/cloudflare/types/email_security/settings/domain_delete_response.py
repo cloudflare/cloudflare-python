@@ -8,4 +8,4 @@ __all__ = ["DomainDeleteResponse"]
 
 class DomainDeleteResponse(BaseModel):
     id: int
-    """Unique domain identifier"""
+    """The unique identifier for the domain."""

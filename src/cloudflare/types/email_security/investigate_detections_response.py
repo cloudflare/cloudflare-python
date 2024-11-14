@@ -55,10 +55,10 @@ class Link(BaseModel):
 
 class SenderInfo(BaseModel):
     as_name: Optional[str] = None
-    """Name of the autonomous system"""
+    """The name of the autonomous system."""
 
     as_number: Optional[int] = None
-    """Number of the autonomous system"""
+    """The number of the autonomous system."""
 
     geo: Optional[str] = None
 

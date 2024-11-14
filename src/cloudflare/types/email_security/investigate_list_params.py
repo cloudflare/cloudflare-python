@@ -16,37 +16,37 @@ class InvestigateListParams(TypedDict, total=False):
     """Account Identifier"""
 
     action_log: bool
-    """Controls whether the message action log in included in the response."""
+    """Determines if the message action log is included in the response."""
 
     alert_id: str
 
     detections_only: bool
-    """If `false`, the search includes non-detections."""
+    """Determines if the search results will include detections or not."""
 
     domain: str
-    """Filter by the sender domain"""
+    """The sender domains the search filters by."""
 
     end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The end of the search date range. Defaults to `now`."""
 
     final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK"]
-    """Filter messages by the provided disposition."""
+    """The dispositions the search filters by."""
 
     message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"]
-    """Filter messages by actions applied to them"""
+    """The message actions the search filters by."""
 
     message_id: str
 
     metric: str
 
     page: int
-    """Page number of paginated results."""
+    """The page number of paginated results."""
 
     per_page: int
-    """Number of results to display."""
+    """The number of results per page."""
 
     query: str
-    """Space delimited query term(s). The search is case-insensitive.
+    """The space-delimited term used in the query. The search is case-insensitive.
 
     The content of the following email metadata fields are searched:
 

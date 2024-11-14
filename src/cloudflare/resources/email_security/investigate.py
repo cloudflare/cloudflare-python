@@ -79,29 +79,28 @@ class InvestigateResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePaginationArray[InvestigateListResponse]:
         """
-        This endpoint returns information for each email that matches the search
-        parameter(s).
+        Returns information for each email that matches the search parameter(s).
 
         Args:
           account_id: Account Identifier
 
-          action_log: Controls whether the message action log in included in the response.
+          action_log: Determines if the message action log is included in the response.
 
-          detections_only: If `false`, the search includes non-detections.
+          detections_only: Determines if the search results will include detections or not.
 
-          domain: Filter by the sender domain
+          domain: The sender domains the search filters by.
 
           end: The end of the search date range. Defaults to `now`.
 
-          final_disposition: Filter messages by the provided disposition.
+          final_disposition: The dispositions the search filters by.
 
-          message_action: Filter messages by actions applied to them
+          message_action: The message actions the search filters by.
 
-          page: Page number of paginated results.
+          page: The page number of paginated results.
 
-          per_page: Number of results to display.
+          per_page: The number of results per page.
 
-          query: Space delimited query term(s). The search is case-insensitive.
+          query: The space-delimited term used in the query. The search is case-insensitive.
 
               The content of the following email metadata fields are searched:
 
@@ -183,13 +182,13 @@ class InvestigateResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InvestigateDetectionsResponse:
         """
-        For emails that have a detection, this endpoint returns detection details such
-        as threat categories, sender information, and links.
+        Returns detection details such as threat categories and sender information for
+        non-benign messages.
 
         Args:
           account_id: Account Identifier
 
-          postfix_id: Message identifier
+          postfix_id: The identifier of the message.
 
           extra_headers: Send extra headers
 
@@ -233,7 +232,7 @@ class InvestigateResource(SyncAPIResource):
         Args:
           account_id: Account Identifier
 
-          postfix_id: Message identifier
+          postfix_id: The identifier of the message.
 
           extra_headers: Send extra headers
 
@@ -272,13 +271,13 @@ class InvestigateResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InvestigatePreviewResponse:
         """
-        For emails that have a detection, this endpoint returns a preview of the message
-        body as a base64 encoded PNG image.
+        Returns a preview of the message body as a base64 encoded PNG image for
+        non-benign messages.
 
         Args:
           account_id: Account Identifier
 
-          postfix_id: Message identifier
+          postfix_id: The identifier of the message.
 
           extra_headers: Send extra headers
 
@@ -317,13 +316,12 @@ class InvestigateResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InvestigateRawResponse:
         """
-        For emails that have a detection, this endpoint returns the raw email as an EML
-        file.
+        Returns the raw eml of any non-benign message.
 
         Args:
           account_id: Account Identifier
 
-          postfix_id: Message identifier
+          postfix_id: The identifier of the message.
 
           extra_headers: Send extra headers
 
@@ -367,7 +365,7 @@ class InvestigateResource(SyncAPIResource):
         Args:
           account_id: Account Identifier
 
-          postfix_id: Message identifier
+          postfix_id: The identifier of the message.
 
           extra_headers: Send extra headers
 
@@ -441,29 +439,28 @@ class AsyncInvestigateResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[InvestigateListResponse, AsyncV4PagePaginationArray[InvestigateListResponse]]:
         """
-        This endpoint returns information for each email that matches the search
-        parameter(s).
+        Returns information for each email that matches the search parameter(s).
 
         Args:
           account_id: Account Identifier
 
-          action_log: Controls whether the message action log in included in the response.
+          action_log: Determines if the message action log is included in the response.
 
-          detections_only: If `false`, the search includes non-detections.
+          detections_only: Determines if the search results will include detections or not.
 
-          domain: Filter by the sender domain
+          domain: The sender domains the search filters by.
 
           end: The end of the search date range. Defaults to `now`.
 
-          final_disposition: Filter messages by the provided disposition.
+          final_disposition: The dispositions the search filters by.
 
-          message_action: Filter messages by actions applied to them
+          message_action: The message actions the search filters by.
 
-          page: Page number of paginated results.
+          page: The page number of paginated results.
 
-          per_page: Number of results to display.
+          per_page: The number of results per page.
 
-          query: Space delimited query term(s). The search is case-insensitive.
+          query: The space-delimited term used in the query. The search is case-insensitive.
 
               The content of the following email metadata fields are searched:
 
@@ -545,13 +542,13 @@ class AsyncInvestigateResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InvestigateDetectionsResponse:
         """
-        For emails that have a detection, this endpoint returns detection details such
-        as threat categories, sender information, and links.
+        Returns detection details such as threat categories and sender information for
+        non-benign messages.
 
         Args:
           account_id: Account Identifier
 
-          postfix_id: Message identifier
+          postfix_id: The identifier of the message.
 
           extra_headers: Send extra headers
 
@@ -595,7 +592,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
         Args:
           account_id: Account Identifier
 
-          postfix_id: Message identifier
+          postfix_id: The identifier of the message.
 
           extra_headers: Send extra headers
 
@@ -634,13 +631,13 @@ class AsyncInvestigateResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InvestigatePreviewResponse:
         """
-        For emails that have a detection, this endpoint returns a preview of the message
-        body as a base64 encoded PNG image.
+        Returns a preview of the message body as a base64 encoded PNG image for
+        non-benign messages.
 
         Args:
           account_id: Account Identifier
 
-          postfix_id: Message identifier
+          postfix_id: The identifier of the message.
 
           extra_headers: Send extra headers
 
@@ -679,13 +676,12 @@ class AsyncInvestigateResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InvestigateRawResponse:
         """
-        For emails that have a detection, this endpoint returns the raw email as an EML
-        file.
+        Returns the raw eml of any non-benign message.
 
         Args:
           account_id: Account Identifier
 
-          postfix_id: Message identifier
+          postfix_id: The identifier of the message.
 
           extra_headers: Send extra headers
 
@@ -729,7 +725,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
         Args:
           account_id: Account Identifier
 
-          postfix_id: Message identifier
+          postfix_id: The identifier of the message.
 
           extra_headers: Send extra headers
 

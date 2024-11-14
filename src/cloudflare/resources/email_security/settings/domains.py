@@ -70,23 +70,22 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePaginationArray[DomainListResponse]:
         """
-        List, search, and sort an account's email domains.
+        Lists, searches, and sorts an account’s email domains.
 
         Args:
           account_id: Account Identifier
 
-          allowed_delivery_mode: If present, the response contains only domains with the provided delivery mode.
+          allowed_delivery_mode: Filters response to domains with the provided delivery mode.
 
           direction: The sorting direction.
 
-          domain: Filter result by the provided domains. Allows for multiple occurrences, e.g.,
-              `domain=example.com&domain=example.xyz`.
+          domain: Filters results by the provided domains, allowing for multiple occurrences.
 
           order: The field to sort by.
 
-          page: Page number of paginated results.
+          page: The page number of paginated results.
 
-          per_page: Number of results to display.
+          per_page: The number of results per page.
 
           search: Allows searching in multiple properties of a record simultaneously. This
               parameter is intended for human users, not automation. Its exact behavior is
@@ -144,7 +143,7 @@ class DomainsResource(SyncAPIResource):
         Args:
           account_id: Account Identifier
 
-          domain_id: Unique domain identifier
+          domain_id: The unique identifier for the domain.
 
           extra_headers: Send extra headers
 
@@ -189,7 +188,7 @@ class DomainsResource(SyncAPIResource):
         Args:
           account_id: Account Identifier
 
-          domain_id: Unique domain identifier
+          domain_id: The unique identifier for the domain.
 
           extra_headers: Send extra headers
 
@@ -261,23 +260,22 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[DomainListResponse, AsyncV4PagePaginationArray[DomainListResponse]]:
         """
-        List, search, and sort an account's email domains.
+        Lists, searches, and sorts an account’s email domains.
 
         Args:
           account_id: Account Identifier
 
-          allowed_delivery_mode: If present, the response contains only domains with the provided delivery mode.
+          allowed_delivery_mode: Filters response to domains with the provided delivery mode.
 
           direction: The sorting direction.
 
-          domain: Filter result by the provided domains. Allows for multiple occurrences, e.g.,
-              `domain=example.com&domain=example.xyz`.
+          domain: Filters results by the provided domains, allowing for multiple occurrences.
 
           order: The field to sort by.
 
-          page: Page number of paginated results.
+          page: The page number of paginated results.
 
-          per_page: Number of results to display.
+          per_page: The number of results per page.
 
           search: Allows searching in multiple properties of a record simultaneously. This
               parameter is intended for human users, not automation. Its exact behavior is
@@ -335,7 +333,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           account_id: Account Identifier
 
-          domain_id: Unique domain identifier
+          domain_id: The unique identifier for the domain.
 
           extra_headers: Send extra headers
 
@@ -380,7 +378,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         Args:
           account_id: Account Identifier
 
-          domain_id: Unique domain identifier
+          domain_id: The unique identifier for the domain.
 
           extra_headers: Send extra headers
 
