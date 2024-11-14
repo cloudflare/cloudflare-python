@@ -64,14 +64,6 @@ from .dex_tests import (
     DEXTestsResourceWithStreamingResponse,
     AsyncDEXTestsResourceWithStreamingResponse,
 )
-from .fleet_status import (
-    FleetStatusResource,
-    AsyncFleetStatusResource,
-    FleetStatusResourceWithRawResponse,
-    AsyncFleetStatusResourceWithRawResponse,
-    FleetStatusResourceWithStreamingResponse,
-    AsyncFleetStatusResourceWithStreamingResponse,
-)
 from .override_codes import (
     OverrideCodesResource,
     AsyncOverrideCodesResource,
@@ -94,12 +86,6 @@ __all__ = [
     "AsyncNetworksResourceWithRawResponse",
     "NetworksResourceWithStreamingResponse",
     "AsyncNetworksResourceWithStreamingResponse",
-    "FleetStatusResource",
-    "AsyncFleetStatusResource",
-    "FleetStatusResourceWithRawResponse",
-    "AsyncFleetStatusResourceWithRawResponse",
-    "FleetStatusResourceWithStreamingResponse",
-    "AsyncFleetStatusResourceWithStreamingResponse",
     "PoliciesResource",
     "AsyncPoliciesResource",
     "PoliciesResourceWithRawResponse",

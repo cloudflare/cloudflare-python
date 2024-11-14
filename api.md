@@ -4812,18 +4812,6 @@ Methods:
 - <code title="delete /accounts/{account_id}/devices/networks/{network_id}">client.zero_trust.devices.networks.<a href="./src/cloudflare/resources/zero_trust/devices/networks.py">delete</a>(network_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/network_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/networks/{network_id}">client.zero_trust.devices.networks.<a href="./src/cloudflare/resources/zero_trust/devices/networks.py">get</a>(network_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/device_network.py">Optional</a></code>
 
-### FleetStatus
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.devices import FleetStatusGetResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{accountTag}/devices/{deviceId}/fleet-status/live">client.zero_trust.devices.fleet_status.<a href="./src/cloudflare/resources/zero_trust/devices/fleet_status.py">get</a>(device_id, \*, account_tag, \*\*<a href="src/cloudflare/types/zero_trust/devices/fleet_status_get_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/fleet_status_get_response.py">FleetStatusGetResponse</a></code>
-
 ### Policies
 
 Types:
