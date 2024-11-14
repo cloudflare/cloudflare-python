@@ -52,7 +52,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -138,7 +138,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -220,7 +220,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -302,7 +302,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -386,7 +386,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -471,7 +471,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -553,7 +553,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -641,7 +641,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -727,7 +727,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -812,7 +812,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -897,7 +897,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -997,7 +997,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -1079,7 +1079,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -1158,7 +1158,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -1248,7 +1248,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -1349,7 +1349,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -1446,7 +1446,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -1543,7 +1543,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -1642,7 +1642,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -1742,7 +1742,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -1839,7 +1839,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -1942,7 +1942,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -2043,7 +2043,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -2143,7 +2143,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -2243,7 +2243,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -2358,7 +2358,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -2455,7 +2455,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -2549,7 +2549,7 @@ class TestIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -2843,7 +2843,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -2929,7 +2929,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -3011,7 +3011,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -3093,7 +3093,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -3177,7 +3177,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -3262,7 +3262,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -3344,7 +3344,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -3432,7 +3432,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -3518,7 +3518,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -3603,7 +3603,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -3688,7 +3688,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -3788,7 +3788,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -3870,7 +3870,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -3949,7 +3949,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -4039,7 +4039,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -4140,7 +4140,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -4237,7 +4237,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -4334,7 +4334,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -4433,7 +4433,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -4533,7 +4533,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -4630,7 +4630,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -4733,7 +4733,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -4834,7 +4834,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -4934,7 +4934,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -5034,7 +5034,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -5149,7 +5149,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -5246,7 +5246,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
@@ -5340,7 +5340,7 @@ class TestAsyncIdentityProviders:
             account_id="account_id",
             scim_config={
                 "enabled": True,
-                "group_member_deprovision": True,
+                "identity_update_behavior": "automatic",
                 "seat_deprovision": True,
                 "user_deprovision": True,
             },
