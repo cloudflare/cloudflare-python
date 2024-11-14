@@ -2298,6 +2298,20 @@ Methods:
 - <code title="delete /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">delete</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/script_delete_params.py">params</a>) -> None</code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}">client.workers.scripts.<a href="./src/cloudflare/resources/workers/scripts/scripts.py">get</a>(script_name, \*, account_id) -> BinaryAPIResponse</code>
 
+### Assets
+
+#### Upload
+
+Types:
+
+```python
+from cloudflare.types.workers.scripts.assets import UploadCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/scripts/{script_name}/assets-upload-session">client.workers.scripts.assets.upload.<a href="./src/cloudflare/resources/workers/scripts/assets/upload.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/assets/upload_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/assets/upload_create_response.py">Optional</a></code>
+
 ### Subdomain
 
 Types:
