@@ -202,7 +202,7 @@ class AllowPatternsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePaginationArray[AllowPatternListResponse]:
         """
-        List, search, and sort an accounts's email allow patterns.
+        Lists, searches, and sorts an account’s email allow patterns.
 
         Args:
           account_id: Account Identifier
@@ -211,9 +211,9 @@ class AllowPatternsResource(SyncAPIResource):
 
           order: The field to sort by.
 
-          page: Page number of paginated results.
+          page: The page number of paginated results.
 
-          per_page: Number of results to display.
+          per_page: The number of results per page.
 
           search: Allows searching in multiple properties of a record simultaneously. This
               parameter is intended for human users, not automation. Its exact behavior is
@@ -562,7 +562,7 @@ class AsyncAllowPatternsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[AllowPatternListResponse, AsyncV4PagePaginationArray[AllowPatternListResponse]]:
         """
-        List, search, and sort an accounts's email allow patterns.
+        Lists, searches, and sorts an account’s email allow patterns.
 
         Args:
           account_id: Account Identifier
@@ -571,9 +571,9 @@ class AsyncAllowPatternsResource(AsyncAPIResource):
 
           order: The field to sort by.
 
-          page: Page number of paginated results.
+          page: The page number of paginated results.
 
-          per_page: Number of results to display.
+          per_page: The number of results per page.
 
           search: Allows searching in multiple properties of a record simultaneously. This
               parameter is intended for human users, not automation. Its exact behavior is

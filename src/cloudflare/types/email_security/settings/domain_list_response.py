@@ -11,7 +11,7 @@ __all__ = ["DomainListResponse"]
 
 class DomainListResponse(BaseModel):
     id: int
-    """Unique domain identifier"""
+    """The unique identifier for the domain."""
 
     allowed_delivery_modes: List[Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]]
 

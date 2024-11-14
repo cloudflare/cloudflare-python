@@ -18,12 +18,12 @@ class BlockSenderListParams(TypedDict, total=False):
     """The field to sort by."""
 
     page: int
-    """Page number of paginated results."""
+    """The page number of paginated results."""
 
     pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]
 
     per_page: int
-    """Number of results to display."""
+    """The number of results per page."""
 
     search: str
     """
