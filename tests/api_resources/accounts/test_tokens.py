@@ -11,7 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.user import Token
+from cloudflare.types.shared import Token
 from cloudflare.types.accounts import (
     TokenCreateResponse,
     TokenDeleteResponse,

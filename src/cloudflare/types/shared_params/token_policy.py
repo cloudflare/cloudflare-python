@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["PolicyParam", "PermissionGroup", "PermissionGroupMeta", "Resources"]
+__all__ = ["TokenPolicy", "PermissionGroup", "PermissionGroupMeta", "Resources"]
 
 
 class PermissionGroupMeta(TypedDict, total=False):
@@ -25,7 +25,7 @@ class Resources(TypedDict, total=False):
     scope: str
 
 
-class PolicyParam(TypedDict, total=False):
+class TokenPolicy(TypedDict, total=False):
     effect: Required[Literal["allow", "deny"]]
     """Allow or deny operations against the resources."""
 
