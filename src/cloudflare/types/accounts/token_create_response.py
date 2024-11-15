@@ -7,18 +7,18 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..user.policy import Policy
-from ..user.cidr_list import CIDRList
 from ..shared.token_value import TokenValue
+from ..shared.token_policy import TokenPolicy
+from ..shared.token_condition_cidr_list import TokenConditionCIDRList
 
 __all__ = ["TokenCreateResponse", "Condition", "ConditionRequestIP"]
 
 
 class ConditionRequestIP(BaseModel):
-    in_: Optional[List[CIDRList]] = FieldInfo(alias="in", default=None)
+    in_: Optional[List[TokenConditionCIDRList]] = FieldInfo(alias="in", default=None)
     """List of IPv4/IPv6 CIDR addresses."""
 
-    not_in: Optional[List[CIDRList]] = None
+    not_in: Optional[List[TokenConditionCIDRList]] = None
     """List of IPv4/IPv6 CIDR addresses."""
 
 
@@ -54,7 +54,7 @@ class TokenCreateResponse(BaseModel):
     not_before: Optional[datetime] = None
     """The time before which the token MUST NOT be accepted for processing."""
 
-    policies: Optional[List[Policy]] = None
+    policies: Optional[List[TokenPolicy]] = None
     """List of access policies assigned to the token."""
 
     status: Optional[Literal["active", "disabled", "expired"]] = None

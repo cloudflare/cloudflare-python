@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["Policy", "PermissionGroup", "PermissionGroupMeta", "Resources"]
+__all__ = ["TokenPolicy", "PermissionGroup", "PermissionGroupMeta", "Resources"]
 
 
 class PermissionGroupMeta(BaseModel):
@@ -31,7 +31,7 @@ class Resources(BaseModel):
     scope: Optional[str] = None
 
 
-class Policy(BaseModel):
+class TokenPolicy(BaseModel):
     id: str
     """Policy identifier."""
 
