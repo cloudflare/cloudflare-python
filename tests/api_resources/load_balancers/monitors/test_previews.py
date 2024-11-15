@@ -22,7 +22,6 @@ class TestPreviews:
         preview = client.load_balancers.monitors.previews.create(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
         assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
@@ -31,12 +30,12 @@ class TestPreviews:
         preview = client.load_balancers.monitors.previews.create(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
             allow_insecure=True,
             consecutive_down=0,
             consecutive_up=0,
             description="Login page monitor",
             expected_body="alive",
+            expected_codes="2xx",
             follow_redirects=True,
             header={
                 "Host": ["example.com"],
@@ -58,7 +57,6 @@ class TestPreviews:
         response = client.load_balancers.monitors.previews.with_raw_response.create(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
 
         assert response.is_closed is True
@@ -71,7 +69,6 @@ class TestPreviews:
         with client.load_balancers.monitors.previews.with_streaming_response.create(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -87,14 +84,12 @@ class TestPreviews:
             client.load_balancers.monitors.previews.with_raw_response.create(
                 monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
-                expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             client.load_balancers.monitors.previews.with_raw_response.create(
                 monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expected_codes="2xx",
             )
 
 
@@ -106,7 +101,6 @@ class TestAsyncPreviews:
         preview = await async_client.load_balancers.monitors.previews.create(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
         assert_matches_type(PreviewCreateResponse, preview, path=["response"])
 
@@ -115,12 +109,12 @@ class TestAsyncPreviews:
         preview = await async_client.load_balancers.monitors.previews.create(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
             allow_insecure=True,
             consecutive_down=0,
             consecutive_up=0,
             description="Login page monitor",
             expected_body="alive",
+            expected_codes="2xx",
             follow_redirects=True,
             header={
                 "Host": ["example.com"],
@@ -142,7 +136,6 @@ class TestAsyncPreviews:
         response = await async_client.load_balancers.monitors.previews.with_raw_response.create(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
 
         assert response.is_closed is True
@@ -155,7 +148,6 @@ class TestAsyncPreviews:
         async with async_client.load_balancers.monitors.previews.with_streaming_response.create(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -171,12 +163,10 @@ class TestAsyncPreviews:
             await async_client.load_balancers.monitors.previews.with_raw_response.create(
                 monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
-                expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             await async_client.load_balancers.monitors.previews.with_raw_response.create(
                 monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expected_codes="2xx",
             )

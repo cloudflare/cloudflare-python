@@ -14,12 +14,6 @@ class HealthCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    expected_codes: Required[str]
-    """The expected HTTP response code or code range of the health check.
-
-    This parameter is only valid for HTTP and HTTPS monitors.
-    """
-
     allow_insecure: bool
     """Do not validate the certificate when monitor use HTTPS.
 
@@ -46,6 +40,12 @@ class HealthCreateParams(TypedDict, total=False):
 
     If this string is not found, the origin will be marked as unhealthy. This
     parameter is only valid for HTTP and HTTPS monitors.
+    """
+
+    expected_codes: str
+    """The expected HTTP response code or code range of the health check.
+
+    This parameter is only valid for HTTP and HTTPS monitors.
     """
 
     follow_redirects: bool

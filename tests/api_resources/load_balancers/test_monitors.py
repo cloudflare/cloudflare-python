@@ -25,7 +25,6 @@ class TestMonitors:
     def test_method_create(self, client: Cloudflare) -> None:
         monitor = client.load_balancers.monitors.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
         assert_matches_type(Monitor, monitor, path=["response"])
 
@@ -33,12 +32,12 @@ class TestMonitors:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         monitor = client.load_balancers.monitors.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
             allow_insecure=True,
             consecutive_down=0,
             consecutive_up=0,
             description="Login page monitor",
             expected_body="alive",
+            expected_codes="2xx",
             follow_redirects=True,
             header={
                 "Host": ["example.com"],
@@ -59,7 +58,6 @@ class TestMonitors:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.load_balancers.monitors.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
 
         assert response.is_closed is True
@@ -71,7 +69,6 @@ class TestMonitors:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.load_balancers.monitors.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -86,7 +83,6 @@ class TestMonitors:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.load_balancers.monitors.with_raw_response.create(
                 account_id="",
-                expected_codes="2xx",
             )
 
     @parametrize
@@ -94,7 +90,6 @@ class TestMonitors:
         monitor = client.load_balancers.monitors.update(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
         assert_matches_type(Monitor, monitor, path=["response"])
 
@@ -103,12 +98,12 @@ class TestMonitors:
         monitor = client.load_balancers.monitors.update(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
             allow_insecure=True,
             consecutive_down=0,
             consecutive_up=0,
             description="Login page monitor",
             expected_body="alive",
+            expected_codes="2xx",
             follow_redirects=True,
             header={
                 "Host": ["example.com"],
@@ -130,7 +125,6 @@ class TestMonitors:
         response = client.load_balancers.monitors.with_raw_response.update(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
 
         assert response.is_closed is True
@@ -143,7 +137,6 @@ class TestMonitors:
         with client.load_balancers.monitors.with_streaming_response.update(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -159,14 +152,12 @@ class TestMonitors:
             client.load_balancers.monitors.with_raw_response.update(
                 monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
-                expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             client.load_balancers.monitors.with_raw_response.update(
                 monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expected_codes="2xx",
             )
 
     @parametrize
@@ -260,7 +251,6 @@ class TestMonitors:
         monitor = client.load_balancers.monitors.edit(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
         assert_matches_type(Monitor, monitor, path=["response"])
 
@@ -269,12 +259,12 @@ class TestMonitors:
         monitor = client.load_balancers.monitors.edit(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
             allow_insecure=True,
             consecutive_down=0,
             consecutive_up=0,
             description="Login page monitor",
             expected_body="alive",
+            expected_codes="2xx",
             follow_redirects=True,
             header={
                 "Host": ["example.com"],
@@ -296,7 +286,6 @@ class TestMonitors:
         response = client.load_balancers.monitors.with_raw_response.edit(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
 
         assert response.is_closed is True
@@ -309,7 +298,6 @@ class TestMonitors:
         with client.load_balancers.monitors.with_streaming_response.edit(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -325,14 +313,12 @@ class TestMonitors:
             client.load_balancers.monitors.with_raw_response.edit(
                 monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
-                expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             client.load_balancers.monitors.with_raw_response.edit(
                 monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expected_codes="2xx",
             )
 
     @parametrize
@@ -391,7 +377,6 @@ class TestAsyncMonitors:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         monitor = await async_client.load_balancers.monitors.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
         assert_matches_type(Monitor, monitor, path=["response"])
 
@@ -399,12 +384,12 @@ class TestAsyncMonitors:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         monitor = await async_client.load_balancers.monitors.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
             allow_insecure=True,
             consecutive_down=0,
             consecutive_up=0,
             description="Login page monitor",
             expected_body="alive",
+            expected_codes="2xx",
             follow_redirects=True,
             header={
                 "Host": ["example.com"],
@@ -425,7 +410,6 @@ class TestAsyncMonitors:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.monitors.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
 
         assert response.is_closed is True
@@ -437,7 +421,6 @@ class TestAsyncMonitors:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.monitors.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -452,7 +435,6 @@ class TestAsyncMonitors:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.load_balancers.monitors.with_raw_response.create(
                 account_id="",
-                expected_codes="2xx",
             )
 
     @parametrize
@@ -460,7 +442,6 @@ class TestAsyncMonitors:
         monitor = await async_client.load_balancers.monitors.update(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
         assert_matches_type(Monitor, monitor, path=["response"])
 
@@ -469,12 +450,12 @@ class TestAsyncMonitors:
         monitor = await async_client.load_balancers.monitors.update(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
             allow_insecure=True,
             consecutive_down=0,
             consecutive_up=0,
             description="Login page monitor",
             expected_body="alive",
+            expected_codes="2xx",
             follow_redirects=True,
             header={
                 "Host": ["example.com"],
@@ -496,7 +477,6 @@ class TestAsyncMonitors:
         response = await async_client.load_balancers.monitors.with_raw_response.update(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
 
         assert response.is_closed is True
@@ -509,7 +489,6 @@ class TestAsyncMonitors:
         async with async_client.load_balancers.monitors.with_streaming_response.update(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -525,14 +504,12 @@ class TestAsyncMonitors:
             await async_client.load_balancers.monitors.with_raw_response.update(
                 monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
-                expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             await async_client.load_balancers.monitors.with_raw_response.update(
                 monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expected_codes="2xx",
             )
 
     @parametrize
@@ -626,7 +603,6 @@ class TestAsyncMonitors:
         monitor = await async_client.load_balancers.monitors.edit(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
         assert_matches_type(Monitor, monitor, path=["response"])
 
@@ -635,12 +611,12 @@ class TestAsyncMonitors:
         monitor = await async_client.load_balancers.monitors.edit(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
             allow_insecure=True,
             consecutive_down=0,
             consecutive_up=0,
             description="Login page monitor",
             expected_body="alive",
+            expected_codes="2xx",
             follow_redirects=True,
             header={
                 "Host": ["example.com"],
@@ -662,7 +638,6 @@ class TestAsyncMonitors:
         response = await async_client.load_balancers.monitors.with_raw_response.edit(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
 
         assert response.is_closed is True
@@ -675,7 +650,6 @@ class TestAsyncMonitors:
         async with async_client.load_balancers.monitors.with_streaming_response.edit(
             monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -691,14 +665,12 @@ class TestAsyncMonitors:
             await async_client.load_balancers.monitors.with_raw_response.edit(
                 monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
-                expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             await async_client.load_balancers.monitors.with_raw_response.edit(
                 monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expected_codes="2xx",
             )
 
     @parametrize
