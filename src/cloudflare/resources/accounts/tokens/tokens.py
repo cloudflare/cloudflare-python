@@ -41,8 +41,8 @@ from .permission_groups import (
     PermissionGroupsResourceWithStreamingResponse,
     AsyncPermissionGroupsResourceWithStreamingResponse,
 )
-from ....types.user.token import Token
-from ....types.user.policy_param import PolicyParam
+from ....types.shared.token import Token
+from ....types.shared_params.token_policy import TokenPolicy
 from ....types.accounts.token_create_response import TokenCreateResponse
 from ....types.accounts.token_delete_response import TokenDeleteResponse
 from ....types.accounts.token_verify_response import TokenVerifyResponse
@@ -83,7 +83,7 @@ class TokensResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        policies: Iterable[PolicyParam],
+        policies: Iterable[TokenPolicy],
         condition: token_create_params.Condition | NotGiven = NOT_GIVEN,
         expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -147,7 +147,7 @@ class TokensResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        policies: Iterable[PolicyParam],
+        policies: Iterable[TokenPolicy],
         status: Literal["active", "disabled", "expired"],
         condition: token_update_params.Condition | NotGiven = NOT_GIVEN,
         expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -430,7 +430,7 @@ class AsyncTokensResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        policies: Iterable[PolicyParam],
+        policies: Iterable[TokenPolicy],
         condition: token_create_params.Condition | NotGiven = NOT_GIVEN,
         expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -494,7 +494,7 @@ class AsyncTokensResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        policies: Iterable[PolicyParam],
+        policies: Iterable[TokenPolicy],
         status: Literal["active", "disabled", "expired"],
         condition: token_update_params.Condition | NotGiven = NOT_GIVEN,
         expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
