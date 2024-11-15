@@ -27,7 +27,7 @@ class TestDatasets:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         dataset = client.ai_gateway.datasets.create(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             enable=True,
             filters=[
@@ -54,7 +54,7 @@ class TestDatasets:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.ai_gateway.datasets.with_raw_response.create(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             enable=True,
             filters=[
@@ -85,7 +85,7 @@ class TestDatasets:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.ai_gateway.datasets.with_streaming_response.create(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             enable=True,
             filters=[
@@ -119,7 +119,7 @@ class TestDatasets:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai_gateway.datasets.with_raw_response.create(
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
                 account_id="",
                 enable=True,
                 filters=[
@@ -172,7 +172,7 @@ class TestDatasets:
         dataset = client.ai_gateway.datasets.update(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             enable=True,
             filters=[
                 {
@@ -200,7 +200,7 @@ class TestDatasets:
         response = client.ai_gateway.datasets.with_raw_response.update(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             enable=True,
             filters=[
                 {
@@ -232,7 +232,7 @@ class TestDatasets:
         with client.ai_gateway.datasets.with_streaming_response.update(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             enable=True,
             filters=[
                 {
@@ -267,7 +267,7 @@ class TestDatasets:
             client.ai_gateway.datasets.with_raw_response.update(
                 id="id",
                 account_id="",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
                 enable=True,
                 filters=[
                     {
@@ -319,7 +319,7 @@ class TestDatasets:
             client.ai_gateway.datasets.with_raw_response.update(
                 id="",
                 account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
                 enable=True,
                 filters=[
                     {
@@ -344,7 +344,7 @@ class TestDatasets:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         dataset = client.ai_gateway.datasets.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
         assert_matches_type(SyncV4PagePaginationArray[DatasetListResponse], dataset, path=["response"])
@@ -352,32 +352,14 @@ class TestDatasets:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         dataset = client.ai_gateway.datasets.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            id="id",
             enable=True,
-            filters=[
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-            ],
             name="name",
             order_by="order_by",
             order_by_direction="asc",
             page=1,
-            per_page=5,
+            per_page=1,
             search="search",
         )
         assert_matches_type(SyncV4PagePaginationArray[DatasetListResponse], dataset, path=["response"])
@@ -385,7 +367,7 @@ class TestDatasets:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.ai_gateway.datasets.with_raw_response.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
 
@@ -397,7 +379,7 @@ class TestDatasets:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.ai_gateway.datasets.with_streaming_response.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         ) as response:
             assert not response.is_closed
@@ -412,7 +394,7 @@ class TestDatasets:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai_gateway.datasets.with_raw_response.list(
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
                 account_id="",
             )
 
@@ -427,7 +409,7 @@ class TestDatasets:
         dataset = client.ai_gateway.datasets.delete(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
         assert_matches_type(DatasetDeleteResponse, dataset, path=["response"])
 
@@ -436,7 +418,7 @@ class TestDatasets:
         response = client.ai_gateway.datasets.with_raw_response.delete(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
 
         assert response.is_closed is True
@@ -449,7 +431,7 @@ class TestDatasets:
         with client.ai_gateway.datasets.with_streaming_response.delete(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -465,7 +447,7 @@ class TestDatasets:
             client.ai_gateway.datasets.with_raw_response.delete(
                 id="id",
                 account_id="",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
@@ -479,7 +461,7 @@ class TestDatasets:
             client.ai_gateway.datasets.with_raw_response.delete(
                 id="",
                 account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
 
     @parametrize
@@ -487,7 +469,7 @@ class TestDatasets:
         dataset = client.ai_gateway.datasets.get(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
         assert_matches_type(DatasetGetResponse, dataset, path=["response"])
 
@@ -496,7 +478,7 @@ class TestDatasets:
         response = client.ai_gateway.datasets.with_raw_response.get(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
 
         assert response.is_closed is True
@@ -509,7 +491,7 @@ class TestDatasets:
         with client.ai_gateway.datasets.with_streaming_response.get(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -525,7 +507,7 @@ class TestDatasets:
             client.ai_gateway.datasets.with_raw_response.get(
                 id="id",
                 account_id="",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
@@ -539,7 +521,7 @@ class TestDatasets:
             client.ai_gateway.datasets.with_raw_response.get(
                 id="",
                 account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
 
 
@@ -549,7 +531,7 @@ class TestAsyncDatasets:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.ai_gateway.datasets.create(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             enable=True,
             filters=[
@@ -576,7 +558,7 @@ class TestAsyncDatasets:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.datasets.with_raw_response.create(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             enable=True,
             filters=[
@@ -607,7 +589,7 @@ class TestAsyncDatasets:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.datasets.with_streaming_response.create(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             enable=True,
             filters=[
@@ -641,7 +623,7 @@ class TestAsyncDatasets:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai_gateway.datasets.with_raw_response.create(
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
                 account_id="",
                 enable=True,
                 filters=[
@@ -694,7 +676,7 @@ class TestAsyncDatasets:
         dataset = await async_client.ai_gateway.datasets.update(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             enable=True,
             filters=[
                 {
@@ -722,7 +704,7 @@ class TestAsyncDatasets:
         response = await async_client.ai_gateway.datasets.with_raw_response.update(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             enable=True,
             filters=[
                 {
@@ -754,7 +736,7 @@ class TestAsyncDatasets:
         async with async_client.ai_gateway.datasets.with_streaming_response.update(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             enable=True,
             filters=[
                 {
@@ -789,7 +771,7 @@ class TestAsyncDatasets:
             await async_client.ai_gateway.datasets.with_raw_response.update(
                 id="id",
                 account_id="",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
                 enable=True,
                 filters=[
                     {
@@ -841,7 +823,7 @@ class TestAsyncDatasets:
             await async_client.ai_gateway.datasets.with_raw_response.update(
                 id="",
                 account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
                 enable=True,
                 filters=[
                     {
@@ -866,7 +848,7 @@ class TestAsyncDatasets:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.ai_gateway.datasets.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
         assert_matches_type(AsyncV4PagePaginationArray[DatasetListResponse], dataset, path=["response"])
@@ -874,32 +856,14 @@ class TestAsyncDatasets:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.ai_gateway.datasets.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            id="id",
             enable=True,
-            filters=[
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-            ],
             name="name",
             order_by="order_by",
             order_by_direction="asc",
             page=1,
-            per_page=5,
+            per_page=1,
             search="search",
         )
         assert_matches_type(AsyncV4PagePaginationArray[DatasetListResponse], dataset, path=["response"])
@@ -907,7 +871,7 @@ class TestAsyncDatasets:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.datasets.with_raw_response.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
 
@@ -919,7 +883,7 @@ class TestAsyncDatasets:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.datasets.with_streaming_response.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         ) as response:
             assert not response.is_closed
@@ -934,7 +898,7 @@ class TestAsyncDatasets:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai_gateway.datasets.with_raw_response.list(
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
                 account_id="",
             )
 
@@ -949,7 +913,7 @@ class TestAsyncDatasets:
         dataset = await async_client.ai_gateway.datasets.delete(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
         assert_matches_type(DatasetDeleteResponse, dataset, path=["response"])
 
@@ -958,7 +922,7 @@ class TestAsyncDatasets:
         response = await async_client.ai_gateway.datasets.with_raw_response.delete(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
 
         assert response.is_closed is True
@@ -971,7 +935,7 @@ class TestAsyncDatasets:
         async with async_client.ai_gateway.datasets.with_streaming_response.delete(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -987,7 +951,7 @@ class TestAsyncDatasets:
             await async_client.ai_gateway.datasets.with_raw_response.delete(
                 id="id",
                 account_id="",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
@@ -1001,7 +965,7 @@ class TestAsyncDatasets:
             await async_client.ai_gateway.datasets.with_raw_response.delete(
                 id="",
                 account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
 
     @parametrize
@@ -1009,7 +973,7 @@ class TestAsyncDatasets:
         dataset = await async_client.ai_gateway.datasets.get(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
         assert_matches_type(DatasetGetResponse, dataset, path=["response"])
 
@@ -1018,7 +982,7 @@ class TestAsyncDatasets:
         response = await async_client.ai_gateway.datasets.with_raw_response.get(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
 
         assert response.is_closed is True
@@ -1031,7 +995,7 @@ class TestAsyncDatasets:
         async with async_client.ai_gateway.datasets.with_streaming_response.get(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1047,7 +1011,7 @@ class TestAsyncDatasets:
             await async_client.ai_gateway.datasets.with_raw_response.get(
                 id="id",
                 account_id="",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
@@ -1061,5 +1025,5 @@ class TestAsyncDatasets:
             await async_client.ai_gateway.datasets.with_raw_response.get(
                 id="",
                 account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )

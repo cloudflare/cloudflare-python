@@ -41,6 +41,7 @@ class DatasetUpdateResponse(BaseModel):
     filters: List[Filter]
 
     gateway_id: str
+    """gateway id"""
 
     modified_at: datetime
 

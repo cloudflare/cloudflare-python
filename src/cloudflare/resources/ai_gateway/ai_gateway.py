@@ -230,7 +230,6 @@ class AIGatewayResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
         order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
@@ -246,8 +245,6 @@ class AIGatewayResource(SyncAPIResource):
         List Gateways
 
         Args:
-          id: gateway id
-
           order_by: Order By Column Name
 
           order_by_direction: Order By Direction
@@ -272,7 +269,6 @@ class AIGatewayResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "id": id,
                         "order_by": order_by,
                         "order_by_direction": order_by_direction,
                         "page": page,
@@ -300,6 +296,8 @@ class AIGatewayResource(SyncAPIResource):
         Delete a Gateway
 
         Args:
+          id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -532,7 +530,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
         order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
@@ -548,8 +545,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         List Gateways
 
         Args:
-          id: gateway id
-
           order_by: Order By Column Name
 
           order_by_direction: Order By Direction
@@ -574,7 +569,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "id": id,
                         "order_by": order_by,
                         "order_by_direction": order_by_direction,
                         "page": page,
@@ -602,6 +596,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Delete a Gateway
 
         Args:
+          id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

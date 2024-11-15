@@ -12,6 +12,7 @@ class DatasetUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
     gateway_id: Required[str]
+    """gateway id"""
 
     enable: Required[bool]
 

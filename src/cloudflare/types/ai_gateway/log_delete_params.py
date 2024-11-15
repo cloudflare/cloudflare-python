@@ -42,6 +42,7 @@ class Filter(TypedDict, total=False):
             "cached",
             "provider",
             "model",
+            "model_type",
             "cost",
             "tokens",
             "tokens_in",

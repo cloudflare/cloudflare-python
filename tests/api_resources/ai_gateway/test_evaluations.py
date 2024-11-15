@@ -26,7 +26,7 @@ class TestEvaluations:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         evaluation = client.ai_gateway.evaluations.create(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             dataset_ids=["string", "string", "string"],
             evaluation_type_ids=["string", "string", "string"],
@@ -37,7 +37,7 @@ class TestEvaluations:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.ai_gateway.evaluations.with_raw_response.create(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             dataset_ids=["string", "string", "string"],
             evaluation_type_ids=["string", "string", "string"],
@@ -52,7 +52,7 @@ class TestEvaluations:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.ai_gateway.evaluations.with_streaming_response.create(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             dataset_ids=["string", "string", "string"],
             evaluation_type_ids=["string", "string", "string"],
@@ -70,7 +70,7 @@ class TestEvaluations:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai_gateway.evaluations.with_raw_response.create(
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
                 account_id="",
                 dataset_ids=["string", "string", "string"],
                 evaluation_type_ids=["string", "string", "string"],
@@ -89,7 +89,7 @@ class TestEvaluations:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         evaluation = client.ai_gateway.evaluations.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
         assert_matches_type(SyncV4PagePaginationArray[EvaluationListResponse], evaluation, path=["response"])
@@ -97,24 +97,22 @@ class TestEvaluations:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         evaluation = client.ai_gateway.evaluations.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            id="id",
             name="name",
             order_by="order_by",
             order_by_direction="asc",
             page=1,
-            per_page=5,
+            per_page=1,
             processed=True,
             search="search",
-            total_logs=0,
         )
         assert_matches_type(SyncV4PagePaginationArray[EvaluationListResponse], evaluation, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.ai_gateway.evaluations.with_raw_response.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
 
@@ -126,7 +124,7 @@ class TestEvaluations:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.ai_gateway.evaluations.with_streaming_response.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         ) as response:
             assert not response.is_closed
@@ -141,7 +139,7 @@ class TestEvaluations:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai_gateway.evaluations.with_raw_response.list(
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
                 account_id="",
             )
 
@@ -156,7 +154,7 @@ class TestEvaluations:
         evaluation = client.ai_gateway.evaluations.delete(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
         assert_matches_type(EvaluationDeleteResponse, evaluation, path=["response"])
 
@@ -165,7 +163,7 @@ class TestEvaluations:
         response = client.ai_gateway.evaluations.with_raw_response.delete(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
 
         assert response.is_closed is True
@@ -178,7 +176,7 @@ class TestEvaluations:
         with client.ai_gateway.evaluations.with_streaming_response.delete(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -194,7 +192,7 @@ class TestEvaluations:
             client.ai_gateway.evaluations.with_raw_response.delete(
                 id="id",
                 account_id="",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
@@ -208,7 +206,7 @@ class TestEvaluations:
             client.ai_gateway.evaluations.with_raw_response.delete(
                 id="",
                 account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
 
     @parametrize
@@ -216,7 +214,7 @@ class TestEvaluations:
         evaluation = client.ai_gateway.evaluations.get(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
         assert_matches_type(EvaluationGetResponse, evaluation, path=["response"])
 
@@ -225,7 +223,7 @@ class TestEvaluations:
         response = client.ai_gateway.evaluations.with_raw_response.get(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
 
         assert response.is_closed is True
@@ -238,7 +236,7 @@ class TestEvaluations:
         with client.ai_gateway.evaluations.with_streaming_response.get(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -254,7 +252,7 @@ class TestEvaluations:
             client.ai_gateway.evaluations.with_raw_response.get(
                 id="id",
                 account_id="",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
@@ -268,7 +266,7 @@ class TestEvaluations:
             client.ai_gateway.evaluations.with_raw_response.get(
                 id="",
                 account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
 
 
@@ -278,7 +276,7 @@ class TestAsyncEvaluations:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         evaluation = await async_client.ai_gateway.evaluations.create(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             dataset_ids=["string", "string", "string"],
             evaluation_type_ids=["string", "string", "string"],
@@ -289,7 +287,7 @@ class TestAsyncEvaluations:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.evaluations.with_raw_response.create(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             dataset_ids=["string", "string", "string"],
             evaluation_type_ids=["string", "string", "string"],
@@ -304,7 +302,7 @@ class TestAsyncEvaluations:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.evaluations.with_streaming_response.create(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             dataset_ids=["string", "string", "string"],
             evaluation_type_ids=["string", "string", "string"],
@@ -322,7 +320,7 @@ class TestAsyncEvaluations:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai_gateway.evaluations.with_raw_response.create(
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
                 account_id="",
                 dataset_ids=["string", "string", "string"],
                 evaluation_type_ids=["string", "string", "string"],
@@ -341,7 +339,7 @@ class TestAsyncEvaluations:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         evaluation = await async_client.ai_gateway.evaluations.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
         assert_matches_type(AsyncV4PagePaginationArray[EvaluationListResponse], evaluation, path=["response"])
@@ -349,24 +347,22 @@ class TestAsyncEvaluations:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         evaluation = await async_client.ai_gateway.evaluations.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            id="id",
             name="name",
             order_by="order_by",
             order_by_direction="asc",
             page=1,
-            per_page=5,
+            per_page=1,
             processed=True,
             search="search",
-            total_logs=0,
         )
         assert_matches_type(AsyncV4PagePaginationArray[EvaluationListResponse], evaluation, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.evaluations.with_raw_response.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
 
@@ -378,7 +374,7 @@ class TestAsyncEvaluations:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.evaluations.with_streaming_response.list(
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         ) as response:
             assert not response.is_closed
@@ -393,7 +389,7 @@ class TestAsyncEvaluations:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai_gateway.evaluations.with_raw_response.list(
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
                 account_id="",
             )
 
@@ -408,7 +404,7 @@ class TestAsyncEvaluations:
         evaluation = await async_client.ai_gateway.evaluations.delete(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
         assert_matches_type(EvaluationDeleteResponse, evaluation, path=["response"])
 
@@ -417,7 +413,7 @@ class TestAsyncEvaluations:
         response = await async_client.ai_gateway.evaluations.with_raw_response.delete(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
 
         assert response.is_closed is True
@@ -430,7 +426,7 @@ class TestAsyncEvaluations:
         async with async_client.ai_gateway.evaluations.with_streaming_response.delete(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -446,7 +442,7 @@ class TestAsyncEvaluations:
             await async_client.ai_gateway.evaluations.with_raw_response.delete(
                 id="id",
                 account_id="",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
@@ -460,7 +456,7 @@ class TestAsyncEvaluations:
             await async_client.ai_gateway.evaluations.with_raw_response.delete(
                 id="",
                 account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
 
     @parametrize
@@ -468,7 +464,7 @@ class TestAsyncEvaluations:
         evaluation = await async_client.ai_gateway.evaluations.get(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
         assert_matches_type(EvaluationGetResponse, evaluation, path=["response"])
 
@@ -477,7 +473,7 @@ class TestAsyncEvaluations:
         response = await async_client.ai_gateway.evaluations.with_raw_response.get(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         )
 
         assert response.is_closed is True
@@ -490,7 +486,7 @@ class TestAsyncEvaluations:
         async with async_client.ai_gateway.evaluations.with_streaming_response.get(
             id="id",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            gateway_id="gateway_id",
+            gateway_id="my-gateway",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -506,7 +502,7 @@ class TestAsyncEvaluations:
             await async_client.ai_gateway.evaluations.with_raw_response.get(
                 id="id",
                 account_id="",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gateway_id` but received ''"):
@@ -520,5 +516,5 @@ class TestAsyncEvaluations:
             await async_client.ai_gateway.evaluations.with_raw_response.get(
                 id="",
                 account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-                gateway_id="gateway_id",
+                gateway_id="my-gateway",
             )
