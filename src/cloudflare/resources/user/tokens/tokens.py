@@ -41,12 +41,10 @@ from .permission_groups import (
     PermissionGroupsResourceWithStreamingResponse,
     AsyncPermissionGroupsResourceWithStreamingResponse,
 )
+from ....types.user.token import Token
 from ....types.user.policy_param import PolicyParam
-from ....types.user.token_get_response import TokenGetResponse
-from ....types.user.token_list_response import TokenListResponse
 from ....types.user.token_create_response import TokenCreateResponse
 from ....types.user.token_delete_response import TokenDeleteResponse
-from ....types.user.token_update_response import TokenUpdateResponse
 from ....types.user.token_verify_response import TokenVerifyResponse
 
 __all__ = ["TokensResource", "AsyncTokensResource"]
@@ -154,7 +152,7 @@ class TokensResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TokenUpdateResponse]:
+    ) -> Optional[Token]:
         """
         Update an existing token.
 
@@ -200,9 +198,9 @@ class TokensResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[TokenUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Token]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TokenUpdateResponse]], ResultWrapper[TokenUpdateResponse]),
+            cast_to=cast(Type[Optional[Token]], ResultWrapper[Token]),
         )
 
     def list(
@@ -217,7 +215,7 @@ class TokensResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[TokenListResponse]:
+    ) -> SyncV4PagePaginationArray[Token]:
         """
         List all access tokens you created.
 
@@ -238,7 +236,7 @@ class TokensResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/user/tokens",
-            page=SyncV4PagePaginationArray[TokenListResponse],
+            page=SyncV4PagePaginationArray[Token],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -253,7 +251,7 @@ class TokensResource(SyncAPIResource):
                     token_list_params.TokenListParams,
                 ),
             ),
-            model=TokenListResponse,
+            model=Token,
         )
 
     def delete(
@@ -305,7 +303,7 @@ class TokensResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TokenGetResponse]:
+    ) -> Optional[Token]:
         """
         Get information about a specific token.
 
@@ -329,9 +327,9 @@ class TokensResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[TokenGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Token]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TokenGetResponse]], ResultWrapper[TokenGetResponse]),
+            cast_to=cast(Type[Optional[Token]], ResultWrapper[Token]),
         )
 
     def verify(
@@ -460,7 +458,7 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TokenUpdateResponse]:
+    ) -> Optional[Token]:
         """
         Update an existing token.
 
@@ -506,9 +504,9 @@ class AsyncTokensResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[TokenUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Token]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TokenUpdateResponse]], ResultWrapper[TokenUpdateResponse]),
+            cast_to=cast(Type[Optional[Token]], ResultWrapper[Token]),
         )
 
     def list(
@@ -523,7 +521,7 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[TokenListResponse, AsyncV4PagePaginationArray[TokenListResponse]]:
+    ) -> AsyncPaginator[Token, AsyncV4PagePaginationArray[Token]]:
         """
         List all access tokens you created.
 
@@ -544,7 +542,7 @@ class AsyncTokensResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/user/tokens",
-            page=AsyncV4PagePaginationArray[TokenListResponse],
+            page=AsyncV4PagePaginationArray[Token],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -559,7 +557,7 @@ class AsyncTokensResource(AsyncAPIResource):
                     token_list_params.TokenListParams,
                 ),
             ),
-            model=TokenListResponse,
+            model=Token,
         )
 
     async def delete(
@@ -611,7 +609,7 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TokenGetResponse]:
+    ) -> Optional[Token]:
         """
         Get information about a specific token.
 
@@ -635,9 +633,9 @@ class AsyncTokensResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[TokenGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Token]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TokenGetResponse]], ResultWrapper[TokenGetResponse]),
+            cast_to=cast(Type[Optional[Token]], ResultWrapper[Token]),
         )
 
     async def verify(

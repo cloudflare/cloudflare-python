@@ -6,11 +6,11 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
+from .policy import Policy
 from ..._models import BaseModel
-from ..user.policy import Policy
-from ..user.cidr_list import CIDRList
+from .cidr_list import CIDRList
 
-__all__ = ["TokenUpdateResponse", "Condition", "ConditionRequestIP"]
+__all__ = ["Token", "Condition", "ConditionRequestIP"]
 
 
 class ConditionRequestIP(BaseModel):
@@ -26,7 +26,7 @@ class Condition(BaseModel):
     """Client IP restrictions."""
 
 
-class TokenUpdateResponse(BaseModel):
+class Token(BaseModel):
     id: Optional[str] = None
     """Token identifier tag."""
 
