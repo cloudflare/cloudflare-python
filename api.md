@@ -22,6 +22,7 @@ from cloudflare.types import (
     Subscription,
     SubscriptionComponent,
     SubscriptionZone,
+    TokenValue,
 )
 ```
 
@@ -117,7 +118,7 @@ Methods:
 
 Methods:
 
-- <code title="put /accounts/{account_id}/tokens/{token_id}/value">client.accounts.tokens.value.<a href="./src/cloudflare/resources/accounts/tokens/value.py">update</a>(token_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/tokens/value_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/tokens/value.py">str</a></code>
+- <code title="put /accounts/{account_id}/tokens/{token_id}/value">client.accounts.tokens.value.<a href="./src/cloudflare/resources/accounts/tokens/value.py">update</a>(token_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/tokens/value_update_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/token_value.py">str</a></code>
 
 # OriginCACertificates
 
@@ -298,15 +299,9 @@ Methods:
 
 ### Value
 
-Types:
-
-```python
-from cloudflare.types.user.tokens import Value
-```
-
 Methods:
 
-- <code title="put /user/tokens/{token_id}/value">client.user.tokens.value.<a href="./src/cloudflare/resources/user/tokens/value.py">update</a>(token_id, \*\*<a href="src/cloudflare/types/user/tokens/value_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/tokens/value.py">str</a></code>
+- <code title="put /user/tokens/{token_id}/value">client.user.tokens.value.<a href="./src/cloudflare/resources/user/tokens/value.py">update</a>(token_id, \*\*<a href="src/cloudflare/types/user/tokens/value_update_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/token_value.py">str</a></code>
 
 # Zones
 
