@@ -9,7 +9,7 @@ from pydantic import Field as FieldInfo
 from .policy import Policy
 from ..._models import BaseModel
 from .cidr_list import CIDRList
-from .tokens.value import Value
+from ..shared.token_value import TokenValue
 
 __all__ = ["TokenCreateResponse", "Condition", "ConditionRequestIP"]
 
@@ -60,5 +60,5 @@ class TokenCreateResponse(BaseModel):
     status: Optional[Literal["active", "disabled", "expired"]] = None
     """Status of the token."""
 
-    value: Optional[Value] = None
+    value: Optional[TokenValue] = None
     """The token value."""

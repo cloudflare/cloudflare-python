@@ -9,6 +9,7 @@ from .rate_plan import RatePlan as RatePlan
 from .error_data import ErrorData as ErrorData
 from .identifier import Identifier as Identifier
 from .permission import Permission as Permission
+from .token_value import TokenValue as TokenValue
 from .subscription import Subscription as Subscription
 from .response_info import ResponseInfo as ResponseInfo
 from .certificate_ca import CertificateCA as CertificateCA

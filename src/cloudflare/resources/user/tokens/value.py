@@ -22,7 +22,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.user.tokens import value_update_params
-from ....types.user.tokens.value import Value
+from ....types.shared.token_value import TokenValue
 
 __all__ = ["ValueResource", "AsyncValueResource"]
 
@@ -83,7 +83,7 @@ class ValueResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Value]]._unwrapper,
+                post_parser=ResultWrapper[Optional[TokenValue]]._unwrapper,
             ),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
@@ -145,7 +145,7 @@ class AsyncValueResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Value]]._unwrapper,
+                post_parser=ResultWrapper[Optional[TokenValue]]._unwrapper,
             ),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )

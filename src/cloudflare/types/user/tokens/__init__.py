@@ -2,5 +2,4 @@
 
 from __future__ import annotations
 
-from .value import Value as Value
 from .value_update_params import ValueUpdateParams as ValueUpdateParams
