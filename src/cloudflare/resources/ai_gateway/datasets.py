@@ -72,6 +72,8 @@ class DatasetsResource(SyncAPIResource):
         Create a new Dataset
 
         Args:
+          gateway_id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -124,6 +126,8 @@ class DatasetsResource(SyncAPIResource):
         Update a Dataset
 
         Args:
+          gateway_id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -163,9 +167,7 @@ class DatasetsResource(SyncAPIResource):
         gateway_id: str,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
         enable: bool | NotGiven = NOT_GIVEN,
-        filters: Iterable[dataset_list_params.Filter] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
         order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
@@ -183,6 +185,8 @@ class DatasetsResource(SyncAPIResource):
         List Datasets
 
         Args:
+          gateway_id: gateway id
+
           order_by: Order By Column Name
 
           order_by_direction: Order By Direction
@@ -211,9 +215,7 @@ class DatasetsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "id": id,
                         "enable": enable,
-                        "filters": filters,
                         "name": name,
                         "order_by": order_by,
                         "order_by_direction": order_by_direction,
@@ -244,6 +246,8 @@ class DatasetsResource(SyncAPIResource):
         Delete a Dataset
 
         Args:
+          gateway_id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -287,6 +291,8 @@ class DatasetsResource(SyncAPIResource):
         Fetch a Dataset
 
         Args:
+          gateway_id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -353,6 +359,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
         Create a new Dataset
 
         Args:
+          gateway_id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -405,6 +413,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
         Update a Dataset
 
         Args:
+          gateway_id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -444,9 +454,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         gateway_id: str,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
         enable: bool | NotGiven = NOT_GIVEN,
-        filters: Iterable[dataset_list_params.Filter] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
         order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
@@ -464,6 +472,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
         List Datasets
 
         Args:
+          gateway_id: gateway id
+
           order_by: Order By Column Name
 
           order_by_direction: Order By Direction
@@ -492,9 +502,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "id": id,
                         "enable": enable,
-                        "filters": filters,
                         "name": name,
                         "order_by": order_by,
                         "order_by_direction": order_by_direction,
@@ -525,6 +533,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
         Delete a Dataset
 
         Args:
+          gateway_id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -568,6 +578,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
         Fetch a Dataset
 
         Args:
+          gateway_id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

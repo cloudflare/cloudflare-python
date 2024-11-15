@@ -211,11 +211,10 @@ class TestAIGateway:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         ai_gateway = client.ai_gateway.list(
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            id="my-gateway",
             order_by="order_by",
             order_by_direction="asc",
             page=1,
-            per_page=5,
+            per_page=1,
         )
         assert_matches_type(SyncV4PagePaginationArray[AIGatewayListResponse], ai_gateway, path=["response"])
 
@@ -253,7 +252,7 @@ class TestAIGateway:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         ai_gateway = client.ai_gateway.delete(
-            id="id",
+            id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
         assert_matches_type(AIGatewayDeleteResponse, ai_gateway, path=["response"])
@@ -261,7 +260,7 @@ class TestAIGateway:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.ai_gateway.with_raw_response.delete(
-            id="id",
+            id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
 
@@ -273,7 +272,7 @@ class TestAIGateway:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.ai_gateway.with_streaming_response.delete(
-            id="id",
+            id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         ) as response:
             assert not response.is_closed
@@ -288,7 +287,7 @@ class TestAIGateway:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai_gateway.with_raw_response.delete(
-                id="id",
+                id="my-gateway",
                 account_id="",
             )
 
@@ -537,11 +536,10 @@ class TestAsyncAIGateway:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ai_gateway = await async_client.ai_gateway.list(
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            id="my-gateway",
             order_by="order_by",
             order_by_direction="asc",
             page=1,
-            per_page=5,
+            per_page=1,
         )
         assert_matches_type(AsyncV4PagePaginationArray[AIGatewayListResponse], ai_gateway, path=["response"])
 
@@ -579,7 +577,7 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         ai_gateway = await async_client.ai_gateway.delete(
-            id="id",
+            id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
         assert_matches_type(AIGatewayDeleteResponse, ai_gateway, path=["response"])
@@ -587,7 +585,7 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.with_raw_response.delete(
-            id="id",
+            id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
 
@@ -599,7 +597,7 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.with_streaming_response.delete(
-            id="id",
+            id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         ) as response:
             assert not response.is_closed
@@ -614,7 +612,7 @@ class TestAsyncAIGateway:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai_gateway.with_raw_response.delete(
-                id="id",
+                id="my-gateway",
                 account_id="",
             )
 

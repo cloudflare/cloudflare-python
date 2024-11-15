@@ -10,8 +10,6 @@ __all__ = ["EvaluationListParams"]
 class EvaluationListParams(TypedDict, total=False):
     account_id: Required[str]
 
-    id: str
-
     name: str
 
     order_by: str
@@ -28,5 +26,3 @@ class EvaluationListParams(TypedDict, total=False):
 
     search: str
     """Search by id, name"""
-
-    total_logs: float

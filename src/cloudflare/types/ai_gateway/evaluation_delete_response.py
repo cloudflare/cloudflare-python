@@ -41,6 +41,7 @@ class Dataset(BaseModel):
     filters: List[DatasetFilter]
 
     gateway_id: str
+    """gateway id"""
 
     modified_at: datetime
 
@@ -75,6 +76,7 @@ class EvaluationDeleteResponse(BaseModel):
     datasets: List[Dataset]
 
     gateway_id: str
+    """gateway id"""
 
     modified_at: datetime
 

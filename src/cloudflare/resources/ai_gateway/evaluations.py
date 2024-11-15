@@ -68,9 +68,11 @@ class EvaluationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> EvaluationCreateResponse:
         """
-        Create a new Evaluations
+        Create a new Evaluation
 
         Args:
+          gateway_id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -108,7 +110,6 @@ class EvaluationsResource(SyncAPIResource):
         gateway_id: str,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
         order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
@@ -116,7 +117,6 @@ class EvaluationsResource(SyncAPIResource):
         per_page: int | NotGiven = NOT_GIVEN,
         processed: bool | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
-        total_logs: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -125,9 +125,11 @@ class EvaluationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePaginationArray[EvaluationListResponse]:
         """
-        List Evaluationss
+        List Evaluations
 
         Args:
+          gateway_id: gateway id
+
           order_by: Order By Column Name
 
           order_by_direction: Order By Direction
@@ -156,7 +158,6 @@ class EvaluationsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "id": id,
                         "name": name,
                         "order_by": order_by,
                         "order_by_direction": order_by_direction,
@@ -164,7 +165,6 @@ class EvaluationsResource(SyncAPIResource):
                         "per_page": per_page,
                         "processed": processed,
                         "search": search,
-                        "total_logs": total_logs,
                     },
                     evaluation_list_params.EvaluationListParams,
                 ),
@@ -186,9 +186,11 @@ class EvaluationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> EvaluationDeleteResponse:
         """
-        Delete a Evaluations
+        Delete a Evaluation
 
         Args:
+          gateway_id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -229,9 +231,11 @@ class EvaluationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> EvaluationGetResponse:
         """
-        Fetch a Evaluations
+        Fetch a Evaluation
 
         Args:
+          gateway_id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -295,9 +299,11 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> EvaluationCreateResponse:
         """
-        Create a new Evaluations
+        Create a new Evaluation
 
         Args:
+          gateway_id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -335,7 +341,6 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         gateway_id: str,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
         order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
@@ -343,7 +348,6 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         per_page: int | NotGiven = NOT_GIVEN,
         processed: bool | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
-        total_logs: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -352,9 +356,11 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[EvaluationListResponse, AsyncV4PagePaginationArray[EvaluationListResponse]]:
         """
-        List Evaluationss
+        List Evaluations
 
         Args:
+          gateway_id: gateway id
+
           order_by: Order By Column Name
 
           order_by_direction: Order By Direction
@@ -383,7 +389,6 @@ class AsyncEvaluationsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "id": id,
                         "name": name,
                         "order_by": order_by,
                         "order_by_direction": order_by_direction,
@@ -391,7 +396,6 @@ class AsyncEvaluationsResource(AsyncAPIResource):
                         "per_page": per_page,
                         "processed": processed,
                         "search": search,
-                        "total_logs": total_logs,
                     },
                     evaluation_list_params.EvaluationListParams,
                 ),
@@ -413,9 +417,11 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> EvaluationDeleteResponse:
         """
-        Delete a Evaluations
+        Delete a Evaluation
 
         Args:
+          gateway_id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -456,9 +462,11 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> EvaluationGetResponse:
         """
-        Fetch a Evaluations
+        Fetch a Evaluation
 
         Args:
+          gateway_id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
