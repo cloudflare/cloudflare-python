@@ -2,6 +2,6 @@
 
 from typing_extensions import TypeAlias
 
-__all__ = ["Value"]
+__all__ = ["TokenValue"]
 
-Value: TypeAlias = str
+TokenValue: TypeAlias = str
