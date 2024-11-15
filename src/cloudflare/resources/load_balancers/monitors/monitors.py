@@ -78,12 +78,12 @@ class MonitorsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        expected_codes: str,
         allow_insecure: bool | NotGiven = NOT_GIVEN,
         consecutive_down: int | NotGiven = NOT_GIVEN,
         consecutive_up: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
+        expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
         header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
@@ -107,9 +107,6 @@ class MonitorsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          expected_codes: The expected HTTP response code or code range of the health check. This
-              parameter is only valid for HTTP and HTTPS monitors.
-
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
 
@@ -124,6 +121,9 @@ class MonitorsResource(SyncAPIResource):
           expected_body: A case-insensitive sub-string to look for in the response body. If this string
               is not found, the origin will be marked as unhealthy. This parameter is only
               valid for HTTP and HTTPS monitors.
+
+          expected_codes: The expected HTTP response code or code range of the health check. This
+              parameter is only valid for HTTP and HTTPS monitors.
 
           follow_redirects: Follow redirects if returned by the origin. This parameter is only valid for
               HTTP and HTTPS monitors.
@@ -170,12 +170,12 @@ class MonitorsResource(SyncAPIResource):
             f"/accounts/{account_id}/load_balancers/monitors",
             body=maybe_transform(
                 {
-                    "expected_codes": expected_codes,
                     "allow_insecure": allow_insecure,
                     "consecutive_down": consecutive_down,
                     "consecutive_up": consecutive_up,
                     "description": description,
                     "expected_body": expected_body,
+                    "expected_codes": expected_codes,
                     "follow_redirects": follow_redirects,
                     "header": header,
                     "interval": interval,
@@ -204,12 +204,12 @@ class MonitorsResource(SyncAPIResource):
         monitor_id: str,
         *,
         account_id: str,
-        expected_codes: str,
         allow_insecure: bool | NotGiven = NOT_GIVEN,
         consecutive_down: int | NotGiven = NOT_GIVEN,
         consecutive_up: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
+        expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
         header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
@@ -233,9 +233,6 @@ class MonitorsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          expected_codes: The expected HTTP response code or code range of the health check. This
-              parameter is only valid for HTTP and HTTPS monitors.
-
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
 
@@ -250,6 +247,9 @@ class MonitorsResource(SyncAPIResource):
           expected_body: A case-insensitive sub-string to look for in the response body. If this string
               is not found, the origin will be marked as unhealthy. This parameter is only
               valid for HTTP and HTTPS monitors.
+
+          expected_codes: The expected HTTP response code or code range of the health check. This
+              parameter is only valid for HTTP and HTTPS monitors.
 
           follow_redirects: Follow redirects if returned by the origin. This parameter is only valid for
               HTTP and HTTPS monitors.
@@ -298,12 +298,12 @@ class MonitorsResource(SyncAPIResource):
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
             body=maybe_transform(
                 {
-                    "expected_codes": expected_codes,
                     "allow_insecure": allow_insecure,
                     "consecutive_down": consecutive_down,
                     "consecutive_up": consecutive_up,
                     "description": description,
                     "expected_body": expected_body,
+                    "expected_codes": expected_codes,
                     "follow_redirects": follow_redirects,
                     "header": header,
                     "interval": interval,
@@ -410,12 +410,12 @@ class MonitorsResource(SyncAPIResource):
         monitor_id: str,
         *,
         account_id: str,
-        expected_codes: str,
         allow_insecure: bool | NotGiven = NOT_GIVEN,
         consecutive_down: int | NotGiven = NOT_GIVEN,
         consecutive_up: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
+        expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
         header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
@@ -439,9 +439,6 @@ class MonitorsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          expected_codes: The expected HTTP response code or code range of the health check. This
-              parameter is only valid for HTTP and HTTPS monitors.
-
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
 
@@ -456,6 +453,9 @@ class MonitorsResource(SyncAPIResource):
           expected_body: A case-insensitive sub-string to look for in the response body. If this string
               is not found, the origin will be marked as unhealthy. This parameter is only
               valid for HTTP and HTTPS monitors.
+
+          expected_codes: The expected HTTP response code or code range of the health check. This
+              parameter is only valid for HTTP and HTTPS monitors.
 
           follow_redirects: Follow redirects if returned by the origin. This parameter is only valid for
               HTTP and HTTPS monitors.
@@ -504,12 +504,12 @@ class MonitorsResource(SyncAPIResource):
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
             body=maybe_transform(
                 {
-                    "expected_codes": expected_codes,
                     "allow_insecure": allow_insecure,
                     "consecutive_down": consecutive_down,
                     "consecutive_up": consecutive_up,
                     "description": description,
                     "expected_body": expected_body,
+                    "expected_codes": expected_codes,
                     "follow_redirects": follow_redirects,
                     "header": header,
                     "interval": interval,
@@ -608,12 +608,12 @@ class AsyncMonitorsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        expected_codes: str,
         allow_insecure: bool | NotGiven = NOT_GIVEN,
         consecutive_down: int | NotGiven = NOT_GIVEN,
         consecutive_up: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
+        expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
         header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
@@ -637,9 +637,6 @@ class AsyncMonitorsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          expected_codes: The expected HTTP response code or code range of the health check. This
-              parameter is only valid for HTTP and HTTPS monitors.
-
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
 
@@ -654,6 +651,9 @@ class AsyncMonitorsResource(AsyncAPIResource):
           expected_body: A case-insensitive sub-string to look for in the response body. If this string
               is not found, the origin will be marked as unhealthy. This parameter is only
               valid for HTTP and HTTPS monitors.
+
+          expected_codes: The expected HTTP response code or code range of the health check. This
+              parameter is only valid for HTTP and HTTPS monitors.
 
           follow_redirects: Follow redirects if returned by the origin. This parameter is only valid for
               HTTP and HTTPS monitors.
@@ -700,12 +700,12 @@ class AsyncMonitorsResource(AsyncAPIResource):
             f"/accounts/{account_id}/load_balancers/monitors",
             body=await async_maybe_transform(
                 {
-                    "expected_codes": expected_codes,
                     "allow_insecure": allow_insecure,
                     "consecutive_down": consecutive_down,
                     "consecutive_up": consecutive_up,
                     "description": description,
                     "expected_body": expected_body,
+                    "expected_codes": expected_codes,
                     "follow_redirects": follow_redirects,
                     "header": header,
                     "interval": interval,
@@ -734,12 +734,12 @@ class AsyncMonitorsResource(AsyncAPIResource):
         monitor_id: str,
         *,
         account_id: str,
-        expected_codes: str,
         allow_insecure: bool | NotGiven = NOT_GIVEN,
         consecutive_down: int | NotGiven = NOT_GIVEN,
         consecutive_up: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
+        expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
         header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
@@ -763,9 +763,6 @@ class AsyncMonitorsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          expected_codes: The expected HTTP response code or code range of the health check. This
-              parameter is only valid for HTTP and HTTPS monitors.
-
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
 
@@ -780,6 +777,9 @@ class AsyncMonitorsResource(AsyncAPIResource):
           expected_body: A case-insensitive sub-string to look for in the response body. If this string
               is not found, the origin will be marked as unhealthy. This parameter is only
               valid for HTTP and HTTPS monitors.
+
+          expected_codes: The expected HTTP response code or code range of the health check. This
+              parameter is only valid for HTTP and HTTPS monitors.
 
           follow_redirects: Follow redirects if returned by the origin. This parameter is only valid for
               HTTP and HTTPS monitors.
@@ -828,12 +828,12 @@ class AsyncMonitorsResource(AsyncAPIResource):
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
             body=await async_maybe_transform(
                 {
-                    "expected_codes": expected_codes,
                     "allow_insecure": allow_insecure,
                     "consecutive_down": consecutive_down,
                     "consecutive_up": consecutive_up,
                     "description": description,
                     "expected_body": expected_body,
+                    "expected_codes": expected_codes,
                     "follow_redirects": follow_redirects,
                     "header": header,
                     "interval": interval,
@@ -940,12 +940,12 @@ class AsyncMonitorsResource(AsyncAPIResource):
         monitor_id: str,
         *,
         account_id: str,
-        expected_codes: str,
         allow_insecure: bool | NotGiven = NOT_GIVEN,
         consecutive_down: int | NotGiven = NOT_GIVEN,
         consecutive_up: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
+        expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
         header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
@@ -969,9 +969,6 @@ class AsyncMonitorsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          expected_codes: The expected HTTP response code or code range of the health check. This
-              parameter is only valid for HTTP and HTTPS monitors.
-
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
 
@@ -986,6 +983,9 @@ class AsyncMonitorsResource(AsyncAPIResource):
           expected_body: A case-insensitive sub-string to look for in the response body. If this string
               is not found, the origin will be marked as unhealthy. This parameter is only
               valid for HTTP and HTTPS monitors.
+
+          expected_codes: The expected HTTP response code or code range of the health check. This
+              parameter is only valid for HTTP and HTTPS monitors.
 
           follow_redirects: Follow redirects if returned by the origin. This parameter is only valid for
               HTTP and HTTPS monitors.
@@ -1034,12 +1034,12 @@ class AsyncMonitorsResource(AsyncAPIResource):
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}",
             body=await async_maybe_transform(
                 {
-                    "expected_codes": expected_codes,
                     "allow_insecure": allow_insecure,
                     "consecutive_down": consecutive_down,
                     "consecutive_up": consecutive_up,
                     "description": description,
                     "expected_body": expected_body,
+                    "expected_codes": expected_codes,
                     "follow_redirects": follow_redirects,
                     "header": header,
                     "interval": interval,

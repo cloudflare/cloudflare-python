@@ -22,7 +22,6 @@ class TestHealth:
         health = client.load_balancers.pools.health.create(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
         assert_matches_type(HealthCreateResponse, health, path=["response"])
 
@@ -31,12 +30,12 @@ class TestHealth:
         health = client.load_balancers.pools.health.create(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
             allow_insecure=True,
             consecutive_down=0,
             consecutive_up=0,
             description="Login page monitor",
             expected_body="alive",
+            expected_codes="2xx",
             follow_redirects=True,
             header={
                 "Host": ["example.com"],
@@ -58,7 +57,6 @@ class TestHealth:
         response = client.load_balancers.pools.health.with_raw_response.create(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
 
         assert response.is_closed is True
@@ -71,7 +69,6 @@ class TestHealth:
         with client.load_balancers.pools.health.with_streaming_response.create(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -87,14 +84,12 @@ class TestHealth:
             client.load_balancers.pools.health.with_raw_response.create(
                 pool_id="17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
-                expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             client.load_balancers.pools.health.with_raw_response.create(
                 pool_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expected_codes="2xx",
             )
 
     @parametrize
@@ -154,7 +149,6 @@ class TestAsyncHealth:
         health = await async_client.load_balancers.pools.health.create(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
         assert_matches_type(HealthCreateResponse, health, path=["response"])
 
@@ -163,12 +157,12 @@ class TestAsyncHealth:
         health = await async_client.load_balancers.pools.health.create(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
             allow_insecure=True,
             consecutive_down=0,
             consecutive_up=0,
             description="Login page monitor",
             expected_body="alive",
+            expected_codes="2xx",
             follow_redirects=True,
             header={
                 "Host": ["example.com"],
@@ -190,7 +184,6 @@ class TestAsyncHealth:
         response = await async_client.load_balancers.pools.health.with_raw_response.create(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         )
 
         assert response.is_closed is True
@@ -203,7 +196,6 @@ class TestAsyncHealth:
         async with async_client.load_balancers.pools.health.with_streaming_response.create(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            expected_codes="2xx",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -219,14 +211,12 @@ class TestAsyncHealth:
             await async_client.load_balancers.pools.health.with_raw_response.create(
                 pool_id="17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
-                expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             await async_client.load_balancers.pools.health.with_raw_response.create(
                 pool_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                expected_codes="2xx",
             )
 
     @parametrize
