@@ -54,12 +54,12 @@ class HealthResource(SyncAPIResource):
         pool_id: str,
         *,
         account_id: str,
-        expected_codes: str,
         allow_insecure: bool | NotGiven = NOT_GIVEN,
         consecutive_down: int | NotGiven = NOT_GIVEN,
         consecutive_up: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
+        expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
         header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
@@ -85,9 +85,6 @@ class HealthResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          expected_codes: The expected HTTP response code or code range of the health check. This
-              parameter is only valid for HTTP and HTTPS monitors.
-
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
 
@@ -102,6 +99,9 @@ class HealthResource(SyncAPIResource):
           expected_body: A case-insensitive sub-string to look for in the response body. If this string
               is not found, the origin will be marked as unhealthy. This parameter is only
               valid for HTTP and HTTPS monitors.
+
+          expected_codes: The expected HTTP response code or code range of the health check. This
+              parameter is only valid for HTTP and HTTPS monitors.
 
           follow_redirects: Follow redirects if returned by the origin. This parameter is only valid for
               HTTP and HTTPS monitors.
@@ -150,12 +150,12 @@ class HealthResource(SyncAPIResource):
             f"/accounts/{account_id}/load_balancers/pools/{pool_id}/preview",
             body=maybe_transform(
                 {
-                    "expected_codes": expected_codes,
                     "allow_insecure": allow_insecure,
                     "consecutive_down": consecutive_down,
                     "consecutive_up": consecutive_up,
                     "description": description,
                     "expected_body": expected_body,
+                    "expected_codes": expected_codes,
                     "follow_redirects": follow_redirects,
                     "header": header,
                     "interval": interval,
@@ -247,12 +247,12 @@ class AsyncHealthResource(AsyncAPIResource):
         pool_id: str,
         *,
         account_id: str,
-        expected_codes: str,
         allow_insecure: bool | NotGiven = NOT_GIVEN,
         consecutive_down: int | NotGiven = NOT_GIVEN,
         consecutive_up: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
+        expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
         header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
@@ -278,9 +278,6 @@ class AsyncHealthResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          expected_codes: The expected HTTP response code or code range of the health check. This
-              parameter is only valid for HTTP and HTTPS monitors.
-
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
 
@@ -295,6 +292,9 @@ class AsyncHealthResource(AsyncAPIResource):
           expected_body: A case-insensitive sub-string to look for in the response body. If this string
               is not found, the origin will be marked as unhealthy. This parameter is only
               valid for HTTP and HTTPS monitors.
+
+          expected_codes: The expected HTTP response code or code range of the health check. This
+              parameter is only valid for HTTP and HTTPS monitors.
 
           follow_redirects: Follow redirects if returned by the origin. This parameter is only valid for
               HTTP and HTTPS monitors.
@@ -343,12 +343,12 @@ class AsyncHealthResource(AsyncAPIResource):
             f"/accounts/{account_id}/load_balancers/pools/{pool_id}/preview",
             body=await async_maybe_transform(
                 {
-                    "expected_codes": expected_codes,
                     "allow_insecure": allow_insecure,
                     "consecutive_down": consecutive_down,
                     "consecutive_up": consecutive_up,
                     "description": description,
                     "expected_body": expected_body,
+                    "expected_codes": expected_codes,
                     "follow_redirects": follow_redirects,
                     "header": header,
                     "interval": interval,
