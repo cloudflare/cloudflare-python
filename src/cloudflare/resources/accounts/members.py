@@ -25,11 +25,9 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.accounts import member_list_params, member_create_params, member_update_params
-from ...types.accounts.member_get_response import MemberGetResponse
-from ...types.accounts.member_list_response import MemberListResponse
-from ...types.accounts.member_create_response import MemberCreateResponse
+from ...types.shared.member import Member
+from ...types.shared_params.role import Role
 from ...types.accounts.member_delete_response import MemberDeleteResponse
-from ...types.accounts.member_update_response import MemberUpdateResponse
 
 __all__ = ["MembersResource", "AsyncMembersResource"]
 
@@ -68,7 +66,7 @@ class MembersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MemberCreateResponse]:
+    ) -> Optional[Member]:
         """
         Add a user to the list of members for this account.
 
@@ -103,7 +101,7 @@ class MembersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MemberCreateResponse]:
+    ) -> Optional[Member]:
         """
         Add a user to the list of members for this account.
 
@@ -139,7 +137,7 @@ class MembersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MemberCreateResponse]:
+    ) -> Optional[Member]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
@@ -158,9 +156,9 @@ class MembersResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MemberCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Member]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MemberCreateResponse]], ResultWrapper[MemberCreateResponse]),
+            cast_to=cast(Type[Optional[Member]], ResultWrapper[Member]),
         )
 
     @overload
@@ -169,14 +167,14 @@ class MembersResource(SyncAPIResource):
         member_id: str,
         *,
         account_id: str,
-        roles: Iterable[member_update_params.IAMUpdateMemberWithRolesRole] | NotGiven = NOT_GIVEN,
+        roles: Iterable[Role] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MemberUpdateResponse]:
+    ) -> Optional[Member]:
         """
         Modify an account member.
 
@@ -210,7 +208,7 @@ class MembersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MemberUpdateResponse]:
+    ) -> Optional[Member]:
         """
         Modify an account member.
 
@@ -237,7 +235,7 @@ class MembersResource(SyncAPIResource):
         member_id: str,
         *,
         account_id: str,
-        roles: Iterable[member_update_params.IAMUpdateMemberWithRolesRole] | NotGiven = NOT_GIVEN,
+        roles: Iterable[Role] | NotGiven = NOT_GIVEN,
         policies: Iterable[member_update_params.IAMUpdateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -245,7 +243,7 @@ class MembersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MemberUpdateResponse]:
+    ) -> Optional[Member]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
@@ -264,9 +262,9 @@ class MembersResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MemberUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Member]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MemberUpdateResponse]], ResultWrapper[MemberUpdateResponse]),
+            cast_to=cast(Type[Optional[Member]], ResultWrapper[Member]),
         )
 
     def list(
@@ -284,7 +282,7 @@ class MembersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[MemberListResponse]:
+    ) -> SyncV4PagePaginationArray[Member]:
         """
         List all members of an account.
 
@@ -313,7 +311,7 @@ class MembersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/members",
-            page=SyncV4PagePaginationArray[MemberListResponse],
+            page=SyncV4PagePaginationArray[Member],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -330,7 +328,7 @@ class MembersResource(SyncAPIResource):
                     member_list_params.MemberListParams,
                 ),
             ),
-            model=MemberListResponse,
+            model=Member,
         )
 
     def delete(
@@ -388,7 +386,7 @@ class MembersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MemberGetResponse]:
+    ) -> Optional[Member]:
         """
         Get information about a specific member of an account.
 
@@ -416,9 +414,9 @@ class MembersResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MemberGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Member]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MemberGetResponse]], ResultWrapper[MemberGetResponse]),
+            cast_to=cast(Type[Optional[Member]], ResultWrapper[Member]),
         )
 
 
@@ -456,7 +454,7 @@ class AsyncMembersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MemberCreateResponse]:
+    ) -> Optional[Member]:
         """
         Add a user to the list of members for this account.
 
@@ -491,7 +489,7 @@ class AsyncMembersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MemberCreateResponse]:
+    ) -> Optional[Member]:
         """
         Add a user to the list of members for this account.
 
@@ -527,7 +525,7 @@ class AsyncMembersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MemberCreateResponse]:
+    ) -> Optional[Member]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
@@ -546,9 +544,9 @@ class AsyncMembersResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MemberCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Member]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MemberCreateResponse]], ResultWrapper[MemberCreateResponse]),
+            cast_to=cast(Type[Optional[Member]], ResultWrapper[Member]),
         )
 
     @overload
@@ -557,14 +555,14 @@ class AsyncMembersResource(AsyncAPIResource):
         member_id: str,
         *,
         account_id: str,
-        roles: Iterable[member_update_params.IAMUpdateMemberWithRolesRole] | NotGiven = NOT_GIVEN,
+        roles: Iterable[Role] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MemberUpdateResponse]:
+    ) -> Optional[Member]:
         """
         Modify an account member.
 
@@ -598,7 +596,7 @@ class AsyncMembersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MemberUpdateResponse]:
+    ) -> Optional[Member]:
         """
         Modify an account member.
 
@@ -625,7 +623,7 @@ class AsyncMembersResource(AsyncAPIResource):
         member_id: str,
         *,
         account_id: str,
-        roles: Iterable[member_update_params.IAMUpdateMemberWithRolesRole] | NotGiven = NOT_GIVEN,
+        roles: Iterable[Role] | NotGiven = NOT_GIVEN,
         policies: Iterable[member_update_params.IAMUpdateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -633,7 +631,7 @@ class AsyncMembersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MemberUpdateResponse]:
+    ) -> Optional[Member]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
@@ -652,9 +650,9 @@ class AsyncMembersResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MemberUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Member]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MemberUpdateResponse]], ResultWrapper[MemberUpdateResponse]),
+            cast_to=cast(Type[Optional[Member]], ResultWrapper[Member]),
         )
 
     def list(
@@ -672,7 +670,7 @@ class AsyncMembersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[MemberListResponse, AsyncV4PagePaginationArray[MemberListResponse]]:
+    ) -> AsyncPaginator[Member, AsyncV4PagePaginationArray[Member]]:
         """
         List all members of an account.
 
@@ -701,7 +699,7 @@ class AsyncMembersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/members",
-            page=AsyncV4PagePaginationArray[MemberListResponse],
+            page=AsyncV4PagePaginationArray[Member],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -718,7 +716,7 @@ class AsyncMembersResource(AsyncAPIResource):
                     member_list_params.MemberListParams,
                 ),
             ),
-            model=MemberListResponse,
+            model=Member,
         )
 
     async def delete(
@@ -776,7 +774,7 @@ class AsyncMembersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MemberGetResponse]:
+    ) -> Optional[Member]:
         """
         Get information about a specific member of an account.
 
@@ -804,9 +802,9 @@ class AsyncMembersResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[MemberGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Member]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[MemberGetResponse]], ResultWrapper[MemberGetResponse]),
+            cast_to=cast(Type[Optional[Member]], ResultWrapper[Member]),
         )
 
 

@@ -18,8 +18,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.accounts.role_get_response import RoleGetResponse
-from ...types.accounts.role_list_response import RoleListResponse
+from ...types.shared.role import Role
 
 __all__ = ["RolesResource", "AsyncRolesResource"]
 
@@ -54,7 +53,7 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[RoleListResponse]:
+    ) -> SyncSinglePage[Role]:
         """
         Get all available roles for an account.
 
@@ -73,11 +72,11 @@ class RolesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/roles",
-            page=SyncSinglePage[RoleListResponse],
+            page=SyncSinglePage[Role],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=RoleListResponse,
+            model=Role,
         )
 
     def get(
@@ -91,7 +90,7 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RoleGetResponse]:
+    ) -> Optional[Role]:
         """
         Get information about a specific role for an account.
 
@@ -119,9 +118,9 @@ class RolesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RoleGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Role]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RoleGetResponse]], ResultWrapper[RoleGetResponse]),
+            cast_to=cast(Type[Optional[Role]], ResultWrapper[Role]),
         )
 
 
@@ -155,7 +154,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RoleListResponse, AsyncSinglePage[RoleListResponse]]:
+    ) -> AsyncPaginator[Role, AsyncSinglePage[Role]]:
         """
         Get all available roles for an account.
 
@@ -174,11 +173,11 @@ class AsyncRolesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/roles",
-            page=AsyncSinglePage[RoleListResponse],
+            page=AsyncSinglePage[Role],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=RoleListResponse,
+            model=Role,
         )
 
     async def get(
@@ -192,7 +191,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RoleGetResponse]:
+    ) -> Optional[Role]:
         """
         Get information about a specific role for an account.
 
@@ -220,9 +219,9 @@ class AsyncRolesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RoleGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Role]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RoleGetResponse]], ResultWrapper[RoleGetResponse]),
+            cast_to=cast(Type[Optional[Role]], ResultWrapper[Role]),
         )
 
 
