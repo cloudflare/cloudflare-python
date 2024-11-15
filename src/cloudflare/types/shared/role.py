@@ -3,9 +3,9 @@
 from typing import Optional
 
 from ..._models import BaseModel
-from ..shared.permission_grant import PermissionGrant
+from .permission_grant import PermissionGrant
 
-__all__ = ["RoleGetResponse", "Permissions"]
+__all__ = ["Role", "Permissions"]
 
 
 class Permissions(BaseModel):
@@ -34,7 +34,7 @@ class Permissions(BaseModel):
     zones: Optional[PermissionGrant] = None
 
 
-class RoleGetResponse(BaseModel):
+class Role(BaseModel):
     id: str
     """Role identifier tag."""
 

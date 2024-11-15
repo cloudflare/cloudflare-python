@@ -5,10 +5,11 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from ..shared_params.role import Role
+
 __all__ = [
     "MemberUpdateParams",
     "IAMUpdateMemberWithRoles",
-    "IAMUpdateMemberWithRolesRole",
     "IAMUpdateMemberWithPolicies",
     "IAMUpdateMemberWithPoliciesPolicy",
     "IAMUpdateMemberWithPoliciesPolicyPermissionGroup",
@@ -20,13 +21,8 @@ class IAMUpdateMemberWithRoles(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
-    roles: Iterable[IAMUpdateMemberWithRolesRole]
+    roles: Iterable[Role]
     """Roles assigned to this member."""
-
-
-class IAMUpdateMemberWithRolesRole(TypedDict, total=False):
-    id: Required[str]
-    """Role identifier tag."""
 
 
 class IAMUpdateMemberWithPolicies(TypedDict, total=False):
