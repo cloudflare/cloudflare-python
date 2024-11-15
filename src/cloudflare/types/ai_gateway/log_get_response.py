@@ -37,7 +37,7 @@ class LogGetResponse(BaseModel):
 
     metadata: Optional[str] = None
 
-    api_model_type: Optional[str] = FieldInfo(alias="model_type", default=None)
+    ai_model_type: Optional[str] = FieldInfo(alias="model_type", default=None)
 
     request_content_type: Optional[str] = None
 
