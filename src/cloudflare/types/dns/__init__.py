@@ -8,14 +8,12 @@ from .mx_record import MXRecord as MXRecord
 from .ns_record import NSRecord as NSRecord
 from .caa_record import CAARecord as CAARecord
 from .loc_record import LOCRecord as LOCRecord
-from .nameserver import Nameserver as Nameserver
 from .ptr_record import PTRRecord as PTRRecord
 from .srv_record import SRVRecord as SRVRecord
 from .txt_record import TXTRecord as TXTRecord
 from .uri_record import URIRecord as URIRecord
 from .aaaa_record import AAAARecord as AAAARecord
 from .cert_record import CERTRecord as CERTRecord
-from .dns_setting import DNSSetting as DNSSetting
 from .record_tags import RecordTags as RecordTags
 from .svcb_record import SVCBRecord as SVCBRecord
 from .tlsa_record import TLSARecord as TLSARecord
@@ -34,7 +32,6 @@ from .mx_record_param import MXRecordParam as MXRecordParam
 from .ns_record_param import NSRecordParam as NSRecordParam
 from .caa_record_param import CAARecordParam as CAARecordParam
 from .loc_record_param import LOCRecordParam as LOCRecordParam
-from .nameserver_param import NameserverParam as NameserverParam
 from .ptr_record_param import PTRRecordParam as PTRRecordParam
 from .srv_record_param import SRVRecordParam as SRVRecordParam
 from .txt_record_param import TXTRecordParam as TXTRecordParam
@@ -42,7 +39,6 @@ from .uri_record_param import URIRecordParam as URIRecordParam
 from .aaaa_record_param import AAAARecordParam as AAAARecordParam
 from .attack_mitigation import AttackMitigation as AttackMitigation
 from .cert_record_param import CERTRecordParam as CERTRecordParam
-from .dns_setting_param import DNSSettingParam as DNSSettingParam
 from .svcb_record_param import SVCBRecordParam as SVCBRecordParam
 from .tlsa_record_param import TLSARecordParam as TLSARecordParam
 from .cname_record_param import CNAMERecordParam as CNAMERecordParam

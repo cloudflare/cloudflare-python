@@ -1039,7 +1039,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.dns import DNSSetting, Nameserver, SettingEditResponse, SettingGetResponse
+from cloudflare.types.dns import DNSSetting, SettingEditResponse, SettingGetResponse
 ```
 
 Methods:
