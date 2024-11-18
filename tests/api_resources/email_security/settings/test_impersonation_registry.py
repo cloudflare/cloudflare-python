@@ -83,17 +83,7 @@ class TestImpersonationRegistry:
                     "email": "email",
                     "is_email_regex": True,
                     "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
+                }
             ],
         )
         assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
@@ -107,17 +97,7 @@ class TestImpersonationRegistry:
                     "email": "email",
                     "is_email_regex": True,
                     "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
+                }
             ],
         )
 
@@ -135,17 +115,7 @@ class TestImpersonationRegistry:
                     "email": "email",
                     "is_email_regex": True,
                     "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -166,17 +136,7 @@ class TestImpersonationRegistry:
                         "email": "email",
                         "is_email_regex": True,
                         "name": "name",
-                    },
-                    {
-                        "email": "email",
-                        "is_email_regex": True,
-                        "name": "name",
-                    },
-                    {
-                        "email": "email",
-                        "is_email_regex": True,
-                        "name": "name",
-                    },
+                    }
                 ],
             )
 
@@ -439,17 +399,7 @@ class TestAsyncImpersonationRegistry:
                     "email": "email",
                     "is_email_regex": True,
                     "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
+                }
             ],
         )
         assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
@@ -463,17 +413,7 @@ class TestAsyncImpersonationRegistry:
                     "email": "email",
                     "is_email_regex": True,
                     "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
+                }
             ],
         )
 
@@ -491,17 +431,7 @@ class TestAsyncImpersonationRegistry:
                     "email": "email",
                     "is_email_regex": True,
                     "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -522,17 +452,7 @@ class TestAsyncImpersonationRegistry:
                         "email": "email",
                         "is_email_regex": True,
                         "name": "name",
-                    },
-                    {
-                        "email": "email",
-                        "is_email_regex": True,
-                        "name": "name",
-                    },
-                    {
-                        "email": "email",
-                        "is_email_regex": True,
-                        "name": "name",
-                    },
+                    }
                 ],
             )
 

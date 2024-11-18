@@ -35,19 +35,7 @@ class TestRules:
                     "enabled": True,
                     "expression": 'http.cookie eq "a=b"',
                     "snippet_name": "snippet_name_01",
-                },
-                {
-                    "description": "Rule description",
-                    "enabled": True,
-                    "expression": 'http.cookie eq "a=b"',
-                    "snippet_name": "snippet_name_01",
-                },
-                {
-                    "description": "Rule description",
-                    "enabled": True,
-                    "expression": 'http.cookie eq "a=b"',
-                    "snippet_name": "snippet_name_01",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
@@ -180,19 +168,7 @@ class TestAsyncRules:
                     "enabled": True,
                     "expression": 'http.cookie eq "a=b"',
                     "snippet_name": "snippet_name_01",
-                },
-                {
-                    "description": "Rule description",
-                    "enabled": True,
-                    "expression": 'http.cookie eq "a=b"',
-                    "snippet_name": "snippet_name_01",
-                },
-                {
-                    "description": "Rule description",
-                    "enabled": True,
-                    "expression": 'http.cookie eq "a=b"',
-                    "snippet_name": "snippet_name_01",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])

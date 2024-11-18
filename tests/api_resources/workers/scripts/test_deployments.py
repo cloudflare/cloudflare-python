@@ -30,15 +30,7 @@ class TestDeployments:
                 {
                     "percentage": 100,
                     "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
@@ -53,15 +45,7 @@ class TestDeployments:
                 {
                     "percentage": 100,
                     "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
+                }
             ],
             force=True,
             annotations={"workers_message": "Deploy bug fix."},
@@ -78,15 +62,7 @@ class TestDeployments:
                 {
                     "percentage": 100,
                     "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
+                }
             ],
         )
 
@@ -105,15 +81,7 @@ class TestDeployments:
                 {
                     "percentage": 100,
                     "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -135,15 +103,7 @@ class TestDeployments:
                     {
                         "percentage": 100,
                         "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                    },
-                    {
-                        "percentage": 100,
-                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                    },
-                    {
-                        "percentage": 100,
-                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                    },
+                    }
                 ],
             )
 
@@ -156,15 +116,7 @@ class TestDeployments:
                     {
                         "percentage": 100,
                         "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                    },
-                    {
-                        "percentage": 100,
-                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                    },
-                    {
-                        "percentage": 100,
-                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                    },
+                    }
                 ],
             )
 
@@ -230,15 +182,7 @@ class TestAsyncDeployments:
                 {
                     "percentage": 100,
                     "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
@@ -253,15 +197,7 @@ class TestAsyncDeployments:
                 {
                     "percentage": 100,
                     "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
+                }
             ],
             force=True,
             annotations={"workers_message": "Deploy bug fix."},
@@ -278,15 +214,7 @@ class TestAsyncDeployments:
                 {
                     "percentage": 100,
                     "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
+                }
             ],
         )
 
@@ -305,15 +233,7 @@ class TestAsyncDeployments:
                 {
                     "percentage": 100,
                     "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
-                {
-                    "percentage": 100,
-                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -335,15 +255,7 @@ class TestAsyncDeployments:
                     {
                         "percentage": 100,
                         "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                    },
-                    {
-                        "percentage": 100,
-                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                    },
-                    {
-                        "percentage": 100,
-                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                    },
+                    }
                 ],
             )
 
@@ -356,15 +268,7 @@ class TestAsyncDeployments:
                     {
                         "percentage": 100,
                         "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                    },
-                    {
-                        "percentage": 100,
-                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                    },
-                    {
-                        "percentage": 100,
-                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
-                    },
+                    }
                 ],
             )
 

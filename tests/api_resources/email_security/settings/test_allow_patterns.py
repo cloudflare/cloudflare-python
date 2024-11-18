@@ -118,25 +118,7 @@ class TestAllowPatterns:
                     "pattern": "test@example.com",
                     "pattern_type": "EMAIL",
                     "verify_sender": True,
-                },
-                {
-                    "is_recipient": False,
-                    "is_regex": False,
-                    "is_sender": True,
-                    "is_spoof": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                    "verify_sender": True,
-                },
-                {
-                    "is_recipient": False,
-                    "is_regex": False,
-                    "is_sender": True,
-                    "is_spoof": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                    "verify_sender": True,
-                },
+                }
             ],
         )
         assert_matches_type(AllowPatternCreateResponse, allow_pattern, path=["response"])
@@ -154,25 +136,7 @@ class TestAllowPatterns:
                     "pattern": "test@example.com",
                     "pattern_type": "EMAIL",
                     "verify_sender": True,
-                },
-                {
-                    "is_recipient": False,
-                    "is_regex": False,
-                    "is_sender": True,
-                    "is_spoof": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                    "verify_sender": True,
-                },
-                {
-                    "is_recipient": False,
-                    "is_regex": False,
-                    "is_sender": True,
-                    "is_spoof": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                    "verify_sender": True,
-                },
+                }
             ],
         )
 
@@ -194,25 +158,7 @@ class TestAllowPatterns:
                     "pattern": "test@example.com",
                     "pattern_type": "EMAIL",
                     "verify_sender": True,
-                },
-                {
-                    "is_recipient": False,
-                    "is_regex": False,
-                    "is_sender": True,
-                    "is_spoof": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                    "verify_sender": True,
-                },
-                {
-                    "is_recipient": False,
-                    "is_regex": False,
-                    "is_sender": True,
-                    "is_spoof": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                    "verify_sender": True,
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -237,25 +183,7 @@ class TestAllowPatterns:
                         "pattern": "test@example.com",
                         "pattern_type": "EMAIL",
                         "verify_sender": True,
-                    },
-                    {
-                        "is_recipient": False,
-                        "is_regex": False,
-                        "is_sender": True,
-                        "is_spoof": False,
-                        "pattern": "test@example.com",
-                        "pattern_type": "EMAIL",
-                        "verify_sender": True,
-                    },
-                    {
-                        "is_recipient": False,
-                        "is_regex": False,
-                        "is_sender": True,
-                        "is_spoof": False,
-                        "pattern": "test@example.com",
-                        "pattern_type": "EMAIL",
-                        "verify_sender": True,
-                    },
+                    }
                 ],
             )
 
@@ -554,25 +482,7 @@ class TestAsyncAllowPatterns:
                     "pattern": "test@example.com",
                     "pattern_type": "EMAIL",
                     "verify_sender": True,
-                },
-                {
-                    "is_recipient": False,
-                    "is_regex": False,
-                    "is_sender": True,
-                    "is_spoof": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                    "verify_sender": True,
-                },
-                {
-                    "is_recipient": False,
-                    "is_regex": False,
-                    "is_sender": True,
-                    "is_spoof": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                    "verify_sender": True,
-                },
+                }
             ],
         )
         assert_matches_type(AllowPatternCreateResponse, allow_pattern, path=["response"])
@@ -590,25 +500,7 @@ class TestAsyncAllowPatterns:
                     "pattern": "test@example.com",
                     "pattern_type": "EMAIL",
                     "verify_sender": True,
-                },
-                {
-                    "is_recipient": False,
-                    "is_regex": False,
-                    "is_sender": True,
-                    "is_spoof": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                    "verify_sender": True,
-                },
-                {
-                    "is_recipient": False,
-                    "is_regex": False,
-                    "is_sender": True,
-                    "is_spoof": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                    "verify_sender": True,
-                },
+                }
             ],
         )
 
@@ -630,25 +522,7 @@ class TestAsyncAllowPatterns:
                     "pattern": "test@example.com",
                     "pattern_type": "EMAIL",
                     "verify_sender": True,
-                },
-                {
-                    "is_recipient": False,
-                    "is_regex": False,
-                    "is_sender": True,
-                    "is_spoof": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                    "verify_sender": True,
-                },
-                {
-                    "is_recipient": False,
-                    "is_regex": False,
-                    "is_sender": True,
-                    "is_spoof": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                    "verify_sender": True,
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -673,25 +547,7 @@ class TestAsyncAllowPatterns:
                         "pattern": "test@example.com",
                         "pattern_type": "EMAIL",
                         "verify_sender": True,
-                    },
-                    {
-                        "is_recipient": False,
-                        "is_regex": False,
-                        "is_sender": True,
-                        "is_spoof": False,
-                        "pattern": "test@example.com",
-                        "pattern_type": "EMAIL",
-                        "verify_sender": True,
-                    },
-                    {
-                        "is_recipient": False,
-                        "is_regex": False,
-                        "is_sender": True,
-                        "is_spoof": False,
-                        "pattern": "test@example.com",
-                        "pattern_type": "EMAIL",
-                        "verify_sender": True,
-                    },
+                    }
                 ],
             )
 

@@ -26,15 +26,7 @@ class TestPredefined:
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
+                }
             ],
         )
         assert_matches_type(Optional[Profile], predefined, path=["response"])
@@ -48,15 +40,7 @@ class TestPredefined:
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
+                }
             ],
             allowed_match_count=0,
             confidence_threshold="confidence_threshold",
@@ -77,15 +61,7 @@ class TestPredefined:
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
+                }
             ],
         )
 
@@ -103,15 +79,7 @@ class TestPredefined:
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -132,15 +100,7 @@ class TestPredefined:
                     {
                         "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "enabled": True,
-                    },
-                    {
-                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "enabled": True,
-                    },
-                    {
-                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "enabled": True,
-                    },
+                    }
                 ],
             )
 
@@ -152,15 +112,7 @@ class TestPredefined:
                     {
                         "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "enabled": True,
-                    },
-                    {
-                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "enabled": True,
-                    },
-                    {
-                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "enabled": True,
-                    },
+                    }
                 ],
             )
 
@@ -225,15 +177,7 @@ class TestAsyncPredefined:
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
+                }
             ],
         )
         assert_matches_type(Optional[Profile], predefined, path=["response"])
@@ -247,15 +191,7 @@ class TestAsyncPredefined:
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
+                }
             ],
             allowed_match_count=0,
             confidence_threshold="confidence_threshold",
@@ -276,15 +212,7 @@ class TestAsyncPredefined:
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
+                }
             ],
         )
 
@@ -302,15 +230,7 @@ class TestAsyncPredefined:
                 {
                     "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
-                {
-                    "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "enabled": True,
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -331,15 +251,7 @@ class TestAsyncPredefined:
                     {
                         "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "enabled": True,
-                    },
-                    {
-                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "enabled": True,
-                    },
-                    {
-                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "enabled": True,
-                    },
+                    }
                 ],
             )
 
@@ -351,15 +263,7 @@ class TestAsyncPredefined:
                     {
                         "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                         "enabled": True,
-                    },
-                    {
-                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "enabled": True,
-                    },
-                    {
-                        "id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                        "enabled": True,
-                    },
+                    }
                 ],
             )
 

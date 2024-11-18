@@ -30,10 +30,10 @@ class TestAnalytics:
         analytics = client.storage.analytics.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             query={
-                "dimensions": ["accountId", "responseCode", "requestType"],
+                "dimensions": ["accountId"],
                 "filters": "requestType==read AND responseCode!=200",
                 "limit": 0,
-                "metrics": ["requests", "writeKiB", "readKiB"],
+                "metrics": ["requests"],
                 "since": parse_datetime("2019-01-02T02:20:00Z"),
                 "sort": ["+requests", "-responseCode"],
                 "until": parse_datetime("2019-01-02T03:20:00Z"),
@@ -87,7 +87,7 @@ class TestAnalytics:
                 "dimensions": ["namespaceId"],
                 "filters": "namespaceId==a4e8cbb7-1b58-4990-925e-e026d40c4c64",
                 "limit": 0,
-                "metrics": ["storedBytes", "storedKeys"],
+                "metrics": ["storedBytes"],
                 "since": parse_datetime("2019-01-02T02:20:00Z"),
                 "sort": ["+storedBytes", "-namespaceId"],
                 "until": parse_datetime("2019-01-02T03:20:00Z"),
@@ -142,10 +142,10 @@ class TestAsyncAnalytics:
         analytics = await async_client.storage.analytics.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             query={
-                "dimensions": ["accountId", "responseCode", "requestType"],
+                "dimensions": ["accountId"],
                 "filters": "requestType==read AND responseCode!=200",
                 "limit": 0,
-                "metrics": ["requests", "writeKiB", "readKiB"],
+                "metrics": ["requests"],
                 "since": parse_datetime("2019-01-02T02:20:00Z"),
                 "sort": ["+requests", "-responseCode"],
                 "until": parse_datetime("2019-01-02T03:20:00Z"),
@@ -199,7 +199,7 @@ class TestAsyncAnalytics:
                 "dimensions": ["namespaceId"],
                 "filters": "namespaceId==a4e8cbb7-1b58-4990-925e-e026d40c4c64",
                 "limit": 0,
-                "metrics": ["storedBytes", "storedKeys"],
+                "metrics": ["storedBytes"],
                 "since": parse_datetime("2019-01-02T02:20:00Z"),
                 "sort": ["+storedBytes", "-namespaceId"],
                 "until": parse_datetime("2019-01-02T03:20:00Z"),

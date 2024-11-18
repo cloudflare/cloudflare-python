@@ -23,11 +23,7 @@ class TestVersions:
             version=0,
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body=[
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-            ],
+            body=[{"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}],
         )
         assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
 
@@ -37,11 +33,7 @@ class TestVersions:
             version=0,
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body=[
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-            ],
+            body=[{"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}],
         )
 
         assert response.is_closed is True
@@ -55,11 +47,7 @@ class TestVersions:
             version=0,
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body=[
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-            ],
+            body=[{"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -76,11 +64,7 @@ class TestVersions:
                 version=0,
                 account_id="",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                body=[
-                    {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                    {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                    {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                ],
+                body=[{"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
@@ -88,11 +72,7 @@ class TestVersions:
                 version=0,
                 account_id="account_id",
                 dataset_id="",
-                body=[
-                    {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                    {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                    {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                ],
+                body=[{"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}],
             )
 
 
@@ -105,11 +85,7 @@ class TestAsyncVersions:
             version=0,
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body=[
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-            ],
+            body=[{"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}],
         )
         assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
 
@@ -119,11 +95,7 @@ class TestAsyncVersions:
             version=0,
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body=[
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-            ],
+            body=[{"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}],
         )
 
         assert response.is_closed is True
@@ -137,11 +109,7 @@ class TestAsyncVersions:
             version=0,
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body=[
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-            ],
+            body=[{"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -158,11 +126,7 @@ class TestAsyncVersions:
                 version=0,
                 account_id="",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                body=[
-                    {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                    {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                    {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                ],
+                body=[{"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
@@ -170,9 +134,5 @@ class TestAsyncVersions:
                 version=0,
                 account_id="account_id",
                 dataset_id="",
-                body=[
-                    {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                    {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                    {"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"},
-                ],
+                body=[{"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}],
             )

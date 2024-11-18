@@ -42,7 +42,7 @@ class TestScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             rollback_to="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
+            any_part_name=[b"raw file contents"],
             metadata={
                 "assets": {
                     "config": {
@@ -59,47 +59,29 @@ class TestScripts:
                 ],
                 "body_part": "worker.js",
                 "compatibility_date": "2023-07-25",
-                "compatibility_flags": ["string", "string", "string"],
+                "compatibility_flags": ["string"],
                 "keep_assets": False,
-                "keep_bindings": ["string", "string", "string"],
+                "keep_bindings": ["string"],
                 "logpush": False,
                 "main_module": "worker.js",
                 "migrations": {
-                    "deleted_classes": ["string", "string", "string"],
-                    "new_classes": ["string", "string", "string"],
-                    "new_sqlite_classes": ["string", "string", "string"],
+                    "deleted_classes": ["string"],
+                    "new_classes": ["string"],
+                    "new_sqlite_classes": ["string"],
                     "new_tag": "v2",
                     "old_tag": "v1",
                     "renamed_classes": [
                         {
                             "from": "from",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
+                        }
                     ],
                     "transferred_classes": [
                         {
                             "from": "from",
                             "from_script": "from_script",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
+                        }
                     ],
                 },
                 "observability": {
@@ -107,23 +89,13 @@ class TestScripts:
                     "head_sampling_rate": 0.1,
                 },
                 "placement": {"mode": "smart"},
-                "tags": ["string", "string", "string"],
+                "tags": ["string"],
                 "tail_consumers": [
                     {
                         "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                    },
-                    {
-                        "service": "my-log-consumer",
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                    },
-                    {
-                        "service": "my-log-consumer",
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                    },
+                    }
                 ],
                 "usage_model": "bundled",
                 "version_tags": {"foo": "string"},
@@ -418,7 +390,7 @@ class TestAsyncScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             rollback_to="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
+            any_part_name=[b"raw file contents"],
             metadata={
                 "assets": {
                     "config": {
@@ -435,47 +407,29 @@ class TestAsyncScripts:
                 ],
                 "body_part": "worker.js",
                 "compatibility_date": "2023-07-25",
-                "compatibility_flags": ["string", "string", "string"],
+                "compatibility_flags": ["string"],
                 "keep_assets": False,
-                "keep_bindings": ["string", "string", "string"],
+                "keep_bindings": ["string"],
                 "logpush": False,
                 "main_module": "worker.js",
                 "migrations": {
-                    "deleted_classes": ["string", "string", "string"],
-                    "new_classes": ["string", "string", "string"],
-                    "new_sqlite_classes": ["string", "string", "string"],
+                    "deleted_classes": ["string"],
+                    "new_classes": ["string"],
+                    "new_sqlite_classes": ["string"],
                     "new_tag": "v2",
                     "old_tag": "v1",
                     "renamed_classes": [
                         {
                             "from": "from",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
+                        }
                     ],
                     "transferred_classes": [
                         {
                             "from": "from",
                             "from_script": "from_script",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
+                        }
                     ],
                 },
                 "observability": {
@@ -483,23 +437,13 @@ class TestAsyncScripts:
                     "head_sampling_rate": 0.1,
                 },
                 "placement": {"mode": "smart"},
-                "tags": ["string", "string", "string"],
+                "tags": ["string"],
                 "tail_consumers": [
                     {
                         "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                    },
-                    {
-                        "service": "my-log-consumer",
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                    },
-                    {
-                        "service": "my-log-consumer",
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                    },
+                    }
                 ],
                 "usage_model": "bundled",
                 "version_tags": {"foo": "string"},

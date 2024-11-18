@@ -25,45 +25,15 @@ class TestRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[EmailRoutingRule], rule, path=["response"])
@@ -75,45 +45,15 @@ class TestRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
             enabled=True,
             name="Send to user@example.net rule.",
@@ -128,45 +68,15 @@ class TestRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
         )
 
@@ -182,45 +92,15 @@ class TestRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -239,45 +119,15 @@ class TestRules:
                 actions=[
                     {
                         "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
-                    {
-                        "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
-                    {
-                        "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
+                        "value": ["destinationaddress@example.net"],
+                    }
                 ],
                 matchers=[
                     {
                         "field": "to",
                         "type": "literal",
                         "value": "test@example.com",
-                    },
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    },
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    },
+                    }
                 ],
             )
 
@@ -289,45 +139,15 @@ class TestRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[EmailRoutingRule], rule, path=["response"])
@@ -340,45 +160,15 @@ class TestRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
             enabled=True,
             name="Send to user@example.net rule.",
@@ -394,45 +184,15 @@ class TestRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
         )
 
@@ -449,45 +209,15 @@ class TestRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -507,45 +237,15 @@ class TestRules:
                 actions=[
                     {
                         "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
-                    {
-                        "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
-                    {
-                        "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
+                        "value": ["destinationaddress@example.net"],
+                    }
                 ],
                 matchers=[
                     {
                         "field": "to",
                         "type": "literal",
                         "value": "test@example.com",
-                    },
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    },
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    },
+                    }
                 ],
             )
 
@@ -556,45 +256,15 @@ class TestRules:
                 actions=[
                     {
                         "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
-                    {
-                        "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
-                    {
-                        "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
+                        "value": ["destinationaddress@example.net"],
+                    }
                 ],
                 matchers=[
                     {
                         "field": "to",
                         "type": "literal",
                         "value": "test@example.com",
-                    },
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    },
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    },
+                    }
                 ],
             )
 
@@ -753,45 +423,15 @@ class TestAsyncRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[EmailRoutingRule], rule, path=["response"])
@@ -803,45 +443,15 @@ class TestAsyncRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
             enabled=True,
             name="Send to user@example.net rule.",
@@ -856,45 +466,15 @@ class TestAsyncRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
         )
 
@@ -910,45 +490,15 @@ class TestAsyncRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -967,45 +517,15 @@ class TestAsyncRules:
                 actions=[
                     {
                         "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
-                    {
-                        "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
-                    {
-                        "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
+                        "value": ["destinationaddress@example.net"],
+                    }
                 ],
                 matchers=[
                     {
                         "field": "to",
                         "type": "literal",
                         "value": "test@example.com",
-                    },
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    },
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    },
+                    }
                 ],
             )
 
@@ -1017,45 +537,15 @@ class TestAsyncRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[EmailRoutingRule], rule, path=["response"])
@@ -1068,45 +558,15 @@ class TestAsyncRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
             enabled=True,
             name="Send to user@example.net rule.",
@@ -1122,45 +582,15 @@ class TestAsyncRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
         )
 
@@ -1177,45 +607,15 @@ class TestAsyncRules:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
             matchers=[
                 {
                     "field": "to",
                     "type": "literal",
                     "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
-                {
-                    "field": "to",
-                    "type": "literal",
-                    "value": "test@example.com",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -1235,45 +635,15 @@ class TestAsyncRules:
                 actions=[
                     {
                         "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
-                    {
-                        "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
-                    {
-                        "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
+                        "value": ["destinationaddress@example.net"],
+                    }
                 ],
                 matchers=[
                     {
                         "field": "to",
                         "type": "literal",
                         "value": "test@example.com",
-                    },
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    },
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    },
+                    }
                 ],
             )
 
@@ -1284,45 +654,15 @@ class TestAsyncRules:
                 actions=[
                     {
                         "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
-                    {
-                        "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
-                    {
-                        "type": "drop",
-                        "value": [
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                            "destinationaddress@example.net",
-                        ],
-                    },
+                        "value": ["destinationaddress@example.net"],
+                    }
                 ],
                 matchers=[
                     {
                         "field": "to",
                         "type": "literal",
                         "value": "test@example.com",
-                    },
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    },
-                    {
-                        "field": "to",
-                        "type": "literal",
-                        "value": "test@example.com",
-                    },
+                    }
                 ],
             )
 
