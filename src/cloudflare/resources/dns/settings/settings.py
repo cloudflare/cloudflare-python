@@ -30,7 +30,6 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....types.dns import setting_edit_params
 from ...._base_client import make_request_options
-from ....types.dns.dns_setting_param import DNSSettingParam
 from ....types.dns.setting_get_response import SettingGetResponse
 from ....types.dns.setting_edit_response import SettingEditResponse
 
@@ -66,7 +65,7 @@ class SettingsResource(SyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        zone_defaults: DNSSettingParam | NotGiven = NOT_GIVEN,
+        zone_defaults: setting_edit_params.ZoneDefaults | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -197,7 +196,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        zone_defaults: DNSSettingParam | NotGiven = NOT_GIVEN,
+        zone_defaults: setting_edit_params.ZoneDefaults | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
