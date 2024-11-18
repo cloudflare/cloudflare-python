@@ -22,6 +22,7 @@ class TestSubdomain:
         subdomain = client.workers.scripts.subdomain.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            enabled=True,
         )
         assert_matches_type(SubdomainCreateResponse, subdomain, path=["response"])
 
@@ -31,6 +32,7 @@ class TestSubdomain:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
+            previews_enabled=True,
         )
         assert_matches_type(SubdomainCreateResponse, subdomain, path=["response"])
 
@@ -39,6 +41,7 @@ class TestSubdomain:
         response = client.workers.scripts.subdomain.with_raw_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            enabled=True,
         )
 
         assert response.is_closed is True
@@ -51,6 +54,7 @@ class TestSubdomain:
         with client.workers.scripts.subdomain.with_streaming_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            enabled=True,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -66,12 +70,14 @@ class TestSubdomain:
             client.workers.scripts.subdomain.with_raw_response.create(
                 script_name="this-is_my_script-01",
                 account_id="",
+                enabled=True,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.subdomain.with_raw_response.create(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                enabled=True,
             )
 
     @parametrize
@@ -131,6 +137,7 @@ class TestAsyncSubdomain:
         subdomain = await async_client.workers.scripts.subdomain.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            enabled=True,
         )
         assert_matches_type(SubdomainCreateResponse, subdomain, path=["response"])
 
@@ -140,6 +147,7 @@ class TestAsyncSubdomain:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
+            previews_enabled=True,
         )
         assert_matches_type(SubdomainCreateResponse, subdomain, path=["response"])
 
@@ -148,6 +156,7 @@ class TestAsyncSubdomain:
         response = await async_client.workers.scripts.subdomain.with_raw_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            enabled=True,
         )
 
         assert response.is_closed is True
@@ -160,6 +169,7 @@ class TestAsyncSubdomain:
         async with async_client.workers.scripts.subdomain.with_streaming_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            enabled=True,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -175,12 +185,14 @@ class TestAsyncSubdomain:
             await async_client.workers.scripts.subdomain.with_raw_response.create(
                 script_name="this-is_my_script-01",
                 account_id="",
+                enabled=True,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.subdomain.with_raw_response.create(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                enabled=True,
             )
 
     @parametrize

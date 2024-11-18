@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -52,7 +52,7 @@ class SettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingListResponse:
+    ) -> Optional[SettingListResponse]:
         """
         Returns a list of settings (and their details) that Page Rules can apply to
         matching requests.
@@ -77,9 +77,9 @@ class SettingsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SettingListResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[SettingListResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[SettingListResponse], ResultWrapper[SettingListResponse]),
+            cast_to=cast(Type[Optional[SettingListResponse]], ResultWrapper[SettingListResponse]),
         )
 
 
@@ -113,7 +113,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingListResponse:
+    ) -> Optional[SettingListResponse]:
         """
         Returns a list of settings (and their details) that Page Rules can apply to
         matching requests.
@@ -138,9 +138,9 @@ class AsyncSettingsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SettingListResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[SettingListResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[SettingListResponse], ResultWrapper[SettingListResponse]),
+            cast_to=cast(Type[Optional[SettingListResponse]], ResultWrapper[SettingListResponse]),
         )
 
 
