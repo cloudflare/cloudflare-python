@@ -22,7 +22,7 @@ class TestSchedules:
         schedule = client.workers.scripts.schedules.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}, {}, {}],
+            body=[{}],
         )
         assert_matches_type(Optional[ScheduleUpdateResponse], schedule, path=["response"])
 
@@ -31,7 +31,7 @@ class TestSchedules:
         response = client.workers.scripts.schedules.with_raw_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}, {}, {}],
+            body=[{}],
         )
 
         assert response.is_closed is True
@@ -44,7 +44,7 @@ class TestSchedules:
         with client.workers.scripts.schedules.with_streaming_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}, {}, {}],
+            body=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -60,14 +60,14 @@ class TestSchedules:
             client.workers.scripts.schedules.with_raw_response.update(
                 script_name="this-is_my_script-01",
                 account_id="",
-                body=[{}, {}, {}],
+                body=[{}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.schedules.with_raw_response.update(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{}, {}, {}],
+                body=[{}],
             )
 
     @parametrize
@@ -127,7 +127,7 @@ class TestAsyncSchedules:
         schedule = await async_client.workers.scripts.schedules.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}, {}, {}],
+            body=[{}],
         )
         assert_matches_type(Optional[ScheduleUpdateResponse], schedule, path=["response"])
 
@@ -136,7 +136,7 @@ class TestAsyncSchedules:
         response = await async_client.workers.scripts.schedules.with_raw_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}, {}, {}],
+            body=[{}],
         )
 
         assert response.is_closed is True
@@ -149,7 +149,7 @@ class TestAsyncSchedules:
         async with async_client.workers.scripts.schedules.with_streaming_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[{}, {}, {}],
+            body=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -165,14 +165,14 @@ class TestAsyncSchedules:
             await async_client.workers.scripts.schedules.with_raw_response.update(
                 script_name="this-is_my_script-01",
                 account_id="",
-                body=[{}, {}, {}],
+                body=[{}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.schedules.with_raw_response.update(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=[{}, {}, {}],
+                body=[{}],
             )
 
     @parametrize

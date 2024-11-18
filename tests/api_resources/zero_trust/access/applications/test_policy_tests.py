@@ -33,22 +33,10 @@ class TestPolicyTests:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             decision="allow",
-            exclude=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
+            exclude=[{"email": {"email": "test@example.com"}}],
+            include=[{"email": {"email": "test@example.com"}}],
             name="Allow devs",
-            require=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
+            require=[{"email": {"email": "test@example.com"}}],
         )
         assert_matches_type(PolicyTestCreateResponse, policy_test, path=["response"])
 
@@ -148,22 +136,10 @@ class TestAsyncPolicyTests:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             decision="allow",
-            exclude=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
+            exclude=[{"email": {"email": "test@example.com"}}],
+            include=[{"email": {"email": "test@example.com"}}],
             name="Allow devs",
-            require=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
+            require=[{"email": {"email": "test@example.com"}}],
         )
         assert_matches_type(PolicyTestCreateResponse, policy_test, path=["response"])
 

@@ -22,7 +22,7 @@ class TestPhases:
     def test_method_update(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.update(
             ruleset_phase="ddos_l4",
-            rules=[{}, {}, {}],
+            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
@@ -62,67 +62,7 @@ class TestPhases:
                         "score_response_header_name": "my-score",
                     },
                     "ref": "my_ref",
-                },
-                {
-                    "id": "3a03d665bac047339bb530ecb439a90d",
-                    "action": "block",
-                    "action_parameters": {
-                        "response": {
-                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
-                            "content_type": "application/json",
-                            "status_code": 400,
-                        }
-                    },
-                    "description": "Block when the IP address is not 1.1.1.1",
-                    "enabled": True,
-                    "exposed_credential_check": {
-                        "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
-                        "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
-                    },
-                    "expression": "ip.src ne 1.1.1.1",
-                    "logging": {"enabled": True},
-                    "ratelimit": {
-                        "characteristics": ["ip.src"],
-                        "period": 10,
-                        "counting_expression": 'http.request.body.raw eq "abcd"',
-                        "mitigation_timeout": 600,
-                        "requests_per_period": 1000,
-                        "requests_to_origin": True,
-                        "score_per_period": 400,
-                        "score_response_header_name": "my-score",
-                    },
-                    "ref": "my_ref",
-                },
-                {
-                    "id": "3a03d665bac047339bb530ecb439a90d",
-                    "action": "block",
-                    "action_parameters": {
-                        "response": {
-                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
-                            "content_type": "application/json",
-                            "status_code": 400,
-                        }
-                    },
-                    "description": "Block when the IP address is not 1.1.1.1",
-                    "enabled": True,
-                    "exposed_credential_check": {
-                        "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
-                        "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
-                    },
-                    "expression": "ip.src ne 1.1.1.1",
-                    "logging": {"enabled": True},
-                    "ratelimit": {
-                        "characteristics": ["ip.src"],
-                        "period": 10,
-                        "counting_expression": 'http.request.body.raw eq "abcd"',
-                        "mitigation_timeout": 600,
-                        "requests_per_period": 1000,
-                        "requests_to_origin": True,
-                        "score_per_period": 400,
-                        "score_response_header_name": "my-score",
-                    },
-                    "ref": "my_ref",
-                },
+                }
             ],
             account_id="account_id",
             description="My ruleset to execute managed rulesets",
@@ -135,7 +75,7 @@ class TestPhases:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.rulesets.phases.with_raw_response.update(
             ruleset_phase="ddos_l4",
-            rules=[{}, {}, {}],
+            rules=[{}],
             account_id="account_id",
         )
 
@@ -149,7 +89,7 @@ class TestPhases:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.rulesets.phases.with_streaming_response.update(
             ruleset_phase="ddos_l4",
-            rules=[{}, {}, {}],
+            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -166,14 +106,14 @@ class TestPhases:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.phases.with_raw_response.update(
                 ruleset_phase="ddos_l4",
-                rules=[{}, {}, {}],
+                rules=[{}],
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.phases.with_raw_response.update(
                 ruleset_phase="ddos_l4",
-                rules=[{}, {}, {}],
+                rules=[{}],
                 account_id="account_id",
             )
 
@@ -247,7 +187,7 @@ class TestAsyncPhases:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.update(
             ruleset_phase="ddos_l4",
-            rules=[{}, {}, {}],
+            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
@@ -287,67 +227,7 @@ class TestAsyncPhases:
                         "score_response_header_name": "my-score",
                     },
                     "ref": "my_ref",
-                },
-                {
-                    "id": "3a03d665bac047339bb530ecb439a90d",
-                    "action": "block",
-                    "action_parameters": {
-                        "response": {
-                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
-                            "content_type": "application/json",
-                            "status_code": 400,
-                        }
-                    },
-                    "description": "Block when the IP address is not 1.1.1.1",
-                    "enabled": True,
-                    "exposed_credential_check": {
-                        "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
-                        "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
-                    },
-                    "expression": "ip.src ne 1.1.1.1",
-                    "logging": {"enabled": True},
-                    "ratelimit": {
-                        "characteristics": ["ip.src"],
-                        "period": 10,
-                        "counting_expression": 'http.request.body.raw eq "abcd"',
-                        "mitigation_timeout": 600,
-                        "requests_per_period": 1000,
-                        "requests_to_origin": True,
-                        "score_per_period": 400,
-                        "score_response_header_name": "my-score",
-                    },
-                    "ref": "my_ref",
-                },
-                {
-                    "id": "3a03d665bac047339bb530ecb439a90d",
-                    "action": "block",
-                    "action_parameters": {
-                        "response": {
-                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
-                            "content_type": "application/json",
-                            "status_code": 400,
-                        }
-                    },
-                    "description": "Block when the IP address is not 1.1.1.1",
-                    "enabled": True,
-                    "exposed_credential_check": {
-                        "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
-                        "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
-                    },
-                    "expression": "ip.src ne 1.1.1.1",
-                    "logging": {"enabled": True},
-                    "ratelimit": {
-                        "characteristics": ["ip.src"],
-                        "period": 10,
-                        "counting_expression": 'http.request.body.raw eq "abcd"',
-                        "mitigation_timeout": 600,
-                        "requests_per_period": 1000,
-                        "requests_to_origin": True,
-                        "score_per_period": 400,
-                        "score_response_header_name": "my-score",
-                    },
-                    "ref": "my_ref",
-                },
+                }
             ],
             account_id="account_id",
             description="My ruleset to execute managed rulesets",
@@ -360,7 +240,7 @@ class TestAsyncPhases:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.phases.with_raw_response.update(
             ruleset_phase="ddos_l4",
-            rules=[{}, {}, {}],
+            rules=[{}],
             account_id="account_id",
         )
 
@@ -374,7 +254,7 @@ class TestAsyncPhases:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.phases.with_streaming_response.update(
             ruleset_phase="ddos_l4",
-            rules=[{}, {}, {}],
+            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -391,14 +271,14 @@ class TestAsyncPhases:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.phases.with_raw_response.update(
                 ruleset_phase="ddos_l4",
-                rules=[{}, {}, {}],
+                rules=[{}],
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.phases.with_raw_response.update(
                 ruleset_phase="ddos_l4",
-                rules=[{}, {}, {}],
+                rules=[{}],
                 account_id="account_id",
             )
 

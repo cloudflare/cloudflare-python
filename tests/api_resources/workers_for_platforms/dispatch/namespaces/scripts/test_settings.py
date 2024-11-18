@@ -38,51 +38,29 @@ class TestSettings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             settings={
-                "bindings": [{"type": "kv_namespace"}, {"type": "kv_namespace"}, {"type": "kv_namespace"}],
+                "bindings": [{"type": "kv_namespace"}],
                 "compatibility_date": "2022-04-05",
-                "compatibility_flags": [
-                    "formdata_parser_supports_files",
-                    "formdata_parser_supports_files",
-                    "formdata_parser_supports_files",
-                ],
+                "compatibility_flags": ["formdata_parser_supports_files"],
                 "limits": {"cpu_ms": 50},
                 "logpush": False,
                 "migrations": {
-                    "deleted_classes": ["string", "string", "string"],
-                    "new_classes": ["string", "string", "string"],
-                    "new_sqlite_classes": ["string", "string", "string"],
+                    "deleted_classes": ["string"],
+                    "new_classes": ["string"],
+                    "new_sqlite_classes": ["string"],
                     "new_tag": "v2",
                     "old_tag": "v1",
                     "renamed_classes": [
                         {
                             "from": "from",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
+                        }
                     ],
                     "transferred_classes": [
                         {
                             "from": "from",
                             "from_script": "from_script",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
+                        }
                     ],
                 },
                 "observability": {
@@ -90,23 +68,13 @@ class TestSettings:
                     "head_sampling_rate": 0.1,
                 },
                 "placement": {"mode": "smart"},
-                "tags": ["my-tag", "my-tag", "my-tag"],
+                "tags": ["my-tag"],
                 "tail_consumers": [
                     {
                         "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                    },
-                    {
-                        "service": "my-log-consumer",
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                    },
-                    {
-                        "service": "my-log-consumer",
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                    },
+                    }
                 ],
                 "usage_model": "unbound",
             },
@@ -249,51 +217,29 @@ class TestAsyncSettings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             settings={
-                "bindings": [{"type": "kv_namespace"}, {"type": "kv_namespace"}, {"type": "kv_namespace"}],
+                "bindings": [{"type": "kv_namespace"}],
                 "compatibility_date": "2022-04-05",
-                "compatibility_flags": [
-                    "formdata_parser_supports_files",
-                    "formdata_parser_supports_files",
-                    "formdata_parser_supports_files",
-                ],
+                "compatibility_flags": ["formdata_parser_supports_files"],
                 "limits": {"cpu_ms": 50},
                 "logpush": False,
                 "migrations": {
-                    "deleted_classes": ["string", "string", "string"],
-                    "new_classes": ["string", "string", "string"],
-                    "new_sqlite_classes": ["string", "string", "string"],
+                    "deleted_classes": ["string"],
+                    "new_classes": ["string"],
+                    "new_sqlite_classes": ["string"],
                     "new_tag": "v2",
                     "old_tag": "v1",
                     "renamed_classes": [
                         {
                             "from": "from",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
+                        }
                     ],
                     "transferred_classes": [
                         {
                             "from": "from",
                             "from_script": "from_script",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
+                        }
                     ],
                 },
                 "observability": {
@@ -301,23 +247,13 @@ class TestAsyncSettings:
                     "head_sampling_rate": 0.1,
                 },
                 "placement": {"mode": "smart"},
-                "tags": ["my-tag", "my-tag", "my-tag"],
+                "tags": ["my-tag"],
                 "tail_consumers": [
                     {
                         "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                    },
-                    {
-                        "service": "my-log-consumer",
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                    },
-                    {
-                        "service": "my-log-consumer",
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                    },
+                    }
                 ],
                 "usage_model": "unbound",
             },

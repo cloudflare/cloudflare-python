@@ -21,38 +21,30 @@ class TestTop:
     @parametrize
     def test_method_ases(self, client: Cloudflare) -> None:
         top = client.radar.dns.top.ases(
-            domain=["string", "string", "string"],
+            domain=["string"],
         )
         assert_matches_type(TopAsesResponse, top, path=["response"])
 
     @parametrize
     def test_method_ases_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.dns.top.ases(
-            domain=["string", "string", "string"],
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            domain=["string"],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit=5,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TopAsesResponse, top, path=["response"])
 
     @parametrize
     def test_raw_response_ases(self, client: Cloudflare) -> None:
         response = client.radar.dns.top.with_raw_response.ases(
-            domain=["string", "string", "string"],
+            domain=["string"],
         )
 
         assert response.is_closed is True
@@ -63,7 +55,7 @@ class TestTop:
     @parametrize
     def test_streaming_response_ases(self, client: Cloudflare) -> None:
         with client.radar.dns.top.with_streaming_response.ases(
-            domain=["string", "string", "string"],
+            domain=["string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -76,38 +68,30 @@ class TestTop:
     @parametrize
     def test_method_locations(self, client: Cloudflare) -> None:
         top = client.radar.dns.top.locations(
-            domain=["string", "string", "string"],
+            domain=["string"],
         )
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
     @parametrize
     def test_method_locations_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.dns.top.locations(
-            domain=["string", "string", "string"],
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            domain=["string"],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit=5,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
     @parametrize
     def test_raw_response_locations(self, client: Cloudflare) -> None:
         response = client.radar.dns.top.with_raw_response.locations(
-            domain=["string", "string", "string"],
+            domain=["string"],
         )
 
         assert response.is_closed is True
@@ -118,7 +102,7 @@ class TestTop:
     @parametrize
     def test_streaming_response_locations(self, client: Cloudflare) -> None:
         with client.radar.dns.top.with_streaming_response.locations(
-            domain=["string", "string", "string"],
+            domain=["string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -135,38 +119,30 @@ class TestAsyncTop:
     @parametrize
     async def test_method_ases(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.dns.top.ases(
-            domain=["string", "string", "string"],
+            domain=["string"],
         )
         assert_matches_type(TopAsesResponse, top, path=["response"])
 
     @parametrize
     async def test_method_ases_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.dns.top.ases(
-            domain=["string", "string", "string"],
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            domain=["string"],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit=5,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TopAsesResponse, top, path=["response"])
 
     @parametrize
     async def test_raw_response_ases(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.dns.top.with_raw_response.ases(
-            domain=["string", "string", "string"],
+            domain=["string"],
         )
 
         assert response.is_closed is True
@@ -177,7 +153,7 @@ class TestAsyncTop:
     @parametrize
     async def test_streaming_response_ases(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.dns.top.with_streaming_response.ases(
-            domain=["string", "string", "string"],
+            domain=["string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -190,38 +166,30 @@ class TestAsyncTop:
     @parametrize
     async def test_method_locations(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.dns.top.locations(
-            domain=["string", "string", "string"],
+            domain=["string"],
         )
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
     @parametrize
     async def test_method_locations_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.dns.top.locations(
-            domain=["string", "string", "string"],
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            domain=["string"],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit=5,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
     @parametrize
     async def test_raw_response_locations(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.dns.top.with_raw_response.locations(
-            domain=["string", "string", "string"],
+            domain=["string"],
         )
 
         assert response.is_closed is True
@@ -232,7 +200,7 @@ class TestAsyncTop:
     @parametrize
     async def test_streaming_response_locations(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.dns.top.with_streaming_response.locations(
-            domain=["string", "string", "string"],
+            domain=["string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

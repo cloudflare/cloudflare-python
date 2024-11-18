@@ -55,7 +55,7 @@ class TestApps:
                 "connectivity": "all",
                 "type": "dynamic",
             },
-            origin_direct=["tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080"],
+            origin_direct=["tcp://127.0.0.1:8080"],
             origin_dns={
                 "name": "origin.example.com",
                 "ttl": 600,
@@ -132,7 +132,7 @@ class TestApps:
                 "type": "CNAME",
             },
             protocol="tcp/22",
-            origin_direct=["tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080"],
+            origin_direct=["tcp://127.0.0.1:8080"],
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
@@ -206,7 +206,7 @@ class TestApps:
                 "connectivity": "all",
                 "type": "dynamic",
             },
-            origin_direct=["tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080"],
+            origin_direct=["tcp://127.0.0.1:8080"],
             origin_dns={
                 "name": "origin.example.com",
                 "ttl": 600,
@@ -300,7 +300,7 @@ class TestApps:
                 "type": "CNAME",
             },
             protocol="tcp/22",
-            origin_direct=["tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080"],
+            origin_direct=["tcp://127.0.0.1:8080"],
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
 
@@ -532,7 +532,7 @@ class TestAsyncApps:
                 "connectivity": "all",
                 "type": "dynamic",
             },
-            origin_direct=["tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080"],
+            origin_direct=["tcp://127.0.0.1:8080"],
             origin_dns={
                 "name": "origin.example.com",
                 "ttl": 600,
@@ -609,7 +609,7 @@ class TestAsyncApps:
                 "type": "CNAME",
             },
             protocol="tcp/22",
-            origin_direct=["tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080"],
+            origin_direct=["tcp://127.0.0.1:8080"],
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
@@ -683,7 +683,7 @@ class TestAsyncApps:
                 "connectivity": "all",
                 "type": "dynamic",
             },
-            origin_direct=["tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080"],
+            origin_direct=["tcp://127.0.0.1:8080"],
             origin_dns={
                 "name": "origin.example.com",
                 "ttl": 600,
@@ -777,7 +777,7 @@ class TestAsyncApps:
                 "type": "CNAME",
             },
             protocol="tcp/22",
-            origin_direct=["tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080", "tcp://127.0.0.1:8080"],
+            origin_direct=["tcp://127.0.0.1:8080"],
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
 

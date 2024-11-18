@@ -191,7 +191,7 @@ class TestDatabase:
             dump_options={
                 "no_data": True,
                 "no_schema": True,
-                "tables": ["string", "string", "string"],
+                "tables": ["string"],
             },
         )
         assert_matches_type(DatabaseExportResponse, database, path=["response"])
@@ -763,7 +763,7 @@ class TestAsyncDatabase:
             dump_options={
                 "no_data": True,
                 "no_schema": True,
-                "tables": ["string", "string", "string"],
+                "tables": ["string"],
             },
         )
         assert_matches_type(DatabaseExportResponse, database, path=["response"])

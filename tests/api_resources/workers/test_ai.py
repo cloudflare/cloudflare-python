@@ -87,9 +87,9 @@ class TestAI:
             prompt="x",
             guidance=0,
             height=256,
-            image=[0, 0, 0],
+            image=[0],
             image_b64="image_b64",
-            mask=[0, 0, 0],
+            mask=[0],
             negative_prompt="negative_prompt",
             num_steps=0,
             seed=0,
@@ -263,7 +263,7 @@ class TestAI:
         ai = client.workers.ai.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            audio=[0, 0, 0],
+            audio=[0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -272,7 +272,7 @@ class TestAI:
         ai = client.workers.ai.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            audio=[0, 0, 0],
+            audio=[0],
             source_lang="source_lang",
             target_lang="target_lang",
         )
@@ -283,7 +283,7 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            audio=[0, 0, 0],
+            audio=[0],
         )
 
         assert response.is_closed is True
@@ -296,7 +296,7 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            audio=[0, 0, 0],
+            audio=[0],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -312,14 +312,14 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 model_name="model_name",
                 account_id="",
-                audio=[0, 0, 0],
+                audio=[0],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 model_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                audio=[0, 0, 0],
+                audio=[0],
             )
 
     @parametrize
@@ -327,7 +327,7 @@ class TestAI:
         ai = client.workers.ai.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -336,7 +336,7 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
         )
 
         assert response.is_closed is True
@@ -349,7 +349,7 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -365,14 +365,14 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 model_name="model_name",
                 account_id="",
-                image=[0, 0, 0],
+                image=[0],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 model_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                image=[0, 0, 0],
+                image=[0],
             )
 
     @parametrize
@@ -388,7 +388,7 @@ class TestAI:
         ai = client.workers.ai.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -514,15 +514,7 @@ class TestAI:
                 {
                     "content": "content",
                     "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
@@ -536,30 +528,14 @@ class TestAI:
                 {
                     "content": "content",
                     "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
+                }
             ],
             frequency_penalty=0,
             functions=[
                 {
                     "code": "code",
                     "name": "name",
-                },
-                {
-                    "code": "code",
-                    "name": "name",
-                },
-                {
-                    "code": "code",
-                    "name": "name",
-                },
+                }
             ],
             max_tokens=0,
             presence_penalty=0,
@@ -579,37 +555,9 @@ class TestAI:
                             }
                         },
                         "type": "type",
-                        "required": ["string", "string", "string"],
+                        "required": ["string"],
                     },
-                },
-                {
-                    "description": "description",
-                    "name": "name",
-                    "parameters": {
-                        "properties": {
-                            "foo": {
-                                "description": "description",
-                                "type": "type",
-                            }
-                        },
-                        "type": "type",
-                        "required": ["string", "string", "string"],
-                    },
-                },
-                {
-                    "description": "description",
-                    "name": "name",
-                    "parameters": {
-                        "properties": {
-                            "foo": {
-                                "description": "description",
-                                "type": "type",
-                            }
-                        },
-                        "type": "type",
-                        "required": ["string", "string", "string"],
-                    },
-                },
+                }
             ],
             top_k=1,
             top_p=0,
@@ -625,15 +573,7 @@ class TestAI:
                 {
                     "content": "content",
                     "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
+                }
             ],
         )
 
@@ -651,15 +591,7 @@ class TestAI:
                 {
                     "content": "content",
                     "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -680,15 +612,7 @@ class TestAI:
                     {
                         "content": "content",
                         "role": "role",
-                    },
-                    {
-                        "content": "content",
-                        "role": "role",
-                    },
-                    {
-                        "content": "content",
-                        "role": "role",
-                    },
+                    }
                 ],
             )
 
@@ -700,15 +624,7 @@ class TestAI:
                     {
                         "content": "content",
                         "role": "role",
-                    },
-                    {
-                        "content": "content",
-                        "role": "role",
-                    },
-                    {
-                        "content": "content",
-                        "role": "role",
-                    },
+                    }
                 ],
             )
 
@@ -849,7 +765,7 @@ class TestAI:
         ai = client.workers.ai.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -858,7 +774,7 @@ class TestAI:
         ai = client.workers.ai.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
             max_tokens=0,
             prompt="prompt",
             raw=True,
@@ -871,7 +787,7 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
         )
 
         assert response.is_closed is True
@@ -884,7 +800,7 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -900,14 +816,14 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 model_name="model_name",
                 account_id="",
-                image=[0, 0, 0],
+                image=[0],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 model_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                image=[0, 0, 0],
+                image=[0],
             )
 
 
@@ -984,9 +900,9 @@ class TestAsyncAI:
             prompt="x",
             guidance=0,
             height=256,
-            image=[0, 0, 0],
+            image=[0],
             image_b64="image_b64",
-            mask=[0, 0, 0],
+            mask=[0],
             negative_prompt="negative_prompt",
             num_steps=0,
             seed=0,
@@ -1160,7 +1076,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            audio=[0, 0, 0],
+            audio=[0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1169,7 +1085,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            audio=[0, 0, 0],
+            audio=[0],
             source_lang="source_lang",
             target_lang="target_lang",
         )
@@ -1180,7 +1096,7 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            audio=[0, 0, 0],
+            audio=[0],
         )
 
         assert response.is_closed is True
@@ -1193,7 +1109,7 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            audio=[0, 0, 0],
+            audio=[0],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1209,14 +1125,14 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 model_name="model_name",
                 account_id="",
-                audio=[0, 0, 0],
+                audio=[0],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 model_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                audio=[0, 0, 0],
+                audio=[0],
             )
 
     @parametrize
@@ -1224,7 +1140,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1233,7 +1149,7 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
         )
 
         assert response.is_closed is True
@@ -1246,7 +1162,7 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1262,14 +1178,14 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 model_name="model_name",
                 account_id="",
-                image=[0, 0, 0],
+                image=[0],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 model_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                image=[0, 0, 0],
+                image=[0],
             )
 
     @parametrize
@@ -1285,7 +1201,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1411,15 +1327,7 @@ class TestAsyncAI:
                 {
                     "content": "content",
                     "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
@@ -1433,30 +1341,14 @@ class TestAsyncAI:
                 {
                     "content": "content",
                     "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
+                }
             ],
             frequency_penalty=0,
             functions=[
                 {
                     "code": "code",
                     "name": "name",
-                },
-                {
-                    "code": "code",
-                    "name": "name",
-                },
-                {
-                    "code": "code",
-                    "name": "name",
-                },
+                }
             ],
             max_tokens=0,
             presence_penalty=0,
@@ -1476,37 +1368,9 @@ class TestAsyncAI:
                             }
                         },
                         "type": "type",
-                        "required": ["string", "string", "string"],
+                        "required": ["string"],
                     },
-                },
-                {
-                    "description": "description",
-                    "name": "name",
-                    "parameters": {
-                        "properties": {
-                            "foo": {
-                                "description": "description",
-                                "type": "type",
-                            }
-                        },
-                        "type": "type",
-                        "required": ["string", "string", "string"],
-                    },
-                },
-                {
-                    "description": "description",
-                    "name": "name",
-                    "parameters": {
-                        "properties": {
-                            "foo": {
-                                "description": "description",
-                                "type": "type",
-                            }
-                        },
-                        "type": "type",
-                        "required": ["string", "string", "string"],
-                    },
-                },
+                }
             ],
             top_k=1,
             top_p=0,
@@ -1522,15 +1386,7 @@ class TestAsyncAI:
                 {
                     "content": "content",
                     "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
+                }
             ],
         )
 
@@ -1548,15 +1404,7 @@ class TestAsyncAI:
                 {
                     "content": "content",
                     "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
-                {
-                    "content": "content",
-                    "role": "role",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -1577,15 +1425,7 @@ class TestAsyncAI:
                     {
                         "content": "content",
                         "role": "role",
-                    },
-                    {
-                        "content": "content",
-                        "role": "role",
-                    },
-                    {
-                        "content": "content",
-                        "role": "role",
-                    },
+                    }
                 ],
             )
 
@@ -1597,15 +1437,7 @@ class TestAsyncAI:
                     {
                         "content": "content",
                         "role": "role",
-                    },
-                    {
-                        "content": "content",
-                        "role": "role",
-                    },
-                    {
-                        "content": "content",
-                        "role": "role",
-                    },
+                    }
                 ],
             )
 
@@ -1746,7 +1578,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1755,7 +1587,7 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
             max_tokens=0,
             prompt="prompt",
             raw=True,
@@ -1768,7 +1600,7 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
         )
 
         assert response.is_closed is True
@@ -1781,7 +1613,7 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            image=[0, 0, 0],
+            image=[0],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1797,12 +1629,12 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 model_name="model_name",
                 account_id="",
-                image=[0, 0, 0],
+                image=[0],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 model_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                image=[0, 0, 0],
+                image=[0],
             )

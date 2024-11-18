@@ -94,17 +94,7 @@ class TestBlockSenders:
                     "is_regex": False,
                     "pattern": "test@example.com",
                     "pattern_type": "EMAIL",
-                },
-                {
-                    "is_regex": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                },
-                {
-                    "is_regex": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                },
+                }
             ],
         )
         assert_matches_type(BlockSenderCreateResponse, block_sender, path=["response"])
@@ -118,17 +108,7 @@ class TestBlockSenders:
                     "is_regex": False,
                     "pattern": "test@example.com",
                     "pattern_type": "EMAIL",
-                },
-                {
-                    "is_regex": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                },
-                {
-                    "is_regex": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                },
+                }
             ],
         )
 
@@ -146,17 +126,7 @@ class TestBlockSenders:
                     "is_regex": False,
                     "pattern": "test@example.com",
                     "pattern_type": "EMAIL",
-                },
-                {
-                    "is_regex": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                },
-                {
-                    "is_regex": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -177,17 +147,7 @@ class TestBlockSenders:
                         "is_regex": False,
                         "pattern": "test@example.com",
                         "pattern_type": "EMAIL",
-                    },
-                    {
-                        "is_regex": False,
-                        "pattern": "test@example.com",
-                        "pattern_type": "EMAIL",
-                    },
-                    {
-                        "is_regex": False,
-                        "pattern": "test@example.com",
-                        "pattern_type": "EMAIL",
-                    },
+                    }
                 ],
             )
 
@@ -454,17 +414,7 @@ class TestAsyncBlockSenders:
                     "is_regex": False,
                     "pattern": "test@example.com",
                     "pattern_type": "EMAIL",
-                },
-                {
-                    "is_regex": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                },
-                {
-                    "is_regex": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                },
+                }
             ],
         )
         assert_matches_type(BlockSenderCreateResponse, block_sender, path=["response"])
@@ -478,17 +428,7 @@ class TestAsyncBlockSenders:
                     "is_regex": False,
                     "pattern": "test@example.com",
                     "pattern_type": "EMAIL",
-                },
-                {
-                    "is_regex": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                },
-                {
-                    "is_regex": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                },
+                }
             ],
         )
 
@@ -506,17 +446,7 @@ class TestAsyncBlockSenders:
                     "is_regex": False,
                     "pattern": "test@example.com",
                     "pattern_type": "EMAIL",
-                },
-                {
-                    "is_regex": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                },
-                {
-                    "is_regex": False,
-                    "pattern": "test@example.com",
-                    "pattern_type": "EMAIL",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -537,17 +467,7 @@ class TestAsyncBlockSenders:
                         "is_regex": False,
                         "pattern": "test@example.com",
                         "pattern_type": "EMAIL",
-                    },
-                    {
-                        "is_regex": False,
-                        "pattern": "test@example.com",
-                        "pattern_type": "EMAIL",
-                    },
-                    {
-                        "is_regex": False,
-                        "pattern": "test@example.com",
-                        "pattern_type": "EMAIL",
-                    },
+                    }
                 ],
             )
 

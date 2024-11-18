@@ -50,17 +50,7 @@ class TestDEXTests:
                     "id": "id",
                     "default": True,
                     "name": "name",
-                },
-                {
-                    "id": "id",
-                    "default": True,
-                    "name": "name",
-                },
-                {
-                    "id": "id",
-                    "default": True,
-                    "name": "name",
-                },
+                }
             ],
             targeted=True,
         )
@@ -140,17 +130,7 @@ class TestDEXTests:
                     "id": "id",
                     "default": True,
                     "name": "name",
-                },
-                {
-                    "id": "id",
-                    "default": True,
-                    "name": "name",
-                },
-                {
-                    "id": "id",
-                    "default": True,
-                    "name": "name",
-                },
+                }
             ],
             targeted=True,
         )
@@ -379,17 +359,7 @@ class TestAsyncDEXTests:
                     "id": "id",
                     "default": True,
                     "name": "name",
-                },
-                {
-                    "id": "id",
-                    "default": True,
-                    "name": "name",
-                },
-                {
-                    "id": "id",
-                    "default": True,
-                    "name": "name",
-                },
+                }
             ],
             targeted=True,
         )
@@ -469,17 +439,7 @@ class TestAsyncDEXTests:
                     "id": "id",
                     "default": True,
                     "name": "name",
-                },
-                {
-                    "id": "id",
-                    "default": True,
-                    "name": "name",
-                },
-                {
-                    "id": "id",
-                    "default": True,
-                    "name": "name",
-                },
+                }
             ],
             targeted=True,
         )

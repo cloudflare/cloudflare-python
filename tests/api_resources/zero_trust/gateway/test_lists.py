@@ -41,15 +41,7 @@ class TestLists:
                 {
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
-                },
-                {
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
-                {
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[ListCreateResponse], list_, path=["response"])
@@ -265,17 +257,9 @@ class TestLists:
                 {
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
-                },
-                {
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
-                {
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
+                }
             ],
-            remove=["8GE8721REF", "8GE8721REF", "8GE8721REF"],
+            remove=["8GE8721REF"],
         )
         assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
@@ -391,15 +375,7 @@ class TestAsyncLists:
                 {
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
-                },
-                {
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
-                {
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[ListCreateResponse], list_, path=["response"])
@@ -615,17 +591,9 @@ class TestAsyncLists:
                 {
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
-                },
-                {
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
-                {
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
+                }
             ],
-            remove=["8GE8721REF", "8GE8721REF", "8GE8721REF"],
+            remove=["8GE8721REF"],
         )
         assert_matches_type(Optional[GatewayList], list_, path=["response"])
 

@@ -24,7 +24,7 @@ class TestProxyEndpoints:
     def test_method_create(self, client: Cloudflare) -> None:
         proxy_endpoint = client.zero_trust.gateway.proxy_endpoints.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
+            ips=["192.0.2.1/32"],
             name="Devops team",
         )
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
@@ -33,7 +33,7 @@ class TestProxyEndpoints:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.proxy_endpoints.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
+            ips=["192.0.2.1/32"],
             name="Devops team",
         )
 
@@ -46,7 +46,7 @@ class TestProxyEndpoints:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.proxy_endpoints.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
+            ips=["192.0.2.1/32"],
             name="Devops team",
         ) as response:
             assert not response.is_closed
@@ -62,7 +62,7 @@ class TestProxyEndpoints:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.gateway.proxy_endpoints.with_raw_response.create(
                 account_id="",
-                ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
+                ips=["192.0.2.1/32"],
                 name="Devops team",
             )
 
@@ -165,7 +165,7 @@ class TestProxyEndpoints:
         proxy_endpoint = client.zero_trust.gateway.proxy_endpoints.edit(
             proxy_endpoint_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
-            ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
+            ips=["192.0.2.1/32"],
             name="Devops team",
         )
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
@@ -266,7 +266,7 @@ class TestAsyncProxyEndpoints:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         proxy_endpoint = await async_client.zero_trust.gateway.proxy_endpoints.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
+            ips=["192.0.2.1/32"],
             name="Devops team",
         )
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
@@ -275,7 +275,7 @@ class TestAsyncProxyEndpoints:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.proxy_endpoints.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
+            ips=["192.0.2.1/32"],
             name="Devops team",
         )
 
@@ -288,7 +288,7 @@ class TestAsyncProxyEndpoints:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.proxy_endpoints.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
+            ips=["192.0.2.1/32"],
             name="Devops team",
         ) as response:
             assert not response.is_closed
@@ -304,7 +304,7 @@ class TestAsyncProxyEndpoints:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.gateway.proxy_endpoints.with_raw_response.create(
                 account_id="",
-                ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
+                ips=["192.0.2.1/32"],
                 name="Devops team",
             )
 
@@ -407,7 +407,7 @@ class TestAsyncProxyEndpoints:
         proxy_endpoint = await async_client.zero_trust.gateway.proxy_endpoints.edit(
             proxy_endpoint_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
-            ips=["192.0.2.1/32", "192.0.2.1/32", "192.0.2.1/32"],
+            ips=["192.0.2.1/32"],
             name="Devops team",
         )
         assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])

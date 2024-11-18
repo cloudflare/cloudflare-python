@@ -30,7 +30,7 @@ class TestTests:
         test = client.zero_trust.dex.tests.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             colo="colo",
-            device_id=["string", "string", "string"],
+            device_id=["string"],
             page=1,
             per_page=1,
             test_name="testName",
@@ -84,7 +84,7 @@ class TestAsyncTests:
         test = await async_client.zero_trust.dex.tests.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
             colo="colo",
-            device_id=["string", "string", "string"],
+            device_id=["string"],
             page=1,
             per_page=1,
             test_name="testName",

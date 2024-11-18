@@ -71,19 +71,7 @@ class TestRules:
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2.2.2.2",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2.2.2.2",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
+                        }
                     ],
                     "ipv6": [
                         {
@@ -91,19 +79,7 @@ class TestRules:
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2001:DB8::",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2001:DB8::",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
+                        }
                     ],
                 },
                 "egress": {
@@ -127,7 +103,7 @@ class TestRules:
                 "override_host": "example.com",
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
-                "quarantine": {"file_types": ["exe", "pdf", "doc"]},
+                "quarantine": {"file_types": ["exe"]},
                 "resolve_dns_through_cloudflare": True,
                 "untrusted_cert": {"action": "pass_through"},
             },
@@ -234,19 +210,7 @@ class TestRules:
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2.2.2.2",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2.2.2.2",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
+                        }
                     ],
                     "ipv6": [
                         {
@@ -254,19 +218,7 @@ class TestRules:
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2001:DB8::",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2001:DB8::",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
+                        }
                     ],
                 },
                 "egress": {
@@ -290,7 +242,7 @@ class TestRules:
                 "override_host": "example.com",
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
-                "quarantine": {"file_types": ["exe", "pdf", "doc"]},
+                "quarantine": {"file_types": ["exe"]},
                 "resolve_dns_through_cloudflare": True,
                 "untrusted_cert": {"action": "pass_through"},
             },
@@ -592,19 +544,7 @@ class TestAsyncRules:
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2.2.2.2",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2.2.2.2",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
+                        }
                     ],
                     "ipv6": [
                         {
@@ -612,19 +552,7 @@ class TestAsyncRules:
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2001:DB8::",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2001:DB8::",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
+                        }
                     ],
                 },
                 "egress": {
@@ -648,7 +576,7 @@ class TestAsyncRules:
                 "override_host": "example.com",
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
-                "quarantine": {"file_types": ["exe", "pdf", "doc"]},
+                "quarantine": {"file_types": ["exe"]},
                 "resolve_dns_through_cloudflare": True,
                 "untrusted_cert": {"action": "pass_through"},
             },
@@ -755,19 +683,7 @@ class TestAsyncRules:
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2.2.2.2",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2.2.2.2",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
+                        }
                     ],
                     "ipv6": [
                         {
@@ -775,19 +691,7 @@ class TestAsyncRules:
                             "port": 5053,
                             "route_through_private_network": True,
                             "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2001:DB8::",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
-                        {
-                            "ip": "2001:DB8::",
-                            "port": 5053,
-                            "route_through_private_network": True,
-                            "vnet_id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                        },
+                        }
                     ],
                 },
                 "egress": {
@@ -811,7 +715,7 @@ class TestAsyncRules:
                 "override_host": "example.com",
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
-                "quarantine": {"file_types": ["exe", "pdf", "doc"]},
+                "quarantine": {"file_types": ["exe"]},
                 "resolve_dns_through_cloudflare": True,
                 "untrusted_cert": {"action": "pass_through"},
             },

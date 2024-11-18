@@ -24,7 +24,7 @@ class TestFallbackDomains:
     def test_method_update(self, client: Cloudflare) -> None:
         fallback_domain = client.zero_trust.devices.policies.default.fallback_domains.update(
             account_id="699d98642c564d2e855e9661899b7252",
-            domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+            domains=[{"suffix": "example.com"}],
         )
         assert_matches_type(Optional[FallbackDomainUpdateResponse], fallback_domain, path=["response"])
 
@@ -32,7 +32,7 @@ class TestFallbackDomains:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.policies.default.fallback_domains.with_raw_response.update(
             account_id="699d98642c564d2e855e9661899b7252",
-            domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+            domains=[{"suffix": "example.com"}],
         )
 
         assert response.is_closed is True
@@ -44,7 +44,7 @@ class TestFallbackDomains:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.policies.default.fallback_domains.with_streaming_response.update(
             account_id="699d98642c564d2e855e9661899b7252",
-            domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+            domains=[{"suffix": "example.com"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -59,7 +59,7 @@ class TestFallbackDomains:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.policies.default.fallback_domains.with_raw_response.update(
                 account_id="",
-                domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+                domains=[{"suffix": "example.com"}],
             )
 
     @parametrize
@@ -108,7 +108,7 @@ class TestAsyncFallbackDomains:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         fallback_domain = await async_client.zero_trust.devices.policies.default.fallback_domains.update(
             account_id="699d98642c564d2e855e9661899b7252",
-            domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+            domains=[{"suffix": "example.com"}],
         )
         assert_matches_type(Optional[FallbackDomainUpdateResponse], fallback_domain, path=["response"])
 
@@ -116,7 +116,7 @@ class TestAsyncFallbackDomains:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.policies.default.fallback_domains.with_raw_response.update(
             account_id="699d98642c564d2e855e9661899b7252",
-            domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+            domains=[{"suffix": "example.com"}],
         )
 
         assert response.is_closed is True
@@ -128,7 +128,7 @@ class TestAsyncFallbackDomains:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.policies.default.fallback_domains.with_streaming_response.update(
             account_id="699d98642c564d2e855e9661899b7252",
-            domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+            domains=[{"suffix": "example.com"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -143,7 +143,7 @@ class TestAsyncFallbackDomains:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.policies.default.fallback_domains.with_raw_response.update(
                 account_id="",
-                domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+                domains=[{"suffix": "example.com"}],
             )
 
     @parametrize

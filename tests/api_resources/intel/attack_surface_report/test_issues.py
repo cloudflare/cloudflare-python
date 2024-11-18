@@ -46,8 +46,8 @@ class TestIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
         assert_matches_type(SyncV4PagePagination[IssueListResponse], issue, path=["response"])
 
@@ -102,8 +102,8 @@ class TestIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
         assert_matches_type(Optional[IssueClassResponse], issue, path=["response"])
 
@@ -215,8 +215,8 @@ class TestIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
         assert_matches_type(Optional[IssueSeverityResponse], issue, path=["response"])
 
@@ -271,8 +271,8 @@ class TestIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
         assert_matches_type(Optional[IssueTypeResponse], issue, path=["response"])
 
@@ -333,8 +333,8 @@ class TestAsyncIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
         assert_matches_type(AsyncV4PagePagination[IssueListResponse], issue, path=["response"])
 
@@ -389,8 +389,8 @@ class TestAsyncIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
         assert_matches_type(Optional[IssueClassResponse], issue, path=["response"])
 
@@ -502,8 +502,8 @@ class TestAsyncIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
         assert_matches_type(Optional[IssueSeverityResponse], issue, path=["response"])
 
@@ -558,8 +558,8 @@ class TestAsyncIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
         assert_matches_type(Optional[IssueTypeResponse], issue, path=["response"])
 

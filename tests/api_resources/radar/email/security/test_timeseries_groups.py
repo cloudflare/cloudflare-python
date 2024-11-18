@@ -37,23 +37,15 @@ class TestTimeseriesGroups:
     def test_method_arc_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.arc(
             agg_interval="15m",
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            spf=["PASS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupARCResponse, timeseries_group, path=["response"])
 
@@ -86,23 +78,15 @@ class TestTimeseriesGroups:
     def test_method_dkim_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.dkim(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            spf=["PASS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupDKIMResponse, timeseries_group, path=["response"])
 
@@ -135,23 +119,15 @@ class TestTimeseriesGroups:
     def test_method_dmarc_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.dmarc(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            spf=["PASS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupDMARCResponse, timeseries_group, path=["response"])
 
@@ -184,24 +160,16 @@ class TestTimeseriesGroups:
     def test_method_malicious_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.malicious(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            spf=["PASS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupMaliciousResponse, timeseries_group, path=["response"])
 
@@ -234,24 +202,16 @@ class TestTimeseriesGroups:
     def test_method_spam_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.spam(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            spf=["PASS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupSpamResponse, timeseries_group, path=["response"])
 
@@ -284,23 +244,15 @@ class TestTimeseriesGroups:
     def test_method_spf_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.spf(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
 
@@ -333,24 +285,16 @@ class TestTimeseriesGroups:
     def test_method_spoof_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.spoof(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            spf=["PASS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupSpoofResponse, timeseries_group, path=["response"])
 
@@ -383,24 +327,16 @@ class TestTimeseriesGroups:
     def test_method_threat_category_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.threat_category(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            spf=["PASS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupThreatCategoryResponse, timeseries_group, path=["response"])
 
@@ -433,23 +369,15 @@ class TestTimeseriesGroups:
     def test_method_tls_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.security.timeseries_groups.tls_version(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
+            name=["string"],
+            spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])
 
@@ -486,23 +414,15 @@ class TestAsyncTimeseriesGroups:
     async def test_method_arc_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.arc(
             agg_interval="15m",
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            spf=["PASS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupARCResponse, timeseries_group, path=["response"])
 
@@ -535,23 +455,15 @@ class TestAsyncTimeseriesGroups:
     async def test_method_dkim_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.dkim(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            spf=["PASS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupDKIMResponse, timeseries_group, path=["response"])
 
@@ -584,23 +496,15 @@ class TestAsyncTimeseriesGroups:
     async def test_method_dmarc_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.dmarc(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            spf=["PASS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupDMARCResponse, timeseries_group, path=["response"])
 
@@ -633,24 +537,16 @@ class TestAsyncTimeseriesGroups:
     async def test_method_malicious_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.malicious(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            spf=["PASS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupMaliciousResponse, timeseries_group, path=["response"])
 
@@ -683,24 +579,16 @@ class TestAsyncTimeseriesGroups:
     async def test_method_spam_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.spam(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            spf=["PASS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupSpamResponse, timeseries_group, path=["response"])
 
@@ -733,23 +621,15 @@ class TestAsyncTimeseriesGroups:
     async def test_method_spf_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.spf(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
 
@@ -782,24 +662,16 @@ class TestAsyncTimeseriesGroups:
     async def test_method_spoof_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.spoof(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            spf=["PASS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupSpoofResponse, timeseries_group, path=["response"])
 
@@ -832,24 +704,16 @@ class TestAsyncTimeseriesGroups:
     async def test_method_threat_category_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.threat_category(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            name=["string"],
+            spf=["PASS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupThreatCategoryResponse, timeseries_group, path=["response"])
 
@@ -882,23 +746,15 @@ class TestAsyncTimeseriesGroups:
     async def test_method_tls_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.security.timeseries_groups.tls_version(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
+            name=["string"],
+            spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])
 

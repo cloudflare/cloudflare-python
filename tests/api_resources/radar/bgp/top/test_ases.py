@@ -26,23 +26,15 @@ class TestAses:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         ase = client.radar.bgp.top.ases.get(
-            asn=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit=5,
-            name=["string", "string", "string"],
-            prefix=["1.1.1.0/24", "1.1.1.0/24", "1.1.1.0/24"],
-            update_type=["ANNOUNCEMENT", "WITHDRAWAL"],
+            name=["string"],
+            prefix=["1.1.1.0/24"],
+            update_type=["ANNOUNCEMENT"],
         )
         assert_matches_type(AseGetResponse, ase, path=["response"])
 
@@ -112,23 +104,15 @@ class TestAsyncAses:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ase = await async_client.radar.bgp.top.ases.get(
-            asn=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit=5,
-            name=["string", "string", "string"],
-            prefix=["1.1.1.0/24", "1.1.1.0/24", "1.1.1.0/24"],
-            update_type=["ANNOUNCEMENT", "WITHDRAWAL"],
+            name=["string"],
+            prefix=["1.1.1.0/24"],
+            update_type=["ANNOUNCEMENT"],
         )
         assert_matches_type(AseGetResponse, ase, path=["response"])
 

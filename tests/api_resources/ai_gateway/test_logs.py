@@ -44,18 +44,8 @@ class TestLogs:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             max_cost=0,
             max_duration=0,
@@ -140,18 +130,8 @@ class TestLogs:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             limit=1,
             order_by="created_at",
@@ -476,18 +456,8 @@ class TestAsyncLogs:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             max_cost=0,
             max_duration=0,
@@ -572,18 +542,8 @@ class TestAsyncLogs:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             limit=1,
             order_by="created_at",

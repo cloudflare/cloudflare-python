@@ -25,7 +25,7 @@ class TestFallbackDomains:
         fallback_domain = client.zero_trust.devices.policies.custom.fallback_domains.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+            domains=[{"suffix": "example.com"}],
         )
         assert_matches_type(Optional[FallbackDomainUpdateResponse], fallback_domain, path=["response"])
 
@@ -34,7 +34,7 @@ class TestFallbackDomains:
         response = client.zero_trust.devices.policies.custom.fallback_domains.with_raw_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+            domains=[{"suffix": "example.com"}],
         )
 
         assert response.is_closed is True
@@ -47,7 +47,7 @@ class TestFallbackDomains:
         with client.zero_trust.devices.policies.custom.fallback_domains.with_streaming_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+            domains=[{"suffix": "example.com"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -63,14 +63,14 @@ class TestFallbackDomains:
             client.zero_trust.devices.policies.custom.fallback_domains.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+                domains=[{"suffix": "example.com"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
             client.zero_trust.devices.policies.custom.fallback_domains.with_raw_response.update(
                 policy_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
-                domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+                domains=[{"suffix": "example.com"}],
             )
 
     @parametrize
@@ -130,7 +130,7 @@ class TestAsyncFallbackDomains:
         fallback_domain = await async_client.zero_trust.devices.policies.custom.fallback_domains.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+            domains=[{"suffix": "example.com"}],
         )
         assert_matches_type(Optional[FallbackDomainUpdateResponse], fallback_domain, path=["response"])
 
@@ -139,7 +139,7 @@ class TestAsyncFallbackDomains:
         response = await async_client.zero_trust.devices.policies.custom.fallback_domains.with_raw_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+            domains=[{"suffix": "example.com"}],
         )
 
         assert response.is_closed is True
@@ -152,7 +152,7 @@ class TestAsyncFallbackDomains:
         async with async_client.zero_trust.devices.policies.custom.fallback_domains.with_streaming_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+            domains=[{"suffix": "example.com"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -168,14 +168,14 @@ class TestAsyncFallbackDomains:
             await async_client.zero_trust.devices.policies.custom.fallback_domains.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+                domains=[{"suffix": "example.com"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
             await async_client.zero_trust.devices.policies.custom.fallback_domains.with_raw_response.update(
                 policy_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
-                domains=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
+                domains=[{"suffix": "example.com"}],
             )
 
     @parametrize

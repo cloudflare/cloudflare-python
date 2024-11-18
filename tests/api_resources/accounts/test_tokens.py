@@ -34,17 +34,7 @@ class TestTokens:
                     "effect": "allow",
                     "permission_groups": [{}, {}],
                     "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
+                }
             ],
         )
         assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
@@ -75,49 +65,7 @@ class TestTokens:
                         "resource": "resource",
                         "scope": "scope",
                     },
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                    ],
-                    "resources": {
-                        "resource": "resource",
-                        "scope": "scope",
-                    },
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                    ],
-                    "resources": {
-                        "resource": "resource",
-                        "scope": "scope",
-                    },
-                },
+                }
             ],
             condition={
                 "request_ip": {
@@ -140,17 +88,7 @@ class TestTokens:
                     "effect": "allow",
                     "permission_groups": [{}, {}],
                     "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
+                }
             ],
         )
 
@@ -169,17 +107,7 @@ class TestTokens:
                     "effect": "allow",
                     "permission_groups": [{}, {}],
                     "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -201,17 +129,7 @@ class TestTokens:
                         "effect": "allow",
                         "permission_groups": [{}, {}],
                         "resources": {},
-                    },
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {},
-                    },
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {},
-                    },
+                    }
                 ],
             )
 
@@ -226,17 +144,7 @@ class TestTokens:
                     "effect": "allow",
                     "permission_groups": [{}, {}],
                     "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
+                }
             ],
             status="active",
         )
@@ -269,49 +177,7 @@ class TestTokens:
                         "resource": "resource",
                         "scope": "scope",
                     },
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                    ],
-                    "resources": {
-                        "resource": "resource",
-                        "scope": "scope",
-                    },
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                    ],
-                    "resources": {
-                        "resource": "resource",
-                        "scope": "scope",
-                    },
-                },
+                }
             ],
             status="active",
             condition={
@@ -336,17 +202,7 @@ class TestTokens:
                     "effect": "allow",
                     "permission_groups": [{}, {}],
                     "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
+                }
             ],
             status="active",
         )
@@ -367,17 +223,7 @@ class TestTokens:
                     "effect": "allow",
                     "permission_groups": [{}, {}],
                     "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
+                }
             ],
             status="active",
         ) as response:
@@ -401,17 +247,7 @@ class TestTokens:
                         "effect": "allow",
                         "permission_groups": [{}, {}],
                         "resources": {},
-                    },
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {},
-                    },
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {},
-                    },
+                    }
                 ],
                 status="active",
             )
@@ -426,17 +262,7 @@ class TestTokens:
                         "effect": "allow",
                         "permission_groups": [{}, {}],
                         "resources": {},
-                    },
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {},
-                    },
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {},
-                    },
+                    }
                 ],
                 status="active",
             )
@@ -637,17 +463,7 @@ class TestAsyncTokens:
                     "effect": "allow",
                     "permission_groups": [{}, {}],
                     "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
+                }
             ],
         )
         assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
@@ -678,49 +494,7 @@ class TestAsyncTokens:
                         "resource": "resource",
                         "scope": "scope",
                     },
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                    ],
-                    "resources": {
-                        "resource": "resource",
-                        "scope": "scope",
-                    },
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                    ],
-                    "resources": {
-                        "resource": "resource",
-                        "scope": "scope",
-                    },
-                },
+                }
             ],
             condition={
                 "request_ip": {
@@ -743,17 +517,7 @@ class TestAsyncTokens:
                     "effect": "allow",
                     "permission_groups": [{}, {}],
                     "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
+                }
             ],
         )
 
@@ -772,17 +536,7 @@ class TestAsyncTokens:
                     "effect": "allow",
                     "permission_groups": [{}, {}],
                     "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -804,17 +558,7 @@ class TestAsyncTokens:
                         "effect": "allow",
                         "permission_groups": [{}, {}],
                         "resources": {},
-                    },
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {},
-                    },
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {},
-                    },
+                    }
                 ],
             )
 
@@ -829,17 +573,7 @@ class TestAsyncTokens:
                     "effect": "allow",
                     "permission_groups": [{}, {}],
                     "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
+                }
             ],
             status="active",
         )
@@ -872,49 +606,7 @@ class TestAsyncTokens:
                         "resource": "resource",
                         "scope": "scope",
                     },
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                    ],
-                    "resources": {
-                        "resource": "resource",
-                        "scope": "scope",
-                    },
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                        {
-                            "meta": {
-                                "key": "key",
-                                "value": "value",
-                            }
-                        },
-                    ],
-                    "resources": {
-                        "resource": "resource",
-                        "scope": "scope",
-                    },
-                },
+                }
             ],
             status="active",
             condition={
@@ -939,17 +631,7 @@ class TestAsyncTokens:
                     "effect": "allow",
                     "permission_groups": [{}, {}],
                     "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
+                }
             ],
             status="active",
         )
@@ -970,17 +652,7 @@ class TestAsyncTokens:
                     "effect": "allow",
                     "permission_groups": [{}, {}],
                     "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {},
-                },
+                }
             ],
             status="active",
         ) as response:
@@ -1004,17 +676,7 @@ class TestAsyncTokens:
                         "effect": "allow",
                         "permission_groups": [{}, {}],
                         "resources": {},
-                    },
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {},
-                    },
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {},
-                    },
+                    }
                 ],
                 status="active",
             )
@@ -1029,17 +691,7 @@ class TestAsyncTokens:
                         "effect": "allow",
                         "permission_groups": [{}, {}],
                         "resources": {},
-                    },
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {},
-                    },
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {},
-                    },
+                    }
                 ],
                 status="active",
             )

@@ -57,17 +57,7 @@ class TestRateLimits:
                             "name": "Cf-Cache-Status",
                             "op": "eq",
                             "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "eq",
-                            "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "eq",
-                            "value": "HIT",
-                        },
+                        }
                     ],
                     "request": {
                         "methods": ["GET", "POST"],
@@ -274,17 +264,7 @@ class TestRateLimits:
                             "name": "Cf-Cache-Status",
                             "op": "eq",
                             "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "eq",
-                            "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "eq",
-                            "value": "HIT",
-                        },
+                        }
                     ],
                     "request": {
                         "methods": ["GET", "POST"],
@@ -452,17 +432,7 @@ class TestAsyncRateLimits:
                             "name": "Cf-Cache-Status",
                             "op": "eq",
                             "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "eq",
-                            "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "eq",
-                            "value": "HIT",
-                        },
+                        }
                     ],
                     "request": {
                         "methods": ["GET", "POST"],
@@ -669,17 +639,7 @@ class TestAsyncRateLimits:
                             "name": "Cf-Cache-Status",
                             "op": "eq",
                             "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "eq",
-                            "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "eq",
-                            "value": "HIT",
-                        },
+                        }
                     ],
                     "request": {
                         "methods": ["GET", "POST"],

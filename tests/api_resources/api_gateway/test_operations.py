@@ -32,17 +32,7 @@ class TestOperations:
                     "endpoint": "/api/v1/users/{var1}",
                     "host": "www.example.com",
                     "method": "GET",
-                },
-                {
-                    "endpoint": "/api/v1/users/{var1}",
-                    "host": "www.example.com",
-                    "method": "GET",
-                },
-                {
-                    "endpoint": "/api/v1/users/{var1}",
-                    "host": "www.example.com",
-                    "method": "GET",
-                },
+                }
             ],
         )
         assert_matches_type(OperationCreateResponse, operation, path=["response"])
@@ -56,17 +46,7 @@ class TestOperations:
                     "endpoint": "/api/v1/users/{var1}",
                     "host": "www.example.com",
                     "method": "GET",
-                },
-                {
-                    "endpoint": "/api/v1/users/{var1}",
-                    "host": "www.example.com",
-                    "method": "GET",
-                },
-                {
-                    "endpoint": "/api/v1/users/{var1}",
-                    "host": "www.example.com",
-                    "method": "GET",
-                },
+                }
             ],
         )
 
@@ -84,17 +64,7 @@ class TestOperations:
                     "endpoint": "/api/v1/users/{var1}",
                     "host": "www.example.com",
                     "method": "GET",
-                },
-                {
-                    "endpoint": "/api/v1/users/{var1}",
-                    "host": "www.example.com",
-                    "method": "GET",
-                },
-                {
-                    "endpoint": "/api/v1/users/{var1}",
-                    "host": "www.example.com",
-                    "method": "GET",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -115,17 +85,7 @@ class TestOperations:
                         "endpoint": "/api/v1/users/{var1}",
                         "host": "www.example.com",
                         "method": "GET",
-                    },
-                    {
-                        "endpoint": "/api/v1/users/{var1}",
-                        "host": "www.example.com",
-                        "method": "GET",
-                    },
-                    {
-                        "endpoint": "/api/v1/users/{var1}",
-                        "host": "www.example.com",
-                        "method": "GET",
-                    },
+                    }
                 ],
             )
 
@@ -300,17 +260,7 @@ class TestAsyncOperations:
                     "endpoint": "/api/v1/users/{var1}",
                     "host": "www.example.com",
                     "method": "GET",
-                },
-                {
-                    "endpoint": "/api/v1/users/{var1}",
-                    "host": "www.example.com",
-                    "method": "GET",
-                },
-                {
-                    "endpoint": "/api/v1/users/{var1}",
-                    "host": "www.example.com",
-                    "method": "GET",
-                },
+                }
             ],
         )
         assert_matches_type(OperationCreateResponse, operation, path=["response"])
@@ -324,17 +274,7 @@ class TestAsyncOperations:
                     "endpoint": "/api/v1/users/{var1}",
                     "host": "www.example.com",
                     "method": "GET",
-                },
-                {
-                    "endpoint": "/api/v1/users/{var1}",
-                    "host": "www.example.com",
-                    "method": "GET",
-                },
-                {
-                    "endpoint": "/api/v1/users/{var1}",
-                    "host": "www.example.com",
-                    "method": "GET",
-                },
+                }
             ],
         )
 
@@ -352,17 +292,7 @@ class TestAsyncOperations:
                     "endpoint": "/api/v1/users/{var1}",
                     "host": "www.example.com",
                     "method": "GET",
-                },
-                {
-                    "endpoint": "/api/v1/users/{var1}",
-                    "host": "www.example.com",
-                    "method": "GET",
-                },
-                {
-                    "endpoint": "/api/v1/users/{var1}",
-                    "host": "www.example.com",
-                    "method": "GET",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -383,17 +313,7 @@ class TestAsyncOperations:
                         "endpoint": "/api/v1/users/{var1}",
                         "host": "www.example.com",
                         "method": "GET",
-                    },
-                    {
-                        "endpoint": "/api/v1/users/{var1}",
-                        "host": "www.example.com",
-                        "method": "GET",
-                    },
-                    {
-                        "endpoint": "/api/v1/users/{var1}",
-                        "host": "www.example.com",
-                        "method": "GET",
-                    },
+                    }
                 ],
             )
 

@@ -2728,52 +2728,24 @@ class TestRecords:
     def test_method_batch_with_all_params(self, client: Cloudflare) -> None:
         record = client.dns.records.batch(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            deletes=[
-                {"id": "023e105f4ecef8ad9ca31a8372d0c353"},
-                {"id": "023e105f4ecef8ad9ca31a8372d0c353"},
-                {"id": "023e105f4ecef8ad9ca31a8372d0c353"},
-            ],
+            deletes=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             patches=[
                 {
                     "content": "198.51.100.4",
                     "type": "A",
-                },
-                {
-                    "content": "198.51.100.4",
-                    "type": "A",
-                },
-                {
-                    "content": "198.51.100.4",
-                    "type": "A",
-                },
+                }
             ],
             posts=[
                 {
                     "content": "198.51.100.4",
                     "type": "A",
-                },
-                {
-                    "content": "198.51.100.4",
-                    "type": "A",
-                },
-                {
-                    "content": "198.51.100.4",
-                    "type": "A",
-                },
+                }
             ],
             puts=[
                 {
                     "content": "198.51.100.4",
                     "type": "A",
-                },
-                {
-                    "content": "198.51.100.4",
-                    "type": "A",
-                },
-                {
-                    "content": "198.51.100.4",
-                    "type": "A",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[RecordBatchResponse], record, path=["response"])
@@ -7092,52 +7064,24 @@ class TestAsyncRecords:
     async def test_method_batch_with_all_params(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.batch(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            deletes=[
-                {"id": "023e105f4ecef8ad9ca31a8372d0c353"},
-                {"id": "023e105f4ecef8ad9ca31a8372d0c353"},
-                {"id": "023e105f4ecef8ad9ca31a8372d0c353"},
-            ],
+            deletes=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             patches=[
                 {
                     "content": "198.51.100.4",
                     "type": "A",
-                },
-                {
-                    "content": "198.51.100.4",
-                    "type": "A",
-                },
-                {
-                    "content": "198.51.100.4",
-                    "type": "A",
-                },
+                }
             ],
             posts=[
                 {
                     "content": "198.51.100.4",
                     "type": "A",
-                },
-                {
-                    "content": "198.51.100.4",
-                    "type": "A",
-                },
-                {
-                    "content": "198.51.100.4",
-                    "type": "A",
-                },
+                }
             ],
             puts=[
                 {
                     "content": "198.51.100.4",
                     "type": "A",
-                },
-                {
-                    "content": "198.51.100.4",
-                    "type": "A",
-                },
-                {
-                    "content": "198.51.100.4",
-                    "type": "A",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[RecordBatchResponse], record, path=["response"])

@@ -977,17 +977,9 @@ class TestIdentityProviders:
                     {
                         "attribute_name": "attribute_name",
                         "header_name": "header_name",
-                    },
-                    {
-                        "attribute_name": "attribute_name",
-                        "header_name": "header_name",
-                    },
-                    {
-                        "attribute_name": "attribute_name",
-                        "header_name": "header_name",
-                    },
+                    }
                 ],
-                "idp_public_certs": ["string", "string", "string"],
+                "idp_public_certs": ["string"],
                 "issuer_url": "https://whoami.com",
                 "sign_request": True,
                 "sso_target_url": "https://edgeaccess.org/idp/saml/login",
@@ -2338,17 +2330,9 @@ class TestIdentityProviders:
                     {
                         "attribute_name": "attribute_name",
                         "header_name": "header_name",
-                    },
-                    {
-                        "attribute_name": "attribute_name",
-                        "header_name": "header_name",
-                    },
-                    {
-                        "attribute_name": "attribute_name",
-                        "header_name": "header_name",
-                    },
+                    }
                 ],
-                "idp_public_certs": ["string", "string", "string"],
+                "idp_public_certs": ["string"],
                 "issuer_url": "https://whoami.com",
                 "sign_request": True,
                 "sso_target_url": "https://edgeaccess.org/idp/saml/login",
@@ -3768,17 +3752,9 @@ class TestAsyncIdentityProviders:
                     {
                         "attribute_name": "attribute_name",
                         "header_name": "header_name",
-                    },
-                    {
-                        "attribute_name": "attribute_name",
-                        "header_name": "header_name",
-                    },
-                    {
-                        "attribute_name": "attribute_name",
-                        "header_name": "header_name",
-                    },
+                    }
                 ],
-                "idp_public_certs": ["string", "string", "string"],
+                "idp_public_certs": ["string"],
                 "issuer_url": "https://whoami.com",
                 "sign_request": True,
                 "sso_target_url": "https://edgeaccess.org/idp/saml/login",
@@ -5129,17 +5105,9 @@ class TestAsyncIdentityProviders:
                     {
                         "attribute_name": "attribute_name",
                         "header_name": "header_name",
-                    },
-                    {
-                        "attribute_name": "attribute_name",
-                        "header_name": "header_name",
-                    },
-                    {
-                        "attribute_name": "attribute_name",
-                        "header_name": "header_name",
-                    },
+                    }
                 ],
-                "idp_public_certs": ["string", "string", "string"],
+                "idp_public_certs": ["string"],
                 "issuer_url": "https://whoami.com",
                 "sign_request": True,
                 "sso_target_url": "https://edgeaccess.org/idp/saml/login",

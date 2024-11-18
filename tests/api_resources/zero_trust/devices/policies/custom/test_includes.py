@@ -29,15 +29,7 @@ class TestIncludes:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Include testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Include testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Include testing domains from the tunnel",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[IncludeUpdateResponse], include, path=["response"])
@@ -51,15 +43,7 @@ class TestIncludes:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Include testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Include testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Include testing domains from the tunnel",
-                },
+                }
             ],
         )
 
@@ -77,15 +61,7 @@ class TestIncludes:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Include testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Include testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Include testing domains from the tunnel",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -106,15 +82,7 @@ class TestIncludes:
                     {
                         "address": "192.0.2.0/24",
                         "description": "Include testing domains from the tunnel",
-                    },
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Include testing domains from the tunnel",
-                    },
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Include testing domains from the tunnel",
-                    },
+                    }
                 ],
             )
 
@@ -126,15 +94,7 @@ class TestIncludes:
                     {
                         "address": "192.0.2.0/24",
                         "description": "Include testing domains from the tunnel",
-                    },
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Include testing domains from the tunnel",
-                    },
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Include testing domains from the tunnel",
-                    },
+                    }
                 ],
             )
 
@@ -199,15 +159,7 @@ class TestAsyncIncludes:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Include testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Include testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Include testing domains from the tunnel",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[IncludeUpdateResponse], include, path=["response"])
@@ -221,15 +173,7 @@ class TestAsyncIncludes:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Include testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Include testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Include testing domains from the tunnel",
-                },
+                }
             ],
         )
 
@@ -247,15 +191,7 @@ class TestAsyncIncludes:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Include testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Include testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Include testing domains from the tunnel",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -276,15 +212,7 @@ class TestAsyncIncludes:
                     {
                         "address": "192.0.2.0/24",
                         "description": "Include testing domains from the tunnel",
-                    },
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Include testing domains from the tunnel",
-                    },
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Include testing domains from the tunnel",
-                    },
+                    }
                 ],
             )
 
@@ -296,15 +224,7 @@ class TestAsyncIncludes:
                     {
                         "address": "192.0.2.0/24",
                         "description": "Include testing domains from the tunnel",
-                    },
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Include testing domains from the tunnel",
-                    },
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Include testing domains from the tunnel",
-                    },
+                    }
                 ],
             )
 

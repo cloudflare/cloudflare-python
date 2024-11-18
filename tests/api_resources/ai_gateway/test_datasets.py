@@ -34,18 +34,8 @@ class TestDatasets:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             name="name",
         )
@@ -61,18 +51,8 @@ class TestDatasets:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             name="name",
         )
@@ -92,18 +72,8 @@ class TestDatasets:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             name="name",
         ) as response:
@@ -126,18 +96,8 @@ class TestDatasets:
                     {
                         "key": "created_at",
                         "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
+                        "value": ["string"],
+                    }
                 ],
                 name="name",
             )
@@ -151,18 +111,8 @@ class TestDatasets:
                     {
                         "key": "created_at",
                         "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
+                        "value": ["string"],
+                    }
                 ],
                 name="name",
             )
@@ -178,18 +128,8 @@ class TestDatasets:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             name="name",
         )
@@ -206,18 +146,8 @@ class TestDatasets:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             name="name",
         )
@@ -238,18 +168,8 @@ class TestDatasets:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             name="name",
         ) as response:
@@ -273,18 +193,8 @@ class TestDatasets:
                     {
                         "key": "created_at",
                         "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
+                        "value": ["string"],
+                    }
                 ],
                 name="name",
             )
@@ -299,18 +209,8 @@ class TestDatasets:
                     {
                         "key": "created_at",
                         "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
+                        "value": ["string"],
+                    }
                 ],
                 name="name",
             )
@@ -325,18 +225,8 @@ class TestDatasets:
                     {
                         "key": "created_at",
                         "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
+                        "value": ["string"],
+                    }
                 ],
                 name="name",
             )
@@ -538,18 +428,8 @@ class TestAsyncDatasets:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             name="name",
         )
@@ -565,18 +445,8 @@ class TestAsyncDatasets:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             name="name",
         )
@@ -596,18 +466,8 @@ class TestAsyncDatasets:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             name="name",
         ) as response:
@@ -630,18 +490,8 @@ class TestAsyncDatasets:
                     {
                         "key": "created_at",
                         "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
+                        "value": ["string"],
+                    }
                 ],
                 name="name",
             )
@@ -655,18 +505,8 @@ class TestAsyncDatasets:
                     {
                         "key": "created_at",
                         "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
+                        "value": ["string"],
+                    }
                 ],
                 name="name",
             )
@@ -682,18 +522,8 @@ class TestAsyncDatasets:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             name="name",
         )
@@ -710,18 +540,8 @@ class TestAsyncDatasets:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             name="name",
         )
@@ -742,18 +562,8 @@ class TestAsyncDatasets:
                 {
                     "key": "created_at",
                     "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
-                {
-                    "key": "created_at",
-                    "operator": "eq",
-                    "value": ["string", "string", "string"],
-                },
+                    "value": ["string"],
+                }
             ],
             name="name",
         ) as response:
@@ -777,18 +587,8 @@ class TestAsyncDatasets:
                     {
                         "key": "created_at",
                         "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
+                        "value": ["string"],
+                    }
                 ],
                 name="name",
             )
@@ -803,18 +603,8 @@ class TestAsyncDatasets:
                     {
                         "key": "created_at",
                         "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
+                        "value": ["string"],
+                    }
                 ],
                 name="name",
             )
@@ -829,18 +619,8 @@ class TestAsyncDatasets:
                     {
                         "key": "created_at",
                         "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
-                    {
-                        "key": "created_at",
-                        "operator": "eq",
-                        "value": ["string", "string", "string"],
-                    },
+                        "value": ["string"],
+                    }
                 ],
                 name="name",
             )

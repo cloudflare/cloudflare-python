@@ -114,15 +114,7 @@ class TestRules:
                 {
                     "action": "bypass_waiting_room",
                     "expression": "ip.src in {10.20.30.40}",
-                },
-                {
-                    "action": "bypass_waiting_room",
-                    "expression": "ip.src in {10.20.30.40}",
-                },
-                {
-                    "action": "bypass_waiting_room",
-                    "expression": "ip.src in {10.20.30.40}",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
@@ -136,15 +128,7 @@ class TestRules:
                 {
                     "action": "bypass_waiting_room",
                     "expression": "ip.src in {10.20.30.40}",
-                },
-                {
-                    "action": "bypass_waiting_room",
-                    "expression": "ip.src in {10.20.30.40}",
-                },
-                {
-                    "action": "bypass_waiting_room",
-                    "expression": "ip.src in {10.20.30.40}",
-                },
+                }
             ],
         )
 
@@ -162,15 +146,7 @@ class TestRules:
                 {
                     "action": "bypass_waiting_room",
                     "expression": "ip.src in {10.20.30.40}",
-                },
-                {
-                    "action": "bypass_waiting_room",
-                    "expression": "ip.src in {10.20.30.40}",
-                },
-                {
-                    "action": "bypass_waiting_room",
-                    "expression": "ip.src in {10.20.30.40}",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -191,15 +167,7 @@ class TestRules:
                     {
                         "action": "bypass_waiting_room",
                         "expression": "ip.src in {10.20.30.40}",
-                    },
-                    {
-                        "action": "bypass_waiting_room",
-                        "expression": "ip.src in {10.20.30.40}",
-                    },
-                    {
-                        "action": "bypass_waiting_room",
-                        "expression": "ip.src in {10.20.30.40}",
-                    },
+                    }
                 ],
             )
 
@@ -211,15 +179,7 @@ class TestRules:
                     {
                         "action": "bypass_waiting_room",
                         "expression": "ip.src in {10.20.30.40}",
-                    },
-                    {
-                        "action": "bypass_waiting_room",
-                        "expression": "ip.src in {10.20.30.40}",
-                    },
-                    {
-                        "action": "bypass_waiting_room",
-                        "expression": "ip.src in {10.20.30.40}",
-                    },
+                    }
                 ],
             )
 
@@ -512,15 +472,7 @@ class TestAsyncRules:
                 {
                     "action": "bypass_waiting_room",
                     "expression": "ip.src in {10.20.30.40}",
-                },
-                {
-                    "action": "bypass_waiting_room",
-                    "expression": "ip.src in {10.20.30.40}",
-                },
-                {
-                    "action": "bypass_waiting_room",
-                    "expression": "ip.src in {10.20.30.40}",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
@@ -534,15 +486,7 @@ class TestAsyncRules:
                 {
                     "action": "bypass_waiting_room",
                     "expression": "ip.src in {10.20.30.40}",
-                },
-                {
-                    "action": "bypass_waiting_room",
-                    "expression": "ip.src in {10.20.30.40}",
-                },
-                {
-                    "action": "bypass_waiting_room",
-                    "expression": "ip.src in {10.20.30.40}",
-                },
+                }
             ],
         )
 
@@ -560,15 +504,7 @@ class TestAsyncRules:
                 {
                     "action": "bypass_waiting_room",
                     "expression": "ip.src in {10.20.30.40}",
-                },
-                {
-                    "action": "bypass_waiting_room",
-                    "expression": "ip.src in {10.20.30.40}",
-                },
-                {
-                    "action": "bypass_waiting_room",
-                    "expression": "ip.src in {10.20.30.40}",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -589,15 +525,7 @@ class TestAsyncRules:
                     {
                         "action": "bypass_waiting_room",
                         "expression": "ip.src in {10.20.30.40}",
-                    },
-                    {
-                        "action": "bypass_waiting_room",
-                        "expression": "ip.src in {10.20.30.40}",
-                    },
-                    {
-                        "action": "bypass_waiting_room",
-                        "expression": "ip.src in {10.20.30.40}",
-                    },
+                    }
                 ],
             )
 
@@ -609,15 +537,7 @@ class TestAsyncRules:
                     {
                         "action": "bypass_waiting_room",
                         "expression": "ip.src in {10.20.30.40}",
-                    },
-                    {
-                        "action": "bypass_waiting_room",
-                        "expression": "ip.src in {10.20.30.40}",
-                    },
-                    {
-                        "action": "bypass_waiting_room",
-                        "expression": "ip.src in {10.20.30.40}",
-                    },
+                    }
                 ],
             )
 
