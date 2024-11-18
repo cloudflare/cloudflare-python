@@ -11,5 +11,11 @@ class SubdomainCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    enabled: bool
+    enabled: Required[bool]
     """Whether the Worker should be available on the workers.dev subdomain."""
+
+    previews_enabled: bool
+    """
+    Whether the Worker's Preview URLs should be available on the workers.dev
+    subdomain.
+    """

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Any, Type, Iterable, Optional, cast
+from typing import Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -37,7 +37,6 @@ from ...types.pagerules import (
     pagerule_create_params,
     pagerule_update_params,
 )
-from ...types.pagerules.route_param import RouteParam
 from ...types.pagerules.target_param import TargetParam
 from ...types.pagerules.pagerule_get_response import PageruleGetResponse
 from ...types.pagerules.pagerule_edit_response import PageruleEditResponse
@@ -80,7 +79,7 @@ class PagerulesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        actions: Iterable[RouteParam],
+        actions: Iterable[pagerule_create_params.Action],
         targets: Iterable[TargetParam],
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
@@ -90,7 +89,7 @@ class PagerulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleCreateResponse:
+    ) -> Optional[PageruleCreateResponse]:
         """
         Creates a new Page Rule.
 
@@ -120,30 +119,25 @@ class PagerulesResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            PageruleCreateResponse,
-            self._post(
-                f"/zones/{zone_id}/pagerules",
-                body=maybe_transform(
-                    {
-                        "actions": actions,
-                        "targets": targets,
-                        "priority": priority,
-                        "status": status,
-                    },
-                    pagerule_create_params.PageruleCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/zones/{zone_id}/pagerules",
+            body=maybe_transform(
+                {
+                    "actions": actions,
+                    "targets": targets,
+                    "priority": priority,
+                    "status": status,
+                },
+                pagerule_create_params.PageruleCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PageruleCreateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[PageruleCreateResponse]], ResultWrapper[PageruleCreateResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -154,7 +148,7 @@ class PagerulesResource(SyncAPIResource):
         pagerule_id: str,
         *,
         zone_id: str,
-        actions: Iterable[RouteParam],
+        actions: Iterable[pagerule_update_params.Action],
         targets: Iterable[TargetParam],
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
@@ -164,7 +158,7 @@ class PagerulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleUpdateResponse:
+    ) -> Optional[PageruleUpdateResponse]:
         """Replaces the configuration of an existing Page Rule.
 
         The configuration of the
@@ -200,30 +194,25 @@ class PagerulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not pagerule_id:
             raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
-        return cast(
-            PageruleUpdateResponse,
-            self._put(
-                f"/zones/{zone_id}/pagerules/{pagerule_id}",
-                body=maybe_transform(
-                    {
-                        "actions": actions,
-                        "targets": targets,
-                        "priority": priority,
-                        "status": status,
-                    },
-                    pagerule_update_params.PageruleUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/zones/{zone_id}/pagerules/{pagerule_id}",
+            body=maybe_transform(
+                {
+                    "actions": actions,
+                    "targets": targets,
+                    "priority": priority,
+                    "status": status,
+                },
+                pagerule_update_params.PageruleUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PageruleUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[PageruleUpdateResponse]], ResultWrapper[PageruleUpdateResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -243,7 +232,7 @@ class PagerulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleListResponse:
+    ) -> Optional[PageruleListResponse]:
         """
         Fetches Page Rules in a zone.
 
@@ -285,9 +274,9 @@ class PagerulesResource(SyncAPIResource):
                     },
                     pagerule_list_params.PageruleListParams,
                 ),
-                post_parser=ResultWrapper[PageruleListResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageruleListResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PageruleListResponse], ResultWrapper[PageruleListResponse]),
+            cast_to=cast(Type[Optional[PageruleListResponse]], ResultWrapper[PageruleListResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -345,7 +334,7 @@ class PagerulesResource(SyncAPIResource):
         pagerule_id: str,
         *,
         zone_id: str,
-        actions: Iterable[RouteParam] | NotGiven = NOT_GIVEN,
+        actions: Iterable[pagerule_edit_params.Action] | NotGiven = NOT_GIVEN,
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
         targets: Iterable[TargetParam] | NotGiven = NOT_GIVEN,
@@ -355,7 +344,7 @@ class PagerulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleEditResponse:
+    ) -> Optional[PageruleEditResponse]:
         """
         Updates one or more fields of an existing Page Rule.
 
@@ -389,30 +378,25 @@ class PagerulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not pagerule_id:
             raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
-        return cast(
-            PageruleEditResponse,
-            self._patch(
-                f"/zones/{zone_id}/pagerules/{pagerule_id}",
-                body=maybe_transform(
-                    {
-                        "actions": actions,
-                        "priority": priority,
-                        "status": status,
-                        "targets": targets,
-                    },
-                    pagerule_edit_params.PageruleEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._patch(
+            f"/zones/{zone_id}/pagerules/{pagerule_id}",
+            body=maybe_transform(
+                {
+                    "actions": actions,
+                    "priority": priority,
+                    "status": status,
+                    "targets": targets,
+                },
+                pagerule_edit_params.PageruleEditParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PageruleEditResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[PageruleEditResponse]], ResultWrapper[PageruleEditResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -429,7 +413,7 @@ class PagerulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleGetResponse:
+    ) -> Optional[PageruleGetResponse]:
         """
         Fetches the details of a Page Rule.
 
@@ -450,21 +434,16 @@ class PagerulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not pagerule_id:
             raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
-        return cast(
-            PageruleGetResponse,
-            self._get(
-                f"/zones/{zone_id}/pagerules/{pagerule_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/zones/{zone_id}/pagerules/{pagerule_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PageruleGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[PageruleGetResponse]], ResultWrapper[PageruleGetResponse]),
         )
 
 
@@ -499,7 +478,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        actions: Iterable[RouteParam],
+        actions: Iterable[pagerule_create_params.Action],
         targets: Iterable[TargetParam],
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
@@ -509,7 +488,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleCreateResponse:
+    ) -> Optional[PageruleCreateResponse]:
         """
         Creates a new Page Rule.
 
@@ -539,30 +518,25 @@ class AsyncPagerulesResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            PageruleCreateResponse,
-            await self._post(
-                f"/zones/{zone_id}/pagerules",
-                body=await async_maybe_transform(
-                    {
-                        "actions": actions,
-                        "targets": targets,
-                        "priority": priority,
-                        "status": status,
-                    },
-                    pagerule_create_params.PageruleCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/zones/{zone_id}/pagerules",
+            body=await async_maybe_transform(
+                {
+                    "actions": actions,
+                    "targets": targets,
+                    "priority": priority,
+                    "status": status,
+                },
+                pagerule_create_params.PageruleCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PageruleCreateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[PageruleCreateResponse]], ResultWrapper[PageruleCreateResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -573,7 +547,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         pagerule_id: str,
         *,
         zone_id: str,
-        actions: Iterable[RouteParam],
+        actions: Iterable[pagerule_update_params.Action],
         targets: Iterable[TargetParam],
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
@@ -583,7 +557,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleUpdateResponse:
+    ) -> Optional[PageruleUpdateResponse]:
         """Replaces the configuration of an existing Page Rule.
 
         The configuration of the
@@ -619,30 +593,25 @@ class AsyncPagerulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not pagerule_id:
             raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
-        return cast(
-            PageruleUpdateResponse,
-            await self._put(
-                f"/zones/{zone_id}/pagerules/{pagerule_id}",
-                body=await async_maybe_transform(
-                    {
-                        "actions": actions,
-                        "targets": targets,
-                        "priority": priority,
-                        "status": status,
-                    },
-                    pagerule_update_params.PageruleUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/zones/{zone_id}/pagerules/{pagerule_id}",
+            body=await async_maybe_transform(
+                {
+                    "actions": actions,
+                    "targets": targets,
+                    "priority": priority,
+                    "status": status,
+                },
+                pagerule_update_params.PageruleUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PageruleUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[PageruleUpdateResponse]], ResultWrapper[PageruleUpdateResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -662,7 +631,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleListResponse:
+    ) -> Optional[PageruleListResponse]:
         """
         Fetches Page Rules in a zone.
 
@@ -704,9 +673,9 @@ class AsyncPagerulesResource(AsyncAPIResource):
                     },
                     pagerule_list_params.PageruleListParams,
                 ),
-                post_parser=ResultWrapper[PageruleListResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageruleListResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PageruleListResponse], ResultWrapper[PageruleListResponse]),
+            cast_to=cast(Type[Optional[PageruleListResponse]], ResultWrapper[PageruleListResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -764,7 +733,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         pagerule_id: str,
         *,
         zone_id: str,
-        actions: Iterable[RouteParam] | NotGiven = NOT_GIVEN,
+        actions: Iterable[pagerule_edit_params.Action] | NotGiven = NOT_GIVEN,
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
         targets: Iterable[TargetParam] | NotGiven = NOT_GIVEN,
@@ -774,7 +743,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleEditResponse:
+    ) -> Optional[PageruleEditResponse]:
         """
         Updates one or more fields of an existing Page Rule.
 
@@ -808,30 +777,25 @@ class AsyncPagerulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not pagerule_id:
             raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
-        return cast(
-            PageruleEditResponse,
-            await self._patch(
-                f"/zones/{zone_id}/pagerules/{pagerule_id}",
-                body=await async_maybe_transform(
-                    {
-                        "actions": actions,
-                        "priority": priority,
-                        "status": status,
-                        "targets": targets,
-                    },
-                    pagerule_edit_params.PageruleEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._patch(
+            f"/zones/{zone_id}/pagerules/{pagerule_id}",
+            body=await async_maybe_transform(
+                {
+                    "actions": actions,
+                    "priority": priority,
+                    "status": status,
+                    "targets": targets,
+                },
+                pagerule_edit_params.PageruleEditParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PageruleEditResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[PageruleEditResponse]], ResultWrapper[PageruleEditResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -848,7 +812,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageruleGetResponse:
+    ) -> Optional[PageruleGetResponse]:
         """
         Fetches the details of a Page Rule.
 
@@ -869,21 +833,16 @@ class AsyncPagerulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not pagerule_id:
             raise ValueError(f"Expected a non-empty value for `pagerule_id` but received {pagerule_id!r}")
-        return cast(
-            PageruleGetResponse,
-            await self._get(
-                f"/zones/{zone_id}/pagerules/{pagerule_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[PageruleGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PageruleGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/zones/{zone_id}/pagerules/{pagerule_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PageruleGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[PageruleGetResponse]], ResultWrapper[PageruleGetResponse]),
         )
 
 
