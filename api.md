@@ -8076,7 +8076,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import (
+from cloudflare.types.security_txt import (
     SecurityTXTUpdateResponse,
     SecurityTXTDeleteResponse,
     SecurityTXTGetResponse,
@@ -8085,23 +8085,27 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="put /zones/{zone_id}/security-center/securitytxt">client.security_txt.<a href="./src/cloudflare/resources/security_txt.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/security_txt_update_params.py">params</a>) -> <a href="./src/cloudflare/types/security_txt_update_response.py">SecurityTXTUpdateResponse</a></code>
-- <code title="delete /zones/{zone_id}/security-center/securitytxt">client.security_txt.<a href="./src/cloudflare/resources/security_txt.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/security_txt_delete_response.py">SecurityTXTDeleteResponse</a></code>
-- <code title="get /zones/{zone_id}/security-center/securitytxt">client.security_txt.<a href="./src/cloudflare/resources/security_txt.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/security_txt_get_response.py">Optional</a></code>
+- <code title="put /zones/{zone_id}/security-center/securitytxt">client.security_txt.<a href="./src/cloudflare/resources/security_txt.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/security_txt/security_txt_update_params.py">params</a>) -> <a href="./src/cloudflare/types/security_txt/security_txt_update_response.py">SecurityTXTUpdateResponse</a></code>
+- <code title="delete /zones/{zone_id}/security-center/securitytxt">client.security_txt.<a href="./src/cloudflare/resources/security_txt.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/security_txt/security_txt_delete_response.py">SecurityTXTDeleteResponse</a></code>
+- <code title="get /zones/{zone_id}/security-center/securitytxt">client.security_txt.<a href="./src/cloudflare/resources/security_txt.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/security_txt/security_txt_get_response.py">Optional</a></code>
 
 # Workflows
 
 Types:
 
 ```python
-from cloudflare.types import WorkflowUpdateResponse, WorkflowListResponse, WorkflowGetResponse
+from cloudflare.types.workflows import (
+    WorkflowUpdateResponse,
+    WorkflowListResponse,
+    WorkflowGetResponse,
+)
 ```
 
 Methods:
 
-- <code title="put /accounts/{account_id}/workflows/{workflow_name}">client.workflows.<a href="./src/cloudflare/resources/workflows/workflows.py">update</a>(workflow_name, \*, account_id, \*\*<a href="src/cloudflare/types/workflow_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workflow_update_response.py">WorkflowUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/workflows">client.workflows.<a href="./src/cloudflare/resources/workflows/workflows.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workflow_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workflow_list_response.py">SyncV4PagePaginationArray[WorkflowListResponse]</a></code>
-- <code title="get /accounts/{account_id}/workflows/{workflow_name}">client.workflows.<a href="./src/cloudflare/resources/workflows/workflows.py">get</a>(workflow_name, \*, account_id) -> <a href="./src/cloudflare/types/workflow_get_response.py">WorkflowGetResponse</a></code>
+- <code title="put /accounts/{account_id}/workflows/{workflow_name}">client.workflows.<a href="./src/cloudflare/resources/workflows/workflows.py">update</a>(workflow_name, \*, account_id, \*\*<a href="src/cloudflare/types/workflows/workflow_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/workflow_update_response.py">WorkflowUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/workflows">client.workflows.<a href="./src/cloudflare/resources/workflows/workflows.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workflows/workflow_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/workflow_list_response.py">SyncV4PagePaginationArray[WorkflowListResponse]</a></code>
+- <code title="get /accounts/{account_id}/workflows/{workflow_name}">client.workflows.<a href="./src/cloudflare/resources/workflows/workflows.py">get</a>(workflow_name, \*, account_id) -> <a href="./src/cloudflare/types/workflows/workflow_get_response.py">WorkflowGetResponse</a></code>
 
 ## Instances
 
@@ -8151,7 +8155,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import (
+from cloudflare.types.resource_sharing import (
     ResourceSharingCreateResponse,
     ResourceSharingUpdateResponse,
     ResourceSharingListResponse,
@@ -8162,11 +8166,11 @@ from cloudflare.types import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/shares">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing_create_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing_create_response.py">Optional</a></code>
-- <code title="put /accounts/{account_id}/shares/{share_identifier}">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">update</a>(share_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing_update_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/shares">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing_list_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing_list_response.py">SyncV4PagePaginationArray[ResourceSharingListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/shares/{share_identifier}">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">delete</a>(share_identifier, \*, account_id) -> <a href="./src/cloudflare/types/resource_sharing_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/shares/{share_identifier}">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">get</a>(share_identifier, \*, account_id) -> <a href="./src/cloudflare/types/resource_sharing_get_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/shares">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing/resource_sharing_create_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/resource_sharing_create_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/shares/{share_identifier}">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">update</a>(share_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing/resource_sharing_update_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/resource_sharing_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/shares">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing/resource_sharing_list_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/resource_sharing_list_response.py">SyncV4PagePaginationArray[ResourceSharingListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/shares/{share_identifier}">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">delete</a>(share_identifier, \*, account_id) -> <a href="./src/cloudflare/types/resource_sharing/resource_sharing_delete_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/shares/{share_identifier}">client.resource_sharing.<a href="./src/cloudflare/resources/resource_sharing/resource_sharing.py">get</a>(share_identifier, \*, account_id) -> <a href="./src/cloudflare/types/resource_sharing/resource_sharing_get_response.py">Optional</a></code>
 
 ## Recipients
 
