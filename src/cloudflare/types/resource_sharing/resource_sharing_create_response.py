@@ -4,12 +4,12 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["ResourceSharingUpdateResponse"]
+__all__ = ["ResourceSharingCreateResponse"]
 
 
-class ResourceSharingUpdateResponse(BaseModel):
+class ResourceSharingCreateResponse(BaseModel):
     id: str
     """Share identifier tag."""
 

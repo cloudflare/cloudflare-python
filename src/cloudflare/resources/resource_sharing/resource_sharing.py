@@ -7,11 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...types import (
-    resource_sharing_list_params,
-    resource_sharing_create_params,
-    resource_sharing_update_params,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -44,11 +39,16 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.resource_sharing_get_response import ResourceSharingGetResponse
-from ...types.resource_sharing_list_response import ResourceSharingListResponse
-from ...types.resource_sharing_create_response import ResourceSharingCreateResponse
-from ...types.resource_sharing_delete_response import ResourceSharingDeleteResponse
-from ...types.resource_sharing_update_response import ResourceSharingUpdateResponse
+from ...types.resource_sharing import (
+    resource_sharing_list_params,
+    resource_sharing_create_params,
+    resource_sharing_update_params,
+)
+from ...types.resource_sharing.resource_sharing_get_response import ResourceSharingGetResponse
+from ...types.resource_sharing.resource_sharing_list_response import ResourceSharingListResponse
+from ...types.resource_sharing.resource_sharing_create_response import ResourceSharingCreateResponse
+from ...types.resource_sharing.resource_sharing_delete_response import ResourceSharingDeleteResponse
+from ...types.resource_sharing.resource_sharing_update_response import ResourceSharingUpdateResponse
 
 __all__ = ["ResourceSharingResource", "AsyncResourceSharingResource"]
 
