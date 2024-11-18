@@ -5,17 +5,16 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .route_param import RouteParam
 from .target_param import TargetParam
 
-__all__ = ["PageruleEditParams"]
+__all__ = ["PageruleEditParams", "Action", "ActionValue"]
 
 
 class PageruleEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    actions: Iterable[RouteParam]
+    actions: Iterable[Action]
     """The set of actions to perform if the targets of this rule match the request.
 
     Actions can redirect to another URL or override settings, but not both.
@@ -35,3 +34,28 @@ class PageruleEditParams(TypedDict, total=False):
 
     targets: Iterable[TargetParam]
     """The rule targets to evaluate on each request."""
+
+
+class ActionValue(TypedDict, total=False):
+    status_code: Literal[301, 302]
+    """The status code to use for the URL redirect.
+
+    301 is a permanent redirect. 302 is a temporary redirect.
+    """
+
+    url: str
+    """
+    The URL to redirect the request to. Notes: ${num} refers to the position of '\\**'
+    in the constraint value.
+    """
+
+
+class Action(TypedDict, total=False):
+    id: Literal["forwarding_url"]
+    """Redirects one URL to another using an `HTTP 301/302` redirect.
+
+    Refer to
+    [Wildcard matching and referencing](https://developers.cloudflare.com/rules/page-rules/reference/wildcard-matching/).
+    """
+
+    value: ActionValue

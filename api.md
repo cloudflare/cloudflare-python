@@ -1852,8 +1852,6 @@ Types:
 
 ```python
 from cloudflare.types.pagerules import (
-    PageRule,
-    Route,
     Target,
     PageruleCreateResponse,
     PageruleUpdateResponse,
@@ -1866,12 +1864,12 @@ from cloudflare.types.pagerules import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/pagerules">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/pagerules/pagerule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerules/pagerule_create_response.py">PageruleCreateResponse</a></code>
-- <code title="put /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">update</a>(pagerule_id, \*, zone_id, \*\*<a href="src/cloudflare/types/pagerules/pagerule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerules/pagerule_update_response.py">PageruleUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/pagerules">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/pagerules/pagerule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerules/pagerule_list_response.py">PageruleListResponse</a></code>
+- <code title="post /zones/{zone_id}/pagerules">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/pagerules/pagerule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerules/pagerule_create_response.py">Optional</a></code>
+- <code title="put /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">update</a>(pagerule_id, \*, zone_id, \*\*<a href="src/cloudflare/types/pagerules/pagerule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerules/pagerule_update_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/pagerules">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/pagerules/pagerule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerules/pagerule_list_response.py">Optional</a></code>
 - <code title="delete /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">delete</a>(pagerule_id, \*, zone_id) -> <a href="./src/cloudflare/types/pagerules/pagerule_delete_response.py">Optional</a></code>
-- <code title="patch /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">edit</a>(pagerule_id, \*, zone_id, \*\*<a href="src/cloudflare/types/pagerules/pagerule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerules/pagerule_edit_response.py">PageruleEditResponse</a></code>
-- <code title="get /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">get</a>(pagerule_id, \*, zone_id) -> <a href="./src/cloudflare/types/pagerules/pagerule_get_response.py">PageruleGetResponse</a></code>
+- <code title="patch /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">edit</a>(pagerule_id, \*, zone_id, \*\*<a href="src/cloudflare/types/pagerules/pagerule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerules/pagerule_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules/pagerules.py">get</a>(pagerule_id, \*, zone_id) -> <a href="./src/cloudflare/types/pagerules/pagerule_get_response.py">Optional</a></code>
 
 ## Settings
 
@@ -1883,7 +1881,7 @@ from cloudflare.types.pagerules import SettingListResponse
 
 Methods:
 
-- <code title="get /zones/{zone_id}/pagerules/settings">client.pagerules.settings.<a href="./src/cloudflare/resources/pagerules/settings.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/pagerules/setting_list_response.py">SettingListResponse</a></code>
+- <code title="get /zones/{zone_id}/pagerules/settings">client.pagerules.settings.<a href="./src/cloudflare/resources/pagerules/settings.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/pagerules/setting_list_response.py">Optional</a></code>
 
 # RateLimits
 
