@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -23,9 +23,11 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.hyperdrive import config_edit_params, config_create_params, config_update_params
-from ...types.hyperdrive.hyperdrive import Hyperdrive
-from ...types.hyperdrive.configuration_param import ConfigurationParam
-from ...types.hyperdrive.config_delete_response import ConfigDeleteResponse
+from ...types.hyperdrive.config_get_response import ConfigGetResponse
+from ...types.hyperdrive.config_edit_response import ConfigEditResponse
+from ...types.hyperdrive.config_list_response import ConfigListResponse
+from ...types.hyperdrive.config_create_response import ConfigCreateResponse
+from ...types.hyperdrive.config_update_response import ConfigUpdateResponse
 
 __all__ = ["ConfigsResource", "AsyncConfigsResource"]
 
@@ -55,7 +57,7 @@ class ConfigsResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        origin: ConfigurationParam,
+        origin: config_create_params.Origin,
         caching: config_create_params.Caching | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -63,7 +65,7 @@ class ConfigsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Hyperdrive]:
+    ) -> ConfigCreateResponse:
         """
         Creates and returns a new Hyperdrive configuration.
 
@@ -95,9 +97,9 @@ class ConfigsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
+                post_parser=ResultWrapper[ConfigCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
+            cast_to=cast(Type[ConfigCreateResponse], ResultWrapper[ConfigCreateResponse]),
         )
 
     def update(
@@ -106,7 +108,7 @@ class ConfigsResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        origin: ConfigurationParam,
+        origin: config_update_params.Origin,
         caching: config_update_params.Caching | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -114,7 +116,7 @@ class ConfigsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Hyperdrive]:
+    ) -> ConfigUpdateResponse:
         """
         Updates and returns the specified Hyperdrive configuration.
 
@@ -150,9 +152,9 @@ class ConfigsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
+                post_parser=ResultWrapper[ConfigUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
+            cast_to=cast(Type[ConfigUpdateResponse], ResultWrapper[ConfigUpdateResponse]),
         )
 
     def list(
@@ -165,7 +167,7 @@ class ConfigsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Hyperdrive]:
+    ) -> SyncSinglePage[ConfigListResponse]:
         """
         Returns a list of Hyperdrives
 
@@ -184,11 +186,11 @@ class ConfigsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/hyperdrive/configs",
-            page=SyncSinglePage[Hyperdrive],
+            page=SyncSinglePage[ConfigListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Hyperdrive,
+            model=ConfigListResponse,
         )
 
     def delete(
@@ -202,7 +204,7 @@ class ConfigsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigDeleteResponse:
+    ) -> object:
         """
         Deletes the specified Hyperdrive.
 
@@ -223,21 +225,16 @@ class ConfigsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not hyperdrive_id:
             raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
-        return cast(
-            ConfigDeleteResponse,
-            self._delete(
-                f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ConfigDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ConfigDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def edit(
@@ -247,18 +244,18 @@ class ConfigsResource(SyncAPIResource):
         account_id: str,
         caching: config_edit_params.Caching | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        origin: ConfigurationParam | NotGiven = NOT_GIVEN,
+        origin: config_edit_params.Origin | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Hyperdrive]:
+    ) -> ConfigEditResponse:
         """Patches and returns the specified Hyperdrive configuration.
 
-        Updates to the
-        origin and caching settings are applied with an all-or-nothing approach.
+        Custom caching
+        settings are not kept if caching is disabled.
 
         Args:
           account_id: Identifier
@@ -292,9 +289,9 @@ class ConfigsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
+                post_parser=ResultWrapper[ConfigEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
+            cast_to=cast(Type[ConfigEditResponse], ResultWrapper[ConfigEditResponse]),
         )
 
     def get(
@@ -308,7 +305,7 @@ class ConfigsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Hyperdrive]:
+    ) -> ConfigGetResponse:
         """
         Returns the specified Hyperdrive configuration.
 
@@ -336,9 +333,9 @@ class ConfigsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
+                post_parser=ResultWrapper[ConfigGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
+            cast_to=cast(Type[ConfigGetResponse], ResultWrapper[ConfigGetResponse]),
         )
 
 
@@ -367,7 +364,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        origin: ConfigurationParam,
+        origin: config_create_params.Origin,
         caching: config_create_params.Caching | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -375,7 +372,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Hyperdrive]:
+    ) -> ConfigCreateResponse:
         """
         Creates and returns a new Hyperdrive configuration.
 
@@ -407,9 +404,9 @@ class AsyncConfigsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
+                post_parser=ResultWrapper[ConfigCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
+            cast_to=cast(Type[ConfigCreateResponse], ResultWrapper[ConfigCreateResponse]),
         )
 
     async def update(
@@ -418,7 +415,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        origin: ConfigurationParam,
+        origin: config_update_params.Origin,
         caching: config_update_params.Caching | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -426,7 +423,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Hyperdrive]:
+    ) -> ConfigUpdateResponse:
         """
         Updates and returns the specified Hyperdrive configuration.
 
@@ -462,9 +459,9 @@ class AsyncConfigsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
+                post_parser=ResultWrapper[ConfigUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
+            cast_to=cast(Type[ConfigUpdateResponse], ResultWrapper[ConfigUpdateResponse]),
         )
 
     def list(
@@ -477,7 +474,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Hyperdrive, AsyncSinglePage[Hyperdrive]]:
+    ) -> AsyncPaginator[ConfigListResponse, AsyncSinglePage[ConfigListResponse]]:
         """
         Returns a list of Hyperdrives
 
@@ -496,11 +493,11 @@ class AsyncConfigsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/hyperdrive/configs",
-            page=AsyncSinglePage[Hyperdrive],
+            page=AsyncSinglePage[ConfigListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Hyperdrive,
+            model=ConfigListResponse,
         )
 
     async def delete(
@@ -514,7 +511,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigDeleteResponse:
+    ) -> object:
         """
         Deletes the specified Hyperdrive.
 
@@ -535,21 +532,16 @@ class AsyncConfigsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not hyperdrive_id:
             raise ValueError(f"Expected a non-empty value for `hyperdrive_id` but received {hyperdrive_id!r}")
-        return cast(
-            ConfigDeleteResponse,
-            await self._delete(
-                f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ConfigDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ConfigDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def edit(
@@ -559,18 +551,18 @@ class AsyncConfigsResource(AsyncAPIResource):
         account_id: str,
         caching: config_edit_params.Caching | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        origin: ConfigurationParam | NotGiven = NOT_GIVEN,
+        origin: config_edit_params.Origin | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Hyperdrive]:
+    ) -> ConfigEditResponse:
         """Patches and returns the specified Hyperdrive configuration.
 
-        Updates to the
-        origin and caching settings are applied with an all-or-nothing approach.
+        Custom caching
+        settings are not kept if caching is disabled.
 
         Args:
           account_id: Identifier
@@ -604,9 +596,9 @@ class AsyncConfigsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
+                post_parser=ResultWrapper[ConfigEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
+            cast_to=cast(Type[ConfigEditResponse], ResultWrapper[ConfigEditResponse]),
         )
 
     async def get(
@@ -620,7 +612,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Hyperdrive]:
+    ) -> ConfigGetResponse:
         """
         Returns the specified Hyperdrive configuration.
 
@@ -648,9 +640,9 @@ class AsyncConfigsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Hyperdrive]]._unwrapper,
+                post_parser=ResultWrapper[ConfigGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Hyperdrive]], ResultWrapper[Hyperdrive]),
+            cast_to=cast(Type[ConfigGetResponse], ResultWrapper[ConfigGetResponse]),
         )
 
 
