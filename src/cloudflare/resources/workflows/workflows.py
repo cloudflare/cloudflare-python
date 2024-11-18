@@ -6,7 +6,6 @@ from typing import Type, cast
 
 import httpx
 
-from ...types import workflow_list_params, workflow_update_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -39,10 +38,11 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.workflows import workflow_list_params, workflow_update_params
 from .instances.instances import InstancesResource, AsyncInstancesResource
-from ...types.workflow_get_response import WorkflowGetResponse
-from ...types.workflow_list_response import WorkflowListResponse
-from ...types.workflow_update_response import WorkflowUpdateResponse
+from ...types.workflows.workflow_get_response import WorkflowGetResponse
+from ...types.workflows.workflow_list_response import WorkflowListResponse
+from ...types.workflows.workflow_update_response import WorkflowUpdateResponse
 
 __all__ = ["WorkflowsResource", "AsyncWorkflowsResource"]
 

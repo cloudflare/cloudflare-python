@@ -7,7 +7,6 @@ from datetime import datetime
 
 import httpx
 
-from ..types import security_txt_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
@@ -23,9 +22,10 @@ from .._response import (
 )
 from .._wrappers import ResultWrapper
 from .._base_client import make_request_options
-from ..types.security_txt_get_response import SecurityTXTGetResponse
-from ..types.security_txt_delete_response import SecurityTXTDeleteResponse
-from ..types.security_txt_update_response import SecurityTXTUpdateResponse
+from ..types.security_txt import security_txt_update_params
+from ..types.security_txt.security_txt_get_response import SecurityTXTGetResponse
+from ..types.security_txt.security_txt_delete_response import SecurityTXTDeleteResponse
+from ..types.security_txt.security_txt_update_response import SecurityTXTUpdateResponse
 
 __all__ = ["SecurityTXTResource", "AsyncSecurityTXTResource"]
 
