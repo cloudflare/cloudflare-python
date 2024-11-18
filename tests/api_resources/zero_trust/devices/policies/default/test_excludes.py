@@ -28,15 +28,7 @@ class TestExcludes:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[ExcludeUpdateResponse], exclude, path=["response"])
@@ -49,15 +41,7 @@ class TestExcludes:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                },
+                }
             ],
         )
 
@@ -74,15 +58,7 @@ class TestExcludes:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -102,15 +78,7 @@ class TestExcludes:
                     {
                         "address": "192.0.2.0/24",
                         "description": "Exclude testing domains from the tunnel",
-                    },
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Exclude testing domains from the tunnel",
-                    },
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Exclude testing domains from the tunnel",
-                    },
+                    }
                 ],
             )
 
@@ -164,15 +132,7 @@ class TestAsyncExcludes:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[ExcludeUpdateResponse], exclude, path=["response"])
@@ -185,15 +145,7 @@ class TestAsyncExcludes:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                },
+                }
             ],
         )
 
@@ -210,15 +162,7 @@ class TestAsyncExcludes:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                },
-                {
-                    "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -238,15 +182,7 @@ class TestAsyncExcludes:
                     {
                         "address": "192.0.2.0/24",
                         "description": "Exclude testing domains from the tunnel",
-                    },
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Exclude testing domains from the tunnel",
-                    },
-                    {
-                        "address": "192.0.2.0/24",
-                        "description": "Exclude testing domains from the tunnel",
-                    },
+                    }
                 ],
             )
 

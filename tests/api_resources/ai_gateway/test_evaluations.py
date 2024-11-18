@@ -28,8 +28,8 @@ class TestEvaluations:
         evaluation = client.ai_gateway.evaluations.create(
             gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            dataset_ids=["string", "string", "string"],
-            evaluation_type_ids=["string", "string", "string"],
+            dataset_ids=["string"],
+            evaluation_type_ids=["string"],
             name="name",
         )
         assert_matches_type(EvaluationCreateResponse, evaluation, path=["response"])
@@ -39,8 +39,8 @@ class TestEvaluations:
         response = client.ai_gateway.evaluations.with_raw_response.create(
             gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            dataset_ids=["string", "string", "string"],
-            evaluation_type_ids=["string", "string", "string"],
+            dataset_ids=["string"],
+            evaluation_type_ids=["string"],
             name="name",
         )
 
@@ -54,8 +54,8 @@ class TestEvaluations:
         with client.ai_gateway.evaluations.with_streaming_response.create(
             gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            dataset_ids=["string", "string", "string"],
-            evaluation_type_ids=["string", "string", "string"],
+            dataset_ids=["string"],
+            evaluation_type_ids=["string"],
             name="name",
         ) as response:
             assert not response.is_closed
@@ -72,8 +72,8 @@ class TestEvaluations:
             client.ai_gateway.evaluations.with_raw_response.create(
                 gateway_id="my-gateway",
                 account_id="",
-                dataset_ids=["string", "string", "string"],
-                evaluation_type_ids=["string", "string", "string"],
+                dataset_ids=["string"],
+                evaluation_type_ids=["string"],
                 name="name",
             )
 
@@ -81,8 +81,8 @@ class TestEvaluations:
             client.ai_gateway.evaluations.with_raw_response.create(
                 gateway_id="",
                 account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-                dataset_ids=["string", "string", "string"],
-                evaluation_type_ids=["string", "string", "string"],
+                dataset_ids=["string"],
+                evaluation_type_ids=["string"],
                 name="name",
             )
 
@@ -278,8 +278,8 @@ class TestAsyncEvaluations:
         evaluation = await async_client.ai_gateway.evaluations.create(
             gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            dataset_ids=["string", "string", "string"],
-            evaluation_type_ids=["string", "string", "string"],
+            dataset_ids=["string"],
+            evaluation_type_ids=["string"],
             name="name",
         )
         assert_matches_type(EvaluationCreateResponse, evaluation, path=["response"])
@@ -289,8 +289,8 @@ class TestAsyncEvaluations:
         response = await async_client.ai_gateway.evaluations.with_raw_response.create(
             gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            dataset_ids=["string", "string", "string"],
-            evaluation_type_ids=["string", "string", "string"],
+            dataset_ids=["string"],
+            evaluation_type_ids=["string"],
             name="name",
         )
 
@@ -304,8 +304,8 @@ class TestAsyncEvaluations:
         async with async_client.ai_gateway.evaluations.with_streaming_response.create(
             gateway_id="my-gateway",
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-            dataset_ids=["string", "string", "string"],
-            evaluation_type_ids=["string", "string", "string"],
+            dataset_ids=["string"],
+            evaluation_type_ids=["string"],
             name="name",
         ) as response:
             assert not response.is_closed
@@ -322,8 +322,8 @@ class TestAsyncEvaluations:
             await async_client.ai_gateway.evaluations.with_raw_response.create(
                 gateway_id="my-gateway",
                 account_id="",
-                dataset_ids=["string", "string", "string"],
-                evaluation_type_ids=["string", "string", "string"],
+                dataset_ids=["string"],
+                evaluation_type_ids=["string"],
                 name="name",
             )
 
@@ -331,8 +331,8 @@ class TestAsyncEvaluations:
             await async_client.ai_gateway.evaluations.with_raw_response.create(
                 gateway_id="",
                 account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
-                dataset_ids=["string", "string", "string"],
-                evaluation_type_ids=["string", "string", "string"],
+                dataset_ids=["string"],
+                evaluation_type_ids=["string"],
                 name="name",
             )
 

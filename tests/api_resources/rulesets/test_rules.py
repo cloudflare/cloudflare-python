@@ -1376,7 +1376,7 @@ class TestRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_settings",
             action_parameters={
-                "additional_cacheable_ports": [0, 0, 0],
+                "additional_cacheable_ports": [0],
                 "browser_ttl": {
                     "mode": "respect_origin",
                     "default": 0,
@@ -1387,24 +1387,24 @@ class TestRules:
                     "cache_deception_armor": True,
                     "custom_key": {
                         "cookie": {
-                            "check_presence": ["string", "string", "string"],
-                            "include": ["string", "string", "string"],
+                            "check_presence": ["string"],
+                            "include": ["string"],
                         },
                         "header": {
-                            "check_presence": ["string", "string", "string"],
-                            "contains": {"foo": ["string", "string", "string"]},
+                            "check_presence": ["string"],
+                            "contains": {"foo": ["string"]},
                             "exclude_origin": True,
-                            "include": ["string", "string", "string"],
+                            "include": ["string"],
                         },
                         "host": {"resolved": True},
                         "query_string": {
                             "exclude": {
                                 "all": True,
-                                "list": ["string", "string", "string"],
+                                "list": ["string"],
                             },
                             "include": {
                                 "all": True,
-                                "list": ["string", "string", "string"],
+                                "list": ["string"],
                             },
                         },
                         "user": {
@@ -1430,23 +1430,7 @@ class TestRules:
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                        },
-                        {
-                            "value": 0,
-                            "status_code_range": {
-                                "from": 0,
-                                "to": 0,
-                            },
-                            "status_code_value": 0,
-                        },
-                        {
-                            "value": 0,
-                            "status_code_range": {
-                                "from": 0,
-                                "to": 0,
-                            },
-                            "status_code_value": 0,
-                        },
+                        }
                     ],
                 },
                 "origin_cache_control": True,
@@ -3431,7 +3415,7 @@ class TestRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_settings",
             action_parameters={
-                "additional_cacheable_ports": [0, 0, 0],
+                "additional_cacheable_ports": [0],
                 "browser_ttl": {
                     "mode": "respect_origin",
                     "default": 0,
@@ -3442,24 +3426,24 @@ class TestRules:
                     "cache_deception_armor": True,
                     "custom_key": {
                         "cookie": {
-                            "check_presence": ["string", "string", "string"],
-                            "include": ["string", "string", "string"],
+                            "check_presence": ["string"],
+                            "include": ["string"],
                         },
                         "header": {
-                            "check_presence": ["string", "string", "string"],
-                            "contains": {"foo": ["string", "string", "string"]},
+                            "check_presence": ["string"],
+                            "contains": {"foo": ["string"]},
                             "exclude_origin": True,
-                            "include": ["string", "string", "string"],
+                            "include": ["string"],
                         },
                         "host": {"resolved": True},
                         "query_string": {
                             "exclude": {
                                 "all": True,
-                                "list": ["string", "string", "string"],
+                                "list": ["string"],
                             },
                             "include": {
                                 "all": True,
-                                "list": ["string", "string", "string"],
+                                "list": ["string"],
                             },
                         },
                         "user": {
@@ -3485,23 +3469,7 @@ class TestRules:
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                        },
-                        {
-                            "value": 0,
-                            "status_code_range": {
-                                "from": 0,
-                                "to": 0,
-                            },
-                            "status_code_value": 0,
-                        },
-                        {
-                            "value": 0,
-                            "status_code_range": {
-                                "from": 0,
-                                "to": 0,
-                            },
-                            "status_code_value": 0,
-                        },
+                        }
                     ],
                 },
                 "origin_cache_control": True,
@@ -5265,7 +5233,7 @@ class TestAsyncRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_settings",
             action_parameters={
-                "additional_cacheable_ports": [0, 0, 0],
+                "additional_cacheable_ports": [0],
                 "browser_ttl": {
                     "mode": "respect_origin",
                     "default": 0,
@@ -5276,24 +5244,24 @@ class TestAsyncRules:
                     "cache_deception_armor": True,
                     "custom_key": {
                         "cookie": {
-                            "check_presence": ["string", "string", "string"],
-                            "include": ["string", "string", "string"],
+                            "check_presence": ["string"],
+                            "include": ["string"],
                         },
                         "header": {
-                            "check_presence": ["string", "string", "string"],
-                            "contains": {"foo": ["string", "string", "string"]},
+                            "check_presence": ["string"],
+                            "contains": {"foo": ["string"]},
                             "exclude_origin": True,
-                            "include": ["string", "string", "string"],
+                            "include": ["string"],
                         },
                         "host": {"resolved": True},
                         "query_string": {
                             "exclude": {
                                 "all": True,
-                                "list": ["string", "string", "string"],
+                                "list": ["string"],
                             },
                             "include": {
                                 "all": True,
-                                "list": ["string", "string", "string"],
+                                "list": ["string"],
                             },
                         },
                         "user": {
@@ -5319,23 +5287,7 @@ class TestAsyncRules:
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                        },
-                        {
-                            "value": 0,
-                            "status_code_range": {
-                                "from": 0,
-                                "to": 0,
-                            },
-                            "status_code_value": 0,
-                        },
-                        {
-                            "value": 0,
-                            "status_code_range": {
-                                "from": 0,
-                                "to": 0,
-                            },
-                            "status_code_value": 0,
-                        },
+                        }
                     ],
                 },
                 "origin_cache_control": True,
@@ -7320,7 +7272,7 @@ class TestAsyncRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="set_cache_settings",
             action_parameters={
-                "additional_cacheable_ports": [0, 0, 0],
+                "additional_cacheable_ports": [0],
                 "browser_ttl": {
                     "mode": "respect_origin",
                     "default": 0,
@@ -7331,24 +7283,24 @@ class TestAsyncRules:
                     "cache_deception_armor": True,
                     "custom_key": {
                         "cookie": {
-                            "check_presence": ["string", "string", "string"],
-                            "include": ["string", "string", "string"],
+                            "check_presence": ["string"],
+                            "include": ["string"],
                         },
                         "header": {
-                            "check_presence": ["string", "string", "string"],
-                            "contains": {"foo": ["string", "string", "string"]},
+                            "check_presence": ["string"],
+                            "contains": {"foo": ["string"]},
                             "exclude_origin": True,
-                            "include": ["string", "string", "string"],
+                            "include": ["string"],
                         },
                         "host": {"resolved": True},
                         "query_string": {
                             "exclude": {
                                 "all": True,
-                                "list": ["string", "string", "string"],
+                                "list": ["string"],
                             },
                             "include": {
                                 "all": True,
-                                "list": ["string", "string", "string"],
+                                "list": ["string"],
                             },
                         },
                         "user": {
@@ -7374,23 +7326,7 @@ class TestAsyncRules:
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                        },
-                        {
-                            "value": 0,
-                            "status_code_range": {
-                                "from": 0,
-                                "to": 0,
-                            },
-                            "status_code_value": 0,
-                        },
-                        {
-                            "value": 0,
-                            "status_code_range": {
-                                "from": 0,
-                                "to": 0,
-                            },
-                            "status_code_value": 0,
-                        },
+                        }
                     ],
                 },
                 "origin_cache_control": True,

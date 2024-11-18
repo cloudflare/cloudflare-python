@@ -30,7 +30,7 @@ class TestUpload:
         upload = client.workers.assets.upload.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             base64=True,
-            any_file_hash=["string", "string", "string"],
+            any_file_hash=["string"],
         )
         assert_matches_type(Optional[UploadCreateResponse], upload, path=["response"])
 
@@ -85,7 +85,7 @@ class TestAsyncUpload:
         upload = await async_client.workers.assets.upload.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             base64=True,
-            any_file_hash=["string", "string", "string"],
+            any_file_hash=["string"],
         )
         assert_matches_type(Optional[UploadCreateResponse], upload, path=["response"])
 

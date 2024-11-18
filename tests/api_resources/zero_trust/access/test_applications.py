@@ -42,11 +42,7 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -54,7 +50,7 @@ class TestApplications:
                 "allow_all_methods": True,
                 "allow_all_origins": True,
                 "allow_credentials": True,
-                "allowed_headers": ["string", "string", "string"],
+                "allowed_headers": ["string"],
                 "allowed_methods": ["GET"],
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
@@ -62,11 +58,7 @@ class TestApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -77,15 +69,7 @@ class TestApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             same_site_cookie_attribute="strict",
             scim_config={
@@ -110,38 +94,14 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
             skip_interstitial=True,
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -205,33 +165,17 @@ class TestApplications:
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             saas_app={
                 "auth_type": "saml",
@@ -249,33 +193,7 @@ class TestApplications:
                                 "exampleIdPID2": "AttributeName2",
                             },
                         },
-                    },
-                    {
-                        "friendly_name": "Last Name",
-                        "name": "family_name",
-                        "name_format": "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
-                        "required": True,
-                        "source": {
-                            "name": "last_name",
-                            "name_by_idp": {
-                                "exampleIdPID1": "AttributeName1",
-                                "exampleIdPID2": "AttributeName2",
-                            },
-                        },
-                    },
-                    {
-                        "friendly_name": "Last Name",
-                        "name": "family_name",
-                        "name_format": "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
-                        "required": True,
-                        "source": {
-                            "name": "last_name",
-                            "name_by_idp": {
-                                "exampleIdPID1": "AttributeName1",
-                                "exampleIdPID2": "AttributeName2",
-                            },
-                        },
-                    },
+                    }
                 ],
                 "default_relay_state": "https://example.com",
                 "idp_entity_id": "https://example.cloudflareaccess.com",
@@ -308,34 +226,10 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
             type="saas",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -397,11 +291,7 @@ class TestApplications:
             type="ssh",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -409,7 +299,7 @@ class TestApplications:
                 "allow_all_methods": True,
                 "allow_all_origins": True,
                 "allow_credentials": True,
-                "allowed_headers": ["string", "string", "string"],
+                "allowed_headers": ["string"],
                 "allowed_methods": ["GET"],
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
@@ -417,11 +307,7 @@ class TestApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -432,15 +318,7 @@ class TestApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             same_site_cookie_attribute="strict",
             scim_config={
@@ -465,38 +343,14 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
             skip_interstitial=True,
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -565,11 +419,7 @@ class TestApplications:
             type="vnc",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -577,7 +427,7 @@ class TestApplications:
                 "allow_all_methods": True,
                 "allow_all_origins": True,
                 "allow_credentials": True,
-                "allowed_headers": ["string", "string", "string"],
+                "allowed_headers": ["string"],
                 "allowed_methods": ["GET"],
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
@@ -585,11 +435,7 @@ class TestApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -600,15 +446,7 @@ class TestApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             same_site_cookie_attribute="strict",
             scim_config={
@@ -633,38 +471,14 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
             skip_interstitial=True,
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -730,11 +544,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
@@ -756,15 +566,7 @@ class TestApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             scim_config={
                 "idp_uid": "idp_uid",
@@ -788,31 +590,7 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             session_duration="24h",
@@ -878,11 +656,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
@@ -904,15 +678,7 @@ class TestApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             scim_config={
                 "idp_uid": "idp_uid",
@@ -936,31 +702,7 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             session_duration="24h",
@@ -1026,11 +768,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
@@ -1052,15 +790,7 @@ class TestApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             scim_config={
                 "idp_uid": "idp_uid",
@@ -1084,31 +814,7 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             session_duration="24h",
@@ -1198,34 +904,10 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
             type="bookmark",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -1278,17 +960,7 @@ class TestApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -1304,17 +976,7 @@ class TestApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -1322,61 +984,11 @@ class TestApplications:
             policies=[
                 {
                     "decision": "allow",
-                    "include": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
+                    "include": [{"email": {"email": "test@example.com"}}],
                     "name": "Allow devs",
-                    "exclude": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "require": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                },
-                {
-                    "decision": "allow",
-                    "include": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "name": "Allow devs",
-                    "exclude": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "require": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                },
-                {
-                    "decision": "allow",
-                    "include": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "name": "Allow devs",
-                    "exclude": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "require": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                },
+                    "exclude": [{"email": {"email": "test@example.com"}}],
+                    "require": [{"email": {"email": "test@example.com"}}],
+                }
             ],
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -1390,17 +1002,7 @@ class TestApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -1420,17 +1022,7 @@ class TestApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -1453,17 +1045,7 @@ class TestApplications:
                         "port": 22,
                         "protocol": "ssh",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
+                    }
                 ],
                 type="self_hosted",
                 account_id="",
@@ -1476,17 +1058,7 @@ class TestApplications:
                         "port": 22,
                         "protocol": "ssh",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
+                    }
                 ],
                 type="self_hosted",
                 account_id="account_id",
@@ -1512,11 +1084,7 @@ class TestApplications:
             type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -1524,7 +1092,7 @@ class TestApplications:
                 "allow_all_methods": True,
                 "allow_all_origins": True,
                 "allow_credentials": True,
-                "allowed_headers": ["string", "string", "string"],
+                "allowed_headers": ["string"],
                 "allowed_methods": ["GET"],
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
@@ -1532,11 +1100,7 @@ class TestApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -1547,15 +1111,7 @@ class TestApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             same_site_cookie_attribute="strict",
             scim_config={
@@ -1580,38 +1136,14 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
             skip_interstitial=True,
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -1689,33 +1221,17 @@ class TestApplications:
         application = client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             saas_app={
                 "auth_type": "saml",
@@ -1733,33 +1249,7 @@ class TestApplications:
                                 "exampleIdPID2": "AttributeName2",
                             },
                         },
-                    },
-                    {
-                        "friendly_name": "Last Name",
-                        "name": "family_name",
-                        "name_format": "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
-                        "required": True,
-                        "source": {
-                            "name": "last_name",
-                            "name_by_idp": {
-                                "exampleIdPID1": "AttributeName1",
-                                "exampleIdPID2": "AttributeName2",
-                            },
-                        },
-                    },
-                    {
-                        "friendly_name": "Last Name",
-                        "name": "family_name",
-                        "name_format": "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
-                        "required": True,
-                        "source": {
-                            "name": "last_name",
-                            "name_by_idp": {
-                                "exampleIdPID1": "AttributeName1",
-                                "exampleIdPID2": "AttributeName2",
-                            },
-                        },
-                    },
+                    }
                 ],
                 "default_relay_state": "https://example.com",
                 "idp_entity_id": "https://example.cloudflareaccess.com",
@@ -1792,34 +1282,10 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
             type="saas",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -1893,11 +1359,7 @@ class TestApplications:
             type="ssh",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -1905,7 +1367,7 @@ class TestApplications:
                 "allow_all_methods": True,
                 "allow_all_origins": True,
                 "allow_credentials": True,
-                "allowed_headers": ["string", "string", "string"],
+                "allowed_headers": ["string"],
                 "allowed_methods": ["GET"],
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
@@ -1913,11 +1375,7 @@ class TestApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -1928,15 +1386,7 @@ class TestApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             same_site_cookie_attribute="strict",
             scim_config={
@@ -1961,38 +1411,14 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
             skip_interstitial=True,
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -2075,11 +1501,7 @@ class TestApplications:
             type="vnc",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -2087,7 +1509,7 @@ class TestApplications:
                 "allow_all_methods": True,
                 "allow_all_origins": True,
                 "allow_credentials": True,
-                "allowed_headers": ["string", "string", "string"],
+                "allowed_headers": ["string"],
                 "allowed_methods": ["GET"],
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
@@ -2095,11 +1517,7 @@ class TestApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -2110,15 +1528,7 @@ class TestApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             same_site_cookie_attribute="strict",
             scim_config={
@@ -2143,38 +1553,14 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
             skip_interstitial=True,
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -2254,11 +1640,7 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
@@ -2280,15 +1662,7 @@ class TestApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             scim_config={
                 "idp_uid": "idp_uid",
@@ -2312,31 +1686,7 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             session_duration="24h",
@@ -2415,11 +1765,7 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
@@ -2441,15 +1787,7 @@ class TestApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             scim_config={
                 "idp_uid": "idp_uid",
@@ -2473,31 +1811,7 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             session_duration="24h",
@@ -2576,11 +1890,7 @@ class TestApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
@@ -2602,15 +1912,7 @@ class TestApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             scim_config={
                 "idp_uid": "idp_uid",
@@ -2634,31 +1936,7 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             session_duration="24h",
@@ -2761,34 +2039,10 @@ class TestApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
             type="bookmark",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -2852,17 +2106,7 @@ class TestApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -2879,17 +2123,7 @@ class TestApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -2897,61 +2131,11 @@ class TestApplications:
             policies=[
                 {
                     "decision": "allow",
-                    "include": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
+                    "include": [{"email": {"email": "test@example.com"}}],
                     "name": "Allow devs",
-                    "exclude": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "require": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                },
-                {
-                    "decision": "allow",
-                    "include": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "name": "Allow devs",
-                    "exclude": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "require": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                },
-                {
-                    "decision": "allow",
-                    "include": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "name": "Allow devs",
-                    "exclude": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "require": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                },
+                    "exclude": [{"email": {"email": "test@example.com"}}],
+                    "require": [{"email": {"email": "test@example.com"}}],
+                }
             ],
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -2966,17 +2150,7 @@ class TestApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -2997,17 +2171,7 @@ class TestApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -3031,17 +2195,7 @@ class TestApplications:
                         "port": 22,
                         "protocol": "ssh",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
+                    }
                 ],
                 type="self_hosted",
                 account_id="account_id",
@@ -3055,17 +2209,7 @@ class TestApplications:
                         "port": 22,
                         "protocol": "ssh",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
+                    }
                 ],
                 type="self_hosted",
                 account_id="",
@@ -3079,17 +2223,7 @@ class TestApplications:
                         "port": 22,
                         "protocol": "ssh",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
+                    }
                 ],
                 type="self_hosted",
                 account_id="account_id",
@@ -3377,11 +2511,7 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -3389,7 +2519,7 @@ class TestAsyncApplications:
                 "allow_all_methods": True,
                 "allow_all_origins": True,
                 "allow_credentials": True,
-                "allowed_headers": ["string", "string", "string"],
+                "allowed_headers": ["string"],
                 "allowed_methods": ["GET"],
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
@@ -3397,11 +2527,7 @@ class TestAsyncApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -3412,15 +2538,7 @@ class TestAsyncApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             same_site_cookie_attribute="strict",
             scim_config={
@@ -3445,38 +2563,14 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
             skip_interstitial=True,
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3540,33 +2634,17 @@ class TestAsyncApplications:
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             saas_app={
                 "auth_type": "saml",
@@ -3584,33 +2662,7 @@ class TestAsyncApplications:
                                 "exampleIdPID2": "AttributeName2",
                             },
                         },
-                    },
-                    {
-                        "friendly_name": "Last Name",
-                        "name": "family_name",
-                        "name_format": "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
-                        "required": True,
-                        "source": {
-                            "name": "last_name",
-                            "name_by_idp": {
-                                "exampleIdPID1": "AttributeName1",
-                                "exampleIdPID2": "AttributeName2",
-                            },
-                        },
-                    },
-                    {
-                        "friendly_name": "Last Name",
-                        "name": "family_name",
-                        "name_format": "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
-                        "required": True,
-                        "source": {
-                            "name": "last_name",
-                            "name_by_idp": {
-                                "exampleIdPID1": "AttributeName1",
-                                "exampleIdPID2": "AttributeName2",
-                            },
-                        },
-                    },
+                    }
                 ],
                 "default_relay_state": "https://example.com",
                 "idp_entity_id": "https://example.cloudflareaccess.com",
@@ -3643,34 +2695,10 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
             type="saas",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -3732,11 +2760,7 @@ class TestAsyncApplications:
             type="ssh",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -3744,7 +2768,7 @@ class TestAsyncApplications:
                 "allow_all_methods": True,
                 "allow_all_origins": True,
                 "allow_credentials": True,
-                "allowed_headers": ["string", "string", "string"],
+                "allowed_headers": ["string"],
                 "allowed_methods": ["GET"],
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
@@ -3752,11 +2776,7 @@ class TestAsyncApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -3767,15 +2787,7 @@ class TestAsyncApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             same_site_cookie_attribute="strict",
             scim_config={
@@ -3800,38 +2812,14 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
             skip_interstitial=True,
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3900,11 +2888,7 @@ class TestAsyncApplications:
             type="vnc",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -3912,7 +2896,7 @@ class TestAsyncApplications:
                 "allow_all_methods": True,
                 "allow_all_origins": True,
                 "allow_credentials": True,
-                "allowed_headers": ["string", "string", "string"],
+                "allowed_headers": ["string"],
                 "allowed_methods": ["GET"],
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
@@ -3920,11 +2904,7 @@ class TestAsyncApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -3935,15 +2915,7 @@ class TestAsyncApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             same_site_cookie_attribute="strict",
             scim_config={
@@ -3968,38 +2940,14 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
             skip_interstitial=True,
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -4065,11 +3013,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
@@ -4091,15 +3035,7 @@ class TestAsyncApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             scim_config={
                 "idp_uid": "idp_uid",
@@ -4123,31 +3059,7 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             session_duration="24h",
@@ -4213,11 +3125,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
@@ -4239,15 +3147,7 @@ class TestAsyncApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             scim_config={
                 "idp_uid": "idp_uid",
@@ -4271,31 +3171,7 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             session_duration="24h",
@@ -4361,11 +3237,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
@@ -4387,15 +3259,7 @@ class TestAsyncApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             scim_config={
                 "idp_uid": "idp_uid",
@@ -4419,31 +3283,7 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             session_duration="24h",
@@ -4533,34 +3373,10 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
             type="bookmark",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -4613,17 +3429,7 @@ class TestAsyncApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -4639,17 +3445,7 @@ class TestAsyncApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -4657,61 +3453,11 @@ class TestAsyncApplications:
             policies=[
                 {
                     "decision": "allow",
-                    "include": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
+                    "include": [{"email": {"email": "test@example.com"}}],
                     "name": "Allow devs",
-                    "exclude": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "require": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                },
-                {
-                    "decision": "allow",
-                    "include": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "name": "Allow devs",
-                    "exclude": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "require": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                },
-                {
-                    "decision": "allow",
-                    "include": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "name": "Allow devs",
-                    "exclude": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "require": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                },
+                    "exclude": [{"email": {"email": "test@example.com"}}],
+                    "require": [{"email": {"email": "test@example.com"}}],
+                }
             ],
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -4725,17 +3471,7 @@ class TestAsyncApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -4755,17 +3491,7 @@ class TestAsyncApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -4788,17 +3514,7 @@ class TestAsyncApplications:
                         "port": 22,
                         "protocol": "ssh",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
+                    }
                 ],
                 type="self_hosted",
                 account_id="",
@@ -4811,17 +3527,7 @@ class TestAsyncApplications:
                         "port": 22,
                         "protocol": "ssh",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
+                    }
                 ],
                 type="self_hosted",
                 account_id="account_id",
@@ -4847,11 +3553,7 @@ class TestAsyncApplications:
             type="self_hosted",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -4859,7 +3561,7 @@ class TestAsyncApplications:
                 "allow_all_methods": True,
                 "allow_all_origins": True,
                 "allow_credentials": True,
-                "allowed_headers": ["string", "string", "string"],
+                "allowed_headers": ["string"],
                 "allowed_methods": ["GET"],
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
@@ -4867,11 +3569,7 @@ class TestAsyncApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -4882,15 +3580,7 @@ class TestAsyncApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             same_site_cookie_attribute="strict",
             scim_config={
@@ -4915,38 +3605,14 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
             skip_interstitial=True,
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -5024,33 +3690,17 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             saas_app={
                 "auth_type": "saml",
@@ -5068,33 +3718,7 @@ class TestAsyncApplications:
                                 "exampleIdPID2": "AttributeName2",
                             },
                         },
-                    },
-                    {
-                        "friendly_name": "Last Name",
-                        "name": "family_name",
-                        "name_format": "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
-                        "required": True,
-                        "source": {
-                            "name": "last_name",
-                            "name_by_idp": {
-                                "exampleIdPID1": "AttributeName1",
-                                "exampleIdPID2": "AttributeName2",
-                            },
-                        },
-                    },
-                    {
-                        "friendly_name": "Last Name",
-                        "name": "family_name",
-                        "name_format": "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
-                        "required": True,
-                        "source": {
-                            "name": "last_name",
-                            "name_by_idp": {
-                                "exampleIdPID1": "AttributeName1",
-                                "exampleIdPID2": "AttributeName2",
-                            },
-                        },
-                    },
+                    }
                 ],
                 "default_relay_state": "https://example.com",
                 "idp_entity_id": "https://example.cloudflareaccess.com",
@@ -5127,34 +3751,10 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
             type="saas",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -5228,11 +3828,7 @@ class TestAsyncApplications:
             type="ssh",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -5240,7 +3836,7 @@ class TestAsyncApplications:
                 "allow_all_methods": True,
                 "allow_all_origins": True,
                 "allow_credentials": True,
-                "allowed_headers": ["string", "string", "string"],
+                "allowed_headers": ["string"],
                 "allowed_methods": ["GET"],
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
@@ -5248,11 +3844,7 @@ class TestAsyncApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -5263,15 +3855,7 @@ class TestAsyncApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             same_site_cookie_attribute="strict",
             scim_config={
@@ -5296,38 +3880,14 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
             skip_interstitial=True,
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -5410,11 +3970,7 @@ class TestAsyncApplications:
             type="vnc",
             account_id="account_id",
             allow_authenticate_via_warp=True,
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_visible=True,
             auto_redirect_to_identity=True,
             cors_headers={
@@ -5422,7 +3978,7 @@ class TestAsyncApplications:
                 "allow_all_methods": True,
                 "allow_all_origins": True,
                 "allow_credentials": True,
-                "allowed_headers": ["string", "string", "string"],
+                "allowed_headers": ["string"],
                 "allowed_methods": ["GET"],
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
@@ -5430,11 +3986,7 @@ class TestAsyncApplications:
             custom_deny_message="custom_deny_message",
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
-            custom_pages=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            custom_pages=["699d98642c564d2e855e9661899b7252"],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -5445,15 +3997,7 @@ class TestAsyncApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             same_site_cookie_attribute="strict",
             scim_config={
@@ -5478,38 +4022,14 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
             skip_interstitial=True,
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -5589,11 +4109,7 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
@@ -5615,15 +4131,7 @@ class TestAsyncApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             scim_config={
                 "idp_uid": "idp_uid",
@@ -5647,31 +4155,7 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             session_duration="24h",
@@ -5750,11 +4234,7 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
@@ -5776,15 +4256,7 @@ class TestAsyncApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             scim_config={
                 "idp_uid": "idp_uid",
@@ -5808,31 +4280,7 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             session_duration="24h",
@@ -5911,11 +4359,7 @@ class TestAsyncApplications:
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="self_hosted",
             account_id="account_id",
-            allowed_idps=[
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-                "699d98642c564d2e855e9661899b7252",
-            ],
+            allowed_idps=["699d98642c564d2e855e9661899b7252"],
             app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
             bg_color="#ff0000",
@@ -5937,15 +4381,7 @@ class TestAsyncApplications:
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
+                }
             ],
             scim_config={
                 "idp_uid": "idp_uid",
@@ -5969,31 +4405,7 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
             session_duration="24h",
@@ -6096,34 +4508,10 @@ class TestAsyncApplications:
                         },
                         "strictness": "strict",
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
-                    {
-                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
-                        "enabled": True,
-                        "filter": 'title pr or userType eq "Intern"',
-                        "operations": {
-                            "create": True,
-                            "delete": True,
-                            "update": True,
-                        },
-                        "strictness": "strict",
-                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
-                    },
+                    }
                 ],
             },
-            tags=["engineers", "engineers", "engineers"],
+            tags=["engineers"],
             type="bookmark",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -6187,17 +4575,7 @@ class TestAsyncApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -6214,17 +4592,7 @@ class TestAsyncApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -6232,61 +4600,11 @@ class TestAsyncApplications:
             policies=[
                 {
                     "decision": "allow",
-                    "include": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
+                    "include": [{"email": {"email": "test@example.com"}}],
                     "name": "Allow devs",
-                    "exclude": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "require": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                },
-                {
-                    "decision": "allow",
-                    "include": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "name": "Allow devs",
-                    "exclude": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "require": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                },
-                {
-                    "decision": "allow",
-                    "include": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "name": "Allow devs",
-                    "exclude": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                    "require": [
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                        {"email": {"email": "test@example.com"}},
-                    ],
-                },
+                    "exclude": [{"email": {"email": "test@example.com"}}],
+                    "require": [{"email": {"email": "test@example.com"}}],
+                }
             ],
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -6301,17 +4619,7 @@ class TestAsyncApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -6332,17 +4640,7 @@ class TestAsyncApplications:
                     "port": 22,
                     "protocol": "ssh",
                     "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
-                {
-                    "port": 22,
-                    "protocol": "ssh",
-                    "target_attributes": {"hostname": ["test-server", "production-server"]},
-                },
+                }
             ],
             type="self_hosted",
             account_id="account_id",
@@ -6366,17 +4664,7 @@ class TestAsyncApplications:
                         "port": 22,
                         "protocol": "ssh",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
+                    }
                 ],
                 type="self_hosted",
                 account_id="account_id",
@@ -6390,17 +4678,7 @@ class TestAsyncApplications:
                         "port": 22,
                         "protocol": "ssh",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
+                    }
                 ],
                 type="self_hosted",
                 account_id="",
@@ -6414,17 +4692,7 @@ class TestAsyncApplications:
                         "port": 22,
                         "protocol": "ssh",
                         "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
-                    {
-                        "port": 22,
-                        "protocol": "ssh",
-                        "target_attributes": {"hostname": ["test-server", "production-server"]},
-                    },
+                    }
                 ],
                 type="self_hosted",
                 account_id="account_id",

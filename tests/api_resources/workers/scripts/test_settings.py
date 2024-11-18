@@ -40,17 +40,7 @@ class TestSettings:
                     "service": "my-log-consumer",
                     "environment": "production",
                     "namespace": "my-namespace",
-                },
-                {
-                    "service": "my-log-consumer",
-                    "environment": "production",
-                    "namespace": "my-namespace",
-                },
-                {
-                    "service": "my-log-consumer",
-                    "environment": "production",
-                    "namespace": "my-namespace",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
@@ -170,17 +160,7 @@ class TestAsyncSettings:
                     "service": "my-log-consumer",
                     "environment": "production",
                     "namespace": "my-namespace",
-                },
-                {
-                    "service": "my-log-consumer",
-                    "environment": "production",
-                    "namespace": "my-namespace",
-                },
-                {
-                    "service": "my-log-consumer",
-                    "environment": "production",
-                    "namespace": "my-namespace",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[ScriptSetting], setting, path=["response"])

@@ -28,10 +28,10 @@ class TestDomain:
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         domain = client.radar.ranking.domain.get(
             domain="google.com",
-            date=["string", "string", "string"],
+            date=["string"],
             format="JSON",
             limit=5,
-            name=["string", "string", "string"],
+            name=["string"],
             ranking_type="POPULAR",
         )
         assert_matches_type(DomainGetResponse, domain, path=["response"])
@@ -82,10 +82,10 @@ class TestAsyncDomain:
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.radar.ranking.domain.get(
             domain="google.com",
-            date=["string", "string", "string"],
+            date=["string"],
             format="JSON",
             limit=5,
-            name=["string", "string", "string"],
+            name=["string"],
             ranking_type="POPULAR",
         )
         assert_matches_type(DomainGetResponse, domain, path=["response"])

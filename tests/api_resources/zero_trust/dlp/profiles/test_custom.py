@@ -29,60 +29,10 @@ class TestCustom:
                             "enabled": True,
                             "name": "name",
                             "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
+                        }
                     ],
                     "name": "name",
-                },
-                {
-                    "entries": [
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                    ],
-                    "name": "name",
-                },
-                {
-                    "entries": [
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                    ],
-                    "name": "name",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
@@ -98,60 +48,10 @@ class TestCustom:
                             "enabled": True,
                             "name": "name",
                             "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
+                        }
                     ],
                     "name": "name",
-                },
-                {
-                    "entries": [
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                    ],
-                    "name": "name",
-                },
-                {
-                    "entries": [
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                    ],
-                    "name": "name",
-                },
+                }
             ],
         )
 
@@ -171,60 +71,10 @@ class TestCustom:
                             "enabled": True,
                             "name": "name",
                             "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
+                        }
                     ],
                     "name": "name",
-                },
-                {
-                    "entries": [
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                    ],
-                    "name": "name",
-                },
-                {
-                    "entries": [
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                    ],
-                    "name": "name",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -247,60 +97,10 @@ class TestCustom:
                                 "enabled": True,
                                 "name": "name",
                                 "pattern": {"regex": "regex"},
-                            },
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
+                            }
                         ],
                         "name": "name",
-                    },
-                    {
-                        "entries": [
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
-                        ],
-                        "name": "name",
-                    },
-                    {
-                        "entries": [
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
-                        ],
-                        "name": "name",
-                    },
+                    }
                 ],
             )
 
@@ -313,17 +113,7 @@ class TestCustom:
                     "enabled": True,
                     "name": "name",
                     "pattern": {"regex": "regex"},
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                },
+                }
             ],
             name="name",
         )
@@ -341,23 +131,7 @@ class TestCustom:
                         "regex": "regex",
                         "validation": "luhn",
                     },
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {
-                        "regex": "regex",
-                        "validation": "luhn",
-                    },
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {
-                        "regex": "regex",
-                        "validation": "luhn",
-                    },
-                },
+                }
             ],
             name="name",
             allowed_match_count=5,
@@ -373,17 +147,7 @@ class TestCustom:
                     "enabled": True,
                     "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "entry_type": "custom",
-                },
-                {
-                    "enabled": True,
-                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "entry_type": "custom",
-                },
-                {
-                    "enabled": True,
-                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "entry_type": "custom",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
@@ -397,17 +161,7 @@ class TestCustom:
                     "enabled": True,
                     "name": "name",
                     "pattern": {"regex": "regex"},
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                },
+                }
             ],
             name="name",
         )
@@ -426,17 +180,7 @@ class TestCustom:
                     "enabled": True,
                     "name": "name",
                     "pattern": {"regex": "regex"},
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                },
+                }
             ],
             name="name",
         ) as response:
@@ -458,17 +202,7 @@ class TestCustom:
                         "enabled": True,
                         "name": "name",
                         "pattern": {"regex": "regex"},
-                    },
-                    {
-                        "enabled": True,
-                        "name": "name",
-                        "pattern": {"regex": "regex"},
-                    },
-                    {
-                        "enabled": True,
-                        "name": "name",
-                        "pattern": {"regex": "regex"},
-                    },
+                    }
                 ],
                 name="name",
             )
@@ -504,25 +238,7 @@ class TestCustom:
                         "regex": "regex",
                         "validation": "luhn",
                     },
-                },
-                {
-                    "enabled": True,
-                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "name": "name",
-                    "pattern": {
-                        "regex": "regex",
-                        "validation": "luhn",
-                    },
-                },
-                {
-                    "enabled": True,
-                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "name": "name",
-                    "pattern": {
-                        "regex": "regex",
-                        "validation": "luhn",
-                    },
-                },
+                }
             ],
             ocr_enabled=True,
             shared_entries=[
@@ -530,17 +246,7 @@ class TestCustom:
                     "enabled": True,
                     "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "entry_type": "predefined",
-                },
-                {
-                    "enabled": True,
-                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "entry_type": "predefined",
-                },
-                {
-                    "enabled": True,
-                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "entry_type": "predefined",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[Profile], custom, path=["response"])
@@ -700,60 +406,10 @@ class TestAsyncCustom:
                             "enabled": True,
                             "name": "name",
                             "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
+                        }
                     ],
                     "name": "name",
-                },
-                {
-                    "entries": [
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                    ],
-                    "name": "name",
-                },
-                {
-                    "entries": [
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                    ],
-                    "name": "name",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
@@ -769,60 +425,10 @@ class TestAsyncCustom:
                             "enabled": True,
                             "name": "name",
                             "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
+                        }
                     ],
                     "name": "name",
-                },
-                {
-                    "entries": [
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                    ],
-                    "name": "name",
-                },
-                {
-                    "entries": [
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                    ],
-                    "name": "name",
-                },
+                }
             ],
         )
 
@@ -842,60 +448,10 @@ class TestAsyncCustom:
                             "enabled": True,
                             "name": "name",
                             "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
+                        }
                     ],
                     "name": "name",
-                },
-                {
-                    "entries": [
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                    ],
-                    "name": "name",
-                },
-                {
-                    "entries": [
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                        {
-                            "enabled": True,
-                            "name": "name",
-                            "pattern": {"regex": "regex"},
-                        },
-                    ],
-                    "name": "name",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -918,60 +474,10 @@ class TestAsyncCustom:
                                 "enabled": True,
                                 "name": "name",
                                 "pattern": {"regex": "regex"},
-                            },
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
+                            }
                         ],
                         "name": "name",
-                    },
-                    {
-                        "entries": [
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
-                        ],
-                        "name": "name",
-                    },
-                    {
-                        "entries": [
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
-                            {
-                                "enabled": True,
-                                "name": "name",
-                                "pattern": {"regex": "regex"},
-                            },
-                        ],
-                        "name": "name",
-                    },
+                    }
                 ],
             )
 
@@ -984,17 +490,7 @@ class TestAsyncCustom:
                     "enabled": True,
                     "name": "name",
                     "pattern": {"regex": "regex"},
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                },
+                }
             ],
             name="name",
         )
@@ -1012,23 +508,7 @@ class TestAsyncCustom:
                         "regex": "regex",
                         "validation": "luhn",
                     },
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {
-                        "regex": "regex",
-                        "validation": "luhn",
-                    },
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {
-                        "regex": "regex",
-                        "validation": "luhn",
-                    },
-                },
+                }
             ],
             name="name",
             allowed_match_count=5,
@@ -1044,17 +524,7 @@ class TestAsyncCustom:
                     "enabled": True,
                     "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "entry_type": "custom",
-                },
-                {
-                    "enabled": True,
-                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "entry_type": "custom",
-                },
-                {
-                    "enabled": True,
-                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "entry_type": "custom",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
@@ -1068,17 +538,7 @@ class TestAsyncCustom:
                     "enabled": True,
                     "name": "name",
                     "pattern": {"regex": "regex"},
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                },
+                }
             ],
             name="name",
         )
@@ -1097,17 +557,7 @@ class TestAsyncCustom:
                     "enabled": True,
                     "name": "name",
                     "pattern": {"regex": "regex"},
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                },
-                {
-                    "enabled": True,
-                    "name": "name",
-                    "pattern": {"regex": "regex"},
-                },
+                }
             ],
             name="name",
         ) as response:
@@ -1129,17 +579,7 @@ class TestAsyncCustom:
                         "enabled": True,
                         "name": "name",
                         "pattern": {"regex": "regex"},
-                    },
-                    {
-                        "enabled": True,
-                        "name": "name",
-                        "pattern": {"regex": "regex"},
-                    },
-                    {
-                        "enabled": True,
-                        "name": "name",
-                        "pattern": {"regex": "regex"},
-                    },
+                    }
                 ],
                 name="name",
             )
@@ -1175,25 +615,7 @@ class TestAsyncCustom:
                         "regex": "regex",
                         "validation": "luhn",
                     },
-                },
-                {
-                    "enabled": True,
-                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "name": "name",
-                    "pattern": {
-                        "regex": "regex",
-                        "validation": "luhn",
-                    },
-                },
-                {
-                    "enabled": True,
-                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "name": "name",
-                    "pattern": {
-                        "regex": "regex",
-                        "validation": "luhn",
-                    },
-                },
+                }
             ],
             ocr_enabled=True,
             shared_entries=[
@@ -1201,17 +623,7 @@ class TestAsyncCustom:
                     "enabled": True,
                     "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                     "entry_type": "predefined",
-                },
-                {
-                    "enabled": True,
-                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "entry_type": "predefined",
-                },
-                {
-                    "enabled": True,
-                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                    "entry_type": "predefined",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[Profile], custom, path=["response"])

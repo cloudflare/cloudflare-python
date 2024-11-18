@@ -45,7 +45,7 @@ class TestScans:
             account_id="accountId",
             url="https://www.example.com",
             custom_headers={"foo": "string"},
-            screenshots_resolutions=["desktop", "mobile", "tablet"],
+            screenshots_resolutions=["desktop"],
             visibility="Public",
         )
         assert_matches_type(ScanCreateResponse, scan, path=["response"])
@@ -352,7 +352,7 @@ class TestAsyncScans:
             account_id="accountId",
             url="https://www.example.com",
             custom_headers={"foo": "string"},
-            screenshots_resolutions=["desktop", "mobile", "tablet"],
+            screenshots_resolutions=["desktop"],
             visibility="Public",
         )
         assert_matches_type(ScanCreateResponse, scan, path=["response"])

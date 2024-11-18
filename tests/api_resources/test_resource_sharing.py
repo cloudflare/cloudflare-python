@@ -29,26 +29,14 @@ class TestResourceSharing:
         resource_sharing = client.resource_sharing.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Shared WAF Managed Rule",
-            recipients=[{}, {}, {}],
+            recipients=[{}],
             resources=[
                 {
                     "meta": {},
                     "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
                     "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
                     "resource_type": "custom-ruleset",
-                },
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                },
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[ResourceSharingCreateResponse], resource_sharing, path=["response"])
@@ -58,26 +46,14 @@ class TestResourceSharing:
         response = client.resource_sharing.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Shared WAF Managed Rule",
-            recipients=[{}, {}, {}],
+            recipients=[{}],
             resources=[
                 {
                     "meta": {},
                     "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
                     "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
                     "resource_type": "custom-ruleset",
-                },
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                },
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                },
+                }
             ],
         )
 
@@ -91,26 +67,14 @@ class TestResourceSharing:
         with client.resource_sharing.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Shared WAF Managed Rule",
-            recipients=[{}, {}, {}],
+            recipients=[{}],
             resources=[
                 {
                     "meta": {},
                     "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
                     "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
                     "resource_type": "custom-ruleset",
-                },
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                },
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -127,26 +91,14 @@ class TestResourceSharing:
             client.resource_sharing.with_raw_response.create(
                 account_id="",
                 name="My Shared WAF Managed Rule",
-                recipients=[{}, {}, {}],
+                recipients=[{}],
                 resources=[
                     {
                         "meta": {},
                         "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
                         "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
                         "resource_type": "custom-ruleset",
-                    },
-                    {
-                        "meta": {},
-                        "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                        "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                        "resource_type": "custom-ruleset",
-                    },
-                    {
-                        "meta": {},
-                        "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                        "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                        "resource_type": "custom-ruleset",
-                    },
+                    }
                 ],
             )
 
@@ -362,26 +314,14 @@ class TestAsyncResourceSharing:
         resource_sharing = await async_client.resource_sharing.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Shared WAF Managed Rule",
-            recipients=[{}, {}, {}],
+            recipients=[{}],
             resources=[
                 {
                     "meta": {},
                     "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
                     "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
                     "resource_type": "custom-ruleset",
-                },
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                },
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[ResourceSharingCreateResponse], resource_sharing, path=["response"])
@@ -391,26 +331,14 @@ class TestAsyncResourceSharing:
         response = await async_client.resource_sharing.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Shared WAF Managed Rule",
-            recipients=[{}, {}, {}],
+            recipients=[{}],
             resources=[
                 {
                     "meta": {},
                     "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
                     "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
                     "resource_type": "custom-ruleset",
-                },
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                },
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                },
+                }
             ],
         )
 
@@ -424,26 +352,14 @@ class TestAsyncResourceSharing:
         async with async_client.resource_sharing.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Shared WAF Managed Rule",
-            recipients=[{}, {}, {}],
+            recipients=[{}],
             resources=[
                 {
                     "meta": {},
                     "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
                     "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
                     "resource_type": "custom-ruleset",
-                },
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                },
-                {
-                    "meta": {},
-                    "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "resource_type": "custom-ruleset",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -460,26 +376,14 @@ class TestAsyncResourceSharing:
             await async_client.resource_sharing.with_raw_response.create(
                 account_id="",
                 name="My Shared WAF Managed Rule",
-                recipients=[{}, {}, {}],
+                recipients=[{}],
                 resources=[
                     {
                         "meta": {},
                         "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
                         "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
                         "resource_type": "custom-ruleset",
-                    },
-                    {
-                        "meta": {},
-                        "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                        "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                        "resource_type": "custom-ruleset",
-                    },
-                    {
-                        "meta": {},
-                        "resource_account_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                        "resource_id": "023e105f4ecef8ad9ca31a8372d0c353",
-                        "resource_type": "custom-ruleset",
-                    },
+                    }
                 ],
             )
 

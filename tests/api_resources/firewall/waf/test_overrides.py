@@ -26,7 +26,7 @@ class TestOverrides:
     def test_method_create(self, client: Cloudflare) -> None:
         override = client.firewall.waf.overrides.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+            urls=["shop.example.com/*"],
         )
         assert_matches_type(Override, override, path=["response"])
 
@@ -35,7 +35,7 @@ class TestOverrides:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.firewall.waf.overrides.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+            urls=["shop.example.com/*"],
         )
 
         assert response.is_closed is True
@@ -48,7 +48,7 @@ class TestOverrides:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.firewall.waf.overrides.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+            urls=["shop.example.com/*"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -64,7 +64,7 @@ class TestOverrides:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.firewall.waf.overrides.with_raw_response.create(
                 zone_id="",
-                urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+                urls=["shop.example.com/*"],
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -76,7 +76,7 @@ class TestOverrides:
             id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
             rules={"100015": "challenge"},
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+            urls=["shop.example.com/*"],
         )
         assert_matches_type(Override, override, path=["response"])
 
@@ -95,7 +95,7 @@ class TestOverrides:
                 "simulate": "challenge",
             },
             rules={"100015": "challenge"},
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+            urls=["shop.example.com/*"],
         )
         assert_matches_type(Override, override, path=["response"])
 
@@ -108,7 +108,7 @@ class TestOverrides:
             id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
             rules={"100015": "challenge"},
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+            urls=["shop.example.com/*"],
         )
 
         assert response.is_closed is True
@@ -125,7 +125,7 @@ class TestOverrides:
             id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
             rules={"100015": "challenge"},
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+            urls=["shop.example.com/*"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -145,7 +145,7 @@ class TestOverrides:
                 id="023e105f4ecef8ad9ca31a8372d0c353",
                 rewrite_action={},
                 rules={"100015": "challenge"},
-                urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+                urls=["shop.example.com/*"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `overrides_id` but received ''"):
@@ -155,7 +155,7 @@ class TestOverrides:
                 id="023e105f4ecef8ad9ca31a8372d0c353",
                 rewrite_action={},
                 rules={"100015": "challenge"},
-                urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+                urls=["shop.example.com/*"],
             )
 
     @parametrize
@@ -310,7 +310,7 @@ class TestAsyncOverrides:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         override = await async_client.firewall.waf.overrides.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+            urls=["shop.example.com/*"],
         )
         assert_matches_type(Override, override, path=["response"])
 
@@ -319,7 +319,7 @@ class TestAsyncOverrides:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.waf.overrides.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+            urls=["shop.example.com/*"],
         )
 
         assert response.is_closed is True
@@ -332,7 +332,7 @@ class TestAsyncOverrides:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.waf.overrides.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+            urls=["shop.example.com/*"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -348,7 +348,7 @@ class TestAsyncOverrides:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.firewall.waf.overrides.with_raw_response.create(
                 zone_id="",
-                urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+                urls=["shop.example.com/*"],
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -360,7 +360,7 @@ class TestAsyncOverrides:
             id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
             rules={"100015": "challenge"},
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+            urls=["shop.example.com/*"],
         )
         assert_matches_type(Override, override, path=["response"])
 
@@ -379,7 +379,7 @@ class TestAsyncOverrides:
                 "simulate": "challenge",
             },
             rules={"100015": "challenge"},
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+            urls=["shop.example.com/*"],
         )
         assert_matches_type(Override, override, path=["response"])
 
@@ -392,7 +392,7 @@ class TestAsyncOverrides:
             id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
             rules={"100015": "challenge"},
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+            urls=["shop.example.com/*"],
         )
 
         assert response.is_closed is True
@@ -409,7 +409,7 @@ class TestAsyncOverrides:
             id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
             rules={"100015": "challenge"},
-            urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+            urls=["shop.example.com/*"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -429,7 +429,7 @@ class TestAsyncOverrides:
                 id="023e105f4ecef8ad9ca31a8372d0c353",
                 rewrite_action={},
                 rules={"100015": "challenge"},
-                urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+                urls=["shop.example.com/*"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `overrides_id` but received ''"):
@@ -439,7 +439,7 @@ class TestAsyncOverrides:
                 id="023e105f4ecef8ad9ca31a8372d0c353",
                 rewrite_action={},
                 rules={"100015": "challenge"},
-                urls=["shop.example.com/*", "shop.example.com/*", "shop.example.com/*"],
+                urls=["shop.example.com/*"],
             )
 
     @parametrize

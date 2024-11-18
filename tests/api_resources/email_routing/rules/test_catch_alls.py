@@ -21,8 +21,8 @@ class TestCatchAlls:
     def test_method_update(self, client: Cloudflare) -> None:
         catch_all = client.email_routing.rules.catch_alls.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{"type": "drop"}, {"type": "drop"}, {"type": "drop"}],
-            matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
+            actions=[{"type": "drop"}],
+            matchers=[{"type": "all"}],
         )
         assert_matches_type(Optional[CatchAllUpdateResponse], catch_all, path=["response"])
 
@@ -33,30 +33,10 @@ class TestCatchAlls:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
-            matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
+            matchers=[{"type": "all"}],
             enabled=True,
             name="Send to user@example.net rule.",
         )
@@ -66,8 +46,8 @@ class TestCatchAlls:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.email_routing.rules.catch_alls.with_raw_response.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{"type": "drop"}, {"type": "drop"}, {"type": "drop"}],
-            matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
+            actions=[{"type": "drop"}],
+            matchers=[{"type": "all"}],
         )
 
         assert response.is_closed is True
@@ -79,8 +59,8 @@ class TestCatchAlls:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.email_routing.rules.catch_alls.with_streaming_response.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{"type": "drop"}, {"type": "drop"}, {"type": "drop"}],
-            matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
+            actions=[{"type": "drop"}],
+            matchers=[{"type": "all"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -95,8 +75,8 @@ class TestCatchAlls:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.email_routing.rules.catch_alls.with_raw_response.update(
                 zone_id="",
-                actions=[{"type": "drop"}, {"type": "drop"}, {"type": "drop"}],
-                matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
+                actions=[{"type": "drop"}],
+                matchers=[{"type": "all"}],
             )
 
     @parametrize
@@ -145,8 +125,8 @@ class TestAsyncCatchAlls:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         catch_all = await async_client.email_routing.rules.catch_alls.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{"type": "drop"}, {"type": "drop"}, {"type": "drop"}],
-            matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
+            actions=[{"type": "drop"}],
+            matchers=[{"type": "all"}],
         )
         assert_matches_type(Optional[CatchAllUpdateResponse], catch_all, path=["response"])
 
@@ -157,30 +137,10 @@ class TestAsyncCatchAlls:
             actions=[
                 {
                     "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
-                {
-                    "type": "drop",
-                    "value": [
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                        "destinationaddress@example.net",
-                    ],
-                },
+                    "value": ["destinationaddress@example.net"],
+                }
             ],
-            matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
+            matchers=[{"type": "all"}],
             enabled=True,
             name="Send to user@example.net rule.",
         )
@@ -190,8 +150,8 @@ class TestAsyncCatchAlls:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_routing.rules.catch_alls.with_raw_response.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{"type": "drop"}, {"type": "drop"}, {"type": "drop"}],
-            matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
+            actions=[{"type": "drop"}],
+            matchers=[{"type": "all"}],
         )
 
         assert response.is_closed is True
@@ -203,8 +163,8 @@ class TestAsyncCatchAlls:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_routing.rules.catch_alls.with_streaming_response.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{"type": "drop"}, {"type": "drop"}, {"type": "drop"}],
-            matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
+            actions=[{"type": "drop"}],
+            matchers=[{"type": "all"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -219,8 +179,8 @@ class TestAsyncCatchAlls:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.email_routing.rules.catch_alls.with_raw_response.update(
                 zone_id="",
-                actions=[{"type": "drop"}, {"type": "drop"}, {"type": "drop"}],
-                matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
+                actions=[{"type": "drop"}],
+                matchers=[{"type": "all"}],
             )
 
     @parametrize

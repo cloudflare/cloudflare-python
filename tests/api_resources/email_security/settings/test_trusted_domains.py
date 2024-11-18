@@ -100,19 +100,7 @@ class TestTrustedDomains:
                     "is_regex": False,
                     "is_similarity": False,
                     "pattern": "example.com",
-                },
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                },
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                },
+                }
             ],
         )
         assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
@@ -127,19 +115,7 @@ class TestTrustedDomains:
                     "is_regex": False,
                     "is_similarity": False,
                     "pattern": "example.com",
-                },
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                },
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                },
+                }
             ],
         )
 
@@ -158,19 +134,7 @@ class TestTrustedDomains:
                     "is_regex": False,
                     "is_similarity": False,
                     "pattern": "example.com",
-                },
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                },
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -192,19 +156,7 @@ class TestTrustedDomains:
                         "is_regex": False,
                         "is_similarity": False,
                         "pattern": "example.com",
-                    },
-                    {
-                        "is_recent": True,
-                        "is_regex": False,
-                        "is_similarity": False,
-                        "pattern": "example.com",
-                    },
-                    {
-                        "is_recent": True,
-                        "is_regex": False,
-                        "is_similarity": False,
-                        "pattern": "example.com",
-                    },
+                    }
                 ],
             )
 
@@ -479,19 +431,7 @@ class TestAsyncTrustedDomains:
                     "is_regex": False,
                     "is_similarity": False,
                     "pattern": "example.com",
-                },
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                },
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                },
+                }
             ],
         )
         assert_matches_type(TrustedDomainCreateResponse, trusted_domain, path=["response"])
@@ -506,19 +446,7 @@ class TestAsyncTrustedDomains:
                     "is_regex": False,
                     "is_similarity": False,
                     "pattern": "example.com",
-                },
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                },
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                },
+                }
             ],
         )
 
@@ -537,19 +465,7 @@ class TestAsyncTrustedDomains:
                     "is_regex": False,
                     "is_similarity": False,
                     "pattern": "example.com",
-                },
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                },
-                {
-                    "is_recent": True,
-                    "is_regex": False,
-                    "is_similarity": False,
-                    "pattern": "example.com",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -571,19 +487,7 @@ class TestAsyncTrustedDomains:
                         "is_regex": False,
                         "is_similarity": False,
                         "pattern": "example.com",
-                    },
-                    {
-                        "is_recent": True,
-                        "is_regex": False,
-                        "is_similarity": False,
-                        "pattern": "example.com",
-                    },
-                    {
-                        "is_recent": True,
-                        "is_regex": False,
-                        "is_similarity": False,
-                        "pattern": "example.com",
-                    },
+                    }
                 ],
             )
 

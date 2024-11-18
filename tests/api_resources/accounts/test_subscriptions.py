@@ -41,7 +41,7 @@ class TestSubscriptions:
                 "is_contract": False,
                 "public_name": "Business Plan",
                 "scope": "zone",
-                "sets": ["string", "string", "string"],
+                "sets": ["string"],
             },
         )
         assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
@@ -98,7 +98,7 @@ class TestSubscriptions:
                 "is_contract": False,
                 "public_name": "Business Plan",
                 "scope": "zone",
-                "sets": ["string", "string", "string"],
+                "sets": ["string"],
             },
         )
         assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
@@ -256,7 +256,7 @@ class TestAsyncSubscriptions:
                 "is_contract": False,
                 "public_name": "Business Plan",
                 "scope": "zone",
-                "sets": ["string", "string", "string"],
+                "sets": ["string"],
             },
         )
         assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
@@ -313,7 +313,7 @@ class TestAsyncSubscriptions:
                 "is_contract": False,
                 "public_name": "Business Plan",
                 "scope": "zone",
-                "sets": ["string", "string", "string"],
+                "sets": ["string"],
             },
         )
         assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])

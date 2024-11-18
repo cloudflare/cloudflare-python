@@ -34,22 +34,14 @@ class TestTimeseriesGroups:
     def test_method_dnssec_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.as112.timeseries_groups.dnssec(
             agg_interval="15m",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
 
@@ -82,22 +74,14 @@ class TestTimeseriesGroups:
     def test_method_edns_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.as112.timeseries_groups.edns(
             agg_interval="15m",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupEdnsResponse, timeseries_group, path=["response"])
 
@@ -130,22 +114,14 @@ class TestTimeseriesGroups:
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.as112.timeseries_groups.ip_version(
             agg_interval="15m",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
@@ -178,22 +154,14 @@ class TestTimeseriesGroups:
     def test_method_protocol_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.as112.timeseries_groups.protocol(
             agg_interval="15m",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
 
@@ -226,22 +194,14 @@ class TestTimeseriesGroups:
     def test_method_query_type_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.as112.timeseries_groups.query_type(
             agg_interval="15m",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
 
@@ -274,22 +234,14 @@ class TestTimeseriesGroups:
     def test_method_response_codes_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.as112.timeseries_groups.response_codes(
             agg_interval="15m",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupResponseCodesResponse, timeseries_group, path=["response"])
 
@@ -326,22 +278,14 @@ class TestAsyncTimeseriesGroups:
     async def test_method_dnssec_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.as112.timeseries_groups.dnssec(
             agg_interval="15m",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
 
@@ -374,22 +318,14 @@ class TestAsyncTimeseriesGroups:
     async def test_method_edns_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.as112.timeseries_groups.edns(
             agg_interval="15m",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupEdnsResponse, timeseries_group, path=["response"])
 
@@ -422,22 +358,14 @@ class TestAsyncTimeseriesGroups:
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.as112.timeseries_groups.ip_version(
             agg_interval="15m",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
@@ -470,22 +398,14 @@ class TestAsyncTimeseriesGroups:
     async def test_method_protocol_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.as112.timeseries_groups.protocol(
             agg_interval="15m",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
 
@@ -518,22 +438,14 @@ class TestAsyncTimeseriesGroups:
     async def test_method_query_type_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.as112.timeseries_groups.query_type(
             agg_interval="15m",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
 
@@ -566,22 +478,14 @@ class TestAsyncTimeseriesGroups:
     async def test_method_response_codes_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.as112.timeseries_groups.response_codes(
             agg_interval="15m",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupResponseCodesResponse, timeseries_group, path=["response"])
 

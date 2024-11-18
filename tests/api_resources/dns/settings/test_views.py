@@ -29,11 +29,7 @@ class TestViews:
         view = client.dns.settings.views.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
-            zones=[
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-            ],
+            zones=["372e67954025e0ba6aaa6d586b9e0b59"],
         )
         assert_matches_type(Optional[ViewCreateResponse], view, path=["response"])
 
@@ -42,11 +38,7 @@ class TestViews:
         response = client.dns.settings.views.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
-            zones=[
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-            ],
+            zones=["372e67954025e0ba6aaa6d586b9e0b59"],
         )
 
         assert response.is_closed is True
@@ -59,11 +51,7 @@ class TestViews:
         with client.dns.settings.views.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
-            zones=[
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-            ],
+            zones=["372e67954025e0ba6aaa6d586b9e0b59"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -79,11 +67,7 @@ class TestViews:
             client.dns.settings.views.with_raw_response.create(
                 account_id="",
                 name="my view",
-                zones=[
-                    "372e67954025e0ba6aaa6d586b9e0b59",
-                    "372e67954025e0ba6aaa6d586b9e0b59",
-                    "372e67954025e0ba6aaa6d586b9e0b59",
-                ],
+                zones=["372e67954025e0ba6aaa6d586b9e0b59"],
             )
 
     @parametrize
@@ -206,11 +190,7 @@ class TestViews:
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
-            zones=[
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-            ],
+            zones=["372e67954025e0ba6aaa6d586b9e0b59"],
         )
         assert_matches_type(Optional[ViewEditResponse], view, path=["response"])
 
@@ -311,11 +291,7 @@ class TestAsyncViews:
         view = await async_client.dns.settings.views.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
-            zones=[
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-            ],
+            zones=["372e67954025e0ba6aaa6d586b9e0b59"],
         )
         assert_matches_type(Optional[ViewCreateResponse], view, path=["response"])
 
@@ -324,11 +300,7 @@ class TestAsyncViews:
         response = await async_client.dns.settings.views.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
-            zones=[
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-            ],
+            zones=["372e67954025e0ba6aaa6d586b9e0b59"],
         )
 
         assert response.is_closed is True
@@ -341,11 +313,7 @@ class TestAsyncViews:
         async with async_client.dns.settings.views.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
-            zones=[
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-            ],
+            zones=["372e67954025e0ba6aaa6d586b9e0b59"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -361,11 +329,7 @@ class TestAsyncViews:
             await async_client.dns.settings.views.with_raw_response.create(
                 account_id="",
                 name="my view",
-                zones=[
-                    "372e67954025e0ba6aaa6d586b9e0b59",
-                    "372e67954025e0ba6aaa6d586b9e0b59",
-                    "372e67954025e0ba6aaa6d586b9e0b59",
-                ],
+                zones=["372e67954025e0ba6aaa6d586b9e0b59"],
             )
 
     @parametrize
@@ -488,11 +452,7 @@ class TestAsyncViews:
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
-            zones=[
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-                "372e67954025e0ba6aaa6d586b9e0b59",
-            ],
+            zones=["372e67954025e0ba6aaa6d586b9e0b59"],
         )
         assert_matches_type(Optional[ViewEditResponse], view, path=["response"])
 

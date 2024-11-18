@@ -40,7 +40,7 @@ class TestConfigurations:
                         "service": "https://localhost:8001",
                         "origin_request": {
                             "access": {
-                                "aud_tag": ["string", "string", "string"],
+                                "aud_tag": ["string"],
                                 "team_name": "teamName",
                                 "required": True,
                             },
@@ -63,7 +63,7 @@ class TestConfigurations:
                 ],
                 "origin_request": {
                     "access": {
-                        "aud_tag": ["string", "string", "string"],
+                        "aud_tag": ["string"],
                         "team_name": "teamName",
                         "required": True,
                     },
@@ -197,7 +197,7 @@ class TestAsyncConfigurations:
                         "service": "https://localhost:8001",
                         "origin_request": {
                             "access": {
-                                "aud_tag": ["string", "string", "string"],
+                                "aud_tag": ["string"],
                                 "team_name": "teamName",
                                 "required": True,
                             },
@@ -220,7 +220,7 @@ class TestAsyncConfigurations:
                 ],
                 "origin_request": {
                     "access": {
-                        "aud_tag": ["string", "string", "string"],
+                        "aud_tag": ["string"],
                         "team_name": "teamName",
                         "required": True,
                     },

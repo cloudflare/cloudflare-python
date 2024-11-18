@@ -44,15 +44,7 @@ class TestWaitingRooms:
                 {
                     "host": "shop2.example.com",
                     "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
+                }
             ],
             cookie_attributes={
                 "samesite": "auto",
@@ -142,15 +134,7 @@ class TestWaitingRooms:
                 {
                     "host": "shop2.example.com",
                     "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
+                }
             ],
             cookie_attributes={
                 "samesite": "auto",
@@ -348,15 +332,7 @@ class TestWaitingRooms:
                 {
                     "host": "shop2.example.com",
                     "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
+                }
             ],
             cookie_attributes={
                 "samesite": "auto",
@@ -509,15 +485,7 @@ class TestAsyncWaitingRooms:
                 {
                     "host": "shop2.example.com",
                     "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
+                }
             ],
             cookie_attributes={
                 "samesite": "auto",
@@ -607,15 +575,7 @@ class TestAsyncWaitingRooms:
                 {
                     "host": "shop2.example.com",
                     "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
+                }
             ],
             cookie_attributes={
                 "samesite": "auto",
@@ -813,15 +773,7 @@ class TestAsyncWaitingRooms:
                 {
                     "host": "shop2.example.com",
                     "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
+                }
             ],
             cookie_attributes={
                 "samesite": "auto",

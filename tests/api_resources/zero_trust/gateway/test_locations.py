@@ -37,32 +37,20 @@ class TestLocations:
             endpoints={
                 "doh": {
                     "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
+                    "networks": [{"network": "2001:85a3::/64"}],
                     "require_token": True,
                 },
                 "dot": {
                     "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
+                    "networks": [{"network": "2001:85a3::/64"}],
                 },
                 "ipv4": {"enabled": True},
                 "ipv6": {
                     "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
+                    "networks": [{"network": "2001:85a3::/64"}],
                 },
             },
-            networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
+            networks=[{"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
 
@@ -121,32 +109,20 @@ class TestLocations:
             endpoints={
                 "doh": {
                     "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
+                    "networks": [{"network": "2001:85a3::/64"}],
                     "require_token": True,
                 },
                 "dot": {
                     "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
+                    "networks": [{"network": "2001:85a3::/64"}],
                 },
                 "ipv4": {"enabled": True},
                 "ipv6": {
                     "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
+                    "networks": [{"network": "2001:85a3::/64"}],
                 },
             },
-            networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
+            networks=[{"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
 
@@ -351,32 +327,20 @@ class TestAsyncLocations:
             endpoints={
                 "doh": {
                     "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
+                    "networks": [{"network": "2001:85a3::/64"}],
                     "require_token": True,
                 },
                 "dot": {
                     "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
+                    "networks": [{"network": "2001:85a3::/64"}],
                 },
                 "ipv4": {"enabled": True},
                 "ipv6": {
                     "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
+                    "networks": [{"network": "2001:85a3::/64"}],
                 },
             },
-            networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
+            networks=[{"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
 
@@ -435,32 +399,20 @@ class TestAsyncLocations:
             endpoints={
                 "doh": {
                     "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
+                    "networks": [{"network": "2001:85a3::/64"}],
                     "require_token": True,
                 },
                 "dot": {
                     "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
+                    "networks": [{"network": "2001:85a3::/64"}],
                 },
                 "ipv4": {"enabled": True},
                 "ipv6": {
                     "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
+                    "networks": [{"network": "2001:85a3::/64"}],
                 },
             },
-            networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
+            networks=[{"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
 

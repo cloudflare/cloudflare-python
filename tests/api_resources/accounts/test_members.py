@@ -27,11 +27,7 @@ class TestMembers:
         member = client.accounts.members.create(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             email="user@example.com",
-            roles=[
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-            ],
+            roles=["3536bcfad5faccb999b47003c79917fb"],
         )
         assert_matches_type(Optional[Member], member, path=["response"])
 
@@ -41,11 +37,7 @@ class TestMembers:
         member = client.accounts.members.create(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             email="user@example.com",
-            roles=[
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-            ],
+            roles=["3536bcfad5faccb999b47003c79917fb"],
             status="accepted",
         )
         assert_matches_type(Optional[Member], member, path=["response"])
@@ -56,11 +48,7 @@ class TestMembers:
         response = client.accounts.members.with_raw_response.create(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             email="user@example.com",
-            roles=[
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-            ],
+            roles=["3536bcfad5faccb999b47003c79917fb"],
         )
 
         assert response.is_closed is True
@@ -74,11 +62,7 @@ class TestMembers:
         with client.accounts.members.with_streaming_response.create(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             email="user@example.com",
-            roles=[
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-            ],
+            roles=["3536bcfad5faccb999b47003c79917fb"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -95,11 +79,7 @@ class TestMembers:
             client.accounts.members.with_raw_response.create(
                 account_id="",
                 email="user@example.com",
-                roles=[
-                    "3536bcfad5faccb999b47003c79917fb",
-                    "3536bcfad5faccb999b47003c79917fb",
-                    "3536bcfad5faccb999b47003c79917fb",
-                ],
+                roles=["3536bcfad5faccb999b47003c79917fb"],
             )
 
     @pytest.mark.skip(reason="HTTP 422 error from prism")
@@ -115,36 +95,8 @@ class TestMembers:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
+                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                }
             ],
         )
         assert_matches_type(Optional[Member], member, path=["response"])
@@ -162,36 +114,8 @@ class TestMembers:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
+                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                }
             ],
             status="accepted",
         )
@@ -210,36 +134,8 @@ class TestMembers:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
+                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                }
             ],
         )
 
@@ -261,36 +157,8 @@ class TestMembers:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
+                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -315,36 +183,8 @@ class TestMembers:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
-                    {
-                        "access": "allow",
-                        "permission_groups": [
-                            {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                            {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                        ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
-                    {
-                        "access": "allow",
-                        "permission_groups": [
-                            {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                            {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                        ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
+                        "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                    }
                 ],
             )
 
@@ -363,11 +203,7 @@ class TestMembers:
         member = client.accounts.members.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            roles=[
-                {"id": "3536bcfad5faccb999b47003c79917fb"},
-                {"id": "3536bcfad5faccb999b47003c79917fb"},
-                {"id": "3536bcfad5faccb999b47003c79917fb"},
-            ],
+            roles=[{"id": "3536bcfad5faccb999b47003c79917fb"}],
         )
         assert_matches_type(Optional[Member], member, path=["response"])
 
@@ -427,36 +263,8 @@ class TestMembers:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
+                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                }
             ],
         )
         assert_matches_type(Optional[Member], member, path=["response"])
@@ -474,36 +282,8 @@ class TestMembers:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
+                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                }
             ],
         )
 
@@ -525,36 +305,8 @@ class TestMembers:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
+                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -579,36 +331,8 @@ class TestMembers:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
-                    {
-                        "access": "allow",
-                        "permission_groups": [
-                            {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                            {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                        ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
-                    {
-                        "access": "allow",
-                        "permission_groups": [
-                            {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                            {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                        ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
+                        "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                    }
                 ],
             )
 
@@ -623,36 +347,8 @@ class TestMembers:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
-                    {
-                        "access": "allow",
-                        "permission_groups": [
-                            {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                            {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                        ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
-                    {
-                        "access": "allow",
-                        "permission_groups": [
-                            {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                            {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                        ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
+                        "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                    }
                 ],
             )
 
@@ -820,11 +516,7 @@ class TestAsyncMembers:
         member = await async_client.accounts.members.create(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             email="user@example.com",
-            roles=[
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-            ],
+            roles=["3536bcfad5faccb999b47003c79917fb"],
         )
         assert_matches_type(Optional[Member], member, path=["response"])
 
@@ -834,11 +526,7 @@ class TestAsyncMembers:
         member = await async_client.accounts.members.create(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             email="user@example.com",
-            roles=[
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-            ],
+            roles=["3536bcfad5faccb999b47003c79917fb"],
             status="accepted",
         )
         assert_matches_type(Optional[Member], member, path=["response"])
@@ -849,11 +537,7 @@ class TestAsyncMembers:
         response = await async_client.accounts.members.with_raw_response.create(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             email="user@example.com",
-            roles=[
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-            ],
+            roles=["3536bcfad5faccb999b47003c79917fb"],
         )
 
         assert response.is_closed is True
@@ -867,11 +551,7 @@ class TestAsyncMembers:
         async with async_client.accounts.members.with_streaming_response.create(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             email="user@example.com",
-            roles=[
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-                "3536bcfad5faccb999b47003c79917fb",
-            ],
+            roles=["3536bcfad5faccb999b47003c79917fb"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -888,11 +568,7 @@ class TestAsyncMembers:
             await async_client.accounts.members.with_raw_response.create(
                 account_id="",
                 email="user@example.com",
-                roles=[
-                    "3536bcfad5faccb999b47003c79917fb",
-                    "3536bcfad5faccb999b47003c79917fb",
-                    "3536bcfad5faccb999b47003c79917fb",
-                ],
+                roles=["3536bcfad5faccb999b47003c79917fb"],
             )
 
     @pytest.mark.skip(reason="HTTP 422 error from prism")
@@ -908,36 +584,8 @@ class TestAsyncMembers:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
+                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                }
             ],
         )
         assert_matches_type(Optional[Member], member, path=["response"])
@@ -955,36 +603,8 @@ class TestAsyncMembers:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
+                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                }
             ],
             status="accepted",
         )
@@ -1003,36 +623,8 @@ class TestAsyncMembers:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
+                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                }
             ],
         )
 
@@ -1054,36 +646,8 @@ class TestAsyncMembers:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
+                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -1108,36 +672,8 @@ class TestAsyncMembers:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
-                    {
-                        "access": "allow",
-                        "permission_groups": [
-                            {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                            {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                        ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
-                    {
-                        "access": "allow",
-                        "permission_groups": [
-                            {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                            {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                        ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
+                        "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                    }
                 ],
             )
 
@@ -1156,11 +692,7 @@ class TestAsyncMembers:
         member = await async_client.accounts.members.update(
             member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            roles=[
-                {"id": "3536bcfad5faccb999b47003c79917fb"},
-                {"id": "3536bcfad5faccb999b47003c79917fb"},
-                {"id": "3536bcfad5faccb999b47003c79917fb"},
-            ],
+            roles=[{"id": "3536bcfad5faccb999b47003c79917fb"}],
         )
         assert_matches_type(Optional[Member], member, path=["response"])
 
@@ -1220,36 +752,8 @@ class TestAsyncMembers:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
+                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                }
             ],
         )
         assert_matches_type(Optional[Member], member, path=["response"])
@@ -1267,36 +771,8 @@ class TestAsyncMembers:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
+                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                }
             ],
         )
 
@@ -1318,36 +794,8 @@ class TestAsyncMembers:
                         {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                         {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                     ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
-                {
-                    "access": "allow",
-                    "permission_groups": [
-                        {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                        {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                    ],
-                    "resource_groups": [
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                    ],
-                },
+                    "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -1372,36 +820,8 @@ class TestAsyncMembers:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
-                    {
-                        "access": "allow",
-                        "permission_groups": [
-                            {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                            {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                        ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
-                    {
-                        "access": "allow",
-                        "permission_groups": [
-                            {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                            {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                        ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
+                        "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                    }
                 ],
             )
 
@@ -1416,36 +836,8 @@ class TestAsyncMembers:
                             {"id": "c8fed203ed3043cba015a93ad1616f1f"},
                             {"id": "82e64a83756745bbbb1c9c2701bf816b"},
                         ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
-                    {
-                        "access": "allow",
-                        "permission_groups": [
-                            {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                            {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                        ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
-                    {
-                        "access": "allow",
-                        "permission_groups": [
-                            {"id": "c8fed203ed3043cba015a93ad1616f1f"},
-                            {"id": "82e64a83756745bbbb1c9c2701bf816b"},
-                        ],
-                        "resource_groups": [
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                            {"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"},
-                        ],
-                    },
+                        "resource_groups": [{"id": "6d7f2f5f5b1d4a0e9081fdc98d432fd1"}],
+                    }
                 ],
             )
 

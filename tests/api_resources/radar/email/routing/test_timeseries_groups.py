@@ -34,24 +34,16 @@ class TestTimeseriesGroups:
     def test_method_arc_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.routing.timeseries_groups.arc(
             agg_interval="15m",
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
-            encrypted=["ENCRYPTED", "NOT_ENCRYPTED"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
+            encrypted=["ENCRYPTED"],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
+            ip_version=["IPv4"],
+            name=["string"],
+            spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupARCResponse, timeseries_group, path=["response"])
 
@@ -84,24 +76,16 @@ class TestTimeseriesGroups:
     def test_method_dkim_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.routing.timeseries_groups.dkim(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dmarc=["PASS", "NONE", "FAIL"],
-            encrypted=["ENCRYPTED", "NOT_ENCRYPTED"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dmarc=["PASS"],
+            encrypted=["ENCRYPTED"],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
+            ip_version=["IPv4"],
+            name=["string"],
+            spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupDKIMResponse, timeseries_group, path=["response"])
 
@@ -134,24 +118,16 @@ class TestTimeseriesGroups:
     def test_method_dmarc_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.routing.timeseries_groups.dmarc(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            encrypted=["ENCRYPTED", "NOT_ENCRYPTED"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            encrypted=["ENCRYPTED"],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
+            ip_version=["IPv4"],
+            name=["string"],
+            spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupDMARCResponse, timeseries_group, path=["response"])
 
@@ -184,24 +160,16 @@ class TestTimeseriesGroups:
     def test_method_encrypted_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.routing.timeseries_groups.encrypted(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
+            ip_version=["IPv4"],
+            name=["string"],
+            spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupEncryptedResponse, timeseries_group, path=["response"])
 
@@ -234,24 +202,16 @@ class TestTimeseriesGroups:
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.routing.timeseries_groups.ip_version(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
-            encrypted=["ENCRYPTED", "NOT_ENCRYPTED"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
+            encrypted=["ENCRYPTED"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
+            name=["string"],
+            spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
@@ -284,24 +244,16 @@ class TestTimeseriesGroups:
     def test_method_spf_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.email.routing.timeseries_groups.spf(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
-            encrypted=["ENCRYPTED", "NOT_ENCRYPTED"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
+            encrypted=["ENCRYPTED"],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
 
@@ -338,24 +290,16 @@ class TestAsyncTimeseriesGroups:
     async def test_method_arc_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.routing.timeseries_groups.arc(
             agg_interval="15m",
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
-            encrypted=["ENCRYPTED", "NOT_ENCRYPTED"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
+            encrypted=["ENCRYPTED"],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
+            ip_version=["IPv4"],
+            name=["string"],
+            spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupARCResponse, timeseries_group, path=["response"])
 
@@ -388,24 +332,16 @@ class TestAsyncTimeseriesGroups:
     async def test_method_dkim_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.routing.timeseries_groups.dkim(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dmarc=["PASS", "NONE", "FAIL"],
-            encrypted=["ENCRYPTED", "NOT_ENCRYPTED"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dmarc=["PASS"],
+            encrypted=["ENCRYPTED"],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
+            ip_version=["IPv4"],
+            name=["string"],
+            spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupDKIMResponse, timeseries_group, path=["response"])
 
@@ -438,24 +374,16 @@ class TestAsyncTimeseriesGroups:
     async def test_method_dmarc_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.routing.timeseries_groups.dmarc(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            encrypted=["ENCRYPTED", "NOT_ENCRYPTED"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            encrypted=["ENCRYPTED"],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
+            ip_version=["IPv4"],
+            name=["string"],
+            spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupDMARCResponse, timeseries_group, path=["response"])
 
@@ -488,24 +416,16 @@ class TestAsyncTimeseriesGroups:
     async def test_method_encrypted_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.routing.timeseries_groups.encrypted(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
+            ip_version=["IPv4"],
+            name=["string"],
+            spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupEncryptedResponse, timeseries_group, path=["response"])
 
@@ -538,24 +458,16 @@ class TestAsyncTimeseriesGroups:
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.routing.timeseries_groups.ip_version(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
-            encrypted=["ENCRYPTED", "NOT_ENCRYPTED"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
+            encrypted=["ENCRYPTED"],
             format="JSON",
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
+            name=["string"],
+            spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
@@ -588,24 +500,16 @@ class TestAsyncTimeseriesGroups:
     async def test_method_spf_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.email.routing.timeseries_groups.spf(
             agg_interval="15m",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
-            encrypted=["ENCRYPTED", "NOT_ENCRYPTED"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
+            encrypted=["ENCRYPTED"],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
 

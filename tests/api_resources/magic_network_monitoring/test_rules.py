@@ -38,7 +38,7 @@ class TestRules:
             automatic_advertisement=True,
             bandwidth=1000,
             packet_threshold=10000,
-            prefixes=["203.0.113.1/32", "203.0.113.1/32", "203.0.113.1/32"],
+            prefixes=["203.0.113.1/32"],
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -98,7 +98,7 @@ class TestRules:
             automatic_advertisement=True,
             bandwidth=1000,
             packet_threshold=10000,
-            prefixes=["203.0.113.1/32", "203.0.113.1/32", "203.0.113.1/32"],
+            prefixes=["203.0.113.1/32"],
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -243,7 +243,7 @@ class TestRules:
             duration="300s",
             name="my_rule_1",
             packet_threshold=10000,
-            prefixes=["203.0.113.1/32", "203.0.113.1/32", "203.0.113.1/32"],
+            prefixes=["203.0.113.1/32"],
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -357,7 +357,7 @@ class TestAsyncRules:
             automatic_advertisement=True,
             bandwidth=1000,
             packet_threshold=10000,
-            prefixes=["203.0.113.1/32", "203.0.113.1/32", "203.0.113.1/32"],
+            prefixes=["203.0.113.1/32"],
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -417,7 +417,7 @@ class TestAsyncRules:
             automatic_advertisement=True,
             bandwidth=1000,
             packet_threshold=10000,
-            prefixes=["203.0.113.1/32", "203.0.113.1/32", "203.0.113.1/32"],
+            prefixes=["203.0.113.1/32"],
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 
@@ -562,7 +562,7 @@ class TestAsyncRules:
             duration="300s",
             name="my_rule_1",
             packet_threshold=10000,
-            prefixes=["203.0.113.1/32", "203.0.113.1/32", "203.0.113.1/32"],
+            prefixes=["203.0.113.1/32"],
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
 

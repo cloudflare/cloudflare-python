@@ -37,19 +37,7 @@ class TestQueues:
                     "description": "Notifications from source bucket to queue",
                     "prefix": "img/",
                     "suffix": ".jpeg",
-                },
-                {
-                    "actions": ["PutObject", "CopyObject"],
-                    "description": "Notifications from source bucket to queue",
-                    "prefix": "img/",
-                    "suffix": ".jpeg",
-                },
-                {
-                    "actions": ["PutObject", "CopyObject"],
-                    "description": "Notifications from source bucket to queue",
-                    "prefix": "img/",
-                    "suffix": ".jpeg",
-                },
+                }
             ],
             cf_r2_jurisdiction="default",
         )
@@ -201,19 +189,7 @@ class TestAsyncQueues:
                     "description": "Notifications from source bucket to queue",
                     "prefix": "img/",
                     "suffix": ".jpeg",
-                },
-                {
-                    "actions": ["PutObject", "CopyObject"],
-                    "description": "Notifications from source bucket to queue",
-                    "prefix": "img/",
-                    "suffix": ".jpeg",
-                },
-                {
-                    "actions": ["PutObject", "CopyObject"],
-                    "description": "Notifications from source bucket to queue",
-                    "prefix": "img/",
-                    "suffix": ".jpeg",
-                },
+                }
             ],
             cf_r2_jurisdiction="default",
         )
