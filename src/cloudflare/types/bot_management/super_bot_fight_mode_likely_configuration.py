@@ -5,7 +5,12 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["SuperBotFightModeLikelyConfiguration"]
+__all__ = ["SuperBotFightModeLikelyConfiguration", "StaleZoneConfiguration"]
+
+
+class StaleZoneConfiguration(BaseModel):
+    fight_mode: Optional[bool] = None
+    """Indicates that the zone's Bot Fight Mode is turned on."""
 
 
 class SuperBotFightModeLikelyConfiguration(BaseModel):
@@ -36,6 +41,12 @@ class SuperBotFightModeLikelyConfiguration(BaseModel):
 
     sbfm_verified_bots: Optional[Literal["allow", "block"]] = None
     """Super Bot Fight Mode (SBFM) action to take on verified bots requests."""
+
+    stale_zone_configuration: Optional[StaleZoneConfiguration] = None
+    """
+    A read-only field that shows which unauthorized settings are currently active on
+    the zone. These settings typically result from upgrades or downgrades.
+    """
 
     using_latest_model: Optional[bool] = None
     """
