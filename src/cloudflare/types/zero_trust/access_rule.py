@@ -4,6 +4,7 @@ from typing import Union
 from typing_extensions import TypeAlias
 
 from .ip_rule import IPRule
+from ..._models import BaseModel
 from .email_rule import EmailRule
 from .group_rule import GroupRule
 from .domain_rule import DomainRule
@@ -23,26 +24,59 @@ from .access_device_posture_rule import AccessDevicePostureRule
 from .authentication_method_rule import AuthenticationMethodRule
 from .any_valid_service_token_rule import AnyValidServiceTokenRule
 
-__all__ = ["AccessRule"]
+__all__ = [
+    "AccessRule",
+    "AccessAuthContextRule",
+    "AccessAuthContextRuleAuthContext",
+    "AccessCommonNameRule",
+    "AccessCommonNameRuleCommonName",
+]
+
+
+class AccessAuthContextRuleAuthContext(BaseModel):
+    id: str
+    """The ID of an Authentication context."""
+
+    ac_id: str
+    """The ACID of an Authentication context."""
+
+    identity_provider_id: str
+    """The ID of your Azure identity provider."""
+
+
+class AccessAuthContextRule(BaseModel):
+    auth_context: AccessAuthContextRuleAuthContext
+
+
+class AccessCommonNameRuleCommonName(BaseModel):
+    common_name: str
+    """The common name to match."""
+
+
+class AccessCommonNameRule(BaseModel):
+    common_name: AccessCommonNameRuleCommonName
+
 
 AccessRule: TypeAlias = Union[
-    EmailRule,
-    EmailListRule,
-    DomainRule,
-    EveryoneRule,
-    IPRule,
-    IPListRule,
-    CertificateRule,
     GroupRule,
+    AnyValidServiceTokenRule,
+    AccessAuthContextRule,
+    AuthenticationMethodRule,
     AzureGroupRule,
+    CertificateRule,
+    AccessCommonNameRule,
+    CountryRule,
+    AccessDevicePostureRule,
+    DomainRule,
+    EmailListRule,
+    EmailRule,
+    EveryoneRule,
+    ExternalEvaluationRule,
     GitHubOrganizationRule,
     GSuiteGroupRule,
+    IPListRule,
+    IPRule,
     OktaGroupRule,
     SAMLGroupRule,
     ServiceTokenRule,
-    AnyValidServiceTokenRule,
-    ExternalEvaluationRule,
-    CountryRule,
-    AuthenticationMethodRule,
-    AccessDevicePostureRule,
 ]

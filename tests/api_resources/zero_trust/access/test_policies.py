@@ -29,7 +29,7 @@ class TestPolicies:
         policy = client.zero_trust.access.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
         )
         assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
@@ -39,10 +39,10 @@ class TestPolicies:
         policy = client.zero_trust.access.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
-            exclude=[{"email": {"email": "test@example.com"}}],
-            require=[{"email": {"email": "test@example.com"}}],
+            exclude=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+            require=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
         )
         assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
@@ -51,7 +51,7 @@ class TestPolicies:
         response = client.zero_trust.access.policies.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
         )
 
@@ -65,7 +65,7 @@ class TestPolicies:
         with client.zero_trust.access.policies.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
         ) as response:
             assert not response.is_closed
@@ -82,7 +82,7 @@ class TestPolicies:
             client.zero_trust.access.policies.with_raw_response.create(
                 account_id="",
                 decision="allow",
-                include=[{"email": {"email": "test@example.com"}}],
+                include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 name="Allow devs",
             )
 
@@ -92,7 +92,7 @@ class TestPolicies:
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
         )
         assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
@@ -103,10 +103,10 @@ class TestPolicies:
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
-            exclude=[{"email": {"email": "test@example.com"}}],
-            require=[{"email": {"email": "test@example.com"}}],
+            exclude=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+            require=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
         )
         assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
@@ -116,7 +116,7 @@ class TestPolicies:
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
         )
 
@@ -131,7 +131,7 @@ class TestPolicies:
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
         ) as response:
             assert not response.is_closed
@@ -149,7 +149,7 @@ class TestPolicies:
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 decision="allow",
-                include=[{"email": {"email": "test@example.com"}}],
+                include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 name="Allow devs",
             )
 
@@ -158,7 +158,7 @@ class TestPolicies:
                 policy_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 decision="allow",
-                include=[{"email": {"email": "test@example.com"}}],
+                include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 name="Allow devs",
             )
 
@@ -305,7 +305,7 @@ class TestAsyncPolicies:
         policy = await async_client.zero_trust.access.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
         )
         assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
@@ -315,10 +315,10 @@ class TestAsyncPolicies:
         policy = await async_client.zero_trust.access.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
-            exclude=[{"email": {"email": "test@example.com"}}],
-            require=[{"email": {"email": "test@example.com"}}],
+            exclude=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+            require=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
         )
         assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
@@ -327,7 +327,7 @@ class TestAsyncPolicies:
         response = await async_client.zero_trust.access.policies.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
         )
 
@@ -341,7 +341,7 @@ class TestAsyncPolicies:
         async with async_client.zero_trust.access.policies.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
         ) as response:
             assert not response.is_closed
@@ -358,7 +358,7 @@ class TestAsyncPolicies:
             await async_client.zero_trust.access.policies.with_raw_response.create(
                 account_id="",
                 decision="allow",
-                include=[{"email": {"email": "test@example.com"}}],
+                include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 name="Allow devs",
             )
 
@@ -368,7 +368,7 @@ class TestAsyncPolicies:
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
         )
         assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
@@ -379,10 +379,10 @@ class TestAsyncPolicies:
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
-            exclude=[{"email": {"email": "test@example.com"}}],
-            require=[{"email": {"email": "test@example.com"}}],
+            exclude=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+            require=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
         )
         assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
@@ -392,7 +392,7 @@ class TestAsyncPolicies:
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
         )
 
@@ -407,7 +407,7 @@ class TestAsyncPolicies:
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             decision="allow",
-            include=[{"email": {"email": "test@example.com"}}],
+            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
             name="Allow devs",
         ) as response:
             assert not response.is_closed
@@ -425,7 +425,7 @@ class TestAsyncPolicies:
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 decision="allow",
-                include=[{"email": {"email": "test@example.com"}}],
+                include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 name="Allow devs",
             )
 
@@ -434,7 +434,7 @@ class TestAsyncPolicies:
                 policy_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 decision="allow",
-                include=[{"email": {"email": "test@example.com"}}],
+                include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 name="Allow devs",
             )
 

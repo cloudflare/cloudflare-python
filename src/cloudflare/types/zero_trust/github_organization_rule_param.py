@@ -16,6 +16,9 @@ class GitHubOrganization(TypedDict, total=False):
     name: Required[str]
     """The name of the organization."""
 
+    team: str
+    """The name of the team"""
+
 
 class GitHubOrganizationRuleParam(TypedDict, total=False):
     github_organization: Required[Annotated[GitHubOrganization, PropertyInfo(alias="github-organization")]]
