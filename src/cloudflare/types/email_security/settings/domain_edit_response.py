@@ -25,6 +25,8 @@ class DomainEditResponse(BaseModel):
 
     folder: Optional[Literal["AllItems", "Inbox"]] = None
 
+    inbox_provider: Optional[Literal["Microsoft", "Google"]] = None
+
     integration_id: Optional[str] = None
 
     o365_tenant_id: Optional[str] = None

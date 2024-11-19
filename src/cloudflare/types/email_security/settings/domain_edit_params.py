@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["DomainEditParams"]
 
@@ -13,6 +13,8 @@ class DomainEditParams(TypedDict, total=False):
     """Account Identifier"""
 
     domain: Optional[str]
+
+    folder: Literal["AllItems", "Inbox"]
 
     integration_id: Optional[str]
 
