@@ -1193,41 +1193,7 @@ Methods:
 - <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}/raw">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate.py">raw</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate_raw_response.py">InvestigateRawResponse</a></code>
 - <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}/trace">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate.py">trace</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate_trace_response.py">InvestigateTraceResponse</a></code>
 
-## Phishguard
-
-Types:
-
-```python
-from cloudflare.types.email_security import PhishguardListResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/email-security/phishguard/reports">client.email_security.phishguard.<a href="./src/cloudflare/resources/email_security/phishguard.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/phishguard_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/phishguard_list_response.py">SyncSinglePage[PhishguardListResponse]</a></code>
-
 ## Settings
-
-### AllowPatterns
-
-Types:
-
-```python
-from cloudflare.types.email_security.settings import (
-    AllowPatternCreateResponse,
-    AllowPatternListResponse,
-    AllowPatternDeleteResponse,
-    AllowPatternEditResponse,
-    AllowPatternGetResponse,
-)
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/email-security/settings/allow_patterns">client.email_security.settings.allow_patterns.<a href="./src/cloudflare/resources/email_security/settings/allow_patterns.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/allow_pattern_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/allow_pattern_create_response.py">AllowPatternCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/email-security/settings/allow_patterns">client.email_security.settings.allow_patterns.<a href="./src/cloudflare/resources/email_security/settings/allow_patterns.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/allow_pattern_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/allow_pattern_list_response.py">SyncV4PagePaginationArray[AllowPatternListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/email-security/settings/allow_patterns/{pattern_id}">client.email_security.settings.allow_patterns.<a href="./src/cloudflare/resources/email_security/settings/allow_patterns.py">delete</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/allow_pattern_delete_response.py">AllowPatternDeleteResponse</a></code>
-- <code title="patch /accounts/{account_id}/email-security/settings/allow_patterns/{pattern_id}">client.email_security.settings.allow_patterns.<a href="./src/cloudflare/resources/email_security/settings/allow_patterns.py">edit</a>(pattern_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/allow_pattern_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/allow_pattern_edit_response.py">AllowPatternEditResponse</a></code>
-- <code title="get /accounts/{account_id}/email-security/settings/allow_patterns/{pattern_id}">client.email_security.settings.allow_patterns.<a href="./src/cloudflare/resources/email_security/settings/allow_patterns.py">get</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/allow_pattern_get_response.py">AllowPatternGetResponse</a></code>
 
 ### BlockSenders
 
