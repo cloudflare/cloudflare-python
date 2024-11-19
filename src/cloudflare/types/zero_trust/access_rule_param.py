@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import TypeAlias
+from typing_extensions import Required, TypeAlias, TypedDict
 
 from .ip_rule_param import IPRuleParam
 from .email_rule_param import EmailRuleParam
@@ -25,26 +25,59 @@ from .access_device_posture_rule_param import AccessDevicePostureRuleParam
 from .authentication_method_rule_param import AuthenticationMethodRuleParam
 from .any_valid_service_token_rule_param import AnyValidServiceTokenRuleParam
 
-__all__ = ["AccessRuleParam"]
+__all__ = [
+    "AccessRuleParam",
+    "AccessAuthContextRule",
+    "AccessAuthContextRuleAuthContext",
+    "AccessCommonNameRule",
+    "AccessCommonNameRuleCommonName",
+]
+
+
+class AccessAuthContextRuleAuthContext(TypedDict, total=False):
+    id: Required[str]
+    """The ID of an Authentication context."""
+
+    ac_id: Required[str]
+    """The ACID of an Authentication context."""
+
+    identity_provider_id: Required[str]
+    """The ID of your Azure identity provider."""
+
+
+class AccessAuthContextRule(TypedDict, total=False):
+    auth_context: Required[AccessAuthContextRuleAuthContext]
+
+
+class AccessCommonNameRuleCommonName(TypedDict, total=False):
+    common_name: Required[str]
+    """The common name to match."""
+
+
+class AccessCommonNameRule(TypedDict, total=False):
+    common_name: Required[AccessCommonNameRuleCommonName]
+
 
 AccessRuleParam: TypeAlias = Union[
-    EmailRuleParam,
-    EmailListRuleParam,
-    DomainRuleParam,
-    EveryoneRuleParam,
-    IPRuleParam,
-    IPListRuleParam,
-    CertificateRuleParam,
     GroupRuleParam,
+    AnyValidServiceTokenRuleParam,
+    AccessAuthContextRule,
+    AuthenticationMethodRuleParam,
     AzureGroupRuleParam,
+    CertificateRuleParam,
+    AccessCommonNameRule,
+    CountryRuleParam,
+    AccessDevicePostureRuleParam,
+    DomainRuleParam,
+    EmailListRuleParam,
+    EmailRuleParam,
+    EveryoneRuleParam,
+    ExternalEvaluationRuleParam,
     GitHubOrganizationRuleParam,
     GSuiteGroupRuleParam,
+    IPListRuleParam,
+    IPRuleParam,
     OktaGroupRuleParam,
     SAMLGroupRuleParam,
     ServiceTokenRuleParam,
-    AnyValidServiceTokenRuleParam,
-    ExternalEvaluationRuleParam,
-    CountryRuleParam,
-    AuthenticationMethodRuleParam,
-    AccessDevicePostureRuleParam,
 ]
