@@ -16,19 +16,19 @@ __all__ = [
     "Variant0ProfileEntryDLPNewCustomEntry",
     "Variant0ProfileEntryDLPNewWordListEntry",
     "Variant0ProfileSharedEntry",
-    "Variant0ProfileSharedEntryCustom",
-    "Variant0ProfileSharedEntryPredefined",
-    "Variant0ProfileSharedEntryIntegration",
-    "Variant0ProfileSharedEntryExactData",
+    "Variant0ProfileSharedEntryUnionMember0",
+    "Variant0ProfileSharedEntryUnionMember1",
+    "Variant0ProfileSharedEntryUnionMember2",
+    "Variant0ProfileSharedEntryUnionMember3",
     "DLPNewCustomProfile",
     "DLPNewCustomProfileEntry",
     "DLPNewCustomProfileEntryDLPNewCustomEntry",
     "DLPNewCustomProfileEntryDLPNewWordListEntry",
     "DLPNewCustomProfileSharedEntry",
-    "DLPNewCustomProfileSharedEntryCustom",
-    "DLPNewCustomProfileSharedEntryPredefined",
-    "DLPNewCustomProfileSharedEntryIntegration",
-    "DLPNewCustomProfileSharedEntryExactData",
+    "DLPNewCustomProfileSharedEntryUnionMember0",
+    "DLPNewCustomProfileSharedEntryUnionMember1",
+    "DLPNewCustomProfileSharedEntryUnionMember2",
+    "DLPNewCustomProfileSharedEntryUnionMember3",
 ]
 
 
@@ -57,7 +57,7 @@ class Variant0ProfileEntryDLPNewWordListEntry(TypedDict, total=False):
 Variant0ProfileEntry: TypeAlias = Union[Variant0ProfileEntryDLPNewCustomEntry, Variant0ProfileEntryDLPNewWordListEntry]
 
 
-class Variant0ProfileSharedEntryCustom(TypedDict, total=False):
+class Variant0ProfileSharedEntryUnionMember0(TypedDict, total=False):
     enabled: Required[bool]
 
     entry_id: Required[str]
@@ -65,7 +65,7 @@ class Variant0ProfileSharedEntryCustom(TypedDict, total=False):
     entry_type: Required[Literal["custom"]]
 
 
-class Variant0ProfileSharedEntryPredefined(TypedDict, total=False):
+class Variant0ProfileSharedEntryUnionMember1(TypedDict, total=False):
     enabled: Required[bool]
 
     entry_id: Required[str]
@@ -73,7 +73,7 @@ class Variant0ProfileSharedEntryPredefined(TypedDict, total=False):
     entry_type: Required[Literal["predefined"]]
 
 
-class Variant0ProfileSharedEntryIntegration(TypedDict, total=False):
+class Variant0ProfileSharedEntryUnionMember2(TypedDict, total=False):
     enabled: Required[bool]
 
     entry_id: Required[str]
@@ -81,7 +81,7 @@ class Variant0ProfileSharedEntryIntegration(TypedDict, total=False):
     entry_type: Required[Literal["integration"]]
 
 
-class Variant0ProfileSharedEntryExactData(TypedDict, total=False):
+class Variant0ProfileSharedEntryUnionMember3(TypedDict, total=False):
     enabled: Required[bool]
 
     entry_id: Required[str]
@@ -90,10 +90,10 @@ class Variant0ProfileSharedEntryExactData(TypedDict, total=False):
 
 
 Variant0ProfileSharedEntry: TypeAlias = Union[
-    Variant0ProfileSharedEntryCustom,
-    Variant0ProfileSharedEntryPredefined,
-    Variant0ProfileSharedEntryIntegration,
-    Variant0ProfileSharedEntryExactData,
+    Variant0ProfileSharedEntryUnionMember0,
+    Variant0ProfileSharedEntryUnionMember1,
+    Variant0ProfileSharedEntryUnionMember2,
+    Variant0ProfileSharedEntryUnionMember3,
 ]
 
 
@@ -178,7 +178,7 @@ DLPNewCustomProfileEntry: TypeAlias = Union[
 ]
 
 
-class DLPNewCustomProfileSharedEntryCustom(TypedDict, total=False):
+class DLPNewCustomProfileSharedEntryUnionMember0(TypedDict, total=False):
     enabled: Required[bool]
 
     entry_id: Required[str]
@@ -186,7 +186,7 @@ class DLPNewCustomProfileSharedEntryCustom(TypedDict, total=False):
     entry_type: Required[Literal["custom"]]
 
 
-class DLPNewCustomProfileSharedEntryPredefined(TypedDict, total=False):
+class DLPNewCustomProfileSharedEntryUnionMember1(TypedDict, total=False):
     enabled: Required[bool]
 
     entry_id: Required[str]
@@ -194,7 +194,7 @@ class DLPNewCustomProfileSharedEntryPredefined(TypedDict, total=False):
     entry_type: Required[Literal["predefined"]]
 
 
-class DLPNewCustomProfileSharedEntryIntegration(TypedDict, total=False):
+class DLPNewCustomProfileSharedEntryUnionMember2(TypedDict, total=False):
     enabled: Required[bool]
 
     entry_id: Required[str]
@@ -202,7 +202,7 @@ class DLPNewCustomProfileSharedEntryIntegration(TypedDict, total=False):
     entry_type: Required[Literal["integration"]]
 
 
-class DLPNewCustomProfileSharedEntryExactData(TypedDict, total=False):
+class DLPNewCustomProfileSharedEntryUnionMember3(TypedDict, total=False):
     enabled: Required[bool]
 
     entry_id: Required[str]
@@ -211,10 +211,10 @@ class DLPNewCustomProfileSharedEntryExactData(TypedDict, total=False):
 
 
 DLPNewCustomProfileSharedEntry: TypeAlias = Union[
-    DLPNewCustomProfileSharedEntryCustom,
-    DLPNewCustomProfileSharedEntryPredefined,
-    DLPNewCustomProfileSharedEntryIntegration,
-    DLPNewCustomProfileSharedEntryExactData,
+    DLPNewCustomProfileSharedEntryUnionMember0,
+    DLPNewCustomProfileSharedEntryUnionMember1,
+    DLPNewCustomProfileSharedEntryUnionMember2,
+    DLPNewCustomProfileSharedEntryUnionMember3,
 ]
 
 CustomCreateParams: TypeAlias = Union[Variant0, DLPNewCustomProfile]
