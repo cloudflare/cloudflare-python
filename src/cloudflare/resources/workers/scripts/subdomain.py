@@ -50,8 +50,7 @@ class SubdomainResource(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        enabled: bool,
-        previews_enabled: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -69,9 +68,6 @@ class SubdomainResource(SyncAPIResource):
 
           enabled: Whether the Worker should be available on the workers.dev subdomain.
 
-          previews_enabled: Whether the Worker's Preview URLs should be available on the workers.dev
-              subdomain.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -86,13 +82,7 @@ class SubdomainResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._post(
             f"/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
-            body=maybe_transform(
-                {
-                    "enabled": enabled,
-                    "previews_enabled": previews_enabled,
-                },
-                subdomain_create_params.SubdomainCreateParams,
-            ),
+            body=maybe_transform({"enabled": enabled}, subdomain_create_params.SubdomainCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -165,8 +155,7 @@ class AsyncSubdomainResource(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        enabled: bool,
-        previews_enabled: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -184,9 +173,6 @@ class AsyncSubdomainResource(AsyncAPIResource):
 
           enabled: Whether the Worker should be available on the workers.dev subdomain.
 
-          previews_enabled: Whether the Worker's Preview URLs should be available on the workers.dev
-              subdomain.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -201,13 +187,7 @@ class AsyncSubdomainResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._post(
             f"/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
-            body=await async_maybe_transform(
-                {
-                    "enabled": enabled,
-                    "previews_enabled": previews_enabled,
-                },
-                subdomain_create_params.SubdomainCreateParams,
-            ),
+            body=await async_maybe_transform({"enabled": enabled}, subdomain_create_params.SubdomainCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
