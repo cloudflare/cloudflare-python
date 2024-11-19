@@ -984,10 +984,10 @@ class TestApplications:
             policies=[
                 {
                     "decision": "allow",
-                    "include": [{"email": {"email": "test@example.com"}}],
+                    "include": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                     "name": "Allow devs",
-                    "exclude": [{"email": {"email": "test@example.com"}}],
-                    "require": [{"email": {"email": "test@example.com"}}],
+                    "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 }
             ],
         )
@@ -2131,10 +2131,10 @@ class TestApplications:
             policies=[
                 {
                     "decision": "allow",
-                    "include": [{"email": {"email": "test@example.com"}}],
+                    "include": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                     "name": "Allow devs",
-                    "exclude": [{"email": {"email": "test@example.com"}}],
-                    "require": [{"email": {"email": "test@example.com"}}],
+                    "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 }
             ],
         )
@@ -3453,10 +3453,10 @@ class TestAsyncApplications:
             policies=[
                 {
                     "decision": "allow",
-                    "include": [{"email": {"email": "test@example.com"}}],
+                    "include": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                     "name": "Allow devs",
-                    "exclude": [{"email": {"email": "test@example.com"}}],
-                    "require": [{"email": {"email": "test@example.com"}}],
+                    "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 }
             ],
         )
@@ -4600,10 +4600,10 @@ class TestAsyncApplications:
             policies=[
                 {
                     "decision": "allow",
-                    "include": [{"email": {"email": "test@example.com"}}],
+                    "include": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                     "name": "Allow devs",
-                    "exclude": [{"email": {"email": "test@example.com"}}],
-                    "require": [{"email": {"email": "test@example.com"}}],
+                    "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 }
             ],
         )
