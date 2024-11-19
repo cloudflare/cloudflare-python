@@ -26,6 +26,13 @@ class HTTPTimeseriesParams(TypedDict, total=False):
     AS3356.
     """
 
+    bot_class: Annotated[List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]], PropertyInfo(alias="botClass")]
+    """Filter for bot class.
+
+    Refer to
+    [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+    """
+
     continent: List[str]
     """Array of comma separated list of continents (alpha-2 continent codes).
 
@@ -46,8 +53,20 @@ class HTTPTimeseriesParams(TypedDict, total=False):
     date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
     """Array of datetimes to filter the start of a series."""
 
+    device_type: Annotated[List[Literal["DESKTOP", "MOBILE", "OTHER"]], PropertyInfo(alias="deviceType")]
+    """Filter for device type."""
+
     format: Literal["JSON", "CSV"]
     """Format results are returned in."""
+
+    http_protocol: Annotated[List[Literal["HTTP", "HTTPS"]], PropertyInfo(alias="httpProtocol")]
+    """Filter for http protocol."""
+
+    http_version: Annotated[List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]], PropertyInfo(alias="httpVersion")]
+    """Filter for http version."""
+
+    ip_version: Annotated[List[Literal["IPv4", "IPv6"]], PropertyInfo(alias="ipVersion")]
+    """Filter for ip version."""
 
     location: List[str]
     """Array of comma separated list of locations (alpha-2 country codes).
@@ -65,3 +84,11 @@ class HTTPTimeseriesParams(TypedDict, total=False):
     Refer to
     [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
     """
+
+    os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+    """Filter for os name."""
+
+    tls_version: Annotated[
+        List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]], PropertyInfo(alias="tlsVersion")
+    ]
+    """Filter for tls version."""
