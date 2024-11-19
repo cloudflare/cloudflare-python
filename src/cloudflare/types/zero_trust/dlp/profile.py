@@ -2,43 +2,42 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypeAlias
+from typing_extensions import Literal, TypeAlias
 
-from ...._utils import PropertyInfo
 from ...._models import BaseModel
 from .profiles.pattern import Pattern
 from .context_awareness import ContextAwareness
 
 __all__ = [
     "Profile",
-    "Custom",
-    "CustomEntry",
-    "CustomEntryCustom",
-    "CustomEntryPredefined",
-    "CustomEntryPredefinedConfidence",
-    "CustomEntryIntegration",
-    "CustomEntryExactData",
-    "CustomEntryWordList",
-    "Predefined",
-    "PredefinedEntry",
-    "PredefinedEntryCustom",
-    "PredefinedEntryPredefined",
-    "PredefinedEntryPredefinedConfidence",
-    "PredefinedEntryIntegration",
-    "PredefinedEntryExactData",
-    "PredefinedEntryWordList",
-    "Integration",
-    "IntegrationEntry",
-    "IntegrationEntryCustom",
-    "IntegrationEntryPredefined",
-    "IntegrationEntryPredefinedConfidence",
-    "IntegrationEntryIntegration",
-    "IntegrationEntryExactData",
-    "IntegrationEntryWordList",
+    "CustomProfile",
+    "CustomProfileEntry",
+    "CustomProfileEntryCustomEntry",
+    "CustomProfileEntryPredefinedEntry",
+    "CustomProfileEntryPredefinedEntryConfidence",
+    "CustomProfileEntryIntegrationEntry",
+    "CustomProfileEntryExactDataEntry",
+    "CustomProfileEntryWordListEntry",
+    "PredefinedProfile",
+    "PredefinedProfileEntry",
+    "PredefinedProfileEntryCustomEntry",
+    "PredefinedProfileEntryPredefinedEntry",
+    "PredefinedProfileEntryPredefinedEntryConfidence",
+    "PredefinedProfileEntryIntegrationEntry",
+    "PredefinedProfileEntryExactDataEntry",
+    "PredefinedProfileEntryWordListEntry",
+    "IntegrationProfile",
+    "IntegrationProfileEntry",
+    "IntegrationProfileEntryCustomEntry",
+    "IntegrationProfileEntryPredefinedEntry",
+    "IntegrationProfileEntryPredefinedEntryConfidence",
+    "IntegrationProfileEntryIntegrationEntry",
+    "IntegrationProfileEntryExactDataEntry",
+    "IntegrationProfileEntryWordListEntry",
 ]
 
 
-class CustomEntryCustom(BaseModel):
+class CustomProfileEntryCustomEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -56,7 +55,7 @@ class CustomEntryCustom(BaseModel):
     profile_id: Optional[str] = None
 
 
-class CustomEntryPredefinedConfidence(BaseModel):
+class CustomProfileEntryPredefinedEntryConfidence(BaseModel):
     available: bool
     """
     Indicates whether this entry can be made more or less sensitive by setting a
@@ -65,10 +64,10 @@ class CustomEntryPredefinedConfidence(BaseModel):
     """
 
 
-class CustomEntryPredefined(BaseModel):
+class CustomProfileEntryPredefinedEntry(BaseModel):
     id: str
 
-    confidence: CustomEntryPredefinedConfidence
+    confidence: CustomProfileEntryPredefinedEntryConfidence
 
     enabled: bool
 
@@ -79,7 +78,7 @@ class CustomEntryPredefined(BaseModel):
     profile_id: Optional[str] = None
 
 
-class CustomEntryIntegration(BaseModel):
+class CustomProfileEntryIntegrationEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -95,7 +94,7 @@ class CustomEntryIntegration(BaseModel):
     profile_id: Optional[str] = None
 
 
-class CustomEntryExactData(BaseModel):
+class CustomProfileEntryExactDataEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -111,7 +110,7 @@ class CustomEntryExactData(BaseModel):
     updated_at: datetime
 
 
-class CustomEntryWordList(BaseModel):
+class CustomProfileEntryWordListEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -129,13 +128,16 @@ class CustomEntryWordList(BaseModel):
     profile_id: Optional[str] = None
 
 
-CustomEntry: TypeAlias = Annotated[
-    Union[CustomEntryCustom, CustomEntryPredefined, CustomEntryIntegration, CustomEntryExactData, CustomEntryWordList],
-    PropertyInfo(discriminator="type"),
+CustomProfileEntry: TypeAlias = Union[
+    CustomProfileEntryCustomEntry,
+    CustomProfileEntryPredefinedEntry,
+    CustomProfileEntryIntegrationEntry,
+    CustomProfileEntryExactDataEntry,
+    CustomProfileEntryWordListEntry,
 ]
 
 
-class Custom(BaseModel):
+class CustomProfile(BaseModel):
     id: str
     """The id of the profile (uuid)"""
 
@@ -151,7 +153,7 @@ class Custom(BaseModel):
     created_at: datetime
     """When the profile was created"""
 
-    entries: List[CustomEntry]
+    entries: List[CustomProfileEntry]
 
     name: str
     """The name of the profile"""
@@ -169,7 +171,7 @@ class Custom(BaseModel):
     """The description of the profile"""
 
 
-class PredefinedEntryCustom(BaseModel):
+class PredefinedProfileEntryCustomEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -187,7 +189,7 @@ class PredefinedEntryCustom(BaseModel):
     profile_id: Optional[str] = None
 
 
-class PredefinedEntryPredefinedConfidence(BaseModel):
+class PredefinedProfileEntryPredefinedEntryConfidence(BaseModel):
     available: bool
     """
     Indicates whether this entry can be made more or less sensitive by setting a
@@ -196,10 +198,10 @@ class PredefinedEntryPredefinedConfidence(BaseModel):
     """
 
 
-class PredefinedEntryPredefined(BaseModel):
+class PredefinedProfileEntryPredefinedEntry(BaseModel):
     id: str
 
-    confidence: PredefinedEntryPredefinedConfidence
+    confidence: PredefinedProfileEntryPredefinedEntryConfidence
 
     enabled: bool
 
@@ -210,7 +212,7 @@ class PredefinedEntryPredefined(BaseModel):
     profile_id: Optional[str] = None
 
 
-class PredefinedEntryIntegration(BaseModel):
+class PredefinedProfileEntryIntegrationEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -226,7 +228,7 @@ class PredefinedEntryIntegration(BaseModel):
     profile_id: Optional[str] = None
 
 
-class PredefinedEntryExactData(BaseModel):
+class PredefinedProfileEntryExactDataEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -242,7 +244,7 @@ class PredefinedEntryExactData(BaseModel):
     updated_at: datetime
 
 
-class PredefinedEntryWordList(BaseModel):
+class PredefinedProfileEntryWordListEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -260,25 +262,22 @@ class PredefinedEntryWordList(BaseModel):
     profile_id: Optional[str] = None
 
 
-PredefinedEntry: TypeAlias = Annotated[
-    Union[
-        PredefinedEntryCustom,
-        PredefinedEntryPredefined,
-        PredefinedEntryIntegration,
-        PredefinedEntryExactData,
-        PredefinedEntryWordList,
-    ],
-    PropertyInfo(discriminator="type"),
+PredefinedProfileEntry: TypeAlias = Union[
+    PredefinedProfileEntryCustomEntry,
+    PredefinedProfileEntryPredefinedEntry,
+    PredefinedProfileEntryIntegrationEntry,
+    PredefinedProfileEntryExactDataEntry,
+    PredefinedProfileEntryWordListEntry,
 ]
 
 
-class Predefined(BaseModel):
+class PredefinedProfile(BaseModel):
     id: str
     """The id of the predefined profile (uuid)"""
 
     allowed_match_count: int
 
-    entries: List[PredefinedEntry]
+    entries: List[PredefinedProfileEntry]
 
     name: str
     """The name of the predefined profile"""
@@ -299,7 +298,7 @@ class Predefined(BaseModel):
     """Whether this profile can be accessed by anyone"""
 
 
-class IntegrationEntryCustom(BaseModel):
+class IntegrationProfileEntryCustomEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -317,7 +316,7 @@ class IntegrationEntryCustom(BaseModel):
     profile_id: Optional[str] = None
 
 
-class IntegrationEntryPredefinedConfidence(BaseModel):
+class IntegrationProfileEntryPredefinedEntryConfidence(BaseModel):
     available: bool
     """
     Indicates whether this entry can be made more or less sensitive by setting a
@@ -326,10 +325,10 @@ class IntegrationEntryPredefinedConfidence(BaseModel):
     """
 
 
-class IntegrationEntryPredefined(BaseModel):
+class IntegrationProfileEntryPredefinedEntry(BaseModel):
     id: str
 
-    confidence: IntegrationEntryPredefinedConfidence
+    confidence: IntegrationProfileEntryPredefinedEntryConfidence
 
     enabled: bool
 
@@ -340,7 +339,7 @@ class IntegrationEntryPredefined(BaseModel):
     profile_id: Optional[str] = None
 
 
-class IntegrationEntryIntegration(BaseModel):
+class IntegrationProfileEntryIntegrationEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -356,7 +355,7 @@ class IntegrationEntryIntegration(BaseModel):
     profile_id: Optional[str] = None
 
 
-class IntegrationEntryExactData(BaseModel):
+class IntegrationProfileEntryExactDataEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -372,7 +371,7 @@ class IntegrationEntryExactData(BaseModel):
     updated_at: datetime
 
 
-class IntegrationEntryWordList(BaseModel):
+class IntegrationProfileEntryWordListEntry(BaseModel):
     id: str
 
     created_at: datetime
@@ -390,24 +389,21 @@ class IntegrationEntryWordList(BaseModel):
     profile_id: Optional[str] = None
 
 
-IntegrationEntry: TypeAlias = Annotated[
-    Union[
-        IntegrationEntryCustom,
-        IntegrationEntryPredefined,
-        IntegrationEntryIntegration,
-        IntegrationEntryExactData,
-        IntegrationEntryWordList,
-    ],
-    PropertyInfo(discriminator="type"),
+IntegrationProfileEntry: TypeAlias = Union[
+    IntegrationProfileEntryCustomEntry,
+    IntegrationProfileEntryPredefinedEntry,
+    IntegrationProfileEntryIntegrationEntry,
+    IntegrationProfileEntryExactDataEntry,
+    IntegrationProfileEntryWordListEntry,
 ]
 
 
-class Integration(BaseModel):
+class IntegrationProfile(BaseModel):
     id: str
 
     created_at: datetime
 
-    entries: List[IntegrationEntry]
+    entries: List[IntegrationProfileEntry]
 
     name: str
 
@@ -419,4 +415,4 @@ class Integration(BaseModel):
     """The description of the profile"""
 
 
-Profile: TypeAlias = Annotated[Union[Custom, Predefined, Integration], PropertyInfo(discriminator="type")]
+Profile: TypeAlias = Union[CustomProfile, PredefinedProfile, IntegrationProfile]
