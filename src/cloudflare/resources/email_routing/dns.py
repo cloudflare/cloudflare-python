@@ -2,11 +2,15 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Any, Type, Optional, cast
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -17,8 +21,10 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
+from ...types.email_routing import dns_get_params, dns_edit_params, dns_create_params
 from ...types.email_routing.settings import Settings
 from ...types.email_routing.dns_get_response import DNSGetResponse
+from ...types.email_routing.dns_delete_response import DNSDeleteResponse
 
 __all__ = ["DNSResource", "AsyncDNSResource"]
 
@@ -47,6 +53,7 @@ class DNSResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -61,6 +68,8 @@ class DNSResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          name: Domain of your zone.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -73,6 +82,7 @@ class DNSResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/email/routing/dns",
+            body=maybe_transform({"name": name}, dns_create_params.DNSCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -93,7 +103,7 @@ class DNSResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Settings]:
+    ) -> DNSDeleteResponse:
         """Disable your Email Routing zone.
 
         Also removes additional MX records previously
@@ -112,22 +122,22 @@ class DNSResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._delete(
-            f"/zones/{zone_id}/email/routing/dns",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
+        return cast(
+            DNSDeleteResponse,
+            self._delete(
+                f"/zones/{zone_id}/email/routing/dns",
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(Any, DNSDeleteResponse),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
         )
 
     def edit(
         self,
         *,
         zone_id: str,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -141,6 +151,8 @@ class DNSResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          name: Domain of your zone.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -153,6 +165,7 @@ class DNSResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/email/routing/dns",
+            body=maybe_transform({"name": name}, dns_edit_params.DNSEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -167,18 +180,21 @@ class DNSResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        subdomain: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DNSGetResponse]:
+    ) -> DNSGetResponse:
         """
         Show the DNS records needed to configure your Email Routing zone.
 
         Args:
           zone_id: Identifier
+
+          subdomain: Domain of your zone.
 
           extra_headers: Send extra headers
 
@@ -190,16 +206,19 @@ class DNSResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
-            f"/zones/{zone_id}/email/routing/dns",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DNSGetResponse]]._unwrapper,
+        return cast(
+            DNSGetResponse,
+            self._get(
+                f"/zones/{zone_id}/email/routing/dns",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=maybe_transform({"subdomain": subdomain}, dns_get_params.DNSGetParams),
+                ),
+                cast_to=cast(Any, DNSGetResponse),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Optional[DNSGetResponse]], ResultWrapper[DNSGetResponse]),
         )
 
 
@@ -227,6 +246,7 @@ class AsyncDNSResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -241,6 +261,8 @@ class AsyncDNSResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          name: Domain of your zone.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -253,6 +275,7 @@ class AsyncDNSResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/email/routing/dns",
+            body=await async_maybe_transform({"name": name}, dns_create_params.DNSCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -273,7 +296,7 @@ class AsyncDNSResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Settings]:
+    ) -> DNSDeleteResponse:
         """Disable your Email Routing zone.
 
         Also removes additional MX records previously
@@ -292,22 +315,22 @@ class AsyncDNSResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._delete(
-            f"/zones/{zone_id}/email/routing/dns",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
+        return cast(
+            DNSDeleteResponse,
+            await self._delete(
+                f"/zones/{zone_id}/email/routing/dns",
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(Any, DNSDeleteResponse),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
         )
 
     async def edit(
         self,
         *,
         zone_id: str,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -321,6 +344,8 @@ class AsyncDNSResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          name: Domain of your zone.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -333,6 +358,7 @@ class AsyncDNSResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/email/routing/dns",
+            body=await async_maybe_transform({"name": name}, dns_edit_params.DNSEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -347,18 +373,21 @@ class AsyncDNSResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        subdomain: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DNSGetResponse]:
+    ) -> DNSGetResponse:
         """
         Show the DNS records needed to configure your Email Routing zone.
 
         Args:
           zone_id: Identifier
+
+          subdomain: Domain of your zone.
 
           extra_headers: Send extra headers
 
@@ -370,16 +399,19 @@ class AsyncDNSResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
-            f"/zones/{zone_id}/email/routing/dns",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DNSGetResponse]]._unwrapper,
+        return cast(
+            DNSGetResponse,
+            await self._get(
+                f"/zones/{zone_id}/email/routing/dns",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    query=await async_maybe_transform({"subdomain": subdomain}, dns_get_params.DNSGetParams),
+                ),
+                cast_to=cast(Any, DNSGetResponse),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Optional[DNSGetResponse]], ResultWrapper[DNSGetResponse]),
         )
 
 
