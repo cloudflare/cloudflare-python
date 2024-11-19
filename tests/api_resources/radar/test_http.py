@@ -28,14 +28,21 @@ class TestHTTP:
         http = client.radar.http.timeseries(
             agg_interval="15m",
             asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
             location=["string"],
             name=["string"],
             normalization="PERCENTAGE_CHANGE",
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(HTTPTimeseriesResponse, http, path=["response"])
 
@@ -73,14 +80,21 @@ class TestAsyncHTTP:
         http = await async_client.radar.http.timeseries(
             agg_interval="15m",
             asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
             location=["string"],
             name=["string"],
             normalization="PERCENTAGE_CHANGE",
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(HTTPTimeseriesResponse, http, path=["response"])
 
