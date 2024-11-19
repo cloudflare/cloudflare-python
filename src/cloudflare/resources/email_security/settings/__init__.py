@@ -24,14 +24,6 @@ from .block_senders import (
     BlockSendersResourceWithStreamingResponse,
     AsyncBlockSendersResourceWithStreamingResponse,
 )
-from .allow_patterns import (
-    AllowPatternsResource,
-    AsyncAllowPatternsResource,
-    AllowPatternsResourceWithRawResponse,
-    AsyncAllowPatternsResourceWithRawResponse,
-    AllowPatternsResourceWithStreamingResponse,
-    AsyncAllowPatternsResourceWithStreamingResponse,
-)
 from .trusted_domains import (
     TrustedDomainsResource,
     AsyncTrustedDomainsResource,
@@ -50,12 +42,6 @@ from .impersonation_registry import (
 )
 
 __all__ = [
-    "AllowPatternsResource",
-    "AsyncAllowPatternsResource",
-    "AllowPatternsResourceWithRawResponse",
-    "AsyncAllowPatternsResourceWithRawResponse",
-    "AllowPatternsResourceWithStreamingResponse",
-    "AsyncAllowPatternsResourceWithStreamingResponse",
     "BlockSendersResource",
     "AsyncBlockSendersResource",
     "BlockSendersResourceWithRawResponse",

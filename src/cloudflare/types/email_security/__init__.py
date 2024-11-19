@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from .phishguard_list_params import PhishguardListParams as PhishguardListParams
 from .investigate_list_params import InvestigateListParams as InvestigateListParams
 from .investigate_get_response import InvestigateGetResponse as InvestigateGetResponse
 from .investigate_raw_response import InvestigateRawResponse as InvestigateRawResponse
-from .phishguard_list_response import PhishguardListResponse as PhishguardListResponse
 from .investigate_list_response import InvestigateListResponse as InvestigateListResponse
 from .investigate_trace_response import InvestigateTraceResponse as InvestigateTraceResponse
 from .investigate_preview_response import InvestigatePreviewResponse as InvestigatePreviewResponse

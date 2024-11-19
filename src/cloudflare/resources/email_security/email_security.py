@@ -11,14 +11,6 @@ from .settings import (
     AsyncSettingsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .phishguard import (
-    PhishguardResource,
-    AsyncPhishguardResource,
-    PhishguardResourceWithRawResponse,
-    AsyncPhishguardResourceWithRawResponse,
-    PhishguardResourceWithStreamingResponse,
-    AsyncPhishguardResourceWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .investigate import (
     InvestigateResource,
@@ -37,10 +29,6 @@ class EmailSecurityResource(SyncAPIResource):
     @cached_property
     def investigate(self) -> InvestigateResource:
         return InvestigateResource(self._client)
-
-    @cached_property
-    def phishguard(self) -> PhishguardResource:
-        return PhishguardResource(self._client)
 
     @cached_property
     def settings(self) -> SettingsResource:
@@ -70,10 +58,6 @@ class AsyncEmailSecurityResource(AsyncAPIResource):
     @cached_property
     def investigate(self) -> AsyncInvestigateResource:
         return AsyncInvestigateResource(self._client)
-
-    @cached_property
-    def phishguard(self) -> AsyncPhishguardResource:
-        return AsyncPhishguardResource(self._client)
 
     @cached_property
     def settings(self) -> AsyncSettingsResource:
@@ -108,10 +92,6 @@ class EmailSecurityResourceWithRawResponse:
         return InvestigateResourceWithRawResponse(self._email_security.investigate)
 
     @cached_property
-    def phishguard(self) -> PhishguardResourceWithRawResponse:
-        return PhishguardResourceWithRawResponse(self._email_security.phishguard)
-
-    @cached_property
     def settings(self) -> SettingsResourceWithRawResponse:
         return SettingsResourceWithRawResponse(self._email_security.settings)
 
@@ -123,10 +103,6 @@ class AsyncEmailSecurityResourceWithRawResponse:
     @cached_property
     def investigate(self) -> AsyncInvestigateResourceWithRawResponse:
         return AsyncInvestigateResourceWithRawResponse(self._email_security.investigate)
-
-    @cached_property
-    def phishguard(self) -> AsyncPhishguardResourceWithRawResponse:
-        return AsyncPhishguardResourceWithRawResponse(self._email_security.phishguard)
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
@@ -142,10 +118,6 @@ class EmailSecurityResourceWithStreamingResponse:
         return InvestigateResourceWithStreamingResponse(self._email_security.investigate)
 
     @cached_property
-    def phishguard(self) -> PhishguardResourceWithStreamingResponse:
-        return PhishguardResourceWithStreamingResponse(self._email_security.phishguard)
-
-    @cached_property
     def settings(self) -> SettingsResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self._email_security.settings)
 
@@ -157,10 +129,6 @@ class AsyncEmailSecurityResourceWithStreamingResponse:
     @cached_property
     def investigate(self) -> AsyncInvestigateResourceWithStreamingResponse:
         return AsyncInvestigateResourceWithStreamingResponse(self._email_security.investigate)
-
-    @cached_property
-    def phishguard(self) -> AsyncPhishguardResourceWithStreamingResponse:
-        return AsyncPhishguardResourceWithStreamingResponse(self._email_security.phishguard)
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
