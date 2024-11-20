@@ -16,6 +16,14 @@ from .investigate import (
     InvestigateResourceWithStreamingResponse,
     AsyncInvestigateResourceWithStreamingResponse,
 )
+from .submissions import (
+    SubmissionsResource,
+    AsyncSubmissionsResource,
+    SubmissionsResourceWithRawResponse,
+    AsyncSubmissionsResourceWithRawResponse,
+    SubmissionsResourceWithStreamingResponse,
+    AsyncSubmissionsResourceWithStreamingResponse,
+)
 from .email_security import (
     EmailSecurityResource,
     AsyncEmailSecurityResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncSettingsResourceWithRawResponse",
     "SettingsResourceWithStreamingResponse",
     "AsyncSettingsResourceWithStreamingResponse",
+    "SubmissionsResource",
+    "AsyncSubmissionsResource",
+    "SubmissionsResourceWithRawResponse",
+    "AsyncSubmissionsResourceWithRawResponse",
+    "SubmissionsResourceWithStreamingResponse",
+    "AsyncSubmissionsResourceWithStreamingResponse",
     "EmailSecurityResource",
     "AsyncEmailSecurityResource",
     "EmailSecurityResourceWithRawResponse",

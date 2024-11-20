@@ -3,9 +3,9 @@
 from typing import List, Optional
 from datetime import datetime
 
-from ..._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["InvestigateTraceResponse", "Inbound", "InboundLine", "Outbound", "OutboundLine"]
+__all__ = ["TraceGetResponse", "Inbound", "InboundLine", "Outbound", "OutboundLine"]
 
 
 class InboundLine(BaseModel):
@@ -32,7 +32,7 @@ class Outbound(BaseModel):
     lines: Optional[List[OutboundLine]] = None
 
 
-class InvestigateTraceResponse(BaseModel):
+class TraceGetResponse(BaseModel):
     inbound: Inbound
 
     outbound: Outbound

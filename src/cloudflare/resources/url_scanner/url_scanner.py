@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Iterable
+
+import httpx
+
 from .dom import (
     DOMResource,
     AsyncDOMResource,
@@ -34,6 +38,11 @@ from .result import (
     ResultResourceWithStreamingResponse,
     AsyncResultResourceWithStreamingResponse,
 )
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
 from .responses import (
     ResponsesResource,
@@ -52,6 +61,15 @@ from .screenshot import (
     AsyncScreenshotResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._base_client import make_request_options
+from ...types.url_scanner import url_scanner_bulk_params
+from ...types.url_scanner.url_scanner_bulk_response import URLScannerBulkResponse
 
 __all__ = ["URLScannerResource", "AsyncURLScannerResource"]
 
@@ -100,6 +118,49 @@ class URLScannerResource(SyncAPIResource):
         """
         return URLScannerResourceWithStreamingResponse(self)
 
+    def bulk(
+        self,
+        account_id: str,
+        *,
+        body: Iterable[url_scanner_bulk_params.Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> URLScannerBulkResponse:
+        """Submit URLs to scan.
+
+        Check limits at
+        https://developers.cloudflare.com/security-center/investigate/scan-limits/ and
+        take into account scans submitted in bulk have lower priority and may take
+        longer to finish.
+
+        Args:
+          account_id: Account Id.
+
+          body: List of urls to scan (up to a 100).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/urlscanner/v2/bulk",
+            body=maybe_transform(body, Iterable[url_scanner_bulk_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=URLScannerBulkResponse,
+        )
+
 
 class AsyncURLScannerResource(AsyncAPIResource):
     @cached_property
@@ -145,10 +206,57 @@ class AsyncURLScannerResource(AsyncAPIResource):
         """
         return AsyncURLScannerResourceWithStreamingResponse(self)
 
+    async def bulk(
+        self,
+        account_id: str,
+        *,
+        body: Iterable[url_scanner_bulk_params.Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> URLScannerBulkResponse:
+        """Submit URLs to scan.
+
+        Check limits at
+        https://developers.cloudflare.com/security-center/investigate/scan-limits/ and
+        take into account scans submitted in bulk have lower priority and may take
+        longer to finish.
+
+        Args:
+          account_id: Account Id.
+
+          body: List of urls to scan (up to a 100).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/urlscanner/v2/bulk",
+            body=await async_maybe_transform(body, Iterable[url_scanner_bulk_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=URLScannerBulkResponse,
+        )
+
 
 class URLScannerResourceWithRawResponse:
     def __init__(self, url_scanner: URLScannerResource) -> None:
         self._url_scanner = url_scanner
+
+        self.bulk = to_raw_response_wrapper(
+            url_scanner.bulk,
+        )
 
     @cached_property
     def responses(self) -> ResponsesResourceWithRawResponse:
@@ -179,6 +287,10 @@ class AsyncURLScannerResourceWithRawResponse:
     def __init__(self, url_scanner: AsyncURLScannerResource) -> None:
         self._url_scanner = url_scanner
 
+        self.bulk = async_to_raw_response_wrapper(
+            url_scanner.bulk,
+        )
+
     @cached_property
     def responses(self) -> AsyncResponsesResourceWithRawResponse:
         return AsyncResponsesResourceWithRawResponse(self._url_scanner.responses)
@@ -208,6 +320,10 @@ class URLScannerResourceWithStreamingResponse:
     def __init__(self, url_scanner: URLScannerResource) -> None:
         self._url_scanner = url_scanner
 
+        self.bulk = to_streamed_response_wrapper(
+            url_scanner.bulk,
+        )
+
     @cached_property
     def responses(self) -> ResponsesResourceWithStreamingResponse:
         return ResponsesResourceWithStreamingResponse(self._url_scanner.responses)
@@ -236,6 +352,10 @@ class URLScannerResourceWithStreamingResponse:
 class AsyncURLScannerResourceWithStreamingResponse:
     def __init__(self, url_scanner: AsyncURLScannerResource) -> None:
         self._url_scanner = url_scanner
+
+        self.bulk = async_to_streamed_response_wrapper(
+            url_scanner.bulk,
+        )
 
     @cached_property
     def responses(self) -> AsyncResponsesResourceWithStreamingResponse:

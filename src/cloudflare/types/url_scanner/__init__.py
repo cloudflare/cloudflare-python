@@ -16,3 +16,5 @@ from .scan_create_response import ScanCreateResponse as ScanCreateResponse
 from .response_get_response import ResponseGetResponse as ResponseGetResponse
 from .screenshot_get_params import ScreenshotGetParams as ScreenshotGetParams
 from .scan_screenshot_params import ScanScreenshotParams as ScanScreenshotParams
+from .url_scanner_bulk_params import URLScannerBulkParams as URLScannerBulkParams
+from .url_scanner_bulk_response import URLScannerBulkResponse as URLScannerBulkResponse

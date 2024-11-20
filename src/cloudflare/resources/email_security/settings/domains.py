@@ -24,6 +24,7 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.email_security.settings import domain_edit_params, domain_list_params
+from ....types.email_security.settings.domain_get_response import DomainGetResponse
 from ....types.email_security.settings.domain_edit_response import DomainEditResponse
 from ....types.email_security.settings.domain_list_response import DomainListResponse
 from ....types.email_security.settings.domain_delete_response import DomainDeleteResponse
@@ -222,6 +223,48 @@ class DomainsResource(SyncAPIResource):
             cast_to=cast(Type[DomainEditResponse], ResultWrapper[DomainEditResponse]),
         )
 
+    def get(
+        self,
+        domain_id: int,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DomainGetResponse:
+        """
+        Get an email domain
+
+        Args:
+          account_id: Account Identifier
+
+          domain_id: The unique identifier for the domain.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/email-security/settings/domains/{domain_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DomainGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[DomainGetResponse], ResultWrapper[DomainGetResponse]),
+        )
+
 
 class AsyncDomainsResource(AsyncAPIResource):
     @cached_property
@@ -414,6 +457,48 @@ class AsyncDomainsResource(AsyncAPIResource):
             cast_to=cast(Type[DomainEditResponse], ResultWrapper[DomainEditResponse]),
         )
 
+    async def get(
+        self,
+        domain_id: int,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DomainGetResponse:
+        """
+        Get an email domain
+
+        Args:
+          account_id: Account Identifier
+
+          domain_id: The unique identifier for the domain.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/email-security/settings/domains/{domain_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DomainGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[DomainGetResponse], ResultWrapper[DomainGetResponse]),
+        )
+
 
 class DomainsResourceWithRawResponse:
     def __init__(self, domains: DomainsResource) -> None:
@@ -427,6 +512,9 @@ class DomainsResourceWithRawResponse:
         )
         self.edit = to_raw_response_wrapper(
             domains.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            domains.get,
         )
 
 
@@ -443,6 +531,9 @@ class AsyncDomainsResourceWithRawResponse:
         self.edit = async_to_raw_response_wrapper(
             domains.edit,
         )
+        self.get = async_to_raw_response_wrapper(
+            domains.get,
+        )
 
 
 class DomainsResourceWithStreamingResponse:
@@ -458,6 +549,9 @@ class DomainsResourceWithStreamingResponse:
         self.edit = to_streamed_response_wrapper(
             domains.edit,
         )
+        self.get = to_streamed_response_wrapper(
+            domains.get,
+        )
 
 
 class AsyncDomainsResourceWithStreamingResponse:
@@ -472,4 +566,7 @@ class AsyncDomainsResourceWithStreamingResponse:
         )
         self.edit = async_to_streamed_response_wrapper(
             domains.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            domains.get,
         )
