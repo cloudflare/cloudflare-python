@@ -12,57 +12,57 @@ __all__ = [
     "ZeroRTT",
     "AdvancedDDoS",
     "AlwaysOnline",
-    "ZonesSchemasAlwaysUseHTTPS",
-    "ZonesSchemasAutomaticHTTPSRewrites",
+    "AlwaysUseHTTPS",
+    "AutomaticHTTPSRewrites",
     "Brotli",
-    "ZonesSchemasBrowserCacheTTL",
-    "ZonesSchemasBrowserCheck",
-    "ZonesSchemasCacheLevel",
+    "BrowserCacheTTL",
+    "BrowserCheck",
+    "CacheLevel",
     "ChallengeTTL",
     "Ciphers",
     "ZonesCNAMEFlattening",
-    "ZonesSchemasDevelopmentMode",
+    "DevelopmentMode",
     "EarlyHints",
-    "ZonesSchemasEdgeCacheTTL",
-    "ZonesSchemasEmailObfuscation",
+    "ZonesEdgeCacheTTL",
+    "EmailObfuscation",
     "H2Prioritization",
-    "ZonesSchemasHotlinkProtection",
+    "HotlinkProtection",
     "HTTP2",
     "HTTP3",
     "ImageResizing",
-    "ZonesSchemasIPGeolocation",
+    "IPGeolocation",
     "IPV6",
     "ZonesMaxUpload",
     "MinTLSVersion",
-    "ZonesSchemasMirage",
+    "Mirage",
     "NEL",
     "NELValue",
-    "ZonesSchemasOpportunisticEncryption",
+    "OpportunisticEncryption",
     "OpportunisticOnion",
     "OrangeToOrange",
-    "ZonesSchemasOriginErrorPagePassThru",
-    "ZonesSchemasPolish",
+    "OriginErrorPagePassThru",
+    "Polish",
     "PrefetchPreload",
     "ProxyReadTimeout",
     "PseudoIPV4",
     "ZonesReplaceInsecureJS",
-    "ZonesSchemasResponseBuffering",
-    "ZonesSchemasRocketLoader",
+    "ResponseBuffering",
+    "RocketLoader",
     "ZonesSchemasAutomaticPlatformOptimization",
     "SecurityHeaders",
     "SecurityHeadersValue",
     "SecurityHeadersValueStrictTransportSecurity",
-    "ZonesSchemasSecurityLevel",
-    "ZonesSchemasServerSideExclude",
+    "SecurityLevel",
+    "ServerSideExcludes",
     "ZonesSha1Support",
-    "ZonesSchemasSortQueryStringForCache",
-    "ZonesSchemasSSL",
+    "SortQueryStringForCache",
+    "SSL",
     "SSLRecommender",
     "ZonesTLS1_2Only",
     "TLS1_3",
     "TLSClientAuth",
-    "ZonesSchemasTrueClientIPHeader",
-    "ZonesSchemasWAF",
+    "TrueClientIPHeader",
+    "WAF",
     "WebP",
     "Websocket",
 ]
@@ -101,7 +101,7 @@ class AlwaysOnline(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasAlwaysUseHTTPS(TypedDict, total=False):
+class AlwaysUseHTTPS(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -112,7 +112,7 @@ class ZonesSchemasAlwaysUseHTTPS(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasAutomaticHTTPSRewrites(TypedDict, total=False):
+class AutomaticHTTPSRewrites(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -134,7 +134,7 @@ class Brotli(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasBrowserCacheTTL(TypedDict, total=False):
+class BrowserCacheTTL(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -176,7 +176,7 @@ class ZonesSchemasBrowserCacheTTL(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasBrowserCheck(TypedDict, total=False):
+class BrowserCheck(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -187,7 +187,7 @@ class ZonesSchemasBrowserCheck(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasCacheLevel(TypedDict, total=False):
+class CacheLevel(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -233,7 +233,7 @@ class ZonesCNAMEFlattening(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasDevelopmentMode(TypedDict, total=False):
+class DevelopmentMode(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -255,7 +255,7 @@ class EarlyHints(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasEdgeCacheTTL(TypedDict, total=False):
+class ZonesEdgeCacheTTL(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -290,7 +290,7 @@ class ZonesSchemasEdgeCacheTTL(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasEmailObfuscation(TypedDict, total=False):
+class EmailObfuscation(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -312,7 +312,7 @@ class H2Prioritization(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasHotlinkProtection(TypedDict, total=False):
+class HotlinkProtection(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -356,7 +356,7 @@ class ImageResizing(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasIPGeolocation(TypedDict, total=False):
+class IPGeolocation(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -400,7 +400,7 @@ class MinTLSVersion(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasMirage(TypedDict, total=False):
+class Mirage(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -426,7 +426,7 @@ class NELValue(TypedDict, total=False):
     enabled: bool
 
 
-class ZonesSchemasOpportunisticEncryption(TypedDict, total=False):
+class OpportunisticEncryption(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -459,7 +459,7 @@ class OrangeToOrange(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasOriginErrorPagePassThru(TypedDict, total=False):
+class OriginErrorPagePassThru(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -470,7 +470,7 @@ class ZonesSchemasOriginErrorPagePassThru(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasPolish(TypedDict, total=False):
+class Polish(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -525,7 +525,7 @@ class ZonesReplaceInsecureJS(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasResponseBuffering(TypedDict, total=False):
+class ResponseBuffering(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -536,7 +536,7 @@ class ZonesSchemasResponseBuffering(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasRocketLoader(TypedDict, total=False):
+class RocketLoader(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -591,7 +591,7 @@ class SecurityHeadersValue(TypedDict, total=False):
     """Strict Transport Security."""
 
 
-class ZonesSchemasSecurityLevel(TypedDict, total=False):
+class SecurityLevel(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -602,7 +602,7 @@ class ZonesSchemasSecurityLevel(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasServerSideExclude(TypedDict, total=False):
+class ServerSideExcludes(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -624,7 +624,7 @@ class ZonesSha1Support(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasSortQueryStringForCache(TypedDict, total=False):
+class SortQueryStringForCache(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -635,7 +635,7 @@ class ZonesSchemasSortQueryStringForCache(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasSSL(TypedDict, total=False):
+class SSL(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -690,7 +690,7 @@ class TLSClientAuth(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasTrueClientIPHeader(TypedDict, total=False):
+class TrueClientIPHeader(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -701,7 +701,7 @@ class ZonesSchemasTrueClientIPHeader(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasWAF(TypedDict, total=False):
+class WAF(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -738,54 +738,54 @@ SettingEditParams: TypeAlias = Union[
     ZeroRTT,
     AdvancedDDoS,
     AlwaysOnline,
-    ZonesSchemasAlwaysUseHTTPS,
-    ZonesSchemasAutomaticHTTPSRewrites,
+    AlwaysUseHTTPS,
+    AutomaticHTTPSRewrites,
     Brotli,
-    ZonesSchemasBrowserCacheTTL,
-    ZonesSchemasBrowserCheck,
-    ZonesSchemasCacheLevel,
+    BrowserCacheTTL,
+    BrowserCheck,
+    CacheLevel,
     ChallengeTTL,
     Ciphers,
     ZonesCNAMEFlattening,
-    ZonesSchemasDevelopmentMode,
+    DevelopmentMode,
     EarlyHints,
-    ZonesSchemasEdgeCacheTTL,
-    ZonesSchemasEmailObfuscation,
+    ZonesEdgeCacheTTL,
+    EmailObfuscation,
     H2Prioritization,
-    ZonesSchemasHotlinkProtection,
+    HotlinkProtection,
     HTTP2,
     HTTP3,
     ImageResizing,
-    ZonesSchemasIPGeolocation,
+    IPGeolocation,
     IPV6,
     ZonesMaxUpload,
     MinTLSVersion,
-    ZonesSchemasMirage,
+    Mirage,
     NEL,
-    ZonesSchemasOpportunisticEncryption,
+    OpportunisticEncryption,
     OpportunisticOnion,
     OrangeToOrange,
-    ZonesSchemasOriginErrorPagePassThru,
-    ZonesSchemasPolish,
+    OriginErrorPagePassThru,
+    Polish,
     PrefetchPreload,
     ProxyReadTimeout,
     PseudoIPV4,
     ZonesReplaceInsecureJS,
-    ZonesSchemasResponseBuffering,
-    ZonesSchemasRocketLoader,
+    ResponseBuffering,
+    RocketLoader,
     ZonesSchemasAutomaticPlatformOptimization,
     SecurityHeaders,
-    ZonesSchemasSecurityLevel,
-    ZonesSchemasServerSideExclude,
+    SecurityLevel,
+    ServerSideExcludes,
     ZonesSha1Support,
-    ZonesSchemasSortQueryStringForCache,
-    ZonesSchemasSSL,
+    SortQueryStringForCache,
+    SSL,
     SSLRecommender,
     ZonesTLS1_2Only,
     TLS1_3,
     TLSClientAuth,
-    ZonesSchemasTrueClientIPHeader,
-    ZonesSchemasWAF,
+    TrueClientIPHeader,
+    WAF,
     WebP,
     Websocket,
 ]
