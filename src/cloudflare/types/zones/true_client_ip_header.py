@@ -1,26 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["TrueClientIPHeader"]
+__all__ = ["TrueClientIPHeader", "Value"]
+
+
+class Value(BaseModel):
+    value: Optional[Literal["on", "off"]] = None
+    """The status of True Client IP Header."""
 
 
 class TrueClientIPHeader(BaseModel):
-    id: Literal["true_client_ip_header"]
-    """ID of the zone setting."""
+    id: Optional[Literal["true_client_ip_header"]] = None
+    """Turn on or off the True-Client-IP Header feature of the Cloudflare Network app."""
 
-    value: Literal["on", "off"]
-    """Current value of the zone setting."""
-
-    editable: Optional[Literal[True, False]] = None
-    """
-    Whether or not this setting can be modified for this zone (based on your
-    Cloudflare plan level).
-    """
-
-    modified_on: Optional[datetime] = None
-    """last time this setting was modified."""
+    value: Optional[Value] = None
