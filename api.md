@@ -8273,7 +8273,7 @@ from cloudflare.types.workflows import VersionListResponse, VersionGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/workflows/{workflow_name}/versions">client.workflows.versions.<a href="./src/cloudflare/resources/workflows/versions.py">list</a>(workflow_name, \*, account_id, \*\*<a href="src/cloudflare/types/workflows/version_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/version_list_response.py">SyncV4PagePagination[VersionListResponse]</a></code>
+- <code title="get /accounts/{account_id}/workflows/{workflow_name}/versions">client.workflows.versions.<a href="./src/cloudflare/resources/workflows/versions.py">list</a>(workflow_name, \*, account_id, \*\*<a href="src/cloudflare/types/workflows/version_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/version_list_response.py">SyncV4PagePaginationArray[VersionListResponse]</a></code>
 - <code title="get /accounts/{account_id}/workflows/{workflow_name}/versions/{version_id}">client.workflows.versions.<a href="./src/cloudflare/resources/workflows/versions.py">get</a>(version_id, \*, account_id, workflow_name) -> <a href="./src/cloudflare/types/workflows/version_get_response.py">VersionGetResponse</a></code>
 
 # ResourceSharing
