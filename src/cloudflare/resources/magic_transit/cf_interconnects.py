@@ -23,11 +23,12 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
-from ...types.magic_transit import cf_interconnect_update_params
+from ...types.magic_transit import cf_interconnect_update_params, cf_interconnect_bulk_update_params
 from ...types.magic_transit.health_check_param import HealthCheckParam
 from ...types.magic_transit.cf_interconnect_get_response import CfInterconnectGetResponse
 from ...types.magic_transit.cf_interconnect_list_response import CfInterconnectListResponse
 from ...types.magic_transit.cf_interconnect_update_response import CfInterconnectUpdateResponse
+from ...types.magic_transit.cf_interconnect_bulk_update_response import CfInterconnectBulkUpdateResponse
 
 __all__ = ["CfInterconnectsResource", "AsyncCfInterconnectsResource"]
 
@@ -184,6 +185,61 @@ class CfInterconnectsResource(SyncAPIResource):
                 post_parser=ResultWrapper[CfInterconnectListResponse]._unwrapper,
             ),
             cast_to=cast(Type[CfInterconnectListResponse], ResultWrapper[CfInterconnectListResponse]),
+        )
+
+    def bulk_update(
+        self,
+        *,
+        account_id: str,
+        body: object,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> CfInterconnectBulkUpdateResponse:
+        """Updates multiple interconnects associated with an account.
+
+        Use
+        `?validate_only=true` as an optional query parameter to only run validation
+        without persisting changes.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._put(
+            f"/accounts/{account_id}/magic/cf_interconnects",
+            body=maybe_transform(body, cf_interconnect_bulk_update_params.CfInterconnectBulkUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[CfInterconnectBulkUpdateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[CfInterconnectBulkUpdateResponse], ResultWrapper[CfInterconnectBulkUpdateResponse]),
         )
 
     def get(
@@ -396,6 +452,61 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
             cast_to=cast(Type[CfInterconnectListResponse], ResultWrapper[CfInterconnectListResponse]),
         )
 
+    async def bulk_update(
+        self,
+        *,
+        account_id: str,
+        body: object,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> CfInterconnectBulkUpdateResponse:
+        """Updates multiple interconnects associated with an account.
+
+        Use
+        `?validate_only=true` as an optional query parameter to only run validation
+        without persisting changes.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._put(
+            f"/accounts/{account_id}/magic/cf_interconnects",
+            body=await async_maybe_transform(body, cf_interconnect_bulk_update_params.CfInterconnectBulkUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[CfInterconnectBulkUpdateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[CfInterconnectBulkUpdateResponse], ResultWrapper[CfInterconnectBulkUpdateResponse]),
+        )
+
     async def get(
         self,
         cf_interconnect_id: str,
@@ -462,6 +573,9 @@ class CfInterconnectsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             cf_interconnects.list,
         )
+        self.bulk_update = to_raw_response_wrapper(
+            cf_interconnects.bulk_update,
+        )
         self.get = to_raw_response_wrapper(
             cf_interconnects.get,
         )
@@ -476,6 +590,9 @@ class AsyncCfInterconnectsResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             cf_interconnects.list,
+        )
+        self.bulk_update = async_to_raw_response_wrapper(
+            cf_interconnects.bulk_update,
         )
         self.get = async_to_raw_response_wrapper(
             cf_interconnects.get,
@@ -492,6 +609,9 @@ class CfInterconnectsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             cf_interconnects.list,
         )
+        self.bulk_update = to_streamed_response_wrapper(
+            cf_interconnects.bulk_update,
+        )
         self.get = to_streamed_response_wrapper(
             cf_interconnects.get,
         )
@@ -506,6 +626,9 @@ class AsyncCfInterconnectsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             cf_interconnects.list,
+        )
+        self.bulk_update = async_to_streamed_response_wrapper(
+            cf_interconnects.bulk_update,
         )
         self.get = async_to_streamed_response_wrapper(
             cf_interconnects.get,

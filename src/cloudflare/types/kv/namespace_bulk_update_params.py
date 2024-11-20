@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Dict, Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["BulkUpdateParams", "Body"]
+__all__ = ["NamespaceBulkUpdateParams", "Body"]
 
 
-class BulkUpdateParams(TypedDict, total=False):
+class NamespaceBulkUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
