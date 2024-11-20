@@ -2684,7 +2684,7 @@ Types:
 
 ```python
 from cloudflare.types.api_gateway import (
-    APIShieldOperationModel,
+    APIShield,
     OperationCreateResponse,
     OperationListResponse,
     OperationDeleteResponse,
