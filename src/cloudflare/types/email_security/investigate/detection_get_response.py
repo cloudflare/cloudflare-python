@@ -3,17 +3,9 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from ..._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = [
-    "InvestigateDetectionsResponse",
-    "Attachment",
-    "Header",
-    "Link",
-    "SenderInfo",
-    "ThreatCategory",
-    "Validation",
-]
+__all__ = ["DetectionGetResponse", "Attachment", "Header", "Link", "SenderInfo", "ThreatCategory", "Validation"]
 
 
 class Attachment(BaseModel):
@@ -85,7 +77,7 @@ class Validation(BaseModel):
     spf: Optional[Literal["pass", "neutral", "fail", "error", "none"]] = None
 
 
-class InvestigateDetectionsResponse(BaseModel):
+class DetectionGetResponse(BaseModel):
     action: str
 
     attachments: List[Attachment]

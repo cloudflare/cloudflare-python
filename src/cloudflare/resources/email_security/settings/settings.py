@@ -20,6 +20,14 @@ from .block_senders import (
     BlockSendersResourceWithStreamingResponse,
     AsyncBlockSendersResourceWithStreamingResponse,
 )
+from .allow_policies import (
+    AllowPoliciesResource,
+    AsyncAllowPoliciesResource,
+    AllowPoliciesResourceWithRawResponse,
+    AsyncAllowPoliciesResourceWithRawResponse,
+    AllowPoliciesResourceWithStreamingResponse,
+    AsyncAllowPoliciesResourceWithStreamingResponse,
+)
 from .trusted_domains import (
     TrustedDomainsResource,
     AsyncTrustedDomainsResource,
@@ -41,6 +49,10 @@ __all__ = ["SettingsResource", "AsyncSettingsResource"]
 
 
 class SettingsResource(SyncAPIResource):
+    @cached_property
+    def allow_policies(self) -> AllowPoliciesResource:
+        return AllowPoliciesResource(self._client)
+
     @cached_property
     def block_senders(self) -> BlockSendersResource:
         return BlockSendersResource(self._client)
@@ -78,6 +90,10 @@ class SettingsResource(SyncAPIResource):
 
 
 class AsyncSettingsResource(AsyncAPIResource):
+    @cached_property
+    def allow_policies(self) -> AsyncAllowPoliciesResource:
+        return AsyncAllowPoliciesResource(self._client)
+
     @cached_property
     def block_senders(self) -> AsyncBlockSendersResource:
         return AsyncBlockSendersResource(self._client)
@@ -119,6 +135,10 @@ class SettingsResourceWithRawResponse:
         self._settings = settings
 
     @cached_property
+    def allow_policies(self) -> AllowPoliciesResourceWithRawResponse:
+        return AllowPoliciesResourceWithRawResponse(self._settings.allow_policies)
+
+    @cached_property
     def block_senders(self) -> BlockSendersResourceWithRawResponse:
         return BlockSendersResourceWithRawResponse(self._settings.block_senders)
 
@@ -138,6 +158,10 @@ class SettingsResourceWithRawResponse:
 class AsyncSettingsResourceWithRawResponse:
     def __init__(self, settings: AsyncSettingsResource) -> None:
         self._settings = settings
+
+    @cached_property
+    def allow_policies(self) -> AsyncAllowPoliciesResourceWithRawResponse:
+        return AsyncAllowPoliciesResourceWithRawResponse(self._settings.allow_policies)
 
     @cached_property
     def block_senders(self) -> AsyncBlockSendersResourceWithRawResponse:
@@ -161,6 +185,10 @@ class SettingsResourceWithStreamingResponse:
         self._settings = settings
 
     @cached_property
+    def allow_policies(self) -> AllowPoliciesResourceWithStreamingResponse:
+        return AllowPoliciesResourceWithStreamingResponse(self._settings.allow_policies)
+
+    @cached_property
     def block_senders(self) -> BlockSendersResourceWithStreamingResponse:
         return BlockSendersResourceWithStreamingResponse(self._settings.block_senders)
 
@@ -180,6 +208,10 @@ class SettingsResourceWithStreamingResponse:
 class AsyncSettingsResourceWithStreamingResponse:
     def __init__(self, settings: AsyncSettingsResource) -> None:
         self._settings = settings
+
+    @cached_property
+    def allow_policies(self) -> AsyncAllowPoliciesResourceWithStreamingResponse:
+        return AsyncAllowPoliciesResourceWithStreamingResponse(self._settings.allow_policies)
 
     @cached_property
     def block_senders(self) -> AsyncBlockSendersResourceWithStreamingResponse:
