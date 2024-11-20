@@ -10,9 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.api_gateway import DiscoveryOperation
 from cloudflare.types.api_gateway.discovery import (
     OperationEditResponse,
+    OperationListResponse,
     OperationBulkEditResponse,
 )
 
@@ -27,7 +27,7 @@ class TestOperations:
         operation = client.api_gateway.discovery.operations.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[DiscoveryOperation], operation, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -44,7 +44,7 @@ class TestOperations:
             per_page=5,
             state="review",
         )
-        assert_matches_type(SyncV4PagePaginationArray[DiscoveryOperation], operation, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -55,7 +55,7 @@ class TestOperations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         operation = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[DiscoveryOperation], operation, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -66,7 +66,7 @@ class TestOperations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             operation = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[DiscoveryOperation], operation, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -197,7 +197,7 @@ class TestAsyncOperations:
         operation = await async_client.api_gateway.discovery.operations.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[DiscoveryOperation], operation, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -214,7 +214,7 @@ class TestAsyncOperations:
             per_page=5,
             state="review",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[DiscoveryOperation], operation, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -225,7 +225,7 @@ class TestAsyncOperations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         operation = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[DiscoveryOperation], operation, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -236,7 +236,7 @@ class TestAsyncOperations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             operation = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[DiscoveryOperation], operation, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
