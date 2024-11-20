@@ -9,6 +9,7 @@ from .configuration import Configuration as Configuration
 from .public_schema import PublicSchema as PublicSchema
 from .schema_upload import SchemaUpload as SchemaUpload
 from .schema_list_params import SchemaListParams as SchemaListParams
+from .discovery_operation import DiscoveryOperation as DiscoveryOperation
 from .operation_get_params import OperationGetParams as OperationGetParams
 from .schema_list_response import SchemaListResponse as SchemaListResponse
 from .operation_list_params import OperationListParams as OperationListParams
