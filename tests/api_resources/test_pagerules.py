@@ -49,11 +49,8 @@ class TestPagerules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[
                     {
-                        "id": "forwarding_url",
-                        "value": {
-                            "status_code": 301,
-                            "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
-                        },
+                        "id": "browser_check",
+                        "value": "on",
                     }
                 ],
                 targets=[
@@ -163,11 +160,8 @@ class TestPagerules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[
                     {
-                        "id": "forwarding_url",
-                        "value": {
-                            "status_code": 301,
-                            "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
-                        },
+                        "id": "browser_check",
+                        "value": "on",
                     }
                 ],
                 targets=[
@@ -395,11 +389,8 @@ class TestPagerules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[
                     {
-                        "id": "forwarding_url",
-                        "value": {
-                            "status_code": 301,
-                            "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
-                        },
+                        "id": "browser_check",
+                        "value": "on",
                     }
                 ],
                 priority=0,
@@ -543,11 +534,8 @@ class TestAsyncPagerules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[
                     {
-                        "id": "forwarding_url",
-                        "value": {
-                            "status_code": 301,
-                            "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
-                        },
+                        "id": "browser_check",
+                        "value": "on",
                     }
                 ],
                 targets=[
@@ -657,11 +645,8 @@ class TestAsyncPagerules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[
                     {
-                        "id": "forwarding_url",
-                        "value": {
-                            "status_code": 301,
-                            "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
-                        },
+                        "id": "browser_check",
+                        "value": "on",
                     }
                 ],
                 targets=[
@@ -889,11 +874,8 @@ class TestAsyncPagerules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[
                     {
-                        "id": "forwarding_url",
-                        "value": {
-                            "status_code": 301,
-                            "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
-                        },
+                        "id": "browser_check",
+                        "value": "on",
                     }
                 ],
                 priority=0,
