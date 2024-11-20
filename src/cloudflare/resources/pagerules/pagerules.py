@@ -37,13 +37,10 @@ from ...types.pagerules import (
     pagerule_create_params,
     pagerule_update_params,
 )
+from ...types.pagerules.page_rule import PageRule
 from ...types.pagerules.target_param import TargetParam
-from ...types.pagerules.pagerule_get_response import PageruleGetResponse
-from ...types.pagerules.pagerule_edit_response import PageruleEditResponse
 from ...types.pagerules.pagerule_list_response import PageruleListResponse
-from ...types.pagerules.pagerule_create_response import PageruleCreateResponse
 from ...types.pagerules.pagerule_delete_response import PageruleDeleteResponse
-from ...types.pagerules.pagerule_update_response import PageruleUpdateResponse
 
 __all__ = ["PagerulesResource", "AsyncPagerulesResource"]
 
@@ -89,7 +86,7 @@ class PagerulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PageruleCreateResponse]:
+    ) -> Optional[PageRule]:
         """
         Creates a new Page Rule.
 
@@ -135,9 +132,9 @@ class PagerulesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PageruleCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageRule]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PageruleCreateResponse]], ResultWrapper[PageruleCreateResponse]),
+            cast_to=cast(Type[Optional[PageRule]], ResultWrapper[PageRule]),
         )
 
     @typing_extensions.deprecated(
@@ -158,7 +155,7 @@ class PagerulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PageruleUpdateResponse]:
+    ) -> Optional[PageRule]:
         """Replaces the configuration of an existing Page Rule.
 
         The configuration of the
@@ -210,9 +207,9 @@ class PagerulesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PageruleUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageRule]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PageruleUpdateResponse]], ResultWrapper[PageruleUpdateResponse]),
+            cast_to=cast(Type[Optional[PageRule]], ResultWrapper[PageRule]),
         )
 
     @typing_extensions.deprecated(
@@ -344,7 +341,7 @@ class PagerulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PageruleEditResponse]:
+    ) -> Optional[PageRule]:
         """
         Updates one or more fields of an existing Page Rule.
 
@@ -394,9 +391,9 @@ class PagerulesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PageruleEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageRule]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PageruleEditResponse]], ResultWrapper[PageruleEditResponse]),
+            cast_to=cast(Type[Optional[PageRule]], ResultWrapper[PageRule]),
         )
 
     @typing_extensions.deprecated(
@@ -413,7 +410,7 @@ class PagerulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PageruleGetResponse]:
+    ) -> Optional[PageRule]:
         """
         Fetches the details of a Page Rule.
 
@@ -441,9 +438,9 @@ class PagerulesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PageruleGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageRule]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PageruleGetResponse]], ResultWrapper[PageruleGetResponse]),
+            cast_to=cast(Type[Optional[PageRule]], ResultWrapper[PageRule]),
         )
 
 
@@ -488,7 +485,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PageruleCreateResponse]:
+    ) -> Optional[PageRule]:
         """
         Creates a new Page Rule.
 
@@ -534,9 +531,9 @@ class AsyncPagerulesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PageruleCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageRule]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PageruleCreateResponse]], ResultWrapper[PageruleCreateResponse]),
+            cast_to=cast(Type[Optional[PageRule]], ResultWrapper[PageRule]),
         )
 
     @typing_extensions.deprecated(
@@ -557,7 +554,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PageruleUpdateResponse]:
+    ) -> Optional[PageRule]:
         """Replaces the configuration of an existing Page Rule.
 
         The configuration of the
@@ -609,9 +606,9 @@ class AsyncPagerulesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PageruleUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageRule]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PageruleUpdateResponse]], ResultWrapper[PageruleUpdateResponse]),
+            cast_to=cast(Type[Optional[PageRule]], ResultWrapper[PageRule]),
         )
 
     @typing_extensions.deprecated(
@@ -743,7 +740,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PageruleEditResponse]:
+    ) -> Optional[PageRule]:
         """
         Updates one or more fields of an existing Page Rule.
 
@@ -793,9 +790,9 @@ class AsyncPagerulesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PageruleEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageRule]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PageruleEditResponse]], ResultWrapper[PageruleEditResponse]),
+            cast_to=cast(Type[Optional[PageRule]], ResultWrapper[PageRule]),
         )
 
     @typing_extensions.deprecated(
@@ -812,7 +809,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PageruleGetResponse]:
+    ) -> Optional[PageRule]:
         """
         Fetches the details of a Page Rule.
 
@@ -840,9 +837,9 @@ class AsyncPagerulesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PageruleGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageRule]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PageruleGetResponse]], ResultWrapper[PageruleGetResponse]),
+            cast_to=cast(Type[Optional[PageRule]], ResultWrapper[PageRule]),
         )
 
 

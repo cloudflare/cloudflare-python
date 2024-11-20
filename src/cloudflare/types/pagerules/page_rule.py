@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from .target import Target
 from ..._models import BaseModel
 
-__all__ = ["PageruleUpdateResponse", "Action", "ActionValue"]
+__all__ = ["PageRule", "Action", "ActionValue"]
 
 
 class ActionValue(BaseModel):
@@ -35,7 +35,7 @@ class Action(BaseModel):
     value: Optional[ActionValue] = None
 
 
-class PageruleUpdateResponse(BaseModel):
+class PageRule(BaseModel):
     id: str
     """Identifier"""
 
