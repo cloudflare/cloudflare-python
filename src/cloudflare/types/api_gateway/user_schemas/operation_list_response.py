@@ -33,7 +33,7 @@ __all__ = [
 
 class APIShieldOperationFeaturesAPIShieldOperationFeatureThresholdsThresholds(BaseModel):
     auth_id_tokens: Optional[int] = None
-    """The total number of auth-ids seen across this calculation."""
+    """The total number of auth-ids seen across this calculation foo."""
 
     data_points: Optional[int] = None
     """The number of data points used for the threshold suggestion calculation."""
