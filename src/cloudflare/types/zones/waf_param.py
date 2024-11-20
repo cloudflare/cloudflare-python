@@ -1,24 +1,23 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from typing_extensions import Literal
+from __future__ import annotations
 
-from ..._models import BaseModel
+from typing_extensions import Literal, TypedDict
 
-__all__ = ["WAF", "Value"]
+__all__ = ["WAFParam", "Value"]
 
 
-class Value(BaseModel):
-    value: Optional[Literal["on", "off"]] = None
+class Value(TypedDict, total=False):
+    value: Literal["on", "off"]
     """The status of WAF managed rules (previous version)."""
 
 
-class WAF(BaseModel):
-    id: Optional[Literal["waf"]] = None
+class WAFParam(TypedDict, total=False):
+    id: Literal["waf"]
     """
     Turn on or off
     [WAF managed rules (previous version, deprecated)](https://developers.cloudflare.com/waf/reference/legacy/old-waf-managed-rules/).
     You cannot enable or disable individual WAF managed rules via Page Rules.
     """
 
-    value: Optional[Value] = None
+    value: Value

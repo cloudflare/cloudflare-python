@@ -1,18 +1,17 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from typing_extensions import Literal
+from __future__ import annotations
 
-from ..._models import BaseModel
+from typing_extensions import Literal, TypedDict
 
-__all__ = ["CacheLevel"]
+__all__ = ["CacheLevelParam"]
 
 
-class CacheLevel(BaseModel):
-    id: Optional[Literal["cache_level"]] = None
+class CacheLevelParam(TypedDict, total=False):
+    id: Literal["cache_level"]
     """Apply custom caching based on the option selected."""
 
-    value: Optional[Literal["bypass", "basic", "simplified", "aggressive", "cache_everything"]] = None
+    value: Literal["bypass", "basic", "simplified", "aggressive", "cache_everything"]
     """
     - `bypass`: Cloudflare does not cache.
     - `basic`: Delivers resources from cache when there is no query string.

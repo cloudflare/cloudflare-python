@@ -1,26 +1,23 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["SortQueryStringForCache"]
+__all__ = ["SortQueryStringForCache", "Value"]
+
+
+class Value(BaseModel):
+    value: Optional[Literal["on", "off"]] = None
+    """The status of Query String Sort"""
 
 
 class SortQueryStringForCache(BaseModel):
-    id: Literal["sort_query_string_for_cache"]
-    """ID of the zone setting."""
+    id: Optional[Literal["sort_query_string_for_cache"]] = None
+    """Turn on or off the reordering of query strings.
 
-    value: Literal["on", "off"]
-    """Current value of the zone setting."""
-
-    editable: Optional[Literal[True, False]] = None
-    """
-    Whether or not this setting can be modified for this zone (based on your
-    Cloudflare plan level).
+    When query strings have the same structure, caching improves.
     """
 
-    modified_on: Optional[datetime] = None
-    """last time this setting was modified."""
+    value: Optional[Value] = None

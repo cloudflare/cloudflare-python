@@ -1,24 +1,23 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from typing_extensions import Literal
+from __future__ import annotations
 
-from ..._models import BaseModel
+from typing_extensions import Literal, TypedDict
 
-__all__ = ["OpportunisticEncryption", "Value"]
+__all__ = ["OpportunisticEncryptionParam", "Value"]
 
 
-class Value(BaseModel):
-    value: Optional[Literal["on", "off"]] = None
+class Value(TypedDict, total=False):
+    value: Literal["on", "off"]
     """The status of Opportunistic Encryption."""
 
 
-class OpportunisticEncryption(BaseModel):
-    id: Optional[Literal["opportunistic_encryption"]] = None
+class OpportunisticEncryptionParam(TypedDict, total=False):
+    id: Literal["opportunistic_encryption"]
     """
     Opportunistic Encryption allows browsers to access HTTP URIs over an encrypted
     TLS channel. It's not a substitute for HTTPS, but provides additional security
     for otherwise vulnerable requests.
     """
 
-    value: Optional[Value] = None
+    value: Value
