@@ -6,40 +6,14 @@ from typing_extensions import Literal, TypeAlias
 from ..._models import BaseModel
 
 __all__ = [
-    "ConfigEditResponse",
-    "Caching",
-    "CachingHyperdriveHyperdriveCachingCommon",
-    "CachingHyperdriveHyperdriveCachingEnabled",
+    "Hyperdrive",
     "Origin",
     "OriginPublicDatabase",
     "OriginAccessProtectedDatabaseBehindCloudflareTunnel",
+    "Caching",
+    "CachingHyperdriveHyperdriveCachingCommon",
+    "CachingHyperdriveHyperdriveCachingEnabled",
 ]
-
-
-class CachingHyperdriveHyperdriveCachingCommon(BaseModel):
-    disabled: Optional[bool] = None
-    """When set to true, disables the caching of SQL responses. (Default: false)"""
-
-
-class CachingHyperdriveHyperdriveCachingEnabled(BaseModel):
-    disabled: Optional[bool] = None
-    """When set to true, disables the caching of SQL responses. (Default: false)"""
-
-    max_age: Optional[int] = None
-    """When present, specifies max duration for which items should persist in the
-    cache.
-
-    Not returned if set to default. (Default: 60)
-    """
-
-    stale_while_revalidate: Optional[int] = None
-    """
-    When present, indicates the number of seconds cache may serve the response after
-    it becomes stale. Not returned if set to default. (Default: 15)
-    """
-
-
-Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingCommon, CachingHyperdriveHyperdriveCachingEnabled]
 
 
 class OriginPublicDatabase(BaseModel):
@@ -79,12 +53,38 @@ class OriginAccessProtectedDatabaseBehindCloudflareTunnel(BaseModel):
 Origin: TypeAlias = Union[OriginPublicDatabase, OriginAccessProtectedDatabaseBehindCloudflareTunnel]
 
 
-class ConfigEditResponse(BaseModel):
-    caching: Caching
+class CachingHyperdriveHyperdriveCachingCommon(BaseModel):
+    disabled: Optional[bool] = None
+    """When set to true, disables the caching of SQL responses. (Default: false)"""
 
-    id: Optional[str] = None
+
+class CachingHyperdriveHyperdriveCachingEnabled(BaseModel):
+    disabled: Optional[bool] = None
+    """When set to true, disables the caching of SQL responses. (Default: false)"""
+
+    max_age: Optional[int] = None
+    """When present, specifies max duration for which items should persist in the
+    cache.
+
+    Not returned if set to default. (Default: 60)
+    """
+
+    stale_while_revalidate: Optional[int] = None
+    """
+    When present, indicates the number of seconds cache may serve the response after
+    it becomes stale. Not returned if set to default. (Default: 15)
+    """
+
+
+Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingCommon, CachingHyperdriveHyperdriveCachingEnabled]
+
+
+class Hyperdrive(BaseModel):
+    id: str
     """Identifier"""
 
-    name: Optional[str] = None
+    name: str
 
-    origin: Optional[Origin] = None
+    origin: Origin
+
+    caching: Optional[Caching] = None
