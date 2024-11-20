@@ -3,6 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-__all__ = ["SettingListResponse"]
+from .firewall_rule import FirewallRule
 
-SettingListResponse: TypeAlias = List[object]
+__all__ = ["RuleEditResponse"]
+
+RuleEditResponse: TypeAlias = List[FirewallRule]

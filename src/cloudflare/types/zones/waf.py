@@ -1,26 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["WAF"]
+__all__ = ["WAF", "Value"]
+
+
+class Value(BaseModel):
+    value: Optional[Literal["on", "off"]] = None
+    """The status of WAF managed rules (previous version)."""
 
 
 class WAF(BaseModel):
-    id: Literal["waf"]
-    """ID of the zone setting."""
-
-    value: Literal["on", "off"]
-    """Current value of the zone setting."""
-
-    editable: Optional[Literal[True, False]] = None
+    id: Optional[Literal["waf"]] = None
     """
-    Whether or not this setting can be modified for this zone (based on your
-    Cloudflare plan level).
+    Turn on or off
+    [WAF managed rules (previous version, deprecated)](https://developers.cloudflare.com/waf/reference/legacy/old-waf-managed-rules/).
+    You cannot enable or disable individual WAF managed rules via Page Rules.
     """
 
-    modified_on: Optional[datetime] = None
-    """last time this setting was modified."""
+    value: Optional[Value] = None
