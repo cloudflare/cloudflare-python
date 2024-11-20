@@ -20,7 +20,16 @@ from .investigate import (
     InvestigateResourceWithStreamingResponse,
     AsyncInvestigateResourceWithStreamingResponse,
 )
+from .submissions import (
+    SubmissionsResource,
+    AsyncSubmissionsResource,
+    SubmissionsResourceWithRawResponse,
+    AsyncSubmissionsResourceWithRawResponse,
+    SubmissionsResourceWithStreamingResponse,
+    AsyncSubmissionsResourceWithStreamingResponse,
+)
 from .settings.settings import SettingsResource, AsyncSettingsResource
+from .investigate.investigate import InvestigateResource, AsyncInvestigateResource
 
 __all__ = ["EmailSecurityResource", "AsyncEmailSecurityResource"]
 
@@ -33,6 +42,10 @@ class EmailSecurityResource(SyncAPIResource):
     @cached_property
     def settings(self) -> SettingsResource:
         return SettingsResource(self._client)
+
+    @cached_property
+    def submissions(self) -> SubmissionsResource:
+        return SubmissionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> EmailSecurityResourceWithRawResponse:
@@ -62,6 +75,10 @@ class AsyncEmailSecurityResource(AsyncAPIResource):
     @cached_property
     def settings(self) -> AsyncSettingsResource:
         return AsyncSettingsResource(self._client)
+
+    @cached_property
+    def submissions(self) -> AsyncSubmissionsResource:
+        return AsyncSubmissionsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncEmailSecurityResourceWithRawResponse:
@@ -95,6 +112,10 @@ class EmailSecurityResourceWithRawResponse:
     def settings(self) -> SettingsResourceWithRawResponse:
         return SettingsResourceWithRawResponse(self._email_security.settings)
 
+    @cached_property
+    def submissions(self) -> SubmissionsResourceWithRawResponse:
+        return SubmissionsResourceWithRawResponse(self._email_security.submissions)
+
 
 class AsyncEmailSecurityResourceWithRawResponse:
     def __init__(self, email_security: AsyncEmailSecurityResource) -> None:
@@ -107,6 +128,10 @@ class AsyncEmailSecurityResourceWithRawResponse:
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
         return AsyncSettingsResourceWithRawResponse(self._email_security.settings)
+
+    @cached_property
+    def submissions(self) -> AsyncSubmissionsResourceWithRawResponse:
+        return AsyncSubmissionsResourceWithRawResponse(self._email_security.submissions)
 
 
 class EmailSecurityResourceWithStreamingResponse:
@@ -121,6 +146,10 @@ class EmailSecurityResourceWithStreamingResponse:
     def settings(self) -> SettingsResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self._email_security.settings)
 
+    @cached_property
+    def submissions(self) -> SubmissionsResourceWithStreamingResponse:
+        return SubmissionsResourceWithStreamingResponse(self._email_security.submissions)
+
 
 class AsyncEmailSecurityResourceWithStreamingResponse:
     def __init__(self, email_security: AsyncEmailSecurityResource) -> None:
@@ -133,3 +162,7 @@ class AsyncEmailSecurityResourceWithStreamingResponse:
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
         return AsyncSettingsResourceWithStreamingResponse(self._email_security.settings)
+
+    @cached_property
+    def submissions(self) -> AsyncSubmissionsResourceWithStreamingResponse:
+        return AsyncSubmissionsResourceWithStreamingResponse(self._email_security.submissions)

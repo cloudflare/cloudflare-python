@@ -1174,26 +1174,123 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.email_security import (
-    InvestigateListResponse,
-    InvestigateDetectionsResponse,
-    InvestigateGetResponse,
-    InvestigatePreviewResponse,
-    InvestigateRawResponse,
-    InvestigateTraceResponse,
+from cloudflare.types.email_security import InvestigateListResponse, InvestigateGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/email-security/investigate">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate/investigate.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/investigate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/investigate_list_response.py">SyncV4PagePaginationArray[InvestigateListResponse]</a></code>
+- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate/investigate.py">get</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate_get_response.py">InvestigateGetResponse</a></code>
+
+### Detections
+
+Types:
+
+```python
+from cloudflare.types.email_security.investigate import DetectionGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}/detections">client.email_security.investigate.detections.<a href="./src/cloudflare/resources/email_security/investigate/detections.py">get</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate/detection_get_response.py">DetectionGetResponse</a></code>
+
+### Preview
+
+Types:
+
+```python
+from cloudflare.types.email_security.investigate import PreviewCreateResponse, PreviewGetResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/email-security/investigate/preview">client.email_security.investigate.preview.<a href="./src/cloudflare/resources/email_security/investigate/preview.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/investigate/preview_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/investigate/preview_create_response.py">PreviewCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}/preview">client.email_security.investigate.preview.<a href="./src/cloudflare/resources/email_security/investigate/preview.py">get</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate/preview_get_response.py">PreviewGetResponse</a></code>
+
+### Raw
+
+Types:
+
+```python
+from cloudflare.types.email_security.investigate import RawGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}/raw">client.email_security.investigate.raw.<a href="./src/cloudflare/resources/email_security/investigate/raw.py">get</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate/raw_get_response.py">RawGetResponse</a></code>
+
+### Trace
+
+Types:
+
+```python
+from cloudflare.types.email_security.investigate import TraceGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}/trace">client.email_security.investigate.trace.<a href="./src/cloudflare/resources/email_security/investigate/trace.py">get</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate/trace_get_response.py">TraceGetResponse</a></code>
+
+### Move
+
+Types:
+
+```python
+from cloudflare.types.email_security.investigate import MoveCreateResponse, MoveBulkResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/email-security/investigate/{postfix_id}/move">client.email_security.investigate.move.<a href="./src/cloudflare/resources/email_security/investigate/move.py">create</a>(postfix_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/investigate/move_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/investigate/move_create_response.py">MoveCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/email-security/investigate/move">client.email_security.investigate.move.<a href="./src/cloudflare/resources/email_security/investigate/move.py">bulk</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/investigate/move_bulk_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/investigate/move_bulk_response.py">MoveBulkResponse</a></code>
+
+### Reclassify
+
+Types:
+
+```python
+from cloudflare.types.email_security.investigate import ReclassifyCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/email-security/investigate/{postfix_id}/reclassify">client.email_security.investigate.reclassify.<a href="./src/cloudflare/resources/email_security/investigate/reclassify.py">create</a>(postfix_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/investigate/reclassify_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/investigate/reclassify_create_response.py">object</a></code>
+
+### Release
+
+Types:
+
+```python
+from cloudflare.types.email_security.investigate import ReleaseBulkResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/email-security/investigate/release">client.email_security.investigate.release.<a href="./src/cloudflare/resources/email_security/investigate/release.py">bulk</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/investigate/release_bulk_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/investigate/release_bulk_response.py">ReleaseBulkResponse</a></code>
+
+## Settings
+
+### AllowPolicies
+
+Types:
+
+```python
+from cloudflare.types.email_security.settings import (
+    AllowPolicyCreateResponse,
+    AllowPolicyListResponse,
+    AllowPolicyDeleteResponse,
+    AllowPolicyEditResponse,
+    AllowPolicyGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/email-security/investigate">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/investigate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/investigate_list_response.py">SyncV4PagePaginationArray[InvestigateListResponse]</a></code>
-- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}/detections">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate.py">detections</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate_detections_response.py">InvestigateDetectionsResponse</a></code>
-- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate.py">get</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate_get_response.py">InvestigateGetResponse</a></code>
-- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}/preview">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate.py">preview</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate_preview_response.py">InvestigatePreviewResponse</a></code>
-- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}/raw">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate.py">raw</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate_raw_response.py">InvestigateRawResponse</a></code>
-- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}/trace">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate.py">trace</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate_trace_response.py">InvestigateTraceResponse</a></code>
-
-## Settings
+- <code title="post /accounts/{account_id}/email-security/settings/allow_policies">client.email_security.settings.allow_policies.<a href="./src/cloudflare/resources/email_security/settings/allow_policies.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/allow_policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/allow_policy_create_response.py">AllowPolicyCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/allow_policies">client.email_security.settings.allow_policies.<a href="./src/cloudflare/resources/email_security/settings/allow_policies.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/allow_policy_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/allow_policy_list_response.py">SyncV4PagePaginationArray[AllowPolicyListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/email-security/settings/allow_policies/{policy_id}">client.email_security.settings.allow_policies.<a href="./src/cloudflare/resources/email_security/settings/allow_policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/allow_policy_delete_response.py">AllowPolicyDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/email-security/settings/allow_policies/{policy_id}">client.email_security.settings.allow_policies.<a href="./src/cloudflare/resources/email_security/settings/allow_policies.py">edit</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/allow_policy_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/allow_policy_edit_response.py">AllowPolicyEditResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/allow_policies/{policy_id}">client.email_security.settings.allow_policies.<a href="./src/cloudflare/resources/email_security/settings/allow_policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/allow_policy_get_response.py">AllowPolicyGetResponse</a></code>
 
 ### BlockSenders
 
@@ -1226,6 +1323,7 @@ from cloudflare.types.email_security.settings import (
     DomainListResponse,
     DomainDeleteResponse,
     DomainEditResponse,
+    DomainGetResponse,
 )
 ```
 
@@ -1234,6 +1332,7 @@ Methods:
 - <code title="get /accounts/{account_id}/email-security/settings/domains">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/domain_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/domain_list_response.py">SyncV4PagePaginationArray[DomainListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/email-security/settings/domains/{domain_id}">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">delete</a>(domain_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/domain_delete_response.py">DomainDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/email-security/settings/domains/{domain_id}">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">edit</a>(domain_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/domain_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/domain_edit_response.py">DomainEditResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/domains/{domain_id}">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">get</a>(domain_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/domain_get_response.py">DomainGetResponse</a></code>
 
 ### ImpersonationRegistry
 
@@ -1278,6 +1377,18 @@ Methods:
 - <code title="delete /accounts/{account_id}/email-security/settings/trusted_domains/{pattern_id}">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">delete</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_delete_response.py">TrustedDomainDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/email-security/settings/trusted_domains/{pattern_id}">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">edit</a>(pattern_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/trusted_domain_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_edit_response.py">TrustedDomainEditResponse</a></code>
 - <code title="get /accounts/{account_id}/email-security/settings/trusted_domains/{pattern_id}">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">get</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_get_response.py">TrustedDomainGetResponse</a></code>
+
+## Submissions
+
+Types:
+
+```python
+from cloudflare.types.email_security import SubmissionListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/email-security/submissions">client.email_security.submissions.<a href="./src/cloudflare/resources/email_security/submissions.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/submission_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/submission_list_response.py">SyncV4PagePaginationArray[SubmissionListResponse]</a></code>
 
 # EmailRouting
 
@@ -5846,6 +5957,28 @@ Methods:
 
 - <code title="get /accounts/{account_id}/dlp/limits">client.zero_trust.dlp.limits.<a href="./src/cloudflare/resources/zero_trust/dlp/limits.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/limit_list_response.py">Optional</a></code>
 
+### Entries
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dlp import (
+    EntryCreateResponse,
+    EntryUpdateResponse,
+    EntryListResponse,
+    EntryDeleteResponse,
+    EntryGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dlp/entries">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/entry_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/entry_create_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/dlp/entries/{entry_id}">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries.py">update</a>(entry_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/entry_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/entry_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/dlp/entries">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/entry_list_response.py">SyncSinglePage[EntryListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/dlp/entries/{entry_id}">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries.py">delete</a>(entry_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/entry_delete_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/dlp/entries/{entry_id}">client.zero_trust.dlp.entries.<a href="./src/cloudflare/resources/zero_trust/dlp/entries.py">get</a>(entry_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/entry_get_response.py">Optional</a></code>
+
 ## Gateway
 
 Types:
@@ -6340,8 +6473,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.url_scanner import URLScannerDomain, URLScannerTask
+from cloudflare.types.url_scanner import URLScannerDomain, URLScannerTask, URLScannerBulkResponse
 ```
+
+Methods:
+
+- <code title="post /accounts/{accountId}/urlscanner/v2/bulk">client.url_scanner.<a href="./src/cloudflare/resources/url_scanner/url_scanner.py">bulk</a>(account_id, \*\*<a href="src/cloudflare/types/url_scanner/url_scanner_bulk_params.py">params</a>) -> <a href="./src/cloudflare/types/url_scanner/url_scanner_bulk_response.py">URLScannerBulkResponse</a></code>
 
 ## Responses
 
@@ -8184,3 +8321,36 @@ Methods:
 - <code title="get /accounts/{account_id}/shares/{share_identifier}/resources">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">list</a>(share_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/resource_sharing/resource_list_params.py">params</a>) -> <a href="./src/cloudflare/types/resource_sharing/resource_list_response.py">SyncV4PagePaginationArray[ResourceListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/shares/{share_identifier}/resources/{resource_identifier}">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">delete</a>(resource_identifier, \*, account_id, share_identifier) -> <a href="./src/cloudflare/types/resource_sharing/resource_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/shares/{share_identifier}/resources/{resource_identifier}">client.resource_sharing.resources.<a href="./src/cloudflare/resources/resource_sharing/resources.py">get</a>(resource_identifier, \*, account_id, share_identifier) -> <a href="./src/cloudflare/types/resource_sharing/resource_get_response.py">Optional</a></code>
+
+# LeakedCredentialChecks
+
+Types:
+
+```python
+from cloudflare.types import LeakedCredentialCheckCreateResponse, LeakedCredentialCheckListResponse
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/leaked-credential-checks">client.leaked_credential_checks.<a href="./src/cloudflare/resources/leaked_credential_checks/leaked_credential_checks.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/leaked_credential_check_create_params.py">params</a>) -> <a href="./src/cloudflare/types/leaked_credential_check_create_response.py">LeakedCredentialCheckCreateResponse</a></code>
+- <code title="get /zones/{zone_id}/leaked-credential-checks">client.leaked_credential_checks.<a href="./src/cloudflare/resources/leaked_credential_checks/leaked_credential_checks.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/leaked_credential_check_list_response.py">LeakedCredentialCheckListResponse</a></code>
+
+## Detections
+
+Types:
+
+```python
+from cloudflare.types.leaked_credential_checks import (
+    DetectionCreateResponse,
+    DetectionUpdateResponse,
+    DetectionListResponse,
+    DetectionDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/leaked-credential-checks/detections">client.leaked_credential_checks.detections.<a href="./src/cloudflare/resources/leaked_credential_checks/detections.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/leaked_credential_checks/detection_create_params.py">params</a>) -> <a href="./src/cloudflare/types/leaked_credential_checks/detection_create_response.py">DetectionCreateResponse</a></code>
+- <code title="put /zones/{zone_id}/leaked-credential-checks/detections/{detection_id}">client.leaked_credential_checks.detections.<a href="./src/cloudflare/resources/leaked_credential_checks/detections.py">update</a>(detection_id, \*, zone_id, \*\*<a href="src/cloudflare/types/leaked_credential_checks/detection_update_params.py">params</a>) -> <a href="./src/cloudflare/types/leaked_credential_checks/detection_update_response.py">DetectionUpdateResponse</a></code>
+- <code title="get /zones/{zone_id}/leaked-credential-checks/detections">client.leaked_credential_checks.detections.<a href="./src/cloudflare/resources/leaked_credential_checks/detections.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/leaked_credential_checks/detection_list_response.py">SyncSinglePage[DetectionListResponse]</a></code>
+- <code title="delete /zones/{zone_id}/leaked-credential-checks/detections/{detection_id}">client.leaked_credential_checks.detections.<a href="./src/cloudflare/resources/leaked_credential_checks/detections.py">delete</a>(detection_id, \*, zone_id) -> <a href="./src/cloudflare/types/leaked_credential_checks/detection_delete_response.py">object</a></code>

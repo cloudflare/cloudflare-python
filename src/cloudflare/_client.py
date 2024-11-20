@@ -119,6 +119,7 @@ if TYPE_CHECKING:
         origin_ca_certificates,
         origin_tls_client_auth,
         certificate_authorities,
+        leaked_credential_checks,
         magic_network_monitoring,
         origin_post_quantum_encryption,
     )
@@ -717,6 +718,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.resource_sharing import ResourceSharingResource
 
         return ResourceSharingResource(self)
+
+    @cached_property
+    def leaked_credential_checks(self) -> leaked_credential_checks.LeakedCredentialChecksResource:
+        from .resources.leaked_credential_checks import LeakedCredentialChecksResource
+
+        return LeakedCredentialChecksResource(self)
 
     @cached_property
     def with_raw_response(self) -> CloudflareWithRawResponse:
@@ -1484,6 +1491,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncResourceSharingResource(self)
 
     @cached_property
+    def leaked_credential_checks(self) -> leaked_credential_checks.AsyncLeakedCredentialChecksResource:
+        from .resources.leaked_credential_checks import AsyncLeakedCredentialChecksResource
+
+        return AsyncLeakedCredentialChecksResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCloudflareWithRawResponse:
         return AsyncCloudflareWithRawResponse(self)
 
@@ -2183,6 +2196,12 @@ class CloudflareWithRawResponse:
 
         return ResourceSharingResourceWithRawResponse(self._client.resource_sharing)
 
+    @cached_property
+    def leaked_credential_checks(self) -> leaked_credential_checks.LeakedCredentialChecksResourceWithRawResponse:
+        from .resources.leaked_credential_checks import LeakedCredentialChecksResourceWithRawResponse
+
+        return LeakedCredentialChecksResourceWithRawResponse(self._client.leaked_credential_checks)
+
 
 class AsyncCloudflareWithRawResponse:
     _client: AsyncCloudflare
@@ -2702,6 +2721,12 @@ class AsyncCloudflareWithRawResponse:
 
         return AsyncResourceSharingResourceWithRawResponse(self._client.resource_sharing)
 
+    @cached_property
+    def leaked_credential_checks(self) -> leaked_credential_checks.AsyncLeakedCredentialChecksResourceWithRawResponse:
+        from .resources.leaked_credential_checks import AsyncLeakedCredentialChecksResourceWithRawResponse
+
+        return AsyncLeakedCredentialChecksResourceWithRawResponse(self._client.leaked_credential_checks)
+
 
 class CloudflareWithStreamedResponse:
     _client: Cloudflare
@@ -3220,6 +3245,12 @@ class CloudflareWithStreamedResponse:
         from .resources.resource_sharing import ResourceSharingResourceWithStreamingResponse
 
         return ResourceSharingResourceWithStreamingResponse(self._client.resource_sharing)
+
+    @cached_property
+    def leaked_credential_checks(self) -> leaked_credential_checks.LeakedCredentialChecksResourceWithStreamingResponse:
+        from .resources.leaked_credential_checks import LeakedCredentialChecksResourceWithStreamingResponse
+
+        return LeakedCredentialChecksResourceWithStreamingResponse(self._client.leaked_credential_checks)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -3747,6 +3778,14 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.resource_sharing import AsyncResourceSharingResourceWithStreamingResponse
 
         return AsyncResourceSharingResourceWithStreamingResponse(self._client.resource_sharing)
+
+    @cached_property
+    def leaked_credential_checks(
+        self,
+    ) -> leaked_credential_checks.AsyncLeakedCredentialChecksResourceWithStreamingResponse:
+        from .resources.leaked_credential_checks import AsyncLeakedCredentialChecksResourceWithStreamingResponse
+
+        return AsyncLeakedCredentialChecksResourceWithStreamingResponse(self._client.leaked_credential_checks)
 
 
 Client = Cloudflare

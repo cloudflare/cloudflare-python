@@ -16,6 +16,14 @@ from .limits import (
     LimitsResourceWithStreamingResponse,
     AsyncLimitsResourceWithStreamingResponse,
 )
+from .entries import (
+    EntriesResource,
+    AsyncEntriesResource,
+    EntriesResourceWithRawResponse,
+    AsyncEntriesResourceWithRawResponse,
+    EntriesResourceWithStreamingResponse,
+    AsyncEntriesResourceWithStreamingResponse,
+)
 from .datasets import (
     DatasetsResource,
     AsyncDatasetsResource,
@@ -80,6 +88,12 @@ __all__ = [
     "AsyncLimitsResourceWithRawResponse",
     "LimitsResourceWithStreamingResponse",
     "AsyncLimitsResourceWithStreamingResponse",
+    "EntriesResource",
+    "AsyncEntriesResource",
+    "EntriesResourceWithRawResponse",
+    "AsyncEntriesResourceWithRawResponse",
+    "EntriesResourceWithStreamingResponse",
+    "AsyncEntriesResourceWithStreamingResponse",
     "DLPResource",
     "AsyncDLPResource",
     "DLPResourceWithRawResponse",

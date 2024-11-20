@@ -10,6 +10,14 @@ from .limits import (
     LimitsResourceWithStreamingResponse,
     AsyncLimitsResourceWithStreamingResponse,
 )
+from .entries import (
+    EntriesResource,
+    AsyncEntriesResource,
+    EntriesResourceWithRawResponse,
+    AsyncEntriesResourceWithRawResponse,
+    EntriesResourceWithStreamingResponse,
+    AsyncEntriesResourceWithStreamingResponse,
+)
 from .datasets import (
     DatasetsResource,
     AsyncDatasetsResource,
@@ -72,6 +80,10 @@ class DLPResource(SyncAPIResource):
         return LimitsResource(self._client)
 
     @cached_property
+    def entries(self) -> EntriesResource:
+        return EntriesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> DLPResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
@@ -111,6 +123,10 @@ class AsyncDLPResource(AsyncAPIResource):
     @cached_property
     def limits(self) -> AsyncLimitsResource:
         return AsyncLimitsResource(self._client)
+
+    @cached_property
+    def entries(self) -> AsyncEntriesResource:
+        return AsyncEntriesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDLPResourceWithRawResponse:
@@ -156,6 +172,10 @@ class DLPResourceWithRawResponse:
     def limits(self) -> LimitsResourceWithRawResponse:
         return LimitsResourceWithRawResponse(self._dlp.limits)
 
+    @cached_property
+    def entries(self) -> EntriesResourceWithRawResponse:
+        return EntriesResourceWithRawResponse(self._dlp.entries)
+
 
 class AsyncDLPResourceWithRawResponse:
     def __init__(self, dlp: AsyncDLPResource) -> None:
@@ -180,6 +200,10 @@ class AsyncDLPResourceWithRawResponse:
     @cached_property
     def limits(self) -> AsyncLimitsResourceWithRawResponse:
         return AsyncLimitsResourceWithRawResponse(self._dlp.limits)
+
+    @cached_property
+    def entries(self) -> AsyncEntriesResourceWithRawResponse:
+        return AsyncEntriesResourceWithRawResponse(self._dlp.entries)
 
 
 class DLPResourceWithStreamingResponse:
@@ -206,6 +230,10 @@ class DLPResourceWithStreamingResponse:
     def limits(self) -> LimitsResourceWithStreamingResponse:
         return LimitsResourceWithStreamingResponse(self._dlp.limits)
 
+    @cached_property
+    def entries(self) -> EntriesResourceWithStreamingResponse:
+        return EntriesResourceWithStreamingResponse(self._dlp.entries)
+
 
 class AsyncDLPResourceWithStreamingResponse:
     def __init__(self, dlp: AsyncDLPResource) -> None:
@@ -230,3 +258,7 @@ class AsyncDLPResourceWithStreamingResponse:
     @cached_property
     def limits(self) -> AsyncLimitsResourceWithStreamingResponse:
         return AsyncLimitsResourceWithStreamingResponse(self._dlp.limits)
+
+    @cached_property
+    def entries(self) -> AsyncEntriesResourceWithStreamingResponse:
+        return AsyncEntriesResourceWithStreamingResponse(self._dlp.entries)
