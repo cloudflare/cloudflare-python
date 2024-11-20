@@ -31,12 +31,11 @@ from .schema_validation import (
     SchemaValidationResourceWithStreamingResponse,
     AsyncSchemaValidationResourceWithStreamingResponse,
 )
-from ....types.api_gateway import operation_get_params, operation_list_params
+from ....types.api_gateway import operation_get_params, operation_list_params, operation_create_params
 from ....types.api_gateway.operation_get_response import OperationGetResponse
 from ....types.api_gateway.operation_list_response import OperationListResponse
 from ....types.api_gateway.operation_create_response import OperationCreateResponse
 from ....types.api_gateway.operation_delete_response import OperationDeleteResponse
-from ....types.api_gateway.api_shield_operation_param import APIShieldOperationParam
 from ....types.api_gateway.operation_bulk_delete_response import OperationBulkDeleteResponse
 
 __all__ = ["OperationsResource", "AsyncOperationsResource"]
@@ -70,7 +69,7 @@ class OperationsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        body: Iterable[APIShieldOperationParam],
+        body: Iterable[operation_create_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -101,7 +100,7 @@ class OperationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/api_gateway/operations",
-            body=maybe_transform(body, Iterable[APIShieldOperationParam]),
+            body=maybe_transform(body, Iterable[operation_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -345,7 +344,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        body: Iterable[APIShieldOperationParam],
+        body: Iterable[operation_create_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -376,7 +375,7 @@ class AsyncOperationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/api_gateway/operations",
-            body=await async_maybe_transform(body, Iterable[APIShieldOperationParam]),
+            body=await async_maybe_transform(body, Iterable[operation_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
