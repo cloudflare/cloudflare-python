@@ -4,9 +4,9 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from ..._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["DiscoveryOperation", "Features", "FeaturesTrafficStats"]
+__all__ = ["OperationListResponse", "Features", "FeaturesTrafficStats"]
 
 
 class FeaturesTrafficStats(BaseModel):
@@ -23,7 +23,7 @@ class Features(BaseModel):
     traffic_stats: Optional[FeaturesTrafficStats] = None
 
 
-class DiscoveryOperation(BaseModel):
+class OperationListResponse(BaseModel):
     id: str
     """UUID"""
 
