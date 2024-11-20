@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import List, Type, Iterable, Optional, cast
 
 import httpx
 
@@ -20,11 +20,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.rum import rule_create_params, rule_update_params
+from ...types.rum import rule_create_params, rule_update_params, rule_bulk_create_params
 from ..._base_client import make_request_options
 from ...types.rum.rum_rule import RUMRule
 from ...types.rum.rule_list_response import RuleListResponse
 from ...types.rum.rule_delete_response import RuleDeleteResponse
+from ...types.rum.rule_bulk_create_response import RuleBulkCreateResponse
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 
@@ -269,6 +270,63 @@ class RulesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[RuleDeleteResponse]], ResultWrapper[RuleDeleteResponse]),
         )
 
+    def bulk_create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str,
+        delete_rules: List[str] | NotGiven = NOT_GIVEN,
+        rules: Iterable[rule_bulk_create_params.Rule] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleBulkCreateResponse]:
+        """
+        Modifies one or more rules in a Web Analytics ruleset with a single request.
+
+        Args:
+          account_id: Identifier
+
+          ruleset_id: The Web Analytics ruleset identifier.
+
+          delete_rules: A list of rule identifiers to delete.
+
+          rules: A list of rules to create or update.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not ruleset_id:
+            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/rum/v2/{ruleset_id}/rules",
+            body=maybe_transform(
+                {
+                    "delete_rules": delete_rules,
+                    "rules": rules,
+                },
+                rule_bulk_create_params.RuleBulkCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RuleBulkCreateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleBulkCreateResponse]], ResultWrapper[RuleBulkCreateResponse]),
+        )
+
 
 class AsyncRulesResource(AsyncAPIResource):
     @cached_property
@@ -510,6 +568,63 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[RuleDeleteResponse]], ResultWrapper[RuleDeleteResponse]),
         )
 
+    async def bulk_create(
+        self,
+        ruleset_id: str,
+        *,
+        account_id: str,
+        delete_rules: List[str] | NotGiven = NOT_GIVEN,
+        rules: Iterable[rule_bulk_create_params.Rule] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleBulkCreateResponse]:
+        """
+        Modifies one or more rules in a Web Analytics ruleset with a single request.
+
+        Args:
+          account_id: Identifier
+
+          ruleset_id: The Web Analytics ruleset identifier.
+
+          delete_rules: A list of rule identifiers to delete.
+
+          rules: A list of rules to create or update.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not ruleset_id:
+            raise ValueError(f"Expected a non-empty value for `ruleset_id` but received {ruleset_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/rum/v2/{ruleset_id}/rules",
+            body=await async_maybe_transform(
+                {
+                    "delete_rules": delete_rules,
+                    "rules": rules,
+                },
+                rule_bulk_create_params.RuleBulkCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RuleBulkCreateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleBulkCreateResponse]], ResultWrapper[RuleBulkCreateResponse]),
+        )
+
 
 class RulesResourceWithRawResponse:
     def __init__(self, rules: RulesResource) -> None:
@@ -526,6 +641,9 @@ class RulesResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             rules.delete,
+        )
+        self.bulk_create = to_raw_response_wrapper(
+            rules.bulk_create,
         )
 
 
@@ -545,6 +663,9 @@ class AsyncRulesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             rules.delete,
         )
+        self.bulk_create = async_to_raw_response_wrapper(
+            rules.bulk_create,
+        )
 
 
 class RulesResourceWithStreamingResponse:
@@ -563,6 +684,9 @@ class RulesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             rules.delete,
         )
+        self.bulk_create = to_streamed_response_wrapper(
+            rules.bulk_create,
+        )
 
 
 class AsyncRulesResourceWithStreamingResponse:
@@ -580,4 +704,7 @@ class AsyncRulesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             rules.delete,
+        )
+        self.bulk_create = async_to_streamed_response_wrapper(
+            rules.bulk_create,
         )

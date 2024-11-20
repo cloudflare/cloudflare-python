@@ -21,6 +21,7 @@ from .lockdown_list_params import LockdownListParams as LockdownListParams
 from .rule_create_response import RuleCreateResponse as RuleCreateResponse
 from .ua_rule_get_response import UARuleGetResponse as UARuleGetResponse
 from .country_configuration import CountryConfiguration as CountryConfiguration
+from .rule_bulk_edit_params import RuleBulkEditParams as RuleBulkEditParams
 from .ua_rule_create_params import UARuleCreateParams as UARuleCreateParams
 from .ua_rule_list_response import UARuleListResponse as UARuleListResponse
 from .ua_rule_update_params import UARuleUpdateParams as UARuleUpdateParams
@@ -29,6 +30,8 @@ from .lockdown_update_params import LockdownUpdateParams as LockdownUpdateParams
 from .access_rule_edit_params import AccessRuleEditParams as AccessRuleEditParams
 from .access_rule_list_params import AccessRuleListParams as AccessRuleListParams
 from .asn_configuration_param import ASNConfigurationParam as ASNConfigurationParam
+from .rule_bulk_edit_response import RuleBulkEditResponse as RuleBulkEditResponse
+from .rule_bulk_update_params import RuleBulkUpdateParams as RuleBulkUpdateParams
 from .ua_rule_create_response import UARuleCreateResponse as UARuleCreateResponse
 from .ua_rule_delete_response import UARuleDeleteResponse as UARuleDeleteResponse
 from .ua_rule_update_response import UARuleUpdateResponse as UARuleUpdateResponse
@@ -39,6 +42,8 @@ from .access_rule_create_params import AccessRuleCreateParams as AccessRuleCreat
 from .access_rule_edit_response import AccessRuleEditResponse as AccessRuleEditResponse
 from .access_rule_list_response import AccessRuleListResponse as AccessRuleListResponse
 from .lockdown_ip_configuration import LockdownIPConfiguration as LockdownIPConfiguration
+from .rule_bulk_delete_response import RuleBulkDeleteResponse as RuleBulkDeleteResponse
+from .rule_bulk_update_response import RuleBulkUpdateResponse as RuleBulkUpdateResponse
 from .access_rule_create_response import AccessRuleCreateResponse as AccessRuleCreateResponse
 from .access_rule_delete_response import AccessRuleDeleteResponse as AccessRuleDeleteResponse
 from .country_configuration_param import CountryConfigurationParam as CountryConfigurationParam

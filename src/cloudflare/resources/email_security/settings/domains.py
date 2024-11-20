@@ -28,6 +28,7 @@ from ....types.email_security.settings.domain_get_response import DomainGetRespo
 from ....types.email_security.settings.domain_edit_response import DomainEditResponse
 from ....types.email_security.settings.domain_list_response import DomainListResponse
 from ....types.email_security.settings.domain_delete_response import DomainDeleteResponse
+from ....types.email_security.settings.domain_bulk_delete_response import DomainBulkDeleteResponse
 
 __all__ = ["DomainsResource", "AsyncDomainsResource"]
 
@@ -166,6 +167,45 @@ class DomainsResource(SyncAPIResource):
                 post_parser=ResultWrapper[DomainDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[DomainDeleteResponse], ResultWrapper[DomainDeleteResponse]),
+        )
+
+    def bulk_delete(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DomainBulkDeleteResponse:
+        """
+        Unprotect multiple email domains
+
+        Args:
+          account_id: Account Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._delete(
+            f"/accounts/{account_id}/email-security/settings/domains",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DomainBulkDeleteResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[DomainBulkDeleteResponse], ResultWrapper[DomainBulkDeleteResponse]),
         )
 
     def edit(
@@ -402,6 +442,45 @@ class AsyncDomainsResource(AsyncAPIResource):
             cast_to=cast(Type[DomainDeleteResponse], ResultWrapper[DomainDeleteResponse]),
         )
 
+    async def bulk_delete(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DomainBulkDeleteResponse:
+        """
+        Unprotect multiple email domains
+
+        Args:
+          account_id: Account Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._delete(
+            f"/accounts/{account_id}/email-security/settings/domains",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DomainBulkDeleteResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[DomainBulkDeleteResponse], ResultWrapper[DomainBulkDeleteResponse]),
+        )
+
     async def edit(
         self,
         domain_id: int,
@@ -510,6 +589,9 @@ class DomainsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             domains.delete,
         )
+        self.bulk_delete = to_raw_response_wrapper(
+            domains.bulk_delete,
+        )
         self.edit = to_raw_response_wrapper(
             domains.edit,
         )
@@ -527,6 +609,9 @@ class AsyncDomainsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             domains.delete,
+        )
+        self.bulk_delete = async_to_raw_response_wrapper(
+            domains.bulk_delete,
         )
         self.edit = async_to_raw_response_wrapper(
             domains.edit,
@@ -546,6 +631,9 @@ class DomainsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             domains.delete,
         )
+        self.bulk_delete = to_streamed_response_wrapper(
+            domains.bulk_delete,
+        )
         self.edit = to_streamed_response_wrapper(
             domains.edit,
         )
@@ -563,6 +651,9 @@ class AsyncDomainsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             domains.delete,
+        )
+        self.bulk_delete = async_to_streamed_response_wrapper(
+            domains.bulk_delete,
         )
         self.edit = async_to_streamed_response_wrapper(
             domains.edit,

@@ -23,11 +23,21 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.firewall import rule_get_params, rule_list_params, rule_create_params, rule_update_params
+from ...types.firewall import (
+    rule_get_params,
+    rule_list_params,
+    rule_create_params,
+    rule_update_params,
+    rule_bulk_edit_params,
+    rule_bulk_update_params,
+)
 from ...types.firewall.firewall_rule import FirewallRule
 from ...types.firewall.rule_edit_response import RuleEditResponse
 from ...types.filters.firewall_filter_param import FirewallFilterParam
 from ...types.firewall.rule_create_response import RuleCreateResponse
+from ...types.firewall.rule_bulk_edit_response import RuleBulkEditResponse
+from ...types.firewall.rule_bulk_delete_response import RuleBulkDeleteResponse
+from ...types.firewall.rule_bulk_update_response import RuleBulkUpdateResponse
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 
@@ -283,6 +293,136 @@ class RulesResource(SyncAPIResource):
                 post_parser=ResultWrapper[FirewallRule]._unwrapper,
             ),
             cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
+        )
+
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
+    def bulk_delete(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleBulkDeleteResponse]:
+        """
+        Deletes existing firewall rules.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._delete(
+            f"/zones/{zone_id}/firewall/rules",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RuleBulkDeleteResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleBulkDeleteResponse]], ResultWrapper[RuleBulkDeleteResponse]),
+        )
+
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
+    def bulk_edit(
+        self,
+        *,
+        zone_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleBulkEditResponse]:
+        """
+        Updates the priority of existing firewall rules.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._patch(
+            f"/zones/{zone_id}/firewall/rules",
+            body=maybe_transform(body, rule_bulk_edit_params.RuleBulkEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RuleBulkEditResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleBulkEditResponse]], ResultWrapper[RuleBulkEditResponse]),
+        )
+
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
+    def bulk_update(
+        self,
+        *,
+        zone_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleBulkUpdateResponse]:
+        """
+        Updates one or more existing firewall rules.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._put(
+            f"/zones/{zone_id}/firewall/rules",
+            body=maybe_transform(body, rule_bulk_update_params.RuleBulkUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RuleBulkUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleBulkUpdateResponse]], ResultWrapper[RuleBulkUpdateResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -640,6 +780,136 @@ class AsyncRulesResource(AsyncAPIResource):
     @typing_extensions.deprecated(
         "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
+    async def bulk_delete(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleBulkDeleteResponse]:
+        """
+        Deletes existing firewall rules.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._delete(
+            f"/zones/{zone_id}/firewall/rules",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RuleBulkDeleteResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleBulkDeleteResponse]], ResultWrapper[RuleBulkDeleteResponse]),
+        )
+
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
+    async def bulk_edit(
+        self,
+        *,
+        zone_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleBulkEditResponse]:
+        """
+        Updates the priority of existing firewall rules.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._patch(
+            f"/zones/{zone_id}/firewall/rules",
+            body=await async_maybe_transform(body, rule_bulk_edit_params.RuleBulkEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RuleBulkEditResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleBulkEditResponse]], ResultWrapper[RuleBulkEditResponse]),
+        )
+
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
+    async def bulk_update(
+        self,
+        *,
+        zone_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleBulkUpdateResponse]:
+        """
+        Updates one or more existing firewall rules.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._put(
+            f"/zones/{zone_id}/firewall/rules",
+            body=await async_maybe_transform(body, rule_bulk_update_params.RuleBulkUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RuleBulkUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleBulkUpdateResponse]], ResultWrapper[RuleBulkUpdateResponse]),
+        )
+
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
     async def edit(
         self,
         rule_id: str,
@@ -760,6 +1030,21 @@ class RulesResourceWithRawResponse:
                 rules.delete  # pyright: ignore[reportDeprecated],
             )
         )
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_edit = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.bulk_edit  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.bulk_update  # pyright: ignore[reportDeprecated],
+            )
+        )
         self.edit = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
                 rules.edit  # pyright: ignore[reportDeprecated],
@@ -794,6 +1079,21 @@ class AsyncRulesResourceWithRawResponse:
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
                 rules.delete  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_edit = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.bulk_edit  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.bulk_update  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]
@@ -832,6 +1132,21 @@ class RulesResourceWithStreamingResponse:
                 rules.delete  # pyright: ignore[reportDeprecated],
             )
         )
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_edit = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.bulk_edit  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.bulk_update  # pyright: ignore[reportDeprecated],
+            )
+        )
         self.edit = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
                 rules.edit  # pyright: ignore[reportDeprecated],
@@ -866,6 +1181,21 @@ class AsyncRulesResourceWithStreamingResponse:
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
                 rules.delete  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_edit = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.bulk_edit  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.bulk_update  # pyright: ignore[reportDeprecated],
             )
         )
         self.edit = (  # pyright: ignore[reportDeprecated]

@@ -23,12 +23,13 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
-from ...types.magic_transit import gre_tunnel_create_params, gre_tunnel_update_params
+from ...types.magic_transit import gre_tunnel_create_params, gre_tunnel_update_params, gre_tunnel_bulk_update_params
 from ...types.magic_transit.gre_tunnel_get_response import GRETunnelGetResponse
 from ...types.magic_transit.gre_tunnel_list_response import GRETunnelListResponse
 from ...types.magic_transit.gre_tunnel_create_response import GRETunnelCreateResponse
 from ...types.magic_transit.gre_tunnel_delete_response import GRETunnelDeleteResponse
 from ...types.magic_transit.gre_tunnel_update_response import GRETunnelUpdateResponse
+from ...types.magic_transit.gre_tunnel_bulk_update_response import GRETunnelBulkUpdateResponse
 
 __all__ = ["GRETunnelsResource", "AsyncGRETunnelsResource"]
 
@@ -308,6 +309,60 @@ class GRETunnelsResource(SyncAPIResource):
                 post_parser=ResultWrapper[GRETunnelDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[GRETunnelDeleteResponse], ResultWrapper[GRETunnelDeleteResponse]),
+        )
+
+    def bulk_update(
+        self,
+        *,
+        account_id: str,
+        body: object,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GRETunnelBulkUpdateResponse:
+        """Updates multiple GRE tunnels.
+
+        Use `?validate_only=true` as an optional query
+        parameter to only run validation without persisting changes.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._put(
+            f"/accounts/{account_id}/magic/gre_tunnels",
+            body=maybe_transform(body, gre_tunnel_bulk_update_params.GRETunnelBulkUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[GRETunnelBulkUpdateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[GRETunnelBulkUpdateResponse], ResultWrapper[GRETunnelBulkUpdateResponse]),
         )
 
     def get(
@@ -643,6 +698,60 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
             cast_to=cast(Type[GRETunnelDeleteResponse], ResultWrapper[GRETunnelDeleteResponse]),
         )
 
+    async def bulk_update(
+        self,
+        *,
+        account_id: str,
+        body: object,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> GRETunnelBulkUpdateResponse:
+        """Updates multiple GRE tunnels.
+
+        Use `?validate_only=true` as an optional query
+        parameter to only run validation without persisting changes.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._put(
+            f"/accounts/{account_id}/magic/gre_tunnels",
+            body=await async_maybe_transform(body, gre_tunnel_bulk_update_params.GRETunnelBulkUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[GRETunnelBulkUpdateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[GRETunnelBulkUpdateResponse], ResultWrapper[GRETunnelBulkUpdateResponse]),
+        )
+
     async def get(
         self,
         gre_tunnel_id: str,
@@ -715,6 +824,9 @@ class GRETunnelsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             gre_tunnels.delete,
         )
+        self.bulk_update = to_raw_response_wrapper(
+            gre_tunnels.bulk_update,
+        )
         self.get = to_raw_response_wrapper(
             gre_tunnels.get,
         )
@@ -735,6 +847,9 @@ class AsyncGRETunnelsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             gre_tunnels.delete,
+        )
+        self.bulk_update = async_to_raw_response_wrapper(
+            gre_tunnels.bulk_update,
         )
         self.get = async_to_raw_response_wrapper(
             gre_tunnels.get,
@@ -757,6 +872,9 @@ class GRETunnelsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             gre_tunnels.delete,
         )
+        self.bulk_update = to_streamed_response_wrapper(
+            gre_tunnels.bulk_update,
+        )
         self.get = to_streamed_response_wrapper(
             gre_tunnels.get,
         )
@@ -777,6 +895,9 @@ class AsyncGRETunnelsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             gre_tunnels.delete,
+        )
+        self.bulk_update = async_to_streamed_response_wrapper(
+            gre_tunnels.bulk_update,
         )
         self.get = async_to_streamed_response_wrapper(
             gre_tunnels.get,

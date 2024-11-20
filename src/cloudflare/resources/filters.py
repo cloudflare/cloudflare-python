@@ -26,6 +26,8 @@ from .._base_client import AsyncPaginator, make_request_options
 from ..types.filters import filter_list_params, filter_create_params, filter_update_params
 from ..types.filters.firewall_filter import FirewallFilter
 from ..types.filters.filter_create_response import FilterCreateResponse
+from ..types.filters.filter_bulk_delete_response import FilterBulkDeleteResponse
+from ..types.filters.filter_bulk_update_response import FilterBulkUpdateResponse
 
 __all__ = ["FiltersResource", "AsyncFiltersResource"]
 
@@ -268,6 +270,90 @@ class FiltersResource(SyncAPIResource):
                 post_parser=ResultWrapper[FirewallFilter]._unwrapper,
             ),
             cast_to=cast(Type[FirewallFilter], ResultWrapper[FirewallFilter]),
+        )
+
+    @typing_extensions.deprecated(
+        "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
+    def bulk_delete(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[FilterBulkDeleteResponse]:
+        """
+        Deletes one or more existing filters.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._delete(
+            f"/zones/{zone_id}/filters",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[FilterBulkDeleteResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[FilterBulkDeleteResponse]], ResultWrapper[FilterBulkDeleteResponse]),
+        )
+
+    @typing_extensions.deprecated(
+        "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
+    def bulk_update(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[FilterBulkUpdateResponse]:
+        """
+        Updates one or more existing filters.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._put(
+            f"/zones/{zone_id}/filters",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[FilterBulkUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[FilterBulkUpdateResponse]], ResultWrapper[FilterBulkUpdateResponse]),
         )
 
     @typing_extensions.deprecated(
@@ -561,6 +647,90 @@ class AsyncFiltersResource(AsyncAPIResource):
     @typing_extensions.deprecated(
         "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
+    async def bulk_delete(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[FilterBulkDeleteResponse]:
+        """
+        Deletes one or more existing filters.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._delete(
+            f"/zones/{zone_id}/filters",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[FilterBulkDeleteResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[FilterBulkDeleteResponse]], ResultWrapper[FilterBulkDeleteResponse]),
+        )
+
+    @typing_extensions.deprecated(
+        "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
+    async def bulk_update(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[FilterBulkUpdateResponse]:
+        """
+        Updates one or more existing filters.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._put(
+            f"/zones/{zone_id}/filters",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[FilterBulkUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[FilterBulkUpdateResponse]], ResultWrapper[FilterBulkUpdateResponse]),
+        )
+
+    @typing_extensions.deprecated(
+        "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
     async def get(
         self,
         filter_id: str,
@@ -630,6 +800,16 @@ class FiltersResourceWithRawResponse:
                 filters.delete  # pyright: ignore[reportDeprecated],
             )
         )
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                filters.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                filters.bulk_update  # pyright: ignore[reportDeprecated],
+            )
+        )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_raw_response_wrapper(
                 filters.get  # pyright: ignore[reportDeprecated],
@@ -659,6 +839,16 @@ class AsyncFiltersResourceWithRawResponse:
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_raw_response_wrapper(
                 filters.delete  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                filters.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                filters.bulk_update  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]
@@ -692,6 +882,16 @@ class FiltersResourceWithStreamingResponse:
                 filters.delete  # pyright: ignore[reportDeprecated],
             )
         )
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                filters.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                filters.bulk_update  # pyright: ignore[reportDeprecated],
+            )
+        )
         self.get = (  # pyright: ignore[reportDeprecated]
             to_streamed_response_wrapper(
                 filters.get  # pyright: ignore[reportDeprecated],
@@ -721,6 +921,16 @@ class AsyncFiltersResourceWithStreamingResponse:
         self.delete = (  # pyright: ignore[reportDeprecated]
             async_to_streamed_response_wrapper(
                 filters.delete  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                filters.bulk_delete  # pyright: ignore[reportDeprecated],
+            )
+        )
+        self.bulk_update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                filters.bulk_update  # pyright: ignore[reportDeprecated],
             )
         )
         self.get = (  # pyright: ignore[reportDeprecated]

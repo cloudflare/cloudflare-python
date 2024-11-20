@@ -16,6 +16,7 @@ from cloudflare.types.magic_transit import (
     RouteCreateResponse,
     RouteDeleteResponse,
     RouteUpdateResponse,
+    RouteBulkUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -234,6 +235,76 @@ class TestRoutes:
             client.magic_transit.routes.with_raw_response.delete(
                 route_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    def test_method_bulk_update(self, client: Cloudflare) -> None:
+        route = client.magic_transit.routes.bulk_update(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            routes=[
+                {
+                    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "nexthop": "203.0.113.1",
+                    "prefix": "192.0.2.0/24",
+                    "priority": 0,
+                }
+            ],
+        )
+        assert_matches_type(RouteBulkUpdateResponse, route, path=["response"])
+
+    @parametrize
+    def test_raw_response_bulk_update(self, client: Cloudflare) -> None:
+        response = client.magic_transit.routes.with_raw_response.bulk_update(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            routes=[
+                {
+                    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "nexthop": "203.0.113.1",
+                    "prefix": "192.0.2.0/24",
+                    "priority": 0,
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        route = response.parse()
+        assert_matches_type(RouteBulkUpdateResponse, route, path=["response"])
+
+    @parametrize
+    def test_streaming_response_bulk_update(self, client: Cloudflare) -> None:
+        with client.magic_transit.routes.with_streaming_response.bulk_update(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            routes=[
+                {
+                    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "nexthop": "203.0.113.1",
+                    "prefix": "192.0.2.0/24",
+                    "priority": 0,
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            route = response.parse()
+            assert_matches_type(RouteBulkUpdateResponse, route, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_bulk_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.magic_transit.routes.with_raw_response.bulk_update(
+                account_id="",
+                routes=[
+                    {
+                        "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                        "nexthop": "203.0.113.1",
+                        "prefix": "192.0.2.0/24",
+                        "priority": 0,
+                    }
+                ],
             )
 
     @parametrize
@@ -536,6 +607,76 @@ class TestAsyncRoutes:
             await async_client.magic_transit.routes.with_raw_response.delete(
                 route_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    async def test_method_bulk_update(self, async_client: AsyncCloudflare) -> None:
+        route = await async_client.magic_transit.routes.bulk_update(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            routes=[
+                {
+                    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "nexthop": "203.0.113.1",
+                    "prefix": "192.0.2.0/24",
+                    "priority": 0,
+                }
+            ],
+        )
+        assert_matches_type(RouteBulkUpdateResponse, route, path=["response"])
+
+    @parametrize
+    async def test_raw_response_bulk_update(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.magic_transit.routes.with_raw_response.bulk_update(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            routes=[
+                {
+                    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "nexthop": "203.0.113.1",
+                    "prefix": "192.0.2.0/24",
+                    "priority": 0,
+                }
+            ],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        route = await response.parse()
+        assert_matches_type(RouteBulkUpdateResponse, route, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_bulk_update(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.magic_transit.routes.with_streaming_response.bulk_update(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            routes=[
+                {
+                    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "nexthop": "203.0.113.1",
+                    "prefix": "192.0.2.0/24",
+                    "priority": 0,
+                }
+            ],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            route = await response.parse()
+            assert_matches_type(RouteBulkUpdateResponse, route, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_bulk_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.magic_transit.routes.with_raw_response.bulk_update(
+                account_id="",
+                routes=[
+                    {
+                        "id": "023e105f4ecef8ad9ca31a8372d0c353",
+                        "nexthop": "203.0.113.1",
+                        "prefix": "192.0.2.0/24",
+                        "priority": 0,
+                    }
+                ],
             )
 
     @parametrize
