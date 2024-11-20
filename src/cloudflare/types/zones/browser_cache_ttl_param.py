@@ -1,18 +1,17 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from typing_extensions import Literal
+from __future__ import annotations
 
-from ..._models import BaseModel
+from typing_extensions import Literal, TypedDict
 
-__all__ = ["BrowserCacheTTL"]
+__all__ = ["BrowserCacheTTLParam"]
 
 
-class BrowserCacheTTL(BaseModel):
-    id: Optional[Literal["browser_cache_ttl"]] = None
+class BrowserCacheTTLParam(TypedDict, total=False):
+    id: Literal["browser_cache_ttl"]
     """Control how long resources cached by client browsers remain valid."""
 
-    value: Optional[int] = None
+    value: int
     """The number of seconds to cache resources for.
 
     The API prohibits setting this to 0 for non-Enterprise domains.

@@ -1,19 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from typing_extensions import Literal
+from __future__ import annotations
 
-from ..._models import BaseModel
+from typing_extensions import Literal, TypedDict
 
-__all__ = ["BrowserCheck"]
+__all__ = ["BrowserCheckParam"]
 
 
-class BrowserCheck(BaseModel):
-    id: Optional[Literal["browser_check"]] = None
+class BrowserCheckParam(TypedDict, total=False):
+    id: Literal["browser_check"]
     """
     Inspect the visitor's browser for headers commonly associated with spammers and
     certain bots.
     """
 
-    value: Optional[Literal["on", "off"]] = None
+    value: Literal["on", "off"]
     """The status of Browser Integrity Check."""
