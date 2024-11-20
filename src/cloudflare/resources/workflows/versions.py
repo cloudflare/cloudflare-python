@@ -17,7 +17,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncV4PagePagination, AsyncV4PagePagination
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.workflows import version_list_params
 from ...types.workflows.version_get_response import VersionGetResponse
@@ -59,7 +59,7 @@ class VersionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePagination[VersionListResponse]:
+    ) -> SyncV4PagePaginationArray[VersionListResponse]:
         """
         List deployed Workflow versions
 
@@ -78,7 +78,7 @@ class VersionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `workflow_name` but received {workflow_name!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/workflows/{workflow_name}/versions",
-            page=SyncV4PagePagination[VersionListResponse],
+            page=SyncV4PagePaginationArray[VersionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -172,7 +172,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[VersionListResponse, AsyncV4PagePagination[VersionListResponse]]:
+    ) -> AsyncPaginator[VersionListResponse, AsyncV4PagePaginationArray[VersionListResponse]]:
         """
         List deployed Workflow versions
 
@@ -191,7 +191,7 @@ class AsyncVersionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `workflow_name` but received {workflow_name!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/workflows/{workflow_name}/versions",
-            page=AsyncV4PagePagination[VersionListResponse],
+            page=AsyncV4PagePaginationArray[VersionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
