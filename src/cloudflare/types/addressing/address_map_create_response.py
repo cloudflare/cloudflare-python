@@ -13,7 +13,7 @@ class IP(BaseModel):
     created_at: Optional[datetime] = None
 
     ip: Optional[str] = None
-    """An IPv4 or IPv6 address. foo"""
+    """An IPv4 or IPv6 address."""
 
 
 class Membership(BaseModel):
