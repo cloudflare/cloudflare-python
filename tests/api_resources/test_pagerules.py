@@ -10,12 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.pagerules import (
-    PageruleGetResponse,
-    PageruleEditResponse,
+    PageRule,
     PageruleListResponse,
-    PageruleCreateResponse,
     PageruleDeleteResponse,
-    PageruleUpdateResponse,
 )
 
 # pyright: reportDeprecated=false
@@ -43,7 +40,7 @@ class TestPagerules:
                 ],
             )
 
-        assert_matches_type(Optional[PageruleCreateResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -72,7 +69,7 @@ class TestPagerules:
                 status="active",
             )
 
-        assert_matches_type(Optional[PageruleCreateResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -94,7 +91,7 @@ class TestPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = response.parse()
-        assert_matches_type(Optional[PageruleCreateResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -116,7 +113,7 @@ class TestPagerules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 pagerule = response.parse()
-                assert_matches_type(Optional[PageruleCreateResponse], pagerule, path=["response"])
+                assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -156,7 +153,7 @@ class TestPagerules:
                 ],
             )
 
-        assert_matches_type(Optional[PageruleUpdateResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -186,7 +183,7 @@ class TestPagerules:
                 status="active",
             )
 
-        assert_matches_type(Optional[PageruleUpdateResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -209,7 +206,7 @@ class TestPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = response.parse()
-        assert_matches_type(Optional[PageruleUpdateResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -232,7 +229,7 @@ class TestPagerules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 pagerule = response.parse()
-                assert_matches_type(Optional[PageruleUpdateResponse], pagerule, path=["response"])
+                assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -388,7 +385,7 @@ class TestPagerules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(Optional[PageruleEditResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -418,7 +415,7 @@ class TestPagerules:
                 ],
             )
 
-        assert_matches_type(Optional[PageruleEditResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -431,7 +428,7 @@ class TestPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = response.parse()
-        assert_matches_type(Optional[PageruleEditResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -444,7 +441,7 @@ class TestPagerules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 pagerule = response.parse()
-                assert_matches_type(Optional[PageruleEditResponse], pagerule, path=["response"])
+                assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -471,7 +468,7 @@ class TestPagerules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(Optional[PageruleGetResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -484,7 +481,7 @@ class TestPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = response.parse()
-        assert_matches_type(Optional[PageruleGetResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -497,7 +494,7 @@ class TestPagerules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 pagerule = response.parse()
-                assert_matches_type(Optional[PageruleGetResponse], pagerule, path=["response"])
+                assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -537,7 +534,7 @@ class TestAsyncPagerules:
                 ],
             )
 
-        assert_matches_type(Optional[PageruleCreateResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -566,7 +563,7 @@ class TestAsyncPagerules:
                 status="active",
             )
 
-        assert_matches_type(Optional[PageruleCreateResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -588,7 +585,7 @@ class TestAsyncPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = await response.parse()
-        assert_matches_type(Optional[PageruleCreateResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -610,7 +607,7 @@ class TestAsyncPagerules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 pagerule = await response.parse()
-                assert_matches_type(Optional[PageruleCreateResponse], pagerule, path=["response"])
+                assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -650,7 +647,7 @@ class TestAsyncPagerules:
                 ],
             )
 
-        assert_matches_type(Optional[PageruleUpdateResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -680,7 +677,7 @@ class TestAsyncPagerules:
                 status="active",
             )
 
-        assert_matches_type(Optional[PageruleUpdateResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -703,7 +700,7 @@ class TestAsyncPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = await response.parse()
-        assert_matches_type(Optional[PageruleUpdateResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -726,7 +723,7 @@ class TestAsyncPagerules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 pagerule = await response.parse()
-                assert_matches_type(Optional[PageruleUpdateResponse], pagerule, path=["response"])
+                assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -882,7 +879,7 @@ class TestAsyncPagerules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(Optional[PageruleEditResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -912,7 +909,7 @@ class TestAsyncPagerules:
                 ],
             )
 
-        assert_matches_type(Optional[PageruleEditResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -925,7 +922,7 @@ class TestAsyncPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = await response.parse()
-        assert_matches_type(Optional[PageruleEditResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -938,7 +935,7 @@ class TestAsyncPagerules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 pagerule = await response.parse()
-                assert_matches_type(Optional[PageruleEditResponse], pagerule, path=["response"])
+                assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -965,7 +962,7 @@ class TestAsyncPagerules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(Optional[PageruleGetResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -978,7 +975,7 @@ class TestAsyncPagerules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerule = await response.parse()
-        assert_matches_type(Optional[PageruleGetResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -991,7 +988,7 @@ class TestAsyncPagerules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 pagerule = await response.parse()
-                assert_matches_type(Optional[PageruleGetResponse], pagerule, path=["response"])
+                assert_matches_type(Optional[PageRule], pagerule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

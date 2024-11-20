@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -22,8 +21,8 @@ class Constraint(BaseModel):
 
 
 class Target(BaseModel):
-    constraint: Optional[Constraint] = None
+    constraint: Constraint
     """String constraint."""
 
-    target: Optional[Literal["url"]] = None
+    target: Literal["url"]
     """A target based on the URL of the request."""

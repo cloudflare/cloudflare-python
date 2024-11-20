@@ -21,8 +21,8 @@ class Constraint(TypedDict, total=False):
 
 
 class TargetParam(TypedDict, total=False):
-    constraint: Constraint
+    constraint: Required[Constraint]
     """String constraint."""
 
-    target: Literal["url"]
+    target: Required[Literal["url"]]
     """A target based on the URL of the request."""
