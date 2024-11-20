@@ -13,6 +13,8 @@ from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginati
 from cloudflare.types.filters import (
     FirewallFilter,
     FilterCreateResponse,
+    FilterBulkDeleteResponse,
+    FilterBulkUpdateResponse,
 )
 
 # pyright: reportDeprecated=false
@@ -246,6 +248,92 @@ class TestFilters:
                 client.filters.with_raw_response.delete(
                     filter_id="",
                     zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                )
+
+    @parametrize
+    def test_method_bulk_delete(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            filter = client.filters.bulk_delete(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
+
+    @parametrize
+    def test_raw_response_bulk_delete(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            response = client.filters.with_raw_response.bulk_delete(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        filter = response.parse()
+        assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
+
+    @parametrize
+    def test_streaming_response_bulk_delete(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with client.filters.with_streaming_response.bulk_delete(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                filter = response.parse()
+                assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_bulk_delete(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+                client.filters.with_raw_response.bulk_delete(
+                    zone_id="",
+                )
+
+    @parametrize
+    def test_method_bulk_update(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            filter = client.filters.bulk_update(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
+
+    @parametrize
+    def test_raw_response_bulk_update(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            response = client.filters.with_raw_response.bulk_update(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        filter = response.parse()
+        assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
+
+    @parametrize
+    def test_streaming_response_bulk_update(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with client.filters.with_streaming_response.bulk_update(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                filter = response.parse()
+                assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_bulk_update(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+                client.filters.with_raw_response.bulk_update(
+                    zone_id="",
                 )
 
     @parametrize
@@ -528,6 +616,92 @@ class TestAsyncFilters:
                 await async_client.filters.with_raw_response.delete(
                     filter_id="",
                     zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                )
+
+    @parametrize
+    async def test_method_bulk_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            filter = await async_client.filters.bulk_delete(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
+
+    @parametrize
+    async def test_raw_response_bulk_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.filters.with_raw_response.bulk_delete(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        filter = await response.parse()
+        assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_bulk_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            async with async_client.filters.with_streaming_response.bulk_delete(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                filter = await response.parse()
+                assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_bulk_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+                await async_client.filters.with_raw_response.bulk_delete(
+                    zone_id="",
+                )
+
+    @parametrize
+    async def test_method_bulk_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            filter = await async_client.filters.bulk_update(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
+
+    @parametrize
+    async def test_raw_response_bulk_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.filters.with_raw_response.bulk_update(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        filter = await response.parse()
+        assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_bulk_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            async with async_client.filters.with_streaming_response.bulk_update(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                filter = await response.parse()
+                assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_bulk_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+                await async_client.filters.with_raw_response.bulk_update(
+                    zone_id="",
                 )
 
     @parametrize

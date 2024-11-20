@@ -26,6 +26,7 @@ from ..._base_client import make_request_options
 from ...types.magic_transit import (
     ipsec_tunnel_create_params,
     ipsec_tunnel_update_params,
+    ipsec_tunnel_bulk_update_params,
     ipsec_tunnel_psk_generate_params,
 )
 from ...types.magic_transit.ipsec_tunnel_get_response import IPSECTunnelGetResponse
@@ -33,6 +34,7 @@ from ...types.magic_transit.ipsec_tunnel_list_response import IPSECTunnelListRes
 from ...types.magic_transit.ipsec_tunnel_create_response import IPSECTunnelCreateResponse
 from ...types.magic_transit.ipsec_tunnel_delete_response import IPSECTunnelDeleteResponse
 from ...types.magic_transit.ipsec_tunnel_update_response import IPSECTunnelUpdateResponse
+from ...types.magic_transit.ipsec_tunnel_bulk_update_response import IPSECTunnelBulkUpdateResponse
 from ...types.magic_transit.ipsec_tunnel_psk_generate_response import IPSECTunnelPSKGenerateResponse
 
 __all__ = ["IPSECTunnelsResource", "AsyncIPSECTunnelsResource"]
@@ -352,6 +354,61 @@ class IPSECTunnelsResource(SyncAPIResource):
                 post_parser=ResultWrapper[IPSECTunnelDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[IPSECTunnelDeleteResponse], ResultWrapper[IPSECTunnelDeleteResponse]),
+        )
+
+    def bulk_update(
+        self,
+        *,
+        account_id: str,
+        body: object,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> IPSECTunnelBulkUpdateResponse:
+        """Update multiple IPsec tunnels associated with an account.
+
+        Use
+        `?validate_only=true` as an optional query parameter to only run validation
+        without persisting changes.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._put(
+            f"/accounts/{account_id}/magic/ipsec_tunnels",
+            body=maybe_transform(body, ipsec_tunnel_bulk_update_params.IPSECTunnelBulkUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IPSECTunnelBulkUpdateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[IPSECTunnelBulkUpdateResponse], ResultWrapper[IPSECTunnelBulkUpdateResponse]),
         )
 
     def get(
@@ -776,6 +833,61 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
             cast_to=cast(Type[IPSECTunnelDeleteResponse], ResultWrapper[IPSECTunnelDeleteResponse]),
         )
 
+    async def bulk_update(
+        self,
+        *,
+        account_id: str,
+        body: object,
+        x_magic_new_hc_target: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> IPSECTunnelBulkUpdateResponse:
+        """Update multiple IPsec tunnels associated with an account.
+
+        Use
+        `?validate_only=true` as an optional query parameter to only run validation
+        without persisting changes.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "x-magic-new-hc-target": ("true" if x_magic_new_hc_target else "false")
+                    if is_given(x_magic_new_hc_target)
+                    else NOT_GIVEN
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._put(
+            f"/accounts/{account_id}/magic/ipsec_tunnels",
+            body=await async_maybe_transform(body, ipsec_tunnel_bulk_update_params.IPSECTunnelBulkUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[IPSECTunnelBulkUpdateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[IPSECTunnelBulkUpdateResponse], ResultWrapper[IPSECTunnelBulkUpdateResponse]),
+        )
+
     async def get(
         self,
         ipsec_tunnel_id: str,
@@ -898,6 +1010,9 @@ class IPSECTunnelsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             ipsec_tunnels.delete,
         )
+        self.bulk_update = to_raw_response_wrapper(
+            ipsec_tunnels.bulk_update,
+        )
         self.get = to_raw_response_wrapper(
             ipsec_tunnels.get,
         )
@@ -921,6 +1036,9 @@ class AsyncIPSECTunnelsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             ipsec_tunnels.delete,
+        )
+        self.bulk_update = async_to_raw_response_wrapper(
+            ipsec_tunnels.bulk_update,
         )
         self.get = async_to_raw_response_wrapper(
             ipsec_tunnels.get,
@@ -946,6 +1064,9 @@ class IPSECTunnelsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             ipsec_tunnels.delete,
         )
+        self.bulk_update = to_streamed_response_wrapper(
+            ipsec_tunnels.bulk_update,
+        )
         self.get = to_streamed_response_wrapper(
             ipsec_tunnels.get,
         )
@@ -969,6 +1090,9 @@ class AsyncIPSECTunnelsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             ipsec_tunnels.delete,
+        )
+        self.bulk_update = async_to_streamed_response_wrapper(
+            ipsec_tunnels.bulk_update,
         )
         self.get = async_to_streamed_response_wrapper(
             ipsec_tunnels.get,

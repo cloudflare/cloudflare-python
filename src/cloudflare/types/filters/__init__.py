@@ -8,3 +8,5 @@ from .filter_create_params import FilterCreateParams as FilterCreateParams
 from .filter_update_params import FilterUpdateParams as FilterUpdateParams
 from .firewall_filter_param import FirewallFilterParam as FirewallFilterParam
 from .filter_create_response import FilterCreateResponse as FilterCreateResponse
+from .filter_bulk_delete_response import FilterBulkDeleteResponse as FilterBulkDeleteResponse
+from .filter_bulk_update_response import FilterBulkUpdateResponse as FilterBulkUpdateResponse

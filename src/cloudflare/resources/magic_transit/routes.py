@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Iterable, cast
 
 import httpx
 
@@ -21,7 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
-from ...types.magic_transit import route_create_params, route_update_params
+from ...types.magic_transit import route_create_params, route_update_params, route_bulk_update_params
 from ...types.magic_transit.scope_param import ScopeParam
 from ...types.magic_transit.route_get_response import RouteGetResponse
 from ...types.magic_transit.route_list_response import RouteListResponse
@@ -29,6 +29,7 @@ from ...types.magic_transit.route_empty_response import RouteEmptyResponse
 from ...types.magic_transit.route_create_response import RouteCreateResponse
 from ...types.magic_transit.route_delete_response import RouteDeleteResponse
 from ...types.magic_transit.route_update_response import RouteUpdateResponse
+from ...types.magic_transit.route_bulk_update_response import RouteBulkUpdateResponse
 
 __all__ = ["RoutesResource", "AsyncRoutesResource"]
 
@@ -252,6 +253,50 @@ class RoutesResource(SyncAPIResource):
                 post_parser=ResultWrapper[RouteDeleteResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteDeleteResponse], ResultWrapper[RouteDeleteResponse]),
+        )
+
+    def bulk_update(
+        self,
+        *,
+        account_id: str,
+        routes: Iterable[route_bulk_update_params.Route],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteBulkUpdateResponse:
+        """Update multiple Magic static routes.
+
+        Use `?validate_only=true` as an optional
+        query parameter to run validation only without persisting changes. Only fields
+        for a route that need to be changed need be provided.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._put(
+            f"/accounts/{account_id}/magic/routes",
+            body=maybe_transform({"routes": routes}, route_bulk_update_params.RouteBulkUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RouteBulkUpdateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RouteBulkUpdateResponse], ResultWrapper[RouteBulkUpdateResponse]),
         )
 
     def empty(
@@ -559,6 +604,50 @@ class AsyncRoutesResource(AsyncAPIResource):
             cast_to=cast(Type[RouteDeleteResponse], ResultWrapper[RouteDeleteResponse]),
         )
 
+    async def bulk_update(
+        self,
+        *,
+        account_id: str,
+        routes: Iterable[route_bulk_update_params.Route],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteBulkUpdateResponse:
+        """Update multiple Magic static routes.
+
+        Use `?validate_only=true` as an optional
+        query parameter to run validation only without persisting changes. Only fields
+        for a route that need to be changed need be provided.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._put(
+            f"/accounts/{account_id}/magic/routes",
+            body=await async_maybe_transform({"routes": routes}, route_bulk_update_params.RouteBulkUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RouteBulkUpdateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RouteBulkUpdateResponse], ResultWrapper[RouteBulkUpdateResponse]),
+        )
+
     async def empty(
         self,
         *,
@@ -659,6 +748,9 @@ class RoutesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             routes.delete,
         )
+        self.bulk_update = to_raw_response_wrapper(
+            routes.bulk_update,
+        )
         self.empty = to_raw_response_wrapper(
             routes.empty,
         )
@@ -682,6 +774,9 @@ class AsyncRoutesResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             routes.delete,
+        )
+        self.bulk_update = async_to_raw_response_wrapper(
+            routes.bulk_update,
         )
         self.empty = async_to_raw_response_wrapper(
             routes.empty,
@@ -707,6 +802,9 @@ class RoutesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             routes.delete,
         )
+        self.bulk_update = to_streamed_response_wrapper(
+            routes.bulk_update,
+        )
         self.empty = to_streamed_response_wrapper(
             routes.empty,
         )
@@ -730,6 +828,9 @@ class AsyncRoutesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             routes.delete,
+        )
+        self.bulk_update = async_to_streamed_response_wrapper(
+            routes.bulk_update,
         )
         self.empty = async_to_streamed_response_wrapper(
             routes.empty,
