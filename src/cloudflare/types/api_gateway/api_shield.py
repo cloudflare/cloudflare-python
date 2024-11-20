@@ -7,7 +7,7 @@ from typing_extensions import Literal, TypeAlias
 from ..._models import BaseModel
 
 __all__ = [
-    "OperationGetResponse",
+    "APIShield",
     "Features",
     "FeaturesAPIShieldOperationFeatureThresholds",
     "FeaturesAPIShieldOperationFeatureThresholdsThresholds",
@@ -204,7 +204,7 @@ Features: TypeAlias = Union[
 ]
 
 
-class OperationGetResponse(BaseModel):
+class APIShield(BaseModel):
     endpoint: str
     """
     The endpoint which can contain path parameter templates in curly braces, each
