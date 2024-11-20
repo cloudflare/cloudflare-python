@@ -212,7 +212,10 @@ class SelfHostedApplication(BaseModel):
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: Optional[bool] = None
-    """Returns a 401 status code when the request is blocked by a Service Auth policy."""
+    """
+    Returns a 401 status code when the request is blocked by a Service Auth policy
+    foo.
+    """
 
     session_duration: Optional[str] = None
     """The amount of time that tokens issued for this application will be valid.
@@ -483,7 +486,10 @@ class BrowserSSHApplication(BaseModel):
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: Optional[bool] = None
-    """Returns a 401 status code when the request is blocked by a Service Auth policy."""
+    """
+    Returns a 401 status code when the request is blocked by a Service Auth policy
+    foo.
+    """
 
     session_duration: Optional[str] = None
     """The amount of time that tokens issued for this application will be valid.
@@ -657,7 +663,10 @@ class BrowserVNCApplication(BaseModel):
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: Optional[bool] = None
-    """Returns a 401 status code when the request is blocked by a Service Auth policy."""
+    """
+    Returns a 401 status code when the request is blocked by a Service Auth policy
+    foo.
+    """
 
     session_duration: Optional[str] = None
     """The amount of time that tokens issued for this application will be valid.
