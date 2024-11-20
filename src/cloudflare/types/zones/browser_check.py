@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -9,11 +10,17 @@ __all__ = ["BrowserCheck"]
 
 
 class BrowserCheck(BaseModel):
-    id: Optional[Literal["browser_check"]] = None
+    id: Literal["browser_check"]
+    """ID of the zone setting."""
+
+    value: Literal["on", "off"]
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
     """
-    Inspect the visitor's browser for headers commonly associated with spammers and
-    certain bots.
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
     """
 
-    value: Optional[Literal["on", "off"]] = None
-    """The status of Browser Integrity Check."""
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""

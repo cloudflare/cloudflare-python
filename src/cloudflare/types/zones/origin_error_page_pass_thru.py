@@ -1,23 +1,26 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["OriginErrorPagePassThru", "Value"]
-
-
-class Value(BaseModel):
-    value: Optional[Literal["on", "off"]] = None
-    """The status of Origin Error Page Passthru."""
+__all__ = ["OriginErrorPagePassThru"]
 
 
 class OriginErrorPagePassThru(BaseModel):
-    id: Optional[Literal["origin_error_page_pass_thru"]] = None
+    id: Literal["origin_error_page_pass_thru"]
+    """ID of the zone setting."""
+
+    value: Literal["on", "off"]
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
     """
-    Turn on or off Cloudflare error pages generated from issues sent from the origin
-    server. If enabled, this setting triggers error pages issued by the origin.
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
     """
 
-    value: Optional[Value] = None
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""

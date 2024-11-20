@@ -1,23 +1,26 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["SSL", "Value"]
-
-
-class Value(BaseModel):
-    value: Optional[Literal["off", "flexible", "full", "strict", "origin_pull"]] = None
-    """The encryption mode that Cloudflare uses to connect to your origin server."""
+__all__ = ["SSL"]
 
 
 class SSL(BaseModel):
-    id: Optional[Literal["ssl"]] = None
+    id: Literal["ssl"]
+    """ID of the zone setting."""
+
+    value: Literal["off", "flexible", "full", "strict"]
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
     """
-    Control options for the SSL feature of the Edge Certificates tab in the
-    Cloudflare SSL/TLS app.
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
     """
 
-    value: Optional[Value] = None
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
