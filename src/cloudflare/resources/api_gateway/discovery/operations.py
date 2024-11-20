@@ -24,8 +24,8 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.api_gateway.discovery import operation_edit_params, operation_list_params, operation_bulk_edit_params
+from ....types.api_gateway.discovery_operation import DiscoveryOperation
 from ....types.api_gateway.discovery.operation_edit_response import OperationEditResponse
-from ....types.api_gateway.discovery.operation_list_response import OperationListResponse
 from ....types.api_gateway.discovery.operation_bulk_edit_response import OperationBulkEditResponse
 
 __all__ = ["OperationsResource", "AsyncOperationsResource"]
@@ -72,7 +72,7 @@ class OperationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[OperationListResponse]:
+    ) -> SyncV4PagePaginationArray[DiscoveryOperation]:
         """
         Retrieve the most up to date view of discovered operations
 
@@ -124,7 +124,7 @@ class OperationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/discovery/operations",
-            page=SyncV4PagePaginationArray[OperationListResponse],
+            page=SyncV4PagePaginationArray[DiscoveryOperation],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -146,7 +146,7 @@ class OperationsResource(SyncAPIResource):
                     operation_list_params.OperationListParams,
                 ),
             ),
-            model=OperationListResponse,
+            model=DiscoveryOperation,
         )
 
     def bulk_edit(
@@ -283,7 +283,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[OperationListResponse, AsyncV4PagePaginationArray[OperationListResponse]]:
+    ) -> AsyncPaginator[DiscoveryOperation, AsyncV4PagePaginationArray[DiscoveryOperation]]:
         """
         Retrieve the most up to date view of discovered operations
 
@@ -335,7 +335,7 @@ class AsyncOperationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/discovery/operations",
-            page=AsyncV4PagePaginationArray[OperationListResponse],
+            page=AsyncV4PagePaginationArray[DiscoveryOperation],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -357,7 +357,7 @@ class AsyncOperationsResource(AsyncAPIResource):
                     operation_list_params.OperationListParams,
                 ),
             ),
-            model=OperationListResponse,
+            model=DiscoveryOperation,
         )
 
     async def bulk_edit(

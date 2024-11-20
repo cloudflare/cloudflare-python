@@ -2653,7 +2653,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.api_gateway import DiscoveryGetResponse
+from cloudflare.types.api_gateway import DiscoveryOperation, DiscoveryGetResponse
 ```
 
 Methods:
@@ -2665,16 +2665,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.api_gateway.discovery import (
-    OperationListResponse,
-    OperationBulkEditResponse,
-    OperationEditResponse,
-)
+from cloudflare.types.api_gateway.discovery import OperationBulkEditResponse, OperationEditResponse
 ```
 
 Methods:
 
-- <code title="get /zones/{zone_id}/api_gateway/discovery/operations">client.api_gateway.discovery.operations.<a href="./src/cloudflare/resources/api_gateway/discovery/operations.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/discovery/operation_list_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/discovery/operation_list_response.py">SyncV4PagePaginationArray[OperationListResponse]</a></code>
+- <code title="get /zones/{zone_id}/api_gateway/discovery/operations">client.api_gateway.discovery.operations.<a href="./src/cloudflare/resources/api_gateway/discovery/operations.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/discovery/operation_list_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/discovery_operation.py">SyncV4PagePaginationArray[DiscoveryOperation]</a></code>
 - <code title="patch /zones/{zone_id}/api_gateway/discovery/operations">client.api_gateway.discovery.operations.<a href="./src/cloudflare/resources/api_gateway/discovery/operations.py">bulk_edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/discovery/operation_bulk_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/discovery/operation_bulk_edit_response.py">OperationBulkEditResponse</a></code>
 - <code title="patch /zones/{zone_id}/api_gateway/discovery/operations/{operation_id}">client.api_gateway.discovery.operations.<a href="./src/cloudflare/resources/api_gateway/discovery/operations.py">edit</a>(operation_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/discovery/operation_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/discovery/operation_edit_response.py">OperationEditResponse</a></code>
 
