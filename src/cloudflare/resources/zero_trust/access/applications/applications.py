@@ -216,7 +216,8 @@ class ApplicationsResource(SyncAPIResource):
 
           self_hosted_domains: List of domains that Access will secure.
 
-          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy
+              foo.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -408,7 +409,8 @@ class ApplicationsResource(SyncAPIResource):
 
           self_hosted_domains: List of domains that Access will secure.
 
-          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy
+              foo.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -532,7 +534,8 @@ class ApplicationsResource(SyncAPIResource):
 
           self_hosted_domains: List of domains that Access will secure.
 
-          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy
+              foo.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -1095,7 +1098,8 @@ class ApplicationsResource(SyncAPIResource):
 
           self_hosted_domains: List of domains that Access will secure.
 
-          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy
+              foo.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -1293,7 +1297,8 @@ class ApplicationsResource(SyncAPIResource):
 
           self_hosted_domains: List of domains that Access will secure.
 
-          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy
+              foo.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -1420,7 +1425,8 @@ class ApplicationsResource(SyncAPIResource):
 
           self_hosted_domains: List of domains that Access will secure.
 
-          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy
+              foo.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -2284,7 +2290,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           self_hosted_domains: List of domains that Access will secure.
 
-          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy
+              foo.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -2476,7 +2483,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           self_hosted_domains: List of domains that Access will secure.
 
-          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy
+              foo.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -2600,7 +2608,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           self_hosted_domains: List of domains that Access will secure.
 
-          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy
+              foo.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -3163,7 +3172,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           self_hosted_domains: List of domains that Access will secure.
 
-          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy
+              foo.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -3361,7 +3371,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           self_hosted_domains: List of domains that Access will secure.
 
-          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy
+              foo.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -3488,7 +3499,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           self_hosted_domains: List of domains that Access will secure.
 
-          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy
+              foo.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
