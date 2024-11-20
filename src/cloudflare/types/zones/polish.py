@@ -1,26 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["Polish"]
+__all__ = ["Polish", "Value"]
+
+
+class Value(BaseModel):
+    value: Optional[Literal["off", "lossless", "lossy"]] = None
+    """The level of Polish you want applied to your origin."""
 
 
 class Polish(BaseModel):
-    id: Literal["polish"]
-    """ID of the zone setting."""
+    id: Optional[Literal["polish"]] = None
+    """Apply options from the Polish feature of the Cloudflare Speed app."""
 
-    value: Literal["off", "lossless", "lossy"]
-    """Current value of the zone setting."""
-
-    editable: Optional[Literal[True, False]] = None
-    """
-    Whether or not this setting can be modified for this zone (based on your
-    Cloudflare plan level).
-    """
-
-    modified_on: Optional[datetime] = None
-    """last time this setting was modified."""
+    value: Optional[Value] = None
