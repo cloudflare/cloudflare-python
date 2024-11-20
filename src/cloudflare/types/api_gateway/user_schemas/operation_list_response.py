@@ -4,8 +4,8 @@ from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
-from .. import api_shield_operation
 from ...._models import BaseModel
+from ..api_shield_operation_model import APIShieldOperationModel
 
 __all__ = [
     "OperationListResponse",
@@ -233,4 +233,4 @@ class APIShieldOperation(BaseModel):
     features: Optional[APIShieldOperationFeatures] = None
 
 
-OperationListResponse: TypeAlias = Union[APIShieldOperation, api_shield_operation.APIShieldOperation]
+OperationListResponse: TypeAlias = Union[APIShieldOperation, APIShieldOperationModel]

@@ -1,14 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
+from typing_extensions import Literal
 
-from typing_extensions import Literal, Required, TypedDict
+from ..._models import BaseModel
 
-__all__ = ["APIShieldOperationParam"]
+__all__ = ["APIShieldOperationModel"]
 
 
-class APIShieldOperationParam(TypedDict, total=False):
-    endpoint: Required[str]
+class APIShieldOperationModel(BaseModel):
+    endpoint: str
     """
     The endpoint which can contain path parameter templates in curly braces, each
     will be replaced from left to right with {varN}, starting with {var1}, during
@@ -16,8 +16,8 @@ class APIShieldOperationParam(TypedDict, total=False):
     https://developers.cloudflare.com/rules/normalization/how-it-works/.
     """
 
-    host: Required[str]
+    host: str
     """RFC3986-compliant host."""
 
-    method: Required[Literal["GET", "POST", "HEAD", "OPTIONS", "PUT", "DELETE", "CONNECT", "PATCH", "TRACE"]]
+    method: Literal["GET", "POST", "HEAD", "OPTIONS", "PUT", "DELETE", "CONNECT", "PATCH", "TRACE"]
     """The HTTP method used to access the endpoint."""
