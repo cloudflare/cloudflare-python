@@ -4960,22 +4960,6 @@ Methods:
 - <code title="put /accounts/{account_id}/devices/policy/fallback_domains">client.zero_trust.devices.policies.default.fallback_domains.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/fallback_domains.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/default/fallback_domain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default/fallback_domain_update_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/devices/policy/fallback_domains">client.zero_trust.devices.policies.default.fallback_domains.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/fallback_domains.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default/fallback_domain_get_response.py">Optional</a></code>
 
-##### Certificates
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.devices.policies.default import (
-    CertificateEditResponse,
-    CertificateGetResponse,
-)
-```
-
-Methods:
-
-- <code title="patch /zones/{zone_tag}/devices/policy/certificates">client.zero_trust.devices.policies.default.certificates.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/certificates.py">edit</a>(zone_tag, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/default/certificate_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default/certificate_edit_response.py">CertificateEditResponse</a></code>
-- <code title="get /zones/{zone_tag}/devices/policy/certificates">client.zero_trust.devices.policies.default.certificates.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/certificates.py">get</a>(zone_tag) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default/certificate_get_response.py">CertificateGetResponse</a></code>
-
 #### Custom
 
 Types:
