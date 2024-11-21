@@ -98,7 +98,7 @@ class TestMessages:
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             batch_size=50,
-            visibility_timeout=6000,
+            visibility_timeout_ms=6000,
         )
         assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
 
@@ -227,7 +227,7 @@ class TestAsyncMessages:
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             batch_size=50,
-            visibility_timeout=6000,
+            visibility_timeout_ms=6000,
         )
         assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
 
