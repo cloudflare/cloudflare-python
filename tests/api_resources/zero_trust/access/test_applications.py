@@ -59,6 +59,28 @@ class TestApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.2",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.3/32:1234-4321",
+                },
+                {
+                    "type": "public",
+                    "uri": "private-sni.example.com",
+                },
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -308,6 +330,28 @@ class TestApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.2",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.3/32:1234-4321",
+                },
+                {
+                    "type": "public",
+                    "uri": "private-sni.example.com",
+                },
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -436,6 +480,28 @@ class TestApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.2",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.3/32:1234-4321",
+                },
+                {
+                    "type": "public",
+                    "uri": "private-sni.example.com",
+                },
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -1101,6 +1167,28 @@ class TestApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.2",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.3/32:1234-4321",
+                },
+                {
+                    "type": "public",
+                    "uri": "private-sni.example.com",
+                },
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -1376,6 +1464,28 @@ class TestApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.2",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.3/32:1234-4321",
+                },
+                {
+                    "type": "public",
+                    "uri": "private-sni.example.com",
+                },
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -1518,6 +1628,28 @@ class TestApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.2",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.3/32:1234-4321",
+                },
+                {
+                    "type": "public",
+                    "uri": "private-sni.example.com",
+                },
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -2528,6 +2660,28 @@ class TestAsyncApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.2",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.3/32:1234-4321",
+                },
+                {
+                    "type": "public",
+                    "uri": "private-sni.example.com",
+                },
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -2777,6 +2931,28 @@ class TestAsyncApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.2",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.3/32:1234-4321",
+                },
+                {
+                    "type": "public",
+                    "uri": "private-sni.example.com",
+                },
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -2905,6 +3081,28 @@ class TestAsyncApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.2",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.3/32:1234-4321",
+                },
+                {
+                    "type": "public",
+                    "uri": "private-sni.example.com",
+                },
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -3570,6 +3768,28 @@ class TestAsyncApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.2",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.3/32:1234-4321",
+                },
+                {
+                    "type": "public",
+                    "uri": "private-sni.example.com",
+                },
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -3845,6 +4065,28 @@ class TestAsyncApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.2",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.3/32:1234-4321",
+                },
+                {
+                    "type": "public",
+                    "uri": "private-sni.example.com",
+                },
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
@@ -3987,6 +4229,28 @@ class TestAsyncApplications:
             custom_deny_url="custom_deny_url",
             custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=["699d98642c564d2e855e9661899b7252"],
+            destinations=[
+                {
+                    "type": "public",
+                    "uri": "test.example.com/admin",
+                },
+                {
+                    "type": "public",
+                    "uri": "test.anotherexample.com/staff",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.2",
+                },
+                {
+                    "type": "public",
+                    "uri": "10.5.0.3/32:1234-4321",
+                },
+                {
+                    "type": "public",
+                    "uri": "private-sni.example.com",
+                },
+            ],
             enable_binding_cookie=True,
             http_only_cookie_attribute=True,
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
