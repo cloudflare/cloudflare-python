@@ -7,6 +7,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .cors import (
+    CORSResource,
+    AsyncCORSResource,
+    CORSResourceWithRawResponse,
+    AsyncCORSResourceWithRawResponse,
+    CORSResourceWithStreamingResponse,
+    AsyncCORSResourceWithStreamingResponse,
+)
 from .sippy import (
     SippyResource,
     AsyncSippyResource,
@@ -69,6 +77,10 @@ class BucketsResource(SyncAPIResource):
     @cached_property
     def lifecycle(self) -> LifecycleResource:
         return LifecycleResource(self._client)
+
+    @cached_property
+    def cors(self) -> CORSResource:
+        return CORSResource(self._client)
 
     @cached_property
     def domains(self) -> DomainsResource:
@@ -356,6 +368,10 @@ class AsyncBucketsResource(AsyncAPIResource):
     @cached_property
     def lifecycle(self) -> AsyncLifecycleResource:
         return AsyncLifecycleResource(self._client)
+
+    @cached_property
+    def cors(self) -> AsyncCORSResource:
+        return AsyncCORSResource(self._client)
 
     @cached_property
     def domains(self) -> AsyncDomainsResource:
@@ -661,6 +677,10 @@ class BucketsResourceWithRawResponse:
         return LifecycleResourceWithRawResponse(self._buckets.lifecycle)
 
     @cached_property
+    def cors(self) -> CORSResourceWithRawResponse:
+        return CORSResourceWithRawResponse(self._buckets.cors)
+
+    @cached_property
     def domains(self) -> DomainsResourceWithRawResponse:
         return DomainsResourceWithRawResponse(self._buckets.domains)
 
@@ -693,6 +713,10 @@ class AsyncBucketsResourceWithRawResponse:
     @cached_property
     def lifecycle(self) -> AsyncLifecycleResourceWithRawResponse:
         return AsyncLifecycleResourceWithRawResponse(self._buckets.lifecycle)
+
+    @cached_property
+    def cors(self) -> AsyncCORSResourceWithRawResponse:
+        return AsyncCORSResourceWithRawResponse(self._buckets.cors)
 
     @cached_property
     def domains(self) -> AsyncDomainsResourceWithRawResponse:
@@ -729,6 +753,10 @@ class BucketsResourceWithStreamingResponse:
         return LifecycleResourceWithStreamingResponse(self._buckets.lifecycle)
 
     @cached_property
+    def cors(self) -> CORSResourceWithStreamingResponse:
+        return CORSResourceWithStreamingResponse(self._buckets.cors)
+
+    @cached_property
     def domains(self) -> DomainsResourceWithStreamingResponse:
         return DomainsResourceWithStreamingResponse(self._buckets.domains)
 
@@ -761,6 +789,10 @@ class AsyncBucketsResourceWithStreamingResponse:
     @cached_property
     def lifecycle(self) -> AsyncLifecycleResourceWithStreamingResponse:
         return AsyncLifecycleResourceWithStreamingResponse(self._buckets.lifecycle)
+
+    @cached_property
+    def cors(self) -> AsyncCORSResourceWithStreamingResponse:
+        return AsyncCORSResourceWithStreamingResponse(self._buckets.cors)
 
     @cached_property
     def domains(self) -> AsyncDomainsResourceWithStreamingResponse:

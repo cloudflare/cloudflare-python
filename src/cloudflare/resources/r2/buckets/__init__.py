@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .cors import (
+    CORSResource,
+    AsyncCORSResource,
+    CORSResourceWithRawResponse,
+    AsyncCORSResourceWithRawResponse,
+    CORSResourceWithStreamingResponse,
+    AsyncCORSResourceWithStreamingResponse,
+)
 from .sippy import (
     SippyResource,
     AsyncSippyResource,
@@ -48,6 +56,12 @@ __all__ = [
     "AsyncLifecycleResourceWithRawResponse",
     "LifecycleResourceWithStreamingResponse",
     "AsyncLifecycleResourceWithStreamingResponse",
+    "CORSResource",
+    "AsyncCORSResource",
+    "CORSResourceWithRawResponse",
+    "AsyncCORSResourceWithRawResponse",
+    "CORSResourceWithStreamingResponse",
+    "AsyncCORSResourceWithStreamingResponse",
     "DomainsResource",
     "AsyncDomainsResource",
     "DomainsResourceWithRawResponse",
