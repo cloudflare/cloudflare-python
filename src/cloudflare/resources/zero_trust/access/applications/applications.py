@@ -130,6 +130,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -155,8 +156,8 @@ class ApplicationsResource(SyncAPIResource):
         Adds a new application to Access.
 
         Args:
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -188,6 +189,10 @@ class ApplicationsResource(SyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -214,7 +219,9 @@ class ApplicationsResource(SyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -322,6 +329,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.BrowserSSHApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -347,8 +355,8 @@ class ApplicationsResource(SyncAPIResource):
         Adds a new application to Access.
 
         Args:
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -380,6 +388,10 @@ class ApplicationsResource(SyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -406,7 +418,9 @@ class ApplicationsResource(SyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -446,6 +460,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.BrowserVNCApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -471,8 +486,8 @@ class ApplicationsResource(SyncAPIResource):
         Adds a new application to Access.
 
         Args:
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -504,6 +519,10 @@ class ApplicationsResource(SyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -530,7 +549,9 @@ class ApplicationsResource(SyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -890,6 +911,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -951,6 +973,7 @@ class ApplicationsResource(SyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
+                        "destinations": destinations,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
@@ -1007,6 +1030,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -1034,8 +1058,8 @@ class ApplicationsResource(SyncAPIResource):
         Args:
           app_id: Identifier
 
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -1067,6 +1091,10 @@ class ApplicationsResource(SyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -1093,7 +1121,9 @@ class ApplicationsResource(SyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -1205,6 +1235,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.BrowserSSHApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -1232,8 +1263,8 @@ class ApplicationsResource(SyncAPIResource):
         Args:
           app_id: Identifier
 
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -1265,6 +1296,10 @@ class ApplicationsResource(SyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -1291,7 +1326,9 @@ class ApplicationsResource(SyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -1332,6 +1369,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.BrowserVNCApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -1359,8 +1397,8 @@ class ApplicationsResource(SyncAPIResource):
         Args:
           app_id: Identifier
 
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -1392,6 +1430,10 @@ class ApplicationsResource(SyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -1418,7 +1460,9 @@ class ApplicationsResource(SyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -1794,6 +1838,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -1857,6 +1902,7 @@ class ApplicationsResource(SyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
+                        "destinations": destinations,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
@@ -2198,6 +2244,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -2223,8 +2270,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Adds a new application to Access.
 
         Args:
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -2256,6 +2303,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -2282,7 +2333,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -2390,6 +2443,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.BrowserSSHApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -2415,8 +2469,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Adds a new application to Access.
 
         Args:
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -2448,6 +2502,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -2474,7 +2532,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -2514,6 +2574,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.BrowserVNCApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -2539,8 +2600,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Adds a new application to Access.
 
         Args:
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -2572,6 +2633,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -2598,7 +2663,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -2958,6 +3025,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -3019,6 +3087,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
+                        "destinations": destinations,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
@@ -3075,6 +3144,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -3102,8 +3172,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Args:
           app_id: Identifier
 
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -3135,6 +3205,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -3161,7 +3235,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -3273,6 +3349,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.BrowserSSHApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -3300,8 +3377,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Args:
           app_id: Identifier
 
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -3333,6 +3410,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -3359,7 +3440,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -3400,6 +3483,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.BrowserVNCApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -3427,8 +3511,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Args:
           app_id: Identifier
 
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -3460,6 +3544,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -3486,7 +3574,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -3862,6 +3952,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -3925,6 +4016,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
+                        "destinations": destinations,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,

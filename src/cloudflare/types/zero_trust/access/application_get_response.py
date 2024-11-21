@@ -22,6 +22,7 @@ from .scim_config_authentication_oauth_bearer_token import SCIMConfigAuthenticat
 __all__ = [
     "ApplicationGetResponse",
     "SelfHostedApplication",
+    "SelfHostedApplicationDestination",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
     "SaaSApplication",
@@ -29,9 +30,11 @@ __all__ = [
     "SaaSApplicationSCIMConfig",
     "SaaSApplicationSCIMConfigAuthentication",
     "BrowserSSHApplication",
+    "BrowserSSHApplicationDestination",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
     "BrowserVNCApplication",
+    "BrowserVNCApplicationDestination",
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
     "AppLauncherApplication",
@@ -58,6 +61,21 @@ __all__ = [
     "InfrastructureApplicationSCIMConfig",
     "InfrastructureApplicationSCIMConfigAuthentication",
 ]
+
+
+class SelfHostedApplicationDestination(BaseModel):
+    destination: Optional[str] = None
+    """A destination secured by Access.
+
+    Public destinations can include a domain and path with
+    [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    Private destinations are an early access feature and gated behind a feature
+    flag. Private destinations support private IPv4, IPv6, and Server Name
+    Indications (SNI) with optional port ranges.
+    """
+
+    type: Optional[Literal["public", "private"]] = None
+
 
 SelfHostedApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
@@ -99,10 +117,9 @@ class SelfHostedApplicationSCIMConfig(BaseModel):
 
 class SelfHostedApplication(BaseModel):
     domain: str
-    """The primary hostname and path that Access will secure.
+    """The primary hostname and path secured by Access.
 
-    If the app is visible in the App Launcher dashboard, this is the domain that
-    will be displayed.
+    This domain will be displayed if the app is visible in the App Launcher.
     """
 
     type: str
@@ -164,6 +181,14 @@ class SelfHostedApplication(BaseModel):
     custom_pages: Optional[List[str]] = None
     """The custom pages that will be displayed when applicable for this application"""
 
+    destinations: Optional[List[SelfHostedApplicationDestination]] = None
+    """List of destinations secured by Access.
+
+    This supersedes `self_hosted_domains` to allow for more flexibility in defining
+    different types of domains. If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
+
     enable_binding_cookie: Optional[bool] = None
     """
     Enables the binding cookie, which increases security against compromised
@@ -209,7 +234,12 @@ class SelfHostedApplication(BaseModel):
     """
 
     self_hosted_domains: Optional[List[SelfHostedDomains]] = None
-    """List of domains that Access will secure."""
+    """List of public domains that Access will secure.
+
+    This field is deprecated in favor of `destinations` and will be supported until
+    **November 21, 2025.** If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
 
     service_auth_401_redirect: Optional[bool] = None
     """Returns a 401 status code when the request is blocked by a Service Auth policy."""
@@ -330,6 +360,20 @@ class SaaSApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
+class BrowserSSHApplicationDestination(BaseModel):
+    destination: Optional[str] = None
+    """A destination secured by Access.
+
+    Public destinations can include a domain and path with
+    [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    Private destinations are an early access feature and gated behind a feature
+    flag. Private destinations support private IPv4, IPv6, and Server Name
+    Indications (SNI) with optional port ranges.
+    """
+
+    type: Optional[Literal["public", "private"]] = None
+
+
 BrowserSSHApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
@@ -370,10 +414,9 @@ class BrowserSSHApplicationSCIMConfig(BaseModel):
 
 class BrowserSSHApplication(BaseModel):
     domain: str
-    """The primary hostname and path that Access will secure.
+    """The primary hostname and path secured by Access.
 
-    If the app is visible in the App Launcher dashboard, this is the domain that
-    will be displayed.
+    This domain will be displayed if the app is visible in the App Launcher.
     """
 
     type: str
@@ -434,6 +477,14 @@ class BrowserSSHApplication(BaseModel):
 
     custom_pages: Optional[List[str]] = None
     """The custom pages that will be displayed when applicable for this application"""
+
+    destinations: Optional[List[BrowserSSHApplicationDestination]] = None
+    """List of destinations secured by Access.
+
+    This supersedes `self_hosted_domains` to allow for more flexibility in defining
+    different types of domains. If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
 
     enable_binding_cookie: Optional[bool] = None
     """
@@ -480,7 +531,12 @@ class BrowserSSHApplication(BaseModel):
     """
 
     self_hosted_domains: Optional[List[SelfHostedDomains]] = None
-    """List of domains that Access will secure."""
+    """List of public domains that Access will secure.
+
+    This field is deprecated in favor of `destinations` and will be supported until
+    **November 21, 2025.** If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
 
     service_auth_401_redirect: Optional[bool] = None
     """Returns a 401 status code when the request is blocked by a Service Auth policy."""
@@ -502,6 +558,20 @@ class BrowserSSHApplication(BaseModel):
     """
 
     updated_at: Optional[datetime] = None
+
+
+class BrowserVNCApplicationDestination(BaseModel):
+    destination: Optional[str] = None
+    """A destination secured by Access.
+
+    Public destinations can include a domain and path with
+    [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    Private destinations are an early access feature and gated behind a feature
+    flag. Private destinations support private IPv4, IPv6, and Server Name
+    Indications (SNI) with optional port ranges.
+    """
+
+    type: Optional[Literal["public", "private"]] = None
 
 
 BrowserVNCApplicationSCIMConfigAuthentication: TypeAlias = Union[
@@ -544,10 +614,9 @@ class BrowserVNCApplicationSCIMConfig(BaseModel):
 
 class BrowserVNCApplication(BaseModel):
     domain: str
-    """The primary hostname and path that Access will secure.
+    """The primary hostname and path secured by Access.
 
-    If the app is visible in the App Launcher dashboard, this is the domain that
-    will be displayed.
+    This domain will be displayed if the app is visible in the App Launcher.
     """
 
     type: str
@@ -609,6 +678,14 @@ class BrowserVNCApplication(BaseModel):
     custom_pages: Optional[List[str]] = None
     """The custom pages that will be displayed when applicable for this application"""
 
+    destinations: Optional[List[BrowserVNCApplicationDestination]] = None
+    """List of destinations secured by Access.
+
+    This supersedes `self_hosted_domains` to allow for more flexibility in defining
+    different types of domains. If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
+
     enable_binding_cookie: Optional[bool] = None
     """
     Enables the binding cookie, which increases security against compromised
@@ -654,7 +731,12 @@ class BrowserVNCApplication(BaseModel):
     """
 
     self_hosted_domains: Optional[List[SelfHostedDomains]] = None
-    """List of domains that Access will secure."""
+    """List of public domains that Access will secure.
+
+    This field is deprecated in favor of `destinations` and will be supported until
+    **November 21, 2025.** If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
 
     service_auth_401_redirect: Optional[bool] = None
     """Returns a 401 status code when the request is blocked by a Service Auth policy."""
@@ -774,10 +856,9 @@ class AppLauncherApplication(BaseModel):
     created_at: Optional[datetime] = None
 
     domain: Optional[str] = None
-    """The primary hostname and path that Access will secure.
+    """The primary hostname and path secured by Access.
 
-    If the app is visible in the App Launcher dashboard, this is the domain that
-    will be displayed.
+    This domain will be displayed if the app is visible in the App Launcher.
     """
 
     footer_links: Optional[List[AppLauncherApplicationFooterLink]] = None
@@ -909,10 +990,9 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     created_at: Optional[datetime] = None
 
     domain: Optional[str] = None
-    """The primary hostname and path that Access will secure.
+    """The primary hostname and path secured by Access.
 
-    If the app is visible in the App Launcher dashboard, this is the domain that
-    will be displayed.
+    This domain will be displayed if the app is visible in the App Launcher.
     """
 
     footer_links: Optional[List[DeviceEnrollmentPermissionsApplicationFooterLink]] = None
@@ -1044,10 +1124,9 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     created_at: Optional[datetime] = None
 
     domain: Optional[str] = None
-    """The primary hostname and path that Access will secure.
+    """The primary hostname and path secured by Access.
 
-    If the app is visible in the App Launcher dashboard, this is the domain that
-    will be displayed.
+    This domain will be displayed if the app is visible in the App Launcher.
     """
 
     footer_links: Optional[List[BrowserIsolationPermissionsApplicationFooterLink]] = None
