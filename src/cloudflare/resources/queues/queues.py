@@ -40,8 +40,6 @@ from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.queues import queue_create_params, queue_update_params
 from ...types.queues.queue import Queue
-from ...types.queues.queue_created import QueueCreated
-from ...types.queues.queue_updated import QueueUpdated
 from ...types.queues.queue_delete_response import QueueDeleteResponse
 
 __all__ = ["QueuesResource", "AsyncQueuesResource"]
@@ -86,12 +84,12 @@ class QueuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[QueueCreated]:
+    ) -> Optional[Queue]:
         """
-        Creates a new queue.
+        Create a new queue
 
         Args:
-          account_id: Identifier.
+          account_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -111,9 +109,9 @@ class QueuesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[QueueCreated]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Queue]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[QueueCreated]], ResultWrapper[QueueCreated]),
+            cast_to=cast(Type[Optional[Queue]], ResultWrapper[Queue]),
         )
 
     def update(
@@ -121,21 +119,25 @@ class QueuesResource(SyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        body: object,
+        queue_name: str | NotGiven = NOT_GIVEN,
+        settings: queue_update_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[QueueUpdated]:
-        """
-        Updates a queue.
+    ) -> Optional[Queue]:
+        """Updates a Queue.
+
+        Note that this endpoint does not support partial updates. If
+        successful, the Queue's configuration is overwritten with the supplied
+        configuration.
 
         Args:
-          account_id: Identifier.
+          account_id: A Resource identifier.
 
-          queue_id: Identifier.
+          queue_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -151,15 +153,21 @@ class QueuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._put(
             f"/accounts/{account_id}/queues/{queue_id}",
-            body=maybe_transform(body, queue_update_params.QueueUpdateParams),
+            body=maybe_transform(
+                {
+                    "queue_name": queue_name,
+                    "settings": settings,
+                },
+                queue_update_params.QueueUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[QueueUpdated]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Queue]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[QueueUpdated]], ResultWrapper[QueueUpdated]),
+            cast_to=cast(Type[Optional[Queue]], ResultWrapper[Queue]),
         )
 
     def list(
@@ -177,7 +185,7 @@ class QueuesResource(SyncAPIResource):
         Returns the queues owned by an account.
 
         Args:
-          account_id: Identifier.
+          account_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -209,14 +217,14 @@ class QueuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[QueueDeleteResponse]:
+    ) -> QueueDeleteResponse:
         """
-        Deletes a queue.
+        Deletes a queue
 
         Args:
-          account_id: Identifier.
+          account_id: A Resource identifier.
 
-          queue_id: Identifier.
+          queue_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -233,13 +241,9 @@ class QueuesResource(SyncAPIResource):
         return self._delete(
             f"/accounts/{account_id}/queues/{queue_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[QueueDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[QueueDeleteResponse]], ResultWrapper[QueueDeleteResponse]),
+            cast_to=QueueDeleteResponse,
         )
 
     def get(
@@ -255,12 +259,12 @@ class QueuesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Queue]:
         """
-        Get information about a specific queue.
+        Get details about a specific queue.
 
         Args:
-          account_id: Identifier.
+          account_id: A Resource identifier.
 
-          queue_id: Identifier.
+          queue_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -326,12 +330,12 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[QueueCreated]:
+    ) -> Optional[Queue]:
         """
-        Creates a new queue.
+        Create a new queue
 
         Args:
-          account_id: Identifier.
+          account_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -351,9 +355,9 @@ class AsyncQueuesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[QueueCreated]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Queue]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[QueueCreated]], ResultWrapper[QueueCreated]),
+            cast_to=cast(Type[Optional[Queue]], ResultWrapper[Queue]),
         )
 
     async def update(
@@ -361,21 +365,25 @@ class AsyncQueuesResource(AsyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
-        body: object,
+        queue_name: str | NotGiven = NOT_GIVEN,
+        settings: queue_update_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[QueueUpdated]:
-        """
-        Updates a queue.
+    ) -> Optional[Queue]:
+        """Updates a Queue.
+
+        Note that this endpoint does not support partial updates. If
+        successful, the Queue's configuration is overwritten with the supplied
+        configuration.
 
         Args:
-          account_id: Identifier.
+          account_id: A Resource identifier.
 
-          queue_id: Identifier.
+          queue_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -391,15 +399,21 @@ class AsyncQueuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._put(
             f"/accounts/{account_id}/queues/{queue_id}",
-            body=await async_maybe_transform(body, queue_update_params.QueueUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "queue_name": queue_name,
+                    "settings": settings,
+                },
+                queue_update_params.QueueUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[QueueUpdated]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Queue]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[QueueUpdated]], ResultWrapper[QueueUpdated]),
+            cast_to=cast(Type[Optional[Queue]], ResultWrapper[Queue]),
         )
 
     def list(
@@ -417,7 +431,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         Returns the queues owned by an account.
 
         Args:
-          account_id: Identifier.
+          account_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -449,14 +463,14 @@ class AsyncQueuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[QueueDeleteResponse]:
+    ) -> QueueDeleteResponse:
         """
-        Deletes a queue.
+        Deletes a queue
 
         Args:
-          account_id: Identifier.
+          account_id: A Resource identifier.
 
-          queue_id: Identifier.
+          queue_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -473,13 +487,9 @@ class AsyncQueuesResource(AsyncAPIResource):
         return await self._delete(
             f"/accounts/{account_id}/queues/{queue_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[QueueDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[QueueDeleteResponse]], ResultWrapper[QueueDeleteResponse]),
+            cast_to=QueueDeleteResponse,
         )
 
     async def get(
@@ -495,12 +505,12 @@ class AsyncQueuesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Queue]:
         """
-        Get information about a specific queue.
+        Get details about a specific queue.
 
         Args:
-          account_id: Identifier.
+          account_id: A Resource identifier.
 
-          queue_id: Identifier.
+          queue_id: A Resource identifier.
 
           extra_headers: Send extra headers
 

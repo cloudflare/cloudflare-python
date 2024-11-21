@@ -10,12 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.queues import (
-    Queue,
-    QueueCreated,
-    QueueUpdated,
-    QueueDeleteResponse,
-)
+from cloudflare.types.queues import Queue, QueueDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +24,7 @@ class TestQueues:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_name="example-queue",
         )
-        assert_matches_type(Optional[QueueCreated], queue, path=["response"])
+        assert_matches_type(Optional[Queue], queue, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -41,7 +36,7 @@ class TestQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         queue = response.parse()
-        assert_matches_type(Optional[QueueCreated], queue, path=["response"])
+        assert_matches_type(Optional[Queue], queue, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -53,7 +48,7 @@ class TestQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             queue = response.parse()
-            assert_matches_type(Optional[QueueCreated], queue, path=["response"])
+            assert_matches_type(Optional[Queue], queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -70,35 +65,45 @@ class TestQueues:
         queue = client.queues.update(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={"queue_name": "renamed-example-queue"},
         )
-        assert_matches_type(Optional[QueueUpdated], queue, path=["response"])
+        assert_matches_type(Optional[Queue], queue, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        queue = client.queues.update(
+            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            queue_name="example-queue",
+            settings={
+                "delivery_delay": 5,
+                "message_retention_period": 345600,
+            },
+        )
+        assert_matches_type(Optional[Queue], queue, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.queues.with_raw_response.update(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={"queue_name": "renamed-example-queue"},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         queue = response.parse()
-        assert_matches_type(Optional[QueueUpdated], queue, path=["response"])
+        assert_matches_type(Optional[Queue], queue, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.queues.with_streaming_response.update(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={"queue_name": "renamed-example-queue"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             queue = response.parse()
-            assert_matches_type(Optional[QueueUpdated], queue, path=["response"])
+            assert_matches_type(Optional[Queue], queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -108,14 +113,12 @@ class TestQueues:
             client.queues.with_raw_response.update(
                 queue_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={"queue_name": "renamed-example-queue"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
             client.queues.with_raw_response.update(
                 queue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={"queue_name": "renamed-example-queue"},
             )
 
     @parametrize
@@ -162,7 +165,7 @@ class TestQueues:
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[QueueDeleteResponse], queue, path=["response"])
+        assert_matches_type(QueueDeleteResponse, queue, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -174,7 +177,7 @@ class TestQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         queue = response.parse()
-        assert_matches_type(Optional[QueueDeleteResponse], queue, path=["response"])
+        assert_matches_type(QueueDeleteResponse, queue, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -186,7 +189,7 @@ class TestQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             queue = response.parse()
-            assert_matches_type(Optional[QueueDeleteResponse], queue, path=["response"])
+            assert_matches_type(QueueDeleteResponse, queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -262,7 +265,7 @@ class TestAsyncQueues:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_name="example-queue",
         )
-        assert_matches_type(Optional[QueueCreated], queue, path=["response"])
+        assert_matches_type(Optional[Queue], queue, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -274,7 +277,7 @@ class TestAsyncQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         queue = await response.parse()
-        assert_matches_type(Optional[QueueCreated], queue, path=["response"])
+        assert_matches_type(Optional[Queue], queue, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -286,7 +289,7 @@ class TestAsyncQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             queue = await response.parse()
-            assert_matches_type(Optional[QueueCreated], queue, path=["response"])
+            assert_matches_type(Optional[Queue], queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -303,35 +306,45 @@ class TestAsyncQueues:
         queue = await async_client.queues.update(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={"queue_name": "renamed-example-queue"},
         )
-        assert_matches_type(Optional[QueueUpdated], queue, path=["response"])
+        assert_matches_type(Optional[Queue], queue, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        queue = await async_client.queues.update(
+            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            queue_name="example-queue",
+            settings={
+                "delivery_delay": 5,
+                "message_retention_period": 345600,
+            },
+        )
+        assert_matches_type(Optional[Queue], queue, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.queues.with_raw_response.update(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={"queue_name": "renamed-example-queue"},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         queue = await response.parse()
-        assert_matches_type(Optional[QueueUpdated], queue, path=["response"])
+        assert_matches_type(Optional[Queue], queue, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.queues.with_streaming_response.update(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={"queue_name": "renamed-example-queue"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             queue = await response.parse()
-            assert_matches_type(Optional[QueueUpdated], queue, path=["response"])
+            assert_matches_type(Optional[Queue], queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -341,14 +354,12 @@ class TestAsyncQueues:
             await async_client.queues.with_raw_response.update(
                 queue_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={"queue_name": "renamed-example-queue"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
             await async_client.queues.with_raw_response.update(
                 queue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={"queue_name": "renamed-example-queue"},
             )
 
     @parametrize
@@ -395,7 +406,7 @@ class TestAsyncQueues:
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[QueueDeleteResponse], queue, path=["response"])
+        assert_matches_type(QueueDeleteResponse, queue, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -407,7 +418,7 @@ class TestAsyncQueues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         queue = await response.parse()
-        assert_matches_type(Optional[QueueDeleteResponse], queue, path=["response"])
+        assert_matches_type(QueueDeleteResponse, queue, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -419,7 +430,7 @@ class TestAsyncQueues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             queue = await response.parse()
-            assert_matches_type(Optional[QueueDeleteResponse], queue, path=["response"])
+            assert_matches_type(QueueDeleteResponse, queue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

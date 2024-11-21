@@ -63,12 +63,12 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[MessageAckResponse]:
         """
-        Acknowledge + Retry messages from a Queue.
+        Acknowledge + Retry messages from a Queue
 
         Args:
-          account_id: Identifier.
+          account_id: A Resource identifier.
 
-          queue_id: Identifier.
+          queue_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -107,7 +107,7 @@ class MessagesResource(SyncAPIResource):
         *,
         account_id: str,
         batch_size: float | NotGiven = NOT_GIVEN,
-        visibility_timeout: float | NotGiven = NOT_GIVEN,
+        visibility_timeout_ms: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -116,16 +116,16 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[MessagePullResponse]:
         """
-        Pull a batch of messages from a Queue.
+        Pull a batch of messages from a Queue
 
         Args:
-          account_id: Identifier.
+          account_id: A Resource identifier.
 
-          queue_id: Identifier.
+          queue_id: A Resource identifier.
 
           batch_size: The maximum number of messages to include in a batch.
 
-          visibility_timeout: The number of milliseconds that a message is exclusively leased. After the
+          visibility_timeout_ms: The number of milliseconds that a message is exclusively leased. After the
               timeout, the message becomes available for another attempt.
 
           extra_headers: Send extra headers
@@ -145,7 +145,7 @@ class MessagesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "batch_size": batch_size,
-                    "visibility_timeout": visibility_timeout,
+                    "visibility_timeout_ms": visibility_timeout_ms,
                 },
                 message_pull_params.MessagePullParams,
             ),
@@ -195,12 +195,12 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[MessageAckResponse]:
         """
-        Acknowledge + Retry messages from a Queue.
+        Acknowledge + Retry messages from a Queue
 
         Args:
-          account_id: Identifier.
+          account_id: A Resource identifier.
 
-          queue_id: Identifier.
+          queue_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -239,7 +239,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         *,
         account_id: str,
         batch_size: float | NotGiven = NOT_GIVEN,
-        visibility_timeout: float | NotGiven = NOT_GIVEN,
+        visibility_timeout_ms: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -248,16 +248,16 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[MessagePullResponse]:
         """
-        Pull a batch of messages from a Queue.
+        Pull a batch of messages from a Queue
 
         Args:
-          account_id: Identifier.
+          account_id: A Resource identifier.
 
-          queue_id: Identifier.
+          queue_id: A Resource identifier.
 
           batch_size: The maximum number of messages to include in a batch.
 
-          visibility_timeout: The number of milliseconds that a message is exclusively leased. After the
+          visibility_timeout_ms: The number of milliseconds that a message is exclusively leased. After the
               timeout, the message becomes available for another attempt.
 
           extra_headers: Send extra headers
@@ -277,7 +277,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "batch_size": batch_size,
-                    "visibility_timeout": visibility_timeout,
+                    "visibility_timeout_ms": visibility_timeout_ms,
                 },
                 message_pull_params.MessagePullParams,
             ),
