@@ -335,6 +335,10 @@ class OrganizationsResource(SyncAPIResource):
         email: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        query_devices: bool | NotGiven = NOT_GIVEN,
+        body_devices: bool | NotGiven = NOT_GIVEN,
+        user_uid: str | NotGiven = NOT_GIVEN,
+        warp_session_reauth: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -351,6 +355,16 @@ class OrganizationsResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          query_devices: When set to `true`, all devices associated with the user will be revoked.
+
+          body_devices: When set to `true`, all devices associated with the user will be revoked.
+
+          user_uid: The uuid of the user to revoke.
+
+          warp_session_reauth: When set to `true`, the user will be required to re-authenticate to WARP for all
+              Gateway policies that enforce a WARP client session duration. When `false`, the
+              user’s WARP session will remain active
 
           extra_headers: Send extra headers
 
@@ -374,12 +388,23 @@ class OrganizationsResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._post(
             f"/{account_or_zone}/{account_or_zone_id}/access/organizations/revoke_user",
-            body=maybe_transform({"email": email}, organization_revoke_users_params.OrganizationRevokeUsersParams),
+            body=maybe_transform(
+                {
+                    "email": email,
+                    "body_devices": body_devices,
+                    "user_uid": user_uid,
+                    "warp_session_reauth": warp_session_reauth,
+                },
+                organization_revoke_users_params.OrganizationRevokeUsersParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {"query_devices": query_devices}, organization_revoke_users_params.OrganizationRevokeUsersParams
+                ),
                 post_parser=ResultWrapper[Optional[OrganizationRevokeUsersResponse]]._unwrapper,
             ),
             cast_to=cast(
@@ -682,6 +707,10 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         email: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        query_devices: bool | NotGiven = NOT_GIVEN,
+        body_devices: bool | NotGiven = NOT_GIVEN,
+        user_uid: str | NotGiven = NOT_GIVEN,
+        warp_session_reauth: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -698,6 +727,16 @@ class AsyncOrganizationsResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          query_devices: When set to `true`, all devices associated with the user will be revoked.
+
+          body_devices: When set to `true`, all devices associated with the user will be revoked.
+
+          user_uid: The uuid of the user to revoke.
+
+          warp_session_reauth: When set to `true`, the user will be required to re-authenticate to WARP for all
+              Gateway policies that enforce a WARP client session duration. When `false`, the
+              user’s WARP session will remain active
 
           extra_headers: Send extra headers
 
@@ -722,13 +761,22 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         return await self._post(
             f"/{account_or_zone}/{account_or_zone_id}/access/organizations/revoke_user",
             body=await async_maybe_transform(
-                {"email": email}, organization_revoke_users_params.OrganizationRevokeUsersParams
+                {
+                    "email": email,
+                    "body_devices": body_devices,
+                    "user_uid": user_uid,
+                    "warp_session_reauth": warp_session_reauth,
+                },
+                organization_revoke_users_params.OrganizationRevokeUsersParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"query_devices": query_devices}, organization_revoke_users_params.OrganizationRevokeUsersParams
+                ),
                 post_parser=ResultWrapper[Optional[OrganizationRevokeUsersResponse]]._unwrapper,
             ),
             cast_to=cast(
