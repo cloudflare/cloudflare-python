@@ -246,10 +246,6 @@ class TestOrganizations:
         organization = client.zero_trust.organizations.revoke_users(
             email="test@example.com",
             account_id="account_id",
-            query_devices=True,
-            body_devices=True,
-            user_uid="699d98642c564d2e855e9661899b7252",
-            warp_session_reauth=True,
         )
         assert_matches_type(Optional[OrganizationRevokeUsersResponse], organization, path=["response"])
 
@@ -526,10 +522,6 @@ class TestAsyncOrganizations:
         organization = await async_client.zero_trust.organizations.revoke_users(
             email="test@example.com",
             account_id="account_id",
-            query_devices=True,
-            body_devices=True,
-            user_uid="699d98642c564d2e855e9661899b7252",
-            warp_session_reauth=True,
         )
         assert_matches_type(Optional[OrganizationRevokeUsersResponse], organization, path=["response"])
 
