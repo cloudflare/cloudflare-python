@@ -4586,6 +4586,20 @@ Methods:
 - <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/lifecycle">client.r2.buckets.lifecycle.<a href="./src/cloudflare/resources/r2/buckets/lifecycle.py">update</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/buckets/lifecycle_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/lifecycle_update_response.py">object</a></code>
 - <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/lifecycle">client.r2.buckets.lifecycle.<a href="./src/cloudflare/resources/r2/buckets/lifecycle.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/lifecycle_get_response.py">LifecycleGetResponse</a></code>
 
+### CORS
+
+Types:
+
+```python
+from cloudflare.types.r2.buckets import CORSUpdateResponse, CORSDeleteResponse, CORSGetResponse
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/cors">client.r2.buckets.cors.<a href="./src/cloudflare/resources/r2/buckets/cors.py">update</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/buckets/cors_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/cors_update_response.py">object</a></code>
+- <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}/cors">client.r2.buckets.cors.<a href="./src/cloudflare/resources/r2/buckets/cors.py">delete</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/cors_delete_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/cors">client.r2.buckets.cors.<a href="./src/cloudflare/resources/r2/buckets/cors.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/cors_get_response.py">CORSGetResponse</a></code>
+
 ### Domains
 
 #### Custom
