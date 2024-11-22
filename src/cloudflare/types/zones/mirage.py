@@ -5,12 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["Mirage", "Value"]
-
-
-class Value(BaseModel):
-    value: Optional[Literal["on", "off"]] = None
-    """The status of Mirage."""
+__all__ = ["Mirage"]
 
 
 class Mirage(BaseModel):
@@ -21,4 +16,5 @@ class Mirage(BaseModel):
     HTTP/1.
     """
 
-    value: Optional[Value] = None
+    value: Optional[Literal["on", "off"]] = None
+    """The status of Mirage."""

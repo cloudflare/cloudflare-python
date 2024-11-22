@@ -10,3 +10,7 @@ __all__ = ["AutomaticHTTPSRewrites"]
 
 class AutomaticHTTPSRewrites(BaseModel):
     id: Optional[Literal["automatic_https_rewrites"]] = None
+    """Turn on or off Automatic HTTPS Rewrites."""
+
+    value: Optional[Literal["on", "off"]] = None
+    """The status of Automatic HTTPS Rewrites."""

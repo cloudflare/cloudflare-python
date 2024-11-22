@@ -5,16 +5,12 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["TrueClientIPHeader", "Value"]
-
-
-class Value(BaseModel):
-    value: Optional[Literal["on", "off"]] = None
-    """The status of True Client IP Header."""
+__all__ = ["TrueClientIPHeader"]
 
 
 class TrueClientIPHeader(BaseModel):
     id: Optional[Literal["true_client_ip_header"]] = None
     """Turn on or off the True-Client-IP Header feature of the Cloudflare Network app."""
 
-    value: Optional[Value] = None
+    value: Optional[Literal["on", "off"]] = None
+    """The status of True Client IP Header."""

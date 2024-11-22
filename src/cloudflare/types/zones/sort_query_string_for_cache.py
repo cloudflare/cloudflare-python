@@ -5,12 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["SortQueryStringForCache", "Value"]
-
-
-class Value(BaseModel):
-    value: Optional[Literal["on", "off"]] = None
-    """The status of Query String Sort"""
+__all__ = ["SortQueryStringForCache"]
 
 
 class SortQueryStringForCache(BaseModel):
@@ -20,4 +15,5 @@ class SortQueryStringForCache(BaseModel):
     When query strings have the same structure, caching improves.
     """
 
-    value: Optional[Value] = None
+    value: Optional[Literal["on", "off"]] = None
+    """The status of Query String Sort"""

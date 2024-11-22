@@ -5,12 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["IPGeolocation", "Value"]
-
-
-class Value(BaseModel):
-    value: Optional[Literal["on", "off"]] = None
-    """The status of adding the IP Geolocation Header."""
+__all__ = ["IPGeolocation"]
 
 
 class IPGeolocation(BaseModel):
@@ -20,4 +15,5 @@ class IPGeolocation(BaseModel):
     corresponds to the visitor.
     """
 
-    value: Optional[Value] = None
+    value: Optional[Literal["on", "off"]] = None
+    """The status of adding the IP Geolocation Header."""

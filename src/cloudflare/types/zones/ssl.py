@@ -5,12 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["SSL", "Value"]
-
-
-class Value(BaseModel):
-    value: Optional[Literal["off", "flexible", "full", "strict", "origin_pull"]] = None
-    """The encryption mode that Cloudflare uses to connect to your origin server."""
+__all__ = ["SSL"]
 
 
 class SSL(BaseModel):
@@ -20,4 +15,5 @@ class SSL(BaseModel):
     Cloudflare SSL/TLS app.
     """
 
-    value: Optional[Value] = None
+    value: Optional[Literal["off", "flexible", "full", "strict", "origin_pull"]] = None
+    """The encryption mode that Cloudflare uses to connect to your origin server."""

@@ -4,12 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["OriginErrorPagePassThruParam", "Value"]
-
-
-class Value(TypedDict, total=False):
-    value: Literal["on", "off"]
-    """The status of Origin Error Page Passthru."""
+__all__ = ["OriginErrorPagePassThruParam"]
 
 
 class OriginErrorPagePassThruParam(TypedDict, total=False):
@@ -19,4 +14,5 @@ class OriginErrorPagePassThruParam(TypedDict, total=False):
     server. If enabled, this setting triggers error pages issued by the origin.
     """
 
-    value: Value
+    value: Literal["on", "off"]
+    """The status of Origin Error Page Passthru."""

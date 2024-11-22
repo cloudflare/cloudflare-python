@@ -5,12 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["OpportunisticEncryption", "Value"]
-
-
-class Value(BaseModel):
-    value: Optional[Literal["on", "off"]] = None
-    """The status of Opportunistic Encryption."""
+__all__ = ["OpportunisticEncryption"]
 
 
 class OpportunisticEncryption(BaseModel):
@@ -21,4 +16,5 @@ class OpportunisticEncryption(BaseModel):
     for otherwise vulnerable requests.
     """
 
-    value: Optional[Value] = None
+    value: Optional[Literal["on", "off"]] = None
+    """The status of Opportunistic Encryption."""

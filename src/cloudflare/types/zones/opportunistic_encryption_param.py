@@ -4,12 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["OpportunisticEncryptionParam", "Value"]
-
-
-class Value(TypedDict, total=False):
-    value: Literal["on", "off"]
-    """The status of Opportunistic Encryption."""
+__all__ = ["OpportunisticEncryptionParam"]
 
 
 class OpportunisticEncryptionParam(TypedDict, total=False):
@@ -20,4 +15,5 @@ class OpportunisticEncryptionParam(TypedDict, total=False):
     for otherwise vulnerable requests.
     """
 
-    value: Value
+    value: Literal["on", "off"]
+    """The status of Opportunistic Encryption."""
