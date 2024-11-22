@@ -5,12 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["WAF", "Value"]
-
-
-class Value(BaseModel):
-    value: Optional[Literal["on", "off"]] = None
-    """The status of WAF managed rules (previous version)."""
+__all__ = ["WAF"]
 
 
 class WAF(BaseModel):
@@ -21,4 +16,5 @@ class WAF(BaseModel):
     You cannot enable or disable individual WAF managed rules via Page Rules.
     """
 
-    value: Optional[Value] = None
+    value: Optional[Literal["on", "off"]] = None
+    """The status of WAF managed rules (previous version)."""

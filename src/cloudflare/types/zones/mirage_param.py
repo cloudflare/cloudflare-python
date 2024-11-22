@@ -4,12 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["MirageParam", "Value"]
-
-
-class Value(TypedDict, total=False):
-    value: Literal["on", "off"]
-    """The status of Mirage."""
+__all__ = ["MirageParam"]
 
 
 class MirageParam(TypedDict, total=False):
@@ -20,4 +15,5 @@ class MirageParam(TypedDict, total=False):
     HTTP/1.
     """
 
-    value: Value
+    value: Literal["on", "off"]
+    """The status of Mirage."""

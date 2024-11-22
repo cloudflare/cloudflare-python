@@ -4,12 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["SortQueryStringForCacheParam", "Value"]
-
-
-class Value(TypedDict, total=False):
-    value: Literal["on", "off"]
-    """The status of Query String Sort"""
+__all__ = ["SortQueryStringForCacheParam"]
 
 
 class SortQueryStringForCacheParam(TypedDict, total=False):
@@ -19,4 +14,5 @@ class SortQueryStringForCacheParam(TypedDict, total=False):
     When query strings have the same structure, caching improves.
     """
 
-    value: Value
+    value: Literal["on", "off"]
+    """The status of Query String Sort"""
