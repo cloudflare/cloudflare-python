@@ -5,12 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["OriginErrorPagePassThru", "Value"]
-
-
-class Value(BaseModel):
-    value: Optional[Literal["on", "off"]] = None
-    """The status of Origin Error Page Passthru."""
+__all__ = ["OriginErrorPagePassThru"]
 
 
 class OriginErrorPagePassThru(BaseModel):
@@ -20,4 +15,5 @@ class OriginErrorPagePassThru(BaseModel):
     server. If enabled, this setting triggers error pages issued by the origin.
     """
 
-    value: Optional[Value] = None
+    value: Optional[Literal["on", "off"]] = None
+    """The status of Origin Error Page Passthru."""

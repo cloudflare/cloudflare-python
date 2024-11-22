@@ -57,7 +57,6 @@ __all__ = [
     "ActionMinify",
     "ActionPurgeByPageRule",
     "ActionResolveOverride",
-    "ActionResolveOverrideValue",
     "ActionRespectStrongEtag",
 ]
 
@@ -219,6 +218,13 @@ class ActionCacheKeyFields(TypedDict, total=False):
 
 class ActionCacheOnCookie(TypedDict, total=False):
     id: Literal["cache_on_cookie"]
+    """
+    Apply the Cache Everything option (Cache Level setting) based on a regular
+    expression match against a cookie name.
+    """
+
+    value: str
+    """The regular expression to use for matching cookie names in the request."""
 
 
 class ActionCacheTTLByStatus(TypedDict, total=False):
@@ -278,6 +284,13 @@ class ActionEdgeCacheTTL(TypedDict, total=False):
 
 class ActionExplicitCacheControl(TypedDict, total=False):
     id: Literal["explicit_cache_control"]
+    """
+    Origin Cache Control is enabled by default for Free, Pro, and Business domains
+    and disabled by default for Enterprise domains.
+    """
+
+    value: Literal["on", "off"]
+    """The status of Origin Cache Control."""
 
 
 class ActionForwardingURLValue(TypedDict, total=False):
@@ -321,16 +334,12 @@ class ActionPurgeByPageRule(TypedDict, total=False):
     id: Literal["purge_by_page_rule"]
 
 
-class ActionResolveOverrideValue(TypedDict, total=False):
-    value: str
-    """The origin address you want to override with."""
-
-
 class ActionResolveOverride(TypedDict, total=False):
     id: Literal["resolve_override"]
     """Change the origin address to the value specified in this setting."""
 
-    value: ActionResolveOverrideValue
+    value: str
+    """The origin address you want to override with."""
 
 
 class ActionRespectStrongEtag(TypedDict, total=False):

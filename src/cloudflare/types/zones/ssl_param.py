@@ -4,12 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["SSLParam", "Value"]
-
-
-class Value(TypedDict, total=False):
-    value: Literal["off", "flexible", "full", "strict", "origin_pull"]
-    """The encryption mode that Cloudflare uses to connect to your origin server."""
+__all__ = ["SSLParam"]
 
 
 class SSLParam(TypedDict, total=False):
@@ -19,4 +14,5 @@ class SSLParam(TypedDict, total=False):
     Cloudflare SSL/TLS app.
     """
 
-    value: Value
+    value: Literal["off", "flexible", "full", "strict", "origin_pull"]
+    """The encryption mode that Cloudflare uses to connect to your origin server."""

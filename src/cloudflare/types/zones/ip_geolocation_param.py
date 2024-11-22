@@ -4,12 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["IPGeolocationParam", "Value"]
-
-
-class Value(TypedDict, total=False):
-    value: Literal["on", "off"]
-    """The status of adding the IP Geolocation Header."""
+__all__ = ["IPGeolocationParam"]
 
 
 class IPGeolocationParam(TypedDict, total=False):
@@ -19,4 +14,5 @@ class IPGeolocationParam(TypedDict, total=False):
     corresponds to the visitor.
     """
 
-    value: Value
+    value: Literal["on", "off"]
+    """The status of adding the IP Geolocation Header."""

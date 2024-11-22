@@ -4,16 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["PolishParam", "Value"]
-
-
-class Value(TypedDict, total=False):
-    value: Literal["off", "lossless", "lossy"]
-    """The level of Polish you want applied to your origin."""
+__all__ = ["PolishParam"]
 
 
 class PolishParam(TypedDict, total=False):
     id: Literal["polish"]
     """Apply options from the Polish feature of the Cloudflare Speed app."""
 
-    value: Value
+    value: Literal["off", "lossless", "lossy"]
+    """The level of Polish you want applied to your origin."""

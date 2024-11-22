@@ -4,12 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, TypedDict
 
-__all__ = ["WAFParam", "Value"]
-
-
-class Value(TypedDict, total=False):
-    value: Literal["on", "off"]
-    """The status of WAF managed rules (previous version)."""
+__all__ = ["WAFParam"]
 
 
 class WAFParam(TypedDict, total=False):
@@ -20,4 +15,5 @@ class WAFParam(TypedDict, total=False):
     You cannot enable or disable individual WAF managed rules via Page Rules.
     """
 
-    value: Value
+    value: Literal["on", "off"]
+    """The status of WAF managed rules (previous version)."""
