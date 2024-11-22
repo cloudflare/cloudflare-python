@@ -24,6 +24,14 @@ from .includes import (
     IncludesResourceWithStreamingResponse,
     AsyncIncludesResourceWithStreamingResponse,
 )
+from .certificates import (
+    CertificatesResource,
+    AsyncCertificatesResource,
+    CertificatesResourceWithRawResponse,
+    AsyncCertificatesResourceWithRawResponse,
+    CertificatesResourceWithStreamingResponse,
+    AsyncCertificatesResourceWithStreamingResponse,
+)
 from .fallback_domains import (
     FallbackDomainsResource,
     AsyncFallbackDomainsResource,
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncFallbackDomainsResourceWithRawResponse",
     "FallbackDomainsResourceWithStreamingResponse",
     "AsyncFallbackDomainsResourceWithStreamingResponse",
+    "CertificatesResource",
+    "AsyncCertificatesResource",
+    "CertificatesResourceWithRawResponse",
+    "AsyncCertificatesResourceWithRawResponse",
+    "CertificatesResourceWithStreamingResponse",
+    "AsyncCertificatesResourceWithStreamingResponse",
     "DefaultResource",
     "AsyncDefaultResource",
     "DefaultResourceWithRawResponse",
