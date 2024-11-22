@@ -28,6 +28,14 @@ from ......_utils import (
     async_maybe_transform,
 )
 from ......_compat import cached_property
+from .certificates import (
+    CertificatesResource,
+    AsyncCertificatesResource,
+    CertificatesResourceWithRawResponse,
+    AsyncCertificatesResourceWithRawResponse,
+    CertificatesResourceWithStreamingResponse,
+    AsyncCertificatesResourceWithStreamingResponse,
+)
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
     to_raw_response_wrapper,
@@ -64,6 +72,10 @@ class DefaultResource(SyncAPIResource):
     @cached_property
     def fallback_domains(self) -> FallbackDomainsResource:
         return FallbackDomainsResource(self._client)
+
+    @cached_property
+    def certificates(self) -> CertificatesResource:
+        return CertificatesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> DefaultResourceWithRawResponse:
@@ -221,6 +233,10 @@ class AsyncDefaultResource(AsyncAPIResource):
     @cached_property
     def fallback_domains(self) -> AsyncFallbackDomainsResource:
         return AsyncFallbackDomainsResource(self._client)
+
+    @cached_property
+    def certificates(self) -> AsyncCertificatesResource:
+        return AsyncCertificatesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDefaultResourceWithRawResponse:
@@ -389,6 +405,10 @@ class DefaultResourceWithRawResponse:
     def fallback_domains(self) -> FallbackDomainsResourceWithRawResponse:
         return FallbackDomainsResourceWithRawResponse(self._default.fallback_domains)
 
+    @cached_property
+    def certificates(self) -> CertificatesResourceWithRawResponse:
+        return CertificatesResourceWithRawResponse(self._default.certificates)
+
 
 class AsyncDefaultResourceWithRawResponse:
     def __init__(self, default: AsyncDefaultResource) -> None:
@@ -412,6 +432,10 @@ class AsyncDefaultResourceWithRawResponse:
     @cached_property
     def fallback_domains(self) -> AsyncFallbackDomainsResourceWithRawResponse:
         return AsyncFallbackDomainsResourceWithRawResponse(self._default.fallback_domains)
+
+    @cached_property
+    def certificates(self) -> AsyncCertificatesResourceWithRawResponse:
+        return AsyncCertificatesResourceWithRawResponse(self._default.certificates)
 
 
 class DefaultResourceWithStreamingResponse:
@@ -437,6 +461,10 @@ class DefaultResourceWithStreamingResponse:
     def fallback_domains(self) -> FallbackDomainsResourceWithStreamingResponse:
         return FallbackDomainsResourceWithStreamingResponse(self._default.fallback_domains)
 
+    @cached_property
+    def certificates(self) -> CertificatesResourceWithStreamingResponse:
+        return CertificatesResourceWithStreamingResponse(self._default.certificates)
+
 
 class AsyncDefaultResourceWithStreamingResponse:
     def __init__(self, default: AsyncDefaultResource) -> None:
@@ -460,3 +488,7 @@ class AsyncDefaultResourceWithStreamingResponse:
     @cached_property
     def fallback_domains(self) -> AsyncFallbackDomainsResourceWithStreamingResponse:
         return AsyncFallbackDomainsResourceWithStreamingResponse(self._default.fallback_domains)
+
+    @cached_property
+    def certificates(self) -> AsyncCertificatesResourceWithStreamingResponse:
+        return AsyncCertificatesResourceWithStreamingResponse(self._default.certificates)
