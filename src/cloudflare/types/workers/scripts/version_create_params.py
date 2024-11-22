@@ -28,7 +28,7 @@ class VersionCreateParams(TypedDict, total=False):
 
 class MetadataAnnotations(TypedDict, total=False):
     workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
-    """Human-readable message about the version."""
+    """Human-readable message about the version. Truncated to 100 bytes."""
 
     workers_tag: Annotated[str, PropertyInfo(alias="workers/tag")]
     """User-provided identifier for the version."""
