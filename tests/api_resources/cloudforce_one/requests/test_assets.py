@@ -95,7 +95,7 @@ class TestAssets:
             asset_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            source="@/Users/me/test.doc",
+            source="@/Users/me/example.docx",
         )
         assert_matches_type(Optional[AssetUpdateResponse], asset, path=["response"])
 
@@ -347,7 +347,7 @@ class TestAsyncAssets:
             asset_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            source="@/Users/me/test.doc",
+            source="@/Users/me/example.docx",
         )
         assert_matches_type(Optional[AssetUpdateResponse], asset, path=["response"])
 
