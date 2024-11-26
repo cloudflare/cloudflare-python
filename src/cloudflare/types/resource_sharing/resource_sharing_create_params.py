@@ -38,5 +38,5 @@ class Resource(TypedDict, total=False):
     resource_id: Required[str]
     """Share Resource identifier."""
 
-    resource_type: Required[Literal["custom-ruleset"]]
+    resource_type: Required[Literal["custom-ruleset", "widget"]]
     """Resource Type."""
