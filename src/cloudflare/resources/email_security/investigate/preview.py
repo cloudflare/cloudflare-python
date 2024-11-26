@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import Type, cast
 
 import httpx
 
@@ -21,6 +21,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
+from ....types.email_security.investigate import preview_create_params
 from ....types.email_security.investigate.preview_get_response import PreviewGetResponse
 from ....types.email_security.investigate.preview_create_response import PreviewCreateResponse
 
@@ -51,7 +52,7 @@ class PreviewResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: List[str],
+        postfix_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,7 +66,7 @@ class PreviewResource(SyncAPIResource):
         Args:
           account_id: Account Identifier
 
-          body: A list of messages identfied by their `postfix_id`s that should be released.
+          postfix_id: The identifier of the message.
 
           extra_headers: Send extra headers
 
@@ -79,7 +80,7 @@ class PreviewResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/email-security/investigate/preview",
-            body=maybe_transform(body, List[str]),
+            body=maybe_transform({"postfix_id": postfix_id}, preview_create_params.PreviewCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -160,7 +161,7 @@ class AsyncPreviewResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: List[str],
+        postfix_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -174,7 +175,7 @@ class AsyncPreviewResource(AsyncAPIResource):
         Args:
           account_id: Account Identifier
 
-          body: A list of messages identfied by their `postfix_id`s that should be released.
+          postfix_id: The identifier of the message.
 
           extra_headers: Send extra headers
 
@@ -188,7 +189,7 @@ class AsyncPreviewResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/email-security/investigate/preview",
-            body=await async_maybe_transform(body, List[str]),
+            body=await async_maybe_transform({"postfix_id": postfix_id}, preview_create_params.PreviewCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

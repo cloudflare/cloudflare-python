@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, Optional, cast
+from typing import Any, Iterable, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -24,16 +24,9 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.email_security.settings import (
-    trusted_domain_edit_params,
-    trusted_domain_list_params,
-    trusted_domain_create_params,
-)
-from ....types.email_security.settings.trusted_domain_get_response import TrustedDomainGetResponse
-from ....types.email_security.settings.trusted_domain_edit_response import TrustedDomainEditResponse
+from ....types.email_security.settings import trusted_domain_list_params, trusted_domain_create_params
 from ....types.email_security.settings.trusted_domain_list_response import TrustedDomainListResponse
 from ....types.email_security.settings.trusted_domain_create_response import TrustedDomainCreateResponse
-from ....types.email_security.settings.trusted_domain_delete_response import TrustedDomainDeleteResponse
 
 __all__ = ["TrustedDomainsResource", "AsyncTrustedDomainsResource"]
 
@@ -80,6 +73,12 @@ class TrustedDomainsResource(SyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          is_recent: Select to prevent recently registered domains from triggering a Suspicious or
+              Malicious disposition.
+
+          is_similarity: Select for partner or other approved domains that have similar spelling to your
+              connected domains. Prevents listed domains from triggering a Spoof disposition.
 
           extra_headers: Send extra headers
 
@@ -238,141 +237,6 @@ class TrustedDomainsResource(SyncAPIResource):
             model=TrustedDomainListResponse,
         )
 
-    def delete(
-        self,
-        pattern_id: int,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TrustedDomainDeleteResponse:
-        """
-        Delete a trusted email domain
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._delete(
-            f"/accounts/{account_id}/email-security/settings/trusted_domains/{pattern_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TrustedDomainDeleteResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TrustedDomainDeleteResponse], ResultWrapper[TrustedDomainDeleteResponse]),
-        )
-
-    def edit(
-        self,
-        pattern_id: int,
-        *,
-        account_id: str,
-        comments: Optional[str] | NotGiven = NOT_GIVEN,
-        is_recent: Optional[bool] | NotGiven = NOT_GIVEN,
-        is_regex: Optional[bool] | NotGiven = NOT_GIVEN,
-        is_similarity: Optional[bool] | NotGiven = NOT_GIVEN,
-        pattern: Optional[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TrustedDomainEditResponse:
-        """
-        Update a trusted email domain
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._patch(
-            f"/accounts/{account_id}/email-security/settings/trusted_domains/{pattern_id}",
-            body=maybe_transform(
-                {
-                    "comments": comments,
-                    "is_recent": is_recent,
-                    "is_regex": is_regex,
-                    "is_similarity": is_similarity,
-                    "pattern": pattern,
-                },
-                trusted_domain_edit_params.TrustedDomainEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TrustedDomainEditResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TrustedDomainEditResponse], ResultWrapper[TrustedDomainEditResponse]),
-        )
-
-    def get(
-        self,
-        pattern_id: int,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TrustedDomainGetResponse:
-        """
-        Get a trusted email domain
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/email-security/settings/trusted_domains/{pattern_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TrustedDomainGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TrustedDomainGetResponse], ResultWrapper[TrustedDomainGetResponse]),
-        )
-
 
 class AsyncTrustedDomainsResource(AsyncAPIResource):
     @cached_property
@@ -416,6 +280,12 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          is_recent: Select to prevent recently registered domains from triggering a Suspicious or
+              Malicious disposition.
+
+          is_similarity: Select for partner or other approved domains that have similar spelling to your
+              connected domains. Prevents listed domains from triggering a Spoof disposition.
 
           extra_headers: Send extra headers
 
@@ -574,141 +444,6 @@ class AsyncTrustedDomainsResource(AsyncAPIResource):
             model=TrustedDomainListResponse,
         )
 
-    async def delete(
-        self,
-        pattern_id: int,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TrustedDomainDeleteResponse:
-        """
-        Delete a trusted email domain
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._delete(
-            f"/accounts/{account_id}/email-security/settings/trusted_domains/{pattern_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TrustedDomainDeleteResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TrustedDomainDeleteResponse], ResultWrapper[TrustedDomainDeleteResponse]),
-        )
-
-    async def edit(
-        self,
-        pattern_id: int,
-        *,
-        account_id: str,
-        comments: Optional[str] | NotGiven = NOT_GIVEN,
-        is_recent: Optional[bool] | NotGiven = NOT_GIVEN,
-        is_regex: Optional[bool] | NotGiven = NOT_GIVEN,
-        is_similarity: Optional[bool] | NotGiven = NOT_GIVEN,
-        pattern: Optional[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TrustedDomainEditResponse:
-        """
-        Update a trusted email domain
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._patch(
-            f"/accounts/{account_id}/email-security/settings/trusted_domains/{pattern_id}",
-            body=await async_maybe_transform(
-                {
-                    "comments": comments,
-                    "is_recent": is_recent,
-                    "is_regex": is_regex,
-                    "is_similarity": is_similarity,
-                    "pattern": pattern,
-                },
-                trusted_domain_edit_params.TrustedDomainEditParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TrustedDomainEditResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TrustedDomainEditResponse], ResultWrapper[TrustedDomainEditResponse]),
-        )
-
-    async def get(
-        self,
-        pattern_id: int,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TrustedDomainGetResponse:
-        """
-        Get a trusted email domain
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/email-security/settings/trusted_domains/{pattern_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TrustedDomainGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TrustedDomainGetResponse], ResultWrapper[TrustedDomainGetResponse]),
-        )
-
 
 class TrustedDomainsResourceWithRawResponse:
     def __init__(self, trusted_domains: TrustedDomainsResource) -> None:
@@ -719,15 +454,6 @@ class TrustedDomainsResourceWithRawResponse:
         )
         self.list = to_raw_response_wrapper(
             trusted_domains.list,
-        )
-        self.delete = to_raw_response_wrapper(
-            trusted_domains.delete,
-        )
-        self.edit = to_raw_response_wrapper(
-            trusted_domains.edit,
-        )
-        self.get = to_raw_response_wrapper(
-            trusted_domains.get,
         )
 
 
@@ -741,15 +467,6 @@ class AsyncTrustedDomainsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             trusted_domains.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            trusted_domains.delete,
-        )
-        self.edit = async_to_raw_response_wrapper(
-            trusted_domains.edit,
-        )
-        self.get = async_to_raw_response_wrapper(
-            trusted_domains.get,
-        )
 
 
 class TrustedDomainsResourceWithStreamingResponse:
@@ -762,15 +479,6 @@ class TrustedDomainsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             trusted_domains.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            trusted_domains.delete,
-        )
-        self.edit = to_streamed_response_wrapper(
-            trusted_domains.edit,
-        )
-        self.get = to_streamed_response_wrapper(
-            trusted_domains.get,
-        )
 
 
 class AsyncTrustedDomainsResourceWithStreamingResponse:
@@ -782,13 +490,4 @@ class AsyncTrustedDomainsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             trusted_domains.list,
-        )
-        self.delete = async_to_streamed_response_wrapper(
-            trusted_domains.delete,
-        )
-        self.edit = async_to_streamed_response_wrapper(
-            trusted_domains.edit,
-        )
-        self.get = async_to_streamed_response_wrapper(
-            trusted_domains.get,
         )

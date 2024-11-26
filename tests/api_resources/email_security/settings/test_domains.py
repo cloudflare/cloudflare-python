@@ -161,6 +161,7 @@ class TestDomains:
         domain = client.email_security.settings.domains.edit(
             domain_id=2400,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
         )
         assert_matches_type(DomainEditResponse, domain, path=["response"])
 
@@ -169,10 +170,15 @@ class TestDomains:
         domain = client.email_security.settings.domains.edit(
             domain_id=2400,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
             domain="domain",
+            drop_dispositions=["MALICIOUS"],
             folder="AllItems",
             integration_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             lookback_hops=1,
+            require_tls_inbound=True,
+            require_tls_outbound=True,
+            transport="transport",
         )
         assert_matches_type(DomainEditResponse, domain, path=["response"])
 
@@ -181,6 +187,7 @@ class TestDomains:
         response = client.email_security.settings.domains.with_raw_response.edit(
             domain_id=2400,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
         )
 
         assert response.is_closed is True
@@ -193,6 +200,7 @@ class TestDomains:
         with client.email_security.settings.domains.with_streaming_response.edit(
             domain_id=2400,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -208,6 +216,7 @@ class TestDomains:
             client.email_security.settings.domains.with_raw_response.edit(
                 domain_id=2400,
                 account_id="",
+                ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
             )
 
     @parametrize
@@ -393,6 +402,7 @@ class TestAsyncDomains:
         domain = await async_client.email_security.settings.domains.edit(
             domain_id=2400,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
         )
         assert_matches_type(DomainEditResponse, domain, path=["response"])
 
@@ -401,10 +411,15 @@ class TestAsyncDomains:
         domain = await async_client.email_security.settings.domains.edit(
             domain_id=2400,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
             domain="domain",
+            drop_dispositions=["MALICIOUS"],
             folder="AllItems",
             integration_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             lookback_hops=1,
+            require_tls_inbound=True,
+            require_tls_outbound=True,
+            transport="transport",
         )
         assert_matches_type(DomainEditResponse, domain, path=["response"])
 
@@ -413,6 +428,7 @@ class TestAsyncDomains:
         response = await async_client.email_security.settings.domains.with_raw_response.edit(
             domain_id=2400,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
         )
 
         assert response.is_closed is True
@@ -425,6 +441,7 @@ class TestAsyncDomains:
         async with async_client.email_security.settings.domains.with_streaming_response.edit(
             domain_id=2400,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -440,6 +457,7 @@ class TestAsyncDomains:
             await async_client.email_security.settings.domains.with_raw_response.edit(
                 domain_id=2400,
                 account_id="",
+                ip_restrictions=["192.0.2.0/24", "2001:db8::/32"],
             )
 
     @parametrize
