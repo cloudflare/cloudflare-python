@@ -68,8 +68,8 @@ class OriginCACertificatesResource(SyncAPIResource):
     ) -> Optional[OriginCACertificate]:
         """Create an Origin CA certificate.
 
-        Use your Origin CA Key as your User Service Key
-        when calling this endpoint ([see above](#requests)).
+        You can use an Origin CA Key as your User
+        Service Key or an API token when calling this endpoint ([see above](#requests)).
 
         Args:
           csr: The Certificate Signing Request (CSR). Must be newline-encoded.
@@ -124,8 +124,8 @@ class OriginCACertificatesResource(SyncAPIResource):
     ) -> SyncSinglePage[OriginCACertificate]:
         """List all existing Origin CA certificates for a given zone.
 
-        Use your Origin CA
-        Key as your User Service Key when calling this endpoint
+        You can use an Origin
+        CA Key as your User Service Key or an API token when calling this endpoint
         ([see above](#requests)).
 
         Args:
@@ -167,9 +167,9 @@ class OriginCACertificatesResource(SyncAPIResource):
     ) -> Optional[OriginCACertificateDeleteResponse]:
         """Revoke an existing Origin CA certificate by its serial number.
 
-        Use your Origin
-        CA Key as your User Service Key when calling this endpoint
-        ([see above](#requests)).
+        You can use an
+        Origin CA Key as your User Service Key or an API token when calling this
+        endpoint ([see above](#requests)).
 
         Args:
           certificate_id: Identifier
@@ -211,9 +211,9 @@ class OriginCACertificatesResource(SyncAPIResource):
     ) -> Optional[OriginCACertificate]:
         """Get an existing Origin CA certificate by its serial number.
 
-        Use your Origin CA
-        Key as your User Service Key when calling this endpoint
-        ([see above](#requests)).
+        You can use an
+        Origin CA Key as your User Service Key or an API token when calling this
+        endpoint ([see above](#requests)).
 
         Args:
           certificate_id: Identifier
@@ -277,8 +277,8 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
     ) -> Optional[OriginCACertificate]:
         """Create an Origin CA certificate.
 
-        Use your Origin CA Key as your User Service Key
-        when calling this endpoint ([see above](#requests)).
+        You can use an Origin CA Key as your User
+        Service Key or an API token when calling this endpoint ([see above](#requests)).
 
         Args:
           csr: The Certificate Signing Request (CSR). Must be newline-encoded.
@@ -333,8 +333,8 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
     ) -> AsyncPaginator[OriginCACertificate, AsyncSinglePage[OriginCACertificate]]:
         """List all existing Origin CA certificates for a given zone.
 
-        Use your Origin CA
-        Key as your User Service Key when calling this endpoint
+        You can use an Origin
+        CA Key as your User Service Key or an API token when calling this endpoint
         ([see above](#requests)).
 
         Args:
@@ -376,9 +376,9 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
     ) -> Optional[OriginCACertificateDeleteResponse]:
         """Revoke an existing Origin CA certificate by its serial number.
 
-        Use your Origin
-        CA Key as your User Service Key when calling this endpoint
-        ([see above](#requests)).
+        You can use an
+        Origin CA Key as your User Service Key or an API token when calling this
+        endpoint ([see above](#requests)).
 
         Args:
           certificate_id: Identifier
@@ -420,9 +420,9 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
     ) -> Optional[OriginCACertificate]:
         """Get an existing Origin CA certificate by its serial number.
 
-        Use your Origin CA
-        Key as your User Service Key when calling this endpoint
-        ([see above](#requests)).
+        You can use an
+        Origin CA Key as your User Service Key or an API token when calling this
+        endpoint ([see above](#requests)).
 
         Args:
           certificate_id: Identifier
