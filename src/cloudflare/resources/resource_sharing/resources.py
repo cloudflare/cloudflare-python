@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -13,22 +13,6 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from .resources import (
-    ResourcesResource,
-    AsyncResourcesResource,
-    ResourcesResourceWithRawResponse,
-    AsyncResourcesResourceWithRawResponse,
-    ResourcesResourceWithStreamingResponse,
-    AsyncResourcesResourceWithStreamingResponse,
-)
-from .recipients import (
-    RecipientsResource,
-    AsyncRecipientsResource,
-    RecipientsResourceWithRawResponse,
-    AsyncRecipientsResourceWithRawResponse,
-    RecipientsResourceWithStreamingResponse,
-    AsyncRecipientsResourceWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -39,69 +23,67 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.resource_sharing import (
-    resource_sharing_list_params,
-    resource_sharing_create_params,
-    resource_sharing_update_params,
-)
-from ...types.resource_sharing.resource_sharing_get_response import ResourceSharingGetResponse
-from ...types.resource_sharing.resource_sharing_list_response import ResourceSharingListResponse
-from ...types.resource_sharing.resource_sharing_create_response import ResourceSharingCreateResponse
-from ...types.resource_sharing.resource_sharing_delete_response import ResourceSharingDeleteResponse
-from ...types.resource_sharing.resource_sharing_update_response import ResourceSharingUpdateResponse
+from ...types.resource_sharing import resource_list_params, resource_create_params, resource_update_params
+from ...types.resource_sharing.resource_get_response import ResourceGetResponse
+from ...types.resource_sharing.resource_list_response import ResourceListResponse
+from ...types.resource_sharing.resource_create_response import ResourceCreateResponse
+from ...types.resource_sharing.resource_delete_response import ResourceDeleteResponse
+from ...types.resource_sharing.resource_update_response import ResourceUpdateResponse
 
-__all__ = ["ResourceSharingResource", "AsyncResourceSharingResource"]
+__all__ = ["ResourcesResource", "AsyncResourcesResource"]
 
 
-class ResourceSharingResource(SyncAPIResource):
+class ResourcesResource(SyncAPIResource):
     @cached_property
-    def recipients(self) -> RecipientsResource:
-        return RecipientsResource(self._client)
-
-    @cached_property
-    def resources(self) -> ResourcesResource:
-        return ResourcesResource(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> ResourceSharingResourceWithRawResponse:
+    def with_raw_response(self) -> ResourcesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return ResourceSharingResourceWithRawResponse(self)
+        return ResourcesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ResourceSharingResourceWithStreamingResponse:
+    def with_streaming_response(self) -> ResourcesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return ResourceSharingResourceWithStreamingResponse(self)
+        return ResourcesResourceWithStreamingResponse(self)
 
     def create(
         self,
+        share_identifier: str,
         *,
         account_id: str,
-        name: str,
-        recipients: Iterable[resource_sharing_create_params.Recipient],
-        resources: Iterable[resource_sharing_create_params.Resource],
+        meta: object,
+        resource_account_id: str,
+        resource_id: str,
+        resource_type: Literal["custom-ruleset"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ResourceSharingCreateResponse]:
+    ) -> Optional[ResourceCreateResponse]:
         """
-        Create a new share
+        Create a new share resource
 
         Args:
           account_id: Account identifier.
 
-          name: The name of the share.
+          share_identifier: Share identifier tag.
+
+          meta: Resource Metadata.
+
+          resource_account_id: Account identifier.
+
+          resource_id: Share Resource identifier.
+
+          resource_type: Resource Type.
 
           extra_headers: Send extra headers
 
@@ -113,49 +95,55 @@ class ResourceSharingResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not share_identifier:
+            raise ValueError(f"Expected a non-empty value for `share_identifier` but received {share_identifier!r}")
         return self._post(
-            f"/accounts/{account_id}/shares",
+            f"/accounts/{account_id}/shares/{share_identifier}/resources",
             body=maybe_transform(
                 {
-                    "name": name,
-                    "recipients": recipients,
-                    "resources": resources,
+                    "meta": meta,
+                    "resource_account_id": resource_account_id,
+                    "resource_id": resource_id,
+                    "resource_type": resource_type,
                 },
-                resource_sharing_create_params.ResourceSharingCreateParams,
+                resource_create_params.ResourceCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ResourceSharingCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ResourceCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ResourceSharingCreateResponse]], ResultWrapper[ResourceSharingCreateResponse]),
+            cast_to=cast(Type[Optional[ResourceCreateResponse]], ResultWrapper[ResourceCreateResponse]),
         )
 
     def update(
         self,
-        share_identifier: str,
+        resource_identifier: str,
         *,
         account_id: str,
-        name: str,
+        share_identifier: str,
+        meta: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ResourceSharingUpdateResponse]:
+    ) -> Optional[ResourceUpdateResponse]:
         """
-        Updating is not immediate, an updated share object with a new status will be
-        returned.
+        Update is not immediate, an updated share resource object with a new status will
+        be returned.
 
         Args:
           account_id: Account identifier.
 
           share_identifier: Share identifier tag.
 
-          name: The name of the share.
+          resource_identifier: Share Resource identifier.
+
+          meta: Resource Metadata.
 
           extra_headers: Send extra headers
 
@@ -169,56 +157,54 @@ class ResourceSharingResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_identifier:
             raise ValueError(f"Expected a non-empty value for `share_identifier` but received {share_identifier!r}")
+        if not resource_identifier:
+            raise ValueError(
+                f"Expected a non-empty value for `resource_identifier` but received {resource_identifier!r}"
+            )
         return self._put(
-            f"/accounts/{account_id}/shares/{share_identifier}",
-            body=maybe_transform({"name": name}, resource_sharing_update_params.ResourceSharingUpdateParams),
+            f"/accounts/{account_id}/shares/{share_identifier}/resources/{resource_identifier}",
+            body=maybe_transform({"meta": meta}, resource_update_params.ResourceUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ResourceSharingUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ResourceUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ResourceSharingUpdateResponse]], ResultWrapper[ResourceSharingUpdateResponse]),
+            cast_to=cast(Type[Optional[ResourceUpdateResponse]], ResultWrapper[ResourceUpdateResponse]),
         )
 
     def list(
         self,
+        share_identifier: str,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        kind: Literal["sent", "received"] | NotGiven = NOT_GIVEN,
-        order: Literal["name", "created"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        resource_type: Literal["custom-ruleset"] | NotGiven = NOT_GIVEN,
         status: Literal["active", "deleting", "deleted"] | NotGiven = NOT_GIVEN,
-        target_type: Literal["account", "organization"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[ResourceSharingListResponse]:
+    ) -> SyncV4PagePaginationArray[ResourceListResponse]:
         """
-        Lists all account shares.
+        List share resources by share ID.
 
         Args:
           account_id: Account identifier.
 
-          direction: Direction to sort objects.
-
-          kind: Filter shares by kind.
-
-          order: Order shares by values in the given field.
+          share_identifier: Share identifier tag.
 
           page: Page number.
 
           per_page: Number of objects to return per page.
 
-          status: Filter shares by status.
+          resource_type: Filter share resources by resource_type.
 
-          target_type: Filter shares by target_type.
+          status: Filter share resources by status.
 
           extra_headers: Send extra headers
 
@@ -230,9 +216,11 @@ class ResourceSharingResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not share_identifier:
+            raise ValueError(f"Expected a non-empty value for `share_identifier` but received {share_identifier!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/shares",
-            page=SyncV4PagePaginationArray[ResourceSharingListResponse],
+            f"/accounts/{account_id}/shares/{share_identifier}/resources",
+            page=SyncV4PagePaginationArray[ResourceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -240,40 +228,40 @@ class ResourceSharingResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "direction": direction,
-                        "kind": kind,
-                        "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "resource_type": resource_type,
                         "status": status,
-                        "target_type": target_type,
                     },
-                    resource_sharing_list_params.ResourceSharingListParams,
+                    resource_list_params.ResourceListParams,
                 ),
             ),
-            model=ResourceSharingListResponse,
+            model=ResourceListResponse,
         )
 
     def delete(
         self,
-        share_identifier: str,
+        resource_identifier: str,
         *,
         account_id: str,
+        share_identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ResourceSharingDeleteResponse]:
+    ) -> Optional[ResourceDeleteResponse]:
         """
-        Deletion is not immediate, an updated share object with a new status will be
-        returned.
+        Deletion is not immediate, an updated share resource object with a new status
+        will be returned.
 
         Args:
           account_id: Account identifier.
 
           share_identifier: Share identifier tag.
+
+          resource_identifier: Share Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -287,37 +275,44 @@ class ResourceSharingResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_identifier:
             raise ValueError(f"Expected a non-empty value for `share_identifier` but received {share_identifier!r}")
+        if not resource_identifier:
+            raise ValueError(
+                f"Expected a non-empty value for `resource_identifier` but received {resource_identifier!r}"
+            )
         return self._delete(
-            f"/accounts/{account_id}/shares/{share_identifier}",
+            f"/accounts/{account_id}/shares/{share_identifier}/resources/{resource_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ResourceSharingDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ResourceDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ResourceSharingDeleteResponse]], ResultWrapper[ResourceSharingDeleteResponse]),
+            cast_to=cast(Type[Optional[ResourceDeleteResponse]], ResultWrapper[ResourceDeleteResponse]),
         )
 
     def get(
         self,
-        share_identifier: str,
+        resource_identifier: str,
         *,
         account_id: str,
+        share_identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ResourceSharingGetResponse]:
+    ) -> Optional[ResourceGetResponse]:
         """
-        Fetches share by ID.
+        Get share resource by ID.
 
         Args:
           account_id: Account identifier.
 
           share_identifier: Share identifier tag.
+
+          resource_identifier: Share Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -331,122 +326,74 @@ class ResourceSharingResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_identifier:
             raise ValueError(f"Expected a non-empty value for `share_identifier` but received {share_identifier!r}")
+        if not resource_identifier:
+            raise ValueError(
+                f"Expected a non-empty value for `resource_identifier` but received {resource_identifier!r}"
+            )
         return self._get(
-            f"/accounts/{account_id}/shares/{share_identifier}",
+            f"/accounts/{account_id}/shares/{share_identifier}/resources/{resource_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ResourceSharingGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ResourceGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ResourceSharingGetResponse]], ResultWrapper[ResourceSharingGetResponse]),
+            cast_to=cast(Type[Optional[ResourceGetResponse]], ResultWrapper[ResourceGetResponse]),
         )
 
 
-class AsyncResourceSharingResource(AsyncAPIResource):
+class AsyncResourcesResource(AsyncAPIResource):
     @cached_property
-    def recipients(self) -> AsyncRecipientsResource:
-        return AsyncRecipientsResource(self._client)
-
-    @cached_property
-    def resources(self) -> AsyncResourcesResource:
-        return AsyncResourcesResource(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> AsyncResourceSharingResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncResourcesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncResourceSharingResourceWithRawResponse(self)
+        return AsyncResourcesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncResourceSharingResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncResourcesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncResourceSharingResourceWithStreamingResponse(self)
+        return AsyncResourcesResourceWithStreamingResponse(self)
 
     async def create(
-        self,
-        *,
-        account_id: str,
-        name: str,
-        recipients: Iterable[resource_sharing_create_params.Recipient],
-        resources: Iterable[resource_sharing_create_params.Resource],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ResourceSharingCreateResponse]:
-        """
-        Create a new share
-
-        Args:
-          account_id: Account identifier.
-
-          name: The name of the share.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/shares",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "recipients": recipients,
-                    "resources": resources,
-                },
-                resource_sharing_create_params.ResourceSharingCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ResourceSharingCreateResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[ResourceSharingCreateResponse]], ResultWrapper[ResourceSharingCreateResponse]),
-        )
-
-    async def update(
         self,
         share_identifier: str,
         *,
         account_id: str,
-        name: str,
+        meta: object,
+        resource_account_id: str,
+        resource_id: str,
+        resource_type: Literal["custom-ruleset"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ResourceSharingUpdateResponse]:
+    ) -> Optional[ResourceCreateResponse]:
         """
-        Updating is not immediate, an updated share object with a new status will be
-        returned.
+        Create a new share resource
 
         Args:
           account_id: Account identifier.
 
           share_identifier: Share identifier tag.
 
-          name: The name of the share.
+          meta: Resource Metadata.
+
+          resource_account_id: Account identifier.
+
+          resource_id: Share Resource identifier.
+
+          resource_type: Resource Type.
 
           extra_headers: Send extra headers
 
@@ -460,58 +407,53 @@ class AsyncResourceSharingResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_identifier:
             raise ValueError(f"Expected a non-empty value for `share_identifier` but received {share_identifier!r}")
-        return await self._put(
-            f"/accounts/{account_id}/shares/{share_identifier}",
+        return await self._post(
+            f"/accounts/{account_id}/shares/{share_identifier}/resources",
             body=await async_maybe_transform(
-                {"name": name}, resource_sharing_update_params.ResourceSharingUpdateParams
+                {
+                    "meta": meta,
+                    "resource_account_id": resource_account_id,
+                    "resource_id": resource_id,
+                    "resource_type": resource_type,
+                },
+                resource_create_params.ResourceCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ResourceSharingUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ResourceCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ResourceSharingUpdateResponse]], ResultWrapper[ResourceSharingUpdateResponse]),
+            cast_to=cast(Type[Optional[ResourceCreateResponse]], ResultWrapper[ResourceCreateResponse]),
         )
 
-    def list(
+    async def update(
         self,
+        resource_identifier: str,
         *,
         account_id: str,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        kind: Literal["sent", "received"] | NotGiven = NOT_GIVEN,
-        order: Literal["name", "created"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        status: Literal["active", "deleting", "deleted"] | NotGiven = NOT_GIVEN,
-        target_type: Literal["account", "organization"] | NotGiven = NOT_GIVEN,
+        share_identifier: str,
+        meta: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ResourceSharingListResponse, AsyncV4PagePaginationArray[ResourceSharingListResponse]]:
+    ) -> Optional[ResourceUpdateResponse]:
         """
-        Lists all account shares.
+        Update is not immediate, an updated share resource object with a new status will
+        be returned.
 
         Args:
           account_id: Account identifier.
 
-          direction: Direction to sort objects.
+          share_identifier: Share identifier tag.
 
-          kind: Filter shares by kind.
+          resource_identifier: Share Resource identifier.
 
-          order: Order shares by values in the given field.
-
-          page: Page number.
-
-          per_page: Number of objects to return per page.
-
-          status: Filter shares by status.
-
-          target_type: Filter shares by target_type.
+          meta: Resource Metadata.
 
           extra_headers: Send extra headers
 
@@ -523,9 +465,72 @@ class AsyncResourceSharingResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not share_identifier:
+            raise ValueError(f"Expected a non-empty value for `share_identifier` but received {share_identifier!r}")
+        if not resource_identifier:
+            raise ValueError(
+                f"Expected a non-empty value for `resource_identifier` but received {resource_identifier!r}"
+            )
+        return await self._put(
+            f"/accounts/{account_id}/shares/{share_identifier}/resources/{resource_identifier}",
+            body=await async_maybe_transform({"meta": meta}, resource_update_params.ResourceUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ResourceUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[ResourceUpdateResponse]], ResultWrapper[ResourceUpdateResponse]),
+        )
+
+    def list(
+        self,
+        share_identifier: str,
+        *,
+        account_id: str,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        resource_type: Literal["custom-ruleset"] | NotGiven = NOT_GIVEN,
+        status: Literal["active", "deleting", "deleted"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[ResourceListResponse, AsyncV4PagePaginationArray[ResourceListResponse]]:
+        """
+        List share resources by share ID.
+
+        Args:
+          account_id: Account identifier.
+
+          share_identifier: Share identifier tag.
+
+          page: Page number.
+
+          per_page: Number of objects to return per page.
+
+          resource_type: Filter share resources by resource_type.
+
+          status: Filter share resources by status.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not share_identifier:
+            raise ValueError(f"Expected a non-empty value for `share_identifier` but received {share_identifier!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/shares",
-            page=AsyncV4PagePaginationArray[ResourceSharingListResponse],
+            f"/accounts/{account_id}/shares/{share_identifier}/resources",
+            page=AsyncV4PagePaginationArray[ResourceListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -533,40 +538,40 @@ class AsyncResourceSharingResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "direction": direction,
-                        "kind": kind,
-                        "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "resource_type": resource_type,
                         "status": status,
-                        "target_type": target_type,
                     },
-                    resource_sharing_list_params.ResourceSharingListParams,
+                    resource_list_params.ResourceListParams,
                 ),
             ),
-            model=ResourceSharingListResponse,
+            model=ResourceListResponse,
         )
 
     async def delete(
         self,
-        share_identifier: str,
+        resource_identifier: str,
         *,
         account_id: str,
+        share_identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ResourceSharingDeleteResponse]:
+    ) -> Optional[ResourceDeleteResponse]:
         """
-        Deletion is not immediate, an updated share object with a new status will be
-        returned.
+        Deletion is not immediate, an updated share resource object with a new status
+        will be returned.
 
         Args:
           account_id: Account identifier.
 
           share_identifier: Share identifier tag.
+
+          resource_identifier: Share Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -580,37 +585,44 @@ class AsyncResourceSharingResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_identifier:
             raise ValueError(f"Expected a non-empty value for `share_identifier` but received {share_identifier!r}")
+        if not resource_identifier:
+            raise ValueError(
+                f"Expected a non-empty value for `resource_identifier` but received {resource_identifier!r}"
+            )
         return await self._delete(
-            f"/accounts/{account_id}/shares/{share_identifier}",
+            f"/accounts/{account_id}/shares/{share_identifier}/resources/{resource_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ResourceSharingDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ResourceDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ResourceSharingDeleteResponse]], ResultWrapper[ResourceSharingDeleteResponse]),
+            cast_to=cast(Type[Optional[ResourceDeleteResponse]], ResultWrapper[ResourceDeleteResponse]),
         )
 
     async def get(
         self,
-        share_identifier: str,
+        resource_identifier: str,
         *,
         account_id: str,
+        share_identifier: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ResourceSharingGetResponse]:
+    ) -> Optional[ResourceGetResponse]:
         """
-        Fetches share by ID.
+        Get share resource by ID.
 
         Args:
           account_id: Account identifier.
 
           share_identifier: Share identifier tag.
+
+          resource_identifier: Share Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -624,130 +636,102 @@ class AsyncResourceSharingResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not share_identifier:
             raise ValueError(f"Expected a non-empty value for `share_identifier` but received {share_identifier!r}")
+        if not resource_identifier:
+            raise ValueError(
+                f"Expected a non-empty value for `resource_identifier` but received {resource_identifier!r}"
+            )
         return await self._get(
-            f"/accounts/{account_id}/shares/{share_identifier}",
+            f"/accounts/{account_id}/shares/{share_identifier}/resources/{resource_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ResourceSharingGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ResourceGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ResourceSharingGetResponse]], ResultWrapper[ResourceSharingGetResponse]),
+            cast_to=cast(Type[Optional[ResourceGetResponse]], ResultWrapper[ResourceGetResponse]),
         )
 
 
-class ResourceSharingResourceWithRawResponse:
-    def __init__(self, resource_sharing: ResourceSharingResource) -> None:
-        self._resource_sharing = resource_sharing
+class ResourcesResourceWithRawResponse:
+    def __init__(self, resources: ResourcesResource) -> None:
+        self._resources = resources
 
         self.create = to_raw_response_wrapper(
-            resource_sharing.create,
+            resources.create,
         )
         self.update = to_raw_response_wrapper(
-            resource_sharing.update,
+            resources.update,
         )
         self.list = to_raw_response_wrapper(
-            resource_sharing.list,
+            resources.list,
         )
         self.delete = to_raw_response_wrapper(
-            resource_sharing.delete,
+            resources.delete,
         )
         self.get = to_raw_response_wrapper(
-            resource_sharing.get,
+            resources.get,
         )
 
-    @cached_property
-    def recipients(self) -> RecipientsResourceWithRawResponse:
-        return RecipientsResourceWithRawResponse(self._resource_sharing.recipients)
 
-    @cached_property
-    def resources(self) -> ResourcesResourceWithRawResponse:
-        return ResourcesResourceWithRawResponse(self._resource_sharing.resources)
-
-
-class AsyncResourceSharingResourceWithRawResponse:
-    def __init__(self, resource_sharing: AsyncResourceSharingResource) -> None:
-        self._resource_sharing = resource_sharing
+class AsyncResourcesResourceWithRawResponse:
+    def __init__(self, resources: AsyncResourcesResource) -> None:
+        self._resources = resources
 
         self.create = async_to_raw_response_wrapper(
-            resource_sharing.create,
+            resources.create,
         )
         self.update = async_to_raw_response_wrapper(
-            resource_sharing.update,
+            resources.update,
         )
         self.list = async_to_raw_response_wrapper(
-            resource_sharing.list,
+            resources.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            resource_sharing.delete,
+            resources.delete,
         )
         self.get = async_to_raw_response_wrapper(
-            resource_sharing.get,
+            resources.get,
         )
 
-    @cached_property
-    def recipients(self) -> AsyncRecipientsResourceWithRawResponse:
-        return AsyncRecipientsResourceWithRawResponse(self._resource_sharing.recipients)
 
-    @cached_property
-    def resources(self) -> AsyncResourcesResourceWithRawResponse:
-        return AsyncResourcesResourceWithRawResponse(self._resource_sharing.resources)
-
-
-class ResourceSharingResourceWithStreamingResponse:
-    def __init__(self, resource_sharing: ResourceSharingResource) -> None:
-        self._resource_sharing = resource_sharing
+class ResourcesResourceWithStreamingResponse:
+    def __init__(self, resources: ResourcesResource) -> None:
+        self._resources = resources
 
         self.create = to_streamed_response_wrapper(
-            resource_sharing.create,
+            resources.create,
         )
         self.update = to_streamed_response_wrapper(
-            resource_sharing.update,
+            resources.update,
         )
         self.list = to_streamed_response_wrapper(
-            resource_sharing.list,
+            resources.list,
         )
         self.delete = to_streamed_response_wrapper(
-            resource_sharing.delete,
+            resources.delete,
         )
         self.get = to_streamed_response_wrapper(
-            resource_sharing.get,
+            resources.get,
         )
 
-    @cached_property
-    def recipients(self) -> RecipientsResourceWithStreamingResponse:
-        return RecipientsResourceWithStreamingResponse(self._resource_sharing.recipients)
 
-    @cached_property
-    def resources(self) -> ResourcesResourceWithStreamingResponse:
-        return ResourcesResourceWithStreamingResponse(self._resource_sharing.resources)
-
-
-class AsyncResourceSharingResourceWithStreamingResponse:
-    def __init__(self, resource_sharing: AsyncResourceSharingResource) -> None:
-        self._resource_sharing = resource_sharing
+class AsyncResourcesResourceWithStreamingResponse:
+    def __init__(self, resources: AsyncResourcesResource) -> None:
+        self._resources = resources
 
         self.create = async_to_streamed_response_wrapper(
-            resource_sharing.create,
+            resources.create,
         )
         self.update = async_to_streamed_response_wrapper(
-            resource_sharing.update,
+            resources.update,
         )
         self.list = async_to_streamed_response_wrapper(
-            resource_sharing.list,
+            resources.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            resource_sharing.delete,
+            resources.delete,
         )
         self.get = async_to_streamed_response_wrapper(
-            resource_sharing.get,
+            resources.get,
         )
-
-    @cached_property
-    def recipients(self) -> AsyncRecipientsResourceWithStreamingResponse:
-        return AsyncRecipientsResourceWithStreamingResponse(self._resource_sharing.recipients)
-
-    @cached_property
-    def resources(self) -> AsyncResourcesResourceWithStreamingResponse:
-        return AsyncResourcesResourceWithStreamingResponse(self._resource_sharing.resources)
