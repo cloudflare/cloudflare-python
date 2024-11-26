@@ -11,7 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.warp_connector import (
+from cloudflare.types.zero_trust.tunnels import (
     WARPConnectorGetResponse,
     WARPConnectorEditResponse,
     WARPConnectorListResponse,
@@ -27,7 +27,7 @@ class TestWARPConnector:
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
-        warp_connector = client.warp_connector.create(
+        warp_connector = client.zero_trust.tunnels.warp_connector.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
         )
@@ -35,7 +35,7 @@ class TestWARPConnector:
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.warp_connector.with_raw_response.create(
+        response = client.zero_trust.tunnels.warp_connector.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
         )
@@ -47,7 +47,7 @@ class TestWARPConnector:
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
-        with client.warp_connector.with_streaming_response.create(
+        with client.zero_trust.tunnels.warp_connector.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
         ) as response:
@@ -62,21 +62,21 @@ class TestWARPConnector:
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.warp_connector.with_raw_response.create(
+            client.zero_trust.tunnels.warp_connector.with_raw_response.create(
                 account_id="",
                 name="blog",
             )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        warp_connector = client.warp_connector.list(
+        warp_connector = client.zero_trust.tunnels.warp_connector.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(SyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
-        warp_connector = client.warp_connector.list(
+        warp_connector = client.zero_trust.tunnels.warp_connector.list(
             account_id="699d98642c564d2e855e9661899b7252",
             exclude_prefix="vpc1-",
             existed_at=parse_datetime("2019-10-12T07:20:50.52Z"),
@@ -94,7 +94,7 @@ class TestWARPConnector:
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.warp_connector.with_raw_response.list(
+        response = client.zero_trust.tunnels.warp_connector.with_raw_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -105,7 +105,7 @@ class TestWARPConnector:
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.warp_connector.with_streaming_response.list(
+        with client.zero_trust.tunnels.warp_connector.with_streaming_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -119,13 +119,13 @@ class TestWARPConnector:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.warp_connector.with_raw_response.list(
+            client.zero_trust.tunnels.warp_connector.with_raw_response.list(
                 account_id="",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
-        warp_connector = client.warp_connector.delete(
+        warp_connector = client.zero_trust.tunnels.warp_connector.delete(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -133,7 +133,7 @@ class TestWARPConnector:
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.warp_connector.with_raw_response.delete(
+        response = client.zero_trust.tunnels.warp_connector.with_raw_response.delete(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -145,7 +145,7 @@ class TestWARPConnector:
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.warp_connector.with_streaming_response.delete(
+        with client.zero_trust.tunnels.warp_connector.with_streaming_response.delete(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -160,20 +160,20 @@ class TestWARPConnector:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.warp_connector.with_raw_response.delete(
+            client.zero_trust.tunnels.warp_connector.with_raw_response.delete(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            client.warp_connector.with_raw_response.delete(
+            client.zero_trust.tunnels.warp_connector.with_raw_response.delete(
                 tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
-        warp_connector = client.warp_connector.edit(
+        warp_connector = client.zero_trust.tunnels.warp_connector.edit(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -181,7 +181,7 @@ class TestWARPConnector:
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
-        warp_connector = client.warp_connector.edit(
+        warp_connector = client.zero_trust.tunnels.warp_connector.edit(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
@@ -191,7 +191,7 @@ class TestWARPConnector:
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
-        response = client.warp_connector.with_raw_response.edit(
+        response = client.zero_trust.tunnels.warp_connector.with_raw_response.edit(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -203,7 +203,7 @@ class TestWARPConnector:
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
-        with client.warp_connector.with_streaming_response.edit(
+        with client.zero_trust.tunnels.warp_connector.with_streaming_response.edit(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -218,20 +218,20 @@ class TestWARPConnector:
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.warp_connector.with_raw_response.edit(
+            client.zero_trust.tunnels.warp_connector.with_raw_response.edit(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            client.warp_connector.with_raw_response.edit(
+            client.zero_trust.tunnels.warp_connector.with_raw_response.edit(
                 tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        warp_connector = client.warp_connector.get(
+        warp_connector = client.zero_trust.tunnels.warp_connector.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -239,7 +239,7 @@ class TestWARPConnector:
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.warp_connector.with_raw_response.get(
+        response = client.zero_trust.tunnels.warp_connector.with_raw_response.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -251,7 +251,7 @@ class TestWARPConnector:
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.warp_connector.with_streaming_response.get(
+        with client.zero_trust.tunnels.warp_connector.with_streaming_response.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -266,20 +266,20 @@ class TestWARPConnector:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.warp_connector.with_raw_response.get(
+            client.zero_trust.tunnels.warp_connector.with_raw_response.get(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            client.warp_connector.with_raw_response.get(
+            client.zero_trust.tunnels.warp_connector.with_raw_response.get(
                 tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_token(self, client: Cloudflare) -> None:
-        warp_connector = client.warp_connector.token(
+        warp_connector = client.zero_trust.tunnels.warp_connector.token(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -287,7 +287,7 @@ class TestWARPConnector:
 
     @parametrize
     def test_raw_response_token(self, client: Cloudflare) -> None:
-        response = client.warp_connector.with_raw_response.token(
+        response = client.zero_trust.tunnels.warp_connector.with_raw_response.token(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -299,7 +299,7 @@ class TestWARPConnector:
 
     @parametrize
     def test_streaming_response_token(self, client: Cloudflare) -> None:
-        with client.warp_connector.with_streaming_response.token(
+        with client.zero_trust.tunnels.warp_connector.with_streaming_response.token(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -314,13 +314,13 @@ class TestWARPConnector:
     @parametrize
     def test_path_params_token(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.warp_connector.with_raw_response.token(
+            client.zero_trust.tunnels.warp_connector.with_raw_response.token(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            client.warp_connector.with_raw_response.token(
+            client.zero_trust.tunnels.warp_connector.with_raw_response.token(
                 tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
@@ -331,7 +331,7 @@ class TestAsyncWARPConnector:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        warp_connector = await async_client.warp_connector.create(
+        warp_connector = await async_client.zero_trust.tunnels.warp_connector.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
         )
@@ -339,7 +339,7 @@ class TestAsyncWARPConnector:
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.warp_connector.with_raw_response.create(
+        response = await async_client.zero_trust.tunnels.warp_connector.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
         )
@@ -351,7 +351,7 @@ class TestAsyncWARPConnector:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.warp_connector.with_streaming_response.create(
+        async with async_client.zero_trust.tunnels.warp_connector.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
         ) as response:
@@ -366,21 +366,21 @@ class TestAsyncWARPConnector:
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.warp_connector.with_raw_response.create(
+            await async_client.zero_trust.tunnels.warp_connector.with_raw_response.create(
                 account_id="",
                 name="blog",
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        warp_connector = await async_client.warp_connector.list(
+        warp_connector = await async_client.zero_trust.tunnels.warp_connector.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(AsyncV4PagePaginationArray[WARPConnectorListResponse], warp_connector, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        warp_connector = await async_client.warp_connector.list(
+        warp_connector = await async_client.zero_trust.tunnels.warp_connector.list(
             account_id="699d98642c564d2e855e9661899b7252",
             exclude_prefix="vpc1-",
             existed_at=parse_datetime("2019-10-12T07:20:50.52Z"),
@@ -398,7 +398,7 @@ class TestAsyncWARPConnector:
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.warp_connector.with_raw_response.list(
+        response = await async_client.zero_trust.tunnels.warp_connector.with_raw_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -409,7 +409,7 @@ class TestAsyncWARPConnector:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.warp_connector.with_streaming_response.list(
+        async with async_client.zero_trust.tunnels.warp_connector.with_streaming_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -425,13 +425,13 @@ class TestAsyncWARPConnector:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.warp_connector.with_raw_response.list(
+            await async_client.zero_trust.tunnels.warp_connector.with_raw_response.list(
                 account_id="",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        warp_connector = await async_client.warp_connector.delete(
+        warp_connector = await async_client.zero_trust.tunnels.warp_connector.delete(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -439,7 +439,7 @@ class TestAsyncWARPConnector:
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.warp_connector.with_raw_response.delete(
+        response = await async_client.zero_trust.tunnels.warp_connector.with_raw_response.delete(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -451,7 +451,7 @@ class TestAsyncWARPConnector:
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.warp_connector.with_streaming_response.delete(
+        async with async_client.zero_trust.tunnels.warp_connector.with_streaming_response.delete(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -466,20 +466,20 @@ class TestAsyncWARPConnector:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.warp_connector.with_raw_response.delete(
+            await async_client.zero_trust.tunnels.warp_connector.with_raw_response.delete(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            await async_client.warp_connector.with_raw_response.delete(
+            await async_client.zero_trust.tunnels.warp_connector.with_raw_response.delete(
                 tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
-        warp_connector = await async_client.warp_connector.edit(
+        warp_connector = await async_client.zero_trust.tunnels.warp_connector.edit(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -487,7 +487,7 @@ class TestAsyncWARPConnector:
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        warp_connector = await async_client.warp_connector.edit(
+        warp_connector = await async_client.zero_trust.tunnels.warp_connector.edit(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
@@ -497,7 +497,7 @@ class TestAsyncWARPConnector:
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.warp_connector.with_raw_response.edit(
+        response = await async_client.zero_trust.tunnels.warp_connector.with_raw_response.edit(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -509,7 +509,7 @@ class TestAsyncWARPConnector:
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.warp_connector.with_streaming_response.edit(
+        async with async_client.zero_trust.tunnels.warp_connector.with_streaming_response.edit(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -524,20 +524,20 @@ class TestAsyncWARPConnector:
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.warp_connector.with_raw_response.edit(
+            await async_client.zero_trust.tunnels.warp_connector.with_raw_response.edit(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            await async_client.warp_connector.with_raw_response.edit(
+            await async_client.zero_trust.tunnels.warp_connector.with_raw_response.edit(
                 tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        warp_connector = await async_client.warp_connector.get(
+        warp_connector = await async_client.zero_trust.tunnels.warp_connector.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -545,7 +545,7 @@ class TestAsyncWARPConnector:
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.warp_connector.with_raw_response.get(
+        response = await async_client.zero_trust.tunnels.warp_connector.with_raw_response.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -557,7 +557,7 @@ class TestAsyncWARPConnector:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.warp_connector.with_streaming_response.get(
+        async with async_client.zero_trust.tunnels.warp_connector.with_streaming_response.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -572,20 +572,20 @@ class TestAsyncWARPConnector:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.warp_connector.with_raw_response.get(
+            await async_client.zero_trust.tunnels.warp_connector.with_raw_response.get(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            await async_client.warp_connector.with_raw_response.get(
+            await async_client.zero_trust.tunnels.warp_connector.with_raw_response.get(
                 tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_token(self, async_client: AsyncCloudflare) -> None:
-        warp_connector = await async_client.warp_connector.token(
+        warp_connector = await async_client.zero_trust.tunnels.warp_connector.token(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -593,7 +593,7 @@ class TestAsyncWARPConnector:
 
     @parametrize
     async def test_raw_response_token(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.warp_connector.with_raw_response.token(
+        response = await async_client.zero_trust.tunnels.warp_connector.with_raw_response.token(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -605,7 +605,7 @@ class TestAsyncWARPConnector:
 
     @parametrize
     async def test_streaming_response_token(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.warp_connector.with_streaming_response.token(
+        async with async_client.zero_trust.tunnels.warp_connector.with_streaming_response.token(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -620,13 +620,13 @@ class TestAsyncWARPConnector:
     @parametrize
     async def test_path_params_token(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.warp_connector.with_raw_response.token(
+            await async_client.zero_trust.tunnels.warp_connector.with_raw_response.token(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            await async_client.warp_connector.with_raw_response.token(
+            await async_client.zero_trust.tunnels.warp_connector.with_raw_response.token(
                 tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
