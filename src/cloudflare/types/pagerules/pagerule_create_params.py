@@ -16,12 +16,9 @@ from ..zones.rocket_loader_param import RocketLoaderParam
 from ..zones.ip_geolocation_param import IPGeolocationParam
 from ..zones.security_level_param import SecurityLevelParam
 from ..zones.always_use_https_param import AlwaysUseHTTPSParam
-from ..zones.development_mode_param import DevelopmentModeParam
 from ..zones.browser_cache_ttl_param import BrowserCacheTTLParam
 from ..zones.email_obfuscation_param import EmailObfuscationParam
-from ..zones.hotlink_protection_param import HotlinkProtectionParam
 from ..zones.response_buffering_param import ResponseBufferingParam
-from ..zones.server_side_excludes_param import ServerSideExcludesParam
 from ..zones.true_client_ip_header_param import TrueClientIPHeaderParam
 from ..zones.automatic_https_rewrites_param import AutomaticHTTPSRewritesParam
 from ..zones.opportunistic_encryption_param import OpportunisticEncryptionParam
@@ -41,10 +38,7 @@ __all__ = [
     "ActionCacheKeyValueHost",
     "ActionCacheKeyValueQueryString",
     "ActionCacheKeyValueUser",
-    "ActionCacheKeyFields",
     "ActionCacheOnCookie",
-    "ActionCacheTTLByStatus",
-    "ActionDDoSProtection",
     "ActionDisableApps",
     "ActionDisablePerformance",
     "ActionDisableSecurity",
@@ -54,8 +48,6 @@ __all__ = [
     "ActionForwardingURL",
     "ActionForwardingURLValue",
     "ActionHostHeaderOverride",
-    "ActionMinify",
-    "ActionPurgeByPageRule",
     "ActionResolveOverride",
     "ActionRespectStrongEtag",
 ]
@@ -212,10 +204,6 @@ class ActionCacheKey(TypedDict, total=False):
     value: ActionCacheKeyValue
 
 
-class ActionCacheKeyFields(TypedDict, total=False):
-    id: Literal["cache_key_fields"]
-
-
 class ActionCacheOnCookie(TypedDict, total=False):
     id: Literal["cache_on_cookie"]
     """
@@ -225,14 +213,6 @@ class ActionCacheOnCookie(TypedDict, total=False):
 
     value: str
     """The regular expression to use for matching cookie names in the request."""
-
-
-class ActionCacheTTLByStatus(TypedDict, total=False):
-    id: Literal["cache_ttl_by_status"]
-
-
-class ActionDDoSProtection(TypedDict, total=False):
-    id: Literal["ddos_protection"]
 
 
 class ActionDisableApps(TypedDict, total=False):
@@ -326,14 +306,6 @@ class ActionHostHeaderOverride(TypedDict, total=False):
     """The hostname to use in the `Host` header"""
 
 
-class ActionMinify(TypedDict, total=False):
-    id: Literal["minify"]
-
-
-class ActionPurgeByPageRule(TypedDict, total=False):
-    id: Literal["purge_by_page_rule"]
-
-
 class ActionResolveOverride(TypedDict, total=False):
     id: Literal["resolve_override"]
     """Change the origin address to the value specified in this setting."""
@@ -362,12 +334,8 @@ Action: TypeAlias = Union[
     ActionCacheByDeviceType,
     ActionCacheDeceptionArmor,
     ActionCacheKey,
-    ActionCacheKeyFields,
     CacheLevelParam,
     ActionCacheOnCookie,
-    ActionCacheTTLByStatus,
-    ActionDDoSProtection,
-    DevelopmentModeParam,
     ActionDisableApps,
     ActionDisablePerformance,
     ActionDisableSecurity,
@@ -377,20 +345,16 @@ Action: TypeAlias = Union[
     ActionExplicitCacheControl,
     ActionForwardingURL,
     ActionHostHeaderOverride,
-    HotlinkProtectionParam,
     IPGeolocationParam,
-    ActionMinify,
     MirageParam,
     OpportunisticEncryptionParam,
     OriginErrorPagePassThruParam,
     PolishParam,
-    ActionPurgeByPageRule,
     ActionResolveOverride,
     ActionRespectStrongEtag,
     ResponseBufferingParam,
     RocketLoaderParam,
     SecurityLevelParam,
-    ServerSideExcludesParam,
     SortQueryStringForCacheParam,
     SSLParam,
     TrueClientIPHeaderParam,
