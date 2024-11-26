@@ -48,8 +48,22 @@ from .configurations import (
     ConfigurationsResourceWithStreamingResponse,
     AsyncConfigurationsResourceWithStreamingResponse,
 )
+from .warp_connector import (
+    WARPConnectorResource,
+    AsyncWARPConnectorResource,
+    WARPConnectorResourceWithRawResponse,
+    AsyncWARPConnectorResourceWithRawResponse,
+    WARPConnectorResourceWithStreamingResponse,
+    AsyncWARPConnectorResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "WARPConnectorResource",
+    "AsyncWARPConnectorResource",
+    "WARPConnectorResourceWithRawResponse",
+    "AsyncWARPConnectorResourceWithRawResponse",
+    "WARPConnectorResourceWithStreamingResponse",
+    "AsyncWARPConnectorResourceWithStreamingResponse",
     "ConfigurationsResource",
     "AsyncConfigurationsResource",
     "ConfigurationsResourceWithRawResponse",

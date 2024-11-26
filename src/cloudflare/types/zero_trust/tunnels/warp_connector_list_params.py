@@ -6,7 +6,7 @@ from typing import Union
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ..._utils import PropertyInfo
+from ...._utils import PropertyInfo
 
 __all__ = ["WARPConnectorListParams"]
 

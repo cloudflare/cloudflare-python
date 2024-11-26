@@ -101,7 +101,6 @@ if TYPE_CHECKING:
         dcv_delegation,
         email_security,
         load_balancers,
-        warp_connector,
         cloud_connector,
         durable_objects,
         request_tracers,
@@ -574,12 +573,6 @@ class Cloudflare(SyncAPIClient):
         from .resources.r2 import R2Resource
 
         return R2Resource(self)
-
-    @cached_property
-    def warp_connector(self) -> warp_connector.WARPConnectorResource:
-        from .resources.warp_connector import WARPConnectorResource
-
-        return WARPConnectorResource(self)
 
     @cached_property
     def workers_for_platforms(self) -> workers_for_platforms.WorkersForPlatformsResource:
@@ -1347,12 +1340,6 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncR2Resource(self)
 
     @cached_property
-    def warp_connector(self) -> warp_connector.AsyncWARPConnectorResource:
-        from .resources.warp_connector import AsyncWARPConnectorResource
-
-        return AsyncWARPConnectorResource(self)
-
-    @cached_property
     def workers_for_platforms(self) -> workers_for_platforms.AsyncWorkersForPlatformsResource:
         from .resources.workers_for_platforms import AsyncWorkersForPlatformsResource
 
@@ -2051,12 +2038,6 @@ class CloudflareWithRawResponse:
         return R2ResourceWithRawResponse(self._client.r2)
 
     @cached_property
-    def warp_connector(self) -> warp_connector.WARPConnectorResourceWithRawResponse:
-        from .resources.warp_connector import WARPConnectorResourceWithRawResponse
-
-        return WARPConnectorResourceWithRawResponse(self._client.warp_connector)
-
-    @cached_property
     def workers_for_platforms(self) -> workers_for_platforms.WorkersForPlatformsResourceWithRawResponse:
         from .resources.workers_for_platforms import WorkersForPlatformsResourceWithRawResponse
 
@@ -2576,12 +2557,6 @@ class AsyncCloudflareWithRawResponse:
         return AsyncR2ResourceWithRawResponse(self._client.r2)
 
     @cached_property
-    def warp_connector(self) -> warp_connector.AsyncWARPConnectorResourceWithRawResponse:
-        from .resources.warp_connector import AsyncWARPConnectorResourceWithRawResponse
-
-        return AsyncWARPConnectorResourceWithRawResponse(self._client.warp_connector)
-
-    @cached_property
     def workers_for_platforms(self) -> workers_for_platforms.AsyncWorkersForPlatformsResourceWithRawResponse:
         from .resources.workers_for_platforms import AsyncWorkersForPlatformsResourceWithRawResponse
 
@@ -3099,12 +3074,6 @@ class CloudflareWithStreamedResponse:
         from .resources.r2 import R2ResourceWithStreamingResponse
 
         return R2ResourceWithStreamingResponse(self._client.r2)
-
-    @cached_property
-    def warp_connector(self) -> warp_connector.WARPConnectorResourceWithStreamingResponse:
-        from .resources.warp_connector import WARPConnectorResourceWithStreamingResponse
-
-        return WARPConnectorResourceWithStreamingResponse(self._client.warp_connector)
 
     @cached_property
     def workers_for_platforms(self) -> workers_for_platforms.WorkersForPlatformsResourceWithStreamingResponse:
@@ -3628,12 +3597,6 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.r2 import AsyncR2ResourceWithStreamingResponse
 
         return AsyncR2ResourceWithStreamingResponse(self._client.r2)
-
-    @cached_property
-    def warp_connector(self) -> warp_connector.AsyncWARPConnectorResourceWithStreamingResponse:
-        from .resources.warp_connector import AsyncWARPConnectorResourceWithStreamingResponse
-
-        return AsyncWARPConnectorResourceWithStreamingResponse(self._client.warp_connector)
 
     @cached_property
     def workers_for_platforms(self) -> workers_for_platforms.AsyncWorkersForPlatformsResourceWithStreamingResponse:
