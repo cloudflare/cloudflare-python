@@ -17,9 +17,12 @@ from ..zones.rocket_loader import RocketLoader
 from ..zones.ip_geolocation import IPGeolocation
 from ..zones.security_level import SecurityLevel
 from ..zones.always_use_https import AlwaysUseHTTPS
+from ..zones.development_mode import DevelopmentMode
 from ..zones.browser_cache_ttl import BrowserCacheTTL
 from ..zones.email_obfuscation import EmailObfuscation
+from ..zones.hotlink_protection import HotlinkProtection
 from ..zones.response_buffering import ResponseBuffering
+from ..zones.server_side_excludes import ServerSideExcludes
 from ..zones.true_client_ip_header import TrueClientIPHeader
 from ..zones.automatic_https_rewrites import AutomaticHTTPSRewrites
 from ..zones.opportunistic_encryption import OpportunisticEncryption
@@ -39,7 +42,10 @@ __all__ = [
     "ActionCacheKeyValueHost",
     "ActionCacheKeyValueQueryString",
     "ActionCacheKeyValueUser",
+    "ActionCacheKeyFields",
     "ActionCacheOnCookie",
+    "ActionCacheTTLByStatus",
+    "ActionDDoSProtection",
     "ActionDisableApps",
     "ActionDisablePerformance",
     "ActionDisableSecurity",
@@ -49,6 +55,8 @@ __all__ = [
     "ActionForwardingURL",
     "ActionForwardingURLValue",
     "ActionHostHeaderOverride",
+    "ActionMinify",
+    "ActionPurgeByPageRule",
     "ActionResolveOverride",
     "ActionRespectStrongEtag",
 ]
@@ -179,6 +187,10 @@ class ActionCacheKey(BaseModel):
     value: Optional[ActionCacheKeyValue] = None
 
 
+class ActionCacheKeyFields(BaseModel):
+    id: Optional[Literal["cache_key_fields"]] = None
+
+
 class ActionCacheOnCookie(BaseModel):
     id: Optional[Literal["cache_on_cookie"]] = None
     """
@@ -188,6 +200,14 @@ class ActionCacheOnCookie(BaseModel):
 
     value: Optional[str] = None
     """The regular expression to use for matching cookie names in the request."""
+
+
+class ActionCacheTTLByStatus(BaseModel):
+    id: Optional[Literal["cache_ttl_by_status"]] = None
+
+
+class ActionDDoSProtection(BaseModel):
+    id: Optional[Literal["ddos_protection"]] = None
 
 
 class ActionDisableApps(BaseModel):
@@ -281,6 +301,14 @@ class ActionHostHeaderOverride(BaseModel):
     """The hostname to use in the `Host` header"""
 
 
+class ActionMinify(BaseModel):
+    id: Optional[Literal["minify"]] = None
+
+
+class ActionPurgeByPageRule(BaseModel):
+    id: Optional[Literal["purge_by_page_rule"]] = None
+
+
 class ActionResolveOverride(BaseModel):
     id: Optional[Literal["resolve_override"]] = None
     """Change the origin address to the value specified in this setting."""
@@ -310,8 +338,12 @@ Action: TypeAlias = Annotated[
         ActionCacheByDeviceType,
         ActionCacheDeceptionArmor,
         ActionCacheKey,
+        ActionCacheKeyFields,
         CacheLevel,
         ActionCacheOnCookie,
+        ActionCacheTTLByStatus,
+        ActionDDoSProtection,
+        DevelopmentMode,
         ActionDisableApps,
         ActionDisablePerformance,
         ActionDisableSecurity,
@@ -321,16 +353,20 @@ Action: TypeAlias = Annotated[
         ActionExplicitCacheControl,
         ActionForwardingURL,
         ActionHostHeaderOverride,
+        HotlinkProtection,
         IPGeolocation,
+        ActionMinify,
         Mirage,
         OpportunisticEncryption,
         OriginErrorPagePassThru,
         Polish,
+        ActionPurgeByPageRule,
         ActionResolveOverride,
         ActionRespectStrongEtag,
         ResponseBuffering,
         RocketLoader,
         SecurityLevel,
+        ServerSideExcludes,
         SortQueryStringForCache,
         SSL,
         TrueClientIPHeader,

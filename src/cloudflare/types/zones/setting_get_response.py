@@ -24,15 +24,12 @@ from .image_resizing import ImageResizing
 from .min_tls_version import MinTLSVersion
 from .ssl_recommender import SSLRecommender
 from .tls_client_auth import TLSClientAuth
-from .development_mode import DevelopmentMode
 from .orange_to_orange import OrangeToOrange
 from .prefetch_preload import PrefetchPreload
 from .security_headers import SecurityHeaders
 from .h2_prioritization import H2Prioritization
-from .hotlink_protection import HotlinkProtection
 from .proxy_read_timeout import ProxyReadTimeout
 from .opportunistic_onion import OpportunisticOnion
-from .server_side_excludes import ServerSideExcludes
 from .automatic_platform_optimization import AutomaticPlatformOptimization
 
 __all__ = [
@@ -43,8 +40,10 @@ __all__ = [
     "ZonesSchemasBrowserCheck",
     "ZonesSchemasCacheLevel",
     "ZonesCNAMEFlattening",
+    "ZonesSchemasDevelopmentMode",
     "ZonesSchemasEdgeCacheTTL",
     "ZonesSchemasEmailObfuscation",
+    "ZonesSchemasHotlinkProtection",
     "ZonesSchemasIPGeolocation",
     "ZonesMaxUpload",
     "ZonesSchemasMirage",
@@ -56,6 +55,7 @@ __all__ = [
     "ZonesSchemasRocketLoader",
     "ZonesSchemasAutomaticPlatformOptimization",
     "ZonesSchemasSecurityLevel",
+    "ZonesSchemasServerSideExclude",
     "ZonesSha1Support",
     "ZonesSchemasSortQueryStringForCache",
     "ZonesSchemasSSL",
@@ -196,6 +196,30 @@ class ZonesCNAMEFlattening(BaseModel):
     """last time this setting was modified."""
 
 
+class ZonesSchemasDevelopmentMode(BaseModel):
+    id: Literal["development_mode"]
+    """ID of the zone setting."""
+
+    value: Literal["on", "off"]
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
+    time_remaining: Optional[float] = None
+    """
+    Value of the zone setting. Notes: The interval (in seconds) from when
+    development mode expires (positive integer) or last expired (negative integer)
+    for the domain. If development mode has never been enabled, this value is false.
+    """
+
+
 class ZonesSchemasEdgeCacheTTL(BaseModel):
     id: Literal["edge_cache_ttl"]
     """ID of the zone setting."""
@@ -237,6 +261,23 @@ class ZonesSchemasEdgeCacheTTL(BaseModel):
 
 class ZonesSchemasEmailObfuscation(BaseModel):
     id: Literal["email_obfuscation"]
+    """ID of the zone setting."""
+
+    value: Literal["on", "off"]
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
+
+class ZonesSchemasHotlinkProtection(BaseModel):
+    id: Literal["hotlink_protection"]
     """ID of the zone setting."""
 
     value: Literal["on", "off"]
@@ -439,6 +480,23 @@ class ZonesSchemasSecurityLevel(BaseModel):
     """last time this setting was modified."""
 
 
+class ZonesSchemasServerSideExclude(BaseModel):
+    id: Literal["server_side_exclude"]
+    """ID of the zone setting."""
+
+    value: Literal["on", "off"]
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
+
 class ZonesSha1Support(BaseModel):
     id: Literal["sha1_support"]
     """Zone setting identifier."""
@@ -554,12 +612,12 @@ SettingGetResponse: TypeAlias = Union[
     ChallengeTTL,
     Ciphers,
     ZonesCNAMEFlattening,
-    DevelopmentMode,
+    ZonesSchemasDevelopmentMode,
     EarlyHints,
     ZonesSchemasEdgeCacheTTL,
     ZonesSchemasEmailObfuscation,
     H2Prioritization,
-    HotlinkProtection,
+    ZonesSchemasHotlinkProtection,
     HTTP2,
     HTTP3,
     ImageResizing,
@@ -583,7 +641,7 @@ SettingGetResponse: TypeAlias = Union[
     ZonesSchemasAutomaticPlatformOptimization,
     SecurityHeaders,
     ZonesSchemasSecurityLevel,
-    ServerSideExcludes,
+    ZonesSchemasServerSideExclude,
     ZonesSha1Support,
     ZonesSchemasSortQueryStringForCache,
     ZonesSchemasSSL,
