@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
 
 __all__ = ["PreviewCreateParams"]
@@ -12,5 +11,5 @@ class PreviewCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Account Identifier"""
 
-    body: Required[List[str]]
-    """A list of messages identfied by their `postfix_id`s that should be released."""
+    postfix_id: Required[str]
+    """The identifier of the message."""

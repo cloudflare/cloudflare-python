@@ -213,10 +213,29 @@ class DomainsResource(SyncAPIResource):
         domain_id: int,
         *,
         account_id: str,
+        ip_restrictions: List[str],
         domain: Optional[str] | NotGiven = NOT_GIVEN,
+        drop_dispositions: List[
+            Literal[
+                "MALICIOUS",
+                "MALICIOUS-BEC",
+                "SUSPICIOUS",
+                "SPOOF",
+                "SPAM",
+                "BULK",
+                "ENCRYPTED",
+                "EXTERNAL",
+                "UNKNOWN",
+                "NONE",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         folder: Literal["AllItems", "Inbox"] | NotGiven = NOT_GIVEN,
         integration_id: Optional[str] | NotGiven = NOT_GIVEN,
         lookback_hops: Optional[int] | NotGiven = NOT_GIVEN,
+        require_tls_inbound: bool | NotGiven = NOT_GIVEN,
+        require_tls_outbound: bool | NotGiven = NOT_GIVEN,
+        transport: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -246,10 +265,15 @@ class DomainsResource(SyncAPIResource):
             f"/accounts/{account_id}/email-security/settings/domains/{domain_id}",
             body=maybe_transform(
                 {
+                    "ip_restrictions": ip_restrictions,
                     "domain": domain,
+                    "drop_dispositions": drop_dispositions,
                     "folder": folder,
                     "integration_id": integration_id,
                     "lookback_hops": lookback_hops,
+                    "require_tls_inbound": require_tls_inbound,
+                    "require_tls_outbound": require_tls_outbound,
+                    "transport": transport,
                 },
                 domain_edit_params.DomainEditParams,
             ),
@@ -486,10 +510,29 @@ class AsyncDomainsResource(AsyncAPIResource):
         domain_id: int,
         *,
         account_id: str,
+        ip_restrictions: List[str],
         domain: Optional[str] | NotGiven = NOT_GIVEN,
+        drop_dispositions: List[
+            Literal[
+                "MALICIOUS",
+                "MALICIOUS-BEC",
+                "SUSPICIOUS",
+                "SPOOF",
+                "SPAM",
+                "BULK",
+                "ENCRYPTED",
+                "EXTERNAL",
+                "UNKNOWN",
+                "NONE",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         folder: Literal["AllItems", "Inbox"] | NotGiven = NOT_GIVEN,
         integration_id: Optional[str] | NotGiven = NOT_GIVEN,
         lookback_hops: Optional[int] | NotGiven = NOT_GIVEN,
+        require_tls_inbound: bool | NotGiven = NOT_GIVEN,
+        require_tls_outbound: bool | NotGiven = NOT_GIVEN,
+        transport: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -519,10 +562,15 @@ class AsyncDomainsResource(AsyncAPIResource):
             f"/accounts/{account_id}/email-security/settings/domains/{domain_id}",
             body=await async_maybe_transform(
                 {
+                    "ip_restrictions": ip_restrictions,
                     "domain": domain,
+                    "drop_dispositions": drop_dispositions,
                     "folder": folder,
                     "integration_id": integration_id,
                     "lookback_hops": lookback_hops,
+                    "require_tls_inbound": require_tls_inbound,
+                    "require_tls_outbound": require_tls_outbound,
+                    "transport": transport,
                 },
                 domain_edit_params.DomainEditParams,
             ),

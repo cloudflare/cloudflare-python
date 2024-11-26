@@ -139,9 +139,12 @@ class AllowPoliciesResource(SyncAPIResource):
         *,
         account_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        is_acceptable_sender: bool | NotGiven = NOT_GIVEN,
+        is_exempt_recipient: bool | NotGiven = NOT_GIVEN,
         is_recipient: bool | NotGiven = NOT_GIVEN,
         is_sender: bool | NotGiven = NOT_GIVEN,
         is_spoof: bool | NotGiven = NOT_GIVEN,
+        is_trusted_sender: bool | NotGiven = NOT_GIVEN,
         order: Literal["pattern", "created_at"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"] | NotGiven = NOT_GIVEN,
@@ -194,9 +197,12 @@ class AllowPoliciesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "is_acceptable_sender": is_acceptable_sender,
+                        "is_exempt_recipient": is_exempt_recipient,
                         "is_recipient": is_recipient,
                         "is_sender": is_sender,
                         "is_spoof": is_spoof,
+                        "is_trusted_sender": is_trusted_sender,
                         "order": order,
                         "page": page,
                         "pattern_type": pattern_type,
@@ -227,6 +233,8 @@ class AllowPoliciesResource(SyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          policy_id: The unique identifier for the allow policy.
 
           extra_headers: Send extra headers
 
@@ -275,6 +283,8 @@ class AllowPoliciesResource(SyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          policy_id: The unique identifier for the allow policy.
 
           is_acceptable_sender: Messages from this sender will be exempted from Spam, Spoof and Bulk
               dispositions. Note: This will not exempt messages with Malicious or Suspicious
@@ -339,6 +349,8 @@ class AllowPoliciesResource(SyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          policy_id: The unique identifier for the allow policy.
 
           extra_headers: Send extra headers
 
@@ -465,9 +477,12 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
         *,
         account_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        is_acceptable_sender: bool | NotGiven = NOT_GIVEN,
+        is_exempt_recipient: bool | NotGiven = NOT_GIVEN,
         is_recipient: bool | NotGiven = NOT_GIVEN,
         is_sender: bool | NotGiven = NOT_GIVEN,
         is_spoof: bool | NotGiven = NOT_GIVEN,
+        is_trusted_sender: bool | NotGiven = NOT_GIVEN,
         order: Literal["pattern", "created_at"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"] | NotGiven = NOT_GIVEN,
@@ -520,9 +535,12 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "direction": direction,
+                        "is_acceptable_sender": is_acceptable_sender,
+                        "is_exempt_recipient": is_exempt_recipient,
                         "is_recipient": is_recipient,
                         "is_sender": is_sender,
                         "is_spoof": is_spoof,
+                        "is_trusted_sender": is_trusted_sender,
                         "order": order,
                         "page": page,
                         "pattern_type": pattern_type,
@@ -553,6 +571,8 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          policy_id: The unique identifier for the allow policy.
 
           extra_headers: Send extra headers
 
@@ -601,6 +621,8 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          policy_id: The unique identifier for the allow policy.
 
           is_acceptable_sender: Messages from this sender will be exempted from Spam, Spoof and Bulk
               dispositions. Note: This will not exempt messages with Malicious or Suspicious
@@ -665,6 +687,8 @@ class AsyncAllowPoliciesResource(AsyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          policy_id: The unique identifier for the allow policy.
 
           extra_headers: Send extra headers
 
