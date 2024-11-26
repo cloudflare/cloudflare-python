@@ -11,6 +11,7 @@ __all__ = ["AllowPolicyCreateResponse"]
 
 class AllowPolicyCreateResponse(BaseModel):
     id: int
+    """The unique identifier for the allow policy."""
 
     created_at: datetime
 

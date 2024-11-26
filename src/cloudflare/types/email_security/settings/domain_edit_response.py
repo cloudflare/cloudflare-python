@@ -19,9 +19,28 @@ class DomainEditResponse(BaseModel):
 
     domain: str
 
+    drop_dispositions: List[
+        Literal[
+            "MALICIOUS",
+            "MALICIOUS-BEC",
+            "SUSPICIOUS",
+            "SPOOF",
+            "SPAM",
+            "BULK",
+            "ENCRYPTED",
+            "EXTERNAL",
+            "UNKNOWN",
+            "NONE",
+        ]
+    ]
+
+    ip_restrictions: List[str]
+
     last_modified: datetime
 
     lookback_hops: int
+
+    transport: str
 
     folder: Optional[Literal["AllItems", "Inbox"]] = None
 
@@ -30,3 +49,7 @@ class DomainEditResponse(BaseModel):
     integration_id: Optional[str] = None
 
     o365_tenant_id: Optional[str] = None
+
+    require_tls_inbound: Optional[bool] = None
+
+    require_tls_outbound: Optional[bool] = None

@@ -13,10 +13,18 @@ class EmailSecurityCreateTrustedDomain(TypedDict, total=False):
     """Account Identifier"""
 
     is_recent: Required[bool]
+    """
+    Select to prevent recently registered domains from triggering a Suspicious or
+    Malicious disposition.
+    """
 
     is_regex: Required[bool]
 
     is_similarity: Required[bool]
+    """
+    Select for partner or other approved domains that have similar spelling to your
+    connected domains. Prevents listed domains from triggering a Spoof disposition.
+    """
 
     pattern: Required[str]
 
@@ -32,10 +40,18 @@ class Variant1(TypedDict, total=False):
 
 class Variant1Body(TypedDict, total=False):
     is_recent: Required[bool]
+    """
+    Select to prevent recently registered domains from triggering a Suspicious or
+    Malicious disposition.
+    """
 
     is_regex: Required[bool]
 
     is_similarity: Required[bool]
+    """
+    Select for partner or other approved domains that have similar spelling to your
+    connected domains. Prevents listed domains from triggering a Spoof disposition.
+    """
 
     pattern: Required[str]
 

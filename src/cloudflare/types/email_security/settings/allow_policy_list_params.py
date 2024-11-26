@@ -14,11 +14,17 @@ class AllowPolicyListParams(TypedDict, total=False):
     direction: Literal["asc", "desc"]
     """The sorting direction."""
 
+    is_acceptable_sender: bool
+
+    is_exempt_recipient: bool
+
     is_recipient: bool
 
     is_sender: bool
 
     is_spoof: bool
+
+    is_trusted_sender: bool
 
     order: Literal["pattern", "created_at"]
     """The field to sort by."""
