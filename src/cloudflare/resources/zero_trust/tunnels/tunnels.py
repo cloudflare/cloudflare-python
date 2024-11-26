@@ -63,6 +63,14 @@ from .configurations import (
     ConfigurationsResourceWithStreamingResponse,
     AsyncConfigurationsResourceWithStreamingResponse,
 )
+from .warp_connector import (
+    WARPConnectorResource,
+    AsyncWARPConnectorResource,
+    WARPConnectorResourceWithRawResponse,
+    AsyncWARPConnectorResourceWithRawResponse,
+    WARPConnectorResourceWithStreamingResponse,
+    AsyncWARPConnectorResourceWithStreamingResponse,
+)
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust import tunnel_edit_params, tunnel_list_params, tunnel_create_params
 from ....types.zero_trust.tunnel_get_response import TunnelGetResponse
@@ -75,6 +83,10 @@ __all__ = ["TunnelsResource", "AsyncTunnelsResource"]
 
 
 class TunnelsResource(SyncAPIResource):
+    @cached_property
+    def warp_connector(self) -> WARPConnectorResource:
+        return WARPConnectorResource(self._client)
+
     @cached_property
     def configurations(self) -> ConfigurationsResource:
         return ConfigurationsResource(self._client)
@@ -426,6 +438,10 @@ class TunnelsResource(SyncAPIResource):
 
 
 class AsyncTunnelsResource(AsyncAPIResource):
+    @cached_property
+    def warp_connector(self) -> AsyncWARPConnectorResource:
+        return AsyncWARPConnectorResource(self._client)
+
     @cached_property
     def configurations(self) -> AsyncConfigurationsResource:
         return AsyncConfigurationsResource(self._client)
@@ -797,6 +813,10 @@ class TunnelsResourceWithRawResponse:
         )
 
     @cached_property
+    def warp_connector(self) -> WARPConnectorResourceWithRawResponse:
+        return WARPConnectorResourceWithRawResponse(self._tunnels.warp_connector)
+
+    @cached_property
     def configurations(self) -> ConfigurationsResourceWithRawResponse:
         return ConfigurationsResourceWithRawResponse(self._tunnels.configurations)
 
@@ -836,6 +856,10 @@ class AsyncTunnelsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             tunnels.get,
         )
+
+    @cached_property
+    def warp_connector(self) -> AsyncWARPConnectorResourceWithRawResponse:
+        return AsyncWARPConnectorResourceWithRawResponse(self._tunnels.warp_connector)
 
     @cached_property
     def configurations(self) -> AsyncConfigurationsResourceWithRawResponse:
@@ -879,6 +903,10 @@ class TunnelsResourceWithStreamingResponse:
         )
 
     @cached_property
+    def warp_connector(self) -> WARPConnectorResourceWithStreamingResponse:
+        return WARPConnectorResourceWithStreamingResponse(self._tunnels.warp_connector)
+
+    @cached_property
     def configurations(self) -> ConfigurationsResourceWithStreamingResponse:
         return ConfigurationsResourceWithStreamingResponse(self._tunnels.configurations)
 
@@ -918,6 +946,10 @@ class AsyncTunnelsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             tunnels.get,
         )
+
+    @cached_property
+    def warp_connector(self) -> AsyncWARPConnectorResourceWithStreamingResponse:
+        return AsyncWARPConnectorResourceWithStreamingResponse(self._tunnels.warp_connector)
 
     @cached_property
     def configurations(self) -> AsyncConfigurationsResourceWithStreamingResponse:

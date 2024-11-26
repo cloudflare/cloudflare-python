@@ -4681,30 +4681,6 @@ Methods:
 
 - <code title="post /accounts/{account_id}/r2/temp-access-credentials">client.r2.temporary_credentials.<a href="./src/cloudflare/resources/r2/temporary_credentials.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/temporary_credential_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/temporary_credential_create_response.py">TemporaryCredentialCreateResponse</a></code>
 
-# WARPConnector
-
-Types:
-
-```python
-from cloudflare.types.warp_connector import (
-    WARPConnectorCreateResponse,
-    WARPConnectorListResponse,
-    WARPConnectorDeleteResponse,
-    WARPConnectorEditResponse,
-    WARPConnectorGetResponse,
-    WARPConnectorTokenResponse,
-)
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/warp_connector">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/warp_connector/warp_connector_create_params.py">params</a>) -> <a href="./src/cloudflare/types/warp_connector/warp_connector_create_response.py">WARPConnectorCreateResponse</a></code>
-- <code title="get /accounts/{account_id}/warp_connector">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/warp_connector/warp_connector_list_params.py">params</a>) -> <a href="./src/cloudflare/types/warp_connector/warp_connector_list_response.py">SyncV4PagePaginationArray[WARPConnectorListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/warp_connector/{tunnel_id}">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">delete</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/warp_connector/warp_connector_delete_response.py">WARPConnectorDeleteResponse</a></code>
-- <code title="patch /accounts/{account_id}/warp_connector/{tunnel_id}">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">edit</a>(tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/warp_connector/warp_connector_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/warp_connector/warp_connector_edit_response.py">WARPConnectorEditResponse</a></code>
-- <code title="get /accounts/{account_id}/warp_connector/{tunnel_id}">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">get</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/warp_connector/warp_connector_get_response.py">WARPConnectorGetResponse</a></code>
-- <code title="get /accounts/{account_id}/warp_connector/{tunnel_id}/token">client.warp_connector.<a href="./src/cloudflare/resources/warp_connector.py">token</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/warp_connector/warp_connector_token_response.py">str</a></code>
-
 # WorkersForPlatforms
 
 ## Dispatch
@@ -5749,6 +5725,30 @@ Methods:
 - <code title="delete /accounts/{account_id}/cfd_tunnel/{tunnel_id}">client.zero_trust.tunnels.<a href="./src/cloudflare/resources/zero_trust/tunnels/tunnels.py">delete</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/tunnel_delete_response.py">TunnelDeleteResponse</a></code>
 - <code title="patch /accounts/{account_id}/cfd_tunnel/{tunnel_id}">client.zero_trust.tunnels.<a href="./src/cloudflare/resources/zero_trust/tunnels/tunnels.py">edit</a>(tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/tunnel_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/tunnel_edit_response.py">TunnelEditResponse</a></code>
 - <code title="get /accounts/{account_id}/cfd_tunnel/{tunnel_id}">client.zero_trust.tunnels.<a href="./src/cloudflare/resources/zero_trust/tunnels/tunnels.py">get</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/tunnel_get_response.py">TunnelGetResponse</a></code>
+
+### WARPConnector
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.tunnels import (
+    WARPConnectorCreateResponse,
+    WARPConnectorListResponse,
+    WARPConnectorDeleteResponse,
+    WARPConnectorEditResponse,
+    WARPConnectorGetResponse,
+    WARPConnectorTokenResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/warp_connector">client.zero_trust.tunnels.warp_connector.<a href="./src/cloudflare/resources/zero_trust/tunnels/warp_connector.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/tunnels/warp_connector_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/tunnels/warp_connector_create_response.py">WARPConnectorCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/warp_connector">client.zero_trust.tunnels.warp_connector.<a href="./src/cloudflare/resources/zero_trust/tunnels/warp_connector.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/tunnels/warp_connector_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/tunnels/warp_connector_list_response.py">SyncV4PagePaginationArray[WARPConnectorListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/warp_connector/{tunnel_id}">client.zero_trust.tunnels.warp_connector.<a href="./src/cloudflare/resources/zero_trust/tunnels/warp_connector.py">delete</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/tunnels/warp_connector_delete_response.py">WARPConnectorDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/warp_connector/{tunnel_id}">client.zero_trust.tunnels.warp_connector.<a href="./src/cloudflare/resources/zero_trust/tunnels/warp_connector.py">edit</a>(tunnel_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/tunnels/warp_connector_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/tunnels/warp_connector_edit_response.py">WARPConnectorEditResponse</a></code>
+- <code title="get /accounts/{account_id}/warp_connector/{tunnel_id}">client.zero_trust.tunnels.warp_connector.<a href="./src/cloudflare/resources/zero_trust/tunnels/warp_connector.py">get</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/tunnels/warp_connector_get_response.py">WARPConnectorGetResponse</a></code>
+- <code title="get /accounts/{account_id}/warp_connector/{tunnel_id}/token">client.zero_trust.tunnels.warp_connector.<a href="./src/cloudflare/resources/zero_trust/tunnels/warp_connector.py">token</a>(tunnel_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/tunnels/warp_connector_token_response.py">str</a></code>
 
 ### Configurations
 
