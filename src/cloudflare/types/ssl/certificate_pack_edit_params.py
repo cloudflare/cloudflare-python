@@ -11,4 +11,9 @@ class CertificatePackEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    body: Required[object]
+    cloudflare_branding: bool
+    """Whether or not to add Cloudflare Branding for the order.
+
+    This will add a subdomain of sni.cloudflaressl.com as the Common Name if set to
+    true.
+    """
