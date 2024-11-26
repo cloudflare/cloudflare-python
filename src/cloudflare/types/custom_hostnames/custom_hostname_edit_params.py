@@ -74,6 +74,13 @@ class SSL(TypedDict, total=False):
     certificate_authority: CertificateCA
     """The Certificate Authority that will issue the certificate"""
 
+    cloudflare_branding: bool
+    """Whether or not to add Cloudflare Branding for the order.
+
+    This will add a subdomain of sni.cloudflaressl.com as the Common Name if set to
+    true
+    """
+
     custom_certificate: str
     """If a custom uploaded certificate is used."""
 

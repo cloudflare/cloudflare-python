@@ -100,8 +100,8 @@ class CertificatePacksResource(SyncAPIResource):
 
           validity_days: Validity Days selected for the order.
 
-          cloudflare_branding: Whether or not to add Cloudflare Branding for the order. This will add
-              sni.cloudflaressl.com as the Common Name if set true.
+          cloudflare_branding: Whether or not to add Cloudflare Branding for the order. This will add a
+              subdomain of sni.cloudflaressl.com as the Common Name if set to true.
 
           extra_headers: Send extra headers
 
@@ -230,7 +230,7 @@ class CertificatePacksResource(SyncAPIResource):
         certificate_pack_id: str,
         *,
         zone_id: str,
-        body: object,
+        cloudflare_branding: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -238,16 +238,18 @@ class CertificatePacksResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificatePackEditResponse]:
-        """For a given zone, restart validation for an advanced certificate pack.
-
-        This is
-        only a validation operation for a Certificate Pack in a validation_timed_out
-        status.
+        """
+        For a given zone, restart validation or add cloudflare branding for an advanced
+        certificate pack. The former is only a validation operation for a Certificate
+        Pack in a validation_timed_out status.
 
         Args:
           zone_id: Identifier
 
           certificate_pack_id: Identifier
+
+          cloudflare_branding: Whether or not to add Cloudflare Branding for the order. This will add a
+              subdomain of sni.cloudflaressl.com as the Common Name if set to true.
 
           extra_headers: Send extra headers
 
@@ -265,7 +267,9 @@ class CertificatePacksResource(SyncAPIResource):
             )
         return self._patch(
             f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
-            body=maybe_transform(body, certificate_pack_edit_params.CertificatePackEditParams),
+            body=maybe_transform(
+                {"cloudflare_branding": cloudflare_branding}, certificate_pack_edit_params.CertificatePackEditParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -383,8 +387,8 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
 
           validity_days: Validity Days selected for the order.
 
-          cloudflare_branding: Whether or not to add Cloudflare Branding for the order. This will add
-              sni.cloudflaressl.com as the Common Name if set true.
+          cloudflare_branding: Whether or not to add Cloudflare Branding for the order. This will add a
+              subdomain of sni.cloudflaressl.com as the Common Name if set to true.
 
           extra_headers: Send extra headers
 
@@ -513,7 +517,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         certificate_pack_id: str,
         *,
         zone_id: str,
-        body: object,
+        cloudflare_branding: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -521,16 +525,18 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificatePackEditResponse]:
-        """For a given zone, restart validation for an advanced certificate pack.
-
-        This is
-        only a validation operation for a Certificate Pack in a validation_timed_out
-        status.
+        """
+        For a given zone, restart validation or add cloudflare branding for an advanced
+        certificate pack. The former is only a validation operation for a Certificate
+        Pack in a validation_timed_out status.
 
         Args:
           zone_id: Identifier
 
           certificate_pack_id: Identifier
+
+          cloudflare_branding: Whether or not to add Cloudflare Branding for the order. This will add a
+              subdomain of sni.cloudflaressl.com as the Common Name if set to true.
 
           extra_headers: Send extra headers
 
@@ -548,7 +554,9 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
             )
         return await self._patch(
             f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
-            body=await async_maybe_transform(body, certificate_pack_edit_params.CertificatePackEditParams),
+            body=await async_maybe_transform(
+                {"cloudflare_branding": cloudflare_branding}, certificate_pack_edit_params.CertificatePackEditParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
