@@ -21,12 +21,12 @@ __all__ = [
     "ChallengeTTL",
     "Ciphers",
     "ZonesCNAMEFlattening",
-    "ZonesSchemasDevelopmentMode",
+    "DevelopmentMode",
     "EarlyHints",
     "ZonesSchemasEdgeCacheTTL",
     "ZonesSchemasEmailObfuscation",
     "H2Prioritization",
-    "ZonesSchemasHotlinkProtection",
+    "HotlinkProtection",
     "HTTP2",
     "HTTP3",
     "ImageResizing",
@@ -53,7 +53,7 @@ __all__ = [
     "SecurityHeadersValue",
     "SecurityHeadersValueStrictTransportSecurity",
     "ZonesSchemasSecurityLevel",
-    "ZonesSchemasServerSideExclude",
+    "ServerSideExcludes",
     "ZonesSha1Support",
     "ZonesSchemasSortQueryStringForCache",
     "ZonesSchemasSSL",
@@ -233,7 +233,7 @@ class ZonesCNAMEFlattening(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasDevelopmentMode(TypedDict, total=False):
+class DevelopmentMode(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -312,7 +312,7 @@ class H2Prioritization(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasHotlinkProtection(TypedDict, total=False):
+class HotlinkProtection(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -602,7 +602,7 @@ class ZonesSchemasSecurityLevel(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesSchemasServerSideExclude(TypedDict, total=False):
+class ServerSideExcludes(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -747,12 +747,12 @@ SettingEditParams: TypeAlias = Union[
     ChallengeTTL,
     Ciphers,
     ZonesCNAMEFlattening,
-    ZonesSchemasDevelopmentMode,
+    DevelopmentMode,
     EarlyHints,
     ZonesSchemasEdgeCacheTTL,
     ZonesSchemasEmailObfuscation,
     H2Prioritization,
-    ZonesSchemasHotlinkProtection,
+    HotlinkProtection,
     HTTP2,
     HTTP3,
     ImageResizing,
@@ -776,7 +776,7 @@ SettingEditParams: TypeAlias = Union[
     ZonesSchemasAutomaticPlatformOptimization,
     SecurityHeaders,
     ZonesSchemasSecurityLevel,
-    ZonesSchemasServerSideExclude,
+    ServerSideExcludes,
     ZonesSha1Support,
     ZonesSchemasSortQueryStringForCache,
     ZonesSchemasSSL,
