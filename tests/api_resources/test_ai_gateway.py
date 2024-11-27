@@ -215,6 +215,7 @@ class TestAIGateway:
             order_by_direction="asc",
             page=1,
             per_page=1,
+            search="search",
         )
         assert_matches_type(SyncV4PagePaginationArray[AIGatewayListResponse], ai_gateway, path=["response"])
 
@@ -540,6 +541,7 @@ class TestAsyncAIGateway:
             order_by_direction="asc",
             page=1,
             per_page=1,
+            search="search",
         )
         assert_matches_type(AsyncV4PagePaginationArray[AIGatewayListResponse], ai_gateway, path=["response"])
 
