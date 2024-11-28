@@ -13,8 +13,12 @@ __all__ = ["ScanCreateParams"]
 class ScanCreateParams(TypedDict, total=False):
     url: Required[str]
 
+    customagent: str
+
     custom_headers: Annotated[Dict[str, str], PropertyInfo(alias="customHeaders")]
     """Set custom headers."""
+
+    referer: str
 
     screenshots_resolutions: Annotated[
         List[Literal["desktop", "mobile", "tablet"]], PropertyInfo(alias="screenshotsResolutions")
