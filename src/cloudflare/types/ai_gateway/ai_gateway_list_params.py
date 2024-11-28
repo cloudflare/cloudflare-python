@@ -19,6 +19,3 @@ class AIGatewayListParams(TypedDict, total=False):
     page: int
 
     per_page: int
-
-    search: str
-    """Search by id"""

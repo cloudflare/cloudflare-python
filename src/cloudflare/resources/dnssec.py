@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Any, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -59,7 +59,7 @@ class DNSSECResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> Optional[DNSSECDeleteResponse]:
         """
         Delete DNSSEC.
 
@@ -76,16 +76,21 @@ class DNSSECResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._delete(
-            f"/zones/{zone_id}/dnssec",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DNSSECDeleteResponse]]._unwrapper,
+        return cast(
+            Optional[DNSSECDeleteResponse],
+            self._delete(
+                f"/zones/{zone_id}/dnssec",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[DNSSECDeleteResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[DNSSECDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     def edit(
@@ -227,7 +232,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> Optional[DNSSECDeleteResponse]:
         """
         Delete DNSSEC.
 
@@ -244,16 +249,21 @@ class AsyncDNSSECResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._delete(
-            f"/zones/{zone_id}/dnssec",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[DNSSECDeleteResponse]]._unwrapper,
+        return cast(
+            Optional[DNSSECDeleteResponse],
+            await self._delete(
+                f"/zones/{zone_id}/dnssec",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[DNSSECDeleteResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[DNSSECDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     async def edit(
