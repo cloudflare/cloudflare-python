@@ -22,7 +22,6 @@ from cloudflare.types.url_scanner import (
     ScanGetResponse,
     ScanHARResponse,
     ScanListResponse,
-    ScanCreateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -37,18 +36,20 @@ class TestScans:
             account_id="accountId",
             url="https://www.example.com",
         )
-        assert_matches_type(ScanCreateResponse, scan, path=["response"])
+        assert_matches_type(str, scan, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         scan = client.url_scanner.scans.create(
             account_id="accountId",
             url="https://www.example.com",
+            customagent="customagent",
             custom_headers={"foo": "string"},
+            referer="referer",
             screenshots_resolutions=["desktop"],
             visibility="Public",
         )
-        assert_matches_type(ScanCreateResponse, scan, path=["response"])
+        assert_matches_type(str, scan, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -60,7 +61,7 @@ class TestScans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         scan = response.parse()
-        assert_matches_type(ScanCreateResponse, scan, path=["response"])
+        assert_matches_type(str, scan, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -72,7 +73,7 @@ class TestScans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             scan = response.parse()
-            assert_matches_type(ScanCreateResponse, scan, path=["response"])
+            assert_matches_type(str, scan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -344,18 +345,20 @@ class TestAsyncScans:
             account_id="accountId",
             url="https://www.example.com",
         )
-        assert_matches_type(ScanCreateResponse, scan, path=["response"])
+        assert_matches_type(str, scan, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         scan = await async_client.url_scanner.scans.create(
             account_id="accountId",
             url="https://www.example.com",
+            customagent="customagent",
             custom_headers={"foo": "string"},
+            referer="referer",
             screenshots_resolutions=["desktop"],
             visibility="Public",
         )
-        assert_matches_type(ScanCreateResponse, scan, path=["response"])
+        assert_matches_type(str, scan, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -367,7 +370,7 @@ class TestAsyncScans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         scan = await response.parse()
-        assert_matches_type(ScanCreateResponse, scan, path=["response"])
+        assert_matches_type(str, scan, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -379,7 +382,7 @@ class TestAsyncScans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             scan = await response.parse()
-            assert_matches_type(ScanCreateResponse, scan, path=["response"])
+            assert_matches_type(str, scan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
