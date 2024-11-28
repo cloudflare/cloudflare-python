@@ -234,6 +234,7 @@ class AIGatewayResource(SyncAPIResource):
         order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -248,6 +249,8 @@ class AIGatewayResource(SyncAPIResource):
           order_by: Order By Column Name
 
           order_by_direction: Order By Direction
+
+          search: Search by id
 
           extra_headers: Send extra headers
 
@@ -273,6 +276,7 @@ class AIGatewayResource(SyncAPIResource):
                         "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
+                        "search": search,
                     },
                     ai_gateway_list_params.AIGatewayListParams,
                 ),
@@ -534,6 +538,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -548,6 +553,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
           order_by: Order By Column Name
 
           order_by_direction: Order By Direction
+
+          search: Search by id
 
           extra_headers: Send extra headers
 
@@ -573,6 +580,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                         "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
+                        "search": search,
                     },
                     ai_gateway_list_params.AIGatewayListParams,
                 ),
