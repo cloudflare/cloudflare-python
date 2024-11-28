@@ -65,7 +65,9 @@ class ScansResource(SyncAPIResource):
         account_id: str,
         *,
         url: str,
+        customagent: str | NotGiven = NOT_GIVEN,
         custom_headers: Dict[str, str] | NotGiven = NOT_GIVEN,
+        referer: str | NotGiven = NOT_GIVEN,
         screenshots_resolutions: List[Literal["desktop", "mobile", "tablet"]] | NotGiven = NOT_GIVEN,
         visibility: Literal["Public", "Unlisted"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -74,11 +76,10 @@ class ScansResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScanCreateResponse:
+    ) -> str:
         """Submit a URL to scan.
 
-        You can also set some options, like the visibility level
-        and custom headers. Check limits at
+        Check limits at
         https://developers.cloudflare.com/security-center/investigate/scan-limits/.
 
         Args:
@@ -105,11 +106,13 @@ class ScansResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/urlscanner/scan",
+            f"/accounts/{account_id}/urlscanner/v2/scan",
             body=maybe_transform(
                 {
                     "url": url,
+                    "customagent": customagent,
                     "custom_headers": custom_headers,
+                    "referer": referer,
                     "screenshots_resolutions": screenshots_resolutions,
                     "visibility": visibility,
                 },
@@ -122,7 +125,7 @@ class ScansResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[ScanCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[ScanCreateResponse], ResultWrapper[ScanCreateResponse]),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     def list(
@@ -415,7 +418,9 @@ class AsyncScansResource(AsyncAPIResource):
         account_id: str,
         *,
         url: str,
+        customagent: str | NotGiven = NOT_GIVEN,
         custom_headers: Dict[str, str] | NotGiven = NOT_GIVEN,
+        referer: str | NotGiven = NOT_GIVEN,
         screenshots_resolutions: List[Literal["desktop", "mobile", "tablet"]] | NotGiven = NOT_GIVEN,
         visibility: Literal["Public", "Unlisted"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -424,11 +429,10 @@ class AsyncScansResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScanCreateResponse:
+    ) -> str:
         """Submit a URL to scan.
 
-        You can also set some options, like the visibility level
-        and custom headers. Check limits at
+        Check limits at
         https://developers.cloudflare.com/security-center/investigate/scan-limits/.
 
         Args:
@@ -455,11 +459,13 @@ class AsyncScansResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/urlscanner/scan",
+            f"/accounts/{account_id}/urlscanner/v2/scan",
             body=await async_maybe_transform(
                 {
                     "url": url,
+                    "customagent": customagent,
                     "custom_headers": custom_headers,
+                    "referer": referer,
                     "screenshots_resolutions": screenshots_resolutions,
                     "visibility": visibility,
                 },
@@ -472,7 +478,7 @@ class AsyncScansResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[ScanCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[ScanCreateResponse], ResultWrapper[ScanCreateResponse]),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     async def list(
