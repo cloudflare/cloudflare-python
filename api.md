@@ -1164,7 +1164,7 @@ from cloudflare.types.dnssec import DNSSEC, DNSSECDeleteResponse
 
 Methods:
 
-- <code title="delete /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dnssec/dnssec_delete_response.py">Optional[DNSSECDeleteResponse]</a></code>
+- <code title="delete /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dnssec/dnssec_delete_response.py">str</a></code>
 - <code title="patch /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dnssec/dnssec_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dnssec/dnssec.py">Optional[DNSSEC]</a></code>
 - <code title="get /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dnssec/dnssec.py">Optional[DNSSEC]</a></code>
 
