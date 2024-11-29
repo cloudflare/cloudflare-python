@@ -83,7 +83,7 @@ class IssuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePagination[IssueListResponse]:
+    ) -> SyncV4PagePagination[Optional[IssueListResponse]]:
         """
         Get Security Center Issues
 
@@ -106,7 +106,7 @@ class IssuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/intel/attack-surface-report/issues",
-            page=SyncV4PagePagination[IssueListResponse],
+            page=SyncV4PagePagination[Optional[IssueListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -416,7 +416,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[IssueListResponse, AsyncV4PagePagination[IssueListResponse]]:
+    ) -> AsyncPaginator[Optional[IssueListResponse], AsyncV4PagePagination[Optional[IssueListResponse]]]:
         """
         Get Security Center Issues
 
@@ -439,7 +439,7 @@ class AsyncIssuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/intel/attack-surface-report/issues",
-            page=AsyncV4PagePagination[IssueListResponse],
+            page=AsyncV4PagePagination[Optional[IssueListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

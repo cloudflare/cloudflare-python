@@ -437,7 +437,7 @@ class AppsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[AppListResponse]:
+    ) -> SyncV4PagePaginationArray[Optional[AppListResponse]]:
         """
         Retrieves a list of currently existing Spectrum applications inside a zone.
 
@@ -466,7 +466,7 @@ class AppsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/spectrum/apps",
-            page=SyncV4PagePaginationArray[AppListResponse],
+            page=SyncV4PagePaginationArray[Optional[AppListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -482,7 +482,7 @@ class AppsResource(SyncAPIResource):
                     app_list_params.AppListParams,
                 ),
             ),
-            model=AppListResponse,
+            model=cast(Any, AppListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -978,7 +978,7 @@ class AsyncAppsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AppListResponse, AsyncV4PagePaginationArray[AppListResponse]]:
+    ) -> AsyncPaginator[Optional[AppListResponse], AsyncV4PagePaginationArray[Optional[AppListResponse]]]:
         """
         Retrieves a list of currently existing Spectrum applications inside a zone.
 
@@ -1007,7 +1007,7 @@ class AsyncAppsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/spectrum/apps",
-            page=AsyncV4PagePaginationArray[AppListResponse],
+            page=AsyncV4PagePaginationArray[Optional[AppListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1023,7 +1023,7 @@ class AsyncAppsResource(AsyncAPIResource):
                     app_list_params.AppListParams,
                 ),
             ),
-            model=AppListResponse,
+            model=cast(Any, AppListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(

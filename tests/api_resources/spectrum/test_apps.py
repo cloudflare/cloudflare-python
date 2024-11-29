@@ -357,7 +357,7 @@ class TestApps:
         app = client.spectrum.apps.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[AppListResponse], app, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -368,7 +368,7 @@ class TestApps:
             page=1,
             per_page=1,
         )
-        assert_matches_type(SyncV4PagePaginationArray[AppListResponse], app, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -379,7 +379,7 @@ class TestApps:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         app = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[AppListResponse], app, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -390,7 +390,7 @@ class TestApps:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             app = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[AppListResponse], app, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -834,7 +834,7 @@ class TestAsyncApps:
         app = await async_client.spectrum.apps.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[AppListResponse], app, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -845,7 +845,7 @@ class TestAsyncApps:
             page=1,
             per_page=1,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[AppListResponse], app, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -856,7 +856,7 @@ class TestAsyncApps:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         app = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[AppListResponse], app, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -867,7 +867,7 @@ class TestAsyncApps:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             app = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[AppListResponse], app, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[Optional[AppListResponse]], app, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
