@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -17,7 +19,7 @@ from ..._response import (
 from ...pagination import SyncV4PagePagination, AsyncV4PagePagination
 from ...types.intel import dns_list_params
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.intel.dns_list_response import DNSListResponse
+from ...types.intel.dns import DNS
 
 __all__ = ["DNSResource", "AsyncDNSResource"]
 
@@ -56,7 +58,7 @@ class DNSResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePagination[DNSListResponse]:
+    ) -> SyncV4PagePagination[Optional[DNS]]:
         """
         Gets a list of all the domains that have resolved to a specific IP address.
 
@@ -79,7 +81,7 @@ class DNSResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/intel/dns",
-            page=SyncV4PagePagination[DNSListResponse],
+            page=SyncV4PagePagination[Optional[DNS]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -95,7 +97,7 @@ class DNSResource(SyncAPIResource):
                     dns_list_params.DNSListParams,
                 ),
             ),
-            model=DNSListResponse,
+            model=DNS,
         )
 
 
@@ -133,7 +135,7 @@ class AsyncDNSResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DNSListResponse, AsyncV4PagePagination[DNSListResponse]]:
+    ) -> AsyncPaginator[Optional[DNS], AsyncV4PagePagination[Optional[DNS]]]:
         """
         Gets a list of all the domains that have resolved to a specific IP address.
 
@@ -156,7 +158,7 @@ class AsyncDNSResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/intel/dns",
-            page=AsyncV4PagePagination[DNSListResponse],
+            page=AsyncV4PagePagination[Optional[DNS]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -172,7 +174,7 @@ class AsyncDNSResource(AsyncAPIResource):
                     dns_list_params.DNSListParams,
                 ),
             ),
-            model=DNSListResponse,
+            model=DNS,
         )
 
 
