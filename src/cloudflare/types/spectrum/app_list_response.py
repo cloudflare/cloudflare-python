@@ -2,19 +2,18 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from .dns import DNS
 from .edge_ips import EdgeIPs
 from ..._models import BaseModel
 from .origin_dns import OriginDNS
 from .origin_port import OriginPort
-from ..shared.response_info import ResponseInfo
 
-__all__ = ["AppListResponse", "ResultUnionMember0", "ResultUnionMember1", "ResultInfo"]
+__all__ = ["AppListResponse", "UnionMember0", "UnionMember1"]
 
 
-class ResultUnionMember0(BaseModel):
+class UnionMember0(BaseModel):
     id: str
     """App identifier."""
 
@@ -90,7 +89,7 @@ class ResultUnionMember0(BaseModel):
     """
 
 
-class ResultUnionMember1(BaseModel):
+class UnionMember1(BaseModel):
     id: str
     """App identifier."""
 
@@ -117,28 +116,4 @@ class ResultUnionMember1(BaseModel):
     """
 
 
-class ResultInfo(BaseModel):
-    count: Optional[float] = None
-    """Total number of results for the requested service"""
-
-    page: Optional[float] = None
-    """Current page within paginated list of results"""
-
-    per_page: Optional[float] = None
-    """Number of results per page of results"""
-
-    total_count: Optional[float] = None
-    """Total results available without any search parameters"""
-
-
-class AppListResponse(BaseModel):
-    errors: List[ResponseInfo]
-
-    messages: List[ResponseInfo]
-
-    success: Literal[True]
-    """Whether the API call was successful"""
-
-    result: Union[List[ResultUnionMember0], List[ResultUnionMember1], None] = None
-
-    result_info: Optional[ResultInfo] = None
+AppListResponse: TypeAlias = Union[List[UnionMember0], List[UnionMember1]]

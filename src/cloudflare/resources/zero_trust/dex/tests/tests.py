@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 
 import httpx
 
@@ -27,7 +27,7 @@ from .unique_devices import (
 )
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.dex import test_list_params
-from .....types.zero_trust.dex.test_list_response import TestListResponse
+from .....types.zero_trust.dex.tests.tests import Tests
 
 __all__ = ["TestsResource", "AsyncTestsResource"]
 
@@ -73,7 +73,7 @@ class TestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePagination[TestListResponse]:
+    ) -> SyncV4PagePagination[Optional[Tests]]:
         """
         List DEX tests with overview metrics
 
@@ -102,7 +102,7 @@ class TestsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dex/tests/overview",
-            page=SyncV4PagePagination[TestListResponse],
+            page=SyncV4PagePagination[Optional[Tests]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -119,7 +119,7 @@ class TestsResource(SyncAPIResource):
                     test_list_params.TestListParams,
                 ),
             ),
-            model=TestListResponse,
+            model=Tests,
         )
 
 
@@ -162,7 +162,7 @@ class AsyncTestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[TestListResponse, AsyncV4PagePagination[TestListResponse]]:
+    ) -> AsyncPaginator[Optional[Tests], AsyncV4PagePagination[Optional[Tests]]]:
         """
         List DEX tests with overview metrics
 
@@ -191,7 +191,7 @@ class AsyncTestsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dex/tests/overview",
-            page=AsyncV4PagePagination[TestListResponse],
+            page=AsyncV4PagePagination[Optional[Tests]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -208,7 +208,7 @@ class AsyncTestsResource(AsyncAPIResource):
                     test_list_params.TestListParams,
                 ),
             ),
-            model=TestListResponse,
+            model=Tests,
         )
 
 
