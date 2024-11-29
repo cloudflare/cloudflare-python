@@ -8342,13 +8342,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import LeakedCredentialCheckCreateResponse, LeakedCredentialCheckListResponse
+from cloudflare.types import LeakedCredentialCheckCreateResponse, LeakedCredentialCheckGetResponse
 ```
 
 Methods:
 
 - <code title="post /zones/{zone_id}/leaked-credential-checks">client.leaked_credential_checks.<a href="./src/cloudflare/resources/leaked_credential_checks/leaked_credential_checks.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/leaked_credential_check_create_params.py">params</a>) -> <a href="./src/cloudflare/types/leaked_credential_check_create_response.py">LeakedCredentialCheckCreateResponse</a></code>
-- <code title="get /zones/{zone_id}/leaked-credential-checks">client.leaked_credential_checks.<a href="./src/cloudflare/resources/leaked_credential_checks/leaked_credential_checks.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/leaked_credential_check_list_response.py">LeakedCredentialCheckListResponse</a></code>
+- <code title="get /zones/{zone_id}/leaked-credential-checks">client.leaked_credential_checks.<a href="./src/cloudflare/resources/leaked_credential_checks/leaked_credential_checks.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/leaked_credential_check_get_response.py">LeakedCredentialCheckGetResponse</a></code>
 
 ## Detections
 

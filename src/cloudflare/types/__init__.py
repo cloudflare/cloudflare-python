@@ -28,11 +28,9 @@ from .shared import (
     CertificateRequestType as CertificateRequestType,
     TokenConditionCIDRList as TokenConditionCIDRList,
 )
+from .leaked_credential_check_get_response import LeakedCredentialCheckGetResponse as LeakedCredentialCheckGetResponse
 from .leaked_credential_check_create_params import (
     LeakedCredentialCheckCreateParams as LeakedCredentialCheckCreateParams,
-)
-from .leaked_credential_check_list_response import (
-    LeakedCredentialCheckListResponse as LeakedCredentialCheckListResponse,
 )
 from .leaked_credential_check_create_response import (
     LeakedCredentialCheckCreateResponse as LeakedCredentialCheckCreateResponse,

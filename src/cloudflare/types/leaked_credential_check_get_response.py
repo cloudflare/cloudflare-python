@@ -4,9 +4,9 @@ from typing import Optional
 
 from .._models import BaseModel
 
-__all__ = ["LeakedCredentialCheckListResponse"]
+__all__ = ["LeakedCredentialCheckGetResponse"]
 
 
-class LeakedCredentialCheckListResponse(BaseModel):
+class LeakedCredentialCheckGetResponse(BaseModel):
     enabled: Optional[bool] = None
     """Whether or not Leaked Credential Checks are enabled"""

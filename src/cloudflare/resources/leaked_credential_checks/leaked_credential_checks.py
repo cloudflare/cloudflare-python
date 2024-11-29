@@ -30,7 +30,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
-from ...types.leaked_credential_check_list_response import LeakedCredentialCheckListResponse
+from ...types.leaked_credential_check_get_response import LeakedCredentialCheckGetResponse
 from ...types.leaked_credential_check_create_response import LeakedCredentialCheckCreateResponse
 
 __all__ = ["LeakedCredentialChecksResource", "AsyncLeakedCredentialChecksResource"]
@@ -105,7 +105,7 @@ class LeakedCredentialChecksResource(SyncAPIResource):
             cast_to=cast(Type[LeakedCredentialCheckCreateResponse], ResultWrapper[LeakedCredentialCheckCreateResponse]),
         )
 
-    def list(
+    def get(
         self,
         *,
         zone_id: str,
@@ -115,7 +115,7 @@ class LeakedCredentialChecksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LeakedCredentialCheckListResponse:
+    ) -> LeakedCredentialCheckGetResponse:
         """
         Retrieves the current status of Leaked Credential Checks
 
@@ -139,9 +139,9 @@ class LeakedCredentialChecksResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[LeakedCredentialCheckListResponse]._unwrapper,
+                post_parser=ResultWrapper[LeakedCredentialCheckGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[LeakedCredentialCheckListResponse], ResultWrapper[LeakedCredentialCheckListResponse]),
+            cast_to=cast(Type[LeakedCredentialCheckGetResponse], ResultWrapper[LeakedCredentialCheckGetResponse]),
         )
 
 
@@ -214,7 +214,7 @@ class AsyncLeakedCredentialChecksResource(AsyncAPIResource):
             cast_to=cast(Type[LeakedCredentialCheckCreateResponse], ResultWrapper[LeakedCredentialCheckCreateResponse]),
         )
 
-    async def list(
+    async def get(
         self,
         *,
         zone_id: str,
@@ -224,7 +224,7 @@ class AsyncLeakedCredentialChecksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LeakedCredentialCheckListResponse:
+    ) -> LeakedCredentialCheckGetResponse:
         """
         Retrieves the current status of Leaked Credential Checks
 
@@ -248,9 +248,9 @@ class AsyncLeakedCredentialChecksResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[LeakedCredentialCheckListResponse]._unwrapper,
+                post_parser=ResultWrapper[LeakedCredentialCheckGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[LeakedCredentialCheckListResponse], ResultWrapper[LeakedCredentialCheckListResponse]),
+            cast_to=cast(Type[LeakedCredentialCheckGetResponse], ResultWrapper[LeakedCredentialCheckGetResponse]),
         )
 
 
@@ -261,8 +261,8 @@ class LeakedCredentialChecksResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             leaked_credential_checks.create,
         )
-        self.list = to_raw_response_wrapper(
-            leaked_credential_checks.list,
+        self.get = to_raw_response_wrapper(
+            leaked_credential_checks.get,
         )
 
     @cached_property
@@ -277,8 +277,8 @@ class AsyncLeakedCredentialChecksResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             leaked_credential_checks.create,
         )
-        self.list = async_to_raw_response_wrapper(
-            leaked_credential_checks.list,
+        self.get = async_to_raw_response_wrapper(
+            leaked_credential_checks.get,
         )
 
     @cached_property
@@ -293,8 +293,8 @@ class LeakedCredentialChecksResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             leaked_credential_checks.create,
         )
-        self.list = to_streamed_response_wrapper(
-            leaked_credential_checks.list,
+        self.get = to_streamed_response_wrapper(
+            leaked_credential_checks.get,
         )
 
     @cached_property
@@ -309,8 +309,8 @@ class AsyncLeakedCredentialChecksResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             leaked_credential_checks.create,
         )
-        self.list = async_to_streamed_response_wrapper(
-            leaked_credential_checks.list,
+        self.get = async_to_streamed_response_wrapper(
+            leaked_credential_checks.get,
         )
 
     @cached_property
