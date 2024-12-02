@@ -2,6 +2,6 @@
 
 from typing_extensions import TypeAlias
 
-__all__ = ["DOMGetResponse"]
+__all__ = ["ScanDOMResponse"]
 
-DOMGetResponse: TypeAlias = str
+ScanDOMResponse: TypeAlias = str
