@@ -5,14 +5,14 @@ from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["URLScannerBulkResponse", "URLScannerBulkResponseItem", "URLScannerBulkResponseItemOptions"]
+__all__ = ["ScanBulkCreateResponse", "ScanBulkCreateResponseItem", "ScanBulkCreateResponseItemOptions"]
 
 
-class URLScannerBulkResponseItemOptions(BaseModel):
+class ScanBulkCreateResponseItemOptions(BaseModel):
     useragent: Optional[str] = None
 
 
-class URLScannerBulkResponseItem(BaseModel):
+class ScanBulkCreateResponseItem(BaseModel):
     api: str
     """URL to api report."""
 
@@ -28,7 +28,7 @@ class URLScannerBulkResponseItem(BaseModel):
     visibility: str
     """Submitted visibility status."""
 
-    options: Optional[URLScannerBulkResponseItemOptions] = None
+    options: Optional[ScanBulkCreateResponseItemOptions] = None
 
 
-URLScannerBulkResponse: TypeAlias = List[URLScannerBulkResponseItem]
+ScanBulkCreateResponse: TypeAlias = List[ScanBulkCreateResponseItem]

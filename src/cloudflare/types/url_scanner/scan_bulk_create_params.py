@@ -7,10 +7,10 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["URLScannerBulkParams", "Body"]
+__all__ = ["ScanBulkCreateParams", "Body"]
 
 
-class URLScannerBulkParams(TypedDict, total=False):
+class ScanBulkCreateParams(TypedDict, total=False):
     body: Required[Iterable[Body]]
     """List of urls to scan (up to a 100)."""
 

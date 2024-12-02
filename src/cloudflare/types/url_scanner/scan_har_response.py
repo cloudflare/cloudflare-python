@@ -8,21 +8,20 @@ from ..._models import BaseModel
 
 __all__ = [
     "ScanHARResponse",
-    "HAR",
-    "HARLog",
-    "HARLogCreator",
-    "HARLogEntry",
-    "HARLogEntryRequest",
-    "HARLogEntryRequestHeader",
-    "HARLogEntryResponse",
-    "HARLogEntryResponseContent",
-    "HARLogEntryResponseHeader",
-    "HARLogPage",
-    "HARLogPagePageTimings",
+    "Log",
+    "LogCreator",
+    "LogEntry",
+    "LogEntryRequest",
+    "LogEntryRequestHeader",
+    "LogEntryResponse",
+    "LogEntryResponseContent",
+    "LogEntryResponseHeader",
+    "LogPage",
+    "LogPagePageTimings",
 ]
 
 
-class HARLogCreator(BaseModel):
+class LogCreator(BaseModel):
     comment: str
 
     name: str
@@ -30,16 +29,16 @@ class HARLogCreator(BaseModel):
     version: str
 
 
-class HARLogEntryRequestHeader(BaseModel):
+class LogEntryRequestHeader(BaseModel):
     name: str
 
     value: str
 
 
-class HARLogEntryRequest(BaseModel):
+class LogEntryRequest(BaseModel):
     body_size: float = FieldInfo(alias="bodySize")
 
-    headers: List[HARLogEntryRequestHeader]
+    headers: List[LogEntryRequestHeader]
 
     headers_size: float = FieldInfo(alias="headersSize")
 
@@ -50,7 +49,7 @@ class HARLogEntryRequest(BaseModel):
     url: str
 
 
-class HARLogEntryResponseContent(BaseModel):
+class LogEntryResponseContent(BaseModel):
     mime_type: str = FieldInfo(alias="mimeType")
 
     size: float
@@ -58,20 +57,20 @@ class HARLogEntryResponseContent(BaseModel):
     compression: Optional[int] = None
 
 
-class HARLogEntryResponseHeader(BaseModel):
+class LogEntryResponseHeader(BaseModel):
     name: str
 
     value: str
 
 
-class HARLogEntryResponse(BaseModel):
+class LogEntryResponse(BaseModel):
     transfer_size: float = FieldInfo(alias="_transferSize")
 
     body_size: float = FieldInfo(alias="bodySize")
 
-    content: HARLogEntryResponseContent
+    content: LogEntryResponseContent
 
-    headers: List[HARLogEntryResponseHeader]
+    headers: List[LogEntryResponseHeader]
 
     headers_size: float = FieldInfo(alias="headersSize")
 
@@ -84,7 +83,7 @@ class HARLogEntryResponse(BaseModel):
     status_text: str = FieldInfo(alias="statusText")
 
 
-class HARLogEntry(BaseModel):
+class LogEntry(BaseModel):
     initial_priority: str = FieldInfo(alias="_initialPriority")
 
     initiator_type: str = FieldInfo(alias="_initiator_type")
@@ -103,9 +102,9 @@ class HARLogEntry(BaseModel):
 
     pageref: str
 
-    request: HARLogEntryRequest
+    request: LogEntryRequest
 
-    response: HARLogEntryResponse
+    response: LogEntryResponse
 
     server_ip_address: str = FieldInfo(alias="serverIPAddress")
 
@@ -114,35 +113,31 @@ class HARLogEntry(BaseModel):
     time: float
 
 
-class HARLogPagePageTimings(BaseModel):
+class LogPagePageTimings(BaseModel):
     on_content_load: float = FieldInfo(alias="onContentLoad")
 
     on_load: float = FieldInfo(alias="onLoad")
 
 
-class HARLogPage(BaseModel):
+class LogPage(BaseModel):
     id: str
 
-    page_timings: HARLogPagePageTimings = FieldInfo(alias="pageTimings")
+    page_timings: LogPagePageTimings = FieldInfo(alias="pageTimings")
 
     started_date_time: str = FieldInfo(alias="startedDateTime")
 
     title: str
 
 
-class HARLog(BaseModel):
-    creator: HARLogCreator
+class Log(BaseModel):
+    creator: LogCreator
 
-    entries: List[HARLogEntry]
+    entries: List[LogEntry]
 
-    pages: List[HARLogPage]
+    pages: List[LogPage]
 
     version: str
 
 
-class HAR(BaseModel):
-    log: HARLog
-
-
 class ScanHARResponse(BaseModel):
-    har: HAR
+    log: Log

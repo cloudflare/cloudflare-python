@@ -1,32 +1,61 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List
-from datetime import datetime
+
+from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["ScanListResponse", "Task"]
+__all__ = ["ScanListResponse", "Result", "ResultPage", "ResultStats", "ResultTask", "ResultVerdicts"]
 
 
-class Task(BaseModel):
+class ResultPage(BaseModel):
+    asn: str
+
     country: str
-    """Alpha-2 country code"""
 
-    success: bool
-    """Whether scan was successful or not"""
-
-    time: datetime
-    """When scan was submitted (UTC)"""
+    ip: str
 
     url: str
-    """Scan url (after redirects)"""
+
+
+class ResultStats(BaseModel):
+    data_length: float = FieldInfo(alias="dataLength")
+
+    requests: float
+
+    uniq_countries: float = FieldInfo(alias="uniqCountries")
+
+    uniq_ips: float = FieldInfo(alias="uniqIPs")
+
+
+class ResultTask(BaseModel):
+    time: str
+
+    url: str
 
     uuid: str
-    """Scan id"""
 
     visibility: str
-    """Visibility status."""
+
+
+class ResultVerdicts(BaseModel):
+    malicious: bool
+
+
+class Result(BaseModel):
+    api_id: str = FieldInfo(alias="_id")
+
+    page: ResultPage
+
+    result: str
+
+    stats: ResultStats
+
+    task: ResultTask
+
+    verdicts: ResultVerdicts
 
 
 class ScanListResponse(BaseModel):
-    tasks: List[Task]
+    results: List[Result]

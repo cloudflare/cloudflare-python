@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Type, Union, cast
-from datetime import datetime
+from typing import Dict, List, Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -31,11 +30,12 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
-from ...types.url_scanner import scan_get_params, scan_list_params, scan_create_params, scan_screenshot_params
+from ...types.url_scanner import scan_list_params, scan_create_params, scan_screenshot_params, scan_bulk_create_params
 from ...types.url_scanner.scan_get_response import ScanGetResponse
 from ...types.url_scanner.scan_har_response import ScanHARResponse
 from ...types.url_scanner.scan_list_response import ScanListResponse
 from ...types.url_scanner.scan_create_response import ScanCreateResponse
+from ...types.url_scanner.scan_bulk_create_response import ScanBulkCreateResponse
 
 __all__ = ["ScansResource", "AsyncScansResource"]
 
@@ -132,24 +132,8 @@ class ScansResource(SyncAPIResource):
         self,
         account_id: str,
         *,
-        account_scans: bool | NotGiven = NOT_GIVEN,
-        asn: str | NotGiven = NOT_GIVEN,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        hash: str | NotGiven = NOT_GIVEN,
-        hostname: str | NotGiven = NOT_GIVEN,
-        ip: str | NotGiven = NOT_GIVEN,
-        is_malicious: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        next_cursor: str | NotGiven = NOT_GIVEN,
-        page_asn: str | NotGiven = NOT_GIVEN,
-        page_hostname: str | NotGiven = NOT_GIVEN,
-        page_ip: str | NotGiven = NOT_GIVEN,
-        page_path: str | NotGiven = NOT_GIVEN,
-        page_url: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        scan_id: str | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
+        q: str | NotGiven = NOT_GIVEN,
+        size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -157,53 +141,25 @@ class ScansResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ScanListResponse:
-        """
-        Search scans by date and webpages' requests, including full URL (after
-        redirects), hostname, and path. <br/> A successful scan will appear in search
-        results a few minutes after finishing but may take much longer if the system in
-        under load. By default, only successfully completed scans will appear in search
-        results, unless searching by `scanId`. Please take into account that older scans
-        may be removed from the search index at an unspecified time.
+        """Use a subset of ElasticSearch Query syntax to filter scans.
+
+        Some example
+        queries:<br/> <br/>- 'page.domain:microsoft AND verdicts.malicious:true AND NOT
+        page.domain:microsoft.com': malicious scans whose hostname starts with
+        "microsoft".<br/>- 'apikey:me AND date:[2024-01 TO 2024-10]': my scans from 2024
+        January to 2024 October.<br/>- 'page.domain:(blogspot OR www.blogspot)':
+        Searches for scans whose main domain starts with "blogspot" or with
+        "www.blogspot"<br/>- 'date:>now-7d AND path:okta-sign-in.min.js: scans from the
+        last 7 days with any request path that ends with "okta-sign-in.min.js"<br/>-
+        'page.asn:AS24940 AND hash:xxx': Websites hosted in AS24940 where a resource
+        with the given hash was downloaded.
 
         Args:
           account_id: Account Id.
 
-          account_scans: Return only scans created by account.
+          q: Filter scans
 
-          asn: Filter scans by Autonomous System Number (ASN) of _any_ request made by the
-              webpage.
-
-          date_end: Filter scans requested before date (inclusive).
-
-          date_start: Filter scans requested after date (inclusive).
-
-          hash: Filter scans by hash of any html/js/css request made by the webpage.
-
-          hostname: Filter scans by hostname of _any_ request made by the webpage.
-
-          ip: Filter scans by IP address (IPv4 or IPv6) of _any_ request made by the webpage.
-
-          is_malicious: Filter scans by malicious verdict.
-
-          limit: Limit the number of objects in the response.
-
-          next_cursor: Pagination cursor to get the next set of results.
-
-          page_asn: Filter scans by main page Autonomous System Number (ASN).
-
-          page_hostname: Filter scans by main page hostname (domain of effective URL).
-
-          page_ip: Filter scans by main page IP address (IPv4 or IPv6).
-
-          page_path: Filter scans by exact match of effective URL path (also supports suffix search).
-
-          page_url: Filter scans by submitted or scanned URL
-
-          path: Filter scans by url path of _any_ request made by the webpage.
-
-          scan_id: Scan uuid
-
-          url: Filter scans by URL of _any_ request made by the webpage
+          size: Limit the number of objects in the response.
 
           extra_headers: Send extra headers
 
@@ -216,7 +172,7 @@ class ScansResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/urlscanner/scan",
+            f"/accounts/{account_id}/urlscanner/v2/search",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -224,30 +180,98 @@ class ScansResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "account_scans": account_scans,
-                        "asn": asn,
-                        "date_end": date_end,
-                        "date_start": date_start,
-                        "hash": hash,
-                        "hostname": hostname,
-                        "ip": ip,
-                        "is_malicious": is_malicious,
-                        "limit": limit,
-                        "next_cursor": next_cursor,
-                        "page_asn": page_asn,
-                        "page_hostname": page_hostname,
-                        "page_ip": page_ip,
-                        "page_path": page_path,
-                        "page_url": page_url,
-                        "path": path,
-                        "scan_id": scan_id,
-                        "url": url,
+                        "q": q,
+                        "size": size,
                     },
                     scan_list_params.ScanListParams,
                 ),
-                post_parser=ResultWrapper[ScanListResponse]._unwrapper,
             ),
-            cast_to=cast(Type[ScanListResponse], ResultWrapper[ScanListResponse]),
+            cast_to=ScanListResponse,
+        )
+
+    def bulk_create(
+        self,
+        account_id: str,
+        *,
+        body: Iterable[scan_bulk_create_params.Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ScanBulkCreateResponse:
+        """Submit URLs to scan.
+
+        Check limits at
+        https://developers.cloudflare.com/security-center/investigate/scan-limits/ and
+        take into account scans submitted in bulk have lower priority and may take
+        longer to finish.
+
+        Args:
+          account_id: Account Id.
+
+          body: List of urls to scan (up to a 100).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/urlscanner/v2/bulk",
+            body=maybe_transform(body, Iterable[scan_bulk_create_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ScanBulkCreateResponse,
+        )
+
+    def dom(
+        self,
+        scan_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
+        """
+        Returns a plain text response, with the scan's DOM content as rendered by
+        Chrome.
+
+        Args:
+          account_id: Account Id.
+
+          scan_id: Scan uuid.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not scan_id:
+            raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
+        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
+        return self._get(
+            f"/accounts/{account_id}/urlscanner/v2/dom/{scan_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=str,
         )
 
     def get(
@@ -255,7 +279,6 @@ class ScansResource(SyncAPIResource):
         scan_id: str,
         *,
         account_id: str,
-        full: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -271,8 +294,6 @@ class ScansResource(SyncAPIResource):
 
           scan_id: Scan uuid.
 
-          full: Whether to return full report (scan summary and network log).
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -286,16 +307,11 @@ class ScansResource(SyncAPIResource):
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         return self._get(
-            f"/accounts/{account_id}/urlscanner/scan/{scan_id}",
+            f"/accounts/{account_id}/urlscanner/v2/result/{scan_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"full": full}, scan_get_params.ScanGetParams),
-                post_parser=ResultWrapper[ScanGetResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[ScanGetResponse], ResultWrapper[ScanGetResponse]),
+            cast_to=ScanGetResponse,
         )
 
     def har(
@@ -333,15 +349,11 @@ class ScansResource(SyncAPIResource):
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         return self._get(
-            f"/accounts/{account_id}/urlscanner/scan/{scan_id}/har",
+            f"/accounts/{account_id}/urlscanner/v2/har/{scan_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ScanHARResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[ScanHARResponse], ResultWrapper[ScanHARResponse]),
+            cast_to=ScanHARResponse,
         )
 
     def screenshot(
@@ -381,7 +393,7 @@ class ScansResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         extra_headers = {"Accept": "image/png", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/urlscanner/scan/{scan_id}/screenshot",
+            f"/accounts/{account_id}/urlscanner/v2/screenshots/{scan_id}.png",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -485,24 +497,8 @@ class AsyncScansResource(AsyncAPIResource):
         self,
         account_id: str,
         *,
-        account_scans: bool | NotGiven = NOT_GIVEN,
-        asn: str | NotGiven = NOT_GIVEN,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        hash: str | NotGiven = NOT_GIVEN,
-        hostname: str | NotGiven = NOT_GIVEN,
-        ip: str | NotGiven = NOT_GIVEN,
-        is_malicious: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        next_cursor: str | NotGiven = NOT_GIVEN,
-        page_asn: str | NotGiven = NOT_GIVEN,
-        page_hostname: str | NotGiven = NOT_GIVEN,
-        page_ip: str | NotGiven = NOT_GIVEN,
-        page_path: str | NotGiven = NOT_GIVEN,
-        page_url: str | NotGiven = NOT_GIVEN,
-        path: str | NotGiven = NOT_GIVEN,
-        scan_id: str | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
+        q: str | NotGiven = NOT_GIVEN,
+        size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -510,53 +506,25 @@ class AsyncScansResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ScanListResponse:
-        """
-        Search scans by date and webpages' requests, including full URL (after
-        redirects), hostname, and path. <br/> A successful scan will appear in search
-        results a few minutes after finishing but may take much longer if the system in
-        under load. By default, only successfully completed scans will appear in search
-        results, unless searching by `scanId`. Please take into account that older scans
-        may be removed from the search index at an unspecified time.
+        """Use a subset of ElasticSearch Query syntax to filter scans.
+
+        Some example
+        queries:<br/> <br/>- 'page.domain:microsoft AND verdicts.malicious:true AND NOT
+        page.domain:microsoft.com': malicious scans whose hostname starts with
+        "microsoft".<br/>- 'apikey:me AND date:[2024-01 TO 2024-10]': my scans from 2024
+        January to 2024 October.<br/>- 'page.domain:(blogspot OR www.blogspot)':
+        Searches for scans whose main domain starts with "blogspot" or with
+        "www.blogspot"<br/>- 'date:>now-7d AND path:okta-sign-in.min.js: scans from the
+        last 7 days with any request path that ends with "okta-sign-in.min.js"<br/>-
+        'page.asn:AS24940 AND hash:xxx': Websites hosted in AS24940 where a resource
+        with the given hash was downloaded.
 
         Args:
           account_id: Account Id.
 
-          account_scans: Return only scans created by account.
+          q: Filter scans
 
-          asn: Filter scans by Autonomous System Number (ASN) of _any_ request made by the
-              webpage.
-
-          date_end: Filter scans requested before date (inclusive).
-
-          date_start: Filter scans requested after date (inclusive).
-
-          hash: Filter scans by hash of any html/js/css request made by the webpage.
-
-          hostname: Filter scans by hostname of _any_ request made by the webpage.
-
-          ip: Filter scans by IP address (IPv4 or IPv6) of _any_ request made by the webpage.
-
-          is_malicious: Filter scans by malicious verdict.
-
-          limit: Limit the number of objects in the response.
-
-          next_cursor: Pagination cursor to get the next set of results.
-
-          page_asn: Filter scans by main page Autonomous System Number (ASN).
-
-          page_hostname: Filter scans by main page hostname (domain of effective URL).
-
-          page_ip: Filter scans by main page IP address (IPv4 or IPv6).
-
-          page_path: Filter scans by exact match of effective URL path (also supports suffix search).
-
-          page_url: Filter scans by submitted or scanned URL
-
-          path: Filter scans by url path of _any_ request made by the webpage.
-
-          scan_id: Scan uuid
-
-          url: Filter scans by URL of _any_ request made by the webpage
+          size: Limit the number of objects in the response.
 
           extra_headers: Send extra headers
 
@@ -569,7 +537,7 @@ class AsyncScansResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/urlscanner/scan",
+            f"/accounts/{account_id}/urlscanner/v2/search",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -577,30 +545,98 @@ class AsyncScansResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "account_scans": account_scans,
-                        "asn": asn,
-                        "date_end": date_end,
-                        "date_start": date_start,
-                        "hash": hash,
-                        "hostname": hostname,
-                        "ip": ip,
-                        "is_malicious": is_malicious,
-                        "limit": limit,
-                        "next_cursor": next_cursor,
-                        "page_asn": page_asn,
-                        "page_hostname": page_hostname,
-                        "page_ip": page_ip,
-                        "page_path": page_path,
-                        "page_url": page_url,
-                        "path": path,
-                        "scan_id": scan_id,
-                        "url": url,
+                        "q": q,
+                        "size": size,
                     },
                     scan_list_params.ScanListParams,
                 ),
-                post_parser=ResultWrapper[ScanListResponse]._unwrapper,
             ),
-            cast_to=cast(Type[ScanListResponse], ResultWrapper[ScanListResponse]),
+            cast_to=ScanListResponse,
+        )
+
+    async def bulk_create(
+        self,
+        account_id: str,
+        *,
+        body: Iterable[scan_bulk_create_params.Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ScanBulkCreateResponse:
+        """Submit URLs to scan.
+
+        Check limits at
+        https://developers.cloudflare.com/security-center/investigate/scan-limits/ and
+        take into account scans submitted in bulk have lower priority and may take
+        longer to finish.
+
+        Args:
+          account_id: Account Id.
+
+          body: List of urls to scan (up to a 100).
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/urlscanner/v2/bulk",
+            body=await async_maybe_transform(body, Iterable[scan_bulk_create_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ScanBulkCreateResponse,
+        )
+
+    async def dom(
+        self,
+        scan_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
+        """
+        Returns a plain text response, with the scan's DOM content as rendered by
+        Chrome.
+
+        Args:
+          account_id: Account Id.
+
+          scan_id: Scan uuid.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not scan_id:
+            raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
+        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
+        return await self._get(
+            f"/accounts/{account_id}/urlscanner/v2/dom/{scan_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=str,
         )
 
     async def get(
@@ -608,7 +644,6 @@ class AsyncScansResource(AsyncAPIResource):
         scan_id: str,
         *,
         account_id: str,
-        full: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -624,8 +659,6 @@ class AsyncScansResource(AsyncAPIResource):
 
           scan_id: Scan uuid.
 
-          full: Whether to return full report (scan summary and network log).
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -639,16 +672,11 @@ class AsyncScansResource(AsyncAPIResource):
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/urlscanner/scan/{scan_id}",
+            f"/accounts/{account_id}/urlscanner/v2/result/{scan_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"full": full}, scan_get_params.ScanGetParams),
-                post_parser=ResultWrapper[ScanGetResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[ScanGetResponse], ResultWrapper[ScanGetResponse]),
+            cast_to=ScanGetResponse,
         )
 
     async def har(
@@ -686,15 +714,11 @@ class AsyncScansResource(AsyncAPIResource):
         if not scan_id:
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/urlscanner/scan/{scan_id}/har",
+            f"/accounts/{account_id}/urlscanner/v2/har/{scan_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ScanHARResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[ScanHARResponse], ResultWrapper[ScanHARResponse]),
+            cast_to=ScanHARResponse,
         )
 
     async def screenshot(
@@ -734,7 +758,7 @@ class AsyncScansResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `scan_id` but received {scan_id!r}")
         extra_headers = {"Accept": "image/png", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/urlscanner/scan/{scan_id}/screenshot",
+            f"/accounts/{account_id}/urlscanner/v2/screenshots/{scan_id}.png",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -758,6 +782,12 @@ class ScansResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             scans.list,
         )
+        self.bulk_create = to_raw_response_wrapper(
+            scans.bulk_create,
+        )
+        self.dom = to_raw_response_wrapper(
+            scans.dom,
+        )
         self.get = to_raw_response_wrapper(
             scans.get,
         )
@@ -779,6 +809,12 @@ class AsyncScansResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             scans.list,
+        )
+        self.bulk_create = async_to_raw_response_wrapper(
+            scans.bulk_create,
+        )
+        self.dom = async_to_raw_response_wrapper(
+            scans.dom,
         )
         self.get = async_to_raw_response_wrapper(
             scans.get,
@@ -802,6 +838,12 @@ class ScansResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             scans.list,
         )
+        self.bulk_create = to_streamed_response_wrapper(
+            scans.bulk_create,
+        )
+        self.dom = to_streamed_response_wrapper(
+            scans.dom,
+        )
         self.get = to_streamed_response_wrapper(
             scans.get,
         )
@@ -823,6 +865,12 @@ class AsyncScansResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             scans.list,
+        )
+        self.bulk_create = async_to_streamed_response_wrapper(
+            scans.bulk_create,
+        )
+        self.dom = async_to_streamed_response_wrapper(
+            scans.dom,
         )
         self.get = async_to_streamed_response_wrapper(
             scans.get,
